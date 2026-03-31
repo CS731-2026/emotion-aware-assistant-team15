@@ -1,4 +1,4 @@
-# Emotion-aware Chatbot（教育场景）
+# COMPSYS 731 Human-Robot Interaction
 
 [![Course](https://img.shields.io/badge/COMPSYS%20731-Human--Robot%20Interaction-blue)](https://www.auckland.ac.nz/)
 [![Topic](https://img.shields.io/badge/Topic-Emotion--aware%20Chatbot-purple)](#)
