@@ -716,8 +716,6 @@ The following references informed the design and implementation of this system. 
 
 ---
 
-*Last updated: April 2026 · COMPSYS 731 Group Project · University of Auckland*
-
 ## Contributors
 
 - Team 15
@@ -725,3 +723,7 @@ The following references informed the design and implementation of this system. 
 ## Acknowledgements
 
 - COMPSYS 731 course and teaching team
+
+---
+
+*Last updated: April 2026 · COMPSYS 731 Group Project · University of Auckland*
