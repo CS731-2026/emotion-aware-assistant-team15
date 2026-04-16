@@ -86,10 +86,10 @@ Emotion Recognition Model
     ▼
 Emotion Mapping Layer          ← [Responds to instructor guidance]
     │  (Ekman basic emotions → Academic Affective States)
-    │  fear+surprise → Confusion
-    │  sadness+anger → Frustration
-    │  happiness/neutral → Engagement
-    │  sustained neutral → Boredom
+    │  Surprise → Confusion
+    │  Anger + Disgust + Contempt → Frustration
+    │  Happy + Neutral → Cognitive Overload
+    │  Fear + Sadness → Boredom
     ▼
 Context Builder
     │  (emotion state + PDF section + user query → structured prompt)
