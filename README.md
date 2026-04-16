@@ -59,9 +59,9 @@ This project implements an **Emotion-Aware Academic Assistant** designed to supp
 
 | Name | Student ID | Role |
 | :--- | :--- | :--- |
-| Member A | XXXXXXXX | Emotion Recognition Pipeline, Model Training |
-| Member B | XXXXXXXX | LLM Integration, Prompt Engineering, Emotion Mapping |
-| Member C | XXXXXXXX | Frontend UI, Evaluation, Dataset Preparation |
+| Xincheng Li | 168277355 | Emotion Recognition Pipeline, Model Training |
+| Xiyu Huang | XXXXXXXX | LLM Integration, Prompt Engineering, Emotion Mapping |
+| Ruoxuan Li | XXXXXXXX | Frontend UI, Evaluation, Dataset Preparation |
 
 > **Note:** Replace the above with your actual names and student IDs before submission.
 
