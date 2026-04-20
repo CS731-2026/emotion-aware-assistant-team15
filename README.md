@@ -88,7 +88,7 @@ Emotion Mapping Layer          ← [Responds to instructor guidance]
     │  (Ekman basic emotions → Academic Affective States)
     │  Surprise → Confusion
     │  Anger + Disgust + Contempt → Frustration
-    │  Happy + Neutral → Cognitive Overload
+    │  Happy + Neutral → Engagement
     │  Fear + Sadness → Boredom
     ▼
 Context Builder
