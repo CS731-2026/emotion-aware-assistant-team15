@@ -217,9 +217,9 @@ emotion-aware-assistant/
 │   ├── emotion_mapper.py                       # [NEW — responds to instructor guidance]
 │   │                                           # Maps Ekman emotions → academic states:
 │   │                                           #   fear + surprise  → Confusion
-│   │                                           #   sadness + anger  → Frustration
+│   │                                           #   sad + anger + disgust  → Frustration
 │   │                                           #   happiness/neutral → Engagement
-│   │                                           #   sustained neutral → Boredom
+│   │                                           #   contempt → Boredom
 │   │
 │   ├── context_builder.py                      # [EXTRA CREDIT — instructor confirmed]
 │   │                                           # Feature 1: PDF parsing (PyMuPDF)
