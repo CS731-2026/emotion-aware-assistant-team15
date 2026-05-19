@@ -1,0 +1,928 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+  "created_at": 1779097088.3399987,
+  "updated_at": 1779097174.29259,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+    "highlight_type": "area",
+    "page_number": 9,
+    "selected_text": "",
+    "text_available": false,
+    "reason": "area_selection",
+    "viewport_rects": [
+      {
+        "x1": 443,
+        "y1": 114,
+        "x2": 782,
+        "y2": 318,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 9
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.52426,
+        "y1": 0.10425,
+        "x2": 0.925444,
+        "y2": 0.290802,
+        "pageNumber": 9
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 524.26,
+        "y1": 104.25,
+        "x2": 925.444,
+        "y2": 290.802,
+        "pageNumber": 9
+      }
+    ],
+    "crop_image_available": true,
+    "crop_image_path": "highlights/crops/779efcd9-37e1-4744-a569-eb0f06f38c86.png",
+    "crop_path": "highlights/crops/779efcd9-37e1-4744-a569-eb0f06f38c86.png",
+    "crop_url": "/api/documents/e0d8f3174cb540a285709afe8c02afcf/highlights/779efcd9-37e1-4744-a569-eb0f06f38c86/crop",
+    "crop_image_data_url_length": 28890,
+    "matched_block_id": "",
+    "matched_block_type": "",
+    "coordinate_overlap": 0,
+    "text_bonus": 0,
+    "match_score": 0,
+    "caption": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001",
+    "selected_caption": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+      "page_number": 9,
+      "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001",
+      "horizontal_overlap": 0.9714,
+      "vertical_distance": 0.0244,
+      "relation": "below",
+      "score": 0.9262
+    },
+    "caption_confidence": "high",
+    "candidate_captions": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+        "page_number": 9,
+        "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001",
+        "horizontal_overlap": 0.9714,
+        "vertical_distance": 0.0244,
+        "relation": "below",
+        "score": 0.9262
+      }
+    ],
+    "matched_block": null,
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b226",
+      "page_number": 9,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "DiaryMate"
+    },
+    "next_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+      "page_number": 9,
+      "block_type": "caption",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001"
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+        "page_number": 9,
+        "block_type": "caption",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+        "page_number": 9,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions and moods. In that sense, looking at the sentences recommended by DiaryMate and comparing them was apparently a better way to reflect on my internal feelings.\" (P05, 21(F)). On the other hand, those who did not write a diary highly evaluated the LLM function as a tool that provides practical help related to writing, such as starting the first sentence or expressing abstract emotions in writing as mentioned in [44]. Moving on to Section 5.2, we delve deeper into our qualitative analysis, exploring the ways in which participants employed these LLM-generated sentences in their journaling. Additionally, we discuss the perceived advantages and challenges they encountered when utilizing LLM during the journaling process."
+      }
+    ],
+    "recommended_llm_mode": "image_plus_context",
+    "response_style": "chat_conversational",
+    "selection_type": "area",
+    "session_id": "3f42de80558a4958b214b69cd264218d",
+    "learning_state": {
+      "session_id": "3f42de80558a4958b214b69cd264218d",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-18T09:38:00Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.8,
+      "distribution": {
+        "boredom": 0.06,
+        "confusion": 0.8,
+        "engagement": 0.07,
+        "frustration": 0.07
+      },
+      "trend": "stable",
+      "duration_sec": 17.5,
+      "intensity": 0.8,
+      "stability": "stable",
+      "trigger_recommended": true,
+      "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9"
+  },
+  "session_id": "3f42de80558a4958b214b69cd264218d",
+  "learning_state_snapshot": {
+    "session_id": "3f42de80558a4958b214b69cd264218d",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-18T09:39:16Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9985,
+    "distribution": {
+      "boredom": 0.9985,
+      "confusion": 0,
+      "engagement": 0,
+      "frustration": 0.0015
+    },
+    "trend": "stable",
+    "duration_sec": 59.7,
+    "intensity": 0.9985,
+    "stability": "stable",
+    "trigger_recommended": true,
+    "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "concise_explanation",
+      "strategy_family": "concise_explanation",
+      "pedagogical_move": "Give a concise grounded explanation",
+      "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+      "title": "Get a concise explanation of this figure or visual area",
+      "short_description": "Keep the answer short and evidence-focused.",
+      "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+      "prompt_instruction": "Explain the passage in a concise, grounded way.",
+      "expected_answer_shape": [
+        "Main idea",
+        "Paper context",
+        "Why it matters"
+      ],
+      "recommended": true,
+      "recommended_score": 0.88
+    },
+    {
+      "strategy_id": "concrete_example",
+      "strategy_family": "concrete_example",
+      "pedagogical_move": "Anchor the idea in a concrete example",
+      "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+      "title": "Use a concrete example for this figure or visual area",
+      "short_description": "Anchor the explanation in a small example before returning to the paper.",
+      "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+      "prompt_instruction": "Explain the passage using one simple example, then connect it back to the selected evidence.",
+      "expected_answer_shape": [
+        "Plain-language idea",
+        "Mini example",
+        "Back to the paper"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8
+    },
+    {
+      "strategy_id": "why_it_matters",
+      "strategy_family": "why_it_matters",
+      "pedagogical_move": "Connect the passage to why it matters",
+      "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+      "title": "Explain why this figure or visual area matters",
+      "short_description": "Connect the selected passage to the paper's larger argument.",
+      "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+      "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+      "expected_answer_shape": [
+        "Takeaway",
+        "Connection to paper",
+        "Why it matters"
+      ],
+      "recommended": false,
+      "recommended_score": 0.72
+    }
+  ],
+  "selected_strategy_id": "concrete_example",
+  "selected_strategy": {
+    "strategy_id": "concrete_example",
+    "strategy_family": "concrete_example",
+    "pedagogical_move": "Anchor the idea in a concrete example",
+    "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+    "title": "Use a concrete example for this figure or visual area",
+    "short_description": "Anchor the explanation in a small example before returning to the paper.",
+    "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+    "prompt_instruction": "Explain the passage using one simple example, then connect it back to the selected evidence.",
+    "expected_answer_shape": [
+      "Plain-language idea",
+      "Mini example",
+      "Back to the paper"
+    ],
+    "recommended": false,
+    "recommended_score": 0.8
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+    "duration_sec": 8.2,
+    "trend": "rising",
+    "intensity": 0.562,
+    "refresh_requested": false,
+    "support_cue": "clarify_and_reengage",
+    "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9",
+    "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+    "window_start": "2026-05-18T09:38:08.487Z",
+    "window_end": "2026-05-18T09:38:16.695Z",
+    "duration_sec": 8.2,
+    "sample_count": 5,
+    "dominant_state": "confusion",
+    "secondary_state": "boredom",
+    "avg_confidence": 0.562,
+    "max_confidence": 0.998,
+    "avg_distribution": {
+      "boredom": 0.263,
+      "confusion": 0.617,
+      "engagement": 0,
+      "frustration": 0.12
+    },
+    "trend": "rising",
+    "stability": "stable",
+    "support_cue": "clarify_and_reengage",
+    "support_cue_label": "Clarify and re-engage cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This scatter plot (labeled as part of Figure 4) illustrates the relationship between the **length of a journal entry** (x-axis) and the **frequency of LLM feature usage** (y-axis). It specifically tracks two features: generating sentences from keywords (black circles) and recommending the next sentence (pink squares).\n\nThe most important takeaway here is the \"ns\" (not significant) notation next to the correlation coefficients ($r$). This indicates that there is **no statistically significant correlation** between how much a person writes and how often they accept AI-generated suggestions. Whether a participant wrote a very short entry or a very long one, their reliance on the AI features remained relatively consistent.\n\nIn the context of the paper, this finding is used to argue that the LLM assistant was utilized similarly by different types of writers. It suggests that the AI didn't necessarily \"inflate\" journal length in a predictable way, nor was it used exclusively by people who wrote less. Instead, participants engaged with the AI as a collaborative tool regardless of their overall writing volume or proficiency."
+  },
+  "turn_metadata": {
+    "turn_f36c14b345804d4f9a9ef11abcf1b3c9": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9",
+        "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+        "window_start": "2026-05-18T09:38:08.487Z",
+        "window_end": "2026-05-18T09:38:16.695Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "confusion",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.562,
+        "max_confidence": 0.998,
+        "avg_distribution": {
+          "boredom": 0.263,
+          "confusion": 0.617,
+          "engagement": 0,
+          "frustration": 0.12
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "clarify_and_reengage",
+        "support_cue_label": "Clarify and re-engage cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This scatter plot (labeled as part of Figure 4) illustrates the relationship between the **length of a journal entry** (x-axis) and the **frequency of LLM feature usage** (y-axis). It specifically tracks two features: generating sentences from keywords (black circles) and recommending the next sentence (pink squares).\n\nThe most important takeaway here is the \"ns\" (not significant) notation next to the correlation coefficients ($r$). This indicates that there is **no statistically significant correlation** between how much a person writes and how often they accept AI-generated suggestions. Whether a participant wrote a very short entry or a very long one, their reliance on the AI features remained relatively consistent.\n\nIn the context of the paper, this finding is used to argue that the LLM assistant was utilized similarly by different types of writers. It suggests that the AI didn't necessarily \"inflate\" journal length in a predictable way, nor was it used exclusively by people who wrote less. Instead, participants engaged with the AI as a collaborative tool regardless of their overall writing volume or proficiency."
+      },
+      "support_cue": "clarify_and_reengage",
+      "support_cue_label": "Clarify and re-engage cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+        "duration_sec": 8.2,
+        "trend": "rising",
+        "intensity": 0.562,
+        "refresh_requested": false,
+        "support_cue": "clarify_and_reengage",
+        "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "concise_explanation",
+          "strategy_family": "concise_explanation",
+          "pedagogical_move": "Give a concise grounded explanation",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Get a concise explanation of this figure or visual area",
+          "short_description": "Keep the answer short and evidence-focused.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "Explain the passage in a concise, grounded way.",
+          "expected_answer_shape": [
+            "Main idea",
+            "Paper context",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "concrete_example",
+          "strategy_family": "concrete_example",
+          "pedagogical_move": "Anchor the idea in a concrete example",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Use a concrete example for this figure or visual area",
+          "short_description": "Anchor the explanation in a small example before returning to the paper.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "Explain the passage using one simple example, then connect it back to the selected evidence.",
+          "expected_answer_shape": [
+            "Plain-language idea",
+            "Mini example",
+            "Back to the paper"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Explain why this figure or visual area matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "area",
+        "selected_text_length": 0,
+        "caption_length": 324,
+        "baseline_explanation_length": 1132,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "clarify_and_reengage",
+        "allowed_strategy_families": [
+          "concise_explanation",
+          "concrete_example",
+          "why_it_matters",
+          "step_by_step_breakdown",
+          "compare_with_familiar_method"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "figure",
+        "difficulty_hint": "unclear_reference"
+      }
+    },
+    "turn_aeeee58aa1774d438bddc4d68ffd1777": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_aeeee58aa1774d438bddc4d68ffd1777",
+        "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+        "window_start": "2026-05-18T09:39:25.480Z",
+        "window_end": "2026-05-18T09:39:33.653Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.986,
+        "max_confidence": 0.997,
+        "avg_distribution": {
+          "boredom": 0.986,
+          "confusion": 0.002,
+          "engagement": 0,
+          "frustration": 0.012
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "Figure 4 examines whether the length of a person's journal entry is related to how much they use the AI features. To make this concrete, imagine two users: **Alice**, who likes to write long, detailed stories about her day (e.g., 800 words), and **Bob**, who prefers writing short, punchy summaries (e.g., 200 words). You might assume Alice would use the \"next-sentence\" feature much more often simply because she is writing more text.\n\nHowever, this figure shows that their usage is actually quite similar. In the scatter plots, the data points for short journals and long journals are spread out without forming a clear upward or downward path. The correlation coefficients ($r$) are low, and both are marked as **\"ns\" (not significant)**. \n\nThis finding is important for the paper because it suggests that DiaryMate's AI tools\u2014generating sentences from keywords or recommending the next sentence\u2014are not just for people who struggle to write a lot or for those who write excessively. Instead, participants used these features at a similar frequency regardless of the final length of their journal. It supports the researchers' argument that the AI assistant was utilized by a wide variety of writers, from beginners to regular journalers, across different styles of self-expression."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "stable",
+        "intensity": 0.986,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_aeeee58aa1774d438bddc4d68ffd1777"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Explain why this figure or visual area matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+          "title": "Use a structured breakdown for this figure or visual area",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "area",
+        "selected_text_length": 0,
+        "caption_length": 324,
+        "baseline_explanation_length": 1282,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "figure",
+        "difficulty_hint": "unclear_reference"
+      }
+    }
+  },
+  "support_cue": "clarify_and_reengage",
+  "support_cue_label": "Clarify and re-engage cue",
+  "planner_mode": "heuristic",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "area",
+    "selected_text_length": 0,
+    "caption_length": 324,
+    "baseline_explanation_length": 1132,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 2,
+    "reaction_window_duration_sec": 8.2,
+    "support_cue": "clarify_and_reengage",
+    "allowed_strategy_families": [
+      "concise_explanation",
+      "concrete_example",
+      "why_it_matters",
+      "step_by_step_breakdown",
+      "compare_with_familiar_method"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "figure",
+    "difficulty_hint": "unclear_reference"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This scatter plot (labeled as part of Figure 4) illustrates the relationship between the **length of a journal entry** (x-axis) and the **frequency of LLM feature usage** (y-axis). It specifically tracks two features: generating sentences from keywords (black circles) and recommending the next sentence (pink squares).\n\nThe most important takeaway here is the \"ns\" (not significant) notation next to the correlation coefficients ($r$). This indicates that there is **no statistically significant correlation** between how much a person writes and how often they accept AI-generated suggestions. Whether a participant wrote a very short entry or a very long one, their reliance on the AI features remained relatively consistent.\n\nIn the context of the paper, this finding is used to argue that the LLM assistant was utilized similarly by different types of writers. It suggests that the AI didn't necessarily \"inflate\" journal length in a predictable way, nor was it used exclusively by people who wrote less. Instead, participants engaged with the AI as a collaborative tool regardless of their overall writing volume or proficiency.",
+      "created_at": 1779097088.3400078,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "image_plus_context",
+        "used_image": true,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 12,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "score": 0.8554
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.8473
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "score": 0.8223
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "score": 0.8554
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.8473
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "score": 0.8223
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+            "page_idx": 8,
+            "page_number": 9,
+            "block_type": "caption",
+            "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001",
+            "reading_order_index": 228
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_idx": 8,
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "reading_order_index": 229
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: area\npage_number: 9\nrecommended_llm_mode: image_plus_context\ncrop_image_attached: true\n\narea_caption_guidance: Treat the crop image as primary evidence. Use the selected caption only as supporting context, and mention uncertainty if it conflicts with the image.\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectiv"
+      },
+      "turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "3f42de80558a4958b214b69cd264218d",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-18T09:38:00Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.8,
+        "distribution": {
+          "boredom": 0.06,
+          "confusion": 0.8,
+          "engagement": 0.07,
+          "frustration": 0.07
+        },
+        "trend": "stable",
+        "duration_sec": 17.5,
+        "intensity": 0.8,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "Figure 4 examines whether the length of a person's journal entry is related to how much they use the AI features. To make this concrete, imagine two users: **Alice**, who likes to write long, detailed stories about her day (e.g., 800 words), and **Bob**, who prefers writing short, punchy summaries (e.g., 200 words). You might assume Alice would use the \"next-sentence\" feature much more often simply because she is writing more text.\n\nHowever, this figure shows that their usage is actually quite similar. In the scatter plots, the data points for short journals and long journals are spread out without forming a clear upward or downward path. The correlation coefficients ($r$) are low, and both are marked as **\"ns\" (not significant)**. \n\nThis finding is important for the paper because it suggests that DiaryMate's AI tools\u2014generating sentences from keywords or recommending the next sentence\u2014are not just for people who struggle to write a lot or for those who write excessively. Instead, participants used these features at a similar frequency regardless of the final length of their journal. It supports the researchers' argument that the AI assistant was utilized by a wide variety of writers, from beginners to regular journalers, across different styles of self-expression.",
+      "created_at": 1779097165.2817209,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "image_plus_context",
+        "used_image": true,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 12,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "score": 0.8554
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.8473
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "score": 0.8223
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "score": 0.8554
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.8473
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "score": 0.8223
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b228",
+            "page_idx": 8,
+            "page_number": 9,
+            "block_type": "caption",
+            "markdown_content": "Figure 4: Scatter plots representing the correlation between the length of the journal and the usage of two LLM features: Generating sentences using keywords, and Recommending next sentences. \u2019r\u2019 = Pearson\u2019s correlation coefficient. Statistically significant results are reported as *: \ud835\udc5d < .05, **: \ud835\udc5d < .01, ***: \ud835\udc5d < .001",
+            "reading_order_index": 228
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_idx": 8,
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "reading_order_index": 229
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: area\npage_number: 9\nrecommended_llm_mode: image_plus_context\ncrop_image_attached: true\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: concrete_example\n- Pedagogical move: Anchor the idea in a concrete example\n- Context focus: Figure 4: Scatter plots representing the correlation between the length of the journal and the u\n- Strategy title: Use a concrete example for this figure or visual area\n- Why selected: This strategy uses the area selection and caption context to keep the explanation anchored.\n- Instruction for answer: Explain the passage using one simple example, then connect it back to the selected evidence.\n- Expected answer shape: Plain-language idea, Mini example, Back to the paper\n\nFollow this selected strateg"
+      },
+      "turn_id": "turn_aeeee58aa1774d438bddc4d68ffd1777",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9",
+        "highlight_id": "779efcd9-37e1-4744-a569-eb0f06f38c86",
+        "window_start": "2026-05-18T09:38:08.487Z",
+        "window_end": "2026-05-18T09:38:16.695Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "confusion",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.562,
+        "max_confidence": 0.998,
+        "avg_distribution": {
+          "boredom": 0.263,
+          "confusion": 0.617,
+          "engagement": 0,
+          "frustration": 0.12
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "clarify_and_reengage",
+        "support_cue_label": "Clarify and re-engage cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This scatter plot (labeled as part of Figure 4) illustrates the relationship between the **length of a journal entry** (x-axis) and the **frequency of LLM feature usage** (y-axis). It specifically tracks two features: generating sentences from keywords (black circles) and recommending the next sentence (pink squares).\n\nThe most important takeaway here is the \"ns\" (not significant) notation next to the correlation coefficients ($r$). This indicates that there is **no statistically significant correlation** between how much a person writes and how often they accept AI-generated suggestions. Whether a participant wrote a very short entry or a very long one, their reliance on the AI features remained relatively consistent.\n\nIn the context of the paper, this finding is used to argue that the LLM assistant was utilized similarly by different types of writers. It suggests that the AI didn't necessarily \"inflate\" journal length in a predictable way, nor was it used exclusively by people who wrote less. Instead, participants engaged with the AI as a collaborative tool regardless of their overall writing volume or proficiency."
+      },
+      "support_cue": "clarify_and_reengage",
+      "support_cue_label": "Clarify and re-engage cue",
+      "strategy_id": "concrete_example",
+      "strategy_family": "concrete_example",
+      "pedagogical_move": "Anchor the idea in a concrete example",
+      "context_focus": "Figure 4: Scatter plots representing the correlation between the length of the journal and the u",
+      "strategy_title": "Use a concrete example for this figure or visual area",
+      "strategy_short_description": "Anchor the explanation in a small example before returning to the paper.",
+      "why_recommended": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+      "strategy_reason": "This strategy uses the area selection and caption context to keep the explanation anchored.",
+      "learning_state_snapshot": {
+        "session_id": "3f42de80558a4958b214b69cd264218d",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-18T09:39:16Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9985,
+        "distribution": {
+          "boredom": 0.9985,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0.0015
+        },
+        "trend": "stable",
+        "duration_sec": 59.7,
+        "intensity": 0.9985,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a clarify and re-engage cue.",
+        "duration_sec": 8.2,
+        "trend": "rising",
+        "intensity": 0.562,
+        "refresh_requested": false,
+        "support_cue": "clarify_and_reengage",
+        "source_turn_id": "turn_f36c14b345804d4f9a9ef11abcf1b3c9"
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "area",
+        "selected_text_length": 0,
+        "caption_length": 324,
+        "baseline_explanation_length": 1132,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "clarify_and_reengage",
+        "allowed_strategy_families": [
+          "concise_explanation",
+          "concrete_example",
+          "why_it_matters",
+          "step_by_step_breakdown",
+          "compare_with_familiar_method"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "figure",
+        "difficulty_hint": "unclear_reference"
+      }
+    }
+  ]
+}

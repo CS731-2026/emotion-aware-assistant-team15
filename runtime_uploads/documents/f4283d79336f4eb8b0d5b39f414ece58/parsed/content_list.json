@@ -1,0 +1,2642 @@
+[
+  {
+    "type": "title",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.100502,
+      "y1": 0.106371,
+      "x2": 0.89948,
+      "y2": 0.151691
+    },
+    "text": "Relational Gains, Privacy Strains: Exploring Users\u2019 Perceptions and Experiences with ChatGPT\u2019s Memory Feature",
+    "asset_path": null
+  },
+  {
+    "type": "title",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.249876,
+      "y1": 0.162248,
+      "x2": 0.349423,
+      "y2": 0.181872
+    },
+    "text": "Cheng Chen",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.636879,
+      "y1": 0.162248,
+      "x2": 0.767075,
+      "y2": 0.181872
+    },
+    "text": "Maria D. Molina",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.212592,
+      "y1": 0.179733,
+      "x2": 0.386716,
+      "y2": 0.241372
+    },
+    "text": "School of Communication Oregon State University Corvallis, Oregon, USA chenc27@oregonstate.edu",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.558366,
+      "y1": 0.179733,
+      "x2": 0.8456,
+      "y2": 0.241372
+    },
+    "text": "College of Communication Arts & Sciences Michigan State University East Lansing, Michigan, USA molinad2@msu.edu",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.248907,
+      "y1": 0.251063,
+      "x2": 0.348766,
+      "y2": 0.270686
+    },
+    "text": "Mengqi Liao",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.622518,
+      "y1": 0.251063,
+      "x2": 0.780179,
+      "y2": 0.270686
+    },
+    "text": "Eugene Cho Snyder",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.12182,
+      "y1": 0.268547,
+      "x2": 0.476288,
+      "y2": 0.345282
+    },
+    "text": "Department of Advertising & Public Relations, Grady College of Journalism & Mass Communication University of Georgia Athens, Georgia, USA mengqi.liao@uga.edu",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.356275,
+      "x2": 0.155908,
+      "y2": 0.369292
+    },
+    "text": "Abstract",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.372652,
+      "x2": 0.482931,
+      "y2": 0.636434
+    },
+    "text": "ChatGPT\u2019s memory feature is designed to provide users with greater control and more helpful responses. Yet, it remains unclear how users perceive this feature in relation to privacy. To address this gap, we conducted interviews with 20 ChatGPT users from diverse backgrounds. Our findings revealed four major characteristics that distinguish ChatGPT\u2019s memory from human memory: perceived unforgetfulness, detailedness, accuracy, and lack of emotions, highlighting the machine-like nature of AI memory. Moreover, both ChatGPT\u2019s memory and human memory were perceived as beneficial for relationship building. Notably, most participants experienced negative expectancy violations after learning what ChatGPT remembered about them. They expressed a strong need for greater visibility, accessibility, transparency, and user control in the design of future memory features. Drawing on users\u2019 suggestions and theoretical frameworks on privacy management, we provide design implications for developing a more transparent, responsible, and user-aligned memory experience that helps them navigate privacy-personalization trade-offs when interacting with LLM-based memories.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.65028,
+      "x2": 0.201095,
+      "y2": 0.663297
+    },
+    "text": "CCS Concepts",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.666657,
+      "x2": 0.474705,
+      "y2": 0.681374
+    },
+    "text": "\u2022 Human-centered computing \u2192 Empirical studies in HCI.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.69522,
+      "x2": 0.168101,
+      "y2": 0.708236
+    },
+    "text": "Keywords",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.711596,
+      "x2": 0.482919,
+      "y2": 0.740149
+    },
+    "text": "ChatGPT, Memory Feature, User Perception, AI Memory, Unforgetfulness, User Control, Transparency",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087423,
+      "y1": 0.74818,
+      "x2": 0.482659,
+      "y2": 0.808037
+    },
+    "text": "ACM Reference Format: Cheng Chen, Maria D. Molina, Mengqi Liao, and Eugene Cho Snyder. 2026. Relational Gains, Privacy Strains: Exploring Users\u2019 Perceptions and Experiences with ChatGPT\u2019s Memory Feature. In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems (CHI \u201926), April",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.087119,
+      "y1": 0.842484,
+      "x2": 0.482234,
+      "y2": 0.896199
+    },
+    "text": "This work is licensed under a Creative Commons Attribution 4.0 International License. CHI \u201926, Barcelona, Spain \u00a9 2026 Copyright held by the owner/author(s). ACM ISBN 979-8-4007-2278-3/26/04 https://doi.org/10.1145/3772318.3791635",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.584215,
+      "y1": 0.268547,
+      "x2": 0.818558,
+      "y2": 0.330187
+    },
+    "text": "Humanities & Social Sciences New Jersey Institute of Technology Newark, New Jersey, USA eugene.snyder@njit.edu",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.519118,
+      "y1": 0.35655,
+      "x2": 0.913624,
+      "y2": 0.382211
+    },
+    "text": "13\u201317, 2026, Barcelona, Spain. ACM, New York, NY, USA, 17 pages. https: //doi.org/10.1145/3772318.3791635",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.395526,
+      "x2": 0.528696,
+      "y2": 0.408543
+    },
+    "text": "1",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.546522,
+      "y1": 0.395526,
+      "x2": 0.649569,
+      "y2": 0.408543
+    },
+    "text": "Introduction",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.411903,
+      "x2": 0.914561,
+      "y2": 0.897077
+    },
+    "text": "Memories are essential to human experience, shaping how we learn, adapt, and understand the world. Generative AI systems, such as ChatGPT [49] and Claude [4], have introduced memory features that enable them to retain and accumulate information across conversations to provide more personalized interactions to their users. Since ChatGPT is one of the most widely used generative AI tools in the U.S. [1] and was among the first to release its userfacing memory feature [49], this study focuses primarily on users\u2019 perceptions and experiences with ChatGPT\u2019s memory feature. According to OpenAI, ChatGPT\u2019s memory feature was designed to enhance user control and provide more personalized chats [49]. Users can explicitly ask ChatGPT to remember details, such as their names, favorite color, or dietary preferences, while the system also automatically retains and applies information from previous chats to improve future interactions [51]. Although memory functions as an internal mechanism within large language models (LLMs), ChatGPT may display visual cues, such as \u201cMemory Updated\u201d or \"Updated Saved Memory\" (see Figure 1), to signal when new information has been stored. Users can also access a list of memories through the system settings and choose to delete or remove them. Notably, ChatGPT\u2019s memory feature relies on continuously monitoring users\u2019 chat histories to extract information that might be relevant for future conversations. Since the operation of the memory feature is often opaque, users may develop their own mental models or folk theories to understand how the feature works. These understandings evolve over time, particularly when expectations are violated in practice [23]. We seek to document these moments where users experience shifts in their mental models, particularly after discovering what ChatGPT remembers about them. While ChatGPT\u2019s memory feature is designed with good intentions, prior research shows that the current design of LLMs can limit users\u2019 awareness and comprehension of privacy risks, sometimes even encouraging sensitive information disclosures [77]. Furthermore, researchers have also identified risks associated with AI memorization [33, 57]. For example, LLMs may store users\u2019 data",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "caption",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.296887,
+      "y1": 0.275508,
+      "x2": 0.703115,
+      "y2": 0.286206
+    },
+    "text": "Figure 1: ChatGPT Responded with \u201cUpdated saved memory\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.308434,
+      "x2": 0.482946,
+      "y2": 0.890467
+    },
+    "text": "for future model training without explicit consent [57], infer sensitive information about users from seemingly innocent inputs [57], or reproduce portions of users\u2019 data when prompted by adversaries [33, 77]. When LLMs are integrated into external agents or third-party modules, privacy concerns become even more complex, as these systems may generate, access, and disseminate sensitive user data across interconnected components with varying levels of security and commitment to privacy protections [57]. As generative AI systems begin to retain information across prolonged sessions and various contexts, persistent AI memory also introduces new privacy concerns related to the construction of user profiles [66]. Although theoretical frameworks such as privacy calculus [37] and calls for trustworthy and responsible AI [41] offer guidance for improving the transparency and responsibility of LLM-based generative AI systems, it remains unclear which privacy-related needs should be prioritized when designing ChatGPT\u2019s memory feature. Drawing on a user-centered approach, we examine the privacy concerns that arise in interactions with ChatGPT\u2019s memory feature. By translating these concerns into actionable design suggestions, this study aims to improve the current design of ChatGPT\u2019s memory feature to better support privacy protection and digital well-being. Together, we are guided by the following three research questions: \u2022 RQ1: How do users perceive ChatGPT\u2019s memory in comparison to human memory? \u2022 RQ2: How do users\u2019 mental models change after learning what ChatGPT remembers about them? \u2022 RQ3: What suggestions do users offer to enhance ChatGPT\u2019s memory feature so that it better safeguards their privacy? To answer these research questions, we conducted semistructured interviews with 20 users to explore their perceptions and experience with ChatGPT\u2019s memory feature. We designed an activity that prompted participants to examine what ChatGPT remembered about them. This approach allowed us to observe how their understanding evolved as they learn more about the feature. Additionally, we documented instances where ChatGPT\u2019s memory feature aligned with or fell short of their expectations. These cases help uncover the sources of user satisfaction or frustration and shed light on users\u2019 mental models of the feature. By examining users\u2019 perceptions and lived experiences with ChatGPT\u2019s memory feature, particularly in relation to privacy,",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.308434,
+      "x2": 0.914579,
+      "y2": 0.586056
+    },
+    "text": "this study makes three key contributions. First, it extends emerging work on computational memory mechanisms for LLM agents [30, 39, 42, 43, 64, 72, 78] by foregrounding users\u2019 real-world interactions with ChatGPT\u2019s memory feature. Understanding users\u2019 lived experiences with the feature is crucial for revealing both the perceived relational benefits and the privacy risks that accompany persistent AI memory. Second, it empirically documents moments where ChatGPT\u2019s memory feature was experienced as satisfying, surprising, or frustrating. These accounts offer concrete opportunities for designing ChatGPT\u2019s memory feature that better aligns with users\u2019 needs, expectations, and privacy boundaries. Third, by drawing on and extending insights from these user experiences, this study advances theoretical understandings of AI memory as an affordance [21], i.e., it situates at the intersection of an objective interface capability and users\u2019 subjective perceptions of it. The ability of LLM-based memories to retain personal information with high accuracy and detailedness, and to use this information to support relationship-building has profound implications for human cognition, affect, and behavior, especially as users engage with ChatGPT and similar LLMs over extended periods.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.599778,
+      "x2": 0.528697,
+      "y2": 0.612794
+    },
+    "text": "2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.546522,
+      "y1": 0.599778,
+      "x2": 0.65777,
+      "y2": 0.612794
+    },
+    "text": "Related Work",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.616153,
+      "x2": 0.914566,
+      "y2": 0.741567
+    },
+    "text": "In this section, we first examine the similarities and differences between human memory and AI memory. We then review existing research on users\u2019 mental models, focusing on how people understand the memory feature and how expectancy violations can prompt updates to these models. Finally, we address privacy as a key concern related to AI memorization, drawing on concepts from privacy calculus and privacy personalization paradox to guide strategies for managing users\u2019 privacy when interacting with ChatGPT\u2019s memory feature.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.755289,
+      "x2": 0.542208,
+      "y2": 0.768306
+    },
+    "text": "2.1",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.755289,
+      "x2": 0.826023,
+      "y2": 0.768306
+    },
+    "text": "Human Memory and AI Memory",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.519527,
+      "y1": 0.771664,
+      "x2": 0.914571,
+      "y2": 0.897077
+    },
+    "text": "Memory is fundamental to human experience, which refers to the brain\u2019s ability to store and retrieve information. Budson and Kensinger [9] described memory as a set of interconnected abilities in that multiple memory systems work together, encoding information across different regions of the brain. Similar to human memories, researchers have pointed out three types of AI memories that collectively operate within ChatGPT [76]. Contextual memories keep track of conversation history only within a single session, making it relatively short-lived. Retrieval-augmented generation",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.087367,
+      "y1": 0.107489,
+      "x2": 0.482947,
+      "y2": 0.883241
+    },
+    "text": "(RAG)-based memories, on the other hand, extract and store user information across sessions, building longer-term user profiles that the system can draw upon later. Meanwhile, epistemological memories consist of stored facts and learned knowledge, blurring the boundary between personal data and general knowledge. Informed by the categories of human memory, including short-term (sensory and working memory) and long-term (explicit and implicit memory), Wu et al. [69] introduced a novel classification method for AI memory based on three dimensions: object (personal vs. system memory), form (parametric vs. non-parametric memory), and time (short-term vs. long-term memory). When comparing the performance of human memory and AI memory, previous research has identified both similarities and differences. For example, Cao et al. [11] found that both AI memory and human memory store less when overloaded with information and store more with repeated exposure. They also face comparable challenges when retrieving overlapping content, where too many similar facts create confusion. Like human memory, AI memory is vulnerable to false memories, i.e., recalling related but unseen items, and can extend prior learning to new, related contexts through crossdomain generalization. Likewise, Janik [31] identified surprising similarities between AI memory and key characteristics of human memory. He argued that these similarities likely stem from LLMs learning from human-generated text, since \"the biological features of human memory leave an imprint on the way that we structure our textual narratives\" [31, p. 1]. Despite the similarities, Cao et al. [11] pointed out that AI memory differs from human memory in two major ways: they are less influenced by the positional bias, i.e., the order in which information is presented, and more robust when processing random or meaningless material. Rolls [53] also highlighted the functional difference between AI memory and human memory, in that humans store and recall memories using local associations in the brain, allowing them to retrieve whole, context-rich experiences from partial cues. These memories include details about what is seen, where objects and people are, and the surrounding context, and they support planning and imagining future actions. In contrast, generative AI models like ChatGPT generate text one piece at a time using global error-driven learning; they do not store or recall full experiences and lack the contextual and flexible memory capabilities of the human brain. Building on this distinction, Hoskins [29, p. 17] described human memories as \u201can active, willed, functional, deliberating memory, seen as cognitive and as fundamentally part of human identity, that evolves with time and context in and of the present.\u201d This definition emphasizes human agency in deciding which information to retain, in making sense of stored information, and in further shaping identities. However, if people do not attribute mental states to AI, such as goals, intentions, and beliefs [16], then AI memory functions merely as a passive system that codes and retrieves information without agency. Hoskins [29] further explained, humans can reimagine, remark, and revise past events through the recall process. In his words, memory is \"not as a fixed or static entity, but rather as an active process, whereby the past is reconstructed in the present\" [29, p. 2]. Similarly, AI can shape new realities by recall [29], which may not necessarily align with the realities experienced by humans. For example, Manovich [44] found that when using AI to re-imagine",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.107489,
+      "x2": 0.914568,
+      "y2": 0.260576
+    },
+    "text": "the urban environment from his childhood, the AI-generated image created representations that were both familiar and unreliable. On the flip side of remembering, forgetting is defined as \u201cincreased episodes of prospective memory loss with delayed processing and response time in aging adults, offset by focus and limiting distraction\u201d [6, p. 1411]. While forgetting is often associated with cognitive challenges and impairment, research in cognitive psychology shows that \u201cforgetting helps people to be happy, well-structured, and context sensitive\u201d [48, p. 551]. However, it is unknown whether AI can truly forget, even though the memory feature allows users to delete or clear ChatGPT\u2019s memory.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.275396,
+      "x2": 0.542208,
+      "y2": 0.288413
+    },
+    "text": "2.2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.275396,
+      "x2": 0.885524,
+      "y2": 0.304763
+    },
+    "text": "Users\u2019 Responses to Memory Features in LLM Agents",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.308125,
+      "x2": 0.914566,
+      "y2": 0.613419
+    },
+    "text": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awareness, many reported higher discomfort with ChatGPT\u2019s automatic activation of the memory feature without prior notification. Only a small proportion of the participants knew how to check the data stored in their account and what ChatGPT had memorized about them. Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences. However, it also retained a small proportion of moderateor high-risk information, including personal and social details, health, financial, and contact information. Their analysis also revealed vulnerabilities in the system\u2019s ability to protect sensitive data as well as inaccuracies in how users were represented in ChatGPT\u2019s memory.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.62824,
+      "x2": 0.542208,
+      "y2": 0.641256
+    },
+    "text": "2.3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.62824,
+      "x2": 0.900765,
+      "y2": 0.657606
+    },
+    "text": "Mental Models of LLM-based Memory and Expectancy Violations",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.517879,
+      "y1": 0.660968,
+      "x2": 0.914572,
+      "y2": 0.897077
+    },
+    "text": "Despite a low level of awareness and knowledge about ChatGPT\u2019s memory feature, users can gradually make sense of the feature through interactions and form mental models that guide their understanding and future use of the feature. Conceptually, mental models are psychological representations of real, hypothetical, or imaginary situations. They are \u201csmaller-scale models\u201d of reality that are used to anticipate events, reason, and formulate explanations [14]. This mental model construction process is also commonly referred to as an \u201cimperfect representation\u201d, which could contain human errors [46]. Examining users\u2019 mental models is especially valuable for understanding how they perceive memory features in LLM agents, whose operations are inherently opaque and difficult to explain [68]. When AI systems provide limited or no explanations, users tend to construct their own rich mental narratives or \u201calgorithmic imaginaries\u201d [8] based on subjective assessments and interpretations. However, these imaginations or psychological representations can be inaccurate or oversimplified compared to the",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.087539,
+      "y1": 0.107489,
+      "x2": 0.482949,
+      "y2": 0.578827
+    },
+    "text": "actual functioning of LLMs [34]. For example, Zhang et al. [76] identified three mental models that users form about AI memory across multiple LLM agents: (1) a transient, dialogue-specific buffer, (2) an extension of the model\u2019s core training data, and (3) an active information processing mechanism. They also observed an additional mental model reflecting participants\u2019 general lack of understanding of how LLM memory functions. In reality, mental models are not rigid; they are malleable and evolve based on users\u2019 expectations and experiences [32]. This adaptability becomes particularly evident when users\u2019 expectations are not met, leading them to reassess and reconstruct their understanding of a system [23]. According to the theory of expectancy violations [10], unmet expectations are often evaluated based on their valence, i.e., whether the outcome is perceived as positive or negative relative to the original expectation. Compared to expectancy confirmations, both positive and negative expectation violations have stronger effects on users\u2019 evaluations and perceptions. As Burgoon [10, p. 40] explains, \"positive violations. . . are theorized to produce more positive interaction patterns and outcomes than conformity to expectancies; negative violations. . . are theorized to be detrimental, relative to expectancy confirmation.\" Prior research further shows that users are more likely to update their mental models when their expectations of AI are violated rather than confirmed [23]. Although users continuously update their mental models of LLMbased memories, there is no guarantee that their updated models are more accurate, as many still lack a full understanding of how LLMs actually work. This is why researchers have argued for the importance of \u201copening the black box\u201d to help users better calibrate their mental models. Specifically, Liao and Vaughan [41] emphasized the need to increase LLM transparency, enabling stakeholders to better understand the system\u2019s capabilities and limitations, the underlying logic of its operations, and how to effectively use or manage its outputs.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.614403,
+      "x2": 0.110579,
+      "y2": 0.627419
+    },
+    "text": "2.4",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.128404,
+      "y1": 0.614403,
+      "x2": 0.383717,
+      "y2": 0.643769
+    },
+    "text": "Memorization Risk and Privacy Management",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.647131,
+      "x2": 0.482942,
+      "y2": 0.897077
+    },
+    "text": "Lack of transparency in LLM-based memory can increase privacy risks, particularly related to what the system memorizes. For example, Zhang et al. [77] documented instances where ChatGPT revealed personal information of a public figure, including name, address, and phone number, to a random user. In addition to concerns about reproducing users\u2019 data, previous research shows that these models can also infer sensitive attributes about users from seemingly benign input [57]. Privacy risks become even more complex when LLMs are integrated into third-party tools or modules, as these systems can operate with varying levels of safety, security, and data protection [57]. These AI memorization risks underscore the need for better designs that enhance user control and privacy protection by better data management of the personal information shared, processed, and saved in generative AI systems. In the privacy literature, privacy calculus has been widely adopted as a theoretical framework to understand user incentives and trade-offs between the expected benefits and risks of disclosing information online. As an earlier example, Culnan and Armstrong",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.107489,
+      "x2": 0.914576,
+      "y2": 0.897077
+    },
+    "text": "[15] applied such human calculus behaviors into online transactions, and found that when companies explicitly inform fair privacy procedures, users are more likely to disclose their personal information based on reduced risks. Later on, Dinev and Hart [17] proposed an extended privacy calculus model in e-commerce and incorporated the elements of trust and interest in the system that can counterbalance perceived privacy risks and promote willingness to disclose personal information. Privacy calculus has been applied to other online venues, including location-based services [71] and mobile disclosures [65]. In general, web-based privacy calculus studies focus on identifying systematic approaches or individual perceptual factors that affect the balance between perceived privacy risks and benefits of sharing personal information. From the perspective of service providers, the goal becomes to identify a method that results in a positive balance within the benefit-risk equation. One challenge in the process is that greater personalization (as a benefit) tends to paradoxically increase users\u2019 sense of vulnerability (as a corresponding cost, simultaneously). Such dilemma is represented by the concept of the personalization privacy paradox, where Awad and Krishnan [5] found that users who rated higher importance of information transparency in web services are less willing to be profiled for personalization. Yet, supporting prevalent e-commerce approaches of making privacy policies and third-party seals more salient, corporate transparency measures are found to enhance service evaluations [19]. Not only the reputation of the service provider but also the completeness/extensiveness of the privacy information can reduce concerns over self-disclosure [3]. Overt (vs. covert) data collection for personalization can increase user engagement with online ads [2], whereas unsolicited push-based (vs. pull-based) location advertising can undermine the effectiveness of corporate seals and policy information in reducing perceived privacy risks [71]. Such positive transparency effects of overt personalization can be explained by enhanced perceived control [13]. Thus, interface features that strengthen transparency and user control can help address the personalization\u2013privacy paradox while maintaining engagement. More relevant to this study context, Gumusel [25] conducted a literature review of privacy research focused on conversational text-based AI like ChatGPT-3, suggesting that specific AI chatbot features can elicit more data sharing from users. For instance, Kim et al. [35] found that privacy calculus is only activated when an AI chatbot offers personalized (vs. non-personalized) advertising among those with low (vs. high) privacy concerns and future-driven promotion-focused (vs. prevention-focused) orientations. Perceived intellectual competencies of an AI chatbot (i.e., anticipating problems and planning ahead) increase users\u2019 willingness to disclose and reduce privacy concerns [22]. Chatbot\u2019s ambidexterity (to perform conflicting goals simultaneously) in sales and service offerings could enhance customer experience and patronage [20]. However, it is difficult to identify a specific chatbot approach that has universal effects on disclosure for various interaction contexts. Alternatively, informing users about data policies can serve as a more straightforward option to reduce privacy concerns and increase trust among AI chatbot users. However, the effectiveness of AI transparency has shown mixed findings. On the one hand, Xu et al. [73] found that transparency explanations of how the chatbot was trained led users to express greater affinity to the chatbot, as",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.08736,
+      "y1": 0.107489,
+      "x2": 0.482938,
+      "y2": 0.385109
+    },
+    "text": "well as rate its social intelligence higher. On the other hand, the findings of Sannon et al. [56] suggests that disclosing data sharing practices (with advertisers) increases risk perceptions and lowers the chatbot\u2019s trustworthiness, regardless of how socially intelligent the chatbot was perceived. Furthermore, achieving transparency in AI systems can be more challenging due to their foundation on complex black-box models. In response, scholars are striving for explainable AI (XAI) solutions to develop more explainable models, while implementing better literacy and trust measures [18]. General XAI methods can also apply to conversational user interfaces to increase user literacy and engagement, while the conversational nature of LLM interfaces can amplify users\u2019 overreliance on the AI system [27]. Thus, identifying effective transparency features or messages within LLMs requires more academic attention. Mindful of the limited literature on LLM memorization in regards to XAI, this study attempts to fill in the research gap by understanding how users assess the benefits and risks of using ChatGPT\u2019s memory feature, and obtain preliminary feedback on preferred design interventions to resolve the benefit-risk imbalance or the personalization-convenience paradox.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.398182,
+      "x2": 0.097067,
+      "y2": 0.411198
+    },
+    "text": "3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.114893,
+      "y1": 0.398182,
+      "x2": 0.176996,
+      "y2": 0.411198
+    },
+    "text": "Method",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.087203,
+      "y1": 0.414558,
+      "x2": 0.482947,
+      "y2": 0.512297
+    },
+    "text": "We conducted semi-structured interviews with a total of 20 participants. The sample size meets the recommended saturation benchmark for qualitative studies [24, 28]. The study was approved by the Institutional Review Board (IRB) at Elon university 1 and Michigan State University, and it was preregistered on the Open Science Foundation (OSF)\u2019s website before data collection. Details of the preregistration are available at this link: https://osf.io/5v4y8/overview.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.52537,
+      "x2": 0.110579,
+      "y2": 0.538386
+    },
+    "text": "3.1",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.128404,
+      "y1": 0.52537,
+      "x2": 0.452094,
+      "y2": 0.554736
+    },
+    "text": "Participant Screening and Pre-interview Questionnaire",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.08625,
+      "y1": 0.5581,
+      "x2": 0.482949,
+      "y2": 0.87723
+    },
+    "text": "We recruited participants from Prolific, targeting those who were aware of ChatGPT\u2019s memory feature. Participants who were interested in the study were directed to a link to Calendly, where they selected their preferred interview date and provided their email address for follow-up communications. The study team contacted them and sent a pre-interview questionnaire to obtain their consent to participate. To confirm each participant\u2019s qualifications, we included screening questions related to prior experience with ChatGPT (i.e., \u201cHow often have you used ChatGPT in the past six months?\u201d; 1 = \u201cnot at all\u201d to 6 = \u201cused several times each day\u201d) and its memory feature (i.e., \u201cTo what extent are you aware of ChatGPT\u2019s memory feature?\u201d; 1 = \u201cnone at all\u201d and 5 = \u201ca great deal\u201d). Those who answered \u201cnot at all\u201d or \u201cnone at all\u201d to either of the two questions were excluded from the study. To obtain further ChatGPT usage behaviors, we asked qualified participants to report their frequency of using ChatGPT in both professional and personal use settings across various tasks, including text generation, image generation, music generation, video generation, and others (participants can specify) on a 5-point agreementbased Likert scale. They were also asked to report their prompt literacy with five statements adapted from previous research [38] on a 7-point scale (1 = \u201cstrongly disagree\u201d and 7 = \u201cstrongly agree\u201d).",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.087699,
+      "y1": 0.883209,
+      "x2": 0.268013,
+      "y2": 0.896197
+    },
+    "text": "1 The first author\u2019s previous university.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.107489,
+      "x2": 0.914577,
+      "y2": 0.274413
+    },
+    "text": "Sample items included \u201cI can ask appropriate and effective questions to generative AI\u201d and \u201cI can communicate effectively with generative AI.\u201d Similarly, we evaluated their perceived AI knowledge by asking their level of agreement with five items adapted from previous research [74], revised to fit this study context. Examples include: \u201cIn general, I know a lot about generative AI\u201d and \u201cI understand how generative AI works.\u201d Lastly, all participants provided their demographics, including gender, age, race/ethnicity, educational level, and annual family income. Only participants who completed the consent form, along with the pre-interview questionnaire, were invited to the interview session.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.291749,
+      "x2": 0.542208,
+      "y2": 0.304765
+    },
+    "text": "3.2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.291749,
+      "x2": 0.728732,
+      "y2": 0.304765
+    },
+    "text": "Participants\u2019 Profiles",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.519021,
+      "y1": 0.308125,
+      "x2": 0.914572,
+      "y2": 0.419701
+    },
+    "text": "Demographically, our sample consisted of slightly more males (n = 12) than females (n = 8). Their ages ranged from 19 to 54 years (M = 38, SD = 10.51). They reported using generative AI tools more frequently for personal purposes (M= 3.80, SD = 1.47) than for professional purposes (M = 3.25, SD = 1.71). In addition, their perceived AI knowledge was moderately high (M = 4.99, SD = 1.12), so did the perceived prompting literacy (M = 6.15, SD = .61). We present their profiles in Table 1.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.437038,
+      "x2": 0.542208,
+      "y2": 0.450054
+    },
+    "text": "3.3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.437038,
+      "x2": 0.710943,
+      "y2": 0.450054
+    },
+    "text": "Interview Protocol",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 4,
+    "bbox": {
+      "x1": 0.518996,
+      "y1": 0.453413,
+      "x2": 0.914578,
+      "y2": 0.897073
+    },
+    "text": "Each interviewer opened with a self-introduction, followed by an explanation of the study\u2019s purpose and procedures. Then, permission was asked and obtained to record the Zoom interview session. Participants were allowed to turn off the camera if they felt uncomfortable revealing their physical appearance and surroundings. Following this, participants were asked to briefly introduce themselves, including their preferred name, location, and occupation. The main interview started with general questions about participants\u2019 ChatGPT use, such as their motivations for using the system and common use scenarios. We then asked participants whether they had shared any personal information with ChatGPT, their perceptions of how ChatGPT manages, stores, and uses their personal data, and if they manage their private information on the platform. Next, we introduced ChatGPT\u2019s new feature, Memory, using materials from OpenAI\u2019s official website [49]. We mentioned that the memory feature allows ChatGPT to remember user-provided information in order to enhance future interactions. Participants were shown a screenshot illustrating ChatGPT responding with the \u201cMemory Updated\u201d cue after a user shared personal details and were invited to share their likes and dislikes, as well as their expectations about the feature. The participants were then invited to experiment directly with ChatGPT by entering the prompt \u201cWhat do you know about me?\u201d They were encouraged to use their own ChatGPT account and share the responses at their comfort level. We asked a few questions to understand their perceptions of the memory feature, such as \u201cWas the result surprising to you?\u201d and \u201cWhat information would you like to keep stored or delete from ChatGPT?\u201d As we discussed ChatGPT\u2019s memory feature, we briefly explained the concept of human memory and invited participants to reflect on the concept of AI memory at a higher-level, with questions such as: \u201cWhat does it mean to you when AI has memory?\u201d and \u201cHow would you compare",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "table",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.40307,
+      "y1": 0.107266,
+      "x2": 0.596449,
+      "y2": 0.117965
+    },
+    "text": "Table 1: Participants\u2019 Profiles",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.100586,
+      "y1": 0.134509,
+      "x2": 0.123742,
+      "y2": 0.462992
+    },
+    "text": "No. P1 P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15 P16 P17 P18 P19 P20",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.141231,
+      "y1": 0.134509,
+      "x2": 0.215971,
+      "y2": 0.462992
+    },
+    "text": "Gender Male Female Female Female Male Male Male Male Female Female Male Female Male Male Male Female Non-binary Male Male Female",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.23346,
+      "y1": 0.134509,
+      "x2": 0.259119,
+      "y2": 0.462992
+    },
+    "text": "Age 34 37 41 48 26 25 30 50 43 28 48 30 47 50 29 50 19 29 42 54",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.276607,
+      "y1": 0.134509,
+      "x2": 0.449008,
+      "y2": 0.462992
+    },
+    "text": "Race White Black/African American Hispanic Asian Black or African American Hispanic Black or African American Black or African American Black or African American White Black or African American Hispanic White Black or African American White Black or African American White White Black or African American Black or African American",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.466497,
+      "y1": 0.134509,
+      "x2": 0.626903,
+      "y2": 0.462992
+    },
+    "text": "Education Bachelor\u2019s degree Bachelor\u2019s degree Graduate degree Graduate degree Bechelor\u2019s degree Bachelor\u2019s degree Bachelor\u2019s degree Graduate degree Associate\u2019s degree Some college (no degree) Bachelor\u2019s degree Some college (no degree) Associate\u2019s degree Bachelor\u2019s degree Bachelor\u2019s degree HS Diploma Some college (no degree) Bachelor\u2019s degree Bachelor\u2019s degree Graduate degree",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.484727,
+      "x2": 0.482937,
+      "y2": 0.873043
+    },
+    "text": "AI memory to human memory? What similarities and differences do you see?\u201d Following this, participants viewed two short tutorial videos from OpenAI\u2019s official website [49]: one showing how to view and manage GPT\u2019s memory and another demonstrating how to turn the Memory feature on and off. We then asked, \u201cHow have you been managing ChatGPT\u2019s memory about you?\u201d and \u201cDo you think ChatGPT can truly forget users\u2019 memories?\u201d Finally, we introduced the risks associated with AI memorization by sharing anecdotal evidence of ChatGPT inadvertently disclosing users\u2019 private information to others due to data memorization during training. This example has been used in a previous study [77]. The participants were then asked, \u201cWhat are your thoughts on using your conversations for training AI models?\u201d and \u201cAre there specific types of data you are concerned about being memorized by ChatGPT?\u201d We closed our interview with two board questions: \u201cDo you think your life would be better if you turn the memory feature off?\u201d and \u201cWhat suggestions do you have for ChatGPT designers to better protect users\u2019 privacy in relation to the memory feature?\u201d A detailed interview script is available in the Appendix. Before conducting the interview, we pilot-tested the effectiveness of our interview protocol with three participants recruited through the first and second author\u2019s social networks. Based on their feedback, we removed several redundant questions about how participants manage their privacy on ChatGPT and revised the wording of a few questions to improve clarity, such as replacing \"algorithmic memory\" with \"AI memory.\"",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.485648,
+      "x2": 0.542208,
+      "y2": 0.498664
+    },
+    "text": "3.4",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.644392,
+      "y1": 0.134509,
+      "x2": 0.903387,
+      "y2": 0.462992
+    },
+    "text": "Occupation Student in CS; self-employed in logistics HR business partner Salesforce administrator Part-time software developer Salesman Research technician Full-stack programmer Business owner Self-employed Unemployed Engineer Unemployed Media and advertising Artist Finances Consumer service College student Audio engineer Teacher Unemployed (disabled due to Covid)",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.485648,
+      "x2": 0.799445,
+      "y2": 0.498664
+    },
+    "text": "Qualitative Coding Procedure",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 5,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.502023,
+      "x2": 0.914572,
+      "y2": 0.89034
+    },
+    "text": "The recorded interviews were automatically transcribed by Zoom after each session. We used an open-coding approach to analyze the data, which involves the process of \u201cbreaking down, examining, comparing, conceptualizing, and categorizing data\u201d [60]. We began with the first 10 interviews: each author was assigned two transcripts, and the first author reviewed four. All authors were asked to carefully read their assigned transcripts line by line and highlight any text that reflected users\u2019 perceptions and experiences with ChatGPT\u2019s memory feature, as well as their privacy concerns and the strategies they used to manage AI memorization. The authors were also asked to assign low-level labels to capture the key ideas represented in the highlighted excerpts. These excerpts and their associated codes were then reviewed by another team member for validation. Any discrepancies in coding were discussed and resolved during a cross-validation stage. We addressed discrepancies by revisiting the highlighted excerpts and low-level labels and asked team members to share their interpretations of the participants\u2019 comments. We identified areas of shared understanding and re-evaluated the labels that had been assigned. After this, the first author grouped the low-level codes into broader themes and identified the relevant high-level theoretical concepts (e.g., unforgetfulness, detailedness, accuracy, perceived benefits, perceived risks, call for transparency), linking each concept to their corresponding research question. The resulting categorizations were then shared with the research team for further discussion and refinement. Based on the preliminary coding structure, we repeated the same procedure for the additional 10 interview transcripts to expand and review the coding system.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.107489,
+      "x2": 0.482934,
+      "y2": 0.246739
+    },
+    "text": "After completing the coding of the 20 interviews, the research team met again to discuss the findings. Some disagreements emerged due to different understandings of high-level theoretical concepts, such as transparency. When this happened, we discussed the nuanced meanings of the concept and broke the concept into more specific dimensions, such as transparency about the data being stored and transparency about the existence of the memory feature. This helped us clarify our interpretations and resolve disagreements. We document the finalized coding system in the supplementary material.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.264076,
+      "x2": 0.097067,
+      "y2": 0.277092
+    },
+    "text": "4",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.114893,
+      "y1": 0.264076,
+      "x2": 0.174429,
+      "y2": 0.277092
+    },
+    "text": "Results",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.280451,
+      "x2": 0.482937,
+      "y2": 0.378191
+    },
+    "text": "In line with our research questions, we first present participants\u2019 perceived similarities and differences between ChatGPT\u2019s memory and human memory (RQ1). We then examine instances where participants updated their mental models after learning what ChatGPT remembered about them (RQ2). Finally, we summarize users\u2019 suggestions for improving ChatGPT\u2019s memory feature to enhance awareness, user experience, and privacy protection (RQ3).",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.395526,
+      "x2": 0.110579,
+      "y2": 0.408543
+    },
+    "text": "4.1",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.128404,
+      "y1": 0.395526,
+      "x2": 0.478761,
+      "y2": 0.424893
+    },
+    "text": "RQ1: Perceived Differences and Similarities between AI Memory and Human Memory",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087203,
+      "y1": 0.428255,
+      "x2": 0.482938,
+      "y2": 0.498321
+    },
+    "text": "We found that ChatGPT\u2019s memory was perceived differently from human memory on four major dimensions: perceived unforgetfulness, detailedness, accuracy, and the lack of emotions. In contrast, participants also perceived relational benefits from both ChatGPT\u2019s memory and human memory.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.087903,
+      "y1": 0.508761,
+      "x2": 0.482949,
+      "y2": 0.895764
+    },
+    "text": "4.1.1 Perceived Unforgetfulness. Several participants emphasized ChatGPT\u2019s ability to retain information over long periods, which is beyond human capabilities. P13 observed, \u201cIt doesn\u2019t degrade like human memory.\u201d Similarly, P15 appreciated the persistence of ChatGPT\u2019s memory, \u201c50 years go by, you might forget the name of someone\u2019s daughter if you don\u2019t see them or that they like jellyfish. That seems like a very minute detail. I don\u2019t think ChatGPT has the capability of forgetting if it\u2019s already stored and used in your memory feature.\u201d P19 highlighted unforgetfulness as a key distinction between ChatGPT\u2019s memory and human memory, stating, \u201cAt some point, as a human being you can forget. . . But then there is an AI which remembers.\u201d P17 also believed that ChatGPT has stronger longterm retention, \u201cEven if I\u2019m gone for a long time, or I delete a chat, it still holds on to that memory. Some humans can do that, but because it\u2019s a machine, it probably does do it better.\u201d P14 echoed this point, remarking, \u201cWe are finite, you know, AI is infinite.\u201d The perceived unforgetfulness of ChatGPT\u2019s memory was particularly valued by participants with memory challenges. For example, P20, who took over 30 medications and used ChatGPT to support her disability, found ChatGPT\u2019s memory feature very helpful, \u201cFor the medications, I start the chat by saying this is a prescription and ChatGPT memorizes. And when I tell ChatGPT to pull up prescriptions, it\u2019ll bring up my list.\u201d However, she also recognized the downside of ChatGPT not able to forget: \u201cWe have the luxury of forgetfulness, and AI doesn\u2019t forget anything.\u201d As she explained, this permanence can shift the burden back to users, \u201cIt does not forget, so it kind of holds us accountable or responsible for what we have said or discussed.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.517337,
+      "y1": 0.107489,
+      "x2": 0.914572,
+      "y2": 0.591351
+    },
+    "text": "At the same time, a few participants questioned whether ChatGPT should memorize basic details. P19 explained: \u201cI\u2019d love GPT to hold on to a memory that I\u2019ll forget someday. But about my name, I\u2019ll never forget my name, I\u2019ll never forget where I come from. I\u2019ll never forget where I\u2019m living currently, so I don\u2019t think it has any good to be stored by ChatGPT. The only thing that I\u2019ll be happy to store is something that I can forget.\u201d However, believing in ChatGPT\u2019s unforgetfulness also raised doubts about whether deletion requests truly work. P20 noted, \u201cIt\u2019s forgotten to me, but I think it is still used by ChatGPT in some forms.\u201d P14 shared a similar concern: \u201cObviously, it\u2019s possible that AI can forget, but the question is, is it done or not? I don\u2019t know.\u201d Similarly, P3 did not believe that deleting chat histories would do anything to protect privacy, \u201cI have a feeling that they still have it in the database somewhere. Even if I delete it, I\u2019m just deleting it from my computer.\u201d Another negative outcome of ChatGPT\u2019s inability to forget is that stored information can become outdated and therefore irrelevant to the current task. For example, P10 shared her story about how an old kept memory had influenced ChatGPT\u2019s responses to her recent questions, \"It kept one of my memories that we were late on our rent, and from then on it always seemed to assume we were late every month. I needed help writing a text to our landlord, just normal communication, nothing to do with rent, but it would sneak in something about late rent.\" P8 had a similar experience, stating \u201cThere\u2019s a lot of stuff here about projects that I\u2019ve already completed. I could definitely delete some stuff in here. I don\u2019t need it to remember anymore.\u201d P9 shared her personal information with ChatGPT during her last usage, and she found that ChatGPT kept her old information, recalling \u201cshe is separated.\u201d P9 commented, \u201cI will have to go in and update it and let them know that I\u2019m not.\u201d By contrast, a small group of participants believed that ChatGPT can forget. For example, P17, who primarily used ChatGPT to create storylines, remarked that \u201csometimes it\u2019ll forget some details, and you have to remind it.\u201d P11 added, \u201cWhen AI memories are full, it won\u2019t be able to save new information.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.598702,
+      "x2": 0.914567,
+      "y2": 0.848648
+    },
+    "text": "4.1.2 Perceived Detailedness. Perceived detailedness emerged as another dimension that distinguishes ChatGPT\u2019s memory from human memory. Similar to the varied perceptions of unforgetfulness, participants expressed different perceptions of the detailedness of ChatGPT\u2019s memory. One group of participants was impressed by ChatGPT\u2019s detailed and vivid memories. As P12 commented, \u201cIt\u2019s almost like it\u2019s writing an essay about me.\u201d P3 noted that ChatGPT remembered her birthday, birth time, and the place where she was born. After reading a list of memories ChatGPT had about her, P20 felt ChatGPT\u2019s memory was \u201cexactly like human memory. It\u2019s very specific.\u201d P11 commented that, \u201cIt (ChatGPT) has the capacity to capture more detail and to remember it effectively.\u201d P17 highlighted the importance of having ChatGPT memorize all his interactions, \u201cEverything that I do with ChatGPT, I need it to be memorized.\u201d Based on his interaction with ChatGPT, P17 believed that ChatGPT\u2019s memory seemed \u201cmore designed to keep bigger chunks of important, relevant information\u201d and described ChatGPT as \u201ca little more finicky with fine details.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 6,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.854687,
+      "x2": 0.914345,
+      "y2": 0.897077
+    },
+    "text": "4.1.3 Perceived Accuracy. Furthermore, the accuracy of ChatGPT\u2019s memory emerged as an important difference from human memory. For example, P13 commented, \u201cit (ChatGPT) doesn\u2019t subjectivize it.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.107489,
+      "x2": 0.482052,
+      "y2": 0.231589
+    },
+    "text": "He further explained, \u201cChatGPT memory is more like a camera or like a transcription of what happened, it can\u2019t necessarily judge what happened. . . . It\u2019s not going to be as chaotic as the way humans remember things.\u201d However, one participant (P18) noted that ChatGPT actively learned from users, potentially leading to less accurate and objective responses. As P18 noted, \u201cWith long-term memory, it might change the way it interacts with you. You won\u2019t get like an objective answer when you\u2019re seeking an objective answer, because it knows certain things about you and how you interact with it.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.085708,
+      "y1": 0.239412,
+      "x2": 0.482937,
+      "y2": 0.391186
+    },
+    "text": "4.1.4 Lack of Emotions. In addition, two participants noted the lack of emotions in ChatGPT\u2019s memory. For example, P3 described ChatGPT\u2019s memory as being different than human memory, remarking, \u201cit must be like an algorithmic memory.\u201d She further explained, \u201cI think (human) memories are often hazy and colored by emotions, whereas it (ChatGPT\u2019s memory) is probably remembering everything in terms of the codes that\u2019s plugged in, like on a scale of 1 to 10, ChatGPT believed that I like formality on a 7.\u201d P12 echoed this view, stating, even though ChatGPT has memory, \u201cit\u2019s different than a friend in that it really can\u2019t be comforting. It lacks that comforting or empathy ability.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.085708,
+      "y1": 0.399009,
+      "x2": 0.482949,
+      "y2": 0.619969
+    },
+    "text": "4.1.5 Perceived Relational Benefits. Despite the differences, participants also noted similarities between ChatGPT\u2019s memory and human memory, particularly in their relational benefits. P3 often used ChatGPT for work, \u201cmemory sometimes makes it feel a little like a person, especially since it will address you by name.\u201d P17 observed that ChatGPT remembered her hobbies, which he found cute because it resembled the way humans recall details to bond: \u201cIt just kind of reminds me more of how a normal human would try to remember what you\u2019d like to bond better with you.\u201d P12 appreciated ChatGPT\u2019s memory feature for its emotional support, explaining: \u201cWhen I have ChatGPT up, it\u2019s like there\u2019s someone there for me that remembers.\u201d Similarly, P19 compared it to friendship, stating: \u201cWhen you have a friend, a person has always had memory. If you went to the beach last weekend, you don\u2019t have to remind this friend that last weekend you were at the beach. This person remembers that. So this feature gives me a sense of belonging.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.634687,
+      "x2": 0.110579,
+      "y2": 0.647703
+    },
+    "text": "4.2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.127495,
+      "y1": 0.634687,
+      "x2": 0.472077,
+      "y2": 0.664053
+    },
+    "text": "RQ2: Mental Model Shifted After Knowing What ChatGPT Remembered",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.087466,
+      "y1": 0.667415,
+      "x2": 0.48294,
+      "y2": 0.751317
+    },
+    "text": "Throughout the interviews, most participants experienced shifts in their mental models after knowing more about what ChatGPT remembered about them. These changes helped participants develop a more accurate understanding of the memory feature, but they also created confusion and uncertainty about how ChatGPT handled data storage, retrieval, management, and privacy protection.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.085708,
+      "y1": 0.757827,
+      "x2": 0.482934,
+      "y2": 0.897077
+    },
+    "text": "4.2.1 Negative Expectancy Violations. Most participants described experiencing negative expectancy violations, primarily because ChatGPT retained unexpected memories, made inaccurate inferences, or confused highly literate users due to limited transparency. One common source of these negative violations was due to ChatGPT retaining information that participants did not expect it to remember. For example, P10, who was currently unemployed and actively learning new skills to transition into a user experience designer role, was surprised to find that ChatGPT had stored her \u201cbirth data down to the exact minute and location.\u201d Although she",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 7,
+    "bbox": {
+      "x1": 0.518641,
+      "y1": 0.107489,
+      "x2": 0.914581,
+      "y2": 0.897077
+    },
+    "text": "had previously shared personal information openly, explaining that she had experienced \u201cso many data breaches in the past\u201d and felt her information was \u201calready out there,\u201d discovering the extent of what ChatGPT remembered prompted her to reconsider her privacy management practices. After learning that she could disable data sharing, P10 ultimately chose to turn that feature off. Likewise, P11 assumed that ChatGPT only retained basic information about him, such as his demographics and occupation. When he reviewed the stored memories, he was shocked to discover that ChatGPT also knew his exact age\u2014information he did not expect the system to hold with such accuracy. He described this as \u201ca little bit intrusive\u201d and expressed a desire to delete it. This discovery motivated P11 to delete all personal information from ChatGPT and create a new profile, explaining, \u201cthis time I\u2019ll be more careful with the information that I\u2019ll be sharing with the chatbot.\u201d He noted that the purpose of this new profile was \u201cto have a bit more anonymity.\u201d P3\u2019s negative experience with ChatGPT\u2019s memory feature was triggered by both unexpected memories and inaccurate inferences made by ChatGPT. P3 primarily used ChatGPT for tasks like resume editing and email writing. She had accidentally cleared out all the memories on ChatGPT and started accumulating new memories a week ago. However, ChatGPT kept her cat\u2019s information. She thought that information should have already been deleted, \u201cI guess it must have saved something if it remembers my cat.\u201d Down the list, P3, whose first language is not English, noticed a specific AI memory regarding her writing style, \u201cShe prefers casual tones.\u201d However, P3 felt it misrepresented her intentions: \u201cWhen I type to colleagues or even to friends, I try very hard to type correctly. But when I type to ChatGPT, my grammar isn\u2019t correct, and ChatGPT is obviously processing what I write. It is interpreting my language (preference) incorrectly, like it is accounting for every misspelling and all my grammar that doesn\u2019t come out correctly.\u201d In addition, P20 was dissatisfied with ChatGPT\u2019s memory feature, primarily because she felt the system generated an undesirable image of her. \u201cIf you look at everything that ChatGPT remembers about me, I don\u2019t know if I like the image that it portrays.\u201d When asked what kind of image she wanted to leave on ChatGPT, P20 responded, \u201cmore professional, maybe.\u201d The mismatch between the AI-generated profile and the desired user profile may have put P20 off and led her to rethink the value of using the memory feature. Another major source of negative expectancy violations is the lack of transparency in how the memory feature works across models. For example, P1 was a college student majoring in computer science. He was always ahead of the curve when using more advanced models from OpenAI. When engaging in the study activity to identify what ChatGPT had memorized about himself as a user, he immediately asked which model to use and pointed out the response differences between different models, \u201co1 Mini\u2019s gonna give some extra additional side context, and it\u2019ll help me sort of understand what the robot\u2019s thinking. . . When you use 4o by itself, you\u2019re just going to get a direct answer.\u201d P1 first tried the o1 Mini model, but it returned with no memories about him. When he switched to the 4o model, it recalled his preferred response style, location, timezone, and the current date and time. He questionned the o1 Mini model, \"What information is available to you?\" The model responded, \"I do not have any information about you.\" This unsettled him. He then typed, \"You don\u2019t even have my IP address?\" and the o1 Mini replied,",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.110364,
+      "x2": 0.480468,
+      "y2": 0.217751
+    },
+    "text": "\"That\u2019s correct. I don\u2019t have access to your IP address or any other personal information.\" P1 was shocked: \"The fact that one model has an IP address and the other doesn\u2019t. . . I can\u2019t explain this. . . This is just unacceptable.\" He continued, \"That lack of transparency and that lack of apparentness leads me to feel like I\u2019m now using a website that I thought that I understood better than I actually do, and that worries me.\" He concluded, \"This one (the o1 Mini model) has access to that data, but it\u2019s not telling me.\"",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.108409,
+      "x2": 0.542208,
+      "y2": 0.121426
+    },
+    "text": "4.3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.241246,
+      "x2": 0.482949,
+      "y2": 0.545227
+    },
+    "text": "4.2.2 Positive Expectancy Violation. Positive expectancy violations occur when reality exceeds expectations in a positive direction. Participants were surprised by ChatGPT\u2019s accurate information recall and its ability to learn from users. For example, P5 believed that ChatGPT had \u201ceverybody\u2019s data\u201d and worked like a \u201cmaster structuring,\u201d so it did not have detailed data for \u201ca specific person.\u201d However, after prompting ChatGPT to answer \u201cWhat do you know about me?\u201d P5 was shocked by its inference capability and the summary ChatGPT provided, \u201cIt referenced my past work experience and seemed to combine it with my prompts. That\u2019s why it\u2019s blowing my mind. It\u2019s talking about character traits and decision making at the same time.\u201d P5 expressed surprise at its accurate recall of his career goals, remarking, \u201cI didn\u2019t know it was gonna be that accurate. That\u2019s crazy.\u201d P3 was also surprised to discover that ChatGPT had remembered her preferred tones for email writing. She remarked, \u201cOh, look! It memorized that time I asked it to fix an email and stop sounding so much like business jargon. That was really funny. It was learning from me.\u201d P3 explained that she appreciated ChatGPT\u2019s inference capability because \u201cit makes it easier to work with it.\u201d P3 also preferred keeping all the memories, noting that \u201cit\u2019ll maybe extrapolate something from it later that could help it.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.237896,
+      "x2": 0.913719,
+      "y2": 0.691197
+    },
+    "text": "4.3.1 Increasing Visibility and Accessibility of Memory Features. Several participants expressed concerns about low visibility and limited accessibility of ChatGPT\u2019s memory feature. For example, P13 commented, \u201cI didn\u2019t know it (ChatGPT\u2019s memory feature) was on this whole time. I\u2019m assuming it was. I don\u2019t know how long it\u2019s been around.\u201d Similarly, P6 noted, \u201cI didn\u2019t know you can take out the memory or edit the memory.\u201d P15 echoed this sentiment, \u201cI know that it (information about ChatGPT\u2019s memory feature) is available on their website, but I don\u2019t know how many people know that this exists. For example, like myself, I didn\u2019t know the true ins and outs, that it actually stores specific details and that you can delete it.\u201d Furthermore, P18 highlighted that the memory feature is not easy to locate, \u201cyou have to click four times to see your memory feature. It should be more prominent.\u201d P18 suggested, \u201cHaving some sort of disclaimer that shows up, maybe not every time you open it, but every few times, just so everyone is aware that your memory feature is on.\u201d P15 shared a similar perspective, \u201cIt would be nice to have some sort of disclaimer more readily available than just in the back end or terms and agreement that people don\u2019t really read. I would say tell us what exactly it stores for how long, where it\u2019s stored, things of that nature.\u201d In addition, P15 recommended incorporating multiple formats when designing the disclaimer, \u201cincluding a video of this on the main website or a link like \u2018Are you curious about ChatGPT\u2019s memory features?\u2019 when you log in. I\u2019m not sure if that already exists or not, but I would like that as a feature, something that\u2019s easily accessible.\u201d P19 also emphasized the importance of informed consent, \u201cLet a person be informed that there is this feature. Let the person give consent that he or she is ready to use this software with this feature.\u201d P6 appreciated the educational content he received during the interview and expressed interest in more resources about \u201chow memorization feature works, and how you can leverage it or protect yourself also through it.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.085708,
+      "y1": 0.568722,
+      "x2": 0.482937,
+      "y2": 0.76332
+    },
+    "text": "4.2.3 Positive expectancy confirmation. Positive expectancy confirmation refers to the situations when anticipated positive outcomes are realized. P4 was a part-time software developer and had primarily used ChatGPT for coding. She was aware that \u201ccomputers can be hacked\u201d and \u201cpersonal information can be gleaned,\u201d so she was skeptical and often avoided \u201cgiving personal information that can be misused by somebody else.\u201d In addition, she was well-equipped with the knowledge to protect her privacy on the Internet, such as using VPN to disguise her true IP address and knowing how to turn off ChatGPT\u2019s memory feature. Probably due to high AI literacy, she was very careful of what she shared with ChatGPT and often \u201ctweaked it\u201d to get the information she needed. She felt reassured after learning that ChatGPT did not have much information about her.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.785501,
+      "x2": 0.482951,
+      "y2": 0.895763
+    },
+    "text": "4.2.4 Negative Expectancy Confirmation. Negative expectancy confirmation occurs when unfavorable expectancy meets undesirable reality. P19 read out loud the memories ChatGPT had about himself, and he was surprised that the system had memories of his girlfriend, \u201cI\u2019ve come to realize it has my name, my location, and about my girlfriend.\u201d Previously, P19 worried that ChatGPT knew his personal information, \u201cIt was my worst fear, and I\u2019ve confirmed that it has that information.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.108409,
+      "x2": 0.845987,
+      "y2": 0.137775
+    },
+    "text": "RQ3: Users\u2019 Suggestions to Improve ChatGPT\u2019s Memory Feature",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.141138,
+      "x2": 0.914566,
+      "y2": 0.225039
+    },
+    "text": "Our participants offered four primary suggestions to improve ChatGPT\"s memory feature, including 1) increasing visibility and accessibility of the feature, 2) enhancing the transparency of the memory feature in data storage, retrieval, and sharing, 3) restoring user control in the use of the memory feature, and 4) preventing privacy risks from AI memorization.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 8,
+    "bbox": {
+      "x1": 0.518996,
+      "y1": 0.705367,
+      "x2": 0.91371,
+      "y2": 0.895763
+    },
+    "text": "4.3.2 Enhancing Memory Features\u2019 Transparency in Data Storage, Retrieval, and Sharing. Another need participants expressed was greater transparency in how the memory feature works, as they were uncertain about what information was stored and whether the deleted information truly became inaccessible. P4 reflected this concern, explaining that even with the memory feature turned off, she \u201ccannot be 100% certain if ChatGPT is retaining users\u2019 information.\u201d She added: \u201cHow do we get a proof that it has actually removed everything? if designers can come up with a design where the user can have some sort of actual proof, not just saying or writing something that \u2018Yes, all the memory is removed from this app,\u2019 that would be helpful. But I do not know whether that\u2019s going to be possible.\u201d P11 shared similar doubt, admitting, \u201cI am not quite sure how the data is processed and stored. . . and what measures they have",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.085714,
+      "y1": 0.110364,
+      "x2": 0.482072,
+      "y2": 0.300774
+    },
+    "text": "taken to protect this information from any data, breaches, or security vulnerabilities.\u201d Beyond security risks, P11 also worried about the potential \u201cmisuse of the stored information,\u201d especially when it involved personal details. Some participants also proposed solutions. P6 suggested that \u201ceven just being transparent about how and when this data is used, can help people even take more responsibility and actually even seek out using these features.\u201d Likewise, P16 emphasized the importance of proactive disclosure, noting that she would like to receive \u201cnotifications or disclosures of where that data is being stored and how it is being used.\u201d In addition, P11 suggested implementing a real-time memory indicator: \u201cThat shows you when ChatGPT is adding something to its memory, so you\u2019ll be able to know which information it has stored.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.086338,
+      "y1": 0.308125,
+      "x2": 0.482061,
+      "y2": 0.722802
+    },
+    "text": "4.3.3 Restoring User Control. User control emerged as another area for improvement. Several participants felt they had some control when using the memory feature. As P2 commented, \u201cIt makes me feel like \u2019Men in Black,\u2019 where you can select your time frame of what you remember, and switch the button, and certain things the person still remembers, and it\u2019s like that selective memory.\u201d Similarly, P11 appreciated the feature, saying, \u201cYou can decide whether to turn it off. When you feel the need to have it off, you have the power to do that.\u201d However, some participants suggested that the memory feature could be further improved by providing more user control. For example, P8 commented, \u201cIt\u2019d be cool if it asks you what kind of things you want ChatGPT to remember.\u201d P17 echoed this point, saying, \u201cIt would be very useful to decide the level of what it remembers. Maybe also allow people to insert their own memories or correct incorrect memories.\u201d Experienced users like P1 emphasized the need for even stricter control: \u201cStop memorizing my stuff and stop using it unless I tell you to.\u201d As for suggestions, P1 proposed an \u201cauto-categorization feature\u201d that could be customized by users. He elaborated, \u201cit should allow users to categorize and manage stored memories, like you can categorize them as work-related and personal files when interacting with the chatbot.\u201d In addition, two participants pointed out that adding time limits to the memory feature could increase user control. P7 explained, \u201cWhen it says memory updated, maybe there could be a little drop-down, where you can say memory for 90 mins or 60 mins, something that only remembers for a nice short period of time.\u201d P5 supported this approach, suggesting, \u201cInstead of just turning it completely off, they could have something like \u2018erase after 6 months\u2019 or \u2018after 3 months.\u2019 Something like that will probably help out a lot.\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.733041,
+      "x2": 0.482954,
+      "y2": 0.895764
+    },
+    "text": "4.3.4 Preventing Privacy Risks from AI Memorization through Alerts and Intervention. In addition, our participants expected ChatGPT\u2019s memory feature to alert them about the potential privacy risks associated with AI memorization. As P7 pointed out, \u201cit could tell you not to put certain information, or it redacts it.\u201d Similarly, P6 suggested that having an AI warning that flags sensitive information would be useful, e.g., \"We\u2019ve detected sensitive details about you based on this conversation. Would you like to delete the conversation afterwards or prevent it from being used in other ways?\u201d P8 emphasized the need for more restrictions regarding the sharing of other people\u2019s information: \u201cif you ask for someone\u2019s phone number or email address, it should say, \u2018We don\u2019t give that out.\u2019\u201d",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.108409,
+      "x2": 0.528697,
+      "y2": 0.121426
+    },
+    "text": "5",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.546522,
+      "y1": 0.108409,
+      "x2": 0.633509,
+      "y2": 0.121426
+    },
+    "text": "Discussion",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.519095,
+      "y1": 0.124784,
+      "x2": 0.914579,
+      "y2": 0.236361
+    },
+    "text": "This study examines users\u2019 perceptions and experiences with ChatGPT\u2019s memory feature in relation to their privacy concerns. Drawing on participants\u2019 feedback and theoretical perspectives on privacy and personalization, we first discuss the primary characteristics identified by our participants that differentiate ChatGPT\u2019s memory from human memory. In addition, we outline major theoretical implications and design suggestions to support transparent, user-aligned ChatGPT memory interactions.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.282314,
+      "x2": 0.542208,
+      "y2": 0.295331
+    },
+    "text": "5.1",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.282314,
+      "x2": 0.912601,
+      "y2": 0.311681
+    },
+    "text": "Machine-like Nature of ChatGPT\u2019s Memory and User Trust",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 9,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.315043,
+      "x2": 0.914578,
+      "y2": 0.897077
+    },
+    "text": "First, we identified four major characteristics that differentiate ChatGPT\u2019s memory from human memory based on users\u2019 perceptions: perceived unforgetfulness, detailedness, accuracy, and lack of emotions. These perceptions highlight the machine-like nature of ChatGPT\u2019s memory, which may trigger either the positive or negative machine heuristics. The positive machine heuristic can strengthen the belief that ChatGPT\u2019s memory is more objective and neutral than human memory [62, 63], whereas the negative machine heuristic may lead users to view ChatGPT\u2019s memory as rigid, mechanistic, and lacking human intuition and subjectivity [45]. In either case, these perceptions can influence users\u2019 trust in the system [45, 61, 63]. In particular, the unforgetfulness of ChatGPT\u2019s memory elicited contradictory viewpoints. On the one hand, it empowered users with memory challenges to have ChatGPT remember information for them. On the other hand, some participants perceived that the feature produced outdated and irrelevant memories and imposed accountability burdens on users. These findings point to moments when user agency and machine agency are either aligned or in conflict. When ChatGPT\u2019s memory serves an assistive role, it seems to enhance user agency by allowing individuals to delegate memory tasks and benefit from mental offloading. Notably, prior research on Google has shown a downside when information is stored outside ourselves: people tend to recall less of the information itself while maintaining stronger memory for where to retrieve it [59]. While users can search their history relatively easily on platforms like Google, doing so in ChatGPT is more difficult because the current memory feature lacks effective search functions and can reach capacity, limiting the storage of new information. These constraints may ultimately undermine users\u2019 trust in ChatGPT and its memory feature. Building on these challenges, the most critical issue is that participants do not seem to believe that ChatGPT can forget. The concern is not only technical, i.e., whether the system truly deletes data, but also deeply experiential, influencing how users feel and behave. It may reinforce skepticism toward the forgetting mechanism, create reluctance or hesitation to engage with the system, and even generate anxiety or uneasiness about being continuously monitored, recorded, or having their personal information permanently stored. Future studies should investigate how to better communicate the forgetting mechanism in ChatGPT\u2019s memory, so that it does not undermine user agency and trust in the system.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.108409,
+      "x2": 0.110579,
+      "y2": 0.121426
+    },
+    "text": "5.2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.128404,
+      "y1": 0.108409,
+      "x2": 0.424233,
+      "y2": 0.137775
+    },
+    "text": "Relational Perceptions of ChatGPT\u2019s Memory",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.087466,
+      "y1": 0.141138,
+      "x2": 0.482937,
+      "y2": 0.460269
+    },
+    "text": "Despite viewing ChatGPT\u2019s memory as machine-like, participants repeatedly linked ChatGPT\u2019s memory to human memory in relational terms. They used words and phrases, such as \"friendship\" and \"sense of belonging,\" to describe how they related to AI memory interpersonally. This finding highlights that ChatGPT\u2019s memory can evoke social responses from users [47]. It functions not only as a technical mechanism (e.g., storing or recalling data), but also as a social one, prompting users to apply social rules, treat the tool as a friend, and form relational understandings through the system. Designers could deliberately scaffold this relational opportunity by offering customization controls that mediate between \u201cutility\u201d (task memory) and \u201caffect\u201d (relational memory). In practice, this means giving users the ability to decide what kinds of memories the system should prioritize and how they should be expressed in interaction. However, a critical question is how much \u201cfriendship\u201d should be engineered into AI\u2019s memory. Although relational cues can strengthen perceived rapport, if they are too strong or too persistent, they risk fostering over-trust [61] or creating a false sense of intimacy that makes users more vulnerable when the system errs or spreads misinformation [40]. Designers should balance utility and affect, ensuring that ChatGPT\u2019s memory supports practical tasks without misleading users about the system\u2019s capabilities or intentions.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.476033,
+      "x2": 0.110579,
+      "y2": 0.489049
+    },
+    "text": "5.3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.128404,
+      "y1": 0.476033,
+      "x2": 0.480471,
+      "y2": 0.505402
+    },
+    "text": "Mitigating Expectancy Violations in Users\u2019 Experience with ChatGPT\u2019s Memory Feature",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.087358,
+      "y1": 0.508761,
+      "x2": 0.482947,
+      "y2": 0.897077
+    },
+    "text": "In addition, our participants\u2019 reactions mapped closely to the theory of expectancy violations [10]: most experienced negative violations, while others had positive surprises. The primary causes of negative reactions were ChatGPT\u2019s memory feature recalling unexpected memories, making inaccurate inferences, and a lack of transparency and explainability when different models provided different memories. Notably, participants with higher AI literacy were more likely to experience either positive expectancy confirmations or negative expectancy violations. On the one hand, their strong privacy management strategies, such as limiting the personal information they shared, often resulted in ChatGPT retaining very little about them, which aligned with their expectations. On the other hand, these participants also encountered more negative expectancy violations when ChatGPT\u2019s memory behaved differently than they expected. When their mental models were challenged, they experienced heightened frustration and disappointment because ChatGPT\u2019s memory did not operate in the way they anticipated. To mitigate negative expectancy violations, ChatGPT could adopt explicit disclosures of data management early on, thereby forming a more accurate mental model among its users. This early communication is likely to shape positive perceptions and trust in the system, as evident in previous studies [12, 45]. In addition, the lens of expectancy violations emphasizes that transparency is not just about disclosure, but also about predictability. When the retained information does not match users\u2019 expectations, they seem to experience greater frustration and confusion. Interfaces need to make memory actions legible and auditable in real-time, for example, through live indicators. This extends prior HCI work on",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.107489,
+      "x2": 0.912474,
+      "y2": 0.136043
+    },
+    "text": "algorithmic transparency [36, 41, 58, 75] by foregrounding memory as a new trust boundary.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.148766,
+      "x2": 0.542208,
+      "y2": 0.161783
+    },
+    "text": "5.4",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.148766,
+      "x2": 0.909784,
+      "y2": 0.178133
+    },
+    "text": "Privacy Risks in AI Memorization and User Profiling",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.517879,
+      "y1": 0.181495,
+      "x2": 0.914566,
+      "y2": 0.694345
+    },
+    "text": "Previous studies have highlighted different types of privacy risks related to AI memorization, such as personal data leakage [33, 77], sensitive-attribute inference [57], and risks amplified by third-party integrations such as API [57]. In our interview study, two types of privacy concerns emerged more frequently than others. The first concern centers around the perception that ChatGPT\u2019s memories are highly detailed and retentive. This often leads to unexpected resurfacing of information that users themselves may not remember sharing, or that may no longer be relevant to the current context. The system\u2019s capability to retain detailed coverage of extensive user information can become a privacy issue because users lack control over how their information is stored and retrieved, raising suspicions about how ChatGPT might use their data in future interactions or for other purposes. This concern is further intensified given that ChatGPT has shifted from a nonprofit organization to a commercial one [26]. In addition, our interview data revealed a new category of privacy concerns: undesirable user profiling. User profiling refers to the process of gathering and analyzing data about a user to create a detailed profile of their behavior, preferences, and characteristics, and it is enabled by RAG-based memories, which extract and store user information across sessions for later use by the system. While adaptive user profiling based on memory is not new [67], a key challenge remains: the profile created by LLMs may not align with the image users desire to project. This misalignment heightens tensions between machine agency and user agency, specifically over which image should be retained and who ultimately benefits from the resulting profile. Adding to this concern, the relational benefits of AI memory, such as increased continuity, personalization, and a sense of being \u201cknown\u201d by the system, may further complicate the power of AIgenerated profiles. As users grow accustomed to more fluid and context-aware interactions, they may become less likely to question, scrutinize, or correct the profiles the system constructs about them. This relational ease can mask underlying inaccuracies or biases in the profile, allowing the system\u2019s interpretation of the user to become more influential than the user\u2019s own self-presentation.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.707068,
+      "x2": 0.542208,
+      "y2": 0.720085
+    },
+    "text": "5.5",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.707068,
+      "x2": 0.714989,
+      "y2": 0.720085
+    },
+    "text": "Design Suggestions",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.723444,
+      "x2": 0.914566,
+      "y2": 0.862695
+    },
+    "text": "By considering participants\u2019 concrete suggestions and the discussions emerging from their comments, we provide several design suggestions that emphasize transparency, accessibility, agency, bounded friendship, and scrutiny as core components of creating a more responsible, user-aligned memory experience. We further draw on the theoretical frameworks of privacy calculus and privacypersonalization paradox to discuss how AI memory systems can support dynamic trade-off negotiation. Table 2 summarizes the design suggestions informed by users\u2019 comments and theories of privacy and personalization.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 10,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.868524,
+      "x2": 0.912605,
+      "y2": 0.897077
+    },
+    "text": "5.5.1 Increasing Transparency of Memory Existence and Use. A fundamental issue was that many participants were unaware that",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.107489,
+      "x2": 0.482939,
+      "y2": 0.412783
+    },
+    "text": "ChatGPT\u2019s memory feature existed at all, confirming earlier findings on users\u2019 low memory awareness and literacy [54]. Therefore, transparency needs to begin with clear onboarding prompts that inform users that memory is available, describe its purpose, and allow them to decide whether to opt in or not. Moreover, users\u2019 consent should be requested whenever memory updates occur. This consent mechanism should be applied universally, rather than only in regions such as the UK and the EU, where it is currently required [50]. Transparency also involves revealing how memory affects interactions. Our participants wanted to understand which past details were resurfaced, why certain information was retained, and what happens after deletion. Providing concise and easily accessible explanations, potentially in multiple formats, such as text or video, could make these processes more understandable without overwhelming users with technical jargon. Additionally, providing situational cues, such as showing which memory snippet is currently informing a response, would allow users to understand the relevance of specific details within context. These design solutions support a more interactive and reflective relationship with memory, enabling users to identify, access, and correct potential privacy risks as they arise.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.421708,
+      "x2": 0.482722,
+      "y2": 0.599582
+    },
+    "text": "5.5.2 Improving Access and Organization of the Stored Memories. Participants consistently described the current memory feature as hard to locate and unintuitive. Locating memory within mutli-level settings menus not only discourages users from checking what has been stored but also limits opportunities to correct or organize their data. A more accessible design would position memory as a first-class interface element, for instance, in the main navigation panel, where users already browse chats and tools. Such placement could normalize memory as an active resource rather than a hidden backend process. Beyond access, participants emphasized the need for more structured organization of stored memories. Categorizing memories into work-related, personal, or user-defined groupings could help users navigate and manage information more effectively.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.608503,
+      "x2": 0.482944,
+      "y2": 0.897073
+    },
+    "text": "5.5.3 Strengthening User Agency Through Editable and User-Shaped Memories. Participants frequently expressed a desire for great agency over what ChatGPT remembers, how long those memories persist, and how those memories shape the system\u2019s impression of them. Although OpenAI distinguishes between \u201csaved memories\u201d and \u201creference chat history\u201d to give users some control [51], participants felt this was insufficient because the system still infers and stores new details automatically, often in ways they cannot anticipate or track. They emphasized the need for full visibility of all stored information and the ability to edit or delete entries. Some also proposed time-limited retention, allowing certain memories to expire after a user-defined period to align with changing goals or sensitivities. Such temporal flexibility would reduce the risk of inadvertently outdated representations. Participants also drew attention to the impact of stored memories on their perceived identity within the system. Unwanted or inaccurate profiles can arise when the system overgeneralizes from prior interactions or misinterprets temporary interests as stable characteristics. To mitigate this, the system could initiate a signup prompt asking users to define how they would like the AI to",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.107489,
+      "x2": 0.914563,
+      "y2": 0.19139
+    },
+    "text": "perceive them. Expanding upon the current \u201ccustom instructions\u201d feature, the system could support multiple context-specific identities, such as professional roles or personal interests, and allow users to switch between them. By treating profiles as collaborative artifacts, designers can avoid privileging system inference over user intention and preserve user agency in self-presentation.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.517879,
+      "y1": 0.201202,
+      "x2": 0.914572,
+      "y2": 0.548008
+    },
+    "text": "5.5.4 Designing Bounded Friendship and Built-in Scrutiny. Our findings show that participants appreciated the relational benefits brought by ChatGPT\u2019s memory feature. To support this, designers can engineer \u201cfriendship\u201d into LLM systems through relational cues that draw on memory in subtle, bounded ways. For instance, the system might greet users with light continuity, \u201cWelcome back! Ready to continue your proposal?\u201d Similarly, the interface could offer supportive but non-intimate emotional alignment, such as \u201cThat update sounded stressful; let\u2019s break it down together.\u201d At the same time, these relational benefits can introduce new risks if left entirely to the system. Without users\u2019 involvement, relational comfort may conceal inaccuracies or biases in the AIgenerated profile. For example, a non-native English speaker who makes occasional grammatical errors might be mistakenly profiled by the system as preferring a casual writing style; as a result, the AI continues producing informal, loosely structured text even when she is preparing professional documents, ultimately hindering rather than helping her. To counter this tendency, LLM systems should make their inferences about users transparent and revisable. For example, periodically showing a short \u201cprofile summary\u201d (e.g., \u201cI\u2019ve inferred that you prefer a casual writing style\u201d) and explicitly enabling users to confirm, correct, or delete these assumptions. Proactively inviting user scrutiny of such inferences can surface and correct inaccuracies in the AI-generated profile before they accumulate and negatively affect future interactions.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.519095,
+      "y1": 0.560706,
+      "x2": 0.914566,
+      "y2": 0.807767
+    },
+    "text": "5.5.5 Navigating the Privacy-Personalization Trade-offs in AI Memory Interaction. Our findings show that users do not make a single, overall evaluation of benefits and risks when interacting with ChatGPT\u2019s memory feature. Instead, managing ChatGPT\u2019s memory is an ongoing process in which users continually navigate a shifting boundary between the relational benefits of being remembered and the potential risks of being profiled, misrepresented, or overexposed. This dynamic trade-off requires system and memory designs that support continuous recalibration rather than relying on one-time consent or static settings. To support this ongoing balancing act, the system should also allow users to adjust the specific qualities of memory that matter most in their experiences, such as its detailedness, its ability to forget, its emotional tone, and the relational benefits it produces. By giving users the ability to adjust these characteristics, it enables users to maintain a memory experience that aligns with their preferences while they continually negotiate the trade-off between privacy and usefulness.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.824473,
+      "x2": 0.542208,
+      "y2": 0.83749
+    },
+    "text": "5.6",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.560033,
+      "y1": 0.824473,
+      "x2": 0.808946,
+      "y2": 0.83749
+    },
+    "text": "Limitations and Future Studies",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 11,
+    "bbox": {
+      "x1": 0.519095,
+      "y1": 0.84085,
+      "x2": 0.91247,
+      "y2": 0.897077
+    },
+    "text": "The interview findings should be interpreted with the following limitations in mind. First, this study focused on ChatGPT\u2019s memory feature, as it is one of the most widely used generative AI systems on the market [1]. Therefore, the insights may not be generalizable",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "table",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.306307,
+      "y1": 0.107266,
+      "x2": 0.69321,
+      "y2": 0.117965
+    },
+    "text": "Table 2: Summary of Key Findings and Design Suggestions",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.141637,
+      "x2": 0.168987,
+      "y2": 0.151147
+    },
+    "text": "Users\u2019 Needs",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.159427,
+      "x2": 0.239272,
+      "y2": 0.185089
+    },
+    "text": "Need for Transparency of Memory Existence and Use",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.27456,
+      "x2": 0.252503,
+      "y2": 0.3128
+    },
+    "text": "Need for Easy Access and Improved Organization of the Stored Memories",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.351955,
+      "x2": 0.259197,
+      "y2": 0.377616
+    },
+    "text": "Need for Transparency in Data Storage, Retrieval, and Sharing",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.467088,
+      "x2": 0.259212,
+      "y2": 0.505328
+    },
+    "text": "Need for User Agency Through Editable and User-Shaped Memories",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.582221,
+      "x2": 0.259158,
+      "y2": 0.607883
+    },
+    "text": "Need for Prevention of Privacy Risks from AI Memorization",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.094417,
+      "y1": 0.647037,
+      "x2": 0.250967,
+      "y2": 0.672698
+    },
+    "text": "Need for Bounded Friendship and Built-in Scrutiny",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.141637,
+      "x2": 0.405472,
+      "y2": 0.151147
+    },
+    "text": "Example Users\u2019 quotes",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.141637,
+      "x2": 0.713884,
+      "y2": 0.151147
+    },
+    "text": "Design Implications",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.166522,
+      "x2": 0.579577,
+      "y2": 0.217341
+    },
+    "text": "\u2022 \"I didn\u2019t know it (ChatGPT\u2019s memory feature) was on this whole time.\" \u2022 \"I didn\u2019t know you can take out the memory or edit the memory.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.166331,
+      "x2": 0.905927,
+      "y2": 0.254897
+    },
+    "text": "\u2022 Clear on boarding with the memory feature \u2022 Ask users whether they want to opt in \u2022 Present a disclaimer to increase awareness of the memory feature \u2022 Provide informed consent \u2022 Request users\u2019 consent when memory updates its policy and functions",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.281473,
+      "x2": 0.575136,
+      "y2": 0.332293
+    },
+    "text": "\u2022 \"You have to click four times to see your memory feature.\" \u2022 \"It should allow users to categorize and manage stored memories.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.281473,
+      "x2": 0.905511,
+      "y2": 0.332293
+    },
+    "text": "\u2022 Position memory as a first-class interface element in the main navigation panel \u2022 Provide an auto-categorization feature \u2022 Implement time-limited retention",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.358869,
+      "x2": 0.579981,
+      "y2": 0.409688
+    },
+    "text": "\u2022 \"I am not quite sure how the data is processed and stored.\" \u2022 \"It\u2019s possible that AI can forget, but the question is, is it done or not? I don\u2019t know.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.358869,
+      "x2": 0.905576,
+      "y2": 0.447426
+    },
+    "text": "\u2022 Transparent about when and how the data is used \u2022 Provide notifications or disclosures of data storage and usage \u2022 Provide concise and easy-to-understand explanations of how memory influences users\u2019 interactions \u2022 Provide situational cues to explain how memory informs a specific details within context",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.474002,
+      "x2": 0.58241,
+      "y2": 0.562559
+    },
+    "text": "\u2022 \"It would be very useful to decide the level of what it remembers.\" \u2022 \"Stop memorizing my stuff and stop using it unless I tell you to.\" \u2022 \"If you look at everything that ChatGPT remembers about me, I don\u2019t know if I like the image that it portrays.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595443,
+      "y1": 0.474002,
+      "x2": 0.904115,
+      "y2": 0.562559
+    },
+    "text": "\u2022 Allow users to insert their own memories and correct existing entries \u2022 Implement real-time memory indicator \u2022 Initiate a sign-up prompt asking users to define their desired profiles \u2022 Support multiple context-specific identities through the \"Custom instructions\" feature",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.589135,
+      "x2": 0.557789,
+      "y2": 0.614796
+    },
+    "text": "\u2022 \"It had my birth data down to the exact minute and location.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.589135,
+      "x2": 0.890268,
+      "y2": 0.627375
+    },
+    "text": "\u2022 Redact personal or sensitive input \u2022 Flag sensitive information through system warning \u2022 Restrict the sharing of other individuals\u2019 information",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.272272,
+      "y1": 0.653951,
+      "x2": 0.576425,
+      "y2": 0.70477
+    },
+    "text": "\u2022 \"When I have ChatGPT up, it\u2019s like there\u2019s someone there for me that remembers.\" \u2022 \"Memory sometimes makes it feel a little like a person, especially since it will address you by name.\"",
+    "asset_path": null
+  },
+  {
+    "type": "list",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.595439,
+      "y1": 0.653951,
+      "x2": 0.881204,
+      "y2": 0.717349
+    },
+    "text": "\u2022 Engineer \"Friendship\" into LLM agents through the presentation of relational cues \u2022 Show a short profile summary periodically \u2022 Invite users to confirm, correct, and delete these assumptions",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.754319,
+      "x2": 0.482937,
+      "y2": 0.89357
+    },
+    "text": "to other LLMs and generative AI systems that implement memory features differently. In addition, memory features are constantly evolving. As a onetime study, this work only captures how users perceive ChatGPT\u2019s memory feature at a specific moment in time. With increased experience and knowledge of LLM-based memories, these perceptions may change. As OpenAI and other platforms continue to update their memory features, it would be valuable to document these changes and examine how users\u2019 perceptions of AI memories evolve over time.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 12,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.754319,
+      "x2": 0.914566,
+      "y2": 0.89357
+    },
+    "text": "Third, our participants were recruited from Prolific and limited to individuals currently living in the U.S. Given the variation in cultural attitudes toward privacy and AI [7, 70], our findings may not be generalizable to users from other cultural backgrounds. Relatedly, we intentionally recruited current ChatGPT users to understand their perceptions and experiences with the memory feature. This approach may have excluded individuals who avoid the platform due to privacy concerns, potentially omitting important viewpoints relevant to the issues under study. Future research should recruit a more diverse sample and include individuals who do not use",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.107489,
+      "x2": 0.482941,
+      "y2": 0.537316
+    },
+    "text": "ChatGPT to ensure a more comprehensive investigation of users\u2019 perceptions of memory features. Another major concern is the use of anthropomorphic terms such as \"remember\" and \"forget\" when describing ChatGPT and its memory feature throughout the paper. These word choices mirror the languages embedded in the current design of ChatGPT\u2019s memory feature and were also used intentionally by our participants to express their perceptions and experiences with the feature during the interviews. However, it is important to recognize the ethical and epistemological risks associated with anthropomorphizing AI and its ability. For example, Placani [52] argued that attributing human-like traits to AI can inflate perceptions of its capabilities and performance. Anthropomorphic language can also distort moral judgments about AI, shaping views of its moral character, status, responsibility, and trustworthiness [52]. In addition, Salles et al. [55] pointed out that anthropomorphizing AI may fuel both exaggerated fears about AI and unwarranted optimism. Future studies should examine how anthropomorphizing AI\u2019s memory and forgetting capabilities influence users\u2019 cognition, affect, and behavior toward LLM agents and consider replacing anthropomorphic terms with neutral ones to reduce the negative consequences on users. Last, LLMs employ different types of memory, such as contextual memory, RAG-based memory, and epistemological memory. Since lay users often struggle to distinguish among these types of AI memory [76], and the study focuses on users\u2019 holistic experience with ChatGPT\u2019s memory feature rather than a specific technical memory mechanism, we did not differentiate types of AI memory in the interviews. Considering these memory types can differ significantly in their privacy implications [76], future work could benefit from clearly examining specific AI memory types and providing memory-specific privacy recommendations.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.559684,
+      "x2": 0.097067,
+      "y2": 0.572701
+    },
+    "text": "6",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.114893,
+      "y1": 0.559684,
+      "x2": 0.207014,
+      "y2": 0.572701
+    },
+    "text": "Conclusion",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.576059,
+      "x2": 0.482947,
+      "y2": 0.756821
+    },
+    "text": "This study examines users\u2019 perceptions and experiences with ChatGPT\u2019s memory feature. Our interview findings show that participants perceive both relational benefits and privacy risks from their engagement with the feature. By grounding these insights in the theoretical frameworks of privacy calculus and privacy personalization paradox, we highlight the importance of viewing human-memory interaction as a dynamic process that requires ongoing negotiation, shaped by how detailed, unforgetful, accurate, and relational the system appears in practice. By illuminating these tensions, this work deepens our understanding of how users perceive ChatGPT\u2019s memory feature and underscores the need for future designs that protect privacy while preserving the relational benefits of personalization.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.779189,
+      "x2": 0.176711,
+      "y2": 0.792206
+    },
+    "text": "References",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.093204,
+      "y1": 0.79418,
+      "x2": 0.482217,
+      "y2": 0.896197
+    },
+    "text": "[1] 2025. Top Generative AI Chatbots by Market Share \u2013 November 2025. https: //firstpagesage.com/reports/top-generative-ai-chatbots/ Accessed: 2025-11-13. [2] Elizabeth Aguirre, Dominik Mahr, Dhruv Grewal, Ko De Ruyter, and Martin Wetzels. 2015. Unraveling the personalization paradox: The effect of information collection and trust-building strategies on online advertisement effectiveness. Journal of Retailing 91, 1 (2015), 34\u201349. doi:10.1016/j.jretai.2014.09.005 [3] Eduardo B Andrade, Velitchka Kaltcheva, and Barton Weitz. 2002. Self-disclosure on the web: The impact of privacy policy, reward, and company reputation. Advances in Communication Research 29 (2002), 350\u2013353. doi:10.1016/s07475632(02)00112-8",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 13,
+    "bbox": {
+      "x1": 0.519539,
+      "y1": 0.109874,
+      "x2": 0.914021,
+      "y2": 0.896197
+    },
+    "text": "[4] Anthropic. 2025. Bringing memory to Claude. https://www.claude.com/blog/ memory Accessed: 2025-11-13. [5] Naveen Farag Awad and Mayuram S Krishnan. 2006. The personalization privacy paradox: an empirical evaluation of information transparency and the willingness to be profiled online for personalization. MIS quarterly 30, 1 (2006), 13\u201328. https://www.jstor.org/stable/25148715 [6] Julianne Ballard. 2010. Forgetfulness and older adults: concept analysis. Journal of Advanced Nursing 66, 6 (2010), 1409\u20131419. doi:10.1111/j.1365-2648.2010.05279.x [7] Aaron J. Barnes, Yuanyuan Zhang, and Ana Valenzuela. 2024. AI and culture: Culturally dependent responses to AI systems. Current Opinion in Psychology 58 (2024), 101838. doi:10.1016/j.copsyc.2024.101838 [8] Taina Bucher. 2019. The algorithmic imaginary: Exploring the ordinary affects of Facebook algorithms. Information, Communication & Society 20, 1 (2019), 30\u201344. doi:10.1080/1369118X.2016.1154086 [9] Andrew E Budson and Elizabeth A Kensinger. 2023. Why we forget and how to remember better: the science behind memory. Oxford University Press, New York, NY. [10] Judee K. Burgoon. 1993. Interpersonal expectations, expectancy violations, and emotional communication. Journal of Language and Social Psychology 12, 1-2 (1993), 30\u201348. doi:10.1177/0261927X93121003 [11] Zhaoyang Cao, Lael Schooler, and Reza Zafarani. 2025. Analyzing memory effects in Large Language Models through the lens of cognitive psychology. arXiv:2509.17138 [cs.CL] https://arxiv.org/abs/2509.17138 [12] Cheng Chen, Mengqi Liao, and S Shyam Sundar. 2024. When to explain? Exploring the effects of explanation timing on user perceptions and trust in AI systems. In Proceedings of the Second International Symposium on Trustworthy Autonomous Systems. Association for Computing Machinery, New York;NY;USA, 1\u201317. doi:10. 1145/3686038.3686066 [13] Tsai-Wei Chen and S Shyam Sundar. 2018. This app would like to use your current location to better serve you: Importance of user assent and system transparency in personalized mobile services. In Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems. Association for Computing Machinery, New York;NY;USA, 1\u201313. doi:10.1145/3173574.3174111 [14] Kenneth James Williams Craik. 1943. The nature of explanation. University Press, Macmillan. [15] Mary J Culnan and Pamela K Armstrong. 1999. Information privacy concerns, procedural fairness, and impersonal trust: An empirical investigation. Organization Science 10, 1 (1999), 104\u2013115. doi:10.1287/orsc.10.1.104 [16] Fabio Cuzzolin, Alice Morelli, Bogdan Cirstea, and Barbara J Sahakian. 2020. Knowing me, knowing you: Theory of mind in AI. Psychological Medicine 50, 7 (2020), 1057\u20131061. doi:10.1017/S0033291720000835 [17] Tamara Dinev and Paul Hart. 2006. An extended privacy calculus model for e-commerce transactions. Information systems research 17, 1 (2006), 61\u201380. doi:10. 1287/isre.1060.0080 [18] Rudresh Dwivedi, Devam Dave, Het Naik, Smiti Singhal, Rana Omer, Pankesh Patel, Bin Qian, Zhenyu Wen, Tejal Shah, Graham Morgan, et al. 2023. Explainable AI (XAI): Core ideas, techniques, and solutions. Comput. Surveys 55, 9 (2023), 1\u201333. doi:10.1145/3561048 [19] Silvana Faja and Silvana Trimi. 2006. Influence of the web vendor\u2019s interventions on privacy-related behaviors in e-commerce. Communications of the Association for Information Systems 17, 1 (2006), 27. doi:10.17705/1CAIS.01727 [20] Hua Fan, Bing Han, Wei Gao, and Wenqian Li. 2022. How AI chatbots have reshaped the frontline interface in China: Examining the role of sales\u2013service ambidexterity and the personalization\u2013privacy paradox. International Journal of Emerging Markets 17, 4 (2022), 967\u2013986. doi:10.1108/IJOEM-04-2021-0532 [21] James J Gibson. 2014. The theory of affordances:(1979). In The people, place, and space reader. Routledge, 56\u201360. [22] Miriam Gieselmann and Kai Sassenberg. 2023. The more competent, the better? the effects of perceived competencies on disclosure towards conversational artificial intelligence. Social Science Computer Review 41, 6 (2023), 2342\u20132363. doi:10.1177/08944393221142787 [23] G Mark Grimes, Ryan M Schuetzler, and Justin Scott Giboney. 2021. Mental models and expectation violations in conversational AI interactions. Decision Support Systems 144 (2021), 113515. doi:10.1016/j.dss.2021.113515 [24] Greg Guest, Arwen Bunce, and Laura Johnson. 2006. How many interviews are enough? An experiment with data saturation and variability. Field methods 18, 1 (2006), 59\u201382. doi:10.1177/1525822X05279903 [25] Ece Gumusel. 2025. A literature review of user privacy concerns in conversational chatbots: A social informatics approach: An Annual Review of Information Science and Technology (ARIST) paper. Journal of the Association for Information Science and Technology 76, 1 (2025), 121\u2013154. doi:10.1002/asi.24898 [26] Karen Hao. 2025. Empire of AI: Dreams and nightmares in Sam Altman\u2019s OpenAI. Penguin Group. [27] Gaole He, Nilay Aishwarya, and Ujwal Gadiraju. 2025. Is conversational xai all you need? human-ai decision making with a conversational XAI assistant. In Proceedings of the 30th International Conference on Intelligent User Interfaces. Association for Computing Machinery, New York; NY; USA, 907\u2013924. doi:10. 1145/3708359.3712133",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 14,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 14,
+    "bbox": {
+      "x1": 0.087899,
+      "y1": 0.109879,
+      "x2": 0.482392,
+      "y2": 0.896197
+    },
+    "text": "[28] Monique M Hennink, Bonnie N Kaiser, and Vincent C Marconi. 2017. Code saturation versus meaning saturation: how many interviews are enough? Qualitative health research 27, 4 (2017), 591\u2013608. doi:10.1177/1049732316665344 [29] Andrew Hoskins. 2024. AI and memory. Memory, Mind & Media 3 (2024), e18. doi:10.1017/mem.2024.16 [30] Jihyoung Jang, Minseong Boo, and Hyounghun Kim. 2023. Conversation chronicles: Towards diverse temporal and relational dynamics in multi-session conversations. doi:10.48550/arXiv.2310.13420 [31] Romuald A. Janik. 2023. Aspects of human memory and Large Language Models. arXiv:2311.03839 [cs.CL] doi:10.48550/arXiv.2311.03839 [32] Philip Nicholas Johnson-Laird. 1983. Mental models: Towards a cognitive science of language, inference, and consciousness. Harvard University Press, Cambridge, MA. [33] Aly M. Kassem, Omar Mahmoud, and Sherif Saad. 2023. Preserving privacy through deMemorization: An unlearning technique for mtigating memorization risks in language models. In Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing. Association for Computational Linguistics, Singapore, 4360\u20134379. doi:10.18653/v1/2023.emnlp-main.265 [34] Harmanpreet Kaur, Harsha Nori, Samuel Jenkins, Rich Caruana, Hanna Wallach, and Jennifer Wortman Vaughan. 2020. Interpreting interpretability: understanding data scientists\u2019 use of interpretability tools for machine learning. In Proceedings of the 2020 CHI conference on human factors in computing systems. Association for Computing Machinery, New York; NY, 1\u201314. doi:10.1145/3313831.3376219 [35] WooJin Kim, Yuhosua Ryoo, SoYoung Lee, and Jung Ah Lee. 2023. Chatbot advertising as a double-edged sword: The roles of regulatory focus and privacy concerns. Journal of Advertising 52, 4 (2023), 504\u2013522. doi:10.1080/00913367.2022. 2043795 [36] Ren\u00e9 F Kizilcec. 2016. How much information? Effects of transparency on trust in an algorithmic interface. In Proceedings of the 2016 CHI conference on human factors in computing systems. Association for Computing Machinery, New York;NY;USA, 2390\u20132395. doi:10.1145/2858036.2858402 [37] Robert S Laufer and Maxine Wolfe. 1977. Privacy as a concept and a social issue: A multidimensional developmental theory. Journal of Social Issues 33, 3 (1977), 22\u201342. doi:10.1111/j.1540-4560.1977.tb01880.x [38] Seyoung Lee and Gain Park. 2024. Development and validation of ChatGPT literacy scale. Current Psychology 43, 21 (2024), 18992\u201319004. doi:10.1007/s12144024-05723-0 [39] Hao Li, Chenghao Yang, An Zhang, Yang Deng, Xiang Wang, and Tat-Seng Chua. 2024. Hello Again! LLM-Powered Personalized Agent for Long-Term Dialogue. arXiv:2406.05925 [cs.CL] arXiv:2406.05925. [40] M. Liao and S. Shyam Sundar. 2025. Chat but verify: Combating misinformation by Generative AI with verification affordance. Paper presented at the 75th Annual Conference of the International Communication Association (ICA), Denver, CO. [41] Q Vera Liao and Jennifer Wortman Vaughan. 2023. AI transparency in the age of LLMs: A human-centered research roadmap. Harvard Data Science Review (2023). Issue Special Issue 5. doi:10.1162/99608f92.8036d03b [42] Lei Liu, Xiaoyan Yang, Yue Shen, Binbin Hu, Zhiqiang Zhang, Jinjie Gu, and Guannan Zhang. 2023. Think-in-Memory: Recalling and post-thinking enable LLMs with long-term memory. arXiv:2311.08719 [cs.CL] doi:10.48550/arXiv.2311. 08719 arXiv:2311.08719. [43] Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco Barbieri, and Yuwei Fang. 2024. Evaluating very long-term conversational memory of LLM agents. doi:10.48550/arXiv.2402.17753 [44] Lev Manovich. 2025. Unreliable Past: Constructing Memory with Generative AI. Leonardo (2025), 477\u2013483. doi:10.1162/leon.a.95 [45] Maria D Molina and S Shyam Sundar. 2022. When AI moderates online content: effects of human collaboration and interactive transparency on user trust. Journal of Computer-Mediated Communication 27, 4 (2022), zmac010. doi:10.1093/jcmc/ zmac010 [46] Neville Moray. 1998. Identifying mental models of complex human\u2013machine systems. International Journal of Industrial Ergonomics 22, 4-5 (1998), 293\u2013297. doi:10.1016/S0169-8141(97)00080-2 [47] Clifford Nass and Youngme Moon. 2000. Machines and mindlessness: Social responses to computers. Journal of social issues 56, 1 (2000), 81\u2013103. doi:10.1111/ 0022-4537.00153 [48] Simon N\u00f8rby. 2015. Why forget? On the adaptive value of memory loss. Perspectives on Psychological Science 10, 5 (2015), 551\u2013578. doi:10.1177/1745691615596787 [49] OpenAI. 2024. Memory and new controls for ChatGPT. https://openai.com/index/ memory-and-new-controls-for-chatgpt/ Accessed: 2025-09-05. [50] OpenAI. 2025. ChatGPT - Release notes. https://help.openai.com/en/articles/ 6825453-chatgpt-release-notes Accessed: 2025-09-05. [51] OpenAI. 2025. How does \u201cReference saved memories\u201d work? https://help.openai. com/en/articles/11146739-how-does-reference-saved-memories-work Accessed: 2025-09-05. [52] Alexandra Placani. 2024. Anthropomorphism in AI: Hype and fallacy. AI and Ethics 4, 4 (2024), 691\u2013698. doi:10.1007/s43681-024-00419-4 [53] Edmund T Rolls. 2024. The memory systems of the human brain and generative artificial intelligence. Heliyon 10, 11 (2024), e31965. doi:10.1016/j.heliyon.2024.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 14,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 14,
+    "bbox": {
+      "x1": 0.519528,
+      "y1": 0.109879,
+      "x2": 0.91402,
+      "y2": 0.886134
+    },
+    "text": "e31965 [54] Nazmus Sadat, Nicholas Caporusso, My Hami Doan, Vickey Ghimire, Bijay Dhungana, and Jaljala Shrestha Lama. 2025. Analysis of the content of ChatGPT\u2019s memory: Types of information, security implications, and user perception. In Proceedings of the 48th MIPRO ICT and Electronics Convention (MIPRO). IEEE, 907\u2013912. doi:10.1109/MIPRO65660.2025.11131839 [55] Arleen Salles, Kathinka Evers, and Michele Farisco. 2020. Anthropomorphism in AI. AJOB Neuroscience 11, 2 (2020), 88\u201395. doi:10.1080/21507740.2020.1740350 [56] Shruti Sannon, Brett Stoll, Dominic DiFranzo, Malte F Jung, and Natalya N Bazarova. 2020. \u201cI just shared your responses\u201d extending communication privacy management theory to interactions with conversational agents. Proceedings of the ACM on Human-Computer Interaction 4, GROUP (2020), 1\u201318. doi:10.1145/3375188 [57] Yashothara Shanmugarasa, Ming Ding, Chamikara Mahawaga Arachchige, and Thierry Rakotoarivelo. 2025. SoK: The Privacy Paradox of Large Language Models: Advancements, Privacy Risks, and Mitigation. In Proceedings of the ACM Asia Conference on Computer and Communications Security (ASIA CCS \u201925) (Hanoi, Vietnam). ACM, New York, NY, USA, 1\u201317. doi:10.1145/3708821.3733888 [58] Donghee Shin and Ali Ahsan. 2025. How do people decide whether to trust information from generative AI? The effects of transparency on trust in and evaluation of a generated content. Journal of Media Business Studies (2025), 1\u201324. doi:10.1080/16522354.2025.2509060 [59] Betsy Sparrow, Jenny Liu, and Daniel M Wegner. 2011. Google effects on memory: Cognitive consequences of having information at our fingertips. science 333, 6043 (2011), 776\u2013778. doi:10.1126/science.1207745 [60] Anselm Strauss and Juliet Corbin. 1998. Basics of qualitative research: Techniques and procedures for developing grounded theory. Sage Publications, Thousand Oaks, CA. [61] Yuan Sun and S. Shyam Sundar. 2024. How an AI bot looks can be deceiving: Using explanation affordance to help users calibrate their trust. In The 74th Annual Conference of the International Communication Association. Gold Coast, Australia. Paper presented at the 74th Annual Conference of the International Communication Association. [62] S Shyam Sundar et al. 2008. The MAIN model: A heuristic approach to understanding technology effects on credibility. MacArthur Foundation Digital Media and Learning Initiative, Cambridge, MA. doi:10.1162/dmal.9780262562324.073 [63] S Shyam Sundar and Jinyoung Kim. 2019. Machine heuristic: When we trust computers more than humans with our personal information. In Proceedings of the 2019 CHI Conference on human factors in computing systems. Association for Computing Machinery, New york, 1\u20139. doi:10.1145/3290605.3300768 [64] Qingyue Wang, Yanhe Fu, Yanan Cao, Shuai Wang, Zhiliang Tian, and Liang Ding. 2025. Recursively summarizing enables long-term dialogue memory in large language models. Neurocomputing 639 (2025), 130193. doi:10.1016/j.neucom. 2025.130193 [65] Tien Wang, Trong Danh Duong, and Charlie C Chen. 2016. Intention to disclose personal information via mobile applications: A privacy calculus perspective. International Journal of Information Management 36, 4 (2016), 531\u2013542. doi:10. 1016/j.ijinfomgt.2016.03.003 [66] Rebecca Westh\u00e4u\u00dfer, Wolfgang Minker, and Sebastian Zepf. 2025. Enabling personalized long-term interactions in LLM-based agents through persistent memory and user profiles. arXiv preprint arXiv:2510.07925 (2025). https://arxiv. org/abs/2510.07925 Version v1. [67] Dingming Wu, Dongyan Zhao, and Xue Zhang. 2008. An adaptive user profile based on memory model. In 2008 The Ninth International Conference on Web-Age Information Management. 461\u2013468. doi:10.1109/WAIM.2008.46 [68] Xuansheng Wu, Haiyan Zhao, Yaochen Zhu, Yucheng Shi, Fan Yang, Lijie Hu, Tianming Liu, Xiaoming Zhai, Wenlin Yao, Jundong Li, et al. 2024. Usable XAI: 10 strategies towards exploiting explainability in the LLM era. doi:10.48550/arXiv. 2403.08946 [69] Yaxiong Wu, Sheng Liang, Chen Zhang, Yichao Wang, Yongyue Zhang, Huifeng Guo, Ruiming Tang, and Yong Liu. 2025. From Human Memory to AI Memory: A Survey on Memory Mechanisms in the Era of LLMs. arXiv:2504.15965 [cs.CL] https://arxiv.org/abs/2504.15965 [70] Yunfei Xing, Wu He, Justin Zuopeng Zhang, and Gaohui Cao. 2022. AI privacy opinions between US and Chinese people. Journal of Computer Information Systems 63, 3 (2022), 492\u2013506. doi:10.1080/08874417.2022.2079107 [71] Heng Xu, Hock-Hai Teo, Bernard CY Tan, and Ritu Agarwal. 2009. The role of push-pull technology in privacy calculus: the case of location-based services. Journal of Management Information Systems 26, 3 (2009), 135\u2013174. doi:10.2753/ MIS0742-1222260305 [72] Jing Xu, Arthur Szlam, and Jason Weston. 2021. Beyond goldfish memory: Longterm open-domain conversation. doi:10.48550/arXiv.2107.07567 [73] Ying Xu, Nora Bradford, and Radhika Garg. 2023. Transparency enhances positive perceptions of social artificial intelligence. Human Behavior and Emerging Technologies 2023, 1 (2023), 5550418. doi:10.1155/2023/5550418 [74] Jeongwon Yang and Yu Tian. 2021. \"Others are more vulnerable to fake news than I Am\": Third-person effect of COVID-19 fake news on social media users. Computers in Human Behavior 125 (2021), 106950. doi:10.1016/j.chb.2021.106950",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.292504,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.109879,
+      "x2": 0.482392,
+      "y2": 0.282338
+    },
+    "text": "[75] John Zerilli, Umang Bhatt, and Adrian Weller. 2022. How transparency modulates trust in artificial intelligence. Patterns 3, 4 (2022), 100455. doi:10.1016/j.patter. 2022.100455 [76] Shuning Zhang, Rongjun Ma, Ying Ma, Shixuan Li, Yiqun Xu, Xin Yi, and Hewu Li. 2025. Understanding Users\u2019 Privacy Perceptions Towards LLM\u2019s RAG-based Memory. https://arxiv.org/abs/2508.07664v1. https://arxiv.org/html/2508.07664v1 arXiv preprint arXiv:2508.07664v1. [77] Zhiping Zhang, Michelle Jia, Hao-Ping Lee, Bingsheng Yao, Sauvik Das, Ada Lerner, Dakuo Wang, and Tianshi Li. 2024. \"It\u2019s a fair game\", or is it? Examining how users navigate disclosure risks and benefits when using LLM-based conversational agents. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems. Association for Computing Machinery, New York; NY; United States, 1\u201326. doi:10.1145/3613904.3642385 [78] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. 2024. Memorybank: Enhancing large language models with long-term memory. In Proceedings of the AAAI Conference on Artificial Intelligence, Vol. 38. The AAAI Press, Washington, DC, USA, 19724\u201319731. doi:10.1609/aaai.v38i17.29946",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.303304,
+      "x2": 0.38172,
+      "y2": 0.336128
+    },
+    "text": "A Appendix: Interview Script A.1 Greeting and Self-Introduction",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087364,
+      "y1": 0.339492,
+      "x2": 0.482941,
+      "y2": 0.49258
+    },
+    "text": "Hi, nice to meet you! Thank you for joining today\u2019s interview session. How are you doing today? Great. I am a researcher from X university, and I will walk you through the interview today. As we shared earlier in the study description, this study is about ChatGPT\u2019s memory feature. My research team and I are interested in understanding users\u2019 perceptions and experiences with this feature. Since the conversations will involve sharing your personal experience with ChatGPT, please feel free to share whatever you feel comfortable sharing. The interview will be one hour long, and we will ensure some time for you to ask questions at the end. Does that sound good to you?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.508684,
+      "x2": 0.114608,
+      "y2": 0.521701
+    },
+    "text": "A.2",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.132433,
+      "y1": 0.508684,
+      "x2": 0.401168,
+      "y2": 0.521701
+    },
+    "text": "Requesting Permission to Record",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.525061,
+      "x2": 0.481006,
+      "y2": 0.636637
+    },
+    "text": "Before we get started, I would like to ask whether it is okay to record the session through Zoom. Please note that only members of our research team will have access to the transcribed interview data, and we will keep your responses confidential. Do you have any questions about the recording process? Can I start recording the session? (After receiving participants\u2019 approval) Thank you. I will start recording now. Let\u2019s begin.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.652742,
+      "x2": 0.114608,
+      "y2": 0.665759
+    },
+    "text": "A.3",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.132433,
+      "y1": 0.652742,
+      "x2": 0.330258,
+      "y2": 0.665759
+    },
+    "text": "Participant Introduction",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.669119,
+      "x2": 0.480737,
+      "y2": 0.697672
+    },
+    "text": "First, could you please briefly introduce yourself, including your preferred name, current location, and occupation?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.713778,
+      "x2": 0.114608,
+      "y2": 0.726794
+    },
+    "text": "A.4",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.132433,
+      "y1": 0.713778,
+      "x2": 0.351684,
+      "y2": 0.726794
+    },
+    "text": "Use of ChatGPT in General",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.087898,
+      "y1": 0.730154,
+      "x2": 0.48294,
+      "y2": 0.897077
+    },
+    "text": "Great. Let\u2019s talk about your use of ChatGPT in general. \u2022 Which version of ChatGPT do you use? Free or paid? \u2022 How long have you been using ChatGPT? \u2022 What do you primarily use ChatGPT for? \u2022 Do you share any personal information with ChatGPT? If so, why? \u2022 How do you think ChatGPT manages, stores, and uses your personal data? \u2022 How do you protect your privacy while using ChatGPT? Thanks for your response. I would like to introduce ChatGPT\u2019s memory feature to ensure that we are on the same page. This feature was developed in February 2024 to give users greater control",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.861222,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "Chen et al.",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519527,
+      "y1": 0.107489,
+      "x2": 0.914571,
+      "y2": 0.219065
+    },
+    "text": "and make future chats more helpful. When users provide new information, ChatGPT may respond with a visual cue indicating that its memory has been updated. \u2022 Have you ever encountered the memory feature in your usage of ChatGPT? \u2022 What do you like or dislike about the memory feature? \u2022 What types of information do you believe ChatGPT memorizes? \u2022 What memories do you think ChatGPT has about you?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.245497,
+      "x2": 0.865363,
+      "y2": 0.274864
+    },
+    "text": "A.5 Experiment with ChatGPT\u2019s Memory Feature",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.278226,
+      "x2": 0.914344,
+      "y2": 0.431311
+    },
+    "text": "Now, I would like to invite you to participate in an experiment with ChatGPT. In this experiment, you will be asked to prompt ChatGPT with the question, \"What do you know about me?\" Please log in to your ChatGPT account and ask this question. I have several follow-up questions for you after you receive ChatGPT\u2019s response. Please let me know when you are ready to proceed. \u2022 Was the result surprising to you? \u2022 What information would you like to keep stored on ChatGPT? \u2022 What information would you prefer to delete from ChatGPT\u2019s memory? \u2022 Have you ever tried to delete certain memories from ChatGPT?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.457746,
+      "x2": 0.762547,
+      "y2": 0.470763
+    },
+    "text": "A.6 Probing into AI Memory",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519021,
+      "y1": 0.474122,
+      "x2": 0.9121,
+      "y2": 0.558024
+    },
+    "text": "As you probably know, human memory refers to our ability to store and recall information, and it has traditionally been viewed as a uniquely human capability. \u2022 What does it mean to you when AI has memory? \u2022 How would you compare AI memory to human memory? What similarities and differences do you see?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.584457,
+      "x2": 0.808608,
+      "y2": 0.597473
+    },
+    "text": "A.7 Managing ChatGPT\u2019s Memory",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.518992,
+      "y1": 0.600833,
+      "x2": 0.914572,
+      "y2": 0.698567
+    },
+    "text": "You may already know that there are multiple ways to control ChatGPT\u2019s memory feature. I have two tutorial videos from OpenAI\u2019s website [49] that explains how to manage ChatGPT\u2019s memory feature through system settings and how to turn the feature on and off, respectively. Let\u2019s watch them together. \u2022 How have you been managing GPT\u2019s memory about you? \u2022 Do you think ChatGPT can truly forget users\u2019 memories?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.725005,
+      "x2": 0.719624,
+      "y2": 0.738021
+    },
+    "text": "A.8 Memorization Risk",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 15,
+    "bbox": {
+      "x1": 0.518832,
+      "y1": 0.741381,
+      "x2": 0.914566,
+      "y2": 0.894469
+    },
+    "text": "While ChatGPT\u2019s memory feature is designed with good intentions, research shows that it is associated with memorization risk, especially when the model uses user data for future training. For example, prior research [77] documented an instance in which GPT3 offered detailed private information about the Editor-in-Chief of MIT Technology Review, including his family members, work address, and phone number. \u2022 What are your thoughts on using your conversations for training AI models? \u2022 Are there specific types of data you\u2019re concerned about being memorized by ChatGPT?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.078994,
+      "x2": 0.241169,
+      "y2": 0.087121
+    },
+    "text": "Relational Gains, Privacy Strains",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.087905,
+      "y1": 0.108409,
+      "x2": 0.114608,
+      "y2": 0.121426
+    },
+    "text": "A.9",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.132433,
+      "y1": 0.108409,
+      "x2": 0.311399,
+      "y2": 0.121426
+    },
+    "text": "Concluding Questions",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.087466,
+      "y1": 0.124784,
+      "x2": 0.480842,
+      "y2": 0.208687
+    },
+    "text": "Thanks for a great conversation so far. I have two final questions for you. \u2022 Do you think your life would be better if you turn the memory feature off on GPT? \u2022 What suggestions do you have for ChatGPT designers to better protect users\u2019 privacy?",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.707491,
+      "y1": 0.078994,
+      "x2": 0.91209,
+      "y2": 0.087121
+    },
+    "text": "CHI \u201926, April 13\u201317, 2026, Barcelona, Spain",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.519534,
+      "y1": 0.108409,
+      "x2": 0.818786,
+      "y2": 0.121426
+    },
+    "text": "A.10 Compensation and Thank You",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 16,
+    "bbox": {
+      "x1": 0.519095,
+      "y1": 0.124784,
+      "x2": 0.914572,
+      "y2": 0.222524
+    },
+    "text": "Thank you for sharing your perceptions and experiences with ChatGPT\u2019s memory feature in today\u2019s session. Do you have any questions? As an appreciation, you will receive $20 payment through Prolific. Could you please confirm the last three digits of your Prolific ID? Please feel free to contact me if you have any other questions. Hope you have a great day!",
+    "asset_path": null
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "title": "GenRole: Personalizing Role Play for Educators Supporting Autistic Students\u2019 Social Interaction Learning",
+  "one_sentence_summary": "GenRole is a generative AI system that empowers educators to create personalized, progressive role-play activities tailored to the diverse social interaction needs of autistic children.",
+  "research_problem": "Existing role-play approaches for autistic children often rely on fixed content and require significant manual effort from educators to design personalized materials, limiting their ability to address diverse individual traits and needs.",
+  "method_summary": "The researchers employed a human-centered design process consisting of a formative study with three educators, the development of a generative AI prototype, a pilot study with 16 educators for iteration, and a two-week evaluation study with 11 teacher-student pairs.",
+  "dataset_or_materials": "The study utilized the GenRole system (a generative AI tool for scripts and visuals), insights from 3 formative study educators, 16 pilot study educators, and an evaluation involving 11 autistic children and their teachers.",
+  "main_findings": "GenRole enables educators to personalize characters, settings, and scripts while scaffolding social skills from simple to complex interactions, effectively reducing manual preparation burdens and supporting inclusive social learning.",
+  "key_terms": [
+    "generative ai",
+    "personalization",
+    "social skill training",
+    "autistic children",
+    "role play",
+    "accessibility systems"
+  ],
+  "section_map": [
+    {
+      "heading": "GenRole: Personalizing Role Play for Educators Supporting Autistic Students\u2019 Social Interaction Learning",
+      "page_number": 1,
+      "block_id": "44ec3c2435c442da9e866f292bdc09e0-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Yixuan Li",
+      "page_number": 1,
+      "block_id": "44ec3c2435c442da9e866f292bdc09e0-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

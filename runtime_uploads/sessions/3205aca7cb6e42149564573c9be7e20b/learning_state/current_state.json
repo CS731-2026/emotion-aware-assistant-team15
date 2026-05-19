@@ -1,0 +1,34 @@
+{
+  "session_id": "3205aca7cb6e42149564573c9be7e20b",
+  "document_id": "ce3e11512a474e148a14d322146d8cfd",
+  "timestamp": "2026-05-16T16:45:57Z",
+  "source": "webcam_model",
+  "model_output_type": "academic_state",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "boredom",
+  "confidence": 0.8771,
+  "distribution": {
+    "boredom": 0.8771,
+    "confusion": 0.117,
+    "engagement": 0.0008,
+    "frustration": 0.0051
+  },
+  "trend": "rising",
+  "duration_sec": 26.7,
+  "intensity": 0.8771,
+  "stability": "stable",
+  "trigger_recommended": true,
+  "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+  "warnings": [
+    "No face detector available; using center crop fallback."
+  ],
+  "face_detection": {
+    "detector": "center_crop",
+    "face_found": false,
+    "confidence": 0.0,
+    "bbox": null,
+    "fallback_used": true,
+    "warning": "No face detector available; using center crop fallback."
+  }
+}

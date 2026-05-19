@@ -1,0 +1,60 @@
+{
+  "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+  "highlight_id": "repro-highlight",
+  "created_at": 1779097602.3512514,
+  "updated_at": 1779097602.353296,
+  "selection_snapshot": {
+    "highlight_id": "repro-highlight",
+    "highlight_type": "text",
+    "page_number": 1,
+    "selected_text": "Manual repro selected text.",
+    "text_available": true,
+    "recommended_llm_mode": "text_context",
+    "matched_block": {
+      "markdown_content": "Manual repro selected text."
+    },
+    "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+    "response_style": "chat_conversational",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_511ea4dd4fc54ecda30a9ef8fd94f411"
+  },
+  "session_id": "",
+  "learning_state_snapshot": {},
+  "strategy_candidates": [],
+  "selected_strategy_id": "",
+  "selected_strategy": {},
+  "trigger_context": {},
+  "reaction_window_summary": {},
+  "turn_metadata": {},
+  "support_cue": "",
+  "support_cue_label": "",
+  "planner_mode": "",
+  "planner_prompt_version": "",
+  "planner_input_summary": {},
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This is a mock explanation for the selected text. The system received page 1, mode text_context, selected text length 27, crop image available false.",
+      "created_at": 1779097602.351265,
+      "provider": "mock",
+      "model": "mock",
+      "context_used": {
+        "provider": "mock",
+        "model": "mock",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This paper examines pdf debug test.",
+        "retrieved_block_count": 2,
+        "retrieval_method": "keyword",
+        "retrieved_blocks": [],
+        "global_rag_context": [],
+        "nearby_context": [],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: PDF debug test\none_sentence_summary: This paper examines pdf debug test.\nkey_terms: debug, test\n\nselected_text:\nManual repro selected text.\n\nmatched_block:\nManual repro selected text.\n\nsame_section_context:\n- ce3f7c4e63c340f496613a0ae8fc73ec-p1-b0: PDF debug test"
+      },
+      "turn_id": "turn_511ea4dd4fc54ecda30a9ef8fd94f411",
+      "prompt_snapshot_id": "snap_f765f16bda7c",
+      "turn_type": "baseline_explanation"
+    }
+  ]
+}

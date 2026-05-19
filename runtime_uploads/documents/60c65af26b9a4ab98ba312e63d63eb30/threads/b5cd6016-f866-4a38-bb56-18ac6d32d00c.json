@@ -1,0 +1,250 @@
+{
+  "document_id": "60c65af26b9a4ab98ba312e63d63eb30",
+  "highlight_id": "b5cd6016-f866-4a38-bb56-18ac6d32d00c",
+  "created_at": 1778909797.4217412,
+  "updated_at": 1778909797.4217598,
+  "selection_snapshot": {
+    "document_id": "60c65af26b9a4ab98ba312e63d63eb30",
+    "highlight_id": "b5cd6016-f866-4a38-bb56-18ac6d32d00c",
+    "highlight_type": "text",
+    "page_number": 3,
+    "selected_text": "Across these systems, several cross-cutting benefits consistently emerge: 24/7 availability, reduced stigma compared to traditional therapy, increased willingness to self-disclose, and scalable delivery of structured coping strategies [46 ].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.75,
+        "y1": 723.4375,
+        "x2": 771.231323,
+        "y2": 736.9375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.976562,
+        "y1": 738.523438,
+        "x2": 770.899658,
+        "y2": 752.023438,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.976562,
+        "y1": 753.710938,
+        "x2": 771.217285,
+        "y2": 767.210938,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.976562,
+        "y1": 768.796875,
+        "x2": 625.496155,
+        "y2": 782.296875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535799,
+        "y1": 0.661562,
+        "x2": 0.9127,
+        "y2": 0.673907,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.675358,
+        "x2": 0.912307,
+        "y2": 0.687703,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.689246,
+        "x2": 0.912683,
+        "y2": 0.701591,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.703042,
+        "x2": 0.740232,
+        "y2": 0.715387,
+        "pageNumber": 3
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.799,
+        "y1": 661.562,
+        "x2": 912.7,
+        "y2": 673.907,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.499,
+        "y1": 675.358,
+        "x2": 912.307,
+        "y2": 687.703,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.499,
+        "y1": 689.246,
+        "x2": 912.683,
+        "y2": 701.591,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.499,
+        "y1": 703.042,
+        "x2": 740.232,
+        "y2": 715.387,
+        "pageNumber": 3
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b51",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b51",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "In academic settings, early mental health chatbots were typically proof-of-concept systems delivering structured, evidence-based interventions\u2014most commonly variants of cognitive behavioral therapy (CBT)\u2014through brief, guided exchanges [29, 35]. Systems such as Woebot and Tess showed that short, high-frequency CBTstyle interactions can reduce depressive and anxiety symptoms in controlled trials, establishing these agents as credible low-intensity supports [94]. Over time, some transitioned into consumer-facing apps (e.g., Woebot, Wysa), integrating automated coaching, structured CBT exercises, and user-friendly interfaces, and are generally positioned as adjunct self-help tools that offer quick check-ins and coping strategies [82]. In parallel, social or companion-oriented chatbots such as Replika and Character.ai, though not explicitly built as mental health interventions, have been widely appropriated for emotional disclosure, coping with loneliness, and para-social intimacy [79, 105, 110, 121]. These agents often support deeper narrative personalization and user-defined personas, but lack therapeutic framing or clinical oversight; recent reports of chatbot-related emotional dependence and suicidality highlight the risks of their unregulated use [27, 65]. Across these systems, several cross-cutting benefits consistently emerge: 24/7 availability, reduced stigma compared to traditional therapy, increased willingness to self-disclose, and scalable delivery of structured coping strategies [46]. Chatbots grounded in established therapeutic models tend to yield the most reliable improvements, with meta-analyses showing moderate reductions in depression and anxiety when evidence-based protocols guide conversational flow [73]. Nonetheless, personalization in current mental health chatbots remains largely shallow\u2014typically limited to tone or exercise recommendations\u2014rather than a deep contextual understanding of users\u2019 histories, identities, and long-term patterns [68, 86, 102]. Empirical work shows that when a chatbot\u2019s appearance or conversational style aligns with aspects of a user\u2019s identity, users report greater trust, perceived social presence, and willingness to disclose, reflecting homophily and perceived-similarity effects [16, 23, 74]. Conversely, limited continuity, contextual memory, or perceived mutual understanding can weaken trust and therapeutic"
+    },
+    "previous_block": {
+      "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b49",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "2.2"
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b51",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "In academic settings, early mental health chatbots were typically proof-of-concept systems delivering structured, evidence-based interventions\u2014most commonly variants of cognitive behavioral therapy (CBT)\u2014through brief, guided exchanges [29, 35]. Systems such as Woebot and Tess showed that short, high-frequency CBTstyle interactions can reduce depressive and anxiety symptoms in controlled trials, establishing these agents as credible low-intensity supports [94]. Over time, some transitioned into consumer-facing apps (e.g., Woebot, Wysa), integrating automated coaching, structured CBT exercises, and user-friendly interfaces, and are generally positioned as adjunct self-help tools that offer quick check-ins and coping strategies [82]. In parallel, social or companion-oriented chatbots such as Replika and Character.ai, though not explicitly built as mental health interventions, have been widely appropriated for emotional disclosure, coping with loneliness, and para-social intimacy [79, 105, 110, 121]. These agents often support deeper narrative personalization and user-defined personas, but lack therapeutic framing or clinical oversight; recent reports of chatbot-related emotional dependence and suicidality highlight the risks of their unregulated use [27, 65]. Across these systems, several cross-cutting benefits consistently emerge: 24/7 availability, reduced stigma compared to traditional therapy, increased willingness to self-disclose, and scalable delivery of structured coping strategies [46]. Chatbots grounded in established therapeutic models tend to yield the most reliable improvements, with meta-analyses showing moderate reductions in depression and anxiety when evidence-based protocols guide conversational flow [73]. Nonetheless, personalization in current mental health chatbots remains largely shallow\u2014typically limited to tone or exercise recommendations\u2014rather than a deep contextual understanding of users\u2019 histories, identities, and long-term patterns [68, 86, 102]. Empirical work shows that when a chatbot\u2019s appearance or conversational style aligns with aspects of a user\u2019s identity, users report greater trust, perceived social presence, and willingness to disclose, reflecting homophily and perceived-similarity effects [16, 23, 74]. Conversely, limited continuity, contextual memory, or perceived mutual understanding can weaken trust and therapeutic"
+      },
+      {
+        "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b50",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Landscape of Mental Health Chatbots"
+      }
+    ],
+    "recommended_llm_mode": "text_context"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "### Selected Part\nThis passage summarizes the core advantages of existing mental health chatbots, highlighting their **24/7 availability**, **lowered stigma**, **higher user self-disclosure**, and **scalability** for providing evidence-based coping strategies (like CBT).\n\n### Paper Context\nThis text appears in the \"Landscape of Mental Health Chatbots\" section. It establishes the historical and practical foundation for digital mental health interventions. Before introducing the specific concept of \"self-clone\" chatbots\u2014which are personalized replicas of the user\u2014the authors provide this overview to explain why digital agents are a credible and effective medium for mental health support in the first place.\n\n### Connection to Method and Argument\nThis summary acts as a baseline for the paper's central argument. The authors acknowledge that while traditional chatbots (like *Woebot* or *Tess*) are successful for the reasons listed, **self-clone chatbots** represent a new frontier. By grounding their work in these established benefits, the researchers can then use their **interviews with 16 experts** to explore whether \"cloning the self\" enhances these existing benefits (e.g., further reducing stigma through self-reflection) or introduces new risks (e.g., identity confusion) that standard chatbots do not face.\n\n### Why It Matters\nIt justifies the feasibility of the study. If mental health chatbots didn't already offer these \"cross-cutting benefits,\" there would be little incentive to develop more complex versions like self-clones. By identifying what chatbots already do well, the authors can focus their design framework on the unique *added value* of self-clones, such as \"intra-personal exploration,\" while ensuring that these foundational benefits are maintained safely.\n\n### Useful Follow-up Question\nHow might a \"self-clone\" specifically improve or hinder a user's \"willingness to self-disclose\" compared to a neutral, third-party chatbot like Woebot?",
+      "created_at": 1778909797.4217563,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study develops a design framework for therapeutic self-clone chatbots by analyzing the affordances, risks, and ethical implications identified through interviews with mental health experts and users.",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8022
+          },
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b48",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "telemental health clients as well as expert clinicians [69, 72], and its therapeutic responses are often rated more empathic than those of licensed therapists in a Turing-style blinded test [47]. Comparative analyses further find that ChatGPT\u2019s responses in help-seeking dialogues are longer, more emotionally positive, and contain richer coping suggestions than those in benchmark datasets [90]. However, legacy rule-based agents like Woebot - whose scripted cognitive behavioral therapy exercises produced significa...",
+            "score": 0.7904
+          },
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.7815
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8022
+          },
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b48",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "telemental health clients as well as expert clinicians [69, 72], and its therapeutic responses are often rated more empathic than those of licensed therapists in a Turing-style blinded test [47]. Comparative analyses further find that ChatGPT\u2019s responses in help-seeking dialogues are longer, more emotionally positive, and contain richer coping suggestions than those in benchmark datasets [90]. However, legacy rule-based agents like Woebot - whose scripted cognitive behavioral therapy exercises produced significa...",
+            "score": 0.7904
+          },
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.7815
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b50",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Landscape of Mental Health Chatbots",
+            "reading_order_index": 50
+          },
+          {
+            "block_id": "60c65af26b9a4ab98ba312e63d63eb30-p3-b51",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "In academic settings, early mental health chatbots were typically proof-of-concept systems delivering structured, evidence-based interventions\u2014most commonly variants of cognitive behavioral therapy (CBT)\u2014through brief, guided exchanges [29, 35]. Systems such as Woebot and Tess showed that short, high-frequency CBTstyle interactions can reduce depressive and anxiety symptoms in controlled trials, establishing these agents as credible low-intensity supports [94]. Over time, some transitioned into consumer-facing a..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nWrite a first explanation that is paper-grounded and moderately informative. Address: what the selected part is, what it means in this paper, how it connects to the paper's method/result/argument, why it matters, and one useful follow-up question. Do not turn it into a full lecture.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots\none_sentence_summary: This study develops a design framework for therapeutic self-clone chatbots by analyzing the affordances, risks, and ethical implications identified through interviews with mental health experts and users.\nresearch_problem: While self-clone chatbots offer novel opportunities for intra-personal exploration, they present significant risks regarding identity confusion, negative reinforcement, and blurred user agency that require responsible design guidance.\nmethod_summary: The researchers conducted in-depth interviews with 16 mental health experts (providers and researchers) and 6 prospective end-users to identify tensions and design opportunities.\ndataset_or_materials: Qualitative interview data from 16 mental health professionals and 6 general users.\nmain_findings: The authors produced a design framework organized around defining therapeutic goals, establishing design dimensions, and implementing safety guardrails to guide the development of safe self-clone systems.\nkey_terms: self-clone chatbots, mental well-being, design framework, interaction design, therapeutic affordances\n\nselected_text:\nAcross these systems, several cross-cutting benefits consistently emerge: 24/7 availability, reduced stigma compared to traditional therapy, increased willingness to self-disclose, and scalable delivery of structured coping strategies [46 ].\n\nmatched_block:\nIn academic settings"
+      }
+    }
+  ]
+}

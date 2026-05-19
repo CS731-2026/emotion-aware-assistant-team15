@@ -1,0 +1,457 @@
+{
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "highlights": [
+    {
+      "content": {
+        "text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36  ]).",
+        "image": ""
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.9765625,
+          "y1": 701.140625,
+          "x2": 771.242919921875,
+          "y2": 729.7265625,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 1
+        },
+        "rects": [
+          {
+            "x1": 452.75,
+            "y1": 701.140625,
+            "x2": 771.242919921875,
+            "y2": 714.640625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 716.2265625,
+            "x2": 581.9869995117188,
+            "y2": 729.7265625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          }
+        ]
+      },
+      "id": "d6dbdd27-4358-4b1d-8c35-48457dccd60c",
+      "highlight_id": "d6dbdd27-4358-4b1d-8c35-48457dccd60c",
+      "document_id": "35fb83fd8fd74211980843d062743799",
+      "highlight_type": "text",
+      "page_number": 1,
+      "selected_text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "text_preview": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "caption": "",
+      "caption_confidence": "",
+      "crop_path": "",
+      "crop_image_path": "",
+      "crop_url": "",
+      "viewport_rects": [
+        {
+          "x1": 452.75,
+          "y1": 701.140625,
+          "x2": 771.24292,
+          "y2": 714.640625,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        },
+        {
+          "x1": 438.976562,
+          "y1": 716.226562,
+          "x2": 581.987,
+          "y2": 729.726562,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.535799,
+          "y1": 0.641172,
+          "x2": 0.912714,
+          "y2": 0.653518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.654968,
+          "x2": 0.688742,
+          "y2": 0.667313,
+          "pageNumber": 1
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 535.799,
+          "y1": 641.172,
+          "x2": 912.714,
+          "y2": 653.518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 519.499,
+          "y1": 654.968,
+          "x2": 688.742,
+          "y2": 667.313,
+          "pageNumber": 1
+        }
+      ],
+      "matched_block": {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+        "page_number": 1,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+      },
+      "nearby_context": [
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents remember and recall information, and how their memories affect their behaviours. Users generally consider agents\u2019 memories as belonging to different categories along a hierarchy from more generalized knowledge to more specific knowledge about the user or task. Users often desire the system\u2019s memories to be cleanly organized by these categories. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories based on users\u2019 task-based needs."
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+          "page_number": 1,
+          "block_type": "list",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI."
+        }
+      ],
+      "updated_at": 1779105215.0471594,
+      "created_at": 1779105215.0471594
+    },
+    {
+      "content": {
+        "text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]). ",
+        "image": ""
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.9765625,
+          "y1": 701.140625,
+          "x2": 771.242919921875,
+          "y2": 729.7265625,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 1
+        },
+        "rects": [
+          {
+            "x1": 452.75,
+            "y1": 701.140625,
+            "x2": 771.242919921875,
+            "y2": 714.640625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 716.2265625,
+            "x2": 585.166748046875,
+            "y2": 729.7265625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          }
+        ]
+      },
+      "id": "ffed1759-172a-4fcb-a2b8-57d97f3174cb",
+      "highlight_id": "ffed1759-172a-4fcb-a2b8-57d97f3174cb",
+      "document_id": "35fb83fd8fd74211980843d062743799",
+      "highlight_type": "text",
+      "page_number": 1,
+      "selected_text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "text_preview": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "caption": "",
+      "caption_confidence": "",
+      "crop_path": "",
+      "crop_image_path": "",
+      "crop_url": "",
+      "viewport_rects": [
+        {
+          "x1": 452.75,
+          "y1": 701.140625,
+          "x2": 771.24292,
+          "y2": 714.640625,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        },
+        {
+          "x1": 438.976562,
+          "y1": 716.226562,
+          "x2": 585.166748,
+          "y2": 729.726562,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.535799,
+          "y1": 0.641172,
+          "x2": 0.912714,
+          "y2": 0.653518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.654968,
+          "x2": 0.692505,
+          "y2": 0.667313,
+          "pageNumber": 1
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 535.799,
+          "y1": 641.172,
+          "x2": 912.714,
+          "y2": 653.518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 519.499,
+          "y1": 654.968,
+          "x2": 692.505,
+          "y2": 667.313,
+          "pageNumber": 1
+        }
+      ],
+      "matched_block": {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+        "page_number": 1,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+      },
+      "nearby_context": [
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents remember and recall information, and how their memories affect their behaviours. Users generally consider agents\u2019 memories as belonging to different categories along a hierarchy from more generalized knowledge to more specific knowledge about the user or task. Users often desire the system\u2019s memories to be cleanly organized by these categories. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories based on users\u2019 task-based needs."
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+          "page_number": 1,
+          "block_type": "list",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI."
+        }
+      ],
+      "updated_at": 1779106952.9654183,
+      "created_at": 1779106952.9654183
+    },
+    {
+      "id": "codex-repro-1779107277",
+      "highlight_id": "codex-repro-1779107277",
+      "document_id": "35fb83fd8fd74211980843d062743799",
+      "type": "text",
+      "highlight_type": "text",
+      "page_number": 1,
+      "selected_text": "Codex persistence repro selected passage.",
+      "content": {
+        "text": "Codex persistence repro selected passage.",
+        "image": ""
+      },
+      "position": {
+        "boundingRect": {
+          "pageNumber": 1,
+          "x1": 0.1,
+          "y1": 0.1,
+          "x2": 0.4,
+          "y2": 0.12
+        },
+        "rects": []
+      },
+      "text_preview": "Codex persistence repro selected passage.",
+      "updated_at": 1779107277.115381,
+      "created_at": 1779107277.115381,
+      "crop_url": ""
+    },
+    {
+      "content": {
+        "text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]). "
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.9765625,
+          "y1": 701.140625,
+          "x2": 771.242919921875,
+          "y2": 729.7265625,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 1
+        },
+        "rects": [
+          {
+            "x1": 452.75,
+            "y1": 701.140625,
+            "x2": 771.242919921875,
+            "y2": 714.640625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 716.2265625,
+            "x2": 585.166748046875,
+            "y2": 729.7265625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 1
+          }
+        ]
+      },
+      "id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+      "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+      "document_id": "35fb83fd8fd74211980843d062743799",
+      "highlight_type": "text",
+      "page_number": 1,
+      "selected_text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "text_preview": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+      "caption": "",
+      "caption_confidence": "",
+      "crop_path": "",
+      "crop_image_path": "",
+      "crop_url": "",
+      "viewport_rects": [
+        {
+          "x1": 452.75,
+          "y1": 701.140625,
+          "x2": 771.24292,
+          "y2": 714.640625,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        },
+        {
+          "x1": 438.976562,
+          "y1": 716.226562,
+          "x2": 585.166748,
+          "y2": 729.726562,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 1
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.535799,
+          "y1": 0.641172,
+          "x2": 0.912714,
+          "y2": 0.653518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.654968,
+          "x2": 0.692505,
+          "y2": 0.667313,
+          "pageNumber": 1
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 535.799,
+          "y1": 641.172,
+          "x2": 912.714,
+          "y2": 653.518,
+          "pageNumber": 1
+        },
+        {
+          "x1": 519.499,
+          "y1": 654.968,
+          "x2": 692.505,
+          "y2": 667.313,
+          "pageNumber": 1
+        }
+      ],
+      "matched_block": {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+        "page_number": 1,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+      },
+      "nearby_context": [
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+          "page_number": 1,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents remember and recall information, and how their memories affect their behaviours. Users generally consider agents\u2019 memories as belonging to different categories along a hierarchy from more generalized knowledge to more specific knowledge about the user or task. Users often desire the system\u2019s memories to be cleanly organized by these categories. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories based on users\u2019 task-based needs."
+        },
+        {
+          "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+          "page_number": 1,
+          "block_type": "list",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI."
+        }
+      ],
+      "updated_at": 1779107699.5381649,
+      "created_at": 1779107699.5381649
+    }
+  ]
+}

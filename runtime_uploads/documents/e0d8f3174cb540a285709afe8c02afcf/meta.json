@@ -1,0 +1,19 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "file_name": "diarymate-chi24.pdf",
+  "title": "diarymate-chi24.pdf",
+  "page_count": 15,
+  "created_at": 1778910954.567529,
+  "updated_at": 1779108516.4020143,
+  "last_opened_at": 1779108516.402014,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 312,
+  "embedding_status": "completed",
+  "retrieval_method": "embedding",
+  "highlight_count": 17,
+  "thread_count": 13,
+  "uploaded_from": "pdf_chat",
+  "library_visible": true,
+  "archived_at": null
+}

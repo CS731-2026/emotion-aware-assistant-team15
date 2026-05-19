@@ -1,0 +1,207 @@
+{
+  "document_id": "f4283d79336f4eb8b0d5b39f414ece58",
+  "highlights": [
+    {
+      "content": {
+        "text": "Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences."
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.9921875,
+          "y1": 534.6484375,
+          "x2": 772.1257934570312,
+          "y2": 593.546875,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 3
+        },
+        "rects": [
+          {
+            "x1": 452.7578125,
+            "y1": 534.6484375,
+            "x2": 770.7376098632812,
+            "y2": 548.1484375,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 3
+          },
+          {
+            "x1": 438.9921875,
+            "y1": 549.78125,
+            "x2": 770.7258911132812,
+            "y2": 563.28125,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 3
+          },
+          {
+            "x1": 438.9921875,
+            "y1": 564.9140625,
+            "x2": 772.1257934570312,
+            "y2": 578.4140625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 3
+          },
+          {
+            "x1": 438.9921875,
+            "y1": 580.046875,
+            "x2": 523.82080078125,
+            "y2": 593.546875,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 3
+          }
+        ]
+      },
+      "id": "d7e91e5d-25ff-41c8-81e5-36fb250af752",
+      "highlight_id": "d7e91e5d-25ff-41c8-81e5-36fb250af752",
+      "document_id": "f4283d79336f4eb8b0d5b39f414ece58",
+      "highlight_type": "text",
+      "page_number": 3,
+      "selected_text": "Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences.",
+      "text_preview": "Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences.",
+      "caption": "",
+      "caption_confidence": "",
+      "viewport_rects": [
+        {
+          "x1": 452.757812,
+          "y1": 534.648438,
+          "x2": 770.73761,
+          "y2": 548.148438,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 3
+        },
+        {
+          "x1": 438.992188,
+          "y1": 549.78125,
+          "x2": 770.725891,
+          "y2": 563.28125,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 3
+        },
+        {
+          "x1": 438.992188,
+          "y1": 564.914062,
+          "x2": 772.125793,
+          "y2": 578.414062,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 3
+        },
+        {
+          "x1": 438.992188,
+          "y1": 580.046875,
+          "x2": 523.820801,
+          "y2": 593.546875,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 3
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.535808,
+          "y1": 0.48892,
+          "x2": 0.912116,
+          "y2": 0.501265,
+          "pageNumber": 3
+        },
+        {
+          "x1": 0.519517,
+          "y1": 0.502759,
+          "x2": 0.912102,
+          "y2": 0.515104,
+          "pageNumber": 3
+        },
+        {
+          "x1": 0.519517,
+          "y1": 0.516597,
+          "x2": 0.913758,
+          "y2": 0.528942,
+          "pageNumber": 3
+        },
+        {
+          "x1": 0.519517,
+          "y1": 0.530436,
+          "x2": 0.619906,
+          "y2": 0.542781,
+          "pageNumber": 3
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 535.808,
+          "y1": 488.92,
+          "x2": 912.116,
+          "y2": 501.265,
+          "pageNumber": 3
+        },
+        {
+          "x1": 519.517,
+          "y1": 502.759,
+          "x2": 912.102,
+          "y2": 515.104,
+          "pageNumber": 3
+        },
+        {
+          "x1": 519.517,
+          "y1": 516.597,
+          "x2": 913.758,
+          "y2": 528.942,
+          "pageNumber": 3
+        },
+        {
+          "x1": 519.517,
+          "y1": 530.436,
+          "x2": 619.906,
+          "y2": 542.781,
+          "pageNumber": 3
+        }
+      ],
+      "matched_block": {
+        "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awareness, many reported higher discomfort with ChatGPT\u2019s automatic activation of the memory feature without prior notification. Only a small proportion of the participants knew how to check the data stored in their account and what ChatGPT had memorized about them. Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences. However, it also retained a small proportion of moderateor high-risk information, including personal and social details, health, financial, and contact information. Their analysis also revealed vulnerabilities in the system\u2019s ability to protect sensitive data as well as inaccuracies in how users were represented in ChatGPT\u2019s memory."
+      },
+      "nearby_context": [
+        {
+          "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+          "page_number": 3,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awareness, many reported higher discomfort with ChatGPT\u2019s automatic activation of the memory feature without prior notification. Only a small proportion of the participants knew how to check the data stored in their account and what ChatGPT had memorized about them. Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences. However, it also retained a small proportion of moderateor high-risk information, including personal and social details, health, financial, and contact information. Their analysis also revealed vulnerabilities in the system\u2019s ability to protect sensitive data as well as inaccuracies in how users were represented in ChatGPT\u2019s memory."
+        },
+        {
+          "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b37",
+          "page_number": 3,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "Users\u2019 Responses to Memory Features in LLM Agents"
+        },
+        {
+          "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b40",
+          "page_number": 3,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "Mental Models of LLM-based Memory and Expectancy Violations"
+        }
+      ],
+      "updated_at": 1778909416.4582624,
+      "created_at": 1778909416.4582624
+    }
+  ]
+}

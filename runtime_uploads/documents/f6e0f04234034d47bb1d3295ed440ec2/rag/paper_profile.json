@@ -1,0 +1,31 @@
+{
+  "title": "Hearing-loss related variations in turn-taking time affect how conversations are perceived",
+  "one_sentence_summary": "Eline Borch Petersen *",
+  "research_problem": "Although significant effects of FTO manipulation schemes were observed on the ratings averaged across the eight repetitions per condition for each participant, it is evident from Fig 2B that the ratings vary substantially between individuals.",
+  "method_summary": "The four FTO manipulation conditions described above were applied to a subset of the conversations from the corpus from which the NHQ FTO values were extracted [14].",
+  "dataset_or_materials": "Data availability statement: The anonymized subjective ratings and a Matlab-script on the procedure used for implementing the FTO manipulation is available available via https:// doi.org/10.5281/zenodo.15307719.",
+  "main_findings": "Conversations are an important part of our lives, but can be difficult to manage for people suffering from hearing loss.",
+  "key_terms": [
+    "conversations",
+    "conversation",
+    "median",
+    "ratings",
+    "flow",
+    "https",
+    "values",
+    "condition",
+    "interlocutors",
+    "connhq",
+    "conditions",
+    "manipulation"
+  ],
+  "section_map": [
+    {
+      "heading": "Hearing-loss related variations in turn-taking time affect how conversations are perceived",
+      "page_number": 1,
+      "block_id": "f6e0f04234034d47bb1d3295ed440ec2-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

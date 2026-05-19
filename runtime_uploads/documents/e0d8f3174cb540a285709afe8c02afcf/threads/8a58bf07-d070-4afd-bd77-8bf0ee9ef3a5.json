@@ -1,0 +1,405 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "8a58bf07-d070-4afd-bd77-8bf0ee9ef3a5",
+  "created_at": 1778920586.86275,
+  "updated_at": 1778926486.564958,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "8a58bf07-d070-4afd-bd77-8bf0ee9ef3a5",
+    "highlight_type": "area",
+    "page_number": 4,
+    "selected_text": "",
+    "text_available": false,
+    "reason": "area_selection",
+    "viewport_rects": [
+      {
+        "x1": 75,
+        "y1": 104,
+        "x2": 764,
+        "y2": 455,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.088757,
+        "y1": 0.095105,
+        "x2": 0.904142,
+        "y2": 0.416084,
+        "pageNumber": 4
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 88.757,
+        "y1": 95.105,
+        "x2": 904.142,
+        "y2": 416.084,
+        "pageNumber": 4
+      }
+    ],
+    "crop_image_available": true,
+    "crop_image_path": "highlights/crops/8a58bf07-d070-4afd-bd77-8bf0ee9ef3a5.png",
+    "crop_image_data_url_length": 93318,
+    "matched_block_id": "",
+    "matched_block_type": "",
+    "coordinate_overlap": 0,
+    "text_bonus": 0,
+    "match_score": 0,
+    "caption": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one.",
+    "selected_caption": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+      "page_number": 4,
+      "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one.",
+      "horizontal_overlap": 1,
+      "vertical_distance": 0.0201,
+      "relation": "below",
+      "score": 0.9851
+    },
+    "caption_confidence": "high",
+    "candidate_captions": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+        "page_number": 4,
+        "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one.",
+        "horizontal_overlap": 1,
+        "vertical_distance": 0.0201,
+        "relation": "below",
+        "score": 0.9851
+      }
+    ],
+    "matched_block": null,
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b38",
+      "page_number": 4,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "CHI \u201924, May 11\u201316, 2024, Honolulu, HI, USA"
+    },
+    "next_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+      "page_number": 4,
+      "block_type": "caption",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one."
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b39",
+        "page_number": 4,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+        "page_number": 4,
+        "block_type": "caption",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+        "page_number": 4,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing."
+      }
+    ],
+    "recommended_llm_mode": "image_plus_context",
+    "response_style": "chat_conversational"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This diagram illustrates the user workflow for **DiaryMate**, the LLM-based journaling assistant used as a \"technology probe\" in this study. It details how a user moves from starting a journal entry (A) to receiving and processing AI-generated suggestions (D).\n\nThe figure highlights two primary ways users can interact with the AI:\n*   **Generating sentences using keywords (B):** This allows users to provide specific themes (like \"dad\" or \"memory\") to guide the AI. This feature was particularly useful for participants who struggled to start a blank page.\n*   **Recommending next sentences (C):** This is a context-aware feature that predicts what might come next based on what the user has already written.\n\nNotably, both features include a slider to adjust the output between \"Typical\" and \"Unique\" sentences, giving the user control over the AI's creativity. The right side of the diagram shows that the user remains the final editor; they can choose to incorporate a suggestion, ignore it entirely, or ask the system to try again.\n\nThis figure is central to the paper's argument because it defines the collaborative boundaries between the human and the AI. By requiring users to manually trigger these features and choose which suggestions to keep, the system was designed to support reflection rather than simply automating the writing process. Understanding this flow is essential for interpreting the study\u2019s findings regarding how users balanced their own personal voice with the AI's suggestions.",
+      "created_at": 1778920586.8627543,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "image_plus_context",
+        "used_image": true,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b9",
+            "page_number": 1,
+            "block_type": "caption",
+            "markdown_content": "Figure 1: Key screen of DiaryMate. DiaryMate is a personal journaling assistant that leverages an LLM to assist users in writing a personal journal (A) Generate using keywords: This feature allows users to tailor sentence output using input comma-separated keywords. (B) Generate next sentences: This feature auto-generates sentences fitting the current text.",
+            "score": 0.8555
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b46",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed t...",
+            "score": 0.8486
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywo...",
+            "score": 0.828
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b9",
+            "page_number": 1,
+            "block_type": "caption",
+            "markdown_content": "Figure 1: Key screen of DiaryMate. DiaryMate is a personal journaling assistant that leverages an LLM to assist users in writing a personal journal (A) Generate using keywords: This feature allows users to tailor sentence output using input comma-separated keywords. (B) Generate next sentences: This feature auto-generates sentences fitting the current text.",
+            "score": 0.8555
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b46",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed t...",
+            "score": 0.8486
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywo...",
+            "score": 0.828
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b39",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong",
+            "reading_order_index": 39
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "caption",
+            "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one.",
+            "reading_order_index": 40
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "reading_order_index": 41
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: area\npage_number: 4\nrecommended_llm_mode: image_plus_context\ncrop_image_attached: true\n\narea_caption_guidance: Treat the crop image as primary evidence. Use the selected caption only as supporting context, and mention uncertainty if it conflicts with the image.\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectiv"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "This diagram illustrates the system flow of DiaryMate, a technology probe designed to help users write personal journals through collaboration with a Large Language Model (LLM). It highlights how the AI transitions from a passive tool to an active collaborator by offering two distinct paths for content generation.\n\nThe workflow can be mapped into the following categories:\n\n*   **Inputs:** \n    *   **Existing Text:** The initial sentences or title the user has already written (Box A).\n    *   **Keywords:** Specific, comma-separated words (e.g., \"dad, memory, love\") provided by the user to guide the AI (Box B).\n    *   **User Preferences:** The selection of the **\"Typical vs. Unique\" slider**, which acts as a stylistic filter for the LLM.\n*   **Processes:** \n    *   **Keyword-based Generation:** The system synthesizes new sentences from scratch based on the user's keywords and slider setting.\n    *   **Contextual Recommendation:** The system analyzes the current diary entry to predict and recommend the next logical sentence (Box C).\n    *   **Iteration:** The \"Request again\" loops allow the LLM to recalculate and offer new suggestions if the first batch is unsatisfactory.\n*   **Outputs:** \n    *   **Suggestions:** A list of four generated sentences presented for user review (Box D).\n    *   **Final Entry:** The completed journal, which either incorporates a selected AI suggestion or remains as the user\u2019s original text if they choose to \"Do nothing.\"\n\nThe **\"Typical vs. Unique\" slider** plays a crucial role in this process by giving users control over the LLM\u2019s creativity. A \"typical\" setting likely produces more conventional, expected reflections, while a \"unique\" setting encourages the model to generate more diverse or unconventional narratives. This matters because personal journaling is highly subjective; the slider allows users to align the AI's \"voice\" with their own level of introspective depth or creative intent.",
+      "created_at": 1778926486.5649562,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "image_plus_context",
+        "used_image": true,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b9",
+            "page_number": 1,
+            "block_type": "caption",
+            "markdown_content": "Figure 1: Key screen of DiaryMate. DiaryMate is a personal journaling assistant that leverages an LLM to assist users in writing a personal journal (A) Generate using keywords: This feature allows users to tailor sentence output using input comma-separated keywords. (B) Generate next sentences: This feature auto-generates sentences fitting the current text.",
+            "score": 0.8555
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b46",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed t...",
+            "score": 0.8486
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywo...",
+            "score": 0.828
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b9",
+            "page_number": 1,
+            "block_type": "caption",
+            "markdown_content": "Figure 1: Key screen of DiaryMate. DiaryMate is a personal journaling assistant that leverages an LLM to assist users in writing a personal journal (A) Generate using keywords: This feature allows users to tailor sentence output using input comma-separated keywords. (B) Generate next sentences: This feature auto-generates sentences fitting the current text.",
+            "score": 0.8555
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b46",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed t...",
+            "score": 0.8486
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywo...",
+            "score": 0.828
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b39",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong",
+            "reading_order_index": 39
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b40",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "caption",
+            "markdown_content": "Figure 2: Diagram of DiaryMate showing how users write entries and use features (i.e.\u2019Keyword-based sentence generation\u2019 and \u2019Suggested next sentences\u2019). Users can either incorporate the text recommended by LLM into their diary, ignore it (just for reference), or request a new one.",
+            "reading_order_index": 40
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_idx": 3,
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "reading_order_index": 41
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: area\npage_number: 4\nrecommended_llm_mode: image_plus_context\ncrop_image_attached: true\n\nSelected pedagogical support strategy:\n- Strategy title: Map the System Flow\n- Why selected: Diagrams of technical systems are often best understood by identifying the data flow. This helps resolve 'unclear references' by categorizing visual elements.\n- Instruction for answer: Using Figure 2, create a clear map of the 'Inputs' (what the user types), the 'Processes' (what the LLM generates or calculates), and the 'Outputs' (the final diary entry). Highlight the specific role of the 'Typical vs. Unique' slider in this process.\n- Expected answer shape: table or list, input/process/output categories\n\nFollow this selected strategy when explaining the paper passage.\nHowever, do not invent paper facts. Use selected text/crop, matched block, caption, nearby context, paper profile, and retrieved chunks as factual grounding.\nIf evidence is insufficient, say what is missing.\nThe selected strategy controls explanation style and structure. It must not override factual grounding.\n\narea_caption_guidance: Treat the crop image as primary evidence. Use the selected caption only as supporting context, and mention uncertainty if it conflicts"
+      }
+    }
+  ],
+  "session_id": "73492e2e8d404af9969684eb44ee3b3a",
+  "learning_state_snapshot": {
+    "session_id": "73492e2e8d404af9969684eb44ee3b3a",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-16T10:14:36Z",
+    "source": "simulated_camera",
+    "model_output_type": "academic_state_model",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "frustration",
+    "confidence": 0.64,
+    "distribution": {
+      "boredom": 0.12,
+      "confusion": 0.12,
+      "engagement": 0.12,
+      "frustration": 0.64
+    },
+    "trend": "rising",
+    "duration_sec": 5,
+    "intensity": 0.64,
+    "stability": "transitioning",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "input_process_output_map",
+      "title": "Map the System Flow",
+      "short_description": "Break down the diagram into what the user provides, what the AI does, and the final result.",
+      "why_recommended": "Diagrams of technical systems are often best understood by identifying the data flow. This helps resolve 'unclear references' by categorizing visual elements.",
+      "prompt_instruction": "Using Figure 2, create a clear map of the 'Inputs' (what the user types), the 'Processes' (what the LLM generates or calculates), and the 'Outputs' (the final diary entry). Highlight the specific role of the 'Typical vs. Unique' slider in this process.",
+      "expected_answer_shape": [
+        "table or list",
+        "input/process/output categories"
+      ],
+      "recommended": true,
+      "recommended_score": 0.9
+    },
+    {
+      "strategy_id": "step_by_step_breakdown",
+      "title": "Walk Through the User Journey",
+      "short_description": "Follow a single path through the diagram from the initial thought to the final saved entry.",
+      "why_recommended": "A linear narrative can help resolve confusion caused by the non-linear layout of a system diagram.",
+      "prompt_instruction": "Provide a step-by-step walkthrough of the workflow shown in Figure 2. Start from the moment a user opens the app (A) and explain the sequence of events leading to the final decision to incorporate or ignore a suggestion.",
+      "expected_answer_shape": [
+        "numbered list",
+        "sequential steps"
+      ],
+      "recommended": true,
+      "recommended_score": 0.85
+    },
+    {
+      "strategy_id": "concrete_example",
+      "title": "Apply a Real-World Scenario",
+      "short_description": "Illustrate the diagram's logic using a hypothetical diary entry about a specific event.",
+      "why_recommended": "Grounding abstract system features like 'Keyword-based generation' in a concrete example (e.g., writing about a graduation) makes the technical mechanics more intuitive.",
+      "prompt_instruction": "Explain Figure 2 by using a concrete example. Imagine a user wants to write about 'a rainy day at a cafe.' Show how they would use the keyword feature versus the 'suggested next sentence' feature as depicted in the diagram.",
+      "expected_answer_shape": [
+        "narrative example",
+        "comparative scenario"
+      ],
+      "recommended": true,
+      "recommended_score": 0.8
+    },
+    {
+      "strategy_id": "mechanism_walkthrough",
+      "title": "Explain the Decision Logic",
+      "short_description": "Focus specifically on the user's choice to 'Incorporate,' 'Ignore,' or 'Request New.'",
+      "why_recommended": "The core of the paper is human-AI collaboration. Explaining the 'feedback loop' at the end of the diagram clarifies how the user maintains control.",
+      "prompt_instruction": "Focus on the right-hand side of Figure 2. Explain the logic behind the three choices offered to the user (Incorporate, Ignore, Request New). Why does the system provide these specific options instead of just auto-completing the text?",
+      "expected_answer_shape": [
+        "logic explanation",
+        "connection to user agency"
+      ],
+      "recommended": false,
+      "recommended_score": 0.7
+    }
+  ],
+  "selected_strategy_id": "input_process_output_map",
+  "selected_strategy": {
+    "strategy_id": "input_process_output_map",
+    "title": "Map the System Flow",
+    "short_description": "Break down the diagram into what the user provides, what the AI does, and the final result.",
+    "why_recommended": "Diagrams of technical systems are often best understood by identifying the data flow. This helps resolve 'unclear references' by categorizing visual elements.",
+    "prompt_instruction": "Using Figure 2, create a clear map of the 'Inputs' (what the user types), the 'Processes' (what the LLM generates or calculates), and the 'Outputs' (the final diary entry). Highlight the specific role of the 'Typical vs. Unique' slider in this process.",
+    "expected_answer_shape": [
+      "table or list",
+      "input/process/output categories"
+    ],
+    "recommended": true,
+    "recommended_score": 0.9
+  },
+  "trigger_context": {
+    "triggered_by": "learning_state_monitor",
+    "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection",
+    "duration_sec": 10,
+    "trend": "rising",
+    "intensity": 0.75
+  }
+}

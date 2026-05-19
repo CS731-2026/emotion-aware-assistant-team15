@@ -1,0 +1,50 @@
+[
+  {
+    "type": "title",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.117647,
+      "y1": 0.074591,
+      "x2": 0.361235,
+      "y2": 0.095614
+    },
+    "text": "Page 1 smoke text",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 1,
+    "bbox": {
+      "x1": 0.117647,
+      "y1": 0.074591,
+      "x2": 0.361235,
+      "y2": 0.095614
+    },
+    "text": "Page 2 smoke text",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 2,
+    "bbox": {
+      "x1": 0.117647,
+      "y1": 0.074591,
+      "x2": 0.361235,
+      "y2": 0.095614
+    },
+    "text": "Page 3 smoke text",
+    "asset_path": null
+  },
+  {
+    "type": "text",
+    "page_idx": 3,
+    "bbox": {
+      "x1": 0.117647,
+      "y1": 0.074591,
+      "x2": 0.361235,
+      "y2": 0.095614
+    },
+    "text": "Page 4 smoke text",
+    "asset_path": null
+  }
+]

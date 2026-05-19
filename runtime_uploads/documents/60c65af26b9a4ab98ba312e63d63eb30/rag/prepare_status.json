@@ -1,0 +1,17 @@
+{
+  "document_id": "60c65af26b9a4ab98ba312e63d63eb30",
+  "status": "completed",
+  "profile_provider": "gemini",
+  "block_count": 464,
+  "useful_block_count": 166,
+  "prepared_at": 1778909767.1292784,
+  "paper_profile_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/60c65af26b9a4ab98ba312e63d63eb30/rag/paper_profile.json",
+  "section_map_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/60c65af26b9a4ab98ba312e63d63eb30/rag/section_map.json",
+  "keyword_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/60c65af26b9a4ab98ba312e63d63eb30/rag/keyword_index.json",
+  "rag_prepare_status_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/60c65af26b9a4ab98ba312e63d63eb30/rag/prepare_status.json",
+  "embedding_provider": "gemini",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_index_status": "completed",
+  "embedding_message": "Gemini embedding index prepared.",
+  "embeddings_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/60c65af26b9a4ab98ba312e63d63eb30/rag/embeddings.json"
+}

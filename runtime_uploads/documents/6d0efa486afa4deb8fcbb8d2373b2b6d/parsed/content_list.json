@@ -1,0 +1,14 @@
+[
+  {
+    "type": "title",
+    "page_idx": 0,
+    "bbox": {
+      "x1": 0.117647,
+      "y1": 0.074591,
+      "x2": 0.322,
+      "y2": 0.095614
+    },
+    "text": "PDF debug test",
+    "asset_path": null
+  }
+]

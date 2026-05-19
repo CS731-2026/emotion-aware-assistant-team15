@@ -1,0 +1,115 @@
+{
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "highlight_id": "codex-repro-1779107277",
+  "created_at": 1779107277.213988,
+  "updated_at": 1779107277.2541122,
+  "selection_snapshot": {
+    "highlight_id": "codex-repro-1779107277",
+    "highlight_type": "text",
+    "page_number": 1,
+    "selected_text": "Codex persistence repro selected passage.",
+    "text_available": true,
+    "recommended_llm_mode": "text_context",
+    "matched_block": {
+      "markdown_content": "Codex persistence repro selected passage."
+    },
+    "nearby_useful_context": [
+      {
+        "markdown_content": "Nearby context for persistence repro."
+      }
+    ],
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "document_id": "35fb83fd8fd74211980843d062743799",
+    "response_style": "chat_conversational",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_5fca355a37c341ada74b95a846034111"
+  },
+  "session_id": "",
+  "learning_state_snapshot": {},
+  "strategy_candidates": [],
+  "selected_strategy_id": "",
+  "selected_strategy": {},
+  "trigger_context": {},
+  "reaction_window_summary": {},
+  "turn_metadata": {},
+  "support_cue": "",
+  "support_cue_label": "",
+  "planner_mode": "",
+  "planner_prompt_version": "",
+  "planner_input_summary": {},
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This is a mock explanation for the selected text. The system received page 1, mode text_context, selected text length 41, crop image available false.",
+      "created_at": 1779107277.2140157,
+      "provider": "mock",
+      "model": "mock",
+      "context_used": {
+        "provider": "mock",
+        "model": "mock",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+        "retrieved_block_count": 9,
+        "retrieval_method": "keyword",
+        "retrieved_blocks": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b2",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+            "score": 0.36
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b8",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada em.su@mail.utoronto.ca",
+            "score": 0.28
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b10",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada Department of Computer Science University of Toronto Toronto, Ontario, Canada anastasia.kuzminykh@utoronto.ca",
+            "score": 0.28
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b2",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+            "score": 0.36
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b8",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada em.su@mail.utoronto.ca",
+            "score": 0.28
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b10",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada Department of Computer Science University of Toronto Toronto, Ontario, Canada anastasia.kuzminykh@utoronto.ca",
+            "score": 0.28
+          }
+        ],
+        "nearby_context": [
+          {
+            "markdown_content": "Nearby context for persistence repro."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Users\u2019 Expectations and Practices with Agent Memory\none_sentence_summary: Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca\nresearch_problem: \u201cI can imagine, like, a scenario where, for example, I learned Haskell using GPT, and then I start a fresh chat to learn, let\u2019s say, Swift.\nmethod_summary: We conducted semi-structured one-on-one interviews (see Appendix A for the interview guide) with six participants (each identified as \u2018P#\u2019 in the findings) who use personalized AI tools with long-term memory on a regular basis.\ndataset_or_materials: systems\u2019 memories.\nmain_findings: AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory.\nkey_terms: memories, memory, user, system, agent, like, users, information, systems, agents, tools, task\n\nselected_text:\nCodex persistence repro selected passage.\n\nmatched_block:\nCodex persistence repro selected passage.\n\nuseful_nearby_context:\n- Nearby context for persistence repro.\n\nsame_section_context:\n- 35fb83fd8fd74211980843d062743799-p1-b0: Users\u2019 Expect"
+      },
+      "turn_id": "turn_5fca355a37c341ada74b95a846034111",
+      "prompt_snapshot_id": "snap_e431d95d9377",
+      "turn_type": "baseline_explanation"
+    }
+  ]
+}

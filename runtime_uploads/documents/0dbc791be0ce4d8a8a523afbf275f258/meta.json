@@ -1,0 +1,16 @@
+{
+  "document_id": "0dbc791be0ce4d8a8a523afbf275f258",
+  "file_name": "smoke.pdf",
+  "title": "smoke.pdf",
+  "page_count": 1,
+  "created_at": 1778909136.0059402,
+  "updated_at": 1778909136.0055668,
+  "last_opened_at": null,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 1,
+  "embedding_status": "unavailable",
+  "retrieval_method": "keyword",
+  "highlight_count": 0,
+  "thread_count": 0
+}

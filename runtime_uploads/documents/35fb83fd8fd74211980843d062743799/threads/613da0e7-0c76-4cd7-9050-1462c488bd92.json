@@ -1,0 +1,955 @@
+{
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+  "created_at": 1779107708.1256475,
+  "updated_at": 1779107771.5123425,
+  "selection_snapshot": {
+    "document_id": "35fb83fd8fd74211980843d062743799",
+    "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+    "highlight_type": "text",
+    "page_number": 1,
+    "selected_text": "Memory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.75,
+        "y1": 701.140625,
+        "x2": 771.24292,
+        "y2": 714.640625,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 1
+      },
+      {
+        "x1": 438.976562,
+        "y1": 716.226562,
+        "x2": 585.166748,
+        "y2": 729.726562,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 1
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535799,
+        "y1": 0.641172,
+        "x2": 0.912714,
+        "y2": 0.653518,
+        "pageNumber": 1
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.654968,
+        "x2": 0.692505,
+        "y2": 0.667313,
+        "pageNumber": 1
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.799,
+        "y1": 641.172,
+        "x2": 912.714,
+        "y2": 653.518,
+        "pageNumber": 1
+      },
+      {
+        "x1": 519.499,
+        "y1": 654.968,
+        "x2": 692.505,
+        "y2": 667.313,
+        "pageNumber": 1
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+      "page_number": 1,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+    },
+    "previous_block": {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b12",
+      "page_number": 1,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "1"
+    },
+    "next_block": {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b15",
+      "page_number": 1,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "CCS Concepts"
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+        "page_number": 1,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these"
+      },
+      {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+        "page_number": 1,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents remember and recall information, and how their memories affect their behaviours. Users generally consider agents\u2019 memories as belonging to different categories along a hierarchy from more generalized knowledge to more specific knowledge about the user or task. Users often desire the system\u2019s memories to be cleanly organized by these categories. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories based on users\u2019 task-based needs."
+      },
+      {
+        "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+        "page_number": 1,
+        "block_type": "list",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI."
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "2894b671140c402f95e56d4370525332",
+    "learning_state": {
+      "session_id": "2894b671140c402f95e56d4370525332",
+      "document_id": "35fb83fd8fd74211980843d062743799",
+      "timestamp": "2026-05-18T12:34:58Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.6,
+      "distribution": {
+        "boredom": 0.14,
+        "confusion": 0.6,
+        "engagement": 0.13,
+        "frustration": 0.13
+      },
+      "trend": "rising",
+      "duration_sec": 0,
+      "intensity": 0.6,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_00f121012ab641039029fed5b7716b4c"
+  },
+  "session_id": "2894b671140c402f95e56d4370525332",
+  "learning_state_snapshot": {
+    "session_id": "2894b671140c402f95e56d4370525332",
+    "document_id": "35fb83fd8fd74211980843d062743799",
+    "timestamp": "2026-05-18T12:35:34Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9642,
+    "distribution": {
+      "boredom": 0.9642,
+      "confusion": 0.0352,
+      "engagement": 0.0002,
+      "frustration": 0.0004
+    },
+    "trend": "falling",
+    "duration_sec": 42.5,
+    "intensity": 0.9642,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "relate_memory_to_experience",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Connect the abstract concept of 'agent memory' to the user's personal interactions with AI tools.",
+      "context_focus": "The discrepancy between how an LLM technically stores data and how a user expects it to remember their preferences.",
+      "title": "Relate AI memory to your own experience",
+      "short_description": "Connect the technical gap described in the paper to your own interactions with AI.",
+      "why_recommended": "A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.",
+      "prompt_instruction": "Ask the user to recall a specific instance where an AI (like ChatGPT) either remembered something helpful or frustratingly forgot a detail they expected it to keep. Use this to illustrate the 'mental model' gap the paper mentions.",
+      "expected_answer_shape": [
+        "personal anecdote",
+        "observation of AI behavior"
+      ],
+      "recommended": true,
+      "recommended_score": 0.95
+    },
+    {
+      "strategy_id": "impact_on_wellness_coaches",
+      "strategy_family": "why_it_matters",
+      "pedagogical_move": "Explain the real-world consequences of the 'co-understanding' gap for specific AI applications mentioned in the text.",
+      "context_focus": "The risk of AI 'coaches' for wellness or productivity failing if their memory systems don't align with user expectations.",
+      "title": "Analyze the impact on AI wellness coaches",
+      "short_description": "Explore why getting memory 'right' is critical for the AI coaches mentioned in the introduction.",
+      "why_recommended": "Highlighting the high stakes of the research (e.g., wellness and life goals) can help a disengaged user see the value in the technical discussion.",
+      "prompt_instruction": "Point to the paper's mention of AI 'coaches' for wellness and exercise. Ask the user why a 'perfect' technical memory might still fail a user if it doesn't match the user's mental model of how a coach should remember things.",
+      "expected_answer_shape": [
+        "reasoning about user trust",
+        "explanation of coaching effectiveness"
+      ],
+      "recommended": false,
+      "recommended_score": 0.85
+    },
+    {
+      "strategy_id": "distill_the_pivot",
+      "strategy_family": "one_sentence_takeaway",
+      "pedagogical_move": "Condense the transition from technical mechanics to human-centered design into a single punchy statement.",
+      "context_focus": "The shift from 'how LLMs remember' to 'how humans perceive that memory.'",
+      "title": "Summarize the shift in research focus",
+      "short_description": "Distill the core transition the authors are making in this section.",
+      "why_recommended": "If the user is losing focus, a concise 'bottom line' helps them grasp the essential point quickly so they can move to more engaging sections of the paper.",
+      "prompt_instruction": "Challenge the user to summarize the 'pivot' mentioned in the previous explanation in one sentence, focusing on the difference between 'mechanics' and 'experience.'",
+      "expected_answer_shape": [
+        "one sentence summary"
+      ],
+      "recommended": false,
+      "recommended_score": 0.75
+    }
+  ],
+  "selected_strategy_id": "relate_memory_to_experience",
+  "selected_strategy": {
+    "strategy_id": "relate_memory_to_experience",
+    "strategy_family": "make_it_relevant",
+    "pedagogical_move": "Connect the abstract concept of 'agent memory' to the user's personal interactions with AI tools.",
+    "context_focus": "The discrepancy between how an LLM technically stores data and how a user expects it to remember their preferences.",
+    "title": "Relate AI memory to your own experience",
+    "short_description": "Connect the technical gap described in the paper to your own interactions with AI.",
+    "why_recommended": "A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.",
+    "prompt_instruction": "Ask the user to recall a specific instance where an AI (like ChatGPT) either remembered something helpful or frustratingly forgot a detail they expected it to keep. Use this to illustrate the 'mental model' gap the paper mentions.",
+    "expected_answer_shape": [
+      "personal anecdote",
+      "observation of AI behavior"
+    ],
+    "recommended": true,
+    "recommended_score": 0.95
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "duration_sec": 9.5,
+    "trend": "stable",
+    "intensity": 0.999,
+    "refresh_requested": false,
+    "support_cue": "re_engagement",
+    "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c",
+    "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+    "window_start": "2026-05-18T12:35:08.224Z",
+    "window_end": "2026-05-18T12:35:17.740Z",
+    "duration_sec": 9.5,
+    "sample_count": 5,
+    "dominant_state": "boredom",
+    "secondary_state": "frustration",
+    "avg_confidence": 0.999,
+    "max_confidence": 1,
+    "avg_distribution": {
+      "boredom": 0.999,
+      "confusion": 0,
+      "engagement": 0,
+      "frustration": 0.001
+    },
+    "trend": "stable",
+    "stability": "stable",
+    "support_cue": "re_engagement",
+    "support_cue_label": "Re-engagement cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This sentence acknowledges that the technical development of memory systems for AI\u2014how Large Language Models (LLMs) store, retrieve, and process information over time\u2014is already a well-established field of study in computer science.\n\nBy citing existing research, the authors are setting a baseline for their own work. They aren't trying to invent a new technical way for AI to \"remember\" things; instead, they are using this statement to highlight a gap in the current literature. While we know a lot about the *mechanics* of AI memory, we know very little about how actual people feel about it, what they expect from it, or how they use it in their daily lives.\n\nIn the context of the paper\u2019s overall argument, this serves as a pivot point. It allows the researchers to move past the \"how it works\" phase and focus on the \"how it's experienced\" phase. Their goal is to shift the conversation from technical performance to human-centered design, ensuring that these memory features actually align with user needs and mental models."
+  },
+  "turn_metadata": {
+    "turn_00f121012ab641039029fed5b7716b4c": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c",
+        "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+        "window_start": "2026-05-18T12:35:08.224Z",
+        "window_end": "2026-05-18T12:35:17.740Z",
+        "duration_sec": 9.5,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.999,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.999,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0.001
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This sentence acknowledges that the technical development of memory systems for AI\u2014how Large Language Models (LLMs) store, retrieve, and process information over time\u2014is already a well-established field of study in computer science.\n\nBy citing existing research, the authors are setting a baseline for their own work. They aren't trying to invent a new technical way for AI to \"remember\" things; instead, they are using this statement to highlight a gap in the current literature. While we know a lot about the *mechanics* of AI memory, we know very little about how actual people feel about it, what they expect from it, or how they use it in their daily lives.\n\nIn the context of the paper\u2019s overall argument, this serves as a pivot point. It allows the researchers to move past the \"how it works\" phase and focus on the \"how it's experienced\" phase. Their goal is to shift the conversation from technical performance to human-centered design, ensuring that these memory features actually align with user needs and mental models."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 9.5,
+        "trend": "stable",
+        "intensity": 0.999,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "relate_memory_to_experience",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Connect the abstract concept of 'agent memory' to the user's personal interactions with AI tools.",
+          "context_focus": "The discrepancy between how an LLM technically stores data and how a user expects it to remember their preferences.",
+          "title": "Relate AI memory to your own experience",
+          "short_description": "Connect the technical gap described in the paper to your own interactions with AI.",
+          "why_recommended": "A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.",
+          "prompt_instruction": "Ask the user to recall a specific instance where an AI (like ChatGPT) either remembered something helpful or frustratingly forgot a detail they expected it to keep. Use this to illustrate the 'mental model' gap the paper mentions.",
+          "expected_answer_shape": [
+            "personal anecdote",
+            "observation of AI behavior"
+          ],
+          "recommended": true,
+          "recommended_score": 0.95
+        },
+        {
+          "strategy_id": "impact_on_wellness_coaches",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Explain the real-world consequences of the 'co-understanding' gap for specific AI applications mentioned in the text.",
+          "context_focus": "The risk of AI 'coaches' for wellness or productivity failing if their memory systems don't align with user expectations.",
+          "title": "Analyze the impact on AI wellness coaches",
+          "short_description": "Explore why getting memory 'right' is critical for the AI coaches mentioned in the introduction.",
+          "why_recommended": "Highlighting the high stakes of the research (e.g., wellness and life goals) can help a disengaged user see the value in the technical discussion.",
+          "prompt_instruction": "Point to the paper's mention of AI 'coaches' for wellness and exercise. Ask the user why a 'perfect' technical memory might still fail a user if it doesn't match the user's mental model of how a coach should remember things.",
+          "expected_answer_shape": [
+            "reasoning about user trust",
+            "explanation of coaching effectiveness"
+          ],
+          "recommended": false,
+          "recommended_score": 0.85
+        },
+        {
+          "strategy_id": "distill_the_pivot",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Condense the transition from technical mechanics to human-centered design into a single punchy statement.",
+          "context_focus": "The shift from 'how LLMs remember' to 'how humans perceive that memory.'",
+          "title": "Summarize the shift in research focus",
+          "short_description": "Distill the core transition the authors are making in this section.",
+          "why_recommended": "If the user is losing focus, a concise 'bottom line' helps them grasp the essential point quickly so they can move to more engaging sections of the paper.",
+          "prompt_instruction": "Challenge the user to summarize the 'pivot' mentioned in the previous explanation in one sentence, focusing on the difference between 'mechanics' and 'experience.'",
+          "expected_answer_shape": [
+            "one sentence summary"
+          ],
+          "recommended": false,
+          "recommended_score": 0.75
+        }
+      ],
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 94,
+        "caption_length": 0,
+        "baseline_explanation_length": 1029,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 9.5,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    },
+    "turn_db0785a3a98b4c69a1251ce59cbcc116": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_db0785a3a98b4c69a1251ce59cbcc116",
+        "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+        "window_start": "2026-05-18T12:35:46.343Z",
+        "window_end": "2026-05-18T12:35:54.482Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.999,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.999,
+          "confusion": 0.001,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This sentence acknowledges that while scientists have already spent a lot of time figuring out the technical \"nuts and bolts\" of how AI stores data, they haven't spent nearly enough time looking at the human side. The \"prior research\" mentioned here focuses on the technical architecture\u2014basically, how to give the machine a database to store facts.\n\nThink about your own interactions with a tool like ChatGPT. Have you ever had a moment where it surprisingly remembered a tiny detail from a conversation weeks ago? Or, on the flip side, have you ever been frustrated when it \"forgot\" a preference you've told it a dozen times, like your favorite programming language or a specific writing style?\n\nThat feeling of surprise or frustration is exactly what this paper is investigating. It's the gap between the AI's technical memory and your \"mental model\" of how a human assistant *should* remember things. \n\nBy mentioning that the technical side is already \"extensively covered,\" the authors are setting the stage to focus on why AI memory still feels so unpredictable to us. They want to understand your expectations so they can help designers build AI that feels more like a reliable partner and less like a database that occasionally loses your files."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.1,
+        "trend": "stable",
+        "intensity": 0.999,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_db0785a3a98b4c69a1251ce59cbcc116"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "distill_research_gap",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Summarize the core shift in focus from technical implementation to human experience.",
+          "context_focus": "The transition from established technical memory research to the unexplored area of user mental models.",
+          "title": "Summarize the research pivot",
+          "short_description": "Get a concise summary of why the authors mention prior research.",
+          "why_recommended": "A re-engagement cue during a long explanation often indicates a need for brevity. A one-sentence takeaway cuts through the noise to provide the essential point.",
+          "prompt_instruction": "Provide a single, punchy sentence that explains that the authors are acknowledging technical history only to pivot toward the neglected human side of AI memory.",
+          "expected_answer_shape": [
+            "A single sentence focusing on the 'technical vs. human' distinction."
+          ],
+          "recommended": true,
+          "recommended_score": 0.9
+        },
+        {
+          "strategy_id": "stakes_of_co_understanding",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Highlight the practical impact of the research on human-AI collaboration.",
+          "context_focus": "The necessity of 'co-understanding' for AI agents to function as effective long-term wellness or productivity coaches.",
+          "title": "Identify the stakes for AI design",
+          "short_description": "Explore why solving the human-side of memory is critical for AI 'coaches'.",
+          "why_recommended": "If the user is bored, connecting the abstract 'prior research' to the high-stakes goal of 'co-understanding' in wellness and work can restore interest.",
+          "prompt_instruction": "Explain that without the research this paper proposes, AI agents will remain 'databases' rather than 'partners,' failing to achieve the 'complementarity' mentioned in the text.",
+          "expected_answer_shape": [
+            "An explanation of the real-world consequences of the research gap."
+          ],
+          "recommended": false,
+          "recommended_score": 0.7
+        },
+        {
+          "strategy_id": "quiz_on_research_focus",
+          "strategy_family": "quick_quiz",
+          "pedagogical_move": "Challenge the user to identify the specific missing piece in prior research.",
+          "context_focus": "The difference between technical memory 'nuts and bolts' and user expectations.",
+          "title": "Check the distinction between technical and human-centered memory",
+          "short_description": "A quick question to see if the distinction between technical and human-centered memory is clear.",
+          "why_recommended": "Active participation through a quiz can effectively counter boredom by requiring a response, provided the question is focused on the core contrast of the passage.",
+          "prompt_instruction": "Ask a multiple-choice question about what the 'prior research' (citations 11 and 36) specifically covers versus what this paper intends to investigate.",
+          "expected_answer_shape": [
+            "A question with 3-4 options and a brief explanation of the correct answer."
+          ],
+          "recommended": false,
+          "recommended_score": 0.6
+        }
+      ],
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 94,
+        "caption_length": 0,
+        "baseline_explanation_length": 1249,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  },
+  "support_cue": "re_engagement",
+  "support_cue_label": "Re-engagement cue",
+  "planner_mode": "llm",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 94,
+    "caption_length": 0,
+    "baseline_explanation_length": 1029,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 3,
+    "reaction_window_duration_sec": 9.5,
+    "support_cue": "re_engagement",
+    "allowed_strategy_families": [
+      "why_it_matters",
+      "one_sentence_takeaway",
+      "make_it_relevant",
+      "compare_with_familiar_method",
+      "quick_quiz"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "unknown",
+    "difficulty_hint": "technical_terms"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This sentence acknowledges that the technical development of memory systems for AI\u2014how Large Language Models (LLMs) store, retrieve, and process information over time\u2014is already a well-established field of study in computer science.\n\nBy citing existing research, the authors are setting a baseline for their own work. They aren't trying to invent a new technical way for AI to \"remember\" things; instead, they are using this statement to highlight a gap in the current literature. While we know a lot about the *mechanics* of AI memory, we know very little about how actual people feel about it, what they expect from it, or how they use it in their daily lives.\n\nIn the context of the paper\u2019s overall argument, this serves as a pivot point. It allows the researchers to move past the \"how it works\" phase and focus on the \"how it's experienced\" phase. Their goal is to shift the conversation from technical performance to human-centered design, ensuring that these memory features actually align with user needs and mental models.",
+      "created_at": 1779107708.125707,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "systems\u2019 memories. Achieving such understanding could help designers build memory mechanisms for agents that involve users, consider their mental models (in line with [30]), and keep the human in-the-loop. To achieve this understanding, we conducted interviews with six participants who use personalized AI tools with long-term memory on a regular basis, and thematically coded these interviews to explore users\u2019 expectations and mental models of such systems\u2019 memory mechanisms and their practices with managing memo...",
+            "score": 0.8082
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p6-b85",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "on Bioinformatics and Biomedicine (BIBM). 2845\u20132851. doi:10.1109/BIBM47256. 2019.8983073 [13] Yuki Hou, Haruki Tamoto, and Homei Miyashita. 2024. \"My agent understands me better\": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based Agents. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10.1145/3613905.3650839 [14] Chin-Yuan Huang, Ming-Chin Yang, Chin-Yu Huang, Yu-Jui Chen, Me...",
+            "score": 0.8048
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b18",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "human-AI interaction, human-agent interaction, memory, personalization, language models",
+            "score": 0.8017
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "systems\u2019 memories. Achieving such understanding could help designers build memory mechanisms for agents that involve users, consider their mental models (in line with [30]), and keep the human in-the-loop. To achieve this understanding, we conducted interviews with six participants who use personalized AI tools with long-term memory on a regular basis, and thematically coded these interviews to explore users\u2019 expectations and mental models of such systems\u2019 memory mechanisms and their practices with managing memo...",
+            "score": 0.8082
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p6-b85",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "on Bioinformatics and Biomedicine (BIBM). 2845\u20132851. doi:10.1109/BIBM47256. 2019.8983073 [13] Yuki Hou, Haruki Tamoto, and Homei Miyashita. 2024. \"My agent understands me better\": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based Agents. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10.1145/3613905.3650839 [14] Chin-Yuan Huang, Ming-Chin Yang, Chin-Yu Huang, Yu-Jui Chen, Me...",
+            "score": 0.8048
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b18",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "human-AI interaction, human-agent interaction, memory, personalization, language models",
+            "score": 0.8017
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+            "page_idx": 0,
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents re...",
+            "reading_order_index": 13
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+            "page_idx": 0,
+            "page_number": 1,
+            "block_type": "list",
+            "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI.",
+            "reading_order_index": 16
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assis..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Users\u2019 Expectations and Practices with Agent Memory\none_sentence_summary: Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca\nresearch_problem: \u201cI can imagine, like, a scenario where, for example, I learned Haskell using GPT, and then I start a fresh chat to learn, let\u2019s say, Swift.\nmethod_summary: We conducted semi-structured one-on-one interviews (see Appendix A for the interview guide) with six participants (each identified as \u2018P#\u2019 in the findings) who use personalized AI tools with long-term memory on a regular basis.\ndataset_or_materials: systems\u2019 memories.\nmain_findings: AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory.\nkey_terms: memories, memory, user, system, agent, like, users, information, systems, agents, tools, task\n\nselected_text:\nMemory in LLM-based agents has been extensively covered by prior research (e.g., [ 11 , 36 ]).\n\nmatched_block:\nAI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily l"
+      },
+      "turn_id": "turn_00f121012ab641039029fed5b7716b4c",
+      "prompt_snapshot_id": "snap_f221678c131e",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "2894b671140c402f95e56d4370525332",
+        "document_id": "35fb83fd8fd74211980843d062743799",
+        "timestamp": "2026-05-18T12:34:58Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.6,
+        "distribution": {
+          "boredom": 0.14,
+          "confusion": 0.6,
+          "engagement": 0.13,
+          "frustration": 0.13
+        },
+        "trend": "rising",
+        "duration_sec": 0,
+        "intensity": 0.6,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This sentence acknowledges that while scientists have already spent a lot of time figuring out the technical \"nuts and bolts\" of how AI stores data, they haven't spent nearly enough time looking at the human side. The \"prior research\" mentioned here focuses on the technical architecture\u2014basically, how to give the machine a database to store facts.\n\nThink about your own interactions with a tool like ChatGPT. Have you ever had a moment where it surprisingly remembered a tiny detail from a conversation weeks ago? Or, on the flip side, have you ever been frustrated when it \"forgot\" a preference you've told it a dozen times, like your favorite programming language or a specific writing style?\n\nThat feeling of surprise or frustration is exactly what this paper is investigating. It's the gap between the AI's technical memory and your \"mental model\" of how a human assistant *should* remember things. \n\nBy mentioning that the technical side is already \"extensively covered,\" the authors are setting the stage to focus on why AI memory still feels so unpredictable to us. They want to understand your expectations so they can help designers build AI that feels more like a reliable partner and less like a database that occasionally loses your files.",
+      "created_at": 1779107746.2113185,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "systems\u2019 memories. Achieving such understanding could help designers build memory mechanisms for agents that involve users, consider their mental models (in line with [30]), and keep the human in-the-loop. To achieve this understanding, we conducted interviews with six participants who use personalized AI tools with long-term memory on a regular basis, and thematically coded these interviews to explore users\u2019 expectations and mental models of such systems\u2019 memory mechanisms and their practices with managing memo...",
+            "score": 0.8082
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p6-b85",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "on Bioinformatics and Biomedicine (BIBM). 2845\u20132851. doi:10.1109/BIBM47256. 2019.8983073 [13] Yuki Hou, Haruki Tamoto, and Homei Miyashita. 2024. \"My agent understands me better\": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based Agents. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10.1145/3613905.3650839 [14] Chin-Yuan Huang, Ming-Chin Yang, Chin-Yu Huang, Yu-Jui Chen, Me...",
+            "score": 0.8048
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b18",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "human-AI interaction, human-agent interaction, memory, personalization, language models",
+            "score": 0.8017
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "systems\u2019 memories. Achieving such understanding could help designers build memory mechanisms for agents that involve users, consider their mental models (in line with [30]), and keep the human in-the-loop. To achieve this understanding, we conducted interviews with six participants who use personalized AI tools with long-term memory on a regular basis, and thematically coded these interviews to explore users\u2019 expectations and mental models of such systems\u2019 memory mechanisms and their practices with managing memo...",
+            "score": 0.8082
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p6-b85",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "on Bioinformatics and Biomedicine (BIBM). 2845\u20132851. doi:10.1109/BIBM47256. 2019.8983073 [13] Yuki Hou, Haruki Tamoto, and Homei Miyashita. 2024. \"My agent understands me better\": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based Agents. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10.1145/3613905.3650839 [14] Chin-Yuan Huang, Ming-Chin Yang, Chin-Yu Huang, Yu-Jui Chen, Me...",
+            "score": 0.8048
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b18",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "human-AI interaction, human-agent interaction, memory, personalization, language models",
+            "score": 0.8017
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+            "page_idx": 0,
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents re...",
+            "reading_order_index": 13
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+            "page_idx": 0,
+            "page_number": 1,
+            "block_type": "list",
+            "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI.",
+            "reading_order_index": 16
+          },
+          {
+            "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assis..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: make_it_relevant\n- Pedagogical move: Connect the abstract concept of 'agent memory' to the user's personal interactions with AI tools.\n- Context focus: The discrepancy between how an LLM technically stores data and how a user expects it to remember their preferences.\n- Strategy title: Relate AI memory to your own experience\n- Why selected: A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.\n- Instruction for answer: Ask the user to recall a specific instance where an AI (like ChatGP"
+      },
+      "turn_id": "turn_db0785a3a98b4c69a1251ce59cbcc116",
+      "prompt_snapshot_id": "snap_0adaa22f63b3",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c",
+        "highlight_id": "613da0e7-0c76-4cd7-9050-1462c488bd92",
+        "window_start": "2026-05-18T12:35:08.224Z",
+        "window_end": "2026-05-18T12:35:17.740Z",
+        "duration_sec": 9.5,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.999,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.999,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0.001
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This sentence acknowledges that the technical development of memory systems for AI\u2014how Large Language Models (LLMs) store, retrieve, and process information over time\u2014is already a well-established field of study in computer science.\n\nBy citing existing research, the authors are setting a baseline for their own work. They aren't trying to invent a new technical way for AI to \"remember\" things; instead, they are using this statement to highlight a gap in the current literature. While we know a lot about the *mechanics* of AI memory, we know very little about how actual people feel about it, what they expect from it, or how they use it in their daily lives.\n\nIn the context of the paper\u2019s overall argument, this serves as a pivot point. It allows the researchers to move past the \"how it works\" phase and focus on the \"how it's experienced\" phase. Their goal is to shift the conversation from technical performance to human-centered design, ensuring that these memory features actually align with user needs and mental models."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "strategy_id": "relate_memory_to_experience",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Connect the abstract concept of 'agent memory' to the user's personal interactions with AI tools.",
+      "context_focus": "The discrepancy between how an LLM technically stores data and how a user expects it to remember their preferences.",
+      "strategy_title": "Relate AI memory to your own experience",
+      "strategy_short_description": "Connect the technical gap described in the paper to your own interactions with AI.",
+      "why_recommended": "A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.",
+      "strategy_reason": "A re-engagement cue during a discussion of research gaps often suggests the content feels too theoretical; grounding it in personal experience can restore interest.",
+      "learning_state_snapshot": {
+        "session_id": "2894b671140c402f95e56d4370525332",
+        "document_id": "35fb83fd8fd74211980843d062743799",
+        "timestamp": "2026-05-18T12:35:34Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9642,
+        "distribution": {
+          "boredom": 0.9642,
+          "confusion": 0.0352,
+          "engagement": 0.0002,
+          "frustration": 0.0004
+        },
+        "trend": "falling",
+        "duration_sec": 42.5,
+        "intensity": 0.9642,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 9.5,
+        "trend": "stable",
+        "intensity": 0.999,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_00f121012ab641039029fed5b7716b4c"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 94,
+        "caption_length": 0,
+        "baseline_explanation_length": 1029,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 9.5,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  ]
+}

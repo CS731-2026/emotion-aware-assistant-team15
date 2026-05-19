@@ -1,0 +1,16 @@
+{
+  "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+  "highlights": [
+    {
+      "highlight_id": "repro-highlight",
+      "type": "text",
+      "page_number": 1,
+      "selected_text": "Manual repro selected text.",
+      "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+      "highlight_type": "text",
+      "text_preview": "Manual repro selected text.",
+      "updated_at": 1779097602.3482754,
+      "created_at": 1779097602.3482754
+    }
+  ]
+}

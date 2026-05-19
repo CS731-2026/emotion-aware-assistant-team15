@@ -1,0 +1,984 @@
+{
+  "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+  "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+  "created_at": 1779098747.760367,
+  "updated_at": 1779098790.5196276,
+  "selection_snapshot": {
+    "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+    "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+    "highlight_type": "text",
+    "page_number": 5,
+    "selected_text": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services.",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.75,
+        "y1": 284.8125,
+        "x2": 773.010193,
+        "y2": 298.3125,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 5
+      },
+      {
+        "x1": 438.976562,
+        "y1": 300.007812,
+        "x2": 770.903564,
+        "y2": 313.507812,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 5
+      },
+      {
+        "x1": 438.554688,
+        "y1": 315.09375,
+        "x2": 773.033752,
+        "y2": 328.59375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 5
+      },
+      {
+        "x1": 438.976562,
+        "y1": 330.171875,
+        "x2": 609.324951,
+        "y2": 343.671875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 5
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535799,
+        "y1": 0.260453,
+        "x2": 0.914805,
+        "y2": 0.272798,
+        "pageNumber": 5
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.274348,
+        "x2": 0.912312,
+        "y2": 0.286694,
+        "pageNumber": 5
+      },
+      {
+        "x1": 0.519,
+        "y1": 0.288144,
+        "x2": 0.914833,
+        "y2": 0.300489,
+        "pageNumber": 5
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.301932,
+        "x2": 0.721095,
+        "y2": 0.314278,
+        "pageNumber": 5
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.799,
+        "y1": 260.453,
+        "x2": 914.805,
+        "y2": 272.798,
+        "pageNumber": 5
+      },
+      {
+        "x1": 519.499,
+        "y1": 274.348,
+        "x2": 912.312,
+        "y2": 286.694,
+        "pageNumber": 5
+      },
+      {
+        "x1": 519,
+        "y1": 288.144,
+        "x2": 914.833,
+        "y2": 300.489,
+        "pageNumber": 5
+      },
+      {
+        "x1": 519.499,
+        "y1": 301.932,
+        "x2": 721.095,
+        "y2": 314.278,
+        "pageNumber": 5
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+      "page_number": 5,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding of the concept. All the participants reported a neutral or optimistic viewpoint regarding the potential utility of such tools in the provision of mental health support. Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services. Our inclusion criteria required participants to be 19 years of age or older. To ensure participant safety, we excluded individuals who reported current suicidal or homicidal ideations, as well as those with self-reported severe mental health issues accompanied by significant difficulty in coping with their symptoms. With an average age of 21.8 years (SD = 1.94) and an equal distribution of women and men, this group reported a mean of .60 years (SD = 1.10) of experience with counseling, therapy, or other mental health practices. Non-expert participants were compensated $30 for their time."
+    },
+    "previous_block": {
+      "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b69",
+      "page_number": 5,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "We primarily relied on mental-health experts (N=16) as our core source of insight, as their deep understanding of therapeutic processes, clinical risks, and evidence-based practice is essential for developing robust, safe, and theoretically grounded design principles for self-clone systems. However, we also recognized that an exclusively expert-driven lens could overemphasize clinical caution or introduce assumptions misaligned with end-users\u2019 values, expectations, and goals. To balance this, we incorporated input from non-expert users as a complementary check and form of triangulation on expert assumptions, particularly on non-therapeutic, user-experience\u2013focused areas [30]. We continued recruiting nonexpert participants (N=6) until we reached thematic saturation, at which point additional interviews no longer introduced new insights in our exploratory work [45]. While expert perspectives ground the framework in therapeutic rigor and safety, non-experts, who are often less constrained by clinical risk and liability, bring more openness for emotionally resonant and creative viewpoints. Their perspectives help surface interpretive gaps and opportunities that may fall outside traditional expert viewpoints. Together, these contributions support us in creating a more well-rounded and contextually grounded framework. Our inclusion criteria for mental health professionals required the possession of a higher degree in psychology or related fields and a minimum of two years of experience in mental health research or clinical practice. We employed the snowball sampling technique, starting from the personal social networks of the (co)authors and extending to digital channels that include social media and university newsletters. From the list of volunteers, we used purposeful sampling to optimize not only diversity but also the overall depth and breadth of experiences our experts have in the domain. With an average age of 37.37 years (SD = 10.69) and an equal distribution of women and men, the expert participants had a mean of 6.75 years (SD = 6.95) of research experience in mental health and an average of 9.12 years (SD = 7.49) of clinical experience. For details, please refer to Table 1."
+    },
+    "next_block": {
+      "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b72",
+      "page_number": 5,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "3.2"
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+        "page_number": 5,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding of the concept. All the participants reported a neutral or optimistic viewpoint regarding the potential utility of such tools in the provision of mental health support. Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services. Our inclusion criteria required participants to be 19 years of age or older. To ensure participant safety, we excluded individuals who reported current suicidal or homicidal ideations, as well as those with self-reported severe mental health issues accompanied by significant difficulty in coping with their symptoms. With an average age of 21.8 years (SD = 1.94) and an equal distribution of women and men, this group reported a mean of .60 years (SD = 1.10) of experience with counseling, therapy, or other mental health practices. Non-expert participants were compensated $30 for their time."
+      },
+      {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b69",
+        "page_number": 5,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "We primarily relied on mental-health experts (N=16) as our core source of insight, as their deep understanding of therapeutic processes, clinical risks, and evidence-based practice is essential for developing robust, safe, and theoretically grounded design principles for self-clone systems. However, we also recognized that an exclusively expert-driven lens could overemphasize clinical caution or introduce assumptions misaligned with end-users\u2019 values, expectations, and goals. To balance this, we incorporated input from non-expert users as a complementary check and form of triangulation on expert assumptions, particularly on non-therapeutic, user-experience\u2013focused areas [30]. We continued recruiting nonexpert participants (N=6) until we reached thematic saturation, at which point additional interviews no longer introduced new insights in our exploratory work [45]. While expert perspectives ground the framework in therapeutic rigor and safety, non-experts, who are often less constrained by clinical risk and liability, bring more openness for emotionally resonant and creative viewpoints. Their perspectives help surface interpretive gaps and opportunities that may fall outside traditional expert viewpoints. Together, these contributions support us in creating a more well-rounded and contextually grounded framework. Our inclusion criteria for mental health professionals required the possession of a higher degree in psychology or related fields and a minimum of two years of experience in mental health research or clinical practice. We employed the snowball sampling technique, starting from the personal social networks of the (co)authors and extending to digital channels that include social media and university newsletters. From the list of volunteers, we used purposeful sampling to optimize not only diversity but also the overall depth and breadth of experiences our experts have in the domain. With an average age of 37.37 years (SD = 10.69) and an equal distribution of women and men, the expert participants had a mean of 6.75 years (SD = 6.95) of research experience in mental health and an average of 9.12 years (SD = 7.49) of clinical experience. For details, please refer to Table 1."
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "fec3f6005725416cb39e164b7088482b",
+    "learning_state": {
+      "session_id": "fec3f6005725416cb39e164b7088482b",
+      "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+      "timestamp": "2026-05-18T10:05:37Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.64,
+      "distribution": {
+        "boredom": 0.12,
+        "confusion": 0.64,
+        "engagement": 0.12,
+        "frustration": 0.12
+      },
+      "trend": "rising",
+      "duration_sec": 2.5,
+      "intensity": 0.64,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f"
+  },
+  "session_id": "fec3f6005725416cb39e164b7088482b",
+  "learning_state_snapshot": {
+    "session_id": "fec3f6005725416cb39e164b7088482b",
+    "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+    "timestamp": "2026-05-18T10:06:09Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.4187,
+    "distribution": {
+      "boredom": 0.4187,
+      "confusion": 0.1172,
+      "engagement": 0.0995,
+      "frustration": 0.3646
+    },
+    "trend": "falling",
+    "duration_sec": 42.3,
+    "intensity": 0.4187,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "why_it_matters_expert_vs_user",
+      "strategy_family": "why_it_matters",
+      "pedagogical_move": "Explain the functional impact of the recruitment choice on the study's findings.",
+      "context_focus": "The tension between expert caution and non-expert creativity in designing self-clone chatbots.",
+      "title": "Contrast expert caution with user creativity",
+      "short_description": "See how these specific participants prevent the study from being 'overly cautious.'",
+      "why_recommended": "Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.",
+      "prompt_instruction": "Explain how the inclusion of P17-P22 specifically addresses the risk of an 'exclusively expert-driven lens' mentioned in the context. Highlight the trade-off between clinical rigor and emotional resonance.",
+      "expected_answer_shape": [
+        "A brief explanation of the 'expert-driven lens' risk.",
+        "How the non-expert group provides a 'complementary check' on these assumptions."
+      ],
+      "recommended": true,
+      "recommended_score": 0.9
+    },
+    {
+      "strategy_id": "one_sentence_takeaway_recruitment",
+      "strategy_family": "one_sentence_takeaway",
+      "pedagogical_move": "Synthesize the core logic of the recruitment strategy into a single high-impact statement.",
+      "context_focus": "The goal of purposive sampling for diversity in counseling experience.",
+      "title": "Capture the recruitment goal in one sentence",
+      "short_description": "Get a punchy summary of why these six people were chosen.",
+      "why_recommended": "If the user is experiencing a re-engagement cue, a 'TL;DR' approach can provide immediate value without requiring a long reading commitment.",
+      "prompt_instruction": "Provide a single, powerful sentence that explains how the diversity of P17-P22 (gender and therapy history) directly serves the paper's goal of 'grounding design in lived experience.'",
+      "expected_answer_shape": [
+        "A one-sentence summary."
+      ],
+      "recommended": false,
+      "recommended_score": 0.7
+    },
+    {
+      "strategy_id": "quick_quiz_expert_diff",
+      "strategy_family": "quick_quiz",
+      "pedagogical_move": "Prompt active recall to distinguish between the two participant groups.",
+      "context_focus": "The different roles of experts (P1-P16) and non-experts (P17-P22).",
+      "title": "Identify the role of non-experts",
+      "short_description": "A quick check to see if you've spotted the key difference between the study groups.",
+      "why_recommended": "Active participation through a low-stakes question can break the passivity that often accompanies a re-engagement cue.",
+      "prompt_instruction": "Ask a multiple-choice question about what the non-expert group (P17-P22) specifically adds to the study that the 16 experts might miss, based on the text.",
+      "expected_answer_shape": [
+        "A question.",
+        "Three options.",
+        "A brief explanation of the correct answer."
+      ],
+      "recommended": false,
+      "recommended_score": 0.6
+    }
+  ],
+  "selected_strategy_id": "why_it_matters_expert_vs_user",
+  "selected_strategy": {
+    "strategy_id": "why_it_matters_expert_vs_user",
+    "strategy_family": "why_it_matters",
+    "pedagogical_move": "Explain the functional impact of the recruitment choice on the study's findings.",
+    "context_focus": "The tension between expert caution and non-expert creativity in designing self-clone chatbots.",
+    "title": "Contrast expert caution with user creativity",
+    "short_description": "See how these specific participants prevent the study from being 'overly cautious.'",
+    "why_recommended": "Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.",
+    "prompt_instruction": "Explain how the inclusion of P17-P22 specifically addresses the risk of an 'exclusively expert-driven lens' mentioned in the context. Highlight the trade-off between clinical rigor and emotional resonance.",
+    "expected_answer_shape": [
+      "A brief explanation of the 'expert-driven lens' risk.",
+      "How the non-expert group provides a 'complementary check' on these assumptions."
+    ],
+    "recommended": true,
+    "recommended_score": 0.9
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "duration_sec": 8.2,
+    "trend": "stable",
+    "intensity": 0.995,
+    "refresh_requested": false,
+    "support_cue": "re_engagement",
+    "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f",
+    "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+    "window_start": "2026-05-18T10:05:47.934Z",
+    "window_end": "2026-05-18T10:05:56.090Z",
+    "duration_sec": 8.2,
+    "sample_count": 5,
+    "dominant_state": "boredom",
+    "secondary_state": "confusion",
+    "avg_confidence": 0.995,
+    "max_confidence": 0.999,
+    "avg_distribution": {
+      "boredom": 0.995,
+      "confusion": 0.005,
+      "engagement": 0,
+      "frustration": 0
+    },
+    "trend": "stable",
+    "stability": "stable",
+    "support_cue": "re_engagement",
+    "support_cue_label": "Re-engagement cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage describes how the researchers recruited a specific group of participants\u2014the \"non-expert end-users\" (labeled P17 through P22)\u2014to balance the technical and clinical insights provided by the expert group. While the study's core foundation is built on the perspectives of 16 mental health professionals, these six individuals represent the potential real-world users of self-clone chatbots.\n\nThe researchers used \"purposive sampling\" to ensure this small group wasn't uniform. By intentionally seeking out diversity in gender and previous experience with counseling, they aimed to gather a wider range of attitudes toward mental health support. A person who has been in therapy for years might have very different expectations or safety concerns regarding a \"self-clone\" chatbot compared to someone who has never sought professional help.\n\nThis recruitment strategy is crucial for the paper\u2019s goal of creating a \"safe and therapeutic\" framework. As noted in the surrounding context, relying only on experts can lead to a design that is overly cautious or disconnected from what users actually value. By including these non-experts, the authors ensure that the final design principles are grounded in both clinical expertise and the actual lived experiences and expectations of the people the technology is meant to serve."
+  },
+  "turn_metadata": {
+    "turn_46fa7b00d9c44f12aa54a2f4560acd5f": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f",
+        "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+        "window_start": "2026-05-18T10:05:47.934Z",
+        "window_end": "2026-05-18T10:05:56.090Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.995,
+        "max_confidence": 0.999,
+        "avg_distribution": {
+          "boredom": 0.995,
+          "confusion": 0.005,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage describes how the researchers recruited a specific group of participants\u2014the \"non-expert end-users\" (labeled P17 through P22)\u2014to balance the technical and clinical insights provided by the expert group. While the study's core foundation is built on the perspectives of 16 mental health professionals, these six individuals represent the potential real-world users of self-clone chatbots.\n\nThe researchers used \"purposive sampling\" to ensure this small group wasn't uniform. By intentionally seeking out diversity in gender and previous experience with counseling, they aimed to gather a wider range of attitudes toward mental health support. A person who has been in therapy for years might have very different expectations or safety concerns regarding a \"self-clone\" chatbot compared to someone who has never sought professional help.\n\nThis recruitment strategy is crucial for the paper\u2019s goal of creating a \"safe and therapeutic\" framework. As noted in the surrounding context, relying only on experts can lead to a design that is overly cautious or disconnected from what users actually value. By including these non-experts, the authors ensure that the final design principles are grounded in both clinical expertise and the actual lived experiences and expectations of the people the technology is meant to serve."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "stable",
+        "intensity": 0.995,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters_expert_vs_user",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Explain the functional impact of the recruitment choice on the study's findings.",
+          "context_focus": "The tension between expert caution and non-expert creativity in designing self-clone chatbots.",
+          "title": "Contrast expert caution with user creativity",
+          "short_description": "See how these specific participants prevent the study from being 'overly cautious.'",
+          "why_recommended": "Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.",
+          "prompt_instruction": "Explain how the inclusion of P17-P22 specifically addresses the risk of an 'exclusively expert-driven lens' mentioned in the context. Highlight the trade-off between clinical rigor and emotional resonance.",
+          "expected_answer_shape": [
+            "A brief explanation of the 'expert-driven lens' risk.",
+            "How the non-expert group provides a 'complementary check' on these assumptions."
+          ],
+          "recommended": true,
+          "recommended_score": 0.9
+        },
+        {
+          "strategy_id": "one_sentence_takeaway_recruitment",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Synthesize the core logic of the recruitment strategy into a single high-impact statement.",
+          "context_focus": "The goal of purposive sampling for diversity in counseling experience.",
+          "title": "Capture the recruitment goal in one sentence",
+          "short_description": "Get a punchy summary of why these six people were chosen.",
+          "why_recommended": "If the user is experiencing a re-engagement cue, a 'TL;DR' approach can provide immediate value without requiring a long reading commitment.",
+          "prompt_instruction": "Provide a single, powerful sentence that explains how the diversity of P17-P22 (gender and therapy history) directly serves the paper's goal of 'grounding design in lived experience.'",
+          "expected_answer_shape": [
+            "A one-sentence summary."
+          ],
+          "recommended": false,
+          "recommended_score": 0.7
+        },
+        {
+          "strategy_id": "quick_quiz_expert_diff",
+          "strategy_family": "quick_quiz",
+          "pedagogical_move": "Prompt active recall to distinguish between the two participant groups.",
+          "context_focus": "The different roles of experts (P1-P16) and non-experts (P17-P22).",
+          "title": "Identify the role of non-experts",
+          "short_description": "A quick check to see if you've spotted the key difference between the study groups.",
+          "why_recommended": "Active participation through a low-stakes question can break the passivity that often accompanies a re-engagement cue.",
+          "prompt_instruction": "Ask a multiple-choice question about what the non-expert group (P17-P22) specifically adds to the study that the 16 experts might miss, based on the text.",
+          "expected_answer_shape": [
+            "A question.",
+            "Three options.",
+            "A brief explanation of the correct answer."
+          ],
+          "recommended": false,
+          "recommended_score": 0.6
+        }
+      ],
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 219,
+        "caption_length": 0,
+        "baseline_explanation_length": 1329,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "result",
+        "difficulty_hint": "formula"
+      }
+    },
+    "turn_867039ebcadf441ba85d35c57301fc80": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_867039ebcadf441ba85d35c57301fc80",
+        "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+        "window_start": "2026-05-18T10:06:16.846Z",
+        "window_end": "2026-05-18T10:06:26.754Z",
+        "duration_sec": 9.9,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.882,
+        "max_confidence": 0.997,
+        "avg_distribution": {
+          "boredom": 0.882,
+          "confusion": 0.07,
+          "engagement": 0.004,
+          "frustration": 0.045
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "The recruitment of participants P17 through P22 is a deliberate move to counter the \"exclusively expert-driven lens\" that often dominates mental health technology design. While the 16 experts (P1\u2013P16) provide the necessary clinical rigor and safety guardrails, relying solely on them carries the risk of over-prioritizing caution. This can result in a tool that is medically \"safe\" but lacks the personal resonance or creative flexibility that a user actually needs for self-reflection.\n\nBy including this diverse group of non-experts through purposive sampling, the researchers introduce a \"complementary check\" on expert assumptions. These end-users help identify where clinical caution might clash with their actual values and expectations. For example, while an expert might focus on preventing risky AI behaviors, a user might prioritize how the chatbot captures their specific \"cognitive signature\" or emotional tone to make the experience feel authentic.\n\nUltimately, this recruitment choice addresses the central tension of the paper: balancing clinical safety with user engagement. It ensures the resulting framework isn't just a set of rigid medical rules, but a design that actually resonates with the people using it for personal growth."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 9.9,
+        "trend": "rising",
+        "intensity": 0.882,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_867039ebcadf441ba85d35c57301fc80"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via",
+          "title": "Explain why this result passage matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with connect the selected passage to the paper's larger argument.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with condense the previous explanation into the central point before expanding.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via",
+          "title": "Use a structured breakdown for this result passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 219,
+        "caption_length": 0,
+        "baseline_explanation_length": 1247,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 9.9,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "result",
+        "difficulty_hint": "formula"
+      }
+    }
+  },
+  "support_cue": "re_engagement",
+  "support_cue_label": "Re-engagement cue",
+  "planner_mode": "llm",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 219,
+    "caption_length": 0,
+    "baseline_explanation_length": 1329,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 2,
+    "reaction_window_duration_sec": 8.2,
+    "support_cue": "re_engagement",
+    "allowed_strategy_families": [
+      "why_it_matters",
+      "one_sentence_takeaway",
+      "make_it_relevant",
+      "compare_with_familiar_method",
+      "quick_quiz"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "result",
+    "difficulty_hint": "formula"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage describes how the researchers recruited a specific group of participants\u2014the \"non-expert end-users\" (labeled P17 through P22)\u2014to balance the technical and clinical insights provided by the expert group. While the study's core foundation is built on the perspectives of 16 mental health professionals, these six individuals represent the potential real-world users of self-clone chatbots.\n\nThe researchers used \"purposive sampling\" to ensure this small group wasn't uniform. By intentionally seeking out diversity in gender and previous experience with counseling, they aimed to gather a wider range of attitudes toward mental health support. A person who has been in therapy for years might have very different expectations or safety concerns regarding a \"self-clone\" chatbot compared to someone who has never sought professional help.\n\nThis recruitment strategy is crucial for the paper\u2019s goal of creating a \"safe and therapeutic\" framework. As noted in the surrounding context, relying only on experts can lead to a design that is overly cautious or disconnected from what users actually value. By including these non-experts, the authors ensure that the final design principles are grounded in both clinical expertise and the actual lived experiences and expectations of the people the technology is meant to serve.",
+      "created_at": 1779098747.7604024,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b74",
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We utilized semi-structured interviews on Zoom, lasting around one hour, to give the flexibility to both the participants and the interviewer to expand on relevant points and views as needed. Since self-clone chatbots are a novel concept that participants were unlikely to have encountered before, we began each session by aligning on a shared definition. We introduced self-clone chatbots as interactive, text-based AI systems that mirror an individual\u2019s way of thinking and talking (e.g., personality, language use,...",
+            "score": 0.7997
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.797
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p6-b239",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "backgrounds and clinical or research perspectives, allowing the interviewer to identify relevant expertise, potential biases, and areas of emphasis for the conversation. This was followed by a focused discussion of the therapeutic and theoretical positioning of self-clone chatbots, and concluded with broader reflections on expected features, potential benefits, and risks. For non-expert participants, we used a similar semi-structured format but anchored the discussion in three conceptual use-case scenarios desig...",
+            "score": 0.7886
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b74",
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We utilized semi-structured interviews on Zoom, lasting around one hour, to give the flexibility to both the participants and the interviewer to expand on relevant points and views as needed. Since self-clone chatbots are a novel concept that participants were unlikely to have encountered before, we began each session by aligning on a shared definition. We introduced self-clone chatbots as interactive, text-based AI systems that mirror an individual\u2019s way of thinking and talking (e.g., personality, language use,...",
+            "score": 0.7997
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.797
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p6-b239",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "backgrounds and clinical or research perspectives, allowing the interviewer to identify relevant expertise, potential biases, and areas of emphasis for the conversation. This was followed by a focused discussion of the therapeutic and theoretical positioning of self-clone chatbots, and concluded with broader reflections on expected features, potential benefits, and risks. For non-expert participants, we used a similar semi-structured format but anchored the discussion in three conceptual use-case scenarios desig...",
+            "score": 0.7886
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b69",
+            "page_idx": 4,
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We primarily relied on mental-health experts (N=16) as our core source of insight, as their deep understanding of therapeutic processes, clinical risks, and evidence-based practice is essential for developing robust, safe, and theoretically grounded design principles for self-clone systems. However, we also recognized that an exclusively expert-driven lens could overemphasize clinical caution or introduce assumptions misaligned with end-users\u2019 values, expectations, and goals. To balance this, we incorporated inp...",
+            "reading_order_index": 69
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+            "page_number": 5,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding o..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 5\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots\none_sentence_summary: Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca\nresearch_problem: As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support.\nmethod_summary: Technologies that replicate an individual\u2019s perceptual or cognitive signature are rapidly converging into what HCI researchers now call AI clones.\ndataset_or_materials: promise chatbots hold is in redefining the contours of how mental health support is administered, offering the potential for deeply personalized support [108].\nmain_findings: Technologies that replicate an individual\u2019s perceptual or cognitive signature are rapidly converging into what HCI researchers now call AI clones.\nkey_terms: self-clone, mental, health, user, users, such, design, chatbots, therapeutic, self-clones, support, framework\n\nselected_text:\nRecruitment for the prospective, non-expert end-user group,"
+      },
+      "turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f",
+      "prompt_snapshot_id": "snap_6a90829198ea",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "fec3f6005725416cb39e164b7088482b",
+        "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+        "timestamp": "2026-05-18T10:05:37Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.64,
+        "distribution": {
+          "boredom": 0.12,
+          "confusion": 0.64,
+          "engagement": 0.12,
+          "frustration": 0.12
+        },
+        "trend": "rising",
+        "duration_sec": 2.5,
+        "intensity": 0.64,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "The recruitment of participants P17 through P22 is a deliberate move to counter the \"exclusively expert-driven lens\" that often dominates mental health technology design. While the 16 experts (P1\u2013P16) provide the necessary clinical rigor and safety guardrails, relying solely on them carries the risk of over-prioritizing caution. This can result in a tool that is medically \"safe\" but lacks the personal resonance or creative flexibility that a user actually needs for self-reflection.\n\nBy including this diverse group of non-experts through purposive sampling, the researchers introduce a \"complementary check\" on expert assumptions. These end-users help identify where clinical caution might clash with their actual values and expectations. For example, while an expert might focus on preventing risky AI behaviors, a user might prioritize how the chatbot captures their specific \"cognitive signature\" or emotional tone to make the experience feel authentic.\n\nUltimately, this recruitment choice addresses the central tension of the paper: balancing clinical safety with user engagement. It ensures the resulting framework isn't just a set of rigid medical rules, but a design that actually resonates with the people using it for personal growth.",
+      "created_at": 1779098776.7282543,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b74",
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We utilized semi-structured interviews on Zoom, lasting around one hour, to give the flexibility to both the participants and the interviewer to expand on relevant points and views as needed. Since self-clone chatbots are a novel concept that participants were unlikely to have encountered before, we began each session by aligning on a shared definition. We introduced self-clone chatbots as interactive, text-based AI systems that mirror an individual\u2019s way of thinking and talking (e.g., personality, language use,...",
+            "score": 0.7997
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.797
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p6-b239",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "backgrounds and clinical or research perspectives, allowing the interviewer to identify relevant expertise, potential biases, and areas of emphasis for the conversation. This was followed by a focused discussion of the therapeutic and theoretical positioning of self-clone chatbots, and concluded with broader reflections on expected features, potential benefits, and risks. For non-expert participants, we used a similar semi-structured format but anchored the discussion in three conceptual use-case scenarios desig...",
+            "score": 0.7886
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b74",
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We utilized semi-structured interviews on Zoom, lasting around one hour, to give the flexibility to both the participants and the interviewer to expand on relevant points and views as needed. Since self-clone chatbots are a novel concept that participants were unlikely to have encountered before, we began each session by aligning on a shared definition. We introduced self-clone chatbots as interactive, text-based AI systems that mirror an individual\u2019s way of thinking and talking (e.g., personality, language use,...",
+            "score": 0.7997
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.797
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p6-b239",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "backgrounds and clinical or research perspectives, allowing the interviewer to identify relevant expertise, potential biases, and areas of emphasis for the conversation. This was followed by a focused discussion of the therapeutic and theoretical positioning of self-clone chatbots, and concluded with broader reflections on expected features, potential benefits, and risks. For non-expert participants, we used a similar semi-structured format but anchored the discussion in three conceptual use-case scenarios desig...",
+            "score": 0.7886
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b69",
+            "page_idx": 4,
+            "page_number": 5,
+            "block_type": "text",
+            "markdown_content": "We primarily relied on mental-health experts (N=16) as our core source of insight, as their deep understanding of therapeutic processes, clinical risks, and evidence-based practice is essential for developing robust, safe, and theoretically grounded design principles for self-clone systems. However, we also recognized that an exclusively expert-driven lens could overemphasize clinical caution or introduce assumptions misaligned with end-users\u2019 values, expectations, and goals. To balance this, we incorporated inp...",
+            "reading_order_index": 69
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+            "page_number": 5,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding o..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 5\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: why_it_matters\n- Pedagogical move: Explain the functional impact of the recruitment choice on the study's findings.\n- Context focus: The tension between expert caution and non-expert creativity in designing self-clone chatbots.\n- Strategy title: Contrast expert caution with user creativity\n- Why selected: Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.\n- Instruction for answer: Explain how the inclusion of P17-P22 specifically addresses the risk of an 'exclusively expert-driven lens' mentioned in "
+      },
+      "turn_id": "turn_867039ebcadf441ba85d35c57301fc80",
+      "prompt_snapshot_id": "snap_540de4464fb8",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f",
+        "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+        "window_start": "2026-05-18T10:05:47.934Z",
+        "window_end": "2026-05-18T10:05:56.090Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.995,
+        "max_confidence": 0.999,
+        "avg_distribution": {
+          "boredom": 0.995,
+          "confusion": 0.005,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage describes how the researchers recruited a specific group of participants\u2014the \"non-expert end-users\" (labeled P17 through P22)\u2014to balance the technical and clinical insights provided by the expert group. While the study's core foundation is built on the perspectives of 16 mental health professionals, these six individuals represent the potential real-world users of self-clone chatbots.\n\nThe researchers used \"purposive sampling\" to ensure this small group wasn't uniform. By intentionally seeking out diversity in gender and previous experience with counseling, they aimed to gather a wider range of attitudes toward mental health support. A person who has been in therapy for years might have very different expectations or safety concerns regarding a \"self-clone\" chatbot compared to someone who has never sought professional help.\n\nThis recruitment strategy is crucial for the paper\u2019s goal of creating a \"safe and therapeutic\" framework. As noted in the surrounding context, relying only on experts can lead to a design that is overly cautious or disconnected from what users actually value. By including these non-experts, the authors ensure that the final design principles are grounded in both clinical expertise and the actual lived experiences and expectations of the people the technology is meant to serve."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "strategy_id": "why_it_matters_expert_vs_user",
+      "strategy_family": "why_it_matters",
+      "pedagogical_move": "Explain the functional impact of the recruitment choice on the study's findings.",
+      "context_focus": "The tension between expert caution and non-expert creativity in designing self-clone chatbots.",
+      "strategy_title": "Contrast expert caution with user creativity",
+      "strategy_short_description": "See how these specific participants prevent the study from being 'overly cautious.'",
+      "why_recommended": "Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.",
+      "strategy_reason": "Connecting dry recruitment data to the central tension of the paper (clinical safety vs. user resonance) provides a 'hook' to re-engage the user.",
+      "learning_state_snapshot": {
+        "session_id": "fec3f6005725416cb39e164b7088482b",
+        "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+        "timestamp": "2026-05-18T10:06:09Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.4187,
+        "distribution": {
+          "boredom": 0.4187,
+          "confusion": 0.1172,
+          "engagement": 0.0995,
+          "frustration": 0.3646
+        },
+        "trend": "falling",
+        "duration_sec": 42.3,
+        "intensity": 0.4187,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "stable",
+        "intensity": 0.995,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_46fa7b00d9c44f12aa54a2f4560acd5f"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 219,
+        "caption_length": 0,
+        "baseline_explanation_length": 1329,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "result",
+        "difficulty_hint": "formula"
+      }
+    }
+  ]
+}

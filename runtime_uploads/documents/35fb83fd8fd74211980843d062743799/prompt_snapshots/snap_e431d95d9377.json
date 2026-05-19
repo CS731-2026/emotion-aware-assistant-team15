@@ -1,0 +1,46 @@
+{
+  "snapshot_id": "snap_e431d95d9377",
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "highlight_id": "codex-repro-1779107277",
+  "turn_id": "turn_5fca355a37c341ada74b95a846034111",
+  "thread_id": "thread-codex-repro-1779107277",
+  "created_at": "2026-05-18T12:27:57Z",
+  "stage": "rag_baseline",
+  "source": "pdf-chat",
+  "provider": "mock",
+  "model": "mock",
+  "messages": [
+    {
+      "role": "user",
+      "content": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\nCodex persistence repro selected passage.\n\nmatched_block:\nCodex persistence repro selected passage.\n\nuseful_nearby_context:\n- Nearby context for persistence repro."
+    }
+  ],
+  "prompt_text": "user:\nYou are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 1\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\nCodex persistence repro selected passage.\n\nmatched_block:\nCodex persistence repro selected passage.\n\nuseful_nearby_context:\n- Nearby context for persistence repro.",
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 1,
+    "selected_text_preview": "Codex persistence repro selected passage.",
+    "selected_text_length": 41,
+    "has_area_crop": false,
+    "has_caption": false,
+    "matched_block_present": true,
+    "nearby_context_present": true,
+    "rag_chunk_count": 0,
+    "paper_profile_present": false,
+    "has_baseline_explanation": false,
+    "baseline_explanation_length": 0,
+    "has_reaction_window_summary": false,
+    "support_cue": null,
+    "selected_strategy_id": null,
+    "strategy_family": null,
+    "pedagogical_move": null,
+    "context_focus": null,
+    "reaction_window_duration": null,
+    "reaction_window_avg_confidence": null
+  },
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": false
+  }
+}

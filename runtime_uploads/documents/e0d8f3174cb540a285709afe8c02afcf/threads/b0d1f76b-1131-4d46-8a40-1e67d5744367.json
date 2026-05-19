@@ -1,0 +1,638 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "b0d1f76b-1131-4d46-8a40-1e67d5744367",
+  "created_at": 1778943413.1594734,
+  "updated_at": 1778943451.1294677,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "b0d1f76b-1131-4d46-8a40-1e67d5744367",
+    "highlight_type": "text",
+    "page_number": 2,
+    "selected_text": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38 ].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 438.804688,
+        "y1": 693.164062,
+        "x2": 771.254456,
+        "y2": 706.664062,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 708.351562,
+        "x2": 771.228882,
+        "y2": 721.851562,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 723.4375,
+        "x2": 593.078857,
+        "y2": 736.9375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.519295,
+        "y1": 0.633878,
+        "x2": 0.912727,
+        "y2": 0.646223,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.647766,
+        "x2": 0.912697,
+        "y2": 0.660112,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.661562,
+        "x2": 0.701868,
+        "y2": 0.673907,
+        "pageNumber": 2
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 519.295,
+        "y1": 633.878,
+        "x2": 912.727,
+        "y2": 646.223,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 647.766,
+        "x2": 912.697,
+        "y2": 660.112,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 661.562,
+        "x2": 701.868,
+        "y2": 673.907,
+        "pageNumber": 2
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+      "page_number": 2,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves as a therapeutic outlet for stress relief [1, 42]. Then, what are the characteristics of the journal in terms of writing style? Prior research generally offers: writing regularly for a certain period of time, writing down your deep feelings and thoughts as openly as possible, and writing without worrying about writing skills such as grammar and spelling and evaluation [20, 37, 44]. As such, journaling gives writers a lot of freedom and seems easy to do, but it can be overwhelming and challenging for some writers who are not accustomed to writing. Empirically, people report difficulties in journaling with starting the first sentence, with the ability to write and express themselves, and with staying"
+    },
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+      "page_number": 2,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LLM \u2022 Results from the field deployment study conducted for ten days with 24 participants using the TP approach, where we gathered qualitative and quantitative data on how people embrace and leverage LLMs for journal writing \u2022 Future opportunities and design considerations of using an LLM for personal journal writing based on participants\u2019 experiences using DiaryMate Through this study, we offer insights into how individuals interact with, perceive, and derive value from LLM-assisted writing tools in a personal context. This exploration extends the current understanding of LLM applications beyond professional or creative writing domains to include more personal and subjective writing context, an area that has been less explored in the HCI research field. Furthermore, by focusing on personal journal writing, the study contributes to a broader discourse on the role of LLMs in supporting introspective and reflective practices."
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves as a therapeutic outlet for stress relief [1, 42]. Then, what are the characteristics of the journal in terms of writing style? Prior research generally offers: writing regularly for a certain period of time, writing down your deep feelings and thoughts as openly as possible, and writing without worrying about writing skills such as grammar and spelling and evaluation [20, 37, 44]. As such, journaling gives writers a lot of freedom and seems easy to do, but it can be overwhelming and challenging for some writers who are not accustomed to writing. Empirically, people report difficulties in journaling with starting the first sentence, with the ability to write and express themselves, and with staying"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LLM \u2022 Results from the field deployment study conducted for ten days with 24 participants using the TP approach, where we gathered qualitative and quantitative data on how people embrace and leverage LLMs for journal writing \u2022 Future opportunities and design considerations of using an LLM for personal journal writing based on participants\u2019 experiences using DiaryMate Through this study, we offer insights into how individuals interact with, perceive, and derive value from LLM-assisted writing tools in a personal context. This exploration extends the current understanding of LLM applications beyond professional or creative writing domains to include more personal and subjective writing context, an area that has been less explored in the HCI research field. Furthermore, by focusing on personal journal writing, the study contributes to a broader discourse on the role of LLMs in supporting introspective and reflective practices."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing"
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+    "learning_state": {
+      "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-16T14:56:44Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.64,
+      "distribution": {
+        "boredom": 0.12,
+        "confusion": 0.64,
+        "engagement": 0.12,
+        "frustration": 0.12
+      },
+      "trend": "rising",
+      "duration_sec": 2.5,
+      "intensity": 0.64,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2"
+  },
+  "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+  "learning_state_snapshot": {
+    "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-16T14:57:23Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.8948,
+    "distribution": {
+      "boredom": 0.8948,
+      "confusion": 0.1017,
+      "engagement": 0.0002,
+      "frustration": 0.0033
+    },
+    "trend": "falling",
+    "duration_sec": 12.8,
+    "intensity": 0.8948,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "warnings": [],
+    "face_detection": {
+      "detector": "opencv_haar",
+      "face_found": true,
+      "confidence": 0.7,
+      "bbox": [
+        37,
+        15,
+        120,
+        120
+      ],
+      "fallback_used": false,
+      "warning": null
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "critique_assumptions",
+      "title": "The Tension Between AI and Authenticity",
+      "short_description": "Explore the inherent conflict in using a statistical model (LLM) for a deeply personal, non-statistical task like journaling.",
+      "why_recommended": "The deepening cue indicates the user is ready to move beyond the definition to the core research challenge: how an AI can assist without 'overriding' the user's unique internal world.",
+      "prompt_instruction": "Discuss the tension mentioned in the paper between the statistical nature of LLMs and the 'authentic voice' required for journaling. Focus on why the authors believe this is a unique challenge compared to professional writing assistants.",
+      "expected_answer_shape": [
+        "analysis of the conflict between AI patterns and personal subjectivity",
+        "explanation of 'authentic voice' in the context of the paper"
+      ],
+      "recommended": true,
+      "recommended_score": 0.95
+    },
+    {
+      "strategy_id": "limitations_and_implications",
+      "title": "Implications of AI in Self-Reflection",
+      "short_description": "Analyze the potential consequences of an AI intervening in a user's private process of self-reflection.",
+      "why_recommended": "Responds to the deepening cue by looking ahead at the 'stakes' of the study, specifically how AI might influence a user's therapeutic or introspective outcomes.",
+      "prompt_instruction": "Explain the potential risks and benefits of an AI 'intervening' in a user's private self-reflection process as suggested by the paper's focus on 'inner emotions' and 'meaningful insights'.",
+      "expected_answer_shape": [
+        "discussion of therapeutic benefits vs. the risk of AI-driven bias in reflection"
+      ],
+      "recommended": false,
+      "recommended_score": 0.85
+    },
+    {
+      "strategy_id": "compare_methods",
+      "title": "Journaling vs. Productivity-Focused AI",
+      "short_description": "Compare the requirements of a journaling assistant with traditional AI writing tools.",
+      "why_recommended": "To provide technical depth, this strategy contrasts the 'classic method' of journaling with the 'productivity' focus of standard LLM applications mentioned in the baseline.",
+      "prompt_instruction": "Contrast the design goals of DiaryMate with traditional writing assistants (like those for grammar or professional emails). Explain how the 'freedom' of journaling changes the technical requirements for the AI.",
+      "expected_answer_shape": [
+        "comparison table or list of differences in goals",
+        "explanation of why grammar/correctness is secondary in this context"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8
+    }
+  ],
+  "selected_strategy_id": "critique_assumptions",
+  "selected_strategy": {
+    "strategy_id": "critique_assumptions",
+    "title": "The Tension Between AI and Authenticity",
+    "short_description": "Explore the inherent conflict in using a statistical model (LLM) for a deeply personal, non-statistical task like journaling.",
+    "why_recommended": "The deepening cue indicates the user is ready to move beyond the definition to the core research challenge: how an AI can assist without 'overriding' the user's unique internal world.",
+    "prompt_instruction": "Discuss the tension mentioned in the paper between the statistical nature of LLMs and the 'authentic voice' required for journaling. Focus on why the authors believe this is a unique challenge compared to professional writing assistants.",
+    "expected_answer_shape": [
+      "analysis of the conflict between AI patterns and personal subjectivity",
+      "explanation of 'authentic voice' in the context of the paper"
+    ],
+    "recommended": true,
+    "recommended_score": 0.95
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "duration_sec": 8,
+    "trend": "rising",
+    "intensity": 0.846,
+    "refresh_requested": false,
+    "support_cue": "deepening",
+    "source_turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage establishes the foundational definition of journaling used in the study. By describing it as a \"classic method\" for recording not only objective facts\u2014like travels or findings\u2014but also subjective daily experiences and internal thoughts, the authors are framing journaling as a deeply personal and introspective activity.\n\nThis definition is critical to the paper\u2019s argument because it sets the stage for a unique challenge in Human-AI collaboration. Most writing assistants focus on productivity or formal correctness in professional settings. However, because journaling is about a person\u2019s \"inner emotions\" and \"meaningful insights\" (as noted in the surrounding text), the stakes for AI involvement are different. The assistant isn't just helping with grammar; it's potentially intervening in a user's private process of self-reflection.\n\nEssentially, the authors use this point to justify why they are studying this specific domain. They want to see if an LLM can successfully navigate such a sensitive, subjective task without overriding the user's authentic voice. This definition serves as the benchmark for what their system, DiaryMate, is trying to support: the recording of a person's unique internal world.",
+      "created_at": 1778943413.1594803,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8296
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8248
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8207
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8296
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8248
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8207
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "reading_order_index": 25
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing",
+            "reading_order_index": 26
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+            "page_number": 2,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 2\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectives, yet showed signs of over-reliance by prioritizing AI-generated emotional expressions over their own.\nkey_terms: human-centered computing, empirical studies in hci, journaling, "
+      },
+      "turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-16T14:56:44Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.64,
+        "distribution": {
+          "boredom": 0.12,
+          "confusion": 0.64,
+          "engagement": 0.12,
+          "frustration": 0.12
+        },
+        "trend": "rising",
+        "duration_sec": 2.5,
+        "intensity": 0.64,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage defines journaling as more than just a log of events; it is a deeply personal practice for capturing \"daily experiences and thoughts.\" The authors emphasize that by disclosing inner emotions, individuals use journaling as a tool for self-discovery and insight. This sets the stage for the paper\u2019s core tension: the conflict between the highly subjective, \"authentic voice\" required for journaling and the statistical nature of Large Language Models (LLMs).\n\nThe unique challenge here is that while LLMs are excellent at generating fluent text, they do so based on statistical projections from massive datasets\u2014essentially reflecting what is most common or probable across millions of people. In contrast, the paper argues that journaling is inherently about the \"individual\" and their unique internal world. Unlike professional writing assistants, where standard or \"correct\" phrasing is often the goal, a journaling assistant risks overriding the user\u2019s personal truth with generic, AI-generated sentiments.\n\nThe authors are concerned that this collaborative process might lead to a loss of authenticity. If a user relies too heavily on an LLM's suggestions, they might adopt emotional expressions that are linguistically polished but do not accurately reflect their own lived experiences. The paper investigates whether an AI can act as a helpful \"nudge\" to explore new perspectives or if it ultimately interferes with the user\u2019s ability to find and use their own voice.",
+      "created_at": 1778943451.1294646,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8296
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8248
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8207
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8296
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8248
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8207
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "reading_order_index": 25
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing",
+            "reading_order_index": 26
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+            "page_number": 2,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 2\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy title: The Tension Between AI and Authenticity\n- Why selected: The deepening cue indicates the user is ready to move beyond the definition to the core research challenge: how an AI can assist without 'overriding' the user's unique internal world.\n- Instruction for answer: Discuss the tension mentioned in the paper between the statistical nature of LLMs and the 'authentic voice' required for journaling. Focus on why the authors believe this is a unique challenge compared to professional writing assistants.\n- Expected answer shape: analysis of the conflict between AI patterns and personal subjectivity, "
+      },
+      "turn_id": "turn_92a7c02c5f9d4993ba21dc9cb0dbdd81",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2",
+        "highlight_id": "b0d1f76b-1131-4d46-8a40-1e67d5744367",
+        "window_start": "2026-05-16T14:56:53.231Z",
+        "window_end": "2026-05-16T14:57:01.275Z",
+        "duration_sec": 8,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.846,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.244,
+          "confusion": 0.203,
+          "engagement": 0.316,
+          "frustration": 0.237
+        },
+        "trend": "rising",
+        "stability": "mixed",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "face_detection_summary": {
+          "mode": "opencv_haar",
+          "fallback_used": false
+        },
+        "baseline_explanation": "This passage establishes the foundational definition of journaling used in the study. By describing it as a \"classic method\" for recording not only objective facts\u2014like travels or findings\u2014but also subjective daily experiences and internal thoughts, the authors are framing journaling as a deeply personal and introspective activity.\n\nThis definition is critical to the paper\u2019s argument because it sets the stage for a unique challenge in Human-AI collaboration. Most writing assistants focus on productivity or formal correctness in professional settings. However, because journaling is about a person\u2019s \"inner emotions\" and \"meaningful insights\" (as noted in the surrounding text), the stakes for AI involvement are different. The assistant isn't just helping with grammar; it's potentially intervening in a user's private process of self-reflection.\n\nEssentially, the authors use this point to justify why they are studying this specific domain. They want to see if an LLM can successfully navigate such a sensitive, subjective task without overriding the user's authentic voice. This definition serves as the benchmark for what their system, DiaryMate, is trying to support: the recording of a person's unique internal world."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "strategy_id": "critique_assumptions",
+      "strategy_title": "The Tension Between AI and Authenticity",
+      "strategy_short_description": "Explore the inherent conflict in using a statistical model (LLM) for a deeply personal, non-statistical task like journaling.",
+      "strategy_reason": "The deepening cue indicates the user is ready to move beyond the definition to the core research challenge: how an AI can assist without 'overriding' the user's unique internal world.",
+      "learning_state_snapshot": {
+        "session_id": "dcdeb22b13da4251a051c6625b7da5aa",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-16T14:57:23Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.8948,
+        "distribution": {
+          "boredom": 0.8948,
+          "confusion": 0.1017,
+          "engagement": 0.0002,
+          "frustration": 0.0033
+        },
+        "trend": "falling",
+        "duration_sec": 12.8,
+        "intensity": 0.8948,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "warnings": [],
+        "face_detection": {
+          "detector": "opencv_haar",
+          "face_found": true,
+          "confidence": 0.7,
+          "bbox": [
+            37,
+            15,
+            120,
+            120
+          ],
+          "fallback_used": false,
+          "warning": null
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "duration_sec": 8,
+        "trend": "rising",
+        "intensity": 0.846,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "opencv_haar",
+        "fallback_used": false
+      }
+    }
+  ],
+  "planner_mode": "llm",
+  "reaction_window_summary": {
+    "source_turn_id": "turn_2175b0e8c8424036be6f1a5c0b4bfcc2",
+    "highlight_id": "b0d1f76b-1131-4d46-8a40-1e67d5744367",
+    "window_start": "2026-05-16T14:56:53.231Z",
+    "window_end": "2026-05-16T14:57:01.275Z",
+    "duration_sec": 8,
+    "sample_count": 5,
+    "dominant_state": "engagement",
+    "secondary_state": "boredom",
+    "avg_confidence": 0.846,
+    "max_confidence": 1,
+    "avg_distribution": {
+      "boredom": 0.244,
+      "confusion": 0.203,
+      "engagement": 0.316,
+      "frustration": 0.237
+    },
+    "trend": "rising",
+    "stability": "mixed",
+    "support_cue": "deepening",
+    "support_cue_label": "Deepening cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "face_detection_summary": {
+      "mode": "opencv_haar",
+      "fallback_used": false
+    },
+    "baseline_explanation": "This passage establishes the foundational definition of journaling used in the study. By describing it as a \"classic method\" for recording not only objective facts\u2014like travels or findings\u2014but also subjective daily experiences and internal thoughts, the authors are framing journaling as a deeply personal and introspective activity.\n\nThis definition is critical to the paper\u2019s argument because it sets the stage for a unique challenge in Human-AI collaboration. Most writing assistants focus on productivity or formal correctness in professional settings. However, because journaling is about a person\u2019s \"inner emotions\" and \"meaningful insights\" (as noted in the surrounding text), the stakes for AI involvement are different. The assistant isn't just helping with grammar; it's potentially intervening in a user's private process of self-reflection.\n\nEssentially, the authors use this point to justify why they are studying this specific domain. They want to see if an LLM can successfully navigate such a sensitive, subjective task without overriding the user's authentic voice. This definition serves as the benchmark for what their system, DiaryMate, is trying to support: the recording of a person's unique internal world."
+  },
+  "support_cue": "deepening",
+  "support_cue_label": "Deepening cue",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "strategy_reason": "The deepening cue indicates the user is ready to move beyond the definition to the core research challenge: how an AI can assist without 'overriding' the user's unique internal world."
+}

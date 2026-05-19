@@ -1,0 +1,7 @@
+{
+  "document_id": "b838732beae94528904487531c05f02f",
+  "parser": "pdftotext_fallback",
+  "status": "failed",
+  "message": "No parsed blocks were produced by MinerU or pdftotext fallback.",
+  "blocks": []
+}

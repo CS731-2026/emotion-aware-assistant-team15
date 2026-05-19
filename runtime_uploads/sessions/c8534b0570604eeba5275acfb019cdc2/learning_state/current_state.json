@@ -1,0 +1,50 @@
+{
+  "session_id": "c8534b0570604eeba5275acfb019cdc2",
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "timestamp": "2026-05-18T12:24:38Z",
+  "source": "webcam_model",
+  "model_output_type": "academic_state",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "boredom",
+  "confidence": 0.9651,
+  "distribution": {
+    "boredom": 0.9651,
+    "confusion": 0.0001,
+    "engagement": 0.0001,
+    "frustration": 0.0348
+  },
+  "trend": "falling",
+  "duration_sec": 153.7,
+  "intensity": 0.9651,
+  "stability": "stable",
+  "trigger_recommended": false,
+  "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+  "warnings": [],
+  "face_detection": {
+    "detector": "openface",
+    "requested_detector": "openface",
+    "configured_detector": "openface",
+    "actual_detector": "openface",
+    "face_found": true,
+    "confidence": 0.98,
+    "landmark_count": 68,
+    "crop_strategy": "openface_landmark_bbox",
+    "crop_mode": "square_face_context",
+    "crop_parameters": {
+      "scale": 1.35,
+      "y_bias": -0.04,
+      "top_extra": 0.22,
+      "bottom_extra": 0.12,
+      "make_square": true
+    },
+    "frame_size": [
+      640,
+      480
+    ],
+    "mirrored": false,
+    "fallback_used": false,
+    "warning": null,
+    "warnings": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "PDF Reader Test",
+  "one_sentence_summary": "This paper examines pdf reader test.",
+  "research_problem": "",
+  "method_summary": "",
+  "dataset_or_materials": "",
+  "main_findings": "",
+  "key_terms": [
+    "reader",
+    "test",
+    "highlighted",
+    "passage",
+    "comes",
+    "page"
+  ],
+  "section_map": [
+    {
+      "heading": "PDF Reader Test",
+      "page_number": 1,
+      "block_id": "55bd336ccaf94548ba0c611b9baa5019-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "The highlighted passage comes from a PDF page.",
+      "page_number": 1,
+      "block_id": "55bd336ccaf94548ba0c611b9baa5019-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

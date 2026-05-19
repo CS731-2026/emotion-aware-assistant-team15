@@ -1,0 +1,999 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+  "created_at": 1779104274.570176,
+  "updated_at": 1779104356.4774427,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+    "highlight_type": "text",
+    "page_number": 3,
+    "selected_text": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and fiction [ 46 ], as well as non-fiction areas such as argumentative essays [29] and scientific writings [ 17].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 109.633911,
+        "y1": 844.429688,
+        "x2": 404.898438,
+        "y2": 857.929688,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 74.273438,
+        "y1": 859.515625,
+        "x2": 406.06958,
+        "y2": 873.015625,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 74.273438,
+        "y1": 874.710938,
+        "x2": 407.940186,
+        "y2": 888.210938,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.129744,
+        "y1": 0.772206,
+        "x2": 0.47917,
+        "y2": 0.784551,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.087898,
+        "y1": 0.786001,
+        "x2": 0.480556,
+        "y2": 0.798347,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.087898,
+        "y1": 0.799897,
+        "x2": 0.482769,
+        "y2": 0.812242,
+        "pageNumber": 3
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 129.744,
+        "y1": 772.206,
+        "x2": 479.17,
+        "y2": 784.551,
+        "pageNumber": 3
+      },
+      {
+        "x1": 87.898,
+        "y1": 786.001,
+        "x2": 480.556,
+        "y2": 798.347,
+        "pageNumber": 3
+      },
+      {
+        "x1": 87.898,
+        "y1": 799.897,
+        "x2": 482.769,
+        "y2": 812.242,
+        "pageNumber": 3
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b32",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b32",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaphor writing [16], and fiction [46], as well as non-fiction areas such as argumentative essays [29] and scientific writings [17]. Early studies first studied how writers work with LLMs, suggesting interaction methods for human-LLM collaborative writing like infilling, continuation, and elaboration. These interaction methods are now commonly used when developing human-AI collaborative writing systems [47]. Later research expanded its focus to encompass the overall writing process and diverse contexts. For instance,"
+    },
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b30",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "2.2"
+    },
+    "next_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b33",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "CHI \u201924, May 11\u201316, 2024, Honolulu, HI, USA"
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b32",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaphor writing [16], and fiction [46], as well as non-fiction areas such as argumentative essays [29] and scientific writings [17]. Early studies first studied how writers work with LLMs, suggesting interaction methods for human-LLM collaborative writing like infilling, continuation, and elaboration. These interaction methods are now commonly used when developing human-AI collaborative writing systems [47]. Later research expanded its focus to encompass the overall writing process and diverse contexts. For instance,"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b31",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Language Models for Writing Support"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to tailor and apply LLMs across diverse writing domains and contexts rather than merely employing them for general writing support. Additionally, the use of LLMs is branching out into diverse realms of writing, such as social media [41], where personal resonance is crucial. In this study, we delve into the unexplored potential of LLMs in personal writing, examining both its opportunities and challenges. Through this study, we aim to offer insights into designing interactions for human-AI collaborative writing, particularly in personal and reflective writing domains."
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "cda9b7a969f84c24bb48437318fc19db",
+    "learning_state": {
+      "session_id": "cda9b7a969f84c24bb48437318fc19db",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-18T11:37:45Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.67,
+      "distribution": {
+        "boredom": 0.11,
+        "confusion": 0.67,
+        "engagement": 0.11,
+        "frustration": 0.11
+      },
+      "trend": "rising",
+      "duration_sec": 5,
+      "intensity": 0.67,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31"
+  },
+  "session_id": "cda9b7a969f84c24bb48437318fc19db",
+  "learning_state_snapshot": {
+    "session_id": "cda9b7a969f84c24bb48437318fc19db",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-18T11:38:27Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9986,
+    "distribution": {
+      "boredom": 0.9986,
+      "confusion": 0,
+      "engagement": 0.0007,
+      "frustration": 0.0007
+    },
+    "trend": "stable",
+    "duration_sec": 10.2,
+    "intensity": 0.9986,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "warnings": [
+      "OpenFace unavailable or failed; using OpenCV Haar fallback."
+    ],
+    "face_detection": {
+      "detector": "opencv_haar",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "opencv_haar",
+      "face_found": true,
+      "confidence": 0.7,
+      "crop_strategy": "expanded_square_opencv_haar_fallback",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": true,
+      "warning": "OpenFace unavailable or failed; using OpenCV Haar fallback.",
+      "warnings": [
+        "OpenFace unavailable or failed; using OpenCV Haar fallback."
+      ]
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "deep_technical_explanation",
+      "strategy_family": "deep_technical_explanation",
+      "pedagogical_move": "Deepen the technical explanation",
+      "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+      "title": "Give a deeper technical read of this passage",
+      "short_description": "Use the current passage and context for a more detailed technical explanation.",
+      "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.",
+      "prompt_instruction": "Explain technical assumptions, mechanism, and implications without adding unsupported facts.",
+      "expected_answer_shape": [
+        "Technical reading",
+        "Assumptions",
+        "Implications"
+      ],
+      "recommended": true,
+      "recommended_score": 0.88
+    },
+    {
+      "strategy_id": "critique_assumptions",
+      "strategy_family": "critique_assumptions",
+      "pedagogical_move": "Critique the core assumption",
+      "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+      "title": "Examine the assumptions",
+      "short_description": "Look at what the selected passage seems to rely on.",
+      "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with look at what the selected passage seems to rely on.",
+      "prompt_instruction": "Identify assumptions that are visible in the provided context and separate them from speculation.",
+      "expected_answer_shape": [
+        "Visible assumptions",
+        "Why they matter",
+        "What remains unknown"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8
+    },
+    {
+      "strategy_id": "connect_to_related_work",
+      "strategy_family": "connect_to_related_work",
+      "pedagogical_move": "Connect the passage to related work",
+      "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+      "title": "Use a structured breakdown for this passage",
+      "short_description": "Organize the explanation without assuming a specific support need.",
+      "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+      "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+      "expected_answer_shape": [
+        "Claim",
+        "Evidence",
+        "Purpose"
+      ],
+      "recommended": false,
+      "recommended_score": 0.72
+    }
+  ],
+  "selected_strategy_id": "deep_technical_explanation",
+  "selected_strategy": {
+    "strategy_id": "deep_technical_explanation",
+    "strategy_family": "deep_technical_explanation",
+    "pedagogical_move": "Deepen the technical explanation",
+    "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+    "title": "Give a deeper technical read of this passage",
+    "short_description": "Use the current passage and context for a more detailed technical explanation.",
+    "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.",
+    "prompt_instruction": "Explain technical assumptions, mechanism, and implications without adding unsupported facts.",
+    "expected_answer_shape": [
+      "Technical reading",
+      "Assumptions",
+      "Implications"
+    ],
+    "recommended": true,
+    "recommended_score": 0.88
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "duration_sec": 8.1,
+    "trend": "stable",
+    "intensity": 0.81,
+    "refresh_requested": false,
+    "support_cue": "deepening",
+    "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+    "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+    "window_start": "2026-05-18T11:37:54.706Z",
+    "window_end": "2026-05-18T11:38:02.790Z",
+    "duration_sec": 8.1,
+    "sample_count": 5,
+    "dominant_state": "engagement",
+    "secondary_state": "frustration",
+    "avg_confidence": 0.81,
+    "max_confidence": 0.997,
+    "avg_distribution": {
+      "boredom": 0.001,
+      "confusion": 0,
+      "engagement": 0.81,
+      "frustration": 0.189
+    },
+    "trend": "stable",
+    "stability": "stable",
+    "support_cue": "deepening",
+    "support_cue_label": "Deepening cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage provides a brief survey of the existing research landscape regarding AI-powered writing assistance. It categorizes the different domains where Large Language Models (LLMs) have already been tested as collaborative tools, ranging from creative arts like fiction and metaphor generation to more structured non-fiction like scientific and argumentative writing.\n\nIn the context of the paper, this list serves to establish the \"prior art\" and identify a gap in the research. The authors are pointing out that while we know a lot about how AI helps people write stories or essays, we know much less about how it handles **personal, introspective writing** like journaling.\n\nThis distinction is central to the paper's argument. Journaling is unique because it isn't just about producing a polished \"output\" for an audience; it\u2019s about the writer's own internal reflection and emotional processing. By highlighting these other established fields, the authors set the stage for their study on *DiaryMate*, exploring whether the collaborative benefits seen in fiction or essay writing translate to the much more private and sensitive domain of personal diaries."
+  },
+  "turn_metadata": {
+    "turn_2114c91ac74b46cc9198f1564eb04d31": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+        "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+        "window_start": "2026-05-18T11:37:54.706Z",
+        "window_end": "2026-05-18T11:38:02.790Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.81,
+        "max_confidence": 0.997,
+        "avg_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.81,
+          "frustration": 0.189
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage provides a brief survey of the existing research landscape regarding AI-powered writing assistance. It categorizes the different domains where Large Language Models (LLMs) have already been tested as collaborative tools, ranging from creative arts like fiction and metaphor generation to more structured non-fiction like scientific and argumentative writing.\n\nIn the context of the paper, this list serves to establish the \"prior art\" and identify a gap in the research. The authors are pointing out that while we know a lot about how AI helps people write stories or essays, we know much less about how it handles **personal, introspective writing** like journaling.\n\nThis distinction is central to the paper's argument. Journaling is unique because it isn't just about producing a polished \"output\" for an audience; it\u2019s about the writer's own internal reflection and emotional processing. By highlighting these other established fields, the authors set the stage for their study on *DiaryMate*, exploring whether the collaborative benefits seen in fiction or essay writing translate to the much more private and sensitive domain of personal diaries."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "duration_sec": 8.1,
+        "trend": "stable",
+        "intensity": 0.81,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "deep_technical_explanation",
+          "strategy_family": "deep_technical_explanation",
+          "pedagogical_move": "Deepen the technical explanation",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Give a deeper technical read of this passage",
+          "short_description": "Use the current passage and context for a more detailed technical explanation.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.",
+          "prompt_instruction": "Explain technical assumptions, mechanism, and implications without adding unsupported facts.",
+          "expected_answer_shape": [
+            "Technical reading",
+            "Assumptions",
+            "Implications"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "critique_assumptions",
+          "strategy_family": "critique_assumptions",
+          "pedagogical_move": "Critique the core assumption",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Examine the assumptions",
+          "short_description": "Look at what the selected passage seems to rely on.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with look at what the selected passage seems to rely on.",
+          "prompt_instruction": "Identify assumptions that are visible in the provided context and separate them from speculation.",
+          "expected_answer_shape": [
+            "Visible assumptions",
+            "Why they matter",
+            "What remains unknown"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "connect_to_related_work",
+          "strategy_family": "connect_to_related_work",
+          "pedagogical_move": "Connect the passage to related work",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Use a structured breakdown for this passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 206,
+        "caption_length": 0,
+        "baseline_explanation_length": 1163,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "deepening",
+        "allowed_strategy_families": [
+          "deep_technical_explanation",
+          "critique_assumptions",
+          "connect_to_related_work",
+          "limitations_and_implications",
+          "compare_methods"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    },
+    "turn_b04407284b7c4ee9a1cc5a967b3e82e6": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_b04407284b7c4ee9a1cc5a967b3e82e6",
+        "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+        "window_start": "2026-05-18T11:38:38.067Z",
+        "window_end": "2026-05-18T11:38:46.138Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.994,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.994,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.005
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage outlines the current landscape of human-AI collaborative writing, categorizing existing research into two technical domains: creative and non-fiction. The authors highlight that Large Language Models (LLMs) have moved beyond simple discriminative tasks\u2014like identifying a typo\u2014to generative tasks that require a grasp of complex semantic structures, such as narrative arcs in fiction or logical flow in argumentative essays.\n\nThe technical assumption here is that the collaborative mechanisms used in these domains are transferable yet distinct. For example, in creative fields, the AI acts as a source of divergent thinking, providing \"inspiration\" or \"new story developments.\" In contrast, in non-fiction or scientific writing, the AI is often leveraged for convergent tasks, such as refining arguments or ensuring technical formalization. By listing these, the authors establish a baseline of \"functional\" and \"expressive\" writing support to contrast with their specific focus on \"introspective\" writing.\n\nThe implication for this paper is that while we have developed sophisticated models for output-oriented writing (where the goal is a finished product for others to read), we have less understanding of how these mechanisms perform in private, personal contexts. Journaling is unique because it isn't just about the quality of the prose, but about the process of reflection. By citing these established domains, the authors frame their study as an expansion of HCI research into the \"less explored\" and highly subjective territory of internal self-expression."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.1,
+        "trend": "rising",
+        "intensity": 0.994,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_b04407284b7c4ee9a1cc5a967b3e82e6"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Explain why this passage matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with connect the selected passage to the paper's larger argument.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with condense the previous explanation into the central point before expanding.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+          "title": "Use a structured breakdown for this passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 206,
+        "caption_length": 0,
+        "baseline_explanation_length": 1577,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  },
+  "support_cue": "deepening",
+  "support_cue_label": "Deepening cue",
+  "planner_mode": "heuristic",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 206,
+    "caption_length": 0,
+    "baseline_explanation_length": 1163,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 3,
+    "reaction_window_duration_sec": 8.1,
+    "support_cue": "deepening",
+    "allowed_strategy_families": [
+      "deep_technical_explanation",
+      "critique_assumptions",
+      "connect_to_related_work",
+      "limitations_and_implications",
+      "compare_methods"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "unknown",
+    "difficulty_hint": "technical_terms"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage provides a brief survey of the existing research landscape regarding AI-powered writing assistance. It categorizes the different domains where Large Language Models (LLMs) have already been tested as collaborative tools, ranging from creative arts like fiction and metaphor generation to more structured non-fiction like scientific and argumentative writing.\n\nIn the context of the paper, this list serves to establish the \"prior art\" and identify a gap in the research. The authors are pointing out that while we know a lot about how AI helps people write stories or essays, we know much less about how it handles **personal, introspective writing** like journaling.\n\nThis distinction is central to the paper's argument. Journaling is unique because it isn't just about producing a polished \"output\" for an audience; it\u2019s about the writer's own internal reflection and emotional processing. By highlighting these other established fields, the authors set the stage for their study on *DiaryMate*, exploring whether the collaborative benefits seen in fiction or essay writing translate to the much more private and sensitive domain of personal diaries.",
+      "created_at": 1779104274.5702055,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical adv...",
+            "score": 0.8323
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can...",
+            "score": 0.8321
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8234
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical adv...",
+            "score": 0.8323
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can...",
+            "score": 0.8321
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8234
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b31",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Language Models for Writing Support",
+            "reading_order_index": 31
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "reading_order_index": 34
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b32",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaph..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectives, yet showed signs of over-reliance by prioritizing AI-generated emotional expressions over their own.\nkey_terms: human-centered computing, empirical studies in hci, journaling, "
+      },
+      "turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+      "prompt_snapshot_id": "snap_6bf8a3dac84d",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "cda9b7a969f84c24bb48437318fc19db",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-18T11:37:45Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.67,
+        "distribution": {
+          "boredom": 0.11,
+          "confusion": 0.67,
+          "engagement": 0.11,
+          "frustration": 0.11
+        },
+        "trend": "rising",
+        "duration_sec": 5,
+        "intensity": 0.67,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage outlines the current landscape of human-AI collaborative writing, categorizing existing research into two technical domains: creative and non-fiction. The authors highlight that Large Language Models (LLMs) have moved beyond simple discriminative tasks\u2014like identifying a typo\u2014to generative tasks that require a grasp of complex semantic structures, such as narrative arcs in fiction or logical flow in argumentative essays.\n\nThe technical assumption here is that the collaborative mechanisms used in these domains are transferable yet distinct. For example, in creative fields, the AI acts as a source of divergent thinking, providing \"inspiration\" or \"new story developments.\" In contrast, in non-fiction or scientific writing, the AI is often leveraged for convergent tasks, such as refining arguments or ensuring technical formalization. By listing these, the authors establish a baseline of \"functional\" and \"expressive\" writing support to contrast with their specific focus on \"introspective\" writing.\n\nThe implication for this paper is that while we have developed sophisticated models for output-oriented writing (where the goal is a finished product for others to read), we have less understanding of how these mechanisms perform in private, personal contexts. Journaling is unique because it isn't just about the quality of the prose, but about the process of reflection. By citing these established domains, the authors frame their study as an expansion of HCI research into the \"less explored\" and highly subjective territory of internal self-expression.",
+      "created_at": 1779104317.8877447,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical adv...",
+            "score": 0.8323
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can...",
+            "score": 0.8321
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8234
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b23",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical adv...",
+            "score": 0.8323
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can...",
+            "score": 0.8321
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.8234
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b31",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Language Models for Writing Support",
+            "reading_order_index": 31
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "reading_order_index": 34
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b32",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaph..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: deep_technical_explanation\n- Pedagogical move: Deepen the technical explanation\n- Context focus: This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and\n- Strategy title: Give a deeper technical read of this passage\n- Why selected: The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.\n- Instruction for answer: Explain technical assumptions, mechanism, and implications without "
+      },
+      "turn_id": "turn_b04407284b7c4ee9a1cc5a967b3e82e6",
+      "prompt_snapshot_id": "snap_a860403c6777",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+        "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+        "window_start": "2026-05-18T11:37:54.706Z",
+        "window_end": "2026-05-18T11:38:02.790Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.81,
+        "max_confidence": 0.997,
+        "avg_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.81,
+          "frustration": 0.189
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage provides a brief survey of the existing research landscape regarding AI-powered writing assistance. It categorizes the different domains where Large Language Models (LLMs) have already been tested as collaborative tools, ranging from creative arts like fiction and metaphor generation to more structured non-fiction like scientific and argumentative writing.\n\nIn the context of the paper, this list serves to establish the \"prior art\" and identify a gap in the research. The authors are pointing out that while we know a lot about how AI helps people write stories or essays, we know much less about how it handles **personal, introspective writing** like journaling.\n\nThis distinction is central to the paper's argument. Journaling is unique because it isn't just about producing a polished \"output\" for an audience; it\u2019s about the writer's own internal reflection and emotional processing. By highlighting these other established fields, the authors set the stage for their study on *DiaryMate*, exploring whether the collaborative benefits seen in fiction or essay writing translate to the much more private and sensitive domain of personal diaries."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "strategy_id": "deep_technical_explanation",
+      "strategy_family": "deep_technical_explanation",
+      "pedagogical_move": "Deepen the technical explanation",
+      "context_focus": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and",
+      "strategy_title": "Give a deeper technical read of this passage",
+      "strategy_short_description": "Use the current passage and context for a more detailed technical explanation.",
+      "why_recommended": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.",
+      "strategy_reason": "The baseline explanation was being read while the learning signal showed a deepening cue. This strategy may help by adapting the previous explanation with use the current passage and context for a more detailed technical explanation.",
+      "learning_state_snapshot": {
+        "session_id": "cda9b7a969f84c24bb48437318fc19db",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-18T11:38:27Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9986,
+        "distribution": {
+          "boredom": 0.9986,
+          "confusion": 0,
+          "engagement": 0.0007,
+          "frustration": 0.0007
+        },
+        "trend": "stable",
+        "duration_sec": 10.2,
+        "intensity": 0.9986,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "warnings": [
+          "OpenFace unavailable or failed; using OpenCV Haar fallback."
+        ],
+        "face_detection": {
+          "detector": "opencv_haar",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "opencv_haar",
+          "face_found": true,
+          "confidence": 0.7,
+          "crop_strategy": "expanded_square_opencv_haar_fallback",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": true,
+          "warning": "OpenFace unavailable or failed; using OpenCV Haar fallback.",
+          "warnings": [
+            "OpenFace unavailable or failed; using OpenCV Haar fallback."
+          ]
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "duration_sec": 8.1,
+        "trend": "stable",
+        "intensity": 0.81,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31"
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 206,
+        "caption_length": 0,
+        "baseline_explanation_length": 1163,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "deepening",
+        "allowed_strategy_families": [
+          "deep_technical_explanation",
+          "critique_assumptions",
+          "connect_to_related_work",
+          "limitations_and_implications",
+          "compare_methods"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "title": "Page 1 smoke text",
+  "one_sentence_summary": "Page 2 smoke text",
+  "research_problem": "Page 2 smoke text",
+  "method_summary": "",
+  "dataset_or_materials": "",
+  "main_findings": "",
+  "key_terms": [
+    "page",
+    "smoke",
+    "text"
+  ],
+  "section_map": [
+    {
+      "heading": "Page 1 smoke text",
+      "page_number": 1,
+      "block_id": "f37585c869974b8c877f3399a73788b5-p1-b0",
+      "start_order": 0,
+      "end_order": 1000000000
+    }
+  ]
+}

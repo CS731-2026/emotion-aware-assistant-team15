@@ -1,0 +1,69 @@
+{
+  "document_id": "f37585c869974b8c877f3399a73788b5",
+  "parser": "pdftotext_fallback",
+  "status": "completed",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "page_count": 4,
+  "blocks": [
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p1-b0",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.117647,
+        "y1": 0.074591,
+        "x2": 0.361235,
+        "y2": 0.095614
+      },
+      "block_type": "title",
+      "markdown_content": "Page 1 smoke text",
+      "asset_path": null,
+      "reading_order_index": 0
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p2-b1",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.117647,
+        "y1": 0.074591,
+        "x2": 0.361235,
+        "y2": 0.095614
+      },
+      "block_type": "text",
+      "markdown_content": "Page 2 smoke text",
+      "asset_path": null,
+      "reading_order_index": 1
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p3-b2",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.117647,
+        "y1": 0.074591,
+        "x2": 0.361235,
+        "y2": 0.095614
+      },
+      "block_type": "text",
+      "markdown_content": "Page 3 smoke text",
+      "asset_path": null,
+      "reading_order_index": 2
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p4-b3",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.117647,
+        "y1": 0.074591,
+        "x2": 0.361235,
+        "y2": 0.095614
+      },
+      "block_type": "text",
+      "markdown_content": "Page 4 smoke text",
+      "asset_path": null,
+      "reading_order_index": 3
+    }
+  ]
+}

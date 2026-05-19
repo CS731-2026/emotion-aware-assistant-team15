@@ -1,0 +1,23 @@
+{
+  "session_id": "93ade776c42d4424a59f26f7637f84e4",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "timestamp": "2026-05-16T16:45:19Z",
+  "source": "simulated_camera",
+  "model_output_type": "academic_state_model",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "engagement",
+  "confidence": 0.65,
+  "distribution": {
+    "boredom": 0.11,
+    "confusion": 0.12,
+    "engagement": 0.65,
+    "frustration": 0.12
+  },
+  "trend": "stable",
+  "duration_sec": 2.5,
+  "intensity": 0.65,
+  "stability": "stable",
+  "trigger_recommended": false,
+  "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+}

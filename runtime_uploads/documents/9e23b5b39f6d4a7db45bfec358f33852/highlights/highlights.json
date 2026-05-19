@@ -1,0 +1,431 @@
+{
+  "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+  "highlights": [
+    {
+      "content": {
+        "text": "Recruitment for the prospective, non-expert end-user group, in- cluding P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and expe- rience with counseling services.",
+        "image": ""
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.5546875,
+          "y1": 284.8125,
+          "x2": 773.0337524414062,
+          "y2": 343.671875,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 5
+        },
+        "rects": [
+          {
+            "x1": 452.75,
+            "y1": 284.8125,
+            "x2": 773.0101928710938,
+            "y2": 298.3125,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 5
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 300.0078125,
+            "x2": 770.903564453125,
+            "y2": 313.5078125,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 5
+          },
+          {
+            "x1": 438.5546875,
+            "y1": 315.09375,
+            "x2": 773.0337524414062,
+            "y2": 328.59375,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 5
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 330.171875,
+            "x2": 609.324951171875,
+            "y2": 343.671875,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 5
+          }
+        ]
+      },
+      "id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+      "highlight_id": "b769fca6-dea3-4b5d-8336-a6b8b6ed5fde",
+      "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+      "highlight_type": "text",
+      "page_number": 5,
+      "selected_text": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services.",
+      "text_preview": "Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services.",
+      "caption": "",
+      "caption_confidence": "",
+      "crop_path": "",
+      "crop_image_path": "",
+      "crop_url": "",
+      "viewport_rects": [
+        {
+          "x1": 452.75,
+          "y1": 284.8125,
+          "x2": 773.010193,
+          "y2": 298.3125,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 5
+        },
+        {
+          "x1": 438.976562,
+          "y1": 300.007812,
+          "x2": 770.903564,
+          "y2": 313.507812,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 5
+        },
+        {
+          "x1": 438.554688,
+          "y1": 315.09375,
+          "x2": 773.033752,
+          "y2": 328.59375,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 5
+        },
+        {
+          "x1": 438.976562,
+          "y1": 330.171875,
+          "x2": 609.324951,
+          "y2": 343.671875,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 5
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.535799,
+          "y1": 0.260453,
+          "x2": 0.914805,
+          "y2": 0.272798,
+          "pageNumber": 5
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.274348,
+          "x2": 0.912312,
+          "y2": 0.286694,
+          "pageNumber": 5
+        },
+        {
+          "x1": 0.519,
+          "y1": 0.288144,
+          "x2": 0.914833,
+          "y2": 0.300489,
+          "pageNumber": 5
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.301932,
+          "x2": 0.721095,
+          "y2": 0.314278,
+          "pageNumber": 5
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 535.799,
+          "y1": 260.453,
+          "x2": 914.805,
+          "y2": 272.798,
+          "pageNumber": 5
+        },
+        {
+          "x1": 519.499,
+          "y1": 274.348,
+          "x2": 912.312,
+          "y2": 286.694,
+          "pageNumber": 5
+        },
+        {
+          "x1": 519,
+          "y1": 288.144,
+          "x2": 914.833,
+          "y2": 300.489,
+          "pageNumber": 5
+        },
+        {
+          "x1": 519.499,
+          "y1": 301.932,
+          "x2": 721.095,
+          "y2": 314.278,
+          "pageNumber": 5
+        }
+      ],
+      "matched_block": {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+        "page_number": 5,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding of the concept. All the participants reported a neutral or optimistic viewpoint regarding the potential utility of such tools in the provision of mental health support. Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services. Our inclusion criteria required participants to be 19 years of age or older. To ensure participant safety, we excluded individuals who reported current suicidal or homicidal ideations, as well as those with self-reported severe mental health issues accompanied by significant difficulty in coping with their symptoms. With an average age of 21.8 years (SD = 1.94) and an equal distribution of women and men, this group reported a mean of .60 years (SD = 1.10) of experience with counseling, therapy, or other mental health practices. Non-expert participants were compensated $30 for their time."
+      },
+      "nearby_context": [
+        {
+          "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b71",
+          "page_number": 5,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "We obtained demographic information via an online survey prior to the interview sessions. Subsequently, further data were collected, including participants\u2019 familiarity with and perspectives on existing mental health chatbots. Within our expert participants, including P1-P16, apart from one participant (P2) who had previous research experience in AI-related fields, the rest of the respondents reported limited or no prior experience with AI tools. Despite this, all participants indicated a general understanding of the concept. All the participants reported a neutral or optimistic viewpoint regarding the potential utility of such tools in the provision of mental health support. Recruitment for the prospective, non-expert end-user group, including P17-P22, was conducted via word-of-mouth, supplemented with purposive sampling to ensure diversity in gender and experience with counseling services. Our inclusion criteria required participants to be 19 years of age or older. To ensure participant safety, we excluded individuals who reported current suicidal or homicidal ideations, as well as those with self-reported severe mental health issues accompanied by significant difficulty in coping with their symptoms. With an average age of 21.8 years (SD = 1.94) and an equal distribution of women and men, this group reported a mean of .60 years (SD = 1.10) of experience with counseling, therapy, or other mental health practices. Non-expert participants were compensated $30 for their time."
+        },
+        {
+          "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p5-b69",
+          "page_number": 5,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "We primarily relied on mental-health experts (N=16) as our core source of insight, as their deep understanding of therapeutic processes, clinical risks, and evidence-based practice is essential for developing robust, safe, and theoretically grounded design principles for self-clone systems. However, we also recognized that an exclusively expert-driven lens could overemphasize clinical caution or introduce assumptions misaligned with end-users\u2019 values, expectations, and goals. To balance this, we incorporated input from non-expert users as a complementary check and form of triangulation on expert assumptions, particularly on non-therapeutic, user-experience\u2013focused areas [30]. We continued recruiting nonexpert participants (N=6) until we reached thematic saturation, at which point additional interviews no longer introduced new insights in our exploratory work [45]. While expert perspectives ground the framework in therapeutic rigor and safety, non-experts, who are often less constrained by clinical risk and liability, bring more openness for emotionally resonant and creative viewpoints. Their perspectives help surface interpretive gaps and opportunities that may fall outside traditional expert viewpoints. Together, these contributions support us in creating a more well-rounded and contextually grounded framework. Our inclusion criteria for mental health professionals required the possession of a higher degree in psychology or related fields and a minimum of two years of experience in mental health research or clinical practice. We employed the snowball sampling technique, starting from the personal social networks of the (co)authors and extending to digital channels that include social media and university newsletters. From the list of volunteers, we used purposeful sampling to optimize not only diversity but also the overall depth and breadth of experiences our experts have in the domain. With an average age of 37.37 years (SD = 10.69) and an equal distribution of women and men, the expert participants had a mean of 6.75 years (SD = 6.95) of research experience in mental health and an average of 9.12 years (SD = 7.49) of clinical experience. For details, please refer to Table 1."
+        }
+      ],
+      "updated_at": 1779098739.4419384,
+      "created_at": 1779098739.4419384
+    },
+    {
+      "content": {
+        "text": "Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100]. ",
+        "image": ""
+      },
+      "type": "text",
+      "position": {
+        "boundingRect": {
+          "x1": 438.9765625,
+          "y1": 390.7265625,
+          "x2": 771.135986328125,
+          "y2": 464.671875,
+          "width": 845,
+          "height": 1093.5294117647059,
+          "pageNumber": 13
+        },
+        "rects": [
+          {
+            "x1": 563.7503662109375,
+            "y1": 390.7265625,
+            "x2": 770.8404541015625,
+            "y2": 404.2265625,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 13
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 405.8125,
+            "x2": 771.135986328125,
+            "y2": 419.3125,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 13
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 421,
+            "x2": 770.9009399414062,
+            "y2": 434.5,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 13
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 436.0859375,
+            "x2": 771.134033203125,
+            "y2": 449.5859375,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 13
+          },
+          {
+            "x1": 438.9765625,
+            "y1": 451.171875,
+            "x2": 578.8338012695312,
+            "y2": 464.671875,
+            "width": 845,
+            "height": 1093.5294117647059,
+            "pageNumber": 13
+          }
+        ]
+      },
+      "id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+      "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+      "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+      "highlight_type": "text",
+      "page_number": 13,
+      "selected_text": "Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100].",
+      "text_preview": "Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-",
+      "caption": "",
+      "caption_confidence": "",
+      "crop_path": "",
+      "crop_image_path": "",
+      "crop_url": "",
+      "viewport_rects": [
+        {
+          "x1": 563.750366,
+          "y1": 390.726562,
+          "x2": 770.840454,
+          "y2": 404.226562,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 13
+        },
+        {
+          "x1": 438.976562,
+          "y1": 405.8125,
+          "x2": 771.135986,
+          "y2": 419.3125,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 13
+        },
+        {
+          "x1": 438.976562,
+          "y1": 421,
+          "x2": 770.90094,
+          "y2": 434.5,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 13
+        },
+        {
+          "x1": 438.976562,
+          "y1": 436.085938,
+          "x2": 771.134033,
+          "y2": 449.585938,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 13
+        },
+        {
+          "x1": 438.976562,
+          "y1": 451.171875,
+          "x2": 578.833801,
+          "y2": 464.671875,
+          "width": 845,
+          "height": 1093.529412,
+          "pageNumber": 13
+        }
+      ],
+      "normalized_rects": [
+        {
+          "x1": 0.66716,
+          "y1": 0.357308,
+          "x2": 0.912237,
+          "y2": 0.369653,
+          "pageNumber": 13
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.371103,
+          "x2": 0.912587,
+          "y2": 0.383449,
+          "pageNumber": 13
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.384992,
+          "x2": 0.912309,
+          "y2": 0.397337,
+          "pageNumber": 13
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.398788,
+          "x2": 0.912585,
+          "y2": 0.411133,
+          "pageNumber": 13
+        },
+        {
+          "x1": 0.519499,
+          "y1": 0.412583,
+          "x2": 0.68501,
+          "y2": 0.424929,
+          "pageNumber": 13
+        }
+      ],
+      "parser_rects_1000": [
+        {
+          "x1": 667.16,
+          "y1": 357.308,
+          "x2": 912.237,
+          "y2": 369.653,
+          "pageNumber": 13
+        },
+        {
+          "x1": 519.499,
+          "y1": 371.103,
+          "x2": 912.587,
+          "y2": 383.449,
+          "pageNumber": 13
+        },
+        {
+          "x1": 519.499,
+          "y1": 384.992,
+          "x2": 912.309,
+          "y2": 397.337,
+          "pageNumber": 13
+        },
+        {
+          "x1": 519.499,
+          "y1": 398.788,
+          "x2": 912.585,
+          "y2": 411.133,
+          "pageNumber": 13
+        },
+        {
+          "x1": 519.499,
+          "y1": 412.583,
+          "x2": 685.01,
+          "y2": 424.929,
+          "pageNumber": 13
+        }
+      ],
+      "matched_block": {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+        "page_number": 13,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device storage when feasible, and provides users with a simple way to revoke or wipe their clone [96]. Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100]. Cultural sensitivity is another key consideration for responsible design: SCs trained on limited linguistic or cultural norms may alienate users from underrepresented backgrounds [19, 109]. Inclusive design practices and ongoing testing are vital to ensuring that diverse users feel accurately seen and supported. The role of professional mental health professionals in administering a self-clone chatbot can be critical for ensuring safe and effective use. As our findings suggest, self-clones are best positioned as complementary tools within traditional therapeutic frameworks, rather than replacements for human care. Therapists can guide usage, monitor progress, and adapt interventions based on individual needs while also providing essential human oversight in situations where chatbot responses may fall short, such as crisis or high-risk scenarios [64]. Embedding SCs within guided counseling contexts could also help mitigate ethical concerns by ensuring accountability and professional supervision [67]. However, widespread adoption faces notable barriers. Clinicians and users alike may hold skeptical or negative views of mental health chatbots, driven by fear of AI [60], doubts about digital efficacy [14], and lingering mental health stigma [12]. Addressing these concerns requires thoughtful tool introduction, education, and aligning with established psychological schools of thought that may be more suitable for such intervention\u2014such as cognitivism\u2014to frame SCs within recognized therapeutic models and evidence-based practice. In addition to anticipating moments of acute risk, our findings highlight slower, more insidious pathways through which users may develop a specific unhealthy attachment to a self-clone. Because a self-clone is modeled on the user\u2019s own language, preferences, and history, the relationship can feel less like using a tool and more like retreating into a version of oneself that is always available, easy to talk to, and increasingly familiar. The comforting escape this offers from interpersonal discomfort may intensify patterns of over-reliance observed in AI companions [87], but with the added complication in cases the object of attachment is perceived as \u201cme,"
+      },
+      "nearby_context": [
+        {
+          "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+          "page_number": 13,
+          "block_type": "text",
+          "coordinate_overlap": 1,
+          "text_bonus": 0.05,
+          "match_score": 1,
+          "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device storage when feasible, and provides users with a simple way to revoke or wipe their clone [96]. Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100]. Cultural sensitivity is another key consideration for responsible design: SCs trained on limited linguistic or cultural norms may alienate users from underrepresented backgrounds [19, 109]. Inclusive design practices and ongoing testing are vital to ensuring that diverse users feel accurately seen and supported. The role of professional mental health professionals in administering a self-clone chatbot can be critical for ensuring safe and effective use. As our findings suggest, self-clones are best positioned as complementary tools within traditional therapeutic frameworks, rather than replacements for human care. Therapists can guide usage, monitor progress, and adapt interventions based on individual needs while also providing essential human oversight in situations where chatbot responses may fall short, such as crisis or high-risk scenarios [64]. Embedding SCs within guided counseling contexts could also help mitigate ethical concerns by ensuring accountability and professional supervision [67]. However, widespread adoption faces notable barriers. Clinicians and users alike may hold skeptical or negative views of mental health chatbots, driven by fear of AI [60], doubts about digital efficacy [14], and lingering mental health stigma [12]. Addressing these concerns requires thoughtful tool introduction, education, and aligning with established psychological schools of thought that may be more suitable for such intervention\u2014such as cognitivism\u2014to frame SCs within recognized therapeutic models and evidence-based practice. In addition to anticipating moments of acute risk, our findings highlight slower, more insidious pathways through which users may develop a specific unhealthy attachment to a self-clone. Because a self-clone is modeled on the user\u2019s own language, preferences, and history, the relationship can feel less like using a tool and more like retreating into a version of oneself that is always available, easy to talk to, and increasingly familiar. The comforting escape this offers from interpersonal discomfort may intensify patterns of over-reliance observed in AI companions [87], but with the added complication in cases the object of attachment is perceived as \u201cme,"
+        },
+        {
+          "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b398",
+          "page_number": 13,
+          "block_type": "text",
+          "coordinate_overlap": 0,
+          "text_bonus": 0,
+          "match_score": 0,
+          "markdown_content": "Responsible Self-Clone Design"
+        }
+      ],
+      "updated_at": 1779103726.0310729,
+      "created_at": 1779103726.0310729
+    }
+  ]
+}

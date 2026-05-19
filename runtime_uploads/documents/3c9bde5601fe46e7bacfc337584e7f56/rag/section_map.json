@@ -1,0 +1,16 @@
+[
+  {
+    "heading": "PDF Reader Test",
+    "page_number": 1,
+    "block_id": "3c9bde5601fe46e7bacfc337584e7f56-p1-b0",
+    "start_order": 0,
+    "end_order": 1
+  },
+  {
+    "heading": "The highlighted passage comes from a PDF page.",
+    "page_number": 1,
+    "block_id": "3c9bde5601fe46e7bacfc337584e7f56-p1-b1",
+    "start_order": 1,
+    "end_order": 1000000000
+  }
+]

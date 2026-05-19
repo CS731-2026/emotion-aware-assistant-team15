@@ -1,0 +1,23 @@
+{
+  "session_id": "81671293a8a240368b6a4a735b7b5d10",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "timestamp": "2026-05-16T14:00:46Z",
+  "source": "simulated_camera",
+  "model_output_type": "academic_state_model",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "frustration",
+  "confidence": 0.74,
+  "distribution": {
+    "boredom": 0.08,
+    "confusion": 0.09,
+    "engagement": 0.09,
+    "frustration": 0.74
+  },
+  "trend": "stable",
+  "duration_sec": 1801.0,
+  "intensity": 0.74,
+  "stability": "stable",
+  "trigger_recommended": true,
+  "trigger_reason": "frustration confidence remained above threshold for 6 seconds while the user had an active selection"
+}

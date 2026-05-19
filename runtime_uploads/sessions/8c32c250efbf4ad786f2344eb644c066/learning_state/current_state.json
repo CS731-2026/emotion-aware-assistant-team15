@@ -1,0 +1,37 @@
+{
+  "session_id": "8c32c250efbf4ad786f2344eb644c066",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "timestamp": "2026-05-16T16:47:14Z",
+  "source": "webcam_model",
+  "model_output_type": "academic_state",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "boredom",
+  "confidence": 0.9999,
+  "distribution": {
+    "boredom": 0.9999,
+    "confusion": 0.0,
+    "engagement": 0.0,
+    "frustration": 0.0
+  },
+  "trend": "stable",
+  "duration_sec": 19.4,
+  "intensity": 0.9999,
+  "stability": "stable",
+  "trigger_recommended": true,
+  "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+  "warnings": [],
+  "face_detection": {
+    "detector": "opencv_haar",
+    "face_found": true,
+    "confidence": 0.7,
+    "bbox": [
+      55,
+      21,
+      118,
+      118
+    ],
+    "fallback_used": false,
+    "warning": null
+  }
+}

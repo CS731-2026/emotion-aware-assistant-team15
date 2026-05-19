@@ -1,0 +1,1689 @@
+{
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "parser": "pdftotext_fallback",
+  "status": "completed",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "page_count": 8,
+  "blocks": [
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b0",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.155536,
+        "y1": 0.106371,
+        "x2": 0.845221,
+        "y2": 0.126542
+      },
+      "block_type": "title",
+      "markdown_content": "Users\u2019 Expectations and Practices with Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 0
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b1",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.174608,
+        "y1": 0.137166,
+        "x2": 0.290585,
+        "y2": 0.15679
+      },
+      "block_type": "title",
+      "markdown_content": "Brennan Jones",
+      "asset_path": null,
+      "reading_order_index": 1
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b2",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.140351,
+        "y1": 0.154651,
+        "x2": 0.324838,
+        "y2": 0.216289
+      },
+      "block_type": "text",
+      "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+      "asset_path": null,
+      "reading_order_index": 2
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b3",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.43425,
+        "y1": 0.137166,
+        "x2": 0.56775,
+        "y2": 0.15679
+      },
+      "block_type": "text",
+      "markdown_content": "Kelsey Stemmler",
+      "asset_path": null,
+      "reading_order_index": 3
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b4",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.415619,
+        "y1": 0.154651,
+        "x2": 0.585521,
+        "y2": 0.216289
+      },
+      "block_type": "text",
+      "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada kelsey@stemmler.tech",
+      "asset_path": null,
+      "reading_order_index": 4
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b5",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.306018,
+        "y1": 0.225911,
+        "x2": 0.425199,
+        "y2": 0.245534
+      },
+      "block_type": "text",
+      "markdown_content": "Young-Ho Kim",
+      "asset_path": null,
+      "reading_order_index": 5
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b6",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.253722,
+        "y1": 0.243396,
+        "x2": 0.47806,
+        "y2": 0.305033
+      },
+      "block_type": "text",
+      "markdown_content": "NAVER AI Lab Seongnam, Gyeonggi, Republic of Korea yghokim@younghokim.net",
+      "asset_path": null,
+      "reading_order_index": 6
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b7",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.733255,
+        "y1": 0.137166,
+        "x2": 0.80481,
+        "y2": 0.15679
+      },
+      "block_type": "text",
+      "markdown_content": "Emily Su",
+      "asset_path": null,
+      "reading_order_index": 7
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b8",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.683837,
+        "y1": 0.154651,
+        "x2": 0.853738,
+        "y2": 0.216289
+      },
+      "block_type": "text",
+      "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada em.su@mail.utoronto.ca",
+      "asset_path": null,
+      "reading_order_index": 8
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b9",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.546008,
+        "y1": 0.225911,
+        "x2": 0.721527,
+        "y2": 0.245534
+      },
+      "block_type": "text",
+      "markdown_content": "Anastasia Kuzminykh",
+      "asset_path": null,
+      "reading_order_index": 9
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b10",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.51883,
+        "y1": 0.243396,
+        "x2": 0.749386,
+        "y2": 0.350318
+      },
+      "block_type": "text",
+      "markdown_content": "Faculty of Information University of Toronto Toronto, Ontario, Canada Department of Computer Science University of Toronto Toronto, Ontario, Canada anastasia.kuzminykh@utoronto.ca",
+      "asset_path": null,
+      "reading_order_index": 10
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b11",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.361245,
+        "x2": 0.155909,
+        "y2": 0.374261
+      },
+      "block_type": "text",
+      "markdown_content": "Abstract",
+      "asset_path": null,
+      "reading_order_index": 11
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b12",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.361245,
+        "x2": 0.528697,
+        "y2": 0.374261
+      },
+      "block_type": "text",
+      "markdown_content": "1",
+      "asset_path": null,
+      "reading_order_index": 12
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b13",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087203,
+        "y1": 0.377621,
+        "x2": 0.482935,
+        "y2": 0.599893
+      },
+      "block_type": "text",
+      "markdown_content": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory. While memory in agents has been extensively covered by prior work, there is little understanding of users\u2019 expectations and practices with agent memory. As a preliminary investigation, we interviewed people who use AI tools with memory and analyzed online discussion posts of people\u2019s experiences with such tools. We found that users often have incomplete mental models of how agents remember and recall information, and how their memories affect their behaviours. Users generally consider agents\u2019 memories as belonging to different categories along a hierarchy from more generalized knowledge to more specific knowledge about the user or task. Users often desire the system\u2019s memories to be cleanly organized by these categories. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories based on users\u2019 task-based needs.",
+      "asset_path": null,
+      "reading_order_index": 13
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b14",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.519021,
+        "y1": 0.377621,
+        "x2": 0.914572,
+        "y2": 0.89047
+      },
+      "block_type": "text",
+      "markdown_content": "AI agents, including LLM-based chatbots and tools like ChatGPT, Claude, and Gemini, are becoming more prevalent in people\u2019s daily lives. People are also increasingly interacting with such agents over long periods of time\u2014e.g., using them as personal AI assistants (e.g., [2]) and \u2018coaches\u2019 for wellness [7, 8, 10, 12, 14, 25, 26, 31], exercise [3, 17, 19, 20, 35], life goals [16], and work productivity [22, 23, 27]. Such AI agents have the potential to provide always-available personalized and contextualized assistance to users, and to work in collaborative \u2018complementarity\u2019 [30] with the user. However, in order to achieve this, the user and the agent can benefit from achieving co-understanding of each other. One aspect that contributes to co-understanding is memory. To achieve sufficient counderstanding in longer-term interactions between humans and agents, the agent needs to remember the right things about the user and the interactions over time, and refer to those memories optimally in giving effective assistance to the user. Further, it is also helpful for the user to have sufficient understanding of the agent\u2019s decision-making processes and how its memories and knowledge impact its behaviours. Memory in LLM-based agents has been extensively covered by prior research (e.g., [11, 36]). Strategies for maintaining an agent\u2019s memory include summarization (e.g., [29, 32]) and refinement (e.g., [37]) of conversational and interactional histories, maintaining vector databases and retrieving relevant conversations or information through semantic or linguistic matching (e.g., [13, 24, 38]), maintaining key-value pairs in traditional databases (e.g., [21]), or maintaining lists of \u2018facts\u2019 or \u2018observations\u2019 learned from user interactions (e.g., [1, 5, 24, 33]). There are also systems that allow users to influence or modify agents\u2019 memories through, for example, direct manipulation (e.g., [15, 34]). Some systems\u2019 memory mechanisms (e.g., [18]) are designed to mimic existing psychological models of human memory (e.g., [4]), while others (e.g., [21]) are designed to mimic existing technological metaphors such as traditional operating system memory. However, there is a lack of understanding of users\u2019 expectations of AI systems\u2019 memory mechanisms while using such systems over longer periods of time. Furthermore, there is a lack of understanding of users\u2019 practices of managing these",
+      "asset_path": null,
+      "reading_order_index": 14
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b15",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.614279,
+        "x2": 0.201096,
+        "y2": 0.627295
+      },
+      "block_type": "text",
+      "markdown_content": "CCS Concepts",
+      "asset_path": null,
+      "reading_order_index": 15
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b16",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.630655,
+        "x2": 0.474718,
+        "y2": 0.645373
+      },
+      "block_type": "list",
+      "markdown_content": "\u2022 Human-centered computing \u2192 Empirical studies in HCI.",
+      "asset_path": null,
+      "reading_order_index": 16
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b17",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.659757,
+        "x2": 0.168101,
+        "y2": 0.672774
+      },
+      "block_type": "text",
+      "markdown_content": "Keywords",
+      "asset_path": null,
+      "reading_order_index": 17
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b18",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.676134,
+        "x2": 0.482939,
+        "y2": 0.704688
+      },
+      "block_type": "text",
+      "markdown_content": "human-AI interaction, human-agent interaction, memory, personalization, language models",
+      "asset_path": null,
+      "reading_order_index": 18
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b19",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087423,
+        "y1": 0.713758,
+        "x2": 0.482473,
+        "y2": 0.787361
+      },
+      "block_type": "text",
+      "markdown_content": "ACM Reference Format: Brennan Jones, Kelsey Stemmler, Emily Su, Young-Ho Kim, and Anastasia Kuzminykh. 2025. Users\u2019 Expectations and Practices with Agent Memory. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201925), April 26\u2013May 01, 2025, Yokohama, Japan. ACM, New York, NY, USA, 8 pages. https://doi.org/10.1145/3706599.3720158",
+      "asset_path": null,
+      "reading_order_index": 19
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b20",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.087119,
+        "y1": 0.802231,
+        "x2": 0.482219,
+        "y2": 0.896197
+      },
+      "block_type": "text",
+      "markdown_content": "Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for third-party components of this work must be honored. For all other uses, contact the owner/author(s). CHI EA \u201925, Yokohama, Japan \u00a9 2025 Copyright held by the owner/author(s). ACM ISBN 979-8-4007-1395-8/25/04 https://doi.org/10.1145/3706599.3720158",
+      "asset_path": null,
+      "reading_order_index": 20
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b21",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.546522,
+        "y1": 0.361245,
+        "x2": 0.64957,
+        "y2": 0.374261
+      },
+      "block_type": "text",
+      "markdown_content": "Introduction",
+      "asset_path": null,
+      "reading_order_index": 21
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b22",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.335908,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 22
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b23",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.087364,
+        "y1": 0.107489,
+        "x2": 0.482948,
+        "y2": 0.578827
+      },
+      "block_type": "text",
+      "markdown_content": "systems\u2019 memories. Achieving such understanding could help designers build memory mechanisms for agents that involve users, consider their mental models (in line with [30]), and keep the human in-the-loop. To achieve this understanding, we conducted interviews with six participants who use personalized AI tools with long-term memory on a regular basis, and thematically coded these interviews to explore users\u2019 expectations and mental models of such systems\u2019 memory mechanisms and their practices with managing memory in these systems. We also conducted a thematic analysis of publicly available posts and discussion threads on Reddit, in which people discussed their experiences using the memory features of personalized AI systems. Our findings illustrate that, in general, users often have an incomplete understanding of how existing agents remember and recall information from users\u2019 interactions. Users generally think of the system\u2019s memories as belonging to different categories that can be organized along a hierarchy from more generalized knowledge (e.g., factual memories of general knowledge facts, usually contained in the model\u2019s training data or fetched externally through retrieval-augmented generation, or RAG [9]), to knowledge about the user (e.g., their personal or social details, preferences, etc.), to more specific knowledge about the domains, projects, or tasks that the agent assists the user with. Users\u2019 needs for the system to store and retrieve memories along the different positions of this hierarchy evolve depending on the task or stage of the activity they are working on. Our findings also reveal users\u2019 existing approaches to organizing, separating, and abstracting access to memories across different tasks, projects, and domains, including their use and organization of chat threads, customs prompts and instructions for defining personas and roles, fine-tuning models, and using different user accounts. These findings reveal opportunities to design agent memory mechanisms to organize and control access to memories via hierarchical structures based on users\u2019 task-based needs.",
+      "asset_path": null,
+      "reading_order_index": 23
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b24",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.596295,
+        "x2": 0.097067,
+        "y2": 0.609312
+      },
+      "block_type": "text",
+      "markdown_content": "2",
+      "asset_path": null,
+      "reading_order_index": 24
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b25",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.114893,
+        "y1": 0.596295,
+        "x2": 0.176996,
+        "y2": 0.609312
+      },
+      "block_type": "text",
+      "markdown_content": "Method",
+      "asset_path": null,
+      "reading_order_index": 25
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b26",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.087203,
+        "y1": 0.612672,
+        "x2": 0.482936,
+        "y2": 0.738085
+      },
+      "block_type": "text",
+      "markdown_content": "We conducted a study with the goal of better understanding users\u2019 expectations of AI systems\u2019 memory mechanisms and their practices of managing these systems\u2019 memories while using them over longer periods of time. Our data was collected from two sources: (1) one-on-one interviews with participants who use personalized AI tools with memory, and (2) online posts and discussions threads on Reddit, where people discussed their experiences using personalized AI tools with memory. Our research questions were as follows:",
+      "asset_path": null,
+      "reading_order_index": 26
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b27",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.105732,
+        "y1": 0.74399,
+        "x2": 0.482937,
+        "y2": 0.89573
+      },
+      "block_type": "text",
+      "markdown_content": "(1) What are people\u2019s mental models and expectations of what AI memory systems do? For example, what does the user expect the AI system to remember? How does the user expect the AI to behave when recalling old memories? How do people expect their information to be abstracted when stored in memory? (2) What are people\u2019s unsatisfied needs with AI memory systems? How do these unsatisfied needs affect users\u2019 interactions with and perceptions of the AI system? (3) What are people\u2019s current practices with managing and exploring the memory of a personalized AI system?",
+      "asset_path": null,
+      "reading_order_index": 27
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b28",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.86134,
+        "y1": 0.078994,
+        "x2": 0.912094,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Jones et al.",
+      "asset_path": null,
+      "reading_order_index": 28
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b29",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.558905,
+        "y1": 0.107489,
+        "x2": 0.91247,
+        "y2": 0.14988
+      },
+      "block_type": "text",
+      "markdown_content": "For example, how does the user (try to) instruct or get the AI to remember, recall, or forget something? When and why does the user want to manage the system\u2019s memories?",
+      "asset_path": null,
+      "reading_order_index": 29
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p2-b30",
+      "page_idx": 1,
+      "page_number": 2,
+      "bbox": {
+        "x1": 0.517337,
+        "y1": 0.176673,
+        "x2": 0.914577,
+        "y2": 0.897077
+      },
+      "block_type": "text",
+      "markdown_content": "We conducted semi-structured one-on-one interviews (see Appendix A for the interview guide) with six participants (each identified as \u2018P#\u2019 in the findings) who use personalized AI tools with long-term memory on a regular basis. Each interview lasted between 30 and 45 minutes. The interviews were conducted on Zoom, and each participant was reimbursed with CAD$20. The interviews were recorded and transcribed for analysis. Participants also filled out a brief survey (see Appendix B) where they provided basic demographic information and answered questions about their current and prior use of AI tools. Four of our participants identified as female and two as male, ranging from 24 to 35 years old (M = 29, SD = 5). Three participants expressed that they use LLMs or personalized AI tools at least once per day, while the other three expressed that they use these tools at least once per week. Of the specific tools that participants mentioned using on a regular basis, all of our participants expressed using ChatGPT, while three also use Claude, two also use the Microsoft Copilot chatbot, and one each also use Perplexity, NotebookLM, Grammarly\u2019s AI features, and the Cursor AI code editor for code completion and chat. Our participants expressed using these tools for activities such as \u201cproductivity tasks, writing assistance, usability analysis,\u201d \u201canalyzing qualitative data,\u201d \u201cemail writing and editing,\u201d \u201ccode-related questions, brainstorming, error troubleshooting,\u201d \u201clearning something from scratch,\u201d \u201cconversational [web] search[ing],\u201d and \u201cas a personal tutor, search engine, and life companion.\u201d All six participants rated their \u201clevel of expertise with using these tools\u201d as 4/5 (with 1 = \u2018beginner/novice\u2019 and 5 = \u2018advanced/expert\u2019). However, when asked about their \u201clevel of technical knowledge of LLMs\u201d (i.e., their \u201ctechnical understanding of how LLMs work\u201d and their \u201ctechnical understanding of memory in LLMs and LLM-based tools and agents\u201d), four participants rated themselves as 4/5, and one participant each rated themselves as 2/5 and 1/5 (with 1 = \u2018beginner/novice\u2019 and 5 = \u2018advanced/expert\u2019). We also collected and performed a preliminary analysis of 54 publicly available discussion threads on Reddit, in which people discussed their experiences using the memory features of AI systems. The threads were collected systematically from Reddit communities centred around topics such as AI tools, agents, LLMs, generative AI, and machine learning. In addition, relevant threads were collected from general Q&A Reddit communities where people asked questions related to the memory of AI systems. Discussion threads were collected from these communities using search terms and keywords such as \u201cmemory,\u201d \u201cforgetting,\u201d \u201cremembering,\u201d \u201cchat history,\u201d \u201csummarization,\u201d \u201ctemporary chat,\u201d and \u201cpersonalization.\u201d Please see Appendix C for a list of the Reddit communities (\u201csubreddits\u201d) where the discussion threads were collected from. We conducted a thematic analysis of the interview data and Reddit discussions together, using an inductive coding approach [6]. Codes were developed to address our research questions, then iteratively discussed, refined, and categorized into themes. For example, codes like \u201cuser is surprised about how much the system remembers about them,\u201d \u201cuser wants the system\u2019s memories to be organized or disjoint by project, task, or domain,\u201d and \u201cuser organizes memories",
+      "asset_path": null,
+      "reading_order_index": 30
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b31",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.343395,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Expectations and Practices with Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 31
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b32",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087466,
+        "y1": 0.107489,
+        "x2": 0.482938,
+        "y2": 0.260576
+      },
+      "block_type": "text",
+      "markdown_content": "by chat threads\u201d were created, representing users\u2019 perceptions, unsatisfied needs, and current practices with agent memory. During the categorization phase, we saw themes emerge around desires for system transparency, heterogeneity of the system\u2019s memories, temporal dependency of memory needs, and user practices of organizing and separating the system\u2019s memories. The first three authors coded the Reddit discussion threads independently, but met to discuss their findings and iterate on the coding on a regular basis. The first author completed most of the coding of the interview data, but discussed, reviewed, and iterated on the codes with the second and third authors.",
+      "asset_path": null,
+      "reading_order_index": 32
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b33",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.274789,
+        "x2": 0.403627,
+        "y2": 0.323971
+      },
+      "block_type": "text",
+      "markdown_content": "3 Findings 3.1 Users\u2019 Perceptions and Desires for Transparency",
+      "asset_path": null,
+      "reading_order_index": 33
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b34",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.664087,
+        "y1": 0.078994,
+        "x2": 0.91209,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 34
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b35",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.518363,
+        "y1": 0.107489,
+        "x2": 0.912475,
+        "y2": 0.136043
+      },
+      "block_type": "text",
+      "markdown_content": "\u2018small\u2019, \u2018mundane\u2019, or not directly related to the activities that they use them for.",
+      "asset_path": null,
+      "reading_order_index": 35
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b36",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.557221,
+        "y1": 0.143578,
+        "x2": 0.873814,
+        "y2": 0.279952
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cSo it saved my supervisor[\u2019s name]. Which makes sense. Because it read emails, like, I polish my emails to my supervisor with GPT, so it knows. And the really scary one is, it has my student ID. And then my employee ID. I think I don\u2019t put [those] there a lot. Maybe it\u2019s just... for the one or two times I\u2019m trying to contact the department, like for support, where I put my information there [in the email], and so I\u2019m really surprised. Like, I didn\u2019t keep putting it there, but [ChatGPT\u2019s memory] captured it.\u201d \u2014 P6",
+      "asset_path": null,
+      "reading_order_index": 36
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b37",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.284612,
+        "x2": 0.912379,
+        "y2": 0.327004
+      },
+      "block_type": "text",
+      "markdown_content": "In some cases, the systems were able to use these small details to make detailed inferences about the user\u2014for example, about their personality.",
+      "asset_path": null,
+      "reading_order_index": 37
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b38",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.327329,
+        "x2": 0.482945,
+        "y2": 0.42507
+      },
+      "block_type": "text",
+      "markdown_content": "Overall, we found that users often have an incomplete understanding of AI systems\u2019 memory mechanisms, including what the system remembers, how the system decides what information to store in its memory, and how the system\u2019s memories influence its behaviours or outputs. As a result, our participants expressed their desire for the system to provide greater transparency of what it remembers about the user and its previous and ongoing interactions with them.",
+      "asset_path": null,
+      "reading_order_index": 38
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b39",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.430718,
+        "x2": 0.442181,
+        "y2": 0.525581
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cWhen I\u2019m conversing in it with some other ways, or, you know, just regular email writing or something, it\u2019ll also sometimes say \u2018memory updated\u2019. And then, but, I think I don\u2019t really know how it decides what is important information to remember versus what is not important information to remember in, like the prompts that I write.\u201d \u2014 P3",
+      "asset_path": null,
+      "reading_order_index": 39
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b40",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.531229,
+        "x2": 0.442209,
+        "y2": 0.584582
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cDefinitely not [transparent]. Like, I\u2019m... I can never say for sure whether it remembers this thing or not. And even sometimes I tell it to remember, it may forget.\u201d \u2014 P6",
+      "asset_path": null,
+      "reading_order_index": 40
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b41",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.587355,
+        "x2": 0.480473,
+        "y2": 0.615909
+      },
+      "block_type": "text",
+      "markdown_content": "Users also want the system to provide greater transparency of how its past memories influence its present behaviours:",
+      "asset_path": null,
+      "reading_order_index": 41
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b42",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.621365,
+        "x2": 0.442176,
+        "y2": 0.730259
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cIt would be interesting, like I mentioned, to know which parts of the memory it has about me go into, like, which responses, and to understand more about how it decides which portions [...] of that list [of memories] is like... you know, [it is] 100 or 200 items... like, that\u2019s a lot of things to remember about me. And to decide, like, which parts of that list actually go into a response versus not.\u201d \u2014 P3",
+      "asset_path": null,
+      "reading_order_index": 42
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b43",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.733031,
+        "x2": 0.480466,
+        "y2": 0.803096
+      },
+      "block_type": "text",
+      "markdown_content": "Some of our participants were surprised about how much the systems they use remember. For instance, our participants who have used ChatGPT, Copilot, and other LLM-based chatbots expressed that they were surprised about how much the system remembers sensitive or personal information about them.",
+      "asset_path": null,
+      "reading_order_index": 43
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b44",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.808744,
+        "x2": 0.442175,
+        "y2": 0.84826
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cI didn\u2019t notice it, but now I\u2019m looking at the memory, it\u2019s definitely collected a bunch of information about me. [...] It\u2019s scary.\u201d \u2014 P1",
+      "asset_path": null,
+      "reading_order_index": 44
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b45",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.851033,
+        "x2": 0.421818,
+        "y2": 0.86575
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cYeah, it remembers quite a lot. Oh, my God.\u201d \u2014 P2",
+      "asset_path": null,
+      "reading_order_index": 45
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b46",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.868524,
+        "x2": 0.480848,
+        "y2": 0.897077
+      },
+      "block_type": "text",
+      "markdown_content": "Participants were particularly surprised that the systems they use preserve memories containing details that they consider to be",
+      "asset_path": null,
+      "reading_order_index": 46
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b47",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.557221,
+        "y1": 0.334538,
+        "x2": 0.874003,
+        "y2": 0.498587
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cI actually tried asking ChatGPT to guess my MBTI [Myers\u2013Briggs Type Indicator personality test]. And [...] it got three out of the four [indicators] correct. So like that, that kind of threw me off, because I don\u2019t talk much about my personality. Like I mentioned, I\u2019m using [ChatGPT] mostly for productivity. I use it to help me, you know, write papers, and then, to, you know, improve [the] language of emails, and things like that. [...] And then ChatGPT guessed [my personality], just based on regular interactions that were mostly about work and research. [...] So I think that was a little, where I was caught off guard.\u201d \u2014 P3",
+      "asset_path": null,
+      "reading_order_index": 47
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b48",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.503247,
+        "x2": 0.912636,
+        "y2": 0.614824
+      },
+      "block_type": "text",
+      "markdown_content": "While some were initially amused by this, most participants did not want the system to remember such personal details over a longer term. Therefore, in addition to desiring more awareness and transparency of what/how the system remembers and how its memories influence its behaviours, participants wanted to also have control over these processes. In some cases, participants were okay with the system remembering certain information about them as long as it asked them for their consent.",
+      "asset_path": null,
+      "reading_order_index": 48
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b49",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.557221,
+        "y1": 0.622358,
+        "x2": 0.873814,
+        "y2": 0.661874
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cIf it explicitly asks me for basic [personal] information, and then it\u2019s up to me whether or not I give it that information, that\u2019s perfectly fine.\u201d \u2014 P4",
+      "asset_path": null,
+      "reading_order_index": 49
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b50",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.518992,
+        "y1": 0.666534,
+        "x2": 0.914574,
+        "y2": 0.805784
+      },
+      "block_type": "text",
+      "markdown_content": "Some members of the Reddit community were surprised and impressed by how much the agent remembered about them, expressing that their conversations were improving as a result, and the agent was developing a deeper understanding of them. One individual even felt a social connection with the agent. While this is the case, some others were frustrated at the amount of irrelevant information the agents remembered, or that too much information was remembered. Others expressed concerns for the agents forgetting details, hallucinating information, or having their personal information leaked elsewhere and no longer remaining private.",
+      "asset_path": null,
+      "reading_order_index": 50
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b51",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.821958,
+        "x2": 0.542208,
+        "y2": 0.834975
+      },
+      "block_type": "text",
+      "markdown_content": "3.2",
+      "asset_path": null,
+      "reading_order_index": 51
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b52",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.560033,
+        "y1": 0.821958,
+        "x2": 0.886736,
+        "y2": 0.851327
+      },
+      "block_type": "text",
+      "markdown_content": "Heterogeneity of Memory and Temporal Dependency of Memory Needs",
+      "asset_path": null,
+      "reading_order_index": 52
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p3-b53",
+      "page_idx": 2,
+      "page_number": 3,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.854687,
+        "x2": 0.912373,
+        "y2": 0.897077
+      },
+      "block_type": "text",
+      "markdown_content": "Our interview findings and coding of Reddit posts reveal that users do not consider all types of agent memory to be equal, and their needs for the system to remember certain information evolve over",
+      "asset_path": null,
+      "reading_order_index": 53
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b54",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.335908,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 54
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b55",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.087364,
+        "y1": 0.107489,
+        "x2": 0.482949,
+        "y2": 0.315923
+      },
+      "block_type": "text",
+      "markdown_content": "time, depending on the task and the stage of the task that the user is working on with the agent. For instance, participants described their memory needs as differing across domains, and this is one of the reasons why some participants create separate agents, personas, or custom instructions for different tasks. In general, participants wanted to organize and separate AI systems\u2019 memories clearly by task, project, and domain (e.g., separate memories related to writing from those related to health advice). Five of our interview participants (P1, P3, P4, P5, P6) even wanted memories from different projects, tasks, or domains to be disjoint from one another in the system, and when working on one task, they did not want the system to have access to memories from other unrelated tasks (e.g., they did not want the system to have access to memories about personal health advice when helping the user with academic writing).",
+      "asset_path": null,
+      "reading_order_index": 55
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b56",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.323261,
+        "x2": 0.441681,
+        "y2": 0.36297
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cIf I\u2019m currently using it for, like, some project, I would like it to recall the information for that project.\u201d \u2014 P5",
+      "asset_path": null,
+      "reading_order_index": 56
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b57",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.367624,
+        "x2": 0.482942,
+        "y2": 0.43769
+      },
+      "block_type": "text",
+      "markdown_content": "Some participants did not want groups of memories to be completely disjoint though. For example, P4 thought that there could be benefit to the agent\u2019s memories partially overlapping across domains or tasks, and that the user could define how much overlap there is:",
+      "asset_path": null,
+      "reading_order_index": 57
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b58",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.125592,
+        "y1": 0.445026,
+        "x2": 0.442183,
+        "y2": 0.553921
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cLet\u2019s say, I don\u2019t want my conversation about research to overlap with a side project conversation, but I might still be using the same information. And so, just for convenience or visual representation, I open two separate chat windows for it. And in that case I would prefer it if the agent preserved those memories. But I also think of it as something that the user should have more control over.\u201d \u2014 P4",
+      "asset_path": null,
+      "reading_order_index": 58
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b59",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.558574,
+        "x2": 0.482189,
+        "y2": 0.600966
+      },
+      "block_type": "text",
+      "markdown_content": "A similar sentiment was shared in the Reddit discussions. From our analysis of both the interview and Reddit data, users tended to consider agents\u2019 memories as belonging to the following categories:",
+      "asset_path": null,
+      "reading_order_index": 59
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b60",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.113995,
+        "y1": 0.60562,
+        "x2": 0.482948,
+        "y2": 0.897077
+      },
+      "block_type": "list",
+      "markdown_content": "\u2022 Factual memories: Memories of general knowledge facts. These are often contained in the model\u2019s training data (parametric memory) or fetched through RAG [9]. \u2022 User-related memories: Memories related to the user, including their personal preferences (e.g., preferred conversational or interaction styles), personal details (e.g., their name, age, occupation, or other biographical information), personality, social, emotional, or other information. \u2022 Domain-related memories: Memories related to a specific domain that the user wants the agent to specialize in. This could include any prompts or system instructions used to define the role or persona of the agent, or important domainrelated terminology or concepts that the user feeds to the agent as context. \u2022 Project-related memories: Memories of higher-level contextual details about a specific longer-term project\u2014e.g., a work project, hobby project, or even a personal long-term goal (e.g., lose weight). \u2022 Task-related memories: Memories of lower-level details about a specific task\u2014e.g., a specific assignment, component to a project, or activity toward one\u2019s higher-level goal.",
+      "asset_path": null,
+      "reading_order_index": 60
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b61",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.86134,
+        "y1": 0.078994,
+        "x2": 0.912094,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Jones et al.",
+      "asset_path": null,
+      "reading_order_index": 61
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b62",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.518992,
+        "y1": 0.107489,
+        "x2": 0.914575,
+        "y2": 0.481967
+      },
+      "block_type": "text",
+      "markdown_content": "These categories can be thought of as existing on layers. For instance, factual memories would refer to general knowledge information that the agent would always have access to, that is not specific to any given task, and could be useful for any activity that the agent assists the user with. LLMs in their default state may only have access to factual memories, without the personalization or specialization that result from collecting memories from user interactions. One level below this would be where the personalization of the agent toward the user begins. User-related memories would refer to any general information that the agent knows about the user that could be applied in different ways to any task that the agent helps the user with. As some participants expressed though, not all user-related memories may be relevant to the task at hand (e.g., information about the user\u2019s family members may not be important for helping the user solve a programming task). Below this level would be where memories extend from user-level personalization to role specialization, and memories from this level downward influence the agent\u2019s specialization toward certain domains (domainrelated memories), longer-term projects (project-related memories), and immediate tasks (task-related memories). Participants expressed that their needs for the system to collect and make use of each of these types of memories evolves over time. For example, the user may need the system to recall a lot of memories about the current task with a great amount of detail and accuracy, while remembering only relevant details about other tasks, and/or recalling only higher-level (e.g., summarized) memories about other tasks.",
+      "asset_path": null,
+      "reading_order_index": 62
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b63",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.559418,
+        "y1": 0.488575,
+        "x2": 0.87381,
+        "y2": 0.694135
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cI can imagine, like, a scenario where, for example, I learned Haskell using GPT, and then I start a fresh chat to learn, let\u2019s say, Swift. And then GPT remembers what I know about functional programming and, let\u2019s say, lazy evaluation from the Haskell lectures. And so it might call back to that in this conversation, because Swift also has lazy evaluation, and that might be one way in which you can carry over long-term memories. Maybe if there\u2019s, like, a problem that I\u2019m working on, and I switch to another problem, but GPT remembers that on the previous problem we encountered, like, a certain situation where I struggled, and I required extra assistance for it... so maybe it preemptively provides me with that information in [the] new chat, because it anticipates that I\u2019ll run into a similar problem.\u201d \u2014 P4",
+      "asset_path": null,
+      "reading_order_index": 63
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b64",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.697867,
+        "x2": 0.913706,
+        "y2": 0.767932
+      },
+      "block_type": "text",
+      "markdown_content": "In addition, the user may also want the system to recall and make use of memories at higher-levels of the hierarchy (e.g., the user\u2019s personal details from the system\u2019s user-related memories), but only to the degree that is necessary or relevant for the specific task at hand.",
+      "asset_path": null,
+      "reading_order_index": 64
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p4-b65",
+      "page_idx": 3,
+      "page_number": 4,
+      "bbox": {
+        "x1": 0.557221,
+        "y1": 0.774347,
+        "x2": 0.873815,
+        "y2": 0.895764
+      },
+      "block_type": "text",
+      "markdown_content": "\u201cI mean, [I do] not want it to remember my personal information a lot. So, like, previously I said I want it to learn about my writing style, so that when I\u2019m ready to revise my email, it is following my tone instead of using someone else\u2019s tone. [...] I don\u2019t want it to remember, like, my name. [...] So I don\u2019t want it to remember like, \u2018oh, I\u2019m Tom\u2019s friend\u2019, \u2018I\u2019m married\u2019, \u2018I\u2019m a student\u2019, \u2018I\u2019m, like, whose daughter\u2019, and \u2018I\u2019m whose wife\u2019, like those kind of information, is not what I want it to remember.",
+      "asset_path": null,
+      "reading_order_index": 65
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b66",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.343395,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Expectations and Practices with Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 66
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b67",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.664087,
+        "y1": 0.078994,
+        "x2": 0.91209,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 67
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b68",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.127789,
+        "y1": 0.110364,
+        "x2": 0.442181,
+        "y2": 0.136043
+      },
+      "block_type": "text",
+      "markdown_content": "I just want it to remember like, \u2018oh, write it this way\u2019, and that\u2019s everything [it] should do.\u201d \u2014 P6",
+      "asset_path": null,
+      "reading_order_index": 68
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b69",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.149352,
+        "x2": 0.110579,
+        "y2": 0.162369
+      },
+      "block_type": "text",
+      "markdown_content": "3.3",
+      "asset_path": null,
+      "reading_order_index": 69
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b70",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.128404,
+        "y1": 0.149352,
+        "x2": 0.40418,
+        "y2": 0.178722
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Practices of Organizing and Separating Memories",
+      "asset_path": null,
+      "reading_order_index": 70
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b71",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.182081,
+        "x2": 0.482948,
+        "y2": 0.895764
+      },
+      "block_type": "text",
+      "markdown_content": "Participants explained that they attempt to separate memories by creating separate chat threads or sessions for different projects or tasks (P1, P4, P5, P6) or creating entirely new agents or personas (P2, P3, P4) by prompting the model with different base instructions (e.g., creating \u2018custom GPTs\u2019) to tailor the agent to specific roles, finetuning the model to give the system \u2018expertise\u2019 or specialization in a certain task or domain, changing the model in use (e.g., switching from GPT to Llama), or even logging in with different user accounts. \u201cFor the HCI scholar [agent], like, that\u2019s just one for everything, like all of my writing academic writing that I have to do. And then for each project, I will create a custom one [agent], for example, like that usability one [project]. So if I need to evaluate the usability of one website, I\u2019ll create one [a custom agent]. And then I\u2019ll upload, like, to the knowledge [the agent\u2019s memory], like all of the screenshots for this one website. And if I\u2019m working on like an app, now I\u2019ll create another one, and then like upload all of the screenshots for the app.\u201d \u2014 P3 However, with many existing tools, when the user creates a new session or agent, they often need to manually select which information or memories they pass on to the new agent or new session. For example, the user might reuse the same base instructions or prompts defining the agent\u2019s role or higher-level task, but they might include different task or project-specific details for each instance of a task that they are working on. \u201cYeah, I give it the same persona like, you know, \u2018you are an expert researcher, you have multiple years of experience, you\u2019re very familiar with, like, you know, some heuristics\u2019. So that, like, persona blurb is the same. But then the blurb that I talked to them about the product. Like, this product, it contains XYZ... So I think, specific to this product, I\u2019ll upload different context for it to understand.\u201d \u2014 P3 For some situations, this can be a cumbersome process. For example, some participants mentioned needing to repeatedly manually select relevant information to copy and paste across sessions or agents. \u201cYeah, I would say, it\u2019s kind of difficult to do now. The only way I can keep it consistent is to copy and paste the same prompt.\u201d \u2014 P2 \u201cIf it\u2019s not able to recall certain discussions that I had with [it], then I would try to like, feed again, [...] like, dump data, whatever I have. Or maybe copy and paste the data from the previous chat [...] copy, paste the same conversation to it again.\u201d \u2014 P5 Some participants wished that this process of selecting which memories to preserve or turn on/off would be easier. \u201cYeah, it would be helpful if I could have like, you know... like, different settings, or like different fields that I can",
+      "asset_path": null,
+      "reading_order_index": 71
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b72",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.559418,
+        "y1": 0.110364,
+        "x2": 0.87381,
+        "y2": 0.14988
+      },
+      "block_type": "text",
+      "markdown_content": "customize, right? Like, say, I want, like, a UX expert. Then I can have that as the standard, and then just swap out, like, other things.\u201d \u2014 P3",
+      "asset_path": null,
+      "reading_order_index": 72
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b73",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.162572,
+        "x2": 0.914565,
+        "y2": 0.301822
+      },
+      "block_type": "text",
+      "markdown_content": "Additionally, the Reddit community expressed many desires to tune memories and recommended features such as an on/off toggle, manually selecting, deleting, organizing and categorizing different memories. In actuality, users are already directly managing the system memory by using various on/off features, post-hoc editing, periodically pruning the memory, using custom instructions, explicitly telling the agent what to remember or forget, manually deleting from the chat history, repeating information that they want to be remembered, and even prompting the system for how it should remember going forward.",
+      "asset_path": null,
+      "reading_order_index": 73
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b74",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.326342,
+        "x2": 0.528697,
+        "y2": 0.339359
+      },
+      "block_type": "text",
+      "markdown_content": "4",
+      "asset_path": null,
+      "reading_order_index": 74
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b75",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.546522,
+        "y1": 0.326342,
+        "x2": 0.719909,
+        "y2": 0.339359
+      },
+      "block_type": "text",
+      "markdown_content": "Design Opportunities",
+      "asset_path": null,
+      "reading_order_index": 75
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p5-b76",
+      "page_idx": 4,
+      "page_number": 5,
+      "bbox": {
+        "x1": 0.518832,
+        "y1": 0.342717,
+        "x2": 0.914577,
+        "y2": 0.897077
+      },
+      "block_type": "text",
+      "markdown_content": "In contrast to the desires and practices expressed by our interview participants and those who posted in the Reddit discussions we analyzed, many existing systems attempt to separate or organize memories automatically via other means, such as through vector embeddings (where the system retrieves memories by linguistic or semantic similarities with the user\u2019s input(s); e.g., [13]), time-based storage and retrieval (where more recent memories are more likely to be retrieved that older memories; e.g., [13]), and by mimicking existing psychological models of human memory (e.g., by separating memories into semantic, episodic, and procedural memories [4]). While these are all promising approaches to implementing agent long-term memory, there is also opportunity to consider users\u2019 existing approaches to organizing information and system memories by project, task, and domain, and to consider how users\u2019 needs evolve as they transition from one activity to another. Therefore, users could also benefit from memory mechanisms that organize and control the level of access to or abstraction of memories based on the user\u2019s task-based needs. Therefore, we recommend that agents, especially those that users use for multiple activities over a longer period of time, keep track of the different stages of the user\u2019s activities (task, project, domain, etc.) over time, and organize their memories based on these different stages of the user\u2019s activities. This could be done both with or without input from the user\u2014e.g., the agent can recognize explicit or implicit cues from the user that they are working on a new task or domain, including from the user\u2019s own prompts (such as what task they explicitly say they are working on) or by observing how the user organizes their own chat threads by project or task. There could also be benefit to allowing the user to directly manipulate and control the level of access to certain memories by task. In addition to existing approaches that allow users to directly manipulate agent memories (e.g., allowing users to move memories from one conversation to another or edit the level of abstraction of memories [15, 34]), allowing users to organize memories into hierarchical structures (e.g., akin to folders and subfolders in file systems, or global vs. local variables and private vs. public properties in object-oriented programming) where they can define the appropriate level of access to memories by task or activity could be a potentially promising approach that aligns with our participants\u2019 existing needs for agent memory.",
+      "asset_path": null,
+      "reading_order_index": 76
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b77",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.335908,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 77
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b78",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.107489,
+        "x2": 0.480472,
+        "y2": 0.205228
+      },
+      "block_type": "text",
+      "markdown_content": "Further, allowing users to organize memories into user-defined groups (such as, for example, \u2018personal memories\u2019, \u2018writing feedback memories\u2019, and \u2018health advice memories\u2019), and allowing users to toggle on/off and control the level of access to or abstraction of these user-defined groups of memories could be another way to give users more control, involvement, and agency over how the agent\u2019s memory works for them.",
+      "asset_path": null,
+      "reading_order_index": 78
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b79",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.224451,
+        "x2": 0.097067,
+        "y2": 0.237467
+      },
+      "block_type": "text",
+      "markdown_content": "5",
+      "asset_path": null,
+      "reading_order_index": 79
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b80",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.114893,
+        "y1": 0.224451,
+        "x2": 0.349278,
+        "y2": 0.237467
+      },
+      "block_type": "text",
+      "markdown_content": "Conclusion and Future Work",
+      "asset_path": null,
+      "reading_order_index": 80
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b81",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087466,
+        "y1": 0.240827,
+        "x2": 0.482935,
+        "y2": 0.407752
+      },
+      "block_type": "text",
+      "markdown_content": "This work provides preliminary understanding of users\u2019 long-term expectations and needs from AI systems\u2019 memory mechanisms, their practices of managing these systems\u2019 memories, and how their needs and practices evolve over time based on the stages of the activities they work on with the agents they use. To expand on these findings, we plan to run further studies (e.g., more indepth interviews and longer-term studies with more participants) to better understand people\u2019s evolving needs over a longer period of time. We are also interested in understanding how certain design choices in AI systems (e.g., anthropomorphic design traits, direct manipulation vs. interface agents [28]) affect people\u2019s perceptions of and practices toward agent memory.",
+      "asset_path": null,
+      "reading_order_index": 81
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b82",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.426975,
+        "x2": 0.176711,
+        "y2": 0.439991
+      },
+      "block_type": "text",
+      "markdown_content": "References",
+      "asset_path": null,
+      "reading_order_index": 82
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b83",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.441967,
+        "x2": 0.482395,
+        "y2": 0.896197
+      },
+      "block_type": "text",
+      "markdown_content": "[1] [n. d.]. ChatGPT. https://openai.com/chatgpt/overview/ [2] [n. d.]. Introducing Pi, Your Personal AI. https://inflection.ai/blog/pi [3] Sabina Asensio-Cuesta, Vicent Blanes-Selva, Manuel Portol\u00e9s, J Alberto Conejero, and Juan M Garc\u00eda-G\u00f3mez. 2021. How the Wakamola chatbot studied a university community\u2019s lifestyle during the COVID-19 confinement. Health Informatics Journal 27, 2 (April 2021), 14604582211017944. doi:10.1177/14604582211017944 Publisher: SAGE Publications Ltd. [4] R. C. Atkinson and R. M. Shiffrin. 1968. Human Memory: A Proposed System and its Control Processes1. In Psychology of Learning and Motivation, Kenneth W. Spence and Janet Taylor Spence (Eds.). Vol. 2. Academic Press, 89\u2013195. doi:10. 1016/S0079-7421(08)60422-3 [5] Sanghwan Bae, Donghyun Kwak, Soyoung Kang, Min Young Lee, Sungdong Kim, Yuin Jeong, Hyeri Kim, Sang-Woo Lee, Woomyoung Park, and Nako Sung. 2022. Keep Me Updated! Memory Management in Long-term Conversations. doi:10.48550/arXiv.2210.08750 arXiv:2210.08750 [cs]. [6] Virginia Braun and Victoria Clarke. 2006. Using thematic analysis in psychology. Qualitative Research in Psychology 3, 2 (Jan. 2006), 77\u2013101. doi:10.1191/1478088706qp063oa Publisher: Routledge _eprint: https://www.tandfonline.com/doi/pdf/10.1191/1478088706qp063oa. [7] Aranka Dol, Christina Bode, Hugo Velthuijsen, Tatjana van Strien, and Lisette van Gemert-Pijnen. 2021. Application of three different coaching strategies through a virtual coach for people with emotional eating: a vignette study. Journal of Eating Disorders 9, 1 (Jan. 2021), 13. doi:10.1186/s40337-020-00367-4 [8] Ahmed Fadhil and Silvia Gabrielli. 2017. Addressing challenges in promoting healthy lifestyles: the al-chatbot approach. In Proceedings of the 11th EAI International Conference on Pervasive Computing Technologies for Healthcare (PervasiveHealth \u201917). Association for Computing Machinery, New York, NY, USA, 261\u2013265. doi:10.1145/3154862.3154914 [9] Yunfan Gao, Yun Xiong, Xinyu Gao, Kangxiang Jia, Jinliu Pan, Yuxi Bi, Yi Dai, Jiawei Sun, Meng Wang, and Haofen Wang. 2024. Retrieval-Augmented Generation for Large Language Models: A Survey. doi:10.48550/arXiv.2312.10997 arXiv:2312.10997 [cs]. [10] Paula M. Gardiner, Kelly D. McCue, Lily M. Negash, Teresa Cheng, Laura F. White, Leanne Yinusa-Nyahkoon, Brian W. Jack, and Timothy W. Bickmore. 2017. Engaging women with an embodied conversational agent to deliver mindfulness and lifestyle recommendations: A feasibility randomized control trial. Patient Education and Counseling 100, 9 (Sept. 2017), 1720\u20131729. doi:10.1016/j.pec.2017. 04.015 [11] Zihong He, Weizhe Lin, Hao Zheng, Fan Zhang, Matt Jones, Laurence Aitchison, Xuhai Xu, Miao Liu, Per Ola Kristensson, and Junxiao Shen. 2024. Human-inspired Perspectives: A Survey on AI Long-term Memory. doi:10.48550/arXiv.2411.00489 arXiv:2411.00489. [12] Samuel Holmes, Anne Moorhead, Raymond Bond, Huiru Zheng, Vivien Coates, and Michael McTear. 2019. WeightMentor, bespoke chatbot for weight loss maintenance: Needs assessment & Development. In 2019 IEEE International Conference",
+      "asset_path": null,
+      "reading_order_index": 83
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b84",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.86134,
+        "y1": 0.078994,
+        "x2": 0.912094,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Jones et al.",
+      "asset_path": null,
+      "reading_order_index": 84
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p6-b85",
+      "page_idx": 5,
+      "page_number": 6,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.109879,
+        "x2": 0.914022,
+        "y2": 0.87607
+      },
+      "block_type": "text",
+      "markdown_content": "on Bioinformatics and Biomedicine (BIBM). 2845\u20132851. doi:10.1109/BIBM47256. 2019.8983073 [13] Yuki Hou, Haruki Tamoto, and Homei Miyashita. 2024. \"My agent understands me better\": Integrating Dynamic Human-like Memory Recall and Consolidation in LLM-Based Agents. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10.1145/3613905.3650839 [14] Chin-Yuan Huang, Ming-Chin Yang, Chin-Yu Huang, Yu-Jui Chen, Meng-Lin Wu, and Kai-Wen Chen. 2018. A Chatbot-supported Smart Wireless Interactive Healthcare System for Weight Control and Health Promotion. In 2018 IEEE International Conference on Industrial Engineering and Engineering Management (IEEM). 1791\u20131795. doi:10.1109/IEEM.2018.8607399 ISSN: 2157-362X. [15] Ziheng Huang, Sebastian Gutierrez, Hemanth Kamana, and Stephen Macneil. 2023. Memory Sandbox: Transparent and Interactive Memory Management for Conversational Agents. In Adjunct Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST \u201923 Adjunct). Association for Computing Machinery, New York, NY, USA, 1\u20133. doi:10.1145/3586182.3615796 [16] Brennan Jones, Yan Xu, Qisheng Li, and Stefan Scherer. 2024. Designing a Proactive Context-Aware AI Chatbot for People\u2019s Long-Term Goals. In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u20137. doi:10. 1145/3613905.3650912 [17] Matthew J\u00f6rke, Shardul Sapkota, Lyndsea Warkenthien, Niklas Vainio, Paul Schmiedmayer, Emma Brunskill, and James Landay. 2024. Supporting Physical Activity Behavior Change with LLM-Based Conversational Agents. doi:10.48550/ arXiv.2405.06061 arXiv:2405.06061 [cs]. [18] Taewoon Kim, Michael Cochez, Vincent Francois-Lavet, Mark Neerincx, and Piek Vossen. 2024. A Machine With Human-Like Memory Systems. doi:10.48550/ arXiv.2204.01611 arXiv:2204.01611 [cs]. [19] Tobias Kowatsch, Kim-Morgaine Lohse, Val\u00e9rie Erb, Leo Schittenhelm, Helen Galliker, Rea Lehner, and Elaine M. Huang. 2021. Hybrid Ubiquitous Coaching With a Novel Combination of Mobile and Holographic Conversational Agents Targeting Adherence to Home Exercises: Four Design and Evaluation Studies. Journal of Medical Internet Research 23, 2 (Feb. 2021), e23612. doi:10.2196/23612 Company: Journal of Medical Internet Research Distributor: Journal of Medical Internet Research Institution: Journal of Medical Internet Research Label: Journal of Medical Internet Research Publisher: JMIR Publications Inc., Toronto, Canada. [20] Dillys Larbi, Kerstin Denecke, and Elia Gabarron. 2022. Usability Testing of a Social Media Chatbot for Increasing Physical Activity Behavior. Journal of Personalized Medicine 12, 5 (May 2022), 828. doi:10.3390/jpm12050828 Number: 5 Publisher: Multidisciplinary Digital Publishing Institute. [21] Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica, and Joseph E. Gonzalez. 2024. MemGPT: Towards LLMs as Operating Systems. doi:10.48550/arXiv.2310.08560 arXiv:2310.08560 [cs]. [22] Gun Woo (Warren) Park, Payod Panda, Lev Tankelevitch, and Sean Rintel. 2024. CoExplorer: Generative AI Powered 2D and 3D Adaptive Interfaces to Support Intentionality in Video Meetings. In Extended Abstracts of the 2024 CHI Conference on Human Factors in Computing Systems (CHI EA \u201924). Association for Computing Machinery, New York, NY, USA, 1\u201310. doi:10.1145/3613905.3650797 [23] Gun Woo Warren Park, Payod Panda, Lev Tankelevitch, and Sean Rintel. 2024. The CoExplorer Technology Probe: A Generative AI-Powered Adaptive Interface to Support Intentionality in Planning and Running Video Meetings. doi:10.1145/ 3643834.3661507 arXiv:2405.18239 [cs]. [24] Joon Sung Park, Joseph O\u2019Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and Michael S. Bernstein. 2023. Generative Agents: Interactive Simulacra of Human Behavior. In Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST \u201923). Association for Computing Machinery, New York, NY, USA, 1\u201322. doi:10.1145/3586183.3606763 [25] SoHyun Park, Anja Thieme, Jeongyun Han, Sungwoo Lee, Wonjong Rhee, and Bongwon Suh. 2021. \u201cI wrote as if I were telling a story to someone I knew.\u201d: Designing Chatbot Interactions for Expressive Writing in Mental Health. In Proceedings of the 2021 ACM Designing Interactive Systems Conference (DIS \u201921). Association for Computing Machinery, New York, NY, USA, 926\u2013941. doi:10. 1145/3461778.3462143 [26] Meihua Piao, Jeongeun Kim, Hyeongju Ryu, and Hyeongsuk Lee. 2020. Development and Usability Evaluation of a Healthy Lifestyle Coaching Chatbot Using a Habit Formation Model. Healthcare Informatics Research 26, 4 (Oct. 2020), 255\u2013264. doi:10.4258/hir.2020.26.4.255 Publisher: Korean Society of Medical Informatics. [27] Samiha Samrose, Daniel McDuff, Robert Sim, Jina Suh, Kael Rowan, Javier Hernandez, Sean Rintel, Kevin Moynihan, and Mary Czerwinski. 2021. MeetingCoach: An Intelligent Dashboard for Supporting Effective & Inclusive Meetings. In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems (CHI \u201921). Association for Computing Machinery, New York, NY, USA, 1\u201313. doi:10.1145/3411764.3445615 [28] Ben Shneiderman and Pattie Maes. 1997. Direct manipulation vs. interface agents. interactions 4, 6 (1997), 42\u201361.",
+      "asset_path": null,
+      "reading_order_index": 85
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b86",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.343395,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Expectations and Practices with Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 86
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b87",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.109879,
+        "x2": 0.482393,
+        "y2": 0.533919
+      },
+      "block_type": "text",
+      "markdown_content": "[29] Qingyue Wang, Liang Ding, Yanan Cao, Zhiliang Tian, Shi Wang, Dacheng Tao, and Li Guo. 2024. Recursively Summarizing Enables Long-Term Dialogue Memory in Large Language Models. doi:10.48550/arXiv.2308.15022 arXiv:2308.15022 [cs]. [30] Justin D. Weisz, Jessica He, Michael Muller, Gabriela Hoefer, Rachel Miles, and Werner Geyer. 2024. Design Principles for Generative AI Applications. In Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems (CHI \u201924). Association for Computing Machinery, New York, NY, USA, 1\u201322. doi:10.1145/3613904.3642466 [31] Yanxin Wu, Ryan Donovan, Binh Vu, Felix Engel, Matthias L. Hemmje, and Haithem Afli. 2020. Chatbot Based Behaviour Analysis for Obesity Support Platform.. In CERC. 112\u2013124. https://ceur-ws.org/Vol-2815/CERC2020_paper07. pdf [32] Jing Xu, Arthur Szlam, and Jason Weston. 2021. Beyond Goldfish Memory: Long-Term Open-Domain Conversation. doi:10.48550/arXiv.2107.07567 arXiv:2107.07567 [cs]. [33] Xinchao Xu, Zhibin Gou, Wenquan Wu, Zheng-Yu Niu, Hua Wu, Haifeng Wang, and Shihang Wang. 2022. Long Time No See! Open-Domain Conversation with Long-Term Persona Memory. doi:10.48550/arXiv.2203.05797 arXiv:2203.05797 [cs]. [34] Ryan Yen and Jian Zhao. 2024. Memolet: Reifying the Reuse of User-AI Conversational Memories. In Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology (UIST \u201924). Association for Computing Machinery, New York, NY, USA, 1\u201322. doi:10.1145/3654777.3676388 [35] Amanda L. Zaleski, Rachel Berkowsky, Kelly Jean Thomas Craig, and Linda S. Pescatello. 2024. Comprehensiveness, Accuracy, and Readability of Exercise Recommendations Provided by an AI-Based Chatbot: Mixed Methods Study. JMIR Medical Education 10, 1 (Jan. 2024), e51308. doi:10.2196/51308 Company: JMIR Medical Education Distributor: JMIR Medical Education Institution: JMIR Medical Education Label: JMIR Medical Education Publisher: JMIR Publications Inc., Toronto, Canada. [36] Zeyu Zhang, Xiaohe Bo, Chen Ma, Rui Li, Xu Chen, Quanyu Dai, Jieming Zhu, Zhenhua Dong, and Ji-Rong Wen. 2024. A Survey on the Memory Mechanism of Large Language Model based Agents. doi:10.48550/arXiv.2404.13501 arXiv:2404.13501 [cs]. [37] Hanxun Zhong, Zhicheng Dou, Yutao Zhu, Hongjin Qian, and Ji-Rong Wen. 2022. Less is More: Learning to Refine Dialogue History for Personalized Dialogue Generation. doi:10.48550/arXiv.2204.08128 arXiv:2204.08128 [cs]. [38] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. 2024. MemoryBank: Enhancing Large Language Models with Long-Term Memory. Proceedings of the AAAI Conference on Artificial Intelligence 38, 17 (March 2024), 19724\u201319731. doi:10.1609/aaai.v38i17.29946 Number: 17.",
+      "asset_path": null,
+      "reading_order_index": 87
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b88",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.664087,
+        "y1": 0.078994,
+        "x2": 0.91209,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 88
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b89",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.108409,
+        "x2": 0.532725,
+        "y2": 0.121426
+      },
+      "block_type": "text",
+      "markdown_content": "A",
+      "asset_path": null,
+      "reading_order_index": 89
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b90",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.55055,
+        "y1": 0.108409,
+        "x2": 0.816861,
+        "y2": 0.121426
+      },
+      "block_type": "text",
+      "markdown_content": "Semi-Structured Interview Guide",
+      "asset_path": null,
+      "reading_order_index": 90
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b91",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.12766,
+        "x2": 0.913559,
+        "y2": 0.152025
+      },
+      "block_type": "text",
+      "markdown_content": "Interviews were semi-structured, and the exact questions asked occasionally deviated slightly from the following guide.",
+      "asset_path": null,
+      "reading_order_index": 91
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b92",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.166273,
+        "x2": 0.546237,
+        "y2": 0.179289
+      },
+      "block_type": "text",
+      "markdown_content": "A.1",
+      "asset_path": null,
+      "reading_order_index": 92
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b93",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.564062,
+        "y1": 0.166273,
+        "x2": 0.66711,
+        "y2": 0.179289
+      },
+      "block_type": "text",
+      "markdown_content": "Introduction",
+      "asset_path": null,
+      "reading_order_index": 93
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b94",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.537361,
+        "y1": 0.182649,
+        "x2": 0.956644,
+        "y2": 0.308062
+      },
+      "block_type": "text",
+      "markdown_content": "(1) Share with me how you currently use personalized AI tools like ChatGPT, Claude, or Gemini. \u2022 What AI tools or chatbots do you use on a regular basis? \u2022 What do you use these tools for? (What types of tasks/activities?) (2) Share with me the role that memory plays in your use of these systems. \u2022 What things does the system remember over time? \u2022 How does the system\u2019s memory affect the task(s) it does (or helps you do)?",
+      "asset_path": null,
+      "reading_order_index": 94
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b95",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.320995,
+        "x2": 0.546237,
+        "y2": 0.334011
+      },
+      "block_type": "text",
+      "markdown_content": "A.2",
+      "asset_path": null,
+      "reading_order_index": 95
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b96",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.563402,
+        "y1": 0.320995,
+        "x2": 0.901103,
+        "y2": 0.350365
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Mental Models of and Desires from Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 96
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b97",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.537361,
+        "y1": 0.353725,
+        "x2": 0.913705,
+        "y2": 0.562159
+      },
+      "block_type": "text",
+      "markdown_content": "(3) Share with me your understanding of how the memory in [X system] works. \u2022 How does it store memory (how does it remember things)? \u2022 How does it choose what to remember? \u2022 How does it recall memories? \u2022 How does it use memories? \u2022 How does it behave based on its memories? How do you expect it to behave based on its memories? (4) What kinds of behaviours from the system (e.g., indications, communications, interface elements, etc.) help you better understand the system\u2019s memory operations? \u2022 Is there anything that [X system] does that you think helps you better understand how the system\u2019s memory is working (e.g., what it is remembering, recalling, forgetting, etc.)?",
+      "asset_path": null,
+      "reading_order_index": 97
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b98",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.575093,
+        "x2": 0.546237,
+        "y2": 0.58811
+      },
+      "block_type": "text",
+      "markdown_content": "A.3",
+      "asset_path": null,
+      "reading_order_index": 98
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b99",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.564062,
+        "y1": 0.575093,
+        "x2": 0.857199,
+        "y2": 0.58811
+      },
+      "block_type": "text",
+      "markdown_content": "Users\u2019 Practices with Agent Memory",
+      "asset_path": null,
+      "reading_order_index": 99
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b100",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.537361,
+        "y1": 0.591468,
+        "x2": 0.912101,
+        "y2": 0.840068
+      },
+      "block_type": "text",
+      "markdown_content": "(5) Is there anything that you do with the system specifically to try to get it to remember certain things (or forget certain things)? \u2022 Is there anything you do with the system to try to prevent it from remembering certain things? (6) In what instances do you want to be more aware of what is in the system\u2019s memory? \u2022 In what instances do you want to know what the system is choosing to remember? (In what instances do you want to control this?) \u2022 In what instances do you want to know what and how the system is recalling information in its memory? (In what instances do you want to control this?) \u2022 In what instances do you want to know what the system is choosing to forget? (In what instances do you want to control this?) (7) In what instances do you want to manage the system\u2019s memory?",
+      "asset_path": null,
+      "reading_order_index": 100
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b101",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.854348,
+        "x2": 0.546237,
+        "y2": 0.867365
+      },
+      "block_type": "text",
+      "markdown_content": "A.4",
+      "asset_path": null,
+      "reading_order_index": 101
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b102",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.564062,
+        "y1": 0.854348,
+        "x2": 0.656183,
+        "y2": 0.867365
+      },
+      "block_type": "text",
+      "markdown_content": "Conclusion",
+      "asset_path": null,
+      "reading_order_index": 102
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p7-b103",
+      "page_idx": 6,
+      "page_number": 7,
+      "bbox": {
+        "x1": 0.537361,
+        "y1": 0.870725,
+        "x2": 0.866144,
+        "y2": 0.885442
+      },
+      "block_type": "text",
+      "markdown_content": "(8) Is there anything else that you would like to share?",
+      "asset_path": null,
+      "reading_order_index": 103
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b104",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.078994,
+        "x2": 0.335908,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "CHI EA \u201925, April 26\u2013May 01, 2025, Yokohama, Japan",
+      "asset_path": null,
+      "reading_order_index": 104
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b105",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.087905,
+        "y1": 0.108409,
+        "x2": 0.099563,
+        "y2": 0.121426
+      },
+      "block_type": "text",
+      "markdown_content": "B",
+      "asset_path": null,
+      "reading_order_index": 105
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b106",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.117388,
+        "y1": 0.108409,
+        "x2": 0.471595,
+        "y2": 0.121426
+      },
+      "block_type": "text",
+      "markdown_content": "Survey Questions for Interview Participants",
+      "asset_path": null,
+      "reading_order_index": 106
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b107",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.105732,
+        "y1": 0.124784,
+        "x2": 0.48294,
+        "y2": 0.623797
+      },
+      "block_type": "text",
+      "markdown_content": "(1) [Optional; open response] What is your age? (2) [Optional; multiple choice; select one] Which gender do you identify as? \u2022 Female \u2022 Male \u2022 Non-binary \u2022 Prefer not to say \u2022 Other [please describe] (3) [Multiple choice; select one] How often do you use LLMs or personalized AI tools (e.g., ChatGPT, Claude, Gemini, Pi, Meta AI, Microsoft Copilot chatbot, NotebookLM, Perplexity, AI-generated meeting summaries, AI-powered writing assistants, Copilot in Microsoft Office or GitHub)? \u2022 At least once per day \u2022 At least once per week \u2022 At least once per month \u2022 At least once per year \u2022 Have only used these tools a few times before \u2022 Have never used these tools before (4) [Open response] Which of these tools do you use, and what do you use them for? (5) How would you rate your level of expertise with using these tools? \u2022 Likert scale from 1 to 5, 1 = \u201cBeginner/novice\u201d, 5 = \u201cAdvanced/expert\u201d (6) Please rate your level of technical knowledge of LLMs\u2014 e.g., your technical understanding of how LLMs work, your technical understanding of memory in LLMs and LLM-based tools and agents (including model training, fine-tuning, context windows, RAG, etc.). \u2022 Likert scale from 1 to 5, 1 = \u201cBeginner/novice\u201d, 5 = \u201cAdvanced/expert\u201d (7) [Optional; open response] Please describe / elaborate on your technical knowledge of LLMs and LLM-based tools. What specific knowledge do you have about how these tools work?",
+      "asset_path": null,
+      "reading_order_index": 107
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b108",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.86134,
+        "y1": 0.078994,
+        "x2": 0.912094,
+        "y2": 0.087121
+      },
+      "block_type": "text",
+      "markdown_content": "Jones et al.",
+      "asset_path": null,
+      "reading_order_index": 108
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b109",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.519534,
+        "y1": 0.108409,
+        "x2": 0.532119,
+        "y2": 0.121426
+      },
+      "block_type": "text",
+      "markdown_content": "C",
+      "asset_path": null,
+      "reading_order_index": 109
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b110",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.549944,
+        "y1": 0.108409,
+        "x2": 0.878216,
+        "y2": 0.137778
+      },
+      "block_type": "text",
+      "markdown_content": "List of Subreddits where the Reddit Discussion Threads were Collected From",
+      "asset_path": null,
+      "reading_order_index": 110
+    },
+    {
+      "block_id": "35fb83fd8fd74211980843d062743799-p8-b111",
+      "page_idx": 7,
+      "page_number": 8,
+      "bbox": {
+        "x1": 0.545624,
+        "y1": 0.141138,
+        "x2": 0.711422,
+        "y2": 0.474106
+      },
+      "block_type": "list",
+      "markdown_content": "\u2022 r/Artificial \u2022 r/ArtificialIntelligence \u2022 r/CharacterAI \u2022 r/ChatGPT \u2022 r/ChatGPTCoding \u2022 r/ChatGPTPro \u2022 r/ChatGPTPromptGenius \u2022 r/CyberSecurity \u2022 r/EuroPrivacy \u2022 r/ExplainLikeImFive \u2022 r/Grok \u2022 r/JanitorAI_Official \u2022 r/LangChain \u2022 r/LearnMachineLearning \u2022 r/LLMDevs \u2022 r/LocalLLaMA \u2022 r/NoStupidQuestions \u2022 r/OpenAI \u2022 r/Privacy \u2022 r/PromptEngineering \u2022 r/Shortcuts \u2022 r/Singularity \u2022 r/Technology \u2022 r/YouShouldKnow",
+      "asset_path": null,
+      "reading_order_index": 111
+    }
+  ]
+}

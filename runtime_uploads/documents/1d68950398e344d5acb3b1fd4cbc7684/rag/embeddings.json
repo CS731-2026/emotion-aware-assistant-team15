@@ -1,0 +1,8 @@
+{
+  "document_id": "1d68950398e344d5acb3b1fd4cbc7684",
+  "provider": "gemini",
+  "model": "text-embedding-004",
+  "status": "failed",
+  "message": "Gemini embedding preparation failed: HTTPError; keyword retrieval will be used.",
+  "embeddings": []
+}

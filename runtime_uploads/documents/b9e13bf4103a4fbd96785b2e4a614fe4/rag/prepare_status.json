@@ -1,0 +1,12 @@
+{
+  "document_id": "b9e13bf4103a4fbd96785b2e4a614fe4",
+  "status": "completed",
+  "profile_provider": "rule_based",
+  "block_count": 0,
+  "useful_block_count": 0,
+  "prepared_at": 1778852106.6470935,
+  "paper_profile_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/b9e13bf4103a4fbd96785b2e4a614fe4/rag/paper_profile.json",
+  "section_map_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/b9e13bf4103a4fbd96785b2e4a614fe4/rag/section_map.json",
+  "keyword_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/b9e13bf4103a4fbd96785b2e4a614fe4/rag/keyword_index.json",
+  "rag_prepare_status_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/b9e13bf4103a4fbd96785b2e4a614fe4/rag/prepare_status.json"
+}

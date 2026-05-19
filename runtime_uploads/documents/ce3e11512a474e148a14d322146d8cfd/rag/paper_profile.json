@@ -1,0 +1,33 @@
+{
+  "title": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+  "one_sentence_summary": "The study investigates the therapeutic potential and risks of self-clone chatbots through interviews with experts and users to establish a framework for responsible and safe design.",
+  "research_problem": "Despite the potential for self-clone chatbots to facilitate intra-personal exploration, they present significant risks regarding identity confusion, negative reinforcement, blurred user agency, and ethical safety that require structured design guidance.",
+  "method_summary": "The researchers conducted in-depth interviews with 16 mental health professionals (providers and researchers) and 6 prospective end-users to identify affordances, risks, and design dimensions.",
+  "dataset_or_materials": "Qualitative data from interviews with 16 mental health experts and 6 general users, specifically targeting applications for individuals with mild, non-clinical symptoms.",
+  "main_findings": "The development of a design framework organized around three priorities: grounding the approach in therapeutic models, identifying specific design dimensions, and establishing safety guardrails and ethical implications for self-clone development.",
+  "key_terms": [
+    "self-clone chatbots",
+    "mental well-being",
+    "design framework",
+    "human-centered computing",
+    "interaction design",
+    "therapeutic affordances",
+    "large language models"
+  ],
+  "section_map": [
+    {
+      "heading": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+      "page_number": 1,
+      "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Mehrnoosh Sadat Shirvani",
+      "page_number": 1,
+      "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

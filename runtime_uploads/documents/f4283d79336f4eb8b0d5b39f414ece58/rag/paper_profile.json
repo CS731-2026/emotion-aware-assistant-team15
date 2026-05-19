@@ -1,0 +1,38 @@
+{
+  "title": "Relational Gains, Privacy Strains: Exploring Users\u2019 Perceptions and Experiences with ChatGPT\u2019s Memory Feature",
+  "one_sentence_summary": "School of Communication Oregon State University Corvallis, Oregon, USA chenc27@oregonstate.edu",
+  "research_problem": "Memories are essential to human experience, shaping how we learn, adapt, and understand the world.",
+  "method_summary": "(RAG)-based memories, on the other hand, extract and store user information across sessions, building longer-term user profiles that the system can draw upon later.",
+  "dataset_or_materials": "Memories are essential to human experience, shaping how we learn, adapt, and understand the world.",
+  "main_findings": "(RAG)-based memories, on the other hand, extract and store user information across sessions, building longer-term user profiles that the system can draw upon later.",
+  "key_terms": [
+    "memory",
+    "chatgpt",
+    "users",
+    "feature",
+    "information",
+    "privacy",
+    "human",
+    "more",
+    "memories",
+    "user",
+    "data",
+    "system"
+  ],
+  "section_map": [
+    {
+      "heading": "Relational Gains, Privacy Strains: Exploring Users\u2019 Perceptions and Experiences with ChatGPT\u2019s Memory Feature",
+      "page_number": 1,
+      "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Cheng Chen",
+      "page_number": 1,
+      "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

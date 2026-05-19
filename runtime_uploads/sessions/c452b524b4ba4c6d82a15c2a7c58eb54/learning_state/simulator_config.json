@@ -1,0 +1,27 @@
+{
+  "session_id": "c452b524b4ba4c6d82a15c2a7c58eb54",
+  "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+  "source": "simulated_camera",
+  "model_output_type": "academic_state_model",
+  "mode": "simulated_mode_b",
+  "started_at": 1779098435.9871714,
+  "scenario": "default_engagement_confusion_recovery",
+  "thresholds": {
+    "confusion": {
+      "confidence": 0.65,
+      "duration_sec": 8
+    },
+    "frustration": {
+      "confidence": 0.6,
+      "duration_sec": 6
+    },
+    "boredom": {
+      "confidence": 0.6,
+      "duration_sec": 12
+    },
+    "engagement": {
+      "confidence": 0.75,
+      "duration_sec": 0
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "document_id": "44ec3c2435c442da9e866f292bdc09e0",
+  "file_name": "3772318.3791948.pdf",
+  "title": "3772318.3791948.pdf",
+  "page_count": 19,
+  "created_at": 1779104550.5726452,
+  "updated_at": 1779104701.3712459,
+  "last_opened_at": null,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 302,
+  "embedding_status": "completed",
+  "retrieval_method": "embedding",
+  "highlight_count": 0,
+  "thread_count": 0,
+  "uploaded_from": "pdf_chat",
+  "library_visible": false,
+  "archived_at": 1779104701.0215282
+}

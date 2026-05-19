@@ -1,0 +1,48 @@
+{
+  "blocks": [
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p1-b0",
+      "page_number": 1,
+      "block_type": "title",
+      "terms": [
+        "page",
+        "smoke",
+        "text"
+      ],
+      "text": "Page 1 smoke text"
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p2-b1",
+      "page_number": 2,
+      "block_type": "text",
+      "terms": [
+        "page",
+        "smoke",
+        "text"
+      ],
+      "text": "Page 2 smoke text"
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p3-b2",
+      "page_number": 3,
+      "block_type": "text",
+      "terms": [
+        "page",
+        "smoke",
+        "text"
+      ],
+      "text": "Page 3 smoke text"
+    },
+    {
+      "block_id": "f37585c869974b8c877f3399a73788b5-p4-b3",
+      "page_number": 4,
+      "block_type": "text",
+      "terms": [
+        "page",
+        "smoke",
+        "text"
+      ],
+      "text": "Page 4 smoke text"
+    }
+  ]
+}

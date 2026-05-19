@@ -1,0 +1,33 @@
+{
+  "title": "DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling",
+  "one_sentence_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+  "research_problem": "A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.",
+  "method_summary": "The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.",
+  "dataset_or_materials": "The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).",
+  "main_findings": "Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectives, yet showed signs of over-reliance by prioritizing AI-generated emotional expressions over their own.",
+  "key_terms": [
+    "human-centered computing",
+    "empirical studies in hci",
+    "journaling",
+    "diary",
+    "personal writing",
+    "human-ai collaborative writing",
+    "large language models (llms)"
+  ],
+  "section_map": [
+    {
+      "heading": "DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling",
+      "page_number": 1,
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Taewan Kim",
+      "page_number": 1,
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "document_id": "35fb83fd8fd74211980843d062743799",
+  "file_name": "3706599.3720158.pdf",
+  "title": "3706599.3720158.pdf",
+  "page_count": 8,
+  "created_at": 1779105064.2797465,
+  "updated_at": 1779108559.7920613,
+  "last_opened_at": 1779108559.792061,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 112,
+  "embedding_status": "completed",
+  "retrieval_method": "embedding",
+  "highlight_count": 4,
+  "thread_count": 4,
+  "uploaded_from": "pdf_chat",
+  "library_visible": true,
+  "archived_at": null
+}

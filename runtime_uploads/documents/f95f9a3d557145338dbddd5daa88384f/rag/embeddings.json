@@ -1,0 +1,8 @@
+{
+  "document_id": "f95f9a3d557145338dbddd5daa88384f",
+  "provider": "gemini",
+  "model": "text-embedding-004",
+  "status": "unavailable",
+  "message": "GEMINI_API_KEY is not configured; keyword retrieval will be used.",
+  "embeddings": []
+}

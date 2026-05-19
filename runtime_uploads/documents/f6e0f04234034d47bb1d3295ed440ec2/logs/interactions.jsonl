@@ -1,0 +1,2 @@
+{"timestamp": 1778909475.0432546, "event_type": "upload_pdf", "document_id": "f6e0f04234034d47bb1d3295ed440ec2", "highlight_id": null, "selection_type": null, "provider": null, "model": null, "retrieval_method": "keyword", "success": true, "error": ""}
+{"timestamp": 1778909475.1671033, "event_type": "open_document", "document_id": "f6e0f04234034d47bb1d3295ed440ec2", "highlight_id": null, "selection_type": null, "provider": null, "model": null, "retrieval_method": null, "success": true, "error": ""}

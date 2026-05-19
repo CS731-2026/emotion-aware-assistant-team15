@@ -1,0 +1,275 @@
+{
+  "document_id": "f4283d79336f4eb8b0d5b39f414ece58",
+  "highlight_id": "d7e91e5d-25ff-41c8-81e5-36fb250af752",
+  "created_at": 1778909422.2354562,
+  "updated_at": 1778909422.2354627,
+  "selection_snapshot": {
+    "document_id": "f4283d79336f4eb8b0d5b39f414ece58",
+    "highlight_id": "d7e91e5d-25ff-41c8-81e5-36fb250af752",
+    "highlight_type": "text",
+    "page_number": 3,
+    "selected_text": "Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences.",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.757812,
+        "y1": 534.648438,
+        "x2": 770.73761,
+        "y2": 548.148438,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.992188,
+        "y1": 549.78125,
+        "x2": 770.725891,
+        "y2": 563.28125,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.992188,
+        "y1": 564.914062,
+        "x2": 772.125793,
+        "y2": 578.414062,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.992188,
+        "y1": 580.046875,
+        "x2": 523.820801,
+        "y2": 593.546875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535808,
+        "y1": 0.48892,
+        "x2": 0.912116,
+        "y2": 0.501265,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519517,
+        "y1": 0.502759,
+        "x2": 0.912102,
+        "y2": 0.515104,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519517,
+        "y1": 0.516597,
+        "x2": 0.913758,
+        "y2": 0.528942,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519517,
+        "y1": 0.530436,
+        "x2": 0.619906,
+        "y2": 0.542781,
+        "pageNumber": 3
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.808,
+        "y1": 488.92,
+        "x2": 912.116,
+        "y2": 501.265,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.517,
+        "y1": 502.759,
+        "x2": 912.102,
+        "y2": 515.104,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.517,
+        "y1": 516.597,
+        "x2": 913.758,
+        "y2": 528.942,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.517,
+        "y1": 530.436,
+        "x2": 619.906,
+        "y2": 542.781,
+        "pageNumber": 3
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awareness, many reported higher discomfort with ChatGPT\u2019s automatic activation of the memory feature without prior notification. Only a small proportion of the participants knew how to check the data stored in their account and what ChatGPT had memorized about them. Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences. However, it also retained a small proportion of moderateor high-risk information, including personal and social details, health, financial, and contact information. Their analysis also revealed vulnerabilities in the system\u2019s ability to protect sensitive data as well as inaccuracies in how users were represented in ChatGPT\u2019s memory."
+    },
+    "previous_block": {
+      "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b36",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "2.2"
+    },
+    "next_block": {
+      "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b39",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "2.3"
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awareness, many reported higher discomfort with ChatGPT\u2019s automatic activation of the memory feature without prior notification. Only a small proportion of the participants knew how to check the data stored in their account and what ChatGPT had memorized about them. Sadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences. However, it also retained a small proportion of moderateor high-risk information, including personal and social details, health, financial, and contact information. Their analysis also revealed vulnerabilities in the system\u2019s ability to protect sensitive data as well as inaccuracies in how users were represented in ChatGPT\u2019s memory."
+      },
+      {
+        "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b37",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Users\u2019 Responses to Memory Features in LLM Agents"
+      },
+      {
+        "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b40",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Mental Models of LLM-based Memory and Expectancy Violations"
+      }
+    ],
+    "recommended_llm_mode": "text_context"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This is a mock explanation for the selected text. The system received page 3, mode text_context, selected text length 208, crop image available false.",
+      "created_at": 1778909422.2354615,
+      "provider": "mock",
+      "model": "mock",
+      "context_used": {
+        "provider": "mock",
+        "model": "mock",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "School of Communication Oregon State University Corvallis, Oregon, USA chenc27@oregonstate.edu",
+        "retrieved_block_count": 14,
+        "retrieval_method": "keyword",
+        "retrieved_blocks": [
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p2-b28",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "In this section, we first examine the similarities and differences between human memory and AI memory. We then review existing research on users\u2019 mental models, focusing on how people understand the memory feature and how expectancy violations can prompt updates to these models. Finally, we address privacy as a key concern related to AI memorization, draw...",
+            "score": 0.1719
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p7-b83",
+            "page_number": 7,
+            "block_type": "text",
+            "markdown_content": "In line with our research questions, we first present participants\u2019 perceived similarities and differences between ChatGPT\u2019s memory and human memory (RQ1). We then examine instances where participants updated their mental models after learning what ChatGPT remembered about them (RQ2). Finally, we summarize users\u2019 suggestions for improving ChatGPT\u2019s memory...",
+            "score": 0.1719
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p7-b80",
+            "page_number": 7,
+            "block_type": "text",
+            "markdown_content": "After completing the coding of the 20 interviews, the research team met again to discuss the findings. Some disagreements emerged due to different understandings of high-level theoretical concepts, such as transparency. When this happened, we discussed the nuanced meanings of the concept and broke the concept into more specific dimensions, such as transpa...",
+            "score": 0.1406
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p2-b28",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "In this section, we first examine the similarities and differences between human memory and AI memory. We then review existing research on users\u2019 mental models, focusing on how people understand the memory feature and how expectancy violations can prompt updates to these models. Finally, we address privacy as a key concern related to AI memorization, draw...",
+            "score": 0.1719
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p7-b83",
+            "page_number": 7,
+            "block_type": "text",
+            "markdown_content": "In line with our research questions, we first present participants\u2019 perceived similarities and differences between ChatGPT\u2019s memory and human memory (RQ1). We then examine instances where participants updated their mental models after learning what ChatGPT remembered about them (RQ2). Finally, we summarize users\u2019 suggestions for improving ChatGPT\u2019s memory...",
+            "score": 0.1719
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p7-b80",
+            "page_number": 7,
+            "block_type": "text",
+            "markdown_content": "After completing the coding of the 20 interviews, the research team met again to discuss the findings. Some disagreements emerged due to different understandings of high-level theoretical concepts, such as transparency. When this happened, we discussed the nuanced meanings of the concept and broke the concept into more specific dimensions, such as transpa...",
+            "score": 0.1406
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b37",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Users\u2019 Responses to Memory Features in LLM Agents",
+            "reading_order_index": 37
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b40",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Mental Models of LLM-based Memory and Expectancy Violations",
+            "reading_order_index": 40
+          },
+          {
+            "block_id": "f4283d79336f4eb8b0d5b39f414ece58-p3-b38",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "Extending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based study, Sadat et al. [54] found that about half of their respondents were either unaware of or unsure about the existence of ChatGPT\u2019s memory feature. Among those lacking prior awar..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nWrite a first explanation that is paper-grounded and moderately informative. Address: what the selected part is, what it means in this paper, how it connects to the paper's method/result/argument, why it matters, and one useful follow-up question. Do not turn it into a full lecture.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Relational Gains, Privacy Strains: Exploring Users\u2019 Perceptions and Experiences with ChatGPT\u2019s Memory Feature\none_sentence_summary: School of Communication Oregon State University Corvallis, Oregon, USA chenc27@oregonstate.edu\nresearch_problem: Memories are essential to human experience, shaping how we learn, adapt, and understand the world.\nmethod_summary: (RAG)-based memories, on the other hand, extract and store user information across sessions, building longer-term user profiles that the system can draw upon later.\ndataset_or_materials: Memories are essential to human experience, shaping how we learn, adapt, and understand the world.\nmain_findings: (RAG)-based memories, on the other hand, extract and store user information across sessions, building longer-term user profiles that the system can draw upon later.\nkey_terms: memory, chatgpt, users, feature, information, privacy, human, more, memories, user, data, system\n\nselected_text:\nSadat et al. [54] also analyzed user-provided AI memories from their ChatGPT accounts, finding that the system primarily stored information related to users\u2019 interests, education, employment, and preferences.\n\nmatched_block:\nExtending theoretical discussions on the similarities and differences between AI memory and human memory, empirical research has examined users\u2019 awareness and perception of memory features in LLM agents, the types of information these systems retain, and the risks and concerns related to AI memorization. For example, in a survey-based stu"
+      }
+    }
+  ]
+}

@@ -1,0 +1,997 @@
+{
+  "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+  "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+  "created_at": 1779103738.1048493,
+  "updated_at": 1779103780.3023295,
+  "selection_snapshot": {
+    "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+    "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+    "highlight_type": "text",
+    "page_number": 13,
+    "selected_text": "Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 563.750366,
+        "y1": 390.726562,
+        "x2": 770.840454,
+        "y2": 404.226562,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 13
+      },
+      {
+        "x1": 438.976562,
+        "y1": 405.8125,
+        "x2": 771.135986,
+        "y2": 419.3125,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 13
+      },
+      {
+        "x1": 438.976562,
+        "y1": 421,
+        "x2": 770.90094,
+        "y2": 434.5,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 13
+      },
+      {
+        "x1": 438.976562,
+        "y1": 436.085938,
+        "x2": 771.134033,
+        "y2": 449.585938,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 13
+      },
+      {
+        "x1": 438.976562,
+        "y1": 451.171875,
+        "x2": 578.833801,
+        "y2": 464.671875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 13
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.66716,
+        "y1": 0.357308,
+        "x2": 0.912237,
+        "y2": 0.369653,
+        "pageNumber": 13
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.371103,
+        "x2": 0.912587,
+        "y2": 0.383449,
+        "pageNumber": 13
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.384992,
+        "x2": 0.912309,
+        "y2": 0.397337,
+        "pageNumber": 13
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.398788,
+        "x2": 0.912585,
+        "y2": 0.411133,
+        "pageNumber": 13
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.412583,
+        "x2": 0.68501,
+        "y2": 0.424929,
+        "pageNumber": 13
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 667.16,
+        "y1": 357.308,
+        "x2": 912.237,
+        "y2": 369.653,
+        "pageNumber": 13
+      },
+      {
+        "x1": 519.499,
+        "y1": 371.103,
+        "x2": 912.587,
+        "y2": 383.449,
+        "pageNumber": 13
+      },
+      {
+        "x1": 519.499,
+        "y1": 384.992,
+        "x2": 912.309,
+        "y2": 397.337,
+        "pageNumber": 13
+      },
+      {
+        "x1": 519.499,
+        "y1": 398.788,
+        "x2": 912.585,
+        "y2": 411.133,
+        "pageNumber": 13
+      },
+      {
+        "x1": 519.499,
+        "y1": 412.583,
+        "x2": 685.01,
+        "y2": 424.929,
+        "pageNumber": 13
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+      "page_number": 13,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device storage when feasible, and provides users with a simple way to revoke or wipe their clone [96]. Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100]. Cultural sensitivity is another key consideration for responsible design: SCs trained on limited linguistic or cultural norms may alienate users from underrepresented backgrounds [19, 109]. Inclusive design practices and ongoing testing are vital to ensuring that diverse users feel accurately seen and supported. The role of professional mental health professionals in administering a self-clone chatbot can be critical for ensuring safe and effective use. As our findings suggest, self-clones are best positioned as complementary tools within traditional therapeutic frameworks, rather than replacements for human care. Therapists can guide usage, monitor progress, and adapt interventions based on individual needs while also providing essential human oversight in situations where chatbot responses may fall short, such as crisis or high-risk scenarios [64]. Embedding SCs within guided counseling contexts could also help mitigate ethical concerns by ensuring accountability and professional supervision [67]. However, widespread adoption faces notable barriers. Clinicians and users alike may hold skeptical or negative views of mental health chatbots, driven by fear of AI [60], doubts about digital efficacy [14], and lingering mental health stigma [12]. Addressing these concerns requires thoughtful tool introduction, education, and aligning with established psychological schools of thought that may be more suitable for such intervention\u2014such as cognitivism\u2014to frame SCs within recognized therapeutic models and evidence-based practice. In addition to anticipating moments of acute risk, our findings highlight slower, more insidious pathways through which users may develop a specific unhealthy attachment to a self-clone. Because a self-clone is modeled on the user\u2019s own language, preferences, and history, the relationship can feel less like using a tool and more like retreating into a version of oneself that is always available, easy to talk to, and increasingly familiar. The comforting escape this offers from interpersonal discomfort may intensify patterns of over-reliance observed in AI companions [87], but with the added complication in cases the object of attachment is perceived as \u201cme,"
+    },
+    "previous_block": {
+      "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b397",
+      "page_number": 13,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "5.2"
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+        "page_number": 13,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device storage when feasible, and provides users with a simple way to revoke or wipe their clone [96]. Safety also means recognizing that some populations (e.g., youth, individuals with identity confusion, or those with a history of harm from impostor content) may require additional safeguards, such as session limits, human handoffs, or opt-out disclosures [2, 100]. Cultural sensitivity is another key consideration for responsible design: SCs trained on limited linguistic or cultural norms may alienate users from underrepresented backgrounds [19, 109]. Inclusive design practices and ongoing testing are vital to ensuring that diverse users feel accurately seen and supported. The role of professional mental health professionals in administering a self-clone chatbot can be critical for ensuring safe and effective use. As our findings suggest, self-clones are best positioned as complementary tools within traditional therapeutic frameworks, rather than replacements for human care. Therapists can guide usage, monitor progress, and adapt interventions based on individual needs while also providing essential human oversight in situations where chatbot responses may fall short, such as crisis or high-risk scenarios [64]. Embedding SCs within guided counseling contexts could also help mitigate ethical concerns by ensuring accountability and professional supervision [67]. However, widespread adoption faces notable barriers. Clinicians and users alike may hold skeptical or negative views of mental health chatbots, driven by fear of AI [60], doubts about digital efficacy [14], and lingering mental health stigma [12]. Addressing these concerns requires thoughtful tool introduction, education, and aligning with established psychological schools of thought that may be more suitable for such intervention\u2014such as cognitivism\u2014to frame SCs within recognized therapeutic models and evidence-based practice. In addition to anticipating moments of acute risk, our findings highlight slower, more insidious pathways through which users may develop a specific unhealthy attachment to a self-clone. Because a self-clone is modeled on the user\u2019s own language, preferences, and history, the relationship can feel less like using a tool and more like retreating into a version of oneself that is always available, easy to talk to, and increasingly familiar. The comforting escape this offers from interpersonal discomfort may intensify patterns of over-reliance observed in AI companions [87], but with the added complication in cases the object of attachment is perceived as \u201cme,"
+      },
+      {
+        "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b398",
+        "page_number": 13,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Responsible Self-Clone Design"
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+    "learning_state": {
+      "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+      "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+      "timestamp": "2026-05-18T11:28:49Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.8,
+      "distribution": {
+        "boredom": 0.06,
+        "confusion": 0.8,
+        "engagement": 0.07,
+        "frustration": 0.07
+      },
+      "trend": "stable",
+      "duration_sec": 15.4,
+      "intensity": 0.8,
+      "stability": "stable",
+      "trigger_recommended": true,
+      "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_463a522187ee4f388925dfea9e4b2112"
+  },
+  "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+  "learning_state_snapshot": {
+    "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+    "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+    "timestamp": "2026-05-18T11:29:20Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 1,
+    "distribution": {
+      "boredom": 1,
+      "confusion": 0,
+      "engagement": 0,
+      "frustration": 0
+    },
+    "trend": "stable",
+    "duration_sec": 28.9,
+    "intensity": 1,
+    "stability": "stable",
+    "trigger_recommended": true,
+    "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "relevant_scenario_safeguards",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Illustrate the practical application of safeguards through a specific user persona",
+      "context_focus": "vulnerable populations and design interventions",
+      "title": "Apply safeguards to a real-world scenario",
+      "short_description": "See how these safety features would actually protect a vulnerable user in practice.",
+      "why_recommended": "Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.",
+      "prompt_instruction": "Create a brief scenario involving one of the vulnerable populations mentioned (e.g., a teenager or someone with identity confusion). Explain how a specific safeguard like 'session limits' or 'human handoffs' would intervene in that specific moment to prevent harm.",
+      "expected_answer_shape": [
+        "A short persona-based scenario",
+        "A clear link between a risk and a specific design intervention"
+      ],
+      "recommended": true,
+      "recommended_score": 0.9
+    },
+    {
+      "strategy_id": "safety_logic_quiz",
+      "strategy_family": "quick_quiz",
+      "pedagogical_move": "Challenge the user to match specific risks with their intended design solutions",
+      "context_focus": "the logic behind session limits and human handoffs",
+      "title": "Test your intuition on safety design",
+      "short_description": "A quick check to see if you can match the safety risk to the right design solution.",
+      "why_recommended": "A low-stakes quiz can prompt active cognitive processing and break the monotony of reading long explanations.",
+      "prompt_instruction": "Present a simple matching challenge or multiple-choice question. Ask the user which safeguard (session limits, human handoffs, or opt-out disclosures) is best suited to address a specific risk like 'obsessive interaction' or 'acute emotional distress'.",
+      "expected_answer_shape": [
+        "A question with clear options",
+        "Immediate feedback based on the paper's logic"
+      ],
+      "recommended": false,
+      "recommended_score": 0.7
+    },
+    {
+      "strategy_id": "safety_bottom_line",
+      "strategy_family": "one_sentence_takeaway",
+      "pedagogical_move": "Distill the complex safety requirements into a single, high-level principle",
+      "context_focus": "adaptive safety boundaries",
+      "title": "Distill the core safety principle",
+      "short_description": "Get the 'bottom line' of why these specific safeguards are included in the framework.",
+      "why_recommended": "If the user is losing interest, a single, punchy takeaway can provide the necessary insight without requiring significant reading time.",
+      "prompt_instruction": "Summarize the entire passage about vulnerable populations and safeguards into one powerful sentence that captures the shift from 'static safety' to 'adaptive, user-specific safety'.",
+      "expected_answer_shape": [
+        "A single, impactful sentence"
+      ],
+      "recommended": false,
+      "recommended_score": 0.6
+    }
+  ],
+  "selected_strategy_id": "relevant_scenario_safeguards",
+  "selected_strategy": {
+    "strategy_id": "relevant_scenario_safeguards",
+    "strategy_family": "make_it_relevant",
+    "pedagogical_move": "Illustrate the practical application of safeguards through a specific user persona",
+    "context_focus": "vulnerable populations and design interventions",
+    "title": "Apply safeguards to a real-world scenario",
+    "short_description": "See how these safety features would actually protect a vulnerable user in practice.",
+    "why_recommended": "Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.",
+    "prompt_instruction": "Create a brief scenario involving one of the vulnerable populations mentioned (e.g., a teenager or someone with identity confusion). Explain how a specific safeguard like 'session limits' or 'human handoffs' would intervene in that specific moment to prevent harm.",
+    "expected_answer_shape": [
+      "A short persona-based scenario",
+      "A clear link between a risk and a specific design intervention"
+    ],
+    "recommended": true,
+    "recommended_score": 0.9
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "duration_sec": 8.3,
+    "trend": "rising",
+    "intensity": 0.783,
+    "refresh_requested": false,
+    "support_cue": "re_engagement",
+    "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112",
+    "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+    "window_start": "2026-05-18T11:28:58.251Z",
+    "window_end": "2026-05-18T11:29:06.516Z",
+    "duration_sec": 8.3,
+    "sample_count": 5,
+    "dominant_state": "boredom",
+    "secondary_state": "confusion",
+    "avg_confidence": 0.783,
+    "max_confidence": 1,
+    "avg_distribution": {
+      "boredom": 0.783,
+      "confusion": 0.217,
+      "engagement": 0,
+      "frustration": 0
+    },
+    "trend": "rising",
+    "stability": "stable",
+    "support_cue": "re_engagement",
+    "support_cue_label": "Re-engagement cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage highlights that safety in AI self-clones is not a \"one-size-fits-all\" concept. It identifies specific groups\u2014such as young people or those struggling with their sense of self\u2014who might be particularly vulnerable to the psychological effects of interacting with a digital version of themselves. For these users, the boundary between their actual identity and the AI replica could become dangerously blurred.\n\nTo address these risks, the authors propose concrete design interventions. Features like \"session limits\" prevent over-reliance or obsessive interaction, while \"human handoffs\" ensure that if a user becomes distressed, they can be transitioned to a real person for support. These safeguards are intended to act as a safety net, ensuring the technology remains a therapeutic tool rather than a source of further mental strain.\n\nThis matters because it moves the paper\u2019s argument from abstract ethical concerns to practical design requirements. It emphasizes that for a self-clone to be \"safe and therapeutic,\" it must be able to adapt its boundaries based on the user's specific mental and developmental needs. This reflects the paper's broader goal of creating a framework that balances the novelty of AI self-reflection with the rigorous safety standards of mental health care."
+  },
+  "turn_metadata": {
+    "turn_463a522187ee4f388925dfea9e4b2112": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112",
+        "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+        "window_start": "2026-05-18T11:28:58.251Z",
+        "window_end": "2026-05-18T11:29:06.516Z",
+        "duration_sec": 8.3,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.783,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.783,
+          "confusion": 0.217,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights that safety in AI self-clones is not a \"one-size-fits-all\" concept. It identifies specific groups\u2014such as young people or those struggling with their sense of self\u2014who might be particularly vulnerable to the psychological effects of interacting with a digital version of themselves. For these users, the boundary between their actual identity and the AI replica could become dangerously blurred.\n\nTo address these risks, the authors propose concrete design interventions. Features like \"session limits\" prevent over-reliance or obsessive interaction, while \"human handoffs\" ensure that if a user becomes distressed, they can be transitioned to a real person for support. These safeguards are intended to act as a safety net, ensuring the technology remains a therapeutic tool rather than a source of further mental strain.\n\nThis matters because it moves the paper\u2019s argument from abstract ethical concerns to practical design requirements. It emphasizes that for a self-clone to be \"safe and therapeutic,\" it must be able to adapt its boundaries based on the user's specific mental and developmental needs. This reflects the paper's broader goal of creating a framework that balances the novelty of AI self-reflection with the rigorous safety standards of mental health care."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.3,
+        "trend": "rising",
+        "intensity": 0.783,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "relevant_scenario_safeguards",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Illustrate the practical application of safeguards through a specific user persona",
+          "context_focus": "vulnerable populations and design interventions",
+          "title": "Apply safeguards to a real-world scenario",
+          "short_description": "See how these safety features would actually protect a vulnerable user in practice.",
+          "why_recommended": "Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.",
+          "prompt_instruction": "Create a brief scenario involving one of the vulnerable populations mentioned (e.g., a teenager or someone with identity confusion). Explain how a specific safeguard like 'session limits' or 'human handoffs' would intervene in that specific moment to prevent harm.",
+          "expected_answer_shape": [
+            "A short persona-based scenario",
+            "A clear link between a risk and a specific design intervention"
+          ],
+          "recommended": true,
+          "recommended_score": 0.9
+        },
+        {
+          "strategy_id": "safety_logic_quiz",
+          "strategy_family": "quick_quiz",
+          "pedagogical_move": "Challenge the user to match specific risks with their intended design solutions",
+          "context_focus": "the logic behind session limits and human handoffs",
+          "title": "Test your intuition on safety design",
+          "short_description": "A quick check to see if you can match the safety risk to the right design solution.",
+          "why_recommended": "A low-stakes quiz can prompt active cognitive processing and break the monotony of reading long explanations.",
+          "prompt_instruction": "Present a simple matching challenge or multiple-choice question. Ask the user which safeguard (session limits, human handoffs, or opt-out disclosures) is best suited to address a specific risk like 'obsessive interaction' or 'acute emotional distress'.",
+          "expected_answer_shape": [
+            "A question with clear options",
+            "Immediate feedback based on the paper's logic"
+          ],
+          "recommended": false,
+          "recommended_score": 0.7
+        },
+        {
+          "strategy_id": "safety_bottom_line",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Distill the complex safety requirements into a single, high-level principle",
+          "context_focus": "adaptive safety boundaries",
+          "title": "Distill the core safety principle",
+          "short_description": "Get the 'bottom line' of why these specific safeguards are included in the framework.",
+          "why_recommended": "If the user is losing interest, a single, punchy takeaway can provide the necessary insight without requiring significant reading time.",
+          "prompt_instruction": "Summarize the entire passage about vulnerable populations and safeguards into one powerful sentence that captures the shift from 'static safety' to 'adaptive, user-specific safety'.",
+          "expected_answer_shape": [
+            "A single, impactful sentence"
+          ],
+          "recommended": false,
+          "recommended_score": 0.6
+        }
+      ],
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 265,
+        "caption_length": 0,
+        "baseline_explanation_length": 1297,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.3,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    },
+    "turn_c73f783354354b2292fa37b7cb707042": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_c73f783354354b2292fa37b7cb707042",
+        "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+        "window_start": "2026-05-18T11:29:29.742Z",
+        "window_end": "2026-05-18T11:29:38.456Z",
+        "duration_sec": 8.7,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.999,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.999,
+          "confusion": 0.001,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "To see how these safeguards work in practice, imagine a teenager named Leo who is using a self-clone chatbot to process his social anxiety. Because the bot is trained on his own conversational patterns, Leo finds it incredibly easy to talk to, but he eventually spends several hours late at night in a circular, negative conversation with his digital twin. For a young user whose sense of identity is still developing, this kind of \"echo chamber\" can quickly shift from helpful reflection to identity confusion or emotional distress.\n\nThe \"session limits\" safeguard mentioned in the text would act as a vital intervention here. Instead of allowing Leo to stay immersed in the loop indefinitely, the system would recognize the prolonged duration and automatically trigger a \"cool-down\" period. This forced break encourages Leo to disconnect from the AI and re-engage with his actual surroundings, preventing the digital replica from over-influencing his real-world state of mind.\n\nSimilarly, a \"human handoff\" would intervene if the system detects that Leo\u2019s dialogue is becoming increasingly dark or unproductive. If the self-clone realizes it can no longer provide \"self-derived support\" safely, it would pause the interaction and offer Leo a direct link to a human counselor or a trusted adult. \n\nThese safeguards are essential to the paper's argument because self-clones are uniquely intimate tools. While they offer deep personalization, the text highlights that for vulnerable populations, that same intimacy can be risky. Implementing these design interventions ensures that the technology remains a therapeutic aid rather than a source of harm or psychological blurring."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.7,
+        "trend": "stable",
+        "intensity": 0.999,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_c73f783354354b2292fa37b7cb707042"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "Safety also means recognizing that some populations (e.g., youth, individuals with identity conf",
+          "title": "Explain why this passage matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with connect the selected passage to the paper's larger argument.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "Safety also means recognizing that some populations (e.g., youth, individuals with identity conf",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with condense the previous explanation into the central point before expanding.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "Safety also means recognizing that some populations (e.g., youth, individuals with identity conf",
+          "title": "Use a structured breakdown for this passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 265,
+        "caption_length": 0,
+        "baseline_explanation_length": 1673,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.7,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  },
+  "support_cue": "re_engagement",
+  "support_cue_label": "Re-engagement cue",
+  "planner_mode": "llm",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 265,
+    "caption_length": 0,
+    "baseline_explanation_length": 1297,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 2,
+    "reaction_window_duration_sec": 8.3,
+    "support_cue": "re_engagement",
+    "allowed_strategy_families": [
+      "why_it_matters",
+      "one_sentence_takeaway",
+      "make_it_relevant",
+      "compare_with_familiar_method",
+      "quick_quiz"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "unknown",
+    "difficulty_hint": "technical_terms"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage highlights that safety in AI self-clones is not a \"one-size-fits-all\" concept. It identifies specific groups\u2014such as young people or those struggling with their sense of self\u2014who might be particularly vulnerable to the psychological effects of interacting with a digital version of themselves. For these users, the boundary between their actual identity and the AI replica could become dangerously blurred.\n\nTo address these risks, the authors propose concrete design interventions. Features like \"session limits\" prevent over-reliance or obsessive interaction, while \"human handoffs\" ensure that if a user becomes distressed, they can be transitioned to a real person for support. These safeguards are intended to act as a safety net, ensuring the technology remains a therapeutic tool rather than a source of further mental strain.\n\nThis matters because it moves the paper\u2019s argument from abstract ethical concerns to practical design requirements. It emphasizes that for a self-clone to be \"safe and therapeutic,\" it must be able to adapt its boundaries based on the user's specific mental and developmental needs. This reflects the paper's broader goal of creating a framework that balances the novelty of AI self-reflection with the rigorous safety standards of mental health care.",
+      "created_at": 1779103738.1048598,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.8102
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b0",
+            "page_number": 1,
+            "block_type": "title",
+            "markdown_content": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+            "score": 0.8037
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8016
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.8102
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b0",
+            "page_number": 1,
+            "block_type": "title",
+            "markdown_content": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+            "score": 0.8037
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8016
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b398",
+            "page_idx": 12,
+            "page_number": 13,
+            "block_type": "text",
+            "markdown_content": "Responsible Self-Clone Design",
+            "reading_order_index": 398
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+            "page_number": 13,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 13\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots\none_sentence_summary: Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca\nresearch_problem: As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support.\nmethod_summary: Technologies that replicate an individual\u2019s perceptual or cognitive signature are rapidly converging into what HCI researchers now call AI clones.\ndataset_or_materials: promise chatbots hold is in redefining the contours of how mental health support is administered, offering the potential for deeply personalized support [108].\nmain_findings: Technologies that replicate an individual\u2019s perceptual or cognitive signature are rapidly converging into what HCI researchers now call AI clones.\nkey_terms: self-clone, mental, health, user, users, such, design, chatbots, therapeutic, self-clones, support, framework\n\nselected_text:\nSafety also means recognizing that some populations (e.g.,"
+      },
+      "turn_id": "turn_463a522187ee4f388925dfea9e4b2112",
+      "prompt_snapshot_id": "snap_7ad3c001d3a4",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+        "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+        "timestamp": "2026-05-18T11:28:49Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.8,
+        "distribution": {
+          "boredom": 0.06,
+          "confusion": 0.8,
+          "engagement": 0.07,
+          "frustration": 0.07
+        },
+        "trend": "stable",
+        "duration_sec": 15.4,
+        "intensity": 0.8,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "To see how these safeguards work in practice, imagine a teenager named Leo who is using a self-clone chatbot to process his social anxiety. Because the bot is trained on his own conversational patterns, Leo finds it incredibly easy to talk to, but he eventually spends several hours late at night in a circular, negative conversation with his digital twin. For a young user whose sense of identity is still developing, this kind of \"echo chamber\" can quickly shift from helpful reflection to identity confusion or emotional distress.\n\nThe \"session limits\" safeguard mentioned in the text would act as a vital intervention here. Instead of allowing Leo to stay immersed in the loop indefinitely, the system would recognize the prolonged duration and automatically trigger a \"cool-down\" period. This forced break encourages Leo to disconnect from the AI and re-engage with his actual surroundings, preventing the digital replica from over-influencing his real-world state of mind.\n\nSimilarly, a \"human handoff\" would intervene if the system detects that Leo\u2019s dialogue is becoming increasingly dark or unproductive. If the self-clone realizes it can no longer provide \"self-derived support\" safely, it would pause the interaction and offer Leo a direct link to a human counselor or a trusted adult. \n\nThese safeguards are essential to the paper's argument because self-clones are uniquely intimate tools. While they offer deep personalization, the text highlights that for vulnerable populations, that same intimacy can be risky. Implementing these design interventions ensures that the technology remains a therapeutic aid rather than a source of harm or psychological blurring.",
+      "created_at": 1779103769.612952,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "Computer Science University of British Columbia Vancouver, British Columbia, Canada mehrshi@cs.ubc.ca",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.8102
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b0",
+            "page_number": 1,
+            "block_type": "title",
+            "markdown_content": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+            "score": 0.8037
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8016
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b21",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "As digital tools increasingly mediate mental health care, self-clone chatbots can offer a uniquely novel approach to intra-personal exploration and self-derived support. Trained to replicate users\u2019 conversational patterns, self-clones allow users to talk to themselves through their digital replicas. Despite the promises, these systems may carry risks around identity confusion, negative reinforcement, and blurred user agency. Through interviews with 16 mental health professionals and 6 general users, we aim to un...",
+            "score": 0.8102
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p1-b0",
+            "page_number": 1,
+            "block_type": "title",
+            "markdown_content": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+            "score": 0.8037
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8016
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b398",
+            "page_idx": 12,
+            "page_number": 13,
+            "block_type": "text",
+            "markdown_content": "Responsible Self-Clone Design",
+            "reading_order_index": 398
+          },
+          {
+            "block_id": "9e23b5b39f6d4a7db45bfec358f33852-p13-b399",
+            "page_number": 13,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "In the emerging landscape of AI-powered self-clones, responsible design is the key to protecting users while ensuring their experiences are safe, meaningful, and ethically sound [8, 36, 59]. Since a self-clone by nature is built from highly personal data, losing control of its outputs could expose a user\u2019s private history or allow malicious reverse engineering [21, 38]. Designers, therefore, need a clear and robust data-governance plan that separates model training from model serving, applies encrypted on-device..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 13\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: make_it_relevant\n- Pedagogical move: Illustrate the practical application of safeguards through a specific user persona\n- Context focus: vulnerable populations and design interventions\n- Strategy title: Apply safeguards to a real-world scenario\n- Why selected: Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.\n- Instruction for answer: Create a brief scenario involving one of the vulnerable populations mentioned (e.g., a teenager or someone with identity confusion). Explain how a specific safeguard like 'se"
+      },
+      "turn_id": "turn_c73f783354354b2292fa37b7cb707042",
+      "prompt_snapshot_id": "snap_cf146ef0754a",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112",
+        "highlight_id": "48d25cd2-7389-4c1a-93f2-89846accd9f0",
+        "window_start": "2026-05-18T11:28:58.251Z",
+        "window_end": "2026-05-18T11:29:06.516Z",
+        "duration_sec": 8.3,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "confusion",
+        "avg_confidence": 0.783,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.783,
+          "confusion": 0.217,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights that safety in AI self-clones is not a \"one-size-fits-all\" concept. It identifies specific groups\u2014such as young people or those struggling with their sense of self\u2014who might be particularly vulnerable to the psychological effects of interacting with a digital version of themselves. For these users, the boundary between their actual identity and the AI replica could become dangerously blurred.\n\nTo address these risks, the authors propose concrete design interventions. Features like \"session limits\" prevent over-reliance or obsessive interaction, while \"human handoffs\" ensure that if a user becomes distressed, they can be transitioned to a real person for support. These safeguards are intended to act as a safety net, ensuring the technology remains a therapeutic tool rather than a source of further mental strain.\n\nThis matters because it moves the paper\u2019s argument from abstract ethical concerns to practical design requirements. It emphasizes that for a self-clone to be \"safe and therapeutic,\" it must be able to adapt its boundaries based on the user's specific mental and developmental needs. This reflects the paper's broader goal of creating a framework that balances the novelty of AI self-reflection with the rigorous safety standards of mental health care."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "strategy_id": "relevant_scenario_safeguards",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Illustrate the practical application of safeguards through a specific user persona",
+      "context_focus": "vulnerable populations and design interventions",
+      "strategy_title": "Apply safeguards to a real-world scenario",
+      "strategy_short_description": "See how these safety features would actually protect a vulnerable user in practice.",
+      "why_recommended": "Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.",
+      "strategy_reason": "Connecting abstract design requirements to a concrete scenario can help re-engage a user who may find the technical list of features dry.",
+      "learning_state_snapshot": {
+        "session_id": "b25a152e1f9b4f5e8688a69800dfd26f",
+        "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+        "timestamp": "2026-05-18T11:29:20Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 1,
+        "distribution": {
+          "boredom": 1,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "trend": "stable",
+        "duration_sec": 28.9,
+        "intensity": 1,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.3,
+        "trend": "rising",
+        "intensity": 0.783,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_463a522187ee4f388925dfea9e4b2112"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 265,
+        "caption_length": 0,
+        "baseline_explanation_length": 1297,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 2,
+        "reaction_window_duration_sec": 8.3,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "technical_terms"
+      }
+    }
+  ]
+}

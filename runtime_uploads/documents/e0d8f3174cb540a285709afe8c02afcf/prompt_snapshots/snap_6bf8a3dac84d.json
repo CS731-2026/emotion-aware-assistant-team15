@@ -1,0 +1,46 @@
+{
+  "snapshot_id": "snap_6bf8a3dac84d",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "76d0ae56-aa5e-4e97-8391-186b437ba484",
+  "turn_id": "turn_2114c91ac74b46cc9198f1564eb04d31",
+  "thread_id": "thread-76d0ae56-aa5e-4e97-8391-186b437ba484",
+  "created_at": "2026-05-18T11:37:47Z",
+  "stage": "rag_baseline",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "user",
+      "content": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\nThis includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and fiction [ 46 ], as well as non-fiction areas such as argumentative essays [29] and scientific writings [ 17].\n\nmatched_block:\nAdvances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaphor writing [16], and fiction [46], as well as non-fiction areas such as argumentative essays [29] and scientific writings [17]. Early studies first studied how writers work with LLMs, suggesting interaction methods for human-LLM collaborative writing like infilling, continuation, and elaboration. These interaction methods are now commonly used when developing human-AI collaborative writing systems [47]. Later research expanded its focus to encompass the overall writing process and diverse contexts. For instance,\n\nuseful_nearby_context:\n- e0d8f3174cb540a285709afe8c02afcf-p3-b32: Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields l...\n- e0d8f3174cb540a285709afe8c02afcf-p3-b31: Language Models for Writing Support\n- e0d8f3174cb540a285709afe8c02afcf-p3-b34: Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight th..."
+    }
+  ],
+  "prompt_text": "user:\nYou are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\nThis includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and fiction [ 46 ], as well as non-fiction areas such as argumentative essays [29] and scientific writings [ 17].\n\nmatched_block:\nAdvances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields like story writing [10, 29, 47] and metaphor writing [16], and fiction [46], as well as non-fiction areas such as argumentative essays [29] and scientific writings [17]. Early studies first studied how writers work with LLMs, suggesting interaction methods for human-LLM collaborative writing like infilling, continuation, and elaboration. These interaction methods are now commonly used when developing human-AI collaborative writing systems [47]. Later research expanded its focus to encompass the overall writing process and diverse contexts. For instance,\n\nuseful_nearby_context:\n- e0d8f3174cb540a285709afe8c02afcf-p3-b32: Advances in natural language processing (NLP) have enabled a range of technological writing aids, evolving from basic spell-checking to sophisticated style and grammar checks [11\u201313]. With the emergence of LLMs, these tools, once limited to error detection, now offer text rewriting and generation capabilities [13]. One emerging research topic in HCI is to explore how LLMs can be used for collaborative writing across various writing domains. This includes creative fields l...\n- e0d8f3174cb540a285709afe8c02afcf-p3-b31: Language Models for Writing Support\n- e0d8f3174cb540a285709afe8c02afcf-p3-b34: Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight th...",
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 3,
+    "selected_text_preview": "This includes creative fields like story writing [ 10 , 29, 47 ] and metaphor writing [ 16], and fiction [ 46 ], as well as non-fiction areas such as argumentative essays [29] and scientific writings [ 17].",
+    "selected_text_length": 206,
+    "has_area_crop": false,
+    "has_caption": false,
+    "matched_block_present": true,
+    "nearby_context_present": true,
+    "rag_chunk_count": 0,
+    "paper_profile_present": false,
+    "has_baseline_explanation": false,
+    "baseline_explanation_length": 0,
+    "has_reaction_window_summary": false,
+    "support_cue": null,
+    "selected_strategy_id": null,
+    "strategy_family": null,
+    "pedagogical_move": null,
+    "context_focus": null,
+    "reaction_window_duration": null,
+    "reaction_window_avg_confidence": null
+  },
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": false
+  }
+}

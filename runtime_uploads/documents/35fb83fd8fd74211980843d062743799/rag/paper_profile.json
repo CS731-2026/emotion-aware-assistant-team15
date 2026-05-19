@@ -1,0 +1,38 @@
+{
+  "title": "Users\u2019 Expectations and Practices with Agent Memory",
+  "one_sentence_summary": "Faculty of Information University of Toronto Toronto, Ontario, Canada brennan.jones@utoronto.ca",
+  "research_problem": "\u201cI can imagine, like, a scenario where, for example, I learned Haskell using GPT, and then I start a fresh chat to learn, let\u2019s say, Swift.",
+  "method_summary": "We conducted semi-structured one-on-one interviews (see Appendix A for the interview guide) with six participants (each identified as \u2018P#\u2019 in the findings) who use personalized AI tools with long-term memory on a regular basis.",
+  "dataset_or_materials": "systems\u2019 memories.",
+  "main_findings": "AI agents have the potential to provide long-term personalized assistance to users, and this relies on effective long-term memory.",
+  "key_terms": [
+    "memories",
+    "memory",
+    "user",
+    "system",
+    "agent",
+    "like",
+    "users",
+    "information",
+    "systems",
+    "agents",
+    "tools",
+    "task"
+  ],
+  "section_map": [
+    {
+      "heading": "Users\u2019 Expectations and Practices with Agent Memory",
+      "page_number": 1,
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Brennan Jones",
+      "page_number": 1,
+      "block_id": "35fb83fd8fd74211980843d062743799-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

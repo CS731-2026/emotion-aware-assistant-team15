@@ -1,0 +1,19 @@
+{
+  "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+  "file_name": "manual-repro.pdf",
+  "title": "manual-repro.pdf",
+  "page_count": 1,
+  "created_at": 1779097602.2935483,
+  "updated_at": 1779098476.6740692,
+  "last_opened_at": 1779098435.806292,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 1,
+  "embedding_status": "unavailable",
+  "retrieval_method": "keyword",
+  "highlight_count": 1,
+  "thread_count": 1,
+  "uploaded_from": "pdf_chat",
+  "library_visible": false,
+  "archived_at": 1779098476.6740692
+}

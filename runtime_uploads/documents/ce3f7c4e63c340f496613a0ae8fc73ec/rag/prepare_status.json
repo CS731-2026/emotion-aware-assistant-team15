@@ -1,0 +1,68 @@
+{
+  "document_id": "ce3f7c4e63c340f496613a0ae8fc73ec",
+  "status": "completed",
+  "parser": "pdftotext_fallback",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "parsed_dir": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/parsed",
+  "document_md_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/parsed/document.md",
+  "content_list_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/parsed/content_list.json",
+  "blocks_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/parsed/blocks_index.json",
+  "images_dir": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/parsed/images",
+  "page_count": 1,
+  "block_count": 1,
+  "duration_sec": 0.023,
+  "profile_provider": "rule_based",
+  "useful_block_count": 1,
+  "prepared_at": 1779097602.3180313,
+  "paper_profile_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/rag/paper_profile.json",
+  "section_map_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/rag/section_map.json",
+  "keyword_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/rag/keyword_index.json",
+  "rag_prepare_status_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/rag/prepare_status.json",
+  "embedding_provider": "gemini",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_index_status": "unavailable",
+  "embedding_message": "GEMINI_API_KEY is not configured; keyword retrieval will be used.",
+  "embeddings_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/ce3f7c4e63c340f496613a0ae8fc73ec/rag/embeddings.json",
+  "stage": "ready",
+  "stage_label": "Ready",
+  "progress_percent": 100,
+  "started_at": 1779097602.2935483,
+  "updated_at": 1779097602.3181374,
+  "elapsed_seconds": 0.0,
+  "estimated_remaining_seconds": 0.0,
+  "steps": [
+    {
+      "id": "upload",
+      "label": "Uploading PDF",
+      "status": "completed"
+    },
+    {
+      "id": "extract",
+      "label": "Extracting text and layout",
+      "status": "completed"
+    },
+    {
+      "id": "profile",
+      "label": "Building paper profile",
+      "status": "completed"
+    },
+    {
+      "id": "keyword",
+      "label": "Building keyword index",
+      "status": "completed"
+    },
+    {
+      "id": "embedding",
+      "label": "Building embedding index",
+      "status": "completed"
+    },
+    {
+      "id": "ready",
+      "label": "Ready",
+      "status": "completed"
+    }
+  ],
+  "warnings": [
+    "Embedding index status: unavailable. Keyword retrieval is available."
+  ]
+}

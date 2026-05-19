@@ -1,0 +1,39 @@
+{
+  "document_id": "b3e289ebf78a4ba4aea48cf0ea49994b",
+  "parser": "pdftotext_fallback",
+  "status": "completed",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "page_count": 1,
+  "blocks": [
+    {
+      "block_id": "b3e289ebf78a4ba4aea48cf0ea49994b-p1-b0",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.121008,
+        "y1": 0.076131,
+        "x2": 0.26484,
+        "y2": 0.088215
+      },
+      "block_type": "title",
+      "markdown_content": "PDF Reader Test",
+      "asset_path": null,
+      "reading_order_index": 0
+    },
+    {
+      "block_id": "b3e289ebf78a4ba4aea48cf0ea49994b-p1-b1",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.121008,
+        "y1": 0.112031,
+        "x2": 0.533055,
+        "y2": 0.124115
+      },
+      "block_type": "title",
+      "markdown_content": "The highlighted passage comes from a PDF page.",
+      "asset_path": null,
+      "reading_order_index": 1
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "document_id": "ce3e11512a474e148a14d322146d8cfd",
+  "file_name": "chi2026-selfclone.pdf",
+  "title": "chi2026-selfclone.pdf",
+  "page_count": 20,
+  "created_at": 1778943279.664463,
+  "updated_at": 1779098481.0375495,
+  "last_opened_at": 1779097550.909535,
+  "last_page": 1,
+  "prepare_status": "completed",
+  "parsed_blocks_count": 464,
+  "embedding_status": "completed",
+  "retrieval_method": "embedding",
+  "highlight_count": 6,
+  "thread_count": 3,
+  "uploaded_from": "pdf_chat",
+  "library_visible": false,
+  "archived_at": 1779098481.0375495
+}

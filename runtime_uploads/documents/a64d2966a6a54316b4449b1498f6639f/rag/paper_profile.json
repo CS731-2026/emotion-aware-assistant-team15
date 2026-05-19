@@ -1,0 +1,32 @@
+{
+  "title": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+  "one_sentence_summary": "The paper introduces a design framework for therapeutic self-clone chatbots based on expert and user interviews to enable safe intra-personal exploration for mental well-being.",
+  "research_problem": "While self-clone chatbots offer novel opportunities for self-derived therapeutic support, they present significant risks including identity confusion, negative reinforcement, blurred user agency, and a lack of established safety guardrails.",
+  "method_summary": "The researchers conducted in-depth interviews with 16 mental health professionals (providers and researchers) and 6 prospective end-users to explore the affordances, risks, and ethical implications of self-cloning technology.",
+  "dataset_or_materials": "Qualitative interview data from 16 mental health experts and 6 general users, focusing on individuals with mild, non-clinical mental health symptoms.",
+  "main_findings": "The study produced a design framework organized around three priorities: grounding the technology in therapeutic models, defining specific design dimensions for self-clones, and establishing safety guardrails to guide responsible development.",
+  "key_terms": [
+    "self-clone chatbots",
+    "mental well-being",
+    "design framework",
+    "human-centered computing",
+    "interaction design",
+    "intra-personal exploration"
+  ],
+  "section_map": [
+    {
+      "heading": "Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots",
+      "page_number": 1,
+      "block_id": "a64d2966a6a54316b4449b1498f6639f-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "Mehrnoosh Sadat Shirvani",
+      "page_number": 1,
+      "block_id": "a64d2966a6a54316b4449b1498f6639f-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

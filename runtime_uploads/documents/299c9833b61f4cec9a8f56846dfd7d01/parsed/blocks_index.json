@@ -1,0 +1,23 @@
+{
+  "document_id": "299c9833b61f4cec9a8f56846dfd7d01",
+  "parser": "pdftotext_fallback",
+  "status": "completed",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "blocks": [
+    {
+      "block_id": "299c9833b61f4cec9a8f56846dfd7d01-p1-b0",
+      "page_idx": 0,
+      "page_number": 1,
+      "bbox": {
+        "x1": 0.117647,
+        "y1": 0.074591,
+        "x2": 0.322,
+        "y2": 0.095614
+      },
+      "block_type": "title",
+      "markdown_content": "PDF debug test",
+      "asset_path": null,
+      "reading_order_index": 0
+    }
+  ]
+}

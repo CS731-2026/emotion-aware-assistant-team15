@@ -1,0 +1,618 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "1ce812f1-44c0-479e-addd-29827fb6dcf8",
+  "created_at": 1778941620.8399088,
+  "updated_at": 1778941648.2206957,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "1ce812f1-44c0-479e-addd-29827fb6dcf8",
+    "highlight_type": "text",
+    "page_number": 3,
+    "selected_text": "While most LLM research on user perception and experience has focused on areas like creative writing, our study aims to explore the less-examined area of personal writing",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.75,
+        "y1": 920.070312,
+        "x2": 770.911377,
+        "y2": 933.570312,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.976562,
+        "y1": 935.148438,
+        "x2": 770.907349,
+        "y2": 948.648438,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      },
+      {
+        "x1": 438.976562,
+        "y1": 950.34375,
+        "x2": 666.095337,
+        "y2": 963.84375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 3
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535799,
+        "y1": 0.841377,
+        "x2": 0.912321,
+        "y2": 0.853722,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.855165,
+        "x2": 0.912316,
+        "y2": 0.867511,
+        "pageNumber": 3
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.869061,
+        "x2": 0.788279,
+        "y2": 0.881406,
+        "pageNumber": 3
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.799,
+        "y1": 841.377,
+        "x2": 912.321,
+        "y2": 853.722,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.499,
+        "y1": 855.165,
+        "x2": 912.316,
+        "y2": 867.511,
+        "pageNumber": 3
+      },
+      {
+        "x1": 519.499,
+        "y1": 869.061,
+        "x2": 788.279,
+        "y2": 881.406,
+        "pageNumber": 3
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can sometimes hinder writers from reflecting on their writing strategies, causing some to be hesitant in adopting the technology [3]. Consequently, recent HCI research emphasizes the importance of acknowledging the writer\u2019s intention and control by designing more controllable interactions that reflect the writer\u2019s intent in the LLM\u2019s output [10]. In non-fiction writing areas like science writing and argumentative writing, LLM outputs help crystallize the writer\u2019s thoughts and offer fresh perspectives [17]. Yet, collaboration with LLMs in areas where factual accuracy is crucial brings concerns of plagiarism and hallucination [15, 40]. This also highlights issues related to determining the original authorship of LLM outputs and their usage [43]. As complex user perceptions related to writing are reported, how can the quality of human-AI collaboration in writing be determined and evaluated? And what evaluation criteria are needed? Such critical questions have been raised by researchers [47]. Stemming from this need, recent LLM research has presented datasets of humanLLM interactions to understand the LLM\u2019s sentence generation capabilities and subjective interpretations in a more systematic and data-driven approach [29]. To summarize, firstly, the LLM is perceived not merely as a tool but as a companion, and secondly, the collaboration and perception between human writers and the LLM can vary widely based on the writing domain and the writer\u2019s intention and perspective. While most LLM research on user perception and experience has focused on areas like creative writing, our study aims to explore the less-examined area of personal writing, specifically journal writing. Journal writing differs from others, being deeply personal"
+    },
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b35",
+      "page_number": 3,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "2.3"
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can sometimes hinder writers from reflecting on their writing strategies, causing some to be hesitant in adopting the technology [3]. Consequently, recent HCI research emphasizes the importance of acknowledging the writer\u2019s intention and control by designing more controllable interactions that reflect the writer\u2019s intent in the LLM\u2019s output [10]. In non-fiction writing areas like science writing and argumentative writing, LLM outputs help crystallize the writer\u2019s thoughts and offer fresh perspectives [17]. Yet, collaboration with LLMs in areas where factual accuracy is crucial brings concerns of plagiarism and hallucination [15, 40]. This also highlights issues related to determining the original authorship of LLM outputs and their usage [43]. As complex user perceptions related to writing are reported, how can the quality of human-AI collaboration in writing be determined and evaluated? And what evaluation criteria are needed? Such critical questions have been raised by researchers [47]. Stemming from this need, recent LLM research has presented datasets of humanLLM interactions to understand the LLM\u2019s sentence generation capabilities and subjective interpretations in a more systematic and data-driven approach [29]. To summarize, firstly, the LLM is perceived not merely as a tool but as a companion, and secondly, the collaboration and perception between human writers and the LLM can vary widely based on the writing domain and the writer\u2019s intention and perspective. While most LLM research on user perception and experience has focused on areas like creative writing, our study aims to explore the less-examined area of personal writing, specifically journal writing. Journal writing differs from others, being deeply personal"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b36",
+        "page_number": 3,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "User Perception and Experience while Writing with LLM"
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+    "learning_state": {
+      "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-16T14:26:51Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.75,
+      "distribution": {
+        "boredom": 0.09,
+        "confusion": 0.75,
+        "engagement": 0.08,
+        "frustration": 0.08
+      },
+      "trend": "rising",
+      "duration_sec": 10,
+      "intensity": 0.75,
+      "stability": "transitioning",
+      "trigger_recommended": true,
+      "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587"
+  },
+  "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+  "learning_state_snapshot": {
+    "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-16T14:27:20Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9992,
+    "distribution": {
+      "boredom": 0.9992,
+      "confusion": 0,
+      "engagement": 0,
+      "frustration": 0.0007
+    },
+    "trend": "stable",
+    "duration_sec": 12,
+    "intensity": 0.9992,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "warnings": [],
+    "face_detection": {
+      "detector": "opencv_haar",
+      "face_found": true,
+      "confidence": 0.7,
+      "bbox": [
+        11,
+        5,
+        111,
+        111
+      ],
+      "fallback_used": false,
+      "warning": null
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "critique_assumptions",
+      "title": "The Authenticity Paradox",
+      "short_description": "Examine the tension between an LLM's statistical nature and the goal of authentic personal reflection.",
+      "why_recommended": "The user is highly engaged with the distinction between writing types. This strategy probes the core challenge: how a model based on 'statistical projections' can assist in a task that requires 'authentic reflection' without undermining it.",
+      "prompt_instruction": "Discuss the conceptual conflict mentioned in the paper context regarding LLMs using statistical projections versus the user's need for authentic self-expression in journaling. Explain why this makes the 'personal writing' domain uniquely challenging compared to creative writing.",
+      "expected_answer_shape": [
+        "theoretical tension",
+        "technical limitation",
+        "research implication"
+      ],
+      "recommended": true,
+      "recommended_score": 0.95
+    },
+    {
+      "strategy_id": "compare_methods",
+      "title": "Divergent Evaluation Criteria",
+      "short_description": "Compare how 'success' is measured in creative writing versus personal journaling.",
+      "why_recommended": "The paper context asks how the quality of human-AI collaboration can be evaluated. Since the user is in a deepening state, exploring these different evaluation metrics (inspiration vs. reflection) provides academic depth.",
+      "prompt_instruction": "Contrast the evaluation criteria for AI success in creative writing (e.g., spark of inspiration, plot development) with the criteria needed for personal journaling (e.g., introspective depth, ownership). Reference the paper's mention of 'controllable interactions'.",
+      "expected_answer_shape": [
+        "comparison table or list",
+        "metric definitions",
+        "contextual justification"
+      ],
+      "recommended": false,
+      "recommended_score": 0.85
+    },
+    {
+      "strategy_id": "limitations_and_implications",
+      "title": "Risks of Identity Intrusion",
+      "short_description": "Explore the implications of AI 'intruding' on a user's personal identity and authorship.",
+      "why_recommended": "The baseline mentioned 'identity intrusion' and 'over-reliance'. This strategy connects these outcomes to the broader research questions about authorship and plagiarism found in the paper context.",
+      "prompt_instruction": "Elaborate on the risks of 'identity intrusion' in personal writing. Connect the findings about user over-reliance to the broader academic concerns of authorship and the 'hallucination' of personal emotions by the LLM.",
+      "expected_answer_shape": [
+        "risk analysis",
+        "authorship discussion",
+        "future research direction"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8
+    }
+  ],
+  "selected_strategy_id": "critique_assumptions",
+  "selected_strategy": {
+    "strategy_id": "critique_assumptions",
+    "title": "The Authenticity Paradox",
+    "short_description": "Examine the tension between an LLM's statistical nature and the goal of authentic personal reflection.",
+    "why_recommended": "The user is highly engaged with the distinction between writing types. This strategy probes the core challenge: how a model based on 'statistical projections' can assist in a task that requires 'authentic reflection' without undermining it.",
+    "prompt_instruction": "Discuss the conceptual conflict mentioned in the paper context regarding LLMs using statistical projections versus the user's need for authentic self-expression in journaling. Explain why this makes the 'personal writing' domain uniquely challenging compared to creative writing.",
+    "expected_answer_shape": [
+      "theoretical tension",
+      "technical limitation",
+      "research implication"
+    ],
+    "recommended": true,
+    "recommended_score": 0.95
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "duration_sec": 8.1,
+    "trend": "rising",
+    "intensity": 0.74,
+    "refresh_requested": false,
+    "support_cue": "deepening",
+    "source_turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This sentence identifies a specific gap in current research that this paper aims to fill. While previous studies have extensively looked at how Large Language Models (LLMs) help people write fiction or scripts (creative writing), this paper shifts the focus to \"personal writing\"\u2014specifically, journaling about one\u2019s own life and emotions.\n\nThis distinction is important because the goals of these two types of writing are very different. In creative writing, an AI suggesting a new character or a plot twist is often seen as a helpful \"spark\" for inspiration. However, in personal journaling, the writing is meant to be an authentic reflection of the author\u2019s own lived experience. The researchers are interested in whether AI assistance in this private, introspective space feels helpful or if it feels like the AI is \"intruding\" on the user's personal identity.\n\nBy highlighting this less-examined area, the authors justify why their study of the **DiaryMate** system is necessary. They want to see if the collaborative nature of LLMs\u2014which often involves the AI suggesting \"next sentences\"\u2014works differently when the subject matter isn't a story, but the writer\u2019s actual day. This sets the stage for their findings, which eventually reveal that while AI can help users see their lives from new perspectives, it also risks making users over-reliant on the AI to express their own emotions.",
+      "created_at": 1778941620.839936,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "score": 0.8414
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "score": 0.8414
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b36",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "User Perception and Experience while Writing with LLM",
+            "reading_order_index": 36
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectives, yet showed signs of over-reliance by prioritizing AI-generated emotional expressions over their own.\nkey_terms: human-centered computing, empirical studies in hci, journaling, "
+      },
+      "turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-16T14:26:51Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.75,
+        "distribution": {
+          "boredom": 0.09,
+          "confusion": 0.75,
+          "engagement": 0.08,
+          "frustration": 0.08
+        },
+        "trend": "rising",
+        "duration_sec": 10,
+        "intensity": 0.75,
+        "stability": "transitioning",
+        "trigger_recommended": true,
+        "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage highlights a critical shift in how we study AI's role in writing. While previous research often looked at **creative writing**\u2014where AI helps build fictional worlds or brainstorm characters\u2014this study turns to **personal writing**, specifically journaling. This shift introduces what can be described as an \"authenticity paradox.\"\n\nThe paradox lies in the technical nature of LLMs: they generate text based on **statistical projections** from massive datasets. They essentially predict the \"most likely\" next word or sentiment based on general human patterns. However, personal journaling is grounded in **authentic self-expression**, which is inherently unique to the individual\u2019s internal life. The conflict arises when a user tries to reflect on their own private experiences using a tool that only knows how the \"average\" person might describe a similar situation.\n\nThis makes the personal writing domain far more challenging than creative writing. In fiction, an AI-suggested plot twist or character trait is just a creative spark. In a diary, an AI-suggested emotional expression can feel intrusive or, worse, reductive. The researchers are concerned with how this \"statistical\" input affects the user's ability to be introspective. For instance, if the AI suggests a sentence about feeling \"grateful,\" a user might adopt it simply because it sounds \"right,\" potentially overriding their more complex, original feelings.\n\nUltimately, this passage sets the stage for the paper\u2019s argument: as AI moves from being a simple tool to a \"coauthor\" in our most private reflections, we need to understand whether it truly supports introspection or if it subtly reshapes our personal narratives to fit its own statistical models.",
+      "created_at": 1778941648.2206824,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 13,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "score": 0.8414
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p1-b14",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "various writing domains in designing writing assistants. In this study, we delve into the less explored domain of personal writing, focusing on the use of LLMs in introspective activities. Specifically, we designed DiaryMate, a system that assists users in journal writing with LLM. Through a 10-day field study (N=24), we observed that participants used the diverse sentences generated by the LLM to reflect on their past experiences from multiple perspectives. However, we also observed that they are over-relying o...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b34",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "Biermann [3] proposed a design for an AI companion for story writing. In this work, they presented a human-AI collaborative writing support approach that reflects domain-specific characteristics of story writing, such as defining scenes or character relationships. In other studies, LLM-based writing assistance has been integrated and contextualized within social media and online communities to promote empathetic communication between users [41]. These studies highlight the importance of understanding how best to...",
+            "score": 0.842
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "score": 0.8414
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b36",
+            "page_idx": 2,
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "User Perception and Experience while Writing with LLM",
+            "reading_order_index": 36
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b37",
+            "page_number": 3,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1.0,
+            "markdown_content": "With the role of writing assistance transitioning from a tool to a collaborator or even a coauthor, understanding how human writers perceive and accept LLMs in the writing context has become a critical research agenda. In the realm of creative writing, writers utilize the outputs of LLM writing assistance as sources of inspiration, incorporating them as new characters and details or as avenues for new story developments [8, 29, 47]. However, limitations in the control and nuances of LLM\u2019s sentence generation can..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 3\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy title: The Authenticity Paradox\n- Why selected: The user is highly engaged with the distinction between writing types. This strategy probes the core challenge: how a model based on 'statistical projections' can assist in a task that requires 'authentic reflection' without undermining it.\n- Instruction for answer: Discuss the conceptual conflict mentioned in the paper context regarding LLMs using statistical projections versus the user's need for authentic self-expression in journaling. Explain why this makes the 'personal writing' domain uniquely challenging compared to creative writing.\n- Expected an"
+      },
+      "turn_id": "turn_c52eaf0b00ae4708ba8796a905e05f88",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587",
+        "highlight_id": "1ce812f1-44c0-479e-addd-29827fb6dcf8",
+        "window_start": "2026-05-16T14:27:00.898Z",
+        "window_end": "2026-05-16T14:27:08.982Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.74,
+        "max_confidence": 0.78,
+        "avg_distribution": {
+          "boredom": 0.088,
+          "confusion": 0.086,
+          "engagement": 0.74,
+          "frustration": 0.086
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "face_detection_summary": {
+          "mode": "center_crop",
+          "fallback_used": true
+        },
+        "baseline_explanation": "This sentence identifies a specific gap in current research that this paper aims to fill. While previous studies have extensively looked at how Large Language Models (LLMs) help people write fiction or scripts (creative writing), this paper shifts the focus to \"personal writing\"\u2014specifically, journaling about one\u2019s own life and emotions.\n\nThis distinction is important because the goals of these two types of writing are very different. In creative writing, an AI suggesting a new character or a plot twist is often seen as a helpful \"spark\" for inspiration. However, in personal journaling, the writing is meant to be an authentic reflection of the author\u2019s own lived experience. The researchers are interested in whether AI assistance in this private, introspective space feels helpful or if it feels like the AI is \"intruding\" on the user's personal identity.\n\nBy highlighting this less-examined area, the authors justify why their study of the **DiaryMate** system is necessary. They want to see if the collaborative nature of LLMs\u2014which often involves the AI suggesting \"next sentences\"\u2014works differently when the subject matter isn't a story, but the writer\u2019s actual day. This sets the stage for their findings, which eventually reveal that while AI can help users see their lives from new perspectives, it also risks making users over-reliant on the AI to express their own emotions."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "strategy_id": "critique_assumptions",
+      "strategy_title": "The Authenticity Paradox",
+      "strategy_short_description": "Examine the tension between an LLM's statistical nature and the goal of authentic personal reflection.",
+      "strategy_reason": "The user is highly engaged with the distinction between writing types. This strategy probes the core challenge: how a model based on 'statistical projections' can assist in a task that requires 'authentic reflection' without undermining it.",
+      "learning_state_snapshot": {
+        "session_id": "77d54ed4f6a84ca0a7438b81e7bb6527",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-16T14:27:20Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9992,
+        "distribution": {
+          "boredom": 0.9992,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0.0007
+        },
+        "trend": "stable",
+        "duration_sec": 12,
+        "intensity": 0.9992,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "warnings": [],
+        "face_detection": {
+          "detector": "opencv_haar",
+          "face_found": true,
+          "confidence": 0.7,
+          "bbox": [
+            11,
+            5,
+            111,
+            111
+          ],
+          "fallback_used": false,
+          "warning": null
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "duration_sec": 8.1,
+        "trend": "rising",
+        "intensity": 0.74,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "center_crop",
+        "fallback_used": true
+      }
+    }
+  ],
+  "planner_mode": "llm",
+  "reaction_window_summary": {
+    "source_turn_id": "turn_898a699d4fbb4fedacf3819d1d5a9587",
+    "highlight_id": "1ce812f1-44c0-479e-addd-29827fb6dcf8",
+    "window_start": "2026-05-16T14:27:00.898Z",
+    "window_end": "2026-05-16T14:27:08.982Z",
+    "duration_sec": 8.1,
+    "sample_count": 5,
+    "dominant_state": "engagement",
+    "secondary_state": "boredom",
+    "avg_confidence": 0.74,
+    "max_confidence": 0.78,
+    "avg_distribution": {
+      "boredom": 0.088,
+      "confusion": 0.086,
+      "engagement": 0.74,
+      "frustration": 0.086
+    },
+    "trend": "rising",
+    "stability": "stable",
+    "support_cue": "deepening",
+    "support_cue_label": "Deepening cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+    "face_detection_summary": {
+      "mode": "center_crop",
+      "fallback_used": true
+    },
+    "baseline_explanation": "This sentence identifies a specific gap in current research that this paper aims to fill. While previous studies have extensively looked at how Large Language Models (LLMs) help people write fiction or scripts (creative writing), this paper shifts the focus to \"personal writing\"\u2014specifically, journaling about one\u2019s own life and emotions.\n\nThis distinction is important because the goals of these two types of writing are very different. In creative writing, an AI suggesting a new character or a plot twist is often seen as a helpful \"spark\" for inspiration. However, in personal journaling, the writing is meant to be an authentic reflection of the author\u2019s own lived experience. The researchers are interested in whether AI assistance in this private, introspective space feels helpful or if it feels like the AI is \"intruding\" on the user's personal identity.\n\nBy highlighting this less-examined area, the authors justify why their study of the **DiaryMate** system is necessary. They want to see if the collaborative nature of LLMs\u2014which often involves the AI suggesting \"next sentences\"\u2014works differently when the subject matter isn't a story, but the writer\u2019s actual day. This sets the stage for their findings, which eventually reveal that while AI can help users see their lives from new perspectives, it also risks making users over-reliant on the AI to express their own emotions."
+  },
+  "support_cue": "deepening",
+  "support_cue_label": "Deepening cue",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "strategy_reason": "The user is highly engaged with the distinction between writing types. This strategy probes the core challenge: how a model based on 'statistical projections' can assist in a task that requires 'authentic reflection' without undermining it."
+}

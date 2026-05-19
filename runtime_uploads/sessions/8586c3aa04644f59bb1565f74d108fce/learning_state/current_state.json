@@ -1,0 +1,37 @@
+{
+  "session_id": "8586c3aa04644f59bb1565f74d108fce",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "timestamp": "2026-05-16T16:58:40Z",
+  "source": "webcam_model",
+  "model_output_type": "academic_state",
+  "raw_facial_emotion_available": false,
+  "raw_facial_emotion": null,
+  "academic_state": "frustration",
+  "confidence": 0.8459,
+  "distribution": {
+    "boredom": 0.1132,
+    "confusion": 0.0123,
+    "engagement": 0.0286,
+    "frustration": 0.8459
+  },
+  "trend": "falling",
+  "duration_sec": 1.3,
+  "intensity": 0.8459,
+  "stability": "transitioning",
+  "trigger_recommended": false,
+  "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+  "warnings": [],
+  "face_detection": {
+    "detector": "opencv_haar",
+    "face_found": true,
+    "confidence": 0.7,
+    "bbox": [
+      13,
+      14,
+      141,
+      141
+    ],
+    "fallback_used": false,
+    "warning": null
+  }
+}

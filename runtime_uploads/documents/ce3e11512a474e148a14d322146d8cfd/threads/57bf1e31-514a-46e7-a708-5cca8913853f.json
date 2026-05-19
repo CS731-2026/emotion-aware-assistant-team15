@@ -1,0 +1,993 @@
+{
+  "document_id": "ce3e11512a474e148a14d322146d8cfd",
+  "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+  "created_at": 1779096888.8907225,
+  "updated_at": 1779096977.7638292,
+  "selection_snapshot": {
+    "document_id": "ce3e11512a474e148a14d322146d8cfd",
+    "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+    "highlight_type": "text",
+    "page_number": 4,
+    "selected_text": "In our method, we treat these anticipatory judgments as legitimate and necessary data for early-stage framework building, rather than as a flaw, following prior CHI work in which experts\u2019 projections about emerging technologies were systematically analyzed to articulate design and governance frameworks [20, 28, 85].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 587.34375,
+        "y1": 844.429688,
+        "x2": 773.030518,
+        "y2": 857.929688,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      },
+      {
+        "x1": 438.976562,
+        "y1": 859.515625,
+        "x2": 770.903137,
+        "y2": 873.015625,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      },
+      {
+        "x1": 438.976562,
+        "y1": 874.710938,
+        "x2": 770.904663,
+        "y2": 888.210938,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      },
+      {
+        "x1": 438.554688,
+        "y1": 889.789062,
+        "x2": 770.503784,
+        "y2": 903.289062,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      },
+      {
+        "x1": 438.554688,
+        "y1": 904.875,
+        "x2": 770.939087,
+        "y2": 918.375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      },
+      {
+        "x1": 438.976562,
+        "y1": 920.070312,
+        "x2": 560.357605,
+        "y2": 933.570312,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 4
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.695081,
+        "y1": 0.772206,
+        "x2": 0.914829,
+        "y2": 0.784551,
+        "pageNumber": 4
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.786001,
+        "x2": 0.912311,
+        "y2": 0.798347,
+        "pageNumber": 4
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.799897,
+        "x2": 0.912313,
+        "y2": 0.812242,
+        "pageNumber": 4
+      },
+      {
+        "x1": 0.519,
+        "y1": 0.813686,
+        "x2": 0.911839,
+        "y2": 0.826031,
+        "pageNumber": 4
+      },
+      {
+        "x1": 0.519,
+        "y1": 0.827481,
+        "x2": 0.912354,
+        "y2": 0.839827,
+        "pageNumber": 4
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.841377,
+        "x2": 0.663145,
+        "y2": 0.853722,
+        "pageNumber": 4
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 695.081,
+        "y1": 772.206,
+        "x2": 914.829,
+        "y2": 784.551,
+        "pageNumber": 4
+      },
+      {
+        "x1": 519.499,
+        "y1": 786.001,
+        "x2": 912.311,
+        "y2": 798.347,
+        "pageNumber": 4
+      },
+      {
+        "x1": 519.499,
+        "y1": 799.897,
+        "x2": 912.313,
+        "y2": 812.242,
+        "pageNumber": 4
+      },
+      {
+        "x1": 519,
+        "y1": 813.686,
+        "x2": 911.839,
+        "y2": 826.031,
+        "pageNumber": 4
+      },
+      {
+        "x1": 519,
+        "y1": 827.481,
+        "x2": 912.354,
+        "y2": 839.827,
+        "pageNumber": 4
+      },
+      {
+        "x1": 519.499,
+        "y1": 841.377,
+        "x2": 663.145,
+        "y2": 853.722,
+        "pageNumber": 4
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b64",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b64",
+      "page_number": 4,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "We adopt an interpretivist, design-oriented stance aimed at constructing a practice-ready framework for the safe and effective design of self-clone chatbots for mild, non-clinical use. Our research question asks what considerations should guide the design of such systems, which is inherently forward-looking: self-clone chatbots are only beginning to emerge, and many of the most pressing issues concern how such a novel interaction is ought to be designed safely. As there is not yet a widely used, technically mature form of selfclone technology that could serve as a stable object of study as a reference point for participants, our focus is on articulating what such systems should be and do. As a result, participants\u2019 inputs were necessarily speculative. In our method, we treat these anticipatory judgments as legitimate and necessary data for early-stage framework building, rather than as a flaw, following prior CHI work in which experts\u2019 projections about emerging technologies were systematically analyzed to articulate design and governance frameworks [20, 28, 85]. To operationalize this stance, we focused our goal on framework building that integrates empirical perspectives with extant scholarship. We therefore follow a qualitative Conceptual Framework"
+    },
+    "previous_block": {
+      "block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b62",
+      "page_number": 4,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "3"
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b64",
+        "page_number": 4,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "We adopt an interpretivist, design-oriented stance aimed at constructing a practice-ready framework for the safe and effective design of self-clone chatbots for mild, non-clinical use. Our research question asks what considerations should guide the design of such systems, which is inherently forward-looking: self-clone chatbots are only beginning to emerge, and many of the most pressing issues concern how such a novel interaction is ought to be designed safely. As there is not yet a widely used, technically mature form of selfclone technology that could serve as a stable object of study as a reference point for participants, our focus is on articulating what such systems should be and do. As a result, participants\u2019 inputs were necessarily speculative. In our method, we treat these anticipatory judgments as legitimate and necessary data for early-stage framework building, rather than as a flaw, following prior CHI work in which experts\u2019 projections about emerging technologies were systematically analyzed to articulate design and governance frameworks [20, 28, 85]. To operationalize this stance, we focused our goal on framework building that integrates empirical perspectives with extant scholarship. We therefore follow a qualitative Conceptual Framework"
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "01d5b13ddead4822934a5d21c7751c14",
+    "learning_state": {
+      "session_id": "01d5b13ddead4822934a5d21c7751c14",
+      "document_id": "ce3e11512a474e148a14d322146d8cfd",
+      "timestamp": "2026-05-18T09:34:40Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.71,
+      "distribution": {
+        "boredom": 0.09,
+        "confusion": 0.71,
+        "engagement": 0.1,
+        "frustration": 0.1
+      },
+      "trend": "rising",
+      "duration_sec": 7.5,
+      "intensity": 0.71,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_f474e0681037448e995c678c7f07ba5b"
+  },
+  "session_id": "01d5b13ddead4822934a5d21c7751c14",
+  "learning_state_snapshot": {
+    "session_id": "01d5b13ddead4822934a5d21c7751c14",
+    "document_id": "ce3e11512a474e148a14d322146d8cfd",
+    "timestamp": "2026-05-18T09:35:29Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9782,
+    "distribution": {
+      "boredom": 0.9782,
+      "confusion": 0.0008,
+      "engagement": 0.0012,
+      "frustration": 0.0199
+    },
+    "trend": "stable",
+    "duration_sec": 15.2,
+    "intensity": 0.9782,
+    "stability": "stable",
+    "trigger_recommended": true,
+    "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "relate_speculative_method_to_safety",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Connect the abstract methodological stance to a concrete safety outcome.",
+      "context_focus": "The proactive role of 'anticipatory judgments' in preventing AI harm.",
+      "title": "Apply the speculative method to a real-world risk",
+      "short_description": "See how 'imagining' problems helps the authors build safety guardrails before the tech even exists.",
+      "why_recommended": "A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.",
+      "prompt_instruction": "Provide a brief, concrete scenario where an 'anticipatory judgment' from an expert (e.g., about identity confusion) directly leads to a specific design requirement in the framework. Show, don't just tell, why this speculative data is 'necessary'.",
+      "expected_answer_shape": [
+        "A brief 'what-if' scenario",
+        "A connection to a specific safety guardrail"
+      ],
+      "recommended": true,
+      "recommended_score": 0.9
+    },
+    {
+      "strategy_id": "contrast_with_traditional_testing",
+      "strategy_family": "compare_with_familiar_method",
+      "pedagogical_move": "Contrast the paper's forward-looking approach with the standard 'build-then-test' model.",
+      "context_focus": "The difference between reactive user testing and proactive anticipatory design.",
+      "title": "Contrast anticipatory data with traditional user testing",
+      "short_description": "Understand why the authors can't just wait for a finished product to start their research.",
+      "why_recommended": "Comparing this method to the more familiar 'user testing' helps clarify why the authors are taking a different path and why it's valid in HCI.",
+      "prompt_instruction": "Briefly explain the difference between 'reactive' research (testing a finished app) and the 'proactive' research described here. Highlight why the proactive approach is essential for high-stakes areas like mental health.",
+      "expected_answer_shape": [
+        "A comparison of two research styles",
+        "A justification for the proactive choice"
+      ],
+      "recommended": false,
+      "recommended_score": 0.7
+    },
+    {
+      "strategy_id": "method_one_sentence_takeaway",
+      "strategy_family": "one_sentence_takeaway",
+      "pedagogical_move": "Distill the methodological justification into a single, high-impact insight.",
+      "context_focus": "The core logic of treating speculation as legitimate data.",
+      "title": "Summarize the 'speculation as data' approach",
+      "short_description": "Get the bottom line on why the researchers trust these expert predictions.",
+      "why_recommended": "If the user is losing interest, a single punchy takeaway can provide the necessary closure on this section so they can move forward.",
+      "prompt_instruction": "Summarize the entire passage and its baseline explanation into one powerful sentence that captures why 'anticipatory judgments' are the backbone of this paper's framework.",
+      "expected_answer_shape": [
+        "A single, concise sentence"
+      ],
+      "recommended": false,
+      "recommended_score": 0.6
+    }
+  ],
+  "selected_strategy_id": "relate_speculative_method_to_safety",
+  "selected_strategy": {
+    "strategy_id": "relate_speculative_method_to_safety",
+    "strategy_family": "make_it_relevant",
+    "pedagogical_move": "Connect the abstract methodological stance to a concrete safety outcome.",
+    "context_focus": "The proactive role of 'anticipatory judgments' in preventing AI harm.",
+    "title": "Apply the speculative method to a real-world risk",
+    "short_description": "See how 'imagining' problems helps the authors build safety guardrails before the tech even exists.",
+    "why_recommended": "A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.",
+    "prompt_instruction": "Provide a brief, concrete scenario where an 'anticipatory judgment' from an expert (e.g., about identity confusion) directly leads to a specific design requirement in the framework. Show, don't just tell, why this speculative data is 'necessary'.",
+    "expected_answer_shape": [
+      "A brief 'what-if' scenario",
+      "A connection to a specific safety guardrail"
+    ],
+    "recommended": true,
+    "recommended_score": 0.9
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "duration_sec": 8.2,
+    "trend": "rising",
+    "intensity": 0.994,
+    "refresh_requested": false,
+    "support_cue": "re_engagement",
+    "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b",
+    "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+    "window_start": "2026-05-18T09:34:49.045Z",
+    "window_end": "2026-05-18T09:34:57.210Z",
+    "duration_sec": 8.2,
+    "sample_count": 5,
+    "dominant_state": "boredom",
+    "secondary_state": "frustration",
+    "avg_confidence": 0.994,
+    "max_confidence": 0.999,
+    "avg_distribution": {
+      "boredom": 0.994,
+      "confusion": 0.001,
+      "engagement": 0,
+      "frustration": 0.005
+    },
+    "trend": "rising",
+    "stability": "stable",
+    "support_cue": "re_engagement",
+    "support_cue_label": "Re-engagement cue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage explains why the researchers are basing their findings on interviews where participants \"imagine\" or \"project\" how self-clone chatbots might work, rather than studying people who are already using a finished product. Because this technology is still in its infancy, there isn't a large group of long-term users to observe. The \"anticipatory judgments\" mentioned are the predictions and concerns shared by the 16 mental health experts and 6 potential users interviewed for the study.\n\nThis approach matters because it allows the researchers to be proactive. In the field of Human-Computer Interaction (HCI), analyzing how experts think a technology *should* be designed\u2014or what they fear might go wrong\u2014is considered a valid way to build a foundation for new systems. By treating these projections as \"legitimate and necessary data,\" the authors can identify potential risks like identity confusion or negative emotional loops before the technology becomes widespread.\n\nIn the context of the paper\u2019s argument, this methodology justifies the creation of their \"practice-ready framework.\" Instead of waiting for harm to occur and then reacting to it, the authors use these expert insights to set up \"guardrails\" and ethical guidelines from the start. It connects the theoretical potential of \"cloning the self\" for therapy with the practical realities of keeping such interactions safe and grounded in existing mental health principles."
+  },
+  "turn_metadata": {
+    "turn_f474e0681037448e995c678c7f07ba5b": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b",
+        "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+        "window_start": "2026-05-18T09:34:49.045Z",
+        "window_end": "2026-05-18T09:34:57.210Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.994,
+        "max_confidence": 0.999,
+        "avg_distribution": {
+          "boredom": 0.994,
+          "confusion": 0.001,
+          "engagement": 0,
+          "frustration": 0.005
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage explains why the researchers are basing their findings on interviews where participants \"imagine\" or \"project\" how self-clone chatbots might work, rather than studying people who are already using a finished product. Because this technology is still in its infancy, there isn't a large group of long-term users to observe. The \"anticipatory judgments\" mentioned are the predictions and concerns shared by the 16 mental health experts and 6 potential users interviewed for the study.\n\nThis approach matters because it allows the researchers to be proactive. In the field of Human-Computer Interaction (HCI), analyzing how experts think a technology *should* be designed\u2014or what they fear might go wrong\u2014is considered a valid way to build a foundation for new systems. By treating these projections as \"legitimate and necessary data,\" the authors can identify potential risks like identity confusion or negative emotional loops before the technology becomes widespread.\n\nIn the context of the paper\u2019s argument, this methodology justifies the creation of their \"practice-ready framework.\" Instead of waiting for harm to occur and then reacting to it, the authors use these expert insights to set up \"guardrails\" and ethical guidelines from the start. It connects the theoretical potential of \"cloning the self\" for therapy with the practical realities of keeping such interactions safe and grounded in existing mental health principles."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "rising",
+        "intensity": 0.994,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "relate_speculative_method_to_safety",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Connect the abstract methodological stance to a concrete safety outcome.",
+          "context_focus": "The proactive role of 'anticipatory judgments' in preventing AI harm.",
+          "title": "Apply the speculative method to a real-world risk",
+          "short_description": "See how 'imagining' problems helps the authors build safety guardrails before the tech even exists.",
+          "why_recommended": "A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.",
+          "prompt_instruction": "Provide a brief, concrete scenario where an 'anticipatory judgment' from an expert (e.g., about identity confusion) directly leads to a specific design requirement in the framework. Show, don't just tell, why this speculative data is 'necessary'.",
+          "expected_answer_shape": [
+            "A brief 'what-if' scenario",
+            "A connection to a specific safety guardrail"
+          ],
+          "recommended": true,
+          "recommended_score": 0.9
+        },
+        {
+          "strategy_id": "contrast_with_traditional_testing",
+          "strategy_family": "compare_with_familiar_method",
+          "pedagogical_move": "Contrast the paper's forward-looking approach with the standard 'build-then-test' model.",
+          "context_focus": "The difference between reactive user testing and proactive anticipatory design.",
+          "title": "Contrast anticipatory data with traditional user testing",
+          "short_description": "Understand why the authors can't just wait for a finished product to start their research.",
+          "why_recommended": "Comparing this method to the more familiar 'user testing' helps clarify why the authors are taking a different path and why it's valid in HCI.",
+          "prompt_instruction": "Briefly explain the difference between 'reactive' research (testing a finished app) and the 'proactive' research described here. Highlight why the proactive approach is essential for high-stakes areas like mental health.",
+          "expected_answer_shape": [
+            "A comparison of two research styles",
+            "A justification for the proactive choice"
+          ],
+          "recommended": false,
+          "recommended_score": 0.7
+        },
+        {
+          "strategy_id": "method_one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Distill the methodological justification into a single, high-impact insight.",
+          "context_focus": "The core logic of treating speculation as legitimate data.",
+          "title": "Summarize the 'speculation as data' approach",
+          "short_description": "Get the bottom line on why the researchers trust these expert predictions.",
+          "why_recommended": "If the user is losing interest, a single punchy takeaway can provide the necessary closure on this section so they can move forward.",
+          "prompt_instruction": "Summarize the entire passage and its baseline explanation into one powerful sentence that captures why 'anticipatory judgments' are the backbone of this paper's framework.",
+          "expected_answer_shape": [
+            "A single, concise sentence"
+          ],
+          "recommended": false,
+          "recommended_score": 0.6
+        }
+      ],
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 317,
+        "caption_length": 0,
+        "baseline_explanation_length": 1444,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 1,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    },
+    "turn_6208d2ece9d74e3eabb410c958aa2fb6": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_6208d2ece9d74e3eabb410c958aa2fb6",
+        "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+        "window_start": "2026-05-18T09:35:39.187Z",
+        "window_end": "2026-05-18T09:35:47.355Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "engagement",
+        "avg_confidence": 0.794,
+        "max_confidence": 1,
+        "avg_distribution": {
+          "boredom": 0.794,
+          "confusion": 0,
+          "engagement": 0.2,
+          "frustration": 0.006
+        },
+        "trend": "stable",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage describes the researchers' decision to treat expert \"projections\"\u2014or educated guesses about what might go wrong\u2014as essential data. In the world of emerging AI like self-clone chatbots, we don't have decades of user data to look back on. If we waited for real-world evidence of harm before creating rules, the \"data\" we collected would consist of people who had already been negatively impacted.\n\nTo make this concrete, imagine a **\"what-if\" scenario**: A mental health expert predicts that a user struggling with self-loathing might interact with a self-clone that mimics them *too* perfectly. The expert anticipates that the clone will reflect the user's negative self-talk back at them, potentially spiraling the user into a deeper crisis.\n\nEven though this hasn't necessarily happened in a large-scale study yet, the authors treat this expert\u2019s \"anticipatory judgment\" as a factual requirement for their framework. This leads directly to a specific **safety guardrail**: a design requirement that the chatbot must maintain a \"therapeutic distance.\" Instead of being a perfect 1:1 mirror, the framework might mandate that the clone is programmed to act as a \"wise self\" that can challenge negative thoughts rather than just echoing them.\n\nBy treating these speculations as \"necessary data,\" the authors are able to build safety into the architecture of self-clones from the ground up. This methodological choice matters because it moves the research from being reactive (fixing problems after they occur) to proactive, ensuring that risks like **identity confusion** or **negative reinforcement** are mitigated before the technology is widely deployed."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "stable",
+        "intensity": 0.794,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_6208d2ece9d74e3eabb410c958aa2fb6"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "In our method, we treat these anticipatory judgments as legitimate and necessary data for early-",
+          "title": "Explain why this method passage matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with connect the selected passage to the paper's larger argument.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "In our method, we treat these anticipatory judgments as legitimate and necessary data for early-",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with condense the previous explanation into the central point before expanding.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "In our method, we treat these anticipatory judgments as legitimate and necessary data for early-",
+          "title": "Use a structured breakdown for this method passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 317,
+        "caption_length": 0,
+        "baseline_explanation_length": 1664,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 1,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    }
+  },
+  "support_cue": "re_engagement",
+  "support_cue_label": "Re-engagement cue",
+  "planner_mode": "llm",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 317,
+    "caption_length": 0,
+    "baseline_explanation_length": 1444,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 1,
+    "reaction_window_duration_sec": 8.2,
+    "support_cue": "re_engagement",
+    "allowed_strategy_families": [
+      "why_it_matters",
+      "one_sentence_takeaway",
+      "make_it_relevant",
+      "compare_with_familiar_method",
+      "quick_quiz"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "method",
+    "difficulty_hint": "multi_step_process"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage explains why the researchers are basing their findings on interviews where participants \"imagine\" or \"project\" how self-clone chatbots might work, rather than studying people who are already using a finished product. Because this technology is still in its infancy, there isn't a large group of long-term users to observe. The \"anticipatory judgments\" mentioned are the predictions and concerns shared by the 16 mental health experts and 6 potential users interviewed for the study.\n\nThis approach matters because it allows the researchers to be proactive. In the field of Human-Computer Interaction (HCI), analyzing how experts think a technology *should* be designed\u2014or what they fear might go wrong\u2014is considered a valid way to build a foundation for new systems. By treating these projections as \"legitimate and necessary data,\" the authors can identify potential risks like identity confusion or negative emotional loops before the technology becomes widespread.\n\nIn the context of the paper\u2019s argument, this methodology justifies the creation of their \"practice-ready framework.\" Instead of waiting for harm to occur and then reacting to it, the authors use these expert insights to set up \"guardrails\" and ethical guidelines from the start. It connects the theoretical potential of \"cloning the self\" for therapy with the practical realities of keeping such interactions safe and grounded in existing mental health principles.",
+      "created_at": 1779096888.8907483,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "The study investigates the therapeutic potential and risks of self-clone chatbots through interviews with experts and users to establish a framework for responsible and safe design.",
+        "retrieved_block_count": 12,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8303
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b26",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "self-clone chatbots, mental well-being, interview, design framework",
+            "score": 0.8198
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p6-b245",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "expert interviews to articulate how clinicians and researchers imagined self-clones as mental health tools and how that would translate into a design framework, then analyzed non-expert interviews to examine how prospective users\u2019 expectations and concerns aligned with, or challenged, these expert views. Drawing on grounded theory\u2019s constant comparative method [45], we repeatedly compared accounts within and across interviews and against relevant HCI and psychology literature, checking whether emerging considera...",
+            "score": 0.8122
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8303
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b26",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "self-clone chatbots, mental well-being, interview, design framework",
+            "score": 0.8198
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p6-b245",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "expert interviews to articulate how clinicians and researchers imagined self-clones as mental health tools and how that would translate into a design framework, then analyzed non-expert interviews to examine how prospective users\u2019 expectations and concerns aligned with, or challenged, these expert views. Drawing on grounded theory\u2019s constant comparative method [45], we repeatedly compared accounts within and across interviews and against relevant HCI and psychology literature, checking whether emerging considera...",
+            "score": 0.8122
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b64",
+            "page_number": 4,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "We adopt an interpretivist, design-oriented stance aimed at constructing a practice-ready framework for the safe and effective design of self-clone chatbots for mild, non-clinical use. Our research question asks what considerations should guide the design of such systems, which is inherently forward-looking: self-clone chatbots are only beginning to emerge, and many of the most pressing issues concern how such a novel interaction is ought to be designed safely. As there is not yet a widely used, technically matu..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 4\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: Cloning the Self for Mental Well-Being: A Framework for Designing Safe and Therapeutic Self-Clone Chatbots\none_sentence_summary: The study investigates the therapeutic potential and risks of self-clone chatbots through interviews with experts and users to establish a framework for responsible and safe design.\nresearch_problem: Despite the potential for self-clone chatbots to facilitate intra-personal exploration, they present significant risks regarding identity confusion, negative reinforcement, blurred user agency, and ethical safety that require structured design guidance.\nmethod_summary: The researchers conducted in-depth interviews with 16 mental health professionals (providers and researchers) and 6 prospective end-users to identify affordances, risks, and design dimensions.\ndataset_or_materials: Qualitative data from interviews with 16 mental health experts and 6 general users, specifically targeting applications for individuals with mild, non-clinical symptoms.\nmain_findings: The development of a design framework organized around three priorities: grounding the approach in therapeutic models, iden"
+      },
+      "turn_id": "turn_f474e0681037448e995c678c7f07ba5b",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "01d5b13ddead4822934a5d21c7751c14",
+        "document_id": "ce3e11512a474e148a14d322146d8cfd",
+        "timestamp": "2026-05-18T09:34:40Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.71,
+        "distribution": {
+          "boredom": 0.09,
+          "confusion": 0.71,
+          "engagement": 0.1,
+          "frustration": 0.1
+        },
+        "trend": "rising",
+        "duration_sec": 7.5,
+        "intensity": 0.71,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage describes the researchers' decision to treat expert \"projections\"\u2014or educated guesses about what might go wrong\u2014as essential data. In the world of emerging AI like self-clone chatbots, we don't have decades of user data to look back on. If we waited for real-world evidence of harm before creating rules, the \"data\" we collected would consist of people who had already been negatively impacted.\n\nTo make this concrete, imagine a **\"what-if\" scenario**: A mental health expert predicts that a user struggling with self-loathing might interact with a self-clone that mimics them *too* perfectly. The expert anticipates that the clone will reflect the user's negative self-talk back at them, potentially spiraling the user into a deeper crisis.\n\nEven though this hasn't necessarily happened in a large-scale study yet, the authors treat this expert\u2019s \"anticipatory judgment\" as a factual requirement for their framework. This leads directly to a specific **safety guardrail**: a design requirement that the chatbot must maintain a \"therapeutic distance.\" Instead of being a perfect 1:1 mirror, the framework might mandate that the clone is programmed to act as a \"wise self\" that can challenge negative thoughts rather than just echoing them.\n\nBy treating these speculations as \"necessary data,\" the authors are able to build safety into the architecture of self-clones from the ground up. This methodological choice matters because it moves the research from being reactive (fixing problems after they occur) to proactive, ensuring that risks like **identity confusion** or **negative reinforcement** are mitigated before the technology is widely deployed.",
+      "created_at": 1779096938.9680429,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "The study investigates the therapeutic potential and risks of self-clone chatbots through interviews with experts and users to establish a framework for responsible and safe design.",
+        "retrieved_block_count": 12,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8303
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b26",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "self-clone chatbots, mental well-being, interview, design framework",
+            "score": 0.8198
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p6-b245",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "expert interviews to articulate how clinicians and researchers imagined self-clones as mental health tools and how that would translate into a design framework, then analyzed non-expert interviews to examine how prospective users\u2019 expectations and concerns aligned with, or challenged, these expert views. Drawing on grounded theory\u2019s constant comparative method [45], we repeatedly compared accounts within and across interviews and against relevant HCI and psychology literature, checking whether emerging considera...",
+            "score": 0.8122
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p2-b38",
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "To answer these questions, we conducted in-depth interviews with 16 mental health experts, including providers and researchers, and a complementary sample of prospective end-users (N=6). Our study focused specifically on supporting individuals experiencing mild, non-clinical symptoms, recognizing that more severe mental health challenges require purpose-built interventions and additional clinical oversight. This scope ensures that the resulting framework is grounded in early-stage self-help contexts rather than...",
+            "score": 0.8303
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p1-b26",
+            "page_number": 1,
+            "block_type": "text",
+            "markdown_content": "self-clone chatbots, mental well-being, interview, design framework",
+            "score": 0.8198
+          },
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p6-b245",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "expert interviews to articulate how clinicians and researchers imagined self-clones as mental health tools and how that would translate into a design framework, then analyzed non-expert interviews to examine how prospective users\u2019 expectations and concerns aligned with, or challenged, these expert views. Drawing on grounded theory\u2019s constant comparative method [45], we repeatedly compared accounts within and across interviews and against relevant HCI and psychology literature, checking whether emerging considera...",
+            "score": 0.8122
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "ce3e11512a474e148a14d322146d8cfd-p4-b64",
+            "page_number": 4,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "We adopt an interpretivist, design-oriented stance aimed at constructing a practice-ready framework for the safe and effective design of self-clone chatbots for mild, non-clinical use. Our research question asks what considerations should guide the design of such systems, which is inherently forward-looking: self-clone chatbots are only beginning to emerge, and many of the most pressing issues concern how such a novel interaction is ought to be designed safely. As there is not yet a widely used, technically matu..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 4\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: make_it_relevant\n- Pedagogical move: Connect the abstract methodological stance to a concrete safety outcome.\n- Context focus: The proactive role of 'anticipatory judgments' in preventing AI harm.\n- Strategy title: Apply the speculative method to a real-world risk\n- Why selected: A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.\n- Instruction for answer: Provide a brief, concrete scenario where an 'anticipatory judgment' from an expert (e.g., about identity confusion) directly leads to a specific design requir"
+      },
+      "turn_id": "turn_6208d2ece9d74e3eabb410c958aa2fb6",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b",
+        "highlight_id": "57bf1e31-514a-46e7-a708-5cca8913853f",
+        "window_start": "2026-05-18T09:34:49.045Z",
+        "window_end": "2026-05-18T09:34:57.210Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.994,
+        "max_confidence": 0.999,
+        "avg_distribution": {
+          "boredom": 0.994,
+          "confusion": 0.001,
+          "engagement": 0,
+          "frustration": 0.005
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage explains why the researchers are basing their findings on interviews where participants \"imagine\" or \"project\" how self-clone chatbots might work, rather than studying people who are already using a finished product. Because this technology is still in its infancy, there isn't a large group of long-term users to observe. The \"anticipatory judgments\" mentioned are the predictions and concerns shared by the 16 mental health experts and 6 potential users interviewed for the study.\n\nThis approach matters because it allows the researchers to be proactive. In the field of Human-Computer Interaction (HCI), analyzing how experts think a technology *should* be designed\u2014or what they fear might go wrong\u2014is considered a valid way to build a foundation for new systems. By treating these projections as \"legitimate and necessary data,\" the authors can identify potential risks like identity confusion or negative emotional loops before the technology becomes widespread.\n\nIn the context of the paper\u2019s argument, this methodology justifies the creation of their \"practice-ready framework.\" Instead of waiting for harm to occur and then reacting to it, the authors use these expert insights to set up \"guardrails\" and ethical guidelines from the start. It connects the theoretical potential of \"cloning the self\" for therapy with the practical realities of keeping such interactions safe and grounded in existing mental health principles."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "strategy_id": "relate_speculative_method_to_safety",
+      "strategy_family": "make_it_relevant",
+      "pedagogical_move": "Connect the abstract methodological stance to a concrete safety outcome.",
+      "context_focus": "The proactive role of 'anticipatory judgments' in preventing AI harm.",
+      "strategy_title": "Apply the speculative method to a real-world risk",
+      "strategy_short_description": "See how 'imagining' problems helps the authors build safety guardrails before the tech even exists.",
+      "why_recommended": "A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.",
+      "strategy_reason": "A concrete example of how this 'speculation' prevents real harm can make the methodological choice feel more urgent and less academic.",
+      "learning_state_snapshot": {
+        "session_id": "01d5b13ddead4822934a5d21c7751c14",
+        "document_id": "ce3e11512a474e148a14d322146d8cfd",
+        "timestamp": "2026-05-18T09:35:29Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9782,
+        "distribution": {
+          "boredom": 0.9782,
+          "confusion": 0.0008,
+          "engagement": 0.0012,
+          "frustration": 0.0199
+        },
+        "trend": "stable",
+        "duration_sec": 15.2,
+        "intensity": 0.9782,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "rising",
+        "intensity": 0.994,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_f474e0681037448e995c678c7f07ba5b"
+      },
+      "planner_mode": "llm",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 317,
+        "caption_length": 0,
+        "baseline_explanation_length": 1444,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 1,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    }
+  ]
+}

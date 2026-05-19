@@ -1,0 +1,66 @@
+{
+  "document_id": "9e23b5b39f6d4a7db45bfec358f33852",
+  "status": "completed",
+  "parser": "pdftotext_fallback",
+  "message": "MinerU/Marker command not found. Used pdftotext fallback.",
+  "parsed_dir": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/parsed",
+  "document_md_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/parsed/document.md",
+  "content_list_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/parsed/content_list.json",
+  "blocks_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/parsed/blocks_index.json",
+  "images_dir": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/parsed/images",
+  "page_count": 20,
+  "block_count": 464,
+  "duration_sec": 105.557,
+  "profile_provider": "rule_based",
+  "useful_block_count": 166,
+  "prepared_at": 1779098604.4329193,
+  "paper_profile_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/rag/paper_profile.json",
+  "section_map_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/rag/section_map.json",
+  "keyword_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/rag/keyword_index.json",
+  "rag_prepare_status_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/rag/prepare_status.json",
+  "embedding_provider": "gemini",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_index_status": "completed",
+  "embedding_message": "Gemini embedding index prepared.",
+  "embeddings_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/9e23b5b39f6d4a7db45bfec358f33852/rag/embeddings.json",
+  "stage": "ready",
+  "stage_label": "Ready",
+  "progress_percent": 100,
+  "started_at": 1779098498.8720078,
+  "updated_at": 1779098604.4341955,
+  "elapsed_seconds": 105.6,
+  "estimated_remaining_seconds": 0.0,
+  "steps": [
+    {
+      "id": "upload",
+      "label": "Uploading PDF",
+      "status": "completed"
+    },
+    {
+      "id": "extract",
+      "label": "Extracting text and layout",
+      "status": "completed"
+    },
+    {
+      "id": "profile",
+      "label": "Building paper profile",
+      "status": "completed"
+    },
+    {
+      "id": "keyword",
+      "label": "Building keyword index",
+      "status": "completed"
+    },
+    {
+      "id": "embedding",
+      "label": "Building embedding index",
+      "status": "completed"
+    },
+    {
+      "id": "ready",
+      "label": "Ready",
+      "status": "completed"
+    }
+  ],
+  "warnings": []
+}
