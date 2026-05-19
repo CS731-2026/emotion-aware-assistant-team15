@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Model & API Settings</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      color: #182230;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 28px 16px 44px;
+    }
+
+    main {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header {
+      display: grid;
+      gap: 8px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+    h3 {
+      font-size: 15px;
+    }
+
+    p, .note, .meta {
+      color: #52616f;
+      line-height: 1.5;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #d8e0ea;
+      border-radius: 8px;
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .provider-card, .model-profile {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+      background: #fbfcfe;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: #25313d;
+      font-weight: 650;
+      font-size: 13px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #c7d1dc;
+      border-radius: 6px;
+      padding: 9px 10px;
+      color: #111827;
+      background: #ffffff;
+      font: inherit;
+      min-width: 0;
+    }
+
+    textarea {
+      min-height: 64px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #2563eb33;
+      border-color: #2563eb;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: #e7edf5;
+      color: #182230;
+    }
+
+    button.primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    button.danger {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .status-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      min-width: 0;
+      background: #f8fafc;
+    }
+
+    .status-item span {
+      display: block;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .status-item strong {
+      display: block;
+      margin-top: 2px;
+      overflow-wrap: anywhere;
+      font-size: 13px;
+    }
+
+    .message {
+      min-height: 22px;
+      font-weight: 700;
+    }
+
+    .message[data-tone="success"] {
+      color: #137333;
+    }
+
+    .message[data-tone="error"] {
+      color: #b42318;
+    }
+
+    .warning {
+      border: 1px solid #fedf89;
+      background: #fffbeb;
+      color: #7a4f01;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .profiles {
+      display: grid;
+      gap: 10px;
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.5fr auto auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    details {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fbfcfe;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    pre {
+      margin: 12px 0 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      color: #182230;
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 12px;
+    }
+
+    .note {
+      padding: 12px;
+      border-radius: 8px;
+      background: #eef6ff;
+      color: #25476a;
+    }
+
+    @media (max-width: 880px) {
+      .grid, .role-grid, .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Local Model & API Settings</h1>
+      <p>Configure local provider credentials, role-specific models, and comparison profiles for the reading assistant.</p>
+    </header>
+
+    <p class="note">This page writes local configuration only. API keys are stored in `.env.local` and are not stored in the browser.</p>
+    <div id="message" class="message" role="status"></div>
+
+    <section class="panel" aria-labelledby="provider-title">
+      <h2 id="provider-title">Provider credentials</h2>
+      <div class="grid">
+        <form class="provider-card" data-provider-form="gemini" autocomplete="off">
+          <h3>Gemini</h3>
+          <p class="meta" id="gemini-status">Checking...</p>
+          <label>
+            API key
+            <input id="gemini-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
+          </label>
+          <label>
+            Default answer model
+            <input id="gemini-model" type="text" value="gemini-flash-latest">
+          </label>
+          <label>
+            Embedding model
+            <input id="gemini-embedding-model" type="text" value="gemini-embedding-001">
+          </label>
+          <div class="actions">
+            <button class="primary" type="submit">Save Gemini</button>
+            <button type="button" data-test-provider="gemini">Test</button>
+          </div>
+        </form>
+
+        <form class="provider-card" data-provider-form="openrouter" autocomplete="off">
+          <h3>OpenRouter</h3>
+          <p class="meta" id="openrouter-status">Checking...</p>
+          <label>
+            API key
+            <input id="openrouter-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
+          </label>
+          <label>
+            Default model
+            <input id="openrouter-model" type="text" value="openai/gpt-4o-mini">
+          </label>
+          <label>
+            Site URL
+            <input id="openrouter-site-url" type="text" placeholder="http://localhost:8000">
+          </label>
+          <label>
+            Site name
+            <input id="openrouter-site-name" type="text" placeholder="CS731 Local Assistant">
+          </label>
+          <div class="actions">
+            <button class="primary" type="submit">Save OpenRouter</button>
+            <button type="button" data-test-provider="openrouter">Test</button>
+          </div>
+        </form>
+
+        <form class="provider-card" data-provider-form="openai_compatible" autocomplete="off">
+          <h3>OpenAI-compatible</h3>
+          <p class="meta" id="openai-status">Checking...</p>
+          <label>
+            API key
+            <input id="openai-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
+          </label>
+          <label>
+            Base URL
+            <input id="openai-base-url" type="text" placeholder="http://localhost:11434/v1">
+          </label>
+          <label>
+            Default model
+            <input id="openai-model" type="text" placeholder="local/model">
+          </label>
+          <div class="actions">
+            <button class="primary" type="submit">Save</button>
+            <button type="button" data-test-provider="openai_compatible">Test</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="roles-title">
+      <h2 id="roles-title">Role-based model settings</h2>
+      <form id="roles-form" autocomplete="off">
+        <div class="role-grid">
+          <div class="provider-card">
+            <h3>Answer model</h3>
+            <label>
+              Provider
+              <select id="answer-provider">
+                <option value="gemini">Gemini</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="openai_compatible">OpenAI-compatible</option>
+              </select>
+            </label>
+            <label>
+              Model
+              <input id="answer-model" type="text" value="gemini-flash-latest">
+            </label>
+          </div>
+
+          <div class="provider-card">
+            <h3>Strategy planner model</h3>
+            <label>
+              Provider
+              <select id="strategy-provider">
+                <option value="gemini">Gemini</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="openai_compatible">OpenAI-compatible</option>
+              </select>
+            </label>
+            <label>
+              Model
+              <input id="strategy-model" type="text" value="gemini-flash-latest">
+            </label>
+          </div>
+
+          <div class="provider-card">
+            <h3>Embedding model</h3>
+            <label>
+              Provider
+              <select id="embedding-provider">
+                <option value="gemini">Gemini</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="openai_compatible">OpenAI-compatible</option>
+              </select>
+            </label>
+            <label>
+              Model
+              <input id="embedding-model" type="text" value="gemini-embedding-001">
+            </label>
+            <p class="warning" id="embedding-warning" hidden>Some providers do not support the current embedding path.</p>
+          </div>
+        </div>
+        <div class="actions" style="margin-top: 12px;">
+          <button class="primary" type="submit">Save role settings</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="comparison-title">
+      <h2 id="comparison-title">Comparison models</h2>
+      <p class="meta">These profiles are non-secret presets for future LLM comparison. API keys are not stored here.</p>
+      <div id="profiles" class="profiles"></div>
+      <div class="actions">
+        <button type="button" id="add-profile">Add model profile</button>
+        <button class="primary" type="button" id="save-profiles">Save comparison list</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="status-title">
+      <h2 id="status-title">Provider test/status</h2>
+      <div class="status-grid" id="status-grid"></div>
+      <div id="warnings"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="advanced-title">
+      <h2 id="advanced-title">Advanced local config</h2>
+      <details>
+        <summary>Safe status JSON</summary>
+        <pre id="status-json">{}</pre>
+      </details>
+    </section>
+  </main>
+
+  <script>
+    const endpoints = {
+      status: "/api/local-config/llm/status",
+      provider: "/api/local-config/llm/provider",
+      roles: "/api/local-config/llm/roles",
+      comparison: "/api/local-config/llm/comparison-models",
+      test: "/api/local-config/llm/test",
+    };
+
+    const providerLabels = {
+      gemini: "Gemini",
+      openrouter: "OpenRouter",
+      openai_compatible: "OpenAI-compatible",
+    };
+
+    const state = {
+      status: null,
+      profiles: [],
+    };
+
+    const message = document.getElementById("message");
+    const profilesEl = document.getElementById("profiles");
+    const statusGrid = document.getElementById("status-grid");
+    const warningsEl = document.getElementById("warnings");
+    const statusJson = document.getElementById("status-json");
+    const embeddingWarning = document.getElementById("embedding-warning");
+
+    function setMessage(text, tone) {
+      message.textContent = text || "";
+      message.dataset.tone = tone || "";
+    }
+
+    async function requestJson(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Request failed.");
+      }
+      return data;
+    }
+
+    function providerStatusText(provider) {
+      const details = state.status?.providers?.[provider] || {};
+      const key = details.masked_key ? `key ${details.masked_key}` : "key not configured";
+      const configured = details.configured ? "configured" : "not configured";
+      return `${configured}; ${key}`;
+    }
+
+    function renderStatus(data) {
+      state.status = data;
+      state.profiles = data.comparison_models || state.profiles || [];
+
+      document.getElementById("gemini-status").textContent = providerStatusText("gemini");
+      document.getElementById("openrouter-status").textContent = providerStatusText("openrouter");
+      document.getElementById("openai-status").textContent = providerStatusText("openai_compatible");
+
+      document.getElementById("gemini-model").value = data.providers?.gemini?.models?.default || "gemini-flash-latest";
+      document.getElementById("gemini-embedding-model").value = data.providers?.gemini?.models?.embedding || "gemini-embedding-001";
+      document.getElementById("openrouter-model").value = data.providers?.openrouter?.model || "openai/gpt-4o-mini";
+      document.getElementById("openrouter-site-url").value = data.providers?.openrouter?.site_url || "";
+      document.getElementById("openrouter-site-name").value = data.providers?.openrouter?.site_name || "";
+      document.getElementById("openai-base-url").value = data.providers?.openai_compatible?.base_url || "";
+      document.getElementById("openai-model").value = data.providers?.openai_compatible?.model || "";
+
+      setRoleValue("answer", data.roles?.answer_model);
+      setRoleValue("strategy", data.roles?.strategy_planner_model);
+      setRoleValue("embedding", data.roles?.embedding_model);
+      renderProfiles();
+      renderStatusGrid(data);
+      renderWarnings(data.warnings || []);
+      statusJson.textContent = JSON.stringify(data, null, 2);
+    }
+
+    function setRoleValue(prefix, role) {
+      if (!role) return;
+      document.getElementById(`${prefix}-provider`).value = role.provider || "gemini";
+      document.getElementById(`${prefix}-model`).value = role.model || "";
+    }
+
+    function renderStatusGrid(data) {
+      const roles = data.roles || {};
+      const providers = data.providers || {};
+      const rows = [
+        ["Gemini", providerStatusText("gemini")],
+        ["OpenRouter", providerStatusText("openrouter")],
+        ["OpenAI-compatible", providerStatusText("openai_compatible")],
+        ["Answer model", roleText(roles.answer_model)],
+        ["Strategy planner", roleText(roles.strategy_planner_model)],
+        ["Embedding model", roleText(roles.embedding_model)],
+      ];
+      statusGrid.innerHTML = rows.map(([label, value]) => `
+        <div class="status-item">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>
+      `).join("");
+      void providers;
+    }
+
+    function roleText(role) {
+      if (!role) return "not configured";
+      return `${providerLabels[role.provider] || role.provider}: ${role.model || "model not set"}`;
+    }
+
+    function renderWarnings(warnings) {
+      warningsEl.innerHTML = warnings.length
+        ? `<div class="warning">${warnings.map(escapeHtml).join("<br>")}</div>`
+        : "";
+      const embeddingProvider = document.getElementById("embedding-provider").value;
+      embeddingWarning.hidden = embeddingProvider === "gemini";
+    }
+
+    function renderProfiles() {
+      if (!state.profiles.length) {
+        profilesEl.innerHTML = `<p class="meta">No comparison profiles saved yet.</p>`;
+        return;
+      }
+      profilesEl.innerHTML = state.profiles.map((profile, index) => `
+        <div class="profile-row" data-profile-index="${index}">
+          <label>Label<input type="text" value="${escapeAttr(profile.label || "")}" data-profile-field="label"></label>
+          <label>Provider
+            <select data-profile-field="provider">
+              ${providerOption("gemini", profile.provider)}
+              ${providerOption("openrouter", profile.provider)}
+              ${providerOption("openai_compatible", profile.provider)}
+            </select>
+          </label>
+          <label>Model id<input type="text" value="${escapeAttr(profile.model || "")}" data-profile-field="model"></label>
+          <label>Enabled<input type="checkbox" ${profile.enabled ? "checked" : ""} data-profile-field="enabled"></label>
+          <button type="button" class="danger" data-remove-profile="${index}">Remove</button>
+        </div>
+      `).join("");
+    }
+
+    function providerOption(value, selected) {
+      return `<option value="${value}" ${value === selected ? "selected" : ""}>${providerLabels[value]}</option>`;
+    }
+
+    function collectProfiles() {
+      return Array.from(profilesEl.querySelectorAll("[data-profile-index]")).map((row, index) => {
+        const get = (field) => row.querySelector(`[data-profile-field="${field}"]`);
+        const label = get("label").value.trim();
+        const model = get("model").value.trim();
+        return {
+          id: `${(label || model || `profile_${index + 1}`).toLowerCase().replace(/[^a-z0-9_.-]+/g, "_")}`,
+          label,
+          provider: get("provider").value,
+          model,
+          enabled: get("enabled").checked,
+          role: "comparison",
+        };
+      }).filter((profile) => profile.model);
+    }
+
+    async function loadStatus() {
+      try {
+        const data = await requestJson(endpoints.status);
+        renderStatus(data);
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    }
+
+    document.querySelectorAll("[data-provider-form]").forEach((form) => {
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const provider = form.dataset.providerForm;
+        const keyInput = form.querySelector('input[type="password"]');
+        const payload = { provider };
+        if (keyInput.value.trim()) payload.api_key = keyInput.value.trim();
+        if (provider === "gemini") {
+          payload.default_model = document.getElementById("gemini-model").value.trim();
+          payload.embedding_model = document.getElementById("gemini-embedding-model").value.trim();
+        } else if (provider === "openrouter") {
+          payload.default_model = document.getElementById("openrouter-model").value.trim();
+          payload.site_url = document.getElementById("openrouter-site-url").value.trim();
+          payload.site_name = document.getElementById("openrouter-site-name").value.trim();
+        } else {
+          payload.base_url = document.getElementById("openai-base-url").value.trim();
+          payload.default_model = document.getElementById("openai-model").value.trim();
+        }
+        try {
+          setMessage("", "");
+          const data = await requestJson(endpoints.provider, {
+            method: "POST",
+            body: JSON.stringify(payload),
+          });
+          keyInput.value = "";
+          renderStatus(data);
+          setMessage(`Saved ${providerLabels[provider]} settings.`, "success");
+        } catch (error) {
+          setMessage(error.message, "error");
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-test-provider]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const provider = button.dataset.testProvider;
+        const modelInput = provider === "gemini"
+          ? document.getElementById("gemini-model")
+          : provider === "openrouter"
+            ? document.getElementById("openrouter-model")
+            : document.getElementById("openai-model");
+        try {
+          const data = await requestJson(endpoints.test, {
+            method: "POST",
+            body: JSON.stringify({
+              provider,
+              model: modelInput.value.trim(),
+              role: "answer_model",
+              test_type: "configured_only",
+            }),
+          });
+          setMessage(data.configured ? `${providerLabels[provider]} is configured.` : data.error || `${providerLabels[provider]} is not configured.`, data.configured ? "success" : "error");
+        } catch (error) {
+          setMessage(error.message, "error");
+        }
+      });
+    });
+
+    document.getElementById("roles-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        const data = await requestJson(endpoints.roles, {
+          method: "POST",
+          body: JSON.stringify({
+            answer_model: {
+              provider: document.getElementById("answer-provider").value,
+              model: document.getElementById("answer-model").value.trim(),
+            },
+            strategy_planner_model: {
+              provider: document.getElementById("strategy-provider").value,
+              model: document.getElementById("strategy-model").value.trim(),
+            },
+            embedding_model: {
+              provider: document.getElementById("embedding-provider").value,
+              model: document.getElementById("embedding-model").value.trim(),
+            },
+          }),
+        });
+        await loadStatus();
+        setMessage(data.warnings?.length ? data.warnings.join(" ") : "Saved role-based model settings.", data.warnings?.length ? "error" : "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("embedding-provider").addEventListener("change", () => {
+      renderWarnings(state.status?.warnings || []);
+    });
+
+    document.getElementById("add-profile").addEventListener("click", () => {
+      state.profiles.push({
+        id: `profile_${state.profiles.length + 1}`,
+        label: "New comparison model",
+        provider: "openrouter",
+        model: "",
+        enabled: false,
+        role: "comparison",
+      });
+      renderProfiles();
+    });
+
+    profilesEl.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-profile]");
+      if (!button) return;
+      state.profiles = collectProfiles();
+      state.profiles.splice(Number(button.dataset.removeProfile), 1);
+      renderProfiles();
+    });
+
+    document.getElementById("save-profiles").addEventListener("click", async () => {
+      try {
+        const data = await requestJson(endpoints.comparison, {
+          method: "PUT",
+          body: JSON.stringify({ comparison_models: collectProfiles() }),
+        });
+        state.profiles = data.comparison_models || [];
+        renderProfiles();
+        await loadStatus();
+        setMessage("Saved comparison model profiles.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    loadStatus();
+  </script>
+</body>
+</html>

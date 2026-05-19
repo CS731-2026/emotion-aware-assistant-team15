@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-based LLM Compare</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      color: #182230;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 44px;
+    }
+
+    main {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header, section {
+      background: #ffffff;
+      border: 1px solid #d8e0ea;
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    p, .muted {
+      color: #52616f;
+      line-height: 1.5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .row, .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #25313d;
+    }
+
+    input, select, textarea {
+      border: 1px solid #c7d1dc;
+      border-radius: 6px;
+      padding: 8px 9px;
+      background: #fff;
+      color: #111827;
+      font: inherit;
+      min-width: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #e7edf5;
+      color: #182230;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    button.danger {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    .snapshot-list, .results {
+      display: grid;
+      gap: 10px;
+    }
+
+    .snapshot-item, .model-row, .result-card {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+    }
+
+    .snapshot-item {
+      display: grid;
+      gap: 6px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .snapshot-item.active {
+      outline: 2px solid #2563eb;
+    }
+
+    .model-row {
+      display: grid;
+      grid-template-columns: auto 1fr 140px 1.5fr 100px 100px auto;
+      gap: 8px;
+      align-items: end;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #f1f5f9;
+      color: #182230;
+      padding: 12px;
+      border-radius: 6px;
+      max-height: 420px;
+      overflow: auto;
+      font-size: 12px;
+    }
+
+    details {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcfe;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    .scores {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .message {
+      min-height: 22px;
+      font-weight: 700;
+    }
+
+    .message[data-tone="error"] {
+      color: #b42318;
+    }
+
+    .message[data-tone="success"] {
+      color: #137333;
+    }
+
+    .note {
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #25476a;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .empty-state {
+      display: grid;
+      gap: 10px;
+      border: 1px dashed #b8c4d4;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 14px;
+    }
+
+    .empty-state ol {
+      margin: 0;
+      padding-left: 20px;
+      color: #52616f;
+      line-height: 1.5;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 4px;
+      margin: 10px 0;
+      color: #25313d;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .grid, .model-row {
+        grid-template-columns: 1fr;
+      }
+
+      .scores {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Prompt-based LLM Compare</h1>
+      <p>Compare real prompt snapshots saved by /pdf-chat: RAG baseline prompts, strategy planner prompts, and strategy-conditioned adaptive prompts.</p>
+    </header>
+
+    <div id="message" class="message" role="status"></div>
+
+    <section aria-labelledby="snapshot-title">
+      <h2 id="snapshot-title">Snapshot selector</h2>
+      <div class="row">
+        <label>
+          Stage filter
+          <select id="stage-filter">
+            <option value="">All stages</option>
+            <option value="rag_baseline">RAG baseline</option>
+            <option value="strategy_planner">Strategy planner</option>
+            <option value="emotion_strategy">Strategy-conditioned answer</option>
+          </select>
+        </label>
+        <label>
+          Document filter
+          <input id="document-filter" type="text" placeholder="optional document_id">
+        </label>
+        <button type="button" id="refresh-snapshots">Refresh snapshots</button>
+      </div>
+      <div class="grid" style="margin-top: 12px;">
+        <div id="snapshot-list" class="snapshot-list"></div>
+        <div>
+          <h3>Prompt preview</h3>
+          <div id="prompt-preview" class="muted">Select a saved prompt snapshot.</div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="models-title">
+      <h2 id="models-title">Model selection</h2>
+      <p class="note">OpenRouter model availability, pricing, and rate limits may change. Enter any model ID you want to test.</p>
+      <div id="model-list" style="display: grid; gap: 10px; margin-top: 12px;"></div>
+      <div class="actions" style="margin-top: 12px;">
+        <button type="button" id="add-model">Add model row</button>
+        <button type="button" id="load-settings-models">Load comparison profiles from settings</button>
+        <button type="button" class="primary" id="run-comparison">Run comparison</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="results-title">
+      <h2 id="results-title">Results</h2>
+      <div id="results" class="results muted">Run a comparison to see outputs side by side.</div>
+    </section>
+
+    <section aria-labelledby="manual-title">
+      <h2 id="manual-title">Manual evaluation</h2>
+      <p class="muted">Rubric fields change by snapshot stage. Strategy planner comparisons focus on JSON validity, pedagogical strategy quality, context sensitivity, safety wording, and usefulness for next explanation.</p>
+      <div id="manual-evaluation" class="results"></div>
+      <label style="margin-top: 12px;">
+        Notes
+        <textarea id="comparison-notes" placeholder="Overall comparison notes"></textarea>
+      </label>
+    </section>
+
+    <section aria-labelledby="export-title">
+      <h2 id="export-title">Export</h2>
+      <div class="actions">
+        <button type="button" id="copy-json">Copy JSON</button>
+        <button type="button" id="download-json">Download JSON</button>
+        <button type="button" id="download-markdown">Download Markdown summary</button>
+        <button type="button" id="save-comparison">Save comparison</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const defaultModels = [
+      { enabled: true, label: "Gemini Flash", provider: "gemini", model: "gemini-flash-latest", temperature: 0.2, max_tokens: 800 },
+      { enabled: false, label: "DeepSeek Chat V3 Free", provider: "openrouter", model: "deepseek/deepseek-chat-v3-0324:free", temperature: 0.2, max_tokens: 800 },
+      { enabled: false, label: "DeepSeek R1 Free", provider: "openrouter", model: "deepseek/deepseek-r1:free", temperature: 0.2, max_tokens: 800 },
+      { enabled: false, label: "GPT via OpenRouter", provider: "openrouter", model: "openai/gpt-5.2", temperature: 0.2, max_tokens: 800 },
+      { enabled: false, label: "Custom OpenRouter Model", provider: "openrouter", model: "", temperature: 0.2, max_tokens: 800 },
+    ];
+
+    const state = {
+      snapshots: [],
+      selectedSnapshot: null,
+      models: defaultModels.map((item) => ({ ...item })),
+      comparison: null,
+      manualScores: {},
+    };
+
+    function maxTokensForStage(stage) {
+      return stage === "strategy_planner" ? 3000 : 800;
+    }
+
+    function applyStageModelDefaults(model, stage) {
+      const fallback = maxTokensForStage(stage);
+      const tokens = Number(model.max_tokens || 0);
+      if (stage === "strategy_planner" && (!tokens || tokens <= 800)) {
+        return { ...model, max_tokens: fallback };
+      }
+      return { ...model, max_tokens: tokens || fallback };
+    }
+
+    const message = document.getElementById("message");
+    const snapshotList = document.getElementById("snapshot-list");
+    const promptPreview = document.getElementById("prompt-preview");
+    const modelList = document.getElementById("model-list");
+    const resultsEl = document.getElementById("results");
+    const manualEl = document.getElementById("manual-evaluation");
+
+    function setMessage(text, tone) {
+      message.textContent = text || "";
+      message.dataset.tone = tone || "";
+    }
+
+    async function requestJson(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Request failed.");
+      return payload;
+    }
+
+    async function loadSnapshots() {
+      const params = new URLSearchParams();
+      const stage = document.getElementById("stage-filter").value;
+      const documentId = document.getElementById("document-filter").value.trim();
+      if (stage) params.set("stage", stage);
+      if (documentId) params.set("document_id", documentId);
+      const payload = await requestJson(`/api/llm-compare/prompt-snapshots?${params.toString()}`);
+      state.snapshots = payload.prompt_snapshots || [];
+      renderSnapshots(payload.message || "");
+    }
+
+    function renderSnapshots(emptyMessage = "") {
+      if (!state.snapshots.length) {
+        const stage = document.getElementById("stage-filter").value;
+        const documentId = document.getElementById("document-filter").value.trim();
+        const filtersActive = Boolean(stage || documentId);
+        snapshotList.innerHTML = filtersActive ? `
+          <div class="empty-state">
+            <h3>No prompt snapshots match the current filters.</h3>
+            <div class="actions">
+              <button type="button" id="clear-snapshot-filters">Clear filters</button>
+              <button type="button" id="open-pdf-chat-empty-filtered">Open /pdf-chat</button>
+            </div>
+          </div>
+        ` : `
+          <div class="empty-state">
+            <h3>No prompt snapshots found.</h3>
+            <p>Run a new explanation in /pdf-chat first:</p>
+            <ol>
+              <li>Select a passage.</li>
+              <li>Click Explain.</li>
+              <li>Optionally choose a strategy.</li>
+              <li>Then return here.</li>
+            </ol>
+            <div class="actions">
+              <button type="button" id="open-pdf-chat-empty">Open /pdf-chat</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+      snapshotList.innerHTML = state.snapshots.map((snapshot) => {
+        const summary = snapshot.summary || {};
+        const stage = stageLabel(snapshot.stage);
+        const secondary = snapshot.stage === "strategy_planner"
+          ? [
+            `cue ${summary.support_cue || "n/a"}`,
+            `dominant ${summary.dominant_state || "n/a"}`,
+            `allowed strategy families ${(summary.allowed_strategy_families || []).join(", ") || "n/a"}`,
+            `baseline ${summary.baseline_explanation_length || 0} chars`,
+            `window ${summary.reaction_window_duration || 0}s`,
+          ].join(" · ")
+          : `${summary.strategy_family || "no strategy"}${summary.pedagogical_move ? ` · ${summary.pedagogical_move}` : ""}`;
+        return `
+          <button type="button" class="snapshot-item ${state.selectedSnapshot?.snapshot_id === snapshot.snapshot_id ? "active" : ""}" data-snapshot-id="${escapeAttr(snapshot.snapshot_id)}">
+            <strong>${escapeHtml(stage)} · ${escapeHtml(snapshot.created_at)}</strong>
+            <span>${escapeHtml(summary.selected_text_preview || "No text preview")}</span>
+            <span class="muted">${escapeHtml(snapshot.document_id)} · page ${escapeHtml(summary.page_number || "")} · ${escapeHtml(secondary)}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function stageLabel(stage) {
+      if (stage === "rag_baseline") return "RAG baseline";
+      if (stage === "strategy_planner") return "Strategy planner";
+      if (stage === "emotion_strategy") return "Strategy-conditioned answer";
+      return stage || "Unknown stage";
+    }
+
+    async function selectSnapshot(snapshotId) {
+      const payload = await requestJson(`/api/llm-compare/prompt-snapshots/${encodeURIComponent(snapshotId)}`);
+      state.selectedSnapshot = payload.snapshot;
+      state.models = collectModels().map((model) => applyStageModelDefaults(model, state.selectedSnapshot.stage));
+      renderSnapshots();
+      renderModels();
+      renderPromptPreview();
+    }
+
+    function renderPromptPreview() {
+      const snapshot = state.selectedSnapshot;
+      if (!snapshot) {
+        promptPreview.textContent = "Select a saved prompt snapshot.";
+        return;
+      }
+      const messages = (snapshot.messages || []).map((message) => `
+        <details open>
+          <summary>${escapeHtml(message.role)}</summary>
+          <pre>${escapeHtml(message.content || "")}</pre>
+        </details>
+      `).join("");
+      promptPreview.innerHTML = `
+        <div class="actions" style="margin-bottom: 10px;">
+          <button type="button" id="copy-prompt">Copy prompt</button>
+        </div>
+        <dl>
+          <dt>stage</dt><dd>${escapeHtml(snapshot.stage)}</dd>
+          <dt>provider/model</dt><dd>${escapeHtml(snapshot.provider)} / ${escapeHtml(snapshot.model)}</dd>
+        </dl>
+        <details>
+          <summary>Context summary</summary>
+          <pre>${escapeHtml(JSON.stringify(snapshot.context_summary || {}, null, 2))}</pre>
+        </details>
+        ${messages}
+      `;
+      document.getElementById("copy-prompt").addEventListener("click", () => {
+        navigator.clipboard?.writeText(snapshot.prompt_text || JSON.stringify(snapshot.messages || [], null, 2));
+      });
+    }
+
+    function renderModels() {
+      modelList.innerHTML = state.models.map((model, index) => `
+        <div class="model-row" data-model-index="${index}">
+          <label>Enabled<input type="checkbox" data-model-field="enabled" ${model.enabled ? "checked" : ""}></label>
+          <label>Label<input type="text" data-model-field="label" value="${escapeAttr(model.label || "")}"></label>
+          <label>Provider
+            <select data-model-field="provider">
+              ${providerOption("gemini", model.provider)}
+              ${providerOption("openrouter", model.provider)}
+              ${providerOption("openai_compatible", model.provider)}
+            </select>
+          </label>
+          <label>Model id<input type="text" data-model-field="model" value="${escapeAttr(model.model || "")}"></label>
+          <label>Temperature<input type="number" step="0.1" min="0" max="2" data-model-field="temperature" value="${escapeAttr(model.temperature ?? 0.2)}"></label>
+          <label>Max tokens<input type="number" min="1" max="8192" data-model-field="max_tokens" value="${escapeAttr(model.max_tokens ?? maxTokensForStage(state.selectedSnapshot?.stage || ""))}"></label>
+          <button type="button" class="danger" data-remove-model="${index}">Remove</button>
+        </div>
+      `).join("");
+    }
+
+    function providerOption(value, selected) {
+      const label = value === "openai_compatible" ? "OpenAI-compatible" : value === "openrouter" ? "OpenRouter" : "Gemini";
+      return `<option value="${value}" ${value === selected ? "selected" : ""}>${label}</option>`;
+    }
+
+    function collectModels() {
+      const fallbackTokens = maxTokensForStage(state.selectedSnapshot?.stage || "");
+      return Array.from(modelList.querySelectorAll("[data-model-index]")).map((row) => {
+        const get = (field) => row.querySelector(`[data-model-field="${field}"]`);
+        return {
+          enabled: get("enabled").checked,
+          label: get("label").value.trim(),
+          provider: get("provider").value,
+          model: get("model").value.trim(),
+          temperature: Number(get("temperature").value || 0.2),
+          max_tokens: Number(get("max_tokens").value || fallbackTokens),
+        };
+      });
+    }
+
+    async function runComparison() {
+      if (!state.selectedSnapshot) throw new Error("Select a prompt snapshot first.");
+      state.models = collectModels();
+      const enabled = state.models.filter((model) => model.enabled);
+      if (!enabled.length) throw new Error("Enable at least one model.");
+      resultsEl.textContent = "Running comparison...";
+      const payload = await requestJson("/api/llm-compare/run", {
+        method: "POST",
+        body: JSON.stringify({ snapshot_id: state.selectedSnapshot.snapshot_id, models: enabled }),
+      });
+      state.comparison = { ...payload, models: enabled };
+      renderResults();
+      renderManualEvaluation();
+    }
+
+    function renderResults() {
+      const results = state.comparison?.results || [];
+      if (!results.length) {
+        resultsEl.textContent = "No results yet.";
+        return;
+      }
+      resultsEl.classList.remove("muted");
+      resultsEl.innerHTML = `<div class="result-grid">${results.map((result, index) => `
+        <article class="result-card">
+          <h3>${escapeHtml(result.label || result.model)}</h3>
+          <p class="muted">${escapeHtml(result.provider)} / ${escapeHtml(result.model)} · ${result.ok ? "ok" : "error"} · ${escapeHtml(result.latency_ms || 0)} ms</p>
+          ${result.error ? `<p class="message" data-tone="error">${escapeHtml(result.error)}</p>` : ""}
+          <pre>${escapeHtml(result.output || "")}</pre>
+          ${renderAutoCheckSummary(result)}
+          <details>
+            <summary>Auto checks</summary>
+            <pre>${escapeHtml(JSON.stringify(result.auto_checks || {}, null, 2))}</pre>
+          </details>
+        </article>
+      `).join("")}</div>`;
+    }
+
+    function renderAutoCheckSummary(result) {
+      if (state.selectedSnapshot?.stage !== "strategy_planner") return "";
+      const checks = result.auto_checks || {};
+      return `
+        <div class="check-list">
+          <span>JSON validity: ${checks.json_valid ? "valid" : "invalid"}</span>
+          <span>Candidates: ${escapeHtml(checks.candidate_count ?? 0)}</span>
+          <span>Exactly one recommended: ${checks.exactly_one_recommended ? "yes" : "no"}</span>
+          <span>Required fields present: ${checks.required_fields_present ? "yes" : "no"}</span>
+          <span>Allowed strategy families: ${checks.allowed_strategy_family ? "yes" : "no"}</span>
+        </div>
+      `;
+    }
+
+    function renderManualEvaluation() {
+      const results = state.comparison?.results || [];
+      const fields = rubricFieldsForStage(state.selectedSnapshot?.stage || "");
+      manualEl.innerHTML = results.map((result, index) => `
+        <div class="result-card" data-score-index="${index}">
+          <h3>${escapeHtml(result.label || result.model)}</h3>
+          <div class="scores">
+            ${fields.map((field) => scoreField(field.key, field.label)).join("")}
+          </div>
+          <label style="margin-top: 8px;">Notes<textarea data-score-field="notes"></textarea></label>
+        </div>
+      `).join("");
+    }
+
+    function rubricFieldsForStage(stage) {
+      if (stage === "strategy_planner") {
+        return [
+          { key: "json_validity", label: "JSON validity" },
+          { key: "pedagogical_strategy_quality", label: "pedagogical strategy quality" },
+          { key: "context_sensitivity", label: "context sensitivity" },
+          { key: "safety_wording", label: "safety wording" },
+          { key: "usefulness_for_next_explanation", label: "usefulness for next explanation" },
+        ];
+      }
+      if (stage === "emotion_strategy") {
+        return [
+          { key: "strategy_adherence", label: "strategy adherence" },
+          { key: "grounding", label: "grounding" },
+          { key: "clarity", label: "clarity" },
+          { key: "safety_wording", label: "safety wording" },
+          { key: "usefulness", label: "usefulness" },
+        ];
+      }
+      return [
+        { key: "grounding", label: "grounding" },
+        { key: "clarity", label: "clarity" },
+        { key: "completeness", label: "completeness" },
+        { key: "conciseness", label: "conciseness" },
+        { key: "usefulness", label: "usefulness" },
+      ];
+    }
+
+    function scoreField(field, label) {
+      return `<label>${label}<input type="number" min="1" max="5" data-score-field="${field}"></label>`;
+    }
+
+    function collectManualScores() {
+      const scores = {};
+      manualEl.querySelectorAll("[data-score-index]").forEach((card, index) => {
+        const result = state.comparison?.results?.[index] || {};
+        const key = result.label || result.model || `model_${index + 1}`;
+        scores[key] = {};
+        card.querySelectorAll("[data-score-field]").forEach((input) => {
+          scores[key][input.dataset.scoreField] = input.value;
+        });
+      });
+      return scores;
+    }
+
+    function exportPayload() {
+      return {
+        comparison_id: state.comparison?.comparison_id || "",
+        snapshot_id: state.selectedSnapshot?.snapshot_id || "",
+        stage: state.selectedSnapshot?.stage || "",
+        prompt_summary: state.selectedSnapshot?.context_summary || {},
+        models: state.comparison?.models || collectModels().filter((model) => model.enabled),
+        results: state.comparison?.results || [],
+        manual_scores: collectManualScores(),
+        notes: document.getElementById("comparison-notes").value,
+      };
+    }
+
+    function markdownSummary(payload) {
+      const lines = [
+        `# LLM Comparison ${payload.comparison_id || ""}`.trim(),
+        "",
+        `Snapshot: ${payload.snapshot_id}`,
+        `Stage: ${payload.stage}`,
+        "",
+        "## Prompt Summary",
+        "```json",
+        JSON.stringify(payload.prompt_summary || {}, null, 2),
+        "```",
+        "",
+        "## Scores",
+        "```json",
+        JSON.stringify(payload.manual_scores || {}, null, 2),
+        "```",
+        "",
+        "## Outputs",
+      ];
+      for (const result of payload.results || []) {
+        lines.push("", `### ${result.label || result.model}`, "", `Provider/model: ${result.provider} / ${result.model}`, "", result.output || result.error || "");
+      }
+      if (payload.notes) lines.push("", "## Notes", "", payload.notes);
+      return lines.join("\n");
+    }
+
+    function downloadFile(name, text, type) {
+      const blob = new Blob([text], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = name;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    snapshotList.addEventListener("click", async (event) => {
+      if (event.target.closest("#open-pdf-chat-empty, #open-pdf-chat-empty-filtered")) {
+        window.location.href = "/pdf-chat";
+        return;
+      }
+      if (event.target.closest("#clear-snapshot-filters")) {
+        document.getElementById("stage-filter").value = "";
+        document.getElementById("document-filter").value = "";
+        await loadSnapshots().catch((error) => setMessage(error.message, "error"));
+        return;
+      }
+      const button = event.target.closest("[data-snapshot-id]");
+      if (!button) return;
+      try {
+        await selectSnapshot(button.dataset.snapshotId);
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    modelList.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-remove-model]");
+      if (!button) return;
+      state.models = collectModels();
+      state.models.splice(Number(button.dataset.removeModel), 1);
+      renderModels();
+    });
+
+    document.getElementById("refresh-snapshots").addEventListener("click", () => loadSnapshots().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("stage-filter").addEventListener("change", () => loadSnapshots().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("add-model").addEventListener("click", () => {
+      state.models = collectModels();
+      state.models.push({ enabled: true, label: "Custom OpenRouter Model", provider: "openrouter", model: "", temperature: 0.2, max_tokens: maxTokensForStage(state.selectedSnapshot?.stage || "") });
+      renderModels();
+    });
+    document.getElementById("load-settings-models").addEventListener("click", async () => {
+      const payload = await requestJson("/api/local-config/llm/comparison-models");
+      state.models = (payload.comparison_models || defaultModels).map((item) => applyStageModelDefaults({ temperature: 0.2, ...item }, state.selectedSnapshot?.stage || ""));
+      renderModels();
+    });
+    document.getElementById("run-comparison").addEventListener("click", () => runComparison().then(() => setMessage("Comparison finished.", "success")).catch((error) => setMessage(error.message, "error")));
+    document.getElementById("copy-json").addEventListener("click", () => navigator.clipboard?.writeText(JSON.stringify(exportPayload(), null, 2)));
+    document.getElementById("download-json").addEventListener("click", () => downloadFile("llm-comparison.json", JSON.stringify(exportPayload(), null, 2), "application/json"));
+    document.getElementById("download-markdown").addEventListener("click", () => downloadFile("llm-comparison.md", markdownSummary(exportPayload()), "text/markdown"));
+    document.getElementById("save-comparison").addEventListener("click", async () => {
+      const payload = await requestJson("/api/llm-compare/save", {
+        method: "POST",
+        body: JSON.stringify(exportPayload()),
+      });
+      state.comparison = { ...(state.comparison || {}), comparison_id: payload.comparison?.comparison_id };
+      setMessage("Saved comparison locally.", "success");
+    });
+
+    renderModels();
+    loadSnapshots().catch((error) => setMessage(error.message, "error"));
+  </script>
+</body>
+</html>

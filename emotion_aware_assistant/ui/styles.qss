@@ -1,0 +1,10 @@
+QWidget {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+QPushButton {
+  padding: 6px 10px;
+}
+QTextEdit, QPlainTextEdit {
+  border: 1px solid #b7bec8;
+}

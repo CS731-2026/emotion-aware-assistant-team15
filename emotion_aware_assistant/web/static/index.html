@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emotion-Aware Academic Assistant</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/pdf-workspace/pdf-workspace.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>Emotion-Aware Academic Assistant</h1>
+        <p id="backendStatus">Connecting to backend...</p>
+      </div>
+      <div class="header-status">
+        <span id="apiStatus">API: -</span>
+        <span id="modelStatus">Model: -</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel paper-panel">
+        <div class="panel-title">
+          <h2>Paper</h2>
+          <div class="button-row">
+            <button id="loadSampleBtn">Load Sample</button>
+            <label class="file-button">
+              Upload PDF/TXT
+              <input id="uploadInput" type="file" accept=".pdf,.txt" />
+            </label>
+          </div>
+        </div>
+        <div class="doc-meta">
+          <span id="docTitle">No document loaded</span>
+          <span id="pageInfo">Page -</span>
+        </div>
+        <div id="legacyReaderControls" class="button-row">
+          <button id="prevPageBtn">Previous page</button>
+          <button id="nextPageBtn">Next page</button>
+          <button id="zoomOutBtn">Zoom -</button>
+          <button id="zoomInBtn">Zoom +</button>
+          <button id="useSelectedBtn">Use Selected Text</button>
+          <button id="highlightSelectionBtn">Highlight Selection</button>
+          <button id="explainSelectedBtn">Explain Selected</button>
+          <button id="summarizePageBtn">Summarize Page/Section</button>
+        </div>
+        <p id="readerStatus" class="status-line">Text reader ready.</p>
+        <div id="pdfWorkspaceRoot" class="pdf-workspace-root hidden" aria-label="PDF workspace"></div>
+        <div id="pdfViewer" class="pdf-viewer hidden" aria-label="PDF viewer">
+          <div id="pdfPageLayer" class="pdf-page-layer">
+            <canvas id="pdfCanvas"></canvas>
+            <div id="pdfTextLayer" class="pdf-text-layer" aria-label="Selectable PDF text layer"></div>
+            <div id="highlightLayer" class="highlight-layer" aria-hidden="true"></div>
+          </div>
+        </div>
+        <article id="paperText" class="paper-text" tabindex="0">Load a sample paper or upload a PDF/TXT file.</article>
+        <div id="legacySelectionPanel" class="selected-preview">
+          <h3>Selected Passage</h3>
+          <p id="selectedPreview">No selected passage yet.</p>
+          <div class="badge-row">
+            <span id="passageBadge" class="badge">Passage type: -</span>
+            <span id="difficultyBadge" class="badge">Difficulty: -</span>
+          </div>
+          <details class="context-box">
+            <summary>Context Preview</summary>
+            <h4>Surrounding Context</h4>
+            <pre id="surroundingPreview">No context yet.</pre>
+            <h4>Retrieved Chunks</h4>
+            <div id="retrievedChunks" class="chunk-list">No chunks yet.</div>
+          </details>
+        </div>
+      </section>
+
+      <section class="panel chat-panel">
+        <div class="panel-title">
+          <h2>Chat</h2>
+          <select id="modelSelector"></select>
+        </div>
+        <div id="chatHistory" class="chat-history"></div>
+        <textarea id="questionInput" rows="4" aria-label="Question input"></textarea>
+        <div class="button-row">
+          <button id="askBtn">Ask</button>
+          <button class="followupBtn" data-action="Break into steps">Break into steps</button>
+          <button class="followupBtn" data-action="Explain more simply">Explain more simply</button>
+          <button class="followupBtn" data-action="Give an example">Give an example</button>
+          <button class="followupBtn" data-action="Quiz me">Quiz me</button>
+          <button class="followupBtn" data-action="Go deeper">Go deeper</button>
+          <button class="followupBtn" data-action="Key takeaway">Key takeaway</button>
+        </div>
+        <p id="chatStatus" class="status-line">Latency: -</p>
+        <details class="prompt-box">
+          <summary>Last Prompt Preview</summary>
+          <pre id="promptPreview">No prompt yet.</pre>
+        </details>
+      </section>
+
+      <aside class="panel side-panel">
+        <h2>Emotion</h2>
+        <video id="webcamVideo" autoplay playsinline muted></video>
+        <canvas id="frameCanvas" class="hidden" width="320" height="240"></canvas>
+        <div class="button-row">
+          <button id="startCameraBtn">Start Camera</button>
+          <button id="stopCameraBtn">Stop Camera</button>
+        </div>
+        <label>
+          Manual override
+          <select id="manualOverride">
+            <option value="auto">auto</option>
+            <option value="neutral">neutral</option>
+            <option value="happy">happy</option>
+            <option value="angry">angry</option>
+            <option value="sad">sad</option>
+            <option value="fear">fear</option>
+            <option value="surprise">surprise</option>
+            <option value="disgust">disgust</option>
+            <option value="contempt">contempt</option>
+            <option value="confusion">confusion</option>
+            <option value="frustration">frustration</option>
+            <option value="boredom">boredom</option>
+            <option value="engagement">engagement</option>
+          </select>
+        </label>
+        <div class="status-card-grid">
+          <div class="status-card"><span>Raw</span><strong id="rawEmotion">-</strong></div>
+          <div class="status-card"><span>Smoothed</span><strong id="smoothedEmotion">-</strong></div>
+          <div class="status-card"><span>State</span><strong id="learningState">-</strong></div>
+          <div class="status-card"><span>Trend</span><strong id="trend">-</strong></div>
+        </div>
+        <div class="meter-row">
+          <span>Confidence</span>
+          <meter id="confidenceMeter" min="0" max="1" value="0"></meter>
+          <span id="confidence">-</span>
+        </div>
+        <dl class="state-grid">
+          <dt>Duration</dt><dd id="duration">-</dd>
+          <dt>Strategy</dt><dd id="strategy">-</dd>
+          <dt>Source</dt><dd id="sourceMode">-</dd>
+          <dt>Dominant</dt><dd id="dominantState">-</dd>
+        </dl>
+        <h3>State Timeline</h3>
+        <ol id="stateTimeline" class="timeline"></ol>
+
+        <h2>Debug</h2>
+        <dl class="state-grid">
+          <dt>API key</dt><dd id="apiKeyStatus">-</dd>
+          <dt>Emotion model</dt><dd id="emotionModelStatus">-</dd>
+          <dt>Face detector</dt><dd id="faceDetectorStatus">-</dd>
+          <dt>Log file</dt><dd id="logPath">-</dd>
+        </dl>
+        <details>
+          <summary>Last Request Payload</summary>
+          <pre id="requestSummary">No request yet.</pre>
+        </details>
+        <details>
+          <summary>Context / Prompt Preview</summary>
+          <pre id="contextDebug">No context yet.</pre>
+        </details>
+      </aside>
+    </main>
+
+    <script type="module" src="/pdf-workspace/pdf-workspace.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

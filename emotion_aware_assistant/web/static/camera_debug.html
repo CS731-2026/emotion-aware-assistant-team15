@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camera Debug Workspace</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      color: #17202a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #f5f7fa;
+    }
+
+    header {
+      padding: 18px clamp(16px, 3vw, 32px);
+      background: #10202f;
+      color: #ffffff;
+    }
+
+    header h1 {
+      margin: 0 0 4px;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.15;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 980px;
+      color: #cbd6e2;
+      line-height: 1.45;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.25fr);
+      gap: 14px;
+      padding: 16px clamp(12px, 2.5vw, 28px) 28px;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid #d7e0ea;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .media-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+      color: #52616f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .video-shell,
+    .image-shell,
+    .preview-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #cad5e0;
+      border-radius: 8px;
+      background: #111827;
+      color: #cbd5e1;
+    }
+
+    .video-shell {
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .analyzed-frame-wrap {
+      max-width: 100%;
+    }
+
+    .image-shell {
+      display: inline-block;
+      max-width: 100%;
+      min-width: min(100%, 280px);
+      min-height: 180px;
+      vertical-align: top;
+    }
+
+    .image-shell svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 68vh;
+    }
+
+    #analyzed-overlay {
+      pointer-events: none;
+    }
+
+    .overlay-landmark {
+      fill: #fb923c;
+      stroke: rgba(255, 255, 255, 0.9);
+      stroke-width: 1.2;
+    }
+
+    .overlay-landmark-bbox {
+      fill: none;
+      stroke: #38bdf8;
+      stroke-width: 2.4;
+    }
+
+    .overlay-crop-bbox {
+      fill: rgba(245, 158, 11, 0.10);
+      stroke: #f59e0b;
+      stroke-dasharray: 7 4;
+      stroke-width: 2.6;
+    }
+
+    .placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 160px;
+      padding: 18px;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    button,
+    select,
+    input {
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      padding: 9px 12px;
+      background: #e8eef5;
+      color: #17202a;
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    button.primary {
+      background: #1769e0;
+      color: #ffffff;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    select,
+    input[type="number"],
+    input[type="text"] {
+      border: 1px solid #c7d1dc;
+      padding: 8px 10px;
+      background: #ffffff;
+      color: #17202a;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-width: 0;
+      padding: 0;
+    }
+
+    input[type="checkbox"] {
+      margin: 0;
+    }
+
+    .crop-grid,
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .preview-shell {
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .preview-shell img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 126px minmax(0, 1fr) 54px;
+      gap: 8px;
+      align-items: center;
+      color: #263645;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .slider-row output {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #263645;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .overlay-mode-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 10px;
+      color: #263645;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .checkpoint-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      color: #263645;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .probability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .subheading {
+      margin: 0 0 8px;
+      color: #263645;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .mapping-rules {
+      display: grid;
+      gap: 4px;
+      margin-top: 12px;
+      color: #52616f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .kv {
+      display: grid;
+      gap: 7px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      font-size: 14px;
+    }
+
+    .row span:first-child {
+      color: #607080;
+    }
+
+    .row span:last-child {
+      min-width: 0;
+      color: #14212e;
+      font-weight: 650;
+      overflow-wrap: anywhere;
+    }
+
+    .bars {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr) 48px;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e4eaf1;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #1769e0, #19a974);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+      color: #52616f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background: #fb923c;
+      vertical-align: -1px;
+    }
+
+    .legend .landmark-box::before {
+      border: 2px solid #38bdf8;
+      border-radius: 2px;
+      background: transparent;
+    }
+
+    .legend .crop-box::before {
+      border: 2px dashed #f59e0b;
+      border-radius: 2px;
+      background: rgba(245, 158, 11, 0.16);
+    }
+
+    .message {
+      min-height: 20px;
+      margin-top: 10px;
+      color: #52616f;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    details {
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: #37485a;
+      font-weight: 750;
+    }
+
+    .snapshot {
+      max-height: 260px;
+      overflow: auto;
+      border-radius: 8px;
+      border: 1px solid #d7e0ea;
+      background: #0b1220;
+      color: #dbeafe;
+      padding: 12px;
+      font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 980px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .crop-grid,
+      .preview-grid,
+      .probability-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .checkpoint-row {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .slider-row {
+        grid-template-columns: 1fr 56px;
+      }
+
+      .slider-row span {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Camera Debug Workspace</h1>
+    <p>One captured frame, one OpenFace result, one crop, and one 224x224 academic-state model input.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Live camera preview</h2>
+      <div class="media-label"><span>Live camera preview</span><span id="live-mirror-state">mirrored: false</span></div>
+      <div class="video-shell">
+        <video id="video" autoplay playsinline muted hidden></video>
+        <div class="placeholder" id="video-placeholder">Camera is off.</div>
+      </div>
+      <div class="controls">
+        <button class="primary" id="start-camera">Start camera</button>
+        <button id="stop-camera" disabled>Stop camera</button>
+        <button id="capture-frame" disabled>Capture one frame</button>
+      </div>
+      <div class="message" id="message"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Last analyzed frame</h2>
+      <div class="media-label"><span>Last analyzed frame</span><span id="frame-id-label">no frame</span></div>
+      <label class="overlay-mode-row" for="overlay-mode-select">
+        <span>Overlay mode:</span>
+        <select id="overlay-mode-select">
+          <option value="svg" selected>SVG overlay</option>
+          <option value="annotated">Backend annotated image</option>
+        </select>
+      </label>
+      <div class="analyzed-frame-wrap">
+        <div class="image-shell">
+          <svg id="analyzed-frame-preview" role="img" aria-label="Last analyzed frame" hidden>
+            <image id="analyzed-frame-image" x="0" y="0" width="0" height="0"></image>
+            <g id="analyzed-overlay" data-overlay-source="analyzed-frame" aria-hidden="true"></g>
+          </svg>
+          <div class="placeholder" id="analyzed-placeholder">Capture one frame to inspect OpenFace landmarks.</div>
+        </div>
+      </div>
+      <div class="legend">
+        <span>landmarks</span>
+        <span class="landmark-box">landmark bbox</span>
+        <span class="crop-box">crop bbox</span>
+      </div>
+    </section>
+
+    <section class="panel wide">
+      <h2>Crop and model input</h2>
+      <div class="preview-grid">
+        <div>
+          <div class="media-label"><span>Cropped face image</span></div>
+          <div class="preview-shell">
+            <img id="crop-preview" alt="Cropped face preview" hidden>
+            <div class="placeholder" id="crop-placeholder">Crop preview unavailable.</div>
+          </div>
+        </div>
+        <div>
+          <div class="media-label"><span>224×224 model input preview</span><span>pre-normalization RGB</span></div>
+          <div class="preview-shell">
+            <img id="model-input-preview" alt="224x224 model input preview" hidden>
+            <div class="placeholder" id="model-input-placeholder">Model input preview unavailable.</div>
+          </div>
+        </div>
+      </div>
+      <div class="crop-grid" style="margin-top: 12px;">
+        <label class="slider-row" for="crop-mode-select">
+          <span>Crop mode</span>
+          <select id="crop-mode-select">
+            <option value="landmark_tight">landmark_tight</option>
+            <option value="face_context">face_context</option>
+            <option value="square_face_context" selected>square_face_context</option>
+          </select>
+          <output id="crop-mode-value">mode</output>
+        </label>
+        <label class="slider-row" for="crop-scale-slider">
+          <span>Scale</span>
+          <input id="crop-scale-slider" type="range" min="1.0" max="2.0" step="0.01" value="1.35">
+          <output id="crop-scale-value">1.35</output>
+        </label>
+        <label class="slider-row" for="crop-y-bias-slider">
+          <span>Y bias</span>
+          <input id="crop-y-bias-slider" type="range" min="-0.25" max="0.25" step="0.01" value="-0.04">
+          <output id="crop-y-bias-value">-0.04</output>
+        </label>
+        <label class="slider-row" for="crop-top-extra-slider">
+          <span>Top extra</span>
+          <input id="crop-top-extra-slider" type="range" min="0.0" max="0.6" step="0.01" value="0.22">
+          <output id="crop-top-extra-value">0.22</output>
+        </label>
+        <label class="slider-row" for="crop-bottom-extra-slider">
+          <span>Bottom extra</span>
+          <input id="crop-bottom-extra-slider" type="range" min="0.0" max="0.5" step="0.01" value="0.12">
+          <output id="crop-bottom-extra-value">0.12</output>
+        </label>
+        <label class="checkbox-row" for="crop-make-square-checkbox">
+          <input id="crop-make-square-checkbox" type="checkbox" checked>
+          <span>Make square crop</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>OpenFace raw info</h2>
+      <div class="kv">
+        <div class="row"><span>Actual detector</span><span id="actual-detector">unknown</span></div>
+        <div class="row"><span>Face found</span><span id="face-found">unknown</span></div>
+        <div class="row"><span>OpenFace confidence</span><span id="openface-confidence">n/a</span></div>
+        <div class="row"><span>Landmark count</span><span id="landmark-count">n/a</span></div>
+        <div class="row"><span>Landmark bbox</span><span id="landmark-bbox">n/a</span></div>
+        <div class="row"><span>Crop bbox used</span><span id="crop-bbox-used">n/a</span></div>
+        <div class="row"><span>Crop strategy</span><span id="crop-strategy">n/a</span></div>
+        <div class="row"><span>Crop mode</span><span id="crop-mode-readout">square_face_context</span></div>
+        <div class="row"><span>Frame size</span><span id="frame-size">n/a</span></div>
+        <div class="row"><span>Mirrored</span><span id="mirrored-readout">false</span></div>
+        <div class="row"><span>Warning</span><span id="warning-readout">n/a</span></div>
+      </div>
+      <details>
+        <summary>Coordinate debug</summary>
+        <pre class="snapshot" id="coordinate-debug">{}</pre>
+      </details>
+    </section>
+
+    <section class="panel wide">
+      <h2>Raw Detection and Mapped Academic State</h2>
+      <label class="checkpoint-row" for="emotion-checkpoint-path">
+        <span>Emotion checkpoint path</span>
+        <input id="emotion-checkpoint-path" type="text" placeholder="models/emotion_model/best_model.pt">
+        <button id="save-emotion-checkpoint" type="button">Save checkpoint path</button>
+      </label>
+      <div class="kv">
+        <div class="row"><span>Model mode</span><span id="pipeline-mode">unknown</span></div>
+        <div class="row"><span>Checkpoint</span><span id="pipeline-checkpoint">n/a</span></div>
+        <div class="row"><span>Classes</span><span id="pipeline-classes">n/a</span></div>
+        <div class="row"><span>Raw detection available</span><span id="pipeline-raw-available">no</span></div>
+        <div class="row"><span>Raw label</span><span id="raw-label">n/a</span></div>
+        <div class="row"><span>Raw confidence</span><span id="raw-confidence">n/a</span></div>
+        <div class="row"><span>Raw detection</span><span id="raw-unavailable">Raw detection unavailable for this checkpoint.</span></div>
+        <div class="row"><span>Mapping step</span><span id="mapping-step">n/a</span></div>
+        <div class="row"><span>Mapped academic state</span><span id="mapped-academic-state">n/a</span></div>
+        <div class="row"><span>Smoothed state</span><span id="smoothed-state">n/a</span></div>
+        <div class="row"><span>Buffer contents</span><span id="buffer-contents">n/a</span></div>
+        <div class="row"><span>Response strategy</span><span id="response-strategy">n/a</span></div>
+      </div>
+      <p class="hint">Set RAW_EMOTION_CHECKPOINT_PATH or EMOTION_CHECKPOINT_PATH to an 8-class checkpoint.</p>
+      <div class="probability-grid">
+        <div>
+          <p class="subheading">Raw emotion probabilities</p>
+          <div class="bars" id="raw-probability-bars"></div>
+        </div>
+        <div>
+          <p class="subheading">Academic-state scores</p>
+          <div class="bars" id="mapped-state-bars"></div>
+        </div>
+      </div>
+      <div class="mapping-rules">
+        <span>sad + anger + disgust -> frustration</span>
+        <span>fear + surprise -> confusion</span>
+        <span>contempt -> boredom</span>
+        <span>happy + neutral -> engagement</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Model prediction</h2>
+      <div class="kv">
+        <div class="row"><span>model_loaded</span><span id="model-loaded">checking</span></div>
+        <div class="row"><span>mode</span><span>Current Mode B: academic-state checkpoint</span></div>
+        <div class="row"><span>academic_state</span><span id="latest-state">n/a</span></div>
+        <div class="row"><span>confidence</span><span id="latest-confidence">n/a</span></div>
+      </div>
+      <div class="bars" id="prediction-bars"></div>
+      <details>
+        <summary>Debug JSON</summary>
+        <pre class="snapshot" id="snapshot">{}</pre>
+      </details>
+    </section>
+  </main>
+
+  <canvas id="canvas" width="640" height="400" hidden></canvas>
+
+  <script>
+    const states = ["boredom", "confusion", "engagement", "frustration"];
+    const rawEmotionLabels = ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"];
+    const mappedStateOrder = ["frustration", "confusion", "boredom", "engagement"];
+    const cropModeDefaults = {
+      landmark_tight: { scale: 1.10, y_bias: 0.00, top_extra: 0.04, bottom_extra: 0.04, make_square: false },
+      face_context: { scale: 1.25, y_bias: -0.06, top_extra: 0.30, bottom_extra: 0.14, make_square: false },
+      square_face_context: { scale: 1.35, y_bias: -0.04, top_extra: 0.22, bottom_extra: 0.12, make_square: true },
+    };
+    const elements = Object.fromEntries(
+      Array.from(document.querySelectorAll("[id]")).map((element) => [element.id, element])
+    );
+    let stream = null;
+    let latestAnalysis = null;
+    let latestRequestId = 0;
+    let modelStatus = {};
+    let faceDetectorStatus = {};
+    let emotionPipelineStatus = {};
+
+    function setText(id, value) {
+      if (elements[id]) elements[id].textContent = value ?? "n/a";
+    }
+
+    function pct(value) {
+      const number = Number(value || 0);
+      return `${Math.round(number * 100)}%`;
+    }
+
+    function fixed(value) {
+      return Number(value || 0).toFixed(2);
+    }
+
+    function formatBBox(value) {
+      return Array.isArray(value) ? value.join(", ") : "n/a";
+    }
+
+    function missingContractWarnings(analysis) {
+      const face = analysis.face_detection || {};
+      const warnings = [];
+      if (!analysis.analyzed_frame_preview_data_url) {
+        warnings.push("Missing analyzed_frame_preview_data_url in analyze-frame response.");
+      }
+      if (!Array.isArray(analysis.analyzed_frame_size) || analysis.analyzed_frame_size.length < 2) {
+        warnings.push("Missing analyzed_frame_size in analyze-frame response.");
+      }
+      if ((face.actual_detector === "openface" || Number(face.landmark_count || 0) > 0) && !Array.isArray(face.landmark_bbox)) {
+        warnings.push("Missing face_detection.landmark_bbox in analyze-frame response.");
+      }
+      if ((face.actual_detector === "openface" || Number(face.landmark_count || 0) > 0) && !Array.isArray(face.landmarks)) {
+        warnings.push("Missing face_detection.landmarks in analyze-frame response.");
+      }
+      return warnings;
+    }
+
+    function currentFrameWarnings(analysis, face) {
+      const warnings = [
+        ...missingContractWarnings(analysis),
+        ...((Array.isArray(face.warnings) ? face.warnings : [])),
+        ...((Array.isArray(analysis.warnings) ? analysis.warnings : [])),
+      ];
+      const frameWarning = face.warning || "";
+      const openFaceSuccess = face.actual_detector === "openface" && Boolean(face.face_found);
+      if (frameWarning && !(openFaceSuccess && /yolo|fallback/i.test(frameWarning))) {
+        warnings.push(frameWarning);
+      }
+      return [...new Set(warnings.filter(Boolean))];
+    }
+
+    function renderBars(container, distribution, labels = states) {
+      container.innerHTML = "";
+      labels.forEach((state) => {
+        const value = Number((distribution || {})[state] || 0);
+        const row = document.createElement("div");
+        row.className = "bar-row";
+        row.innerHTML = `<span>${state}</span><div class="track"><div class="fill" style="width:${Math.round(value * 100)}%"></div></div><span>${pct(value)}</span>`;
+        container.appendChild(row);
+      });
+    }
+
+    function showMessage(text) {
+      elements.message.textContent = text || "";
+    }
+
+    function cropSettingsPayload() {
+      return {
+        crop_mode: elements["crop-mode-select"].value || "square_face_context",
+        crop_scale: Number(elements["crop-scale-slider"].value || 1.35),
+        crop_y_bias: Number(elements["crop-y-bias-slider"].value || -0.04),
+        crop_top_extra: Number(elements["crop-top-extra-slider"].value || 0.22),
+        crop_bottom_extra: Number(elements["crop-bottom-extra-slider"].value || 0.12),
+        crop_make_square: Boolean(elements["crop-make-square-checkbox"].checked),
+      };
+    }
+
+    function setCropControls(values) {
+      const mode = values.crop_mode || values.mode || "square_face_context";
+      elements["crop-mode-select"].value = cropModeDefaults[mode] ? mode : "square_face_context";
+      elements["crop-scale-slider"].value = String(values.crop_scale ?? values.scale ?? cropModeDefaults[elements["crop-mode-select"].value].scale);
+      elements["crop-y-bias-slider"].value = String(values.crop_y_bias ?? values.y_bias ?? cropModeDefaults[elements["crop-mode-select"].value].y_bias);
+      elements["crop-top-extra-slider"].value = String(values.crop_top_extra ?? values.top_extra ?? cropModeDefaults[elements["crop-mode-select"].value].top_extra);
+      elements["crop-bottom-extra-slider"].value = String(values.crop_bottom_extra ?? values.bottom_extra ?? cropModeDefaults[elements["crop-mode-select"].value].bottom_extra);
+      elements["crop-make-square-checkbox"].checked = Boolean(values.crop_make_square ?? values.make_square ?? cropModeDefaults[elements["crop-mode-select"].value].make_square);
+      renderCropControlValues();
+    }
+
+    function applyCropModeDefaults() {
+      const defaults = cropModeDefaults[elements["crop-mode-select"].value] || cropModeDefaults.square_face_context;
+      setCropControls({ mode: elements["crop-mode-select"].value, ...defaults });
+    }
+
+    function renderCropControlValues() {
+      const settings = cropSettingsPayload();
+      setText("crop-mode-value", "mode");
+      setText("crop-scale-value", fixed(settings.crop_scale));
+      setText("crop-y-bias-value", fixed(settings.crop_y_bias));
+      setText("crop-top-extra-value", fixed(settings.crop_top_extra));
+      setText("crop-bottom-extra-value", fixed(settings.crop_bottom_extra));
+      setText("crop-mode-readout", latestAnalysis?.face_detection?.crop_mode || settings.crop_mode);
+      renderSnapshot();
+    }
+
+    function frameDataUrl() {
+      const video = elements.video;
+      const canvas = elements.canvas;
+      const width = video.videoWidth || 640;
+      const height = video.videoHeight || 400;
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+      return canvas.toDataURL("image/jpeg", 0.86);
+    }
+
+    async function postJson(url, payload) {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Request failed.");
+      }
+      return data;
+    }
+
+    async function analyzeCurrentFrame() {
+      if (!stream) {
+        throw new Error("Start camera before capturing a frame.");
+      }
+      const requestId = ++latestRequestId;
+      const image = frameDataUrl();
+      elements["capture-frame"].disabled = true;
+      showMessage("Analyzing one captured frame.");
+      try {
+        const analysis = await postJson("/api/camera-debug/analyze-frame", {
+          image,
+          mirrored: false,
+          crop_settings: cropSettingsPayload(),
+          include_debug_previews: true,
+        });
+        if (requestId !== latestRequestId) return null;
+        latestAnalysis = analysis;
+        renderAnalysis(analysis);
+        renderSnapshot();
+        showMessage("Last analyzed frame updated.");
+        return analysis;
+      } finally {
+        elements["capture-frame"].disabled = !stream;
+      }
+    }
+
+    function renderAnalysis(analysis) {
+      const face = analysis.face_detection || {};
+      const prediction = analysis.prediction || {};
+      const distribution = prediction.state_distribution || prediction.distribution || {};
+      const frameSizeText = Array.isArray(analysis.analyzed_frame_size) && analysis.analyzed_frame_size.length >= 2
+        ? `${analysis.analyzed_frame_size[0]} x ${analysis.analyzed_frame_size[1]}`
+        : "frame size missing";
+      setText("frame-id-label", analysis.frame_id ? `${analysis.frame_id} · ${frameSizeText}` : frameSizeText);
+      setText("actual-detector", face.actual_detector || face.detector || "unknown");
+      setText("face-found", String(Boolean(face.face_found)));
+      setText("openface-confidence", face.confidence ? pct(face.confidence) : "n/a");
+      setText("landmark-count", face.landmark_count ?? "n/a");
+      setText("landmark-bbox", formatBBox(face.landmark_bbox));
+      setText("crop-bbox-used", formatBBox(face.crop_bbox_used));
+      setText("crop-strategy", face.crop_strategy || "n/a");
+      setText("crop-mode-readout", face.crop_mode || cropSettingsPayload().crop_mode);
+      setText("frame-size", formatBBox(analysis.analyzed_frame_size));
+      setText("mirrored-readout", String(Boolean(face.mirrored)));
+      setText("live-mirror-state", "mirrored: false");
+      const frameWarnings = currentFrameWarnings(analysis, face);
+      setText("warning-readout", frameWarnings.join(" | ") || "n/a");
+      setText("latest-state", prediction.academic_state || "n/a");
+      setText("latest-confidence", prediction.confidence ? pct(prediction.confidence) : "n/a");
+      renderBars(elements["prediction-bars"], distribution);
+      renderEmotionPipeline(analysis.emotion_pipeline || {});
+      renderAnalyzedFrameSvg(analysis);
+      renderCoordinateDebug(analysis);
+      updatePreviewImage("crop-preview", "crop-placeholder", analysis.crop_preview_data_url);
+      updatePreviewImage("model-input-preview", "model-input-placeholder", analysis.model_input_preview_data_url);
+    }
+
+    function modelModeLabel(mode) {
+      if (mode === "raw_emotion") return "raw emotion model";
+      if (mode === "academic_state") return "academic-state model";
+      return "unknown";
+    }
+
+    function renderEmotionPipeline(pipeline) {
+      const raw = pipeline.raw_detection || null;
+      const mapped = pipeline.mapped_academic_state || {};
+      const smoothed = pipeline.smoothed_state || {};
+      const academic = pipeline.academic_state || {};
+      const mode = pipeline.model_output_type || "unknown";
+      setText("pipeline-mode", modelModeLabel(mode));
+      setText("pipeline-checkpoint", pipeline.checkpoint_path || emotionPipelineStatus.checkpoint_path || "n/a");
+      setText("pipeline-classes", Array.isArray(pipeline.classes) && pipeline.classes.length ? pipeline.classes.join(", ") : Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
+      setText("pipeline-raw-available", pipeline.raw_detection_available ? "yes" : "no");
+      setText("raw-label", raw?.label || "n/a");
+      setText("raw-confidence", raw?.confidence ? pct(raw.confidence) : "n/a");
+      setText("raw-unavailable", raw ? "available" : "Raw detection unavailable for this checkpoint.");
+      setText("mapping-step", mapped.mapping_rule || (mode === "academic_state" ? "bypassed: checkpoint directly predicts academic states" : "n/a"));
+      setText("mapped-academic-state", mapped.state || academic.state || "n/a");
+      setText("smoothed-state", smoothed.state || "n/a");
+      setText("buffer-contents", Array.isArray(smoothed.buffer) && smoothed.buffer.length ? smoothed.buffer.join(", ") : "n/a");
+      setText("response-strategy", pipeline.response_strategy || "n/a");
+      renderBars(elements["raw-probability-bars"], raw?.probabilities || {}, rawEmotionLabels);
+      const mappedScores = mapped.scores || academic.distribution || {};
+      const scoreOrder = mode === "raw_emotion" ? mappedStateOrder : states;
+      renderBars(elements["mapped-state-bars"], mappedScores, scoreOrder);
+    }
+
+    function updatePreviewImage(imageId, placeholderId, dataUrl) {
+      const image = elements[imageId];
+      if (dataUrl) {
+        image.src = dataUrl;
+        image.hidden = false;
+        elements[placeholderId].hidden = true;
+        return;
+      }
+      image.removeAttribute("src");
+      image.hidden = true;
+      elements[placeholderId].hidden = false;
+    }
+
+    function renderAnalyzedFrameSvg(analysis) {
+      const svg = elements["analyzed-frame-preview"];
+      const frameImage = elements["analyzed-frame-image"];
+      const overlay = elements["analyzed-overlay"];
+      const face = analysis.face_detection || {};
+      // do not draw landmarks without analyzed_frame_preview_data_url
+      if (!analysis.analyzed_frame_preview_data_url) {
+        overlay.innerHTML = "";
+        frameImage.removeAttribute("href");
+        svg.hidden = true;
+        elements["analyzed-placeholder"].textContent = missingContractWarnings(analysis)[0] || "Missing analyzed_frame_preview_data_url in analyze-frame response.";
+        elements["analyzed-placeholder"].hidden = false;
+        return;
+      }
+      const size = analysis.analyzed_frame_size || [];
+      const frameWidth = Number(size[0] || 0);
+      const frameHeight = Number(size[1] || 0);
+      if (!frameWidth || !frameHeight) {
+        overlay.innerHTML = "";
+        frameImage.removeAttribute("href");
+        svg.hidden = true;
+        elements["analyzed-placeholder"].textContent = "Missing analyzed_frame_size in analyze-frame response.";
+        elements["analyzed-placeholder"].hidden = false;
+        return;
+      }
+      const useBackendAnnotated = elements["overlay-mode-select"].value === "annotated";
+      const imageHref = useBackendAnnotated && analysis.annotated_frame_preview_data_url
+        ? analysis.annotated_frame_preview_data_url
+        : analysis.analyzed_frame_preview_data_url;
+      svg.setAttribute("viewBox", `0 0 ${frameWidth} ${frameHeight}`);
+      frameImage.setAttribute("href", imageHref);
+      frameImage.setAttribute("x", "0");
+      frameImage.setAttribute("y", "0");
+      frameImage.setAttribute("width", String(frameWidth));
+      frameImage.setAttribute("height", String(frameHeight));
+      svg.hidden = false;
+      elements["analyzed-placeholder"].hidden = true;
+
+      overlay.innerHTML = "";
+      if (!useBackendAnnotated) {
+        drawAnalyzedOverlay(analysis);
+      }
+    }
+
+    function drawAnalyzedOverlay(analysis) {
+      const svg = elements["analyzed-overlay"];
+      const face = analysis.face_detection || {};
+      appendRect(svg, face.landmark_bbox, "overlay-landmark-bbox");
+      appendRect(svg, face.crop_bbox_used, "overlay-crop-bbox");
+      const landmarks = Array.isArray(face.landmarks) ? face.landmarks : face.openface?.landmarks || [];
+      landmarks.slice(0, 68).forEach((point) => {
+        if (!Array.isArray(point) || point.length < 2) return;
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("class", "overlay-landmark");
+        circle.setAttribute("cx", String(Number(point[0])));
+        circle.setAttribute("cy", String(Number(point[1])));
+        circle.setAttribute("r", "2.2");
+        svg.appendChild(circle);
+      });
+    }
+
+    function appendRect(svg, bbox, className) {
+      if (!Array.isArray(bbox) || bbox.length < 4) return;
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      rect.setAttribute("class", className);
+      rect.setAttribute("x", String(Number(bbox[0])));
+      rect.setAttribute("y", String(Number(bbox[1])));
+      rect.setAttribute("width", String(Number(bbox[2])));
+      rect.setAttribute("height", String(Number(bbox[3])));
+      svg.appendChild(rect);
+    }
+
+    function renderCoordinateDebug(analysis) {
+      const face = analysis.face_detection || {};
+      const landmarks = Array.isArray(face.landmarks) ? face.landmarks : [];
+      elements["coordinate-debug"].textContent = JSON.stringify({
+        frame_size: analysis.analyzed_frame_size || null,
+        landmark_count: face.landmark_count ?? landmarks.length,
+        first_5_landmarks: landmarks.slice(0, 5),
+        landmark_bbox: face.landmark_bbox || null,
+        crop_bbox_used: face.crop_bbox_used || null,
+        crop_mode: face.crop_mode || "",
+        crop_parameters: face.crop_parameters || {},
+      }, null, 2);
+    }
+
+    function safeAnalysisForExport(analysis) {
+      if (!analysis) return null;
+      const face = analysis.face_detection || {};
+      return {
+        ok: analysis.ok,
+        frame_id: analysis.frame_id || "",
+        analyzed_frame_size: analysis.analyzed_frame_size || [],
+        face_detection: {
+          actual_detector: face.actual_detector || face.detector || "",
+          face_found: Boolean(face.face_found),
+          confidence: face.confidence || 0,
+          landmark_count: face.landmark_count || 0,
+          landmark_bbox: face.landmark_bbox || null,
+          crop_bbox_used: face.crop_bbox_used || null,
+          crop_strategy: face.crop_strategy || "",
+          crop_mode: face.crop_mode || "",
+          frame_size: face.frame_size || [],
+          mirrored: Boolean(face.mirrored),
+          warning: face.warning || "",
+        },
+        emotion_pipeline: analysis.emotion_pipeline || {},
+        prediction: analysis.prediction || {},
+        model_input_size: analysis.model_input_size || [224, 224],
+        warnings: analysis.warnings || [],
+      };
+    }
+
+    function buildSnapshot() {
+      return {
+        timestamp: new Date().toISOString(),
+        source: "camera_debug_one_frame",
+        model_status: modelStatus,
+        face_detector_status: faceDetectorStatus,
+        crop_settings: cropSettingsPayload(),
+        latest_analysis: safeAnalysisForExport(latestAnalysis),
+      };
+    }
+
+    function renderSnapshot() {
+      elements.snapshot.textContent = JSON.stringify(buildSnapshot(), null, 2);
+    }
+
+    async function loadStatus() {
+      const response = await fetch("/api/camera-debug/status");
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Could not load debug status.");
+      }
+      modelStatus = data.model_status || {};
+      faceDetectorStatus = data.face_detector_status || {};
+      emotionPipelineStatus = data.emotion_pipeline_status || {};
+      setCropControls(data.face_crop_settings || {});
+      setText("model-loaded", String(Boolean(modelStatus.model_loaded)));
+      setText("actual-detector", faceDetectorStatus.actual_detector || faceDetectorStatus.mode || "unknown");
+      setText("pipeline-mode", modelModeLabel(emotionPipelineStatus.model_output_type || modelStatus.model_output_type));
+      setText("pipeline-checkpoint", emotionPipelineStatus.checkpoint_path || modelStatus.checkpoint_path || "n/a");
+      setText("pipeline-classes", Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
+      setText("pipeline-raw-available", emotionPipelineStatus.raw_detection_available ? "yes" : "no");
+      if (emotionPipelineStatus.checkpoint_path && !elements["emotion-checkpoint-path"].value) {
+        elements["emotion-checkpoint-path"].value = emotionPipelineStatus.checkpoint_path;
+      }
+      renderSnapshot();
+    }
+
+    async function saveEmotionCheckpointPath() {
+      const checkpointPath = elements["emotion-checkpoint-path"].value.trim();
+      if (!checkpointPath) {
+        showMessage("Emotion checkpoint path is required.");
+        return;
+      }
+      const result = await postJson("/api/local-config/emotion-checkpoint", {
+        EMOTION_CHECKPOINT_PATH: checkpointPath,
+      });
+      emotionPipelineStatus = result.emotion_pipeline_status || {};
+      setText("pipeline-mode", modelModeLabel(emotionPipelineStatus.model_output_type));
+      setText("pipeline-checkpoint", emotionPipelineStatus.checkpoint_path || checkpointPath);
+      setText("pipeline-classes", Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
+      setText("pipeline-raw-available", emotionPipelineStatus.raw_detection_available ? "yes" : "no");
+      showMessage("Emotion checkpoint path saved.");
+      renderSnapshot();
+    }
+
+    elements["start-camera"].addEventListener("click", async () => {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        elements.video.srcObject = stream;
+        elements.video.hidden = false;
+        elements["video-placeholder"].hidden = true;
+        elements["start-camera"].disabled = true;
+        elements["stop-camera"].disabled = false;
+        elements["capture-frame"].disabled = false;
+        showMessage("Camera started.");
+      } catch (error) {
+        showMessage(error.message || "Camera could not be started.");
+      }
+    });
+
+    elements["stop-camera"].addEventListener("click", () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+      stream = null;
+      elements.video.srcObject = null;
+      elements.video.hidden = true;
+      elements["video-placeholder"].hidden = false;
+      elements["start-camera"].disabled = false;
+      elements["stop-camera"].disabled = true;
+      elements["capture-frame"].disabled = true;
+      showMessage("Camera stopped.");
+    });
+
+    elements["capture-frame"].addEventListener("click", () => analyzeCurrentFrame().catch((error) => showMessage(error.message)));
+    elements["crop-mode-select"].addEventListener("change", applyCropModeDefaults);
+    ["crop-scale-slider", "crop-y-bias-slider", "crop-top-extra-slider", "crop-bottom-extra-slider", "crop-make-square-checkbox"].forEach((id) => {
+      elements[id].addEventListener("input", renderCropControlValues);
+    });
+    elements["overlay-mode-select"].addEventListener("change", () => {
+      if (latestAnalysis) renderAnalyzedFrameSvg(latestAnalysis);
+    });
+    elements["save-emotion-checkpoint"].addEventListener("click", () => saveEmotionCheckpointPath().catch((error) => showMessage(error.message)));
+
+    renderBars(elements["prediction-bars"], {}, states);
+    renderBars(elements["raw-probability-bars"], {}, rawEmotionLabels);
+    renderBars(elements["mapped-state-bars"], {}, states);
+    renderCropControlValues();
+    renderSnapshot();
+    loadStatus().catch((error) => showMessage(error.message));
+  </script>
+</body>
+</html>

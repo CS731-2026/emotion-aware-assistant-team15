@@ -1,0 +1,112 @@
+.pdf-workspace-shell {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.24fr) minmax(360px, 1fr) minmax(150px, 0.24fr);
+  gap: 10px;
+  min-height: 58vh;
+}
+
+.pdf-workspace-main {
+  min-width: 0;
+  border: 1px solid #c9d2df;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #eef1f5;
+}
+
+.pdf-workspace-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #d8dee9;
+  background: #fff;
+}
+
+.pdf-workspace-toolbar .active {
+  background: #1f6feb;
+  border-color: #1f6feb;
+  color: #fff;
+}
+
+.pdf-workspace-status {
+  margin: 0;
+  padding: 6px 10px;
+  color: #4c596a;
+  font-size: 12px;
+  background: #fbfcfe;
+  border-bottom: 1px solid #d8dee9;
+}
+
+.pdf-workspace-loading {
+  padding: 24px;
+}
+
+.pdf-explanation-rail {
+  border: 1px solid #d8dee9;
+  border-radius: 6px;
+  background: #fbfcfe;
+  padding: 10px;
+  max-height: 58vh;
+  overflow: auto;
+}
+
+.pdf-explanation-rail h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.pdf-rail-empty {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.pdf-explanation-card {
+  border: 1px solid #cfd8e5;
+  border-radius: 6px;
+  background: #fff;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.pdf-explanation-card h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+}
+
+.pdf-explanation-card p {
+  max-height: 140px;
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 12px;
+}
+
+.pdf-explanation-card dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 8px;
+  margin: 0;
+  font-size: 11px;
+}
+
+.pdf-explanation-card dd {
+  margin: 0;
+}
+
+.pdf-highlight-tip {
+  display: grid;
+  gap: 3px;
+  max-width: 220px;
+  padding: 6px;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .pdf-workspace-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-explanation-rail {
+    max-height: 180px;
+  }
+}
