@@ -549,12 +549,12 @@ The final six model comparison used 25 training epochs and pretrained `timm` bac
 Training artifacts were kept outside Git. The best checkpoints were:
 
 ```text
-emotion_recognition/checkpoints/convnext_tiny_4state_25ep_b64_lr5e5/best.pt
-emotion_recognition/checkpoints/regnety_008_4state_25ep_b64_lr1e4/best.pt
-emotion_recognition/checkpoints/swin_tiny_4state_25ep_b64_lr3e5/best.pt
-emotion_recognition/checkpoints/mobilenetv3_large_4state_25ep_b64_lr3e4/best.pt
-emotion_recognition/checkpoints/resnet50_a1_4state_25ep_b64_lr1e4/best.pt
-emotion_recognition/checkpoints/efficientnet_b4_4state_25ep_b32_lr5e5/best.pt
+emotion_recognition/checkpoints/convnext_tiny/best.pt
+emotion_recognition/checkpoints/regnety/best.pt
+emotion_recognition/checkpoints/swin_tiny/best.pt
+emotion_recognition/checkpoints/mobilenetv3_large/best.pt
+emotion_recognition/checkpoints/resnet50/best.pt
+emotion_recognition/checkpoints/efficientnet/best.pt
 ```
 
 For the final application, copy/install only the selected ConvNeXt-Tiny best checkpoint into `models/emotion_model/best_model.pt` and keep all weights untracked.
@@ -1015,7 +1015,7 @@ Uploaded PDFs and derived artifacts are stored under `runtime_uploads/`. Do not 
 
 ## 17. Known Limitations
 
-- The current final checkpoint is a **4-class academic-state model**. It does not provide raw 8-class facial emotion output.
+- The current final checkpoint is a **4-class academic-state model**, and it does provide raw 8-class facial emotion output.
 - Raw-emotion display requires an 8-class checkpoint to be installed.
 - Emotion inference quality depends on lighting, camera angle, face visibility, and the configured detector.
 - OpenFace must be installed/configured separately for full landmark transparency.
@@ -1070,7 +1070,7 @@ emotion_aware_assistant/web/static/llm_compare.html
 ```text
 Checkpoint target: models/emotion_model/best_model.pt
 Metadata target:   models/emotion_model/metadata.json
-Architecture:      convnext_tiny.fb_in22k_ft_in1k
+Architecture:      convnext_tiny
 Output type:       academic_state
 Classes:           boredom, confusion, engagement, frustration
 Best val acc:      80.67%
@@ -1091,16 +1091,3 @@ The emotion-to-academic-state design is supported by research on basic emotions,
 
 ---
 
-## Final Submission Checklist
-
-Before submission or demo, confirm:
-
-- [ ] `python -m unittest` passes.
-- [ ] `npm run build:pdf-workspace` passes.
-- [ ] `/settings` shows the intended LLM provider configured.
-- [ ] The final ConvNeXt-Tiny checkpoint is installed locally.
-- [ ] `python scripts/test_emotion_adapter.py` reports the academic-state checkpoint status.
-- [ ] `/camera-debug` can analyze a frame or clearly shows the configured fallback status.
-- [ ] `/pdf-chat` can upload/open a paper, create a highlight, generate a baseline explanation, show strategy candidates, and produce a strategy-conditioned answer.
-- [ ] `/llm-compare` can load prompt snapshots produced by `/pdf-chat`.
-- [ ] No private keys, model weights, raw data, or runtime uploads are staged for Git.
