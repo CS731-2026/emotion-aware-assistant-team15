@@ -1,4 +1,0 @@
-Title: Uploaded Demo
-
-Method
-This uploaded method has steps and outputs.

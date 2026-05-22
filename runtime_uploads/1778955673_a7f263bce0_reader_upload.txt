@@ -1,4 +1,0 @@
-Title: Reader Upload
-
-Method
-Selection context still works.

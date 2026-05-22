@@ -1,4 +1,7 @@
 .env
+.env.local
+.env.*.local
+.env.local.backup
 .venv/
 venv/
 __pycache__/
@@ -8,11 +11,18 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 node_modules/
+logs/
 logs/*.jsonl
 logs/assistant.log
 logs/uploads/
 runtime_uploads/
 runtime_uploads/local_llm_settings.json
+models/**/*.pt
+models/**/*.pth
+models/**/*.ckpt
+models/**/*.onnx
+models/**/*.safetensors
+!models/**/README.md
 models/emotion_model/*.pt
 models/emotion_model/*.pth
 models/emotion_model/*.ckpt
@@ -26,7 +36,6 @@ models/face_detector/*.onnx
 models/face_detector/*.engine
 data/raw/
 data/processed/
-.env.local
 external/
 external/OpenFace/
 runtime_uploads/openface_build_logs/
