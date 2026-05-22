@@ -1,0 +1,3 @@
+[submodule "external/OpenFace"]
+	path = external/OpenFace
+	url = https://github.com/TadasBaltrusaitis/OpenFace.git

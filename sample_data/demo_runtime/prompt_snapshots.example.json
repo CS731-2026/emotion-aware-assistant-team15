@@ -1,0 +1,79 @@
+{
+  "description": "Synthetic prompt snapshot examples for /llm-compare. Runtime IDs, provider credentials, embeddings, and uploaded paper caches are intentionally omitted.",
+  "snapshots": [
+    {
+      "snapshot_id": "demo-snapshot-base-followup",
+      "title": "Base Prompt Snapshot",
+      "category": "Base Prompt",
+      "subcategory": null,
+      "stage": "normal_followup",
+      "source": "demo",
+      "model_profile": {
+        "provider": "gemini",
+        "display_name": "Gemini Flash Demo",
+        "model_id": "gemini-2.5-flash"
+      },
+      "variables": {
+        "selected_passage": "The assistant chunks the document, retrieves relevant context, and separates factual grounding from response style.",
+        "paper_context": "The demo paper describes an adaptive academic reading assistant for PDF chat.",
+        "user_question": "Why does the prompt separate factual context from style?",
+        "learning_state": {
+          "dominant_state": "confusion",
+          "confidence": 0.72
+        }
+      },
+      "full_prompt_text": "You are helping a student read an academic paper. Use the selected passage and paper context as the factual source. Answer the user question directly. Treat the learning state only as a soft style cue.\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning state:\n{{learning_state}}\n\nAnswer:",
+      "created_at": "2026-05-23T00:00:00Z"
+    },
+    {
+      "snapshot_id": "demo-snapshot-planner",
+      "title": "Planner Prompt Snapshot",
+      "category": "Planner Prompt",
+      "subcategory": "Frustration",
+      "stage": "strategy_planner",
+      "source": "demo",
+      "model_profile": {
+        "provider": "openrouter",
+        "display_name": "OpenRouter Demo Model",
+        "model_id": "openrouter/free"
+      },
+      "variables": {
+        "selected_passage": "The objective score balances relevance, clarity, and overload.",
+        "paper_context": "The formula-like section gives a compact view of the reading assistant objective.",
+        "user_question": "This formula feels too abstract. What is it doing?",
+        "learning_state": {
+          "dominant_state": "frustration",
+          "confidence": 0.68
+        }
+      },
+      "full_prompt_text": "You are an adaptive reading-support planner. Recommend one strategy only if the evidence supports an explicit adaptive intervention.\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning-state evidence:\n{{learning_state}}\n\nPlanner JSON:",
+      "created_at": "2026-05-23T00:00:00Z"
+    },
+    {
+      "snapshot_id": "demo-snapshot-strategy-response",
+      "title": "Strategy Response Snapshot",
+      "category": "Strategy Response Prompt",
+      "subcategory": "Concrete example",
+      "stage": "strategy_response",
+      "source": "demo",
+      "model_profile": {
+        "provider": "gemini",
+        "display_name": "Gemini Flash Demo",
+        "model_id": "gemini-2.5-flash"
+      },
+      "variables": {
+        "selected_strategy": "concrete_example",
+        "strategy_rationale": "The learner signaled frustration, so a concrete example can reduce cognitive load.",
+        "selected_passage": "The assistant can be described by the objective score = relevance(context, question) + clarity(policy, state) - overload(response).",
+        "paper_context": "The paper frames adaptive answering as balancing grounding, clarity, and cognitive load.",
+        "user_question": "Can you make this formula less abstract?",
+        "learning_state": {
+          "dominant_state": "frustration",
+          "confidence": 0.68
+        }
+      },
+      "full_prompt_text": "You are generating a strategy-guided explanation for a student reading a paper. The strategy was explicitly selected or triggered by proactive support.\n\nSelected strategy:\n{{selected_strategy}}\n\nStrategy rationale:\n{{strategy_rationale}}\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning-state evidence:\n{{learning_state}}\n\nStrategy-guided answer:",
+      "created_at": "2026-05-23T00:00:00Z"
+    }
+  ]
+}

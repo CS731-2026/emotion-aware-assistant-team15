@@ -22,6 +22,7 @@ YOLO_CANDIDATE_PATHS = (
 )
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 OPENFACE_CANDIDATE_PATHS = (
+    "external/openface_runtime/FeatureExtraction",
     "FeatureExtraction",
     "FeatureExtraction.exe",
     "build/bin/FeatureExtraction",

@@ -90,7 +90,24 @@ The final codebase provides:
 
 Important implementation note:
 
-> The final runtime repository focuses on application integration and model inference. Model training was performed externally. The trained model weights are not committed to Git and must be installed locally under `models/emotion_model/`.
+> The final runtime repository focuses on application integration and model inference. Model training was performed externally. The final trained emotion checkpoints are included through Git LFS under `models/emotion_model/` so teammates can run the demo after a fresh clone.
+
+### Teammate Quick Setup
+
+Install Git LFS before cloning or pulling the model/runtime artifacts:
+
+```bash
+git lfs install
+git clone https://github.com/CS731-2026/emotion-aware-assistant-team15.git
+cd emotion-aware-assistant-team15
+git submodule update --init --recursive
+pip install -r requirements.txt
+npm install
+npm run build:pdf-workspace
+python main.py
+```
+
+Then open `/settings` in the local app and paste your own API keys. API keys, `.env.local`, local LLM settings, logs, uploads, and generated runtime caches must stay local and must not be committed.
 
 ---
 
@@ -368,7 +385,7 @@ The implementation supports multiple face-analysis paths:
 
 | Path                       | File / config                                      | Notes                                                                                             |
 | -------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| OpenFace FeatureExtraction | `emotion_aware_assistant/emotion/face_detector.py` | Preferred transparency path when OpenFace is configured. Provides landmarks, bbox, pose, and AUs. |
+| OpenFace FeatureExtraction | `external/openface_runtime/FeatureExtraction`      | Preferred transparency path for demos. Provides landmarks, bbox, pose, and AUs when compatible.   |
 | YOLO face detector         | `models/face_detector/yolov8n-face.pt`             | Optional local weights. Not committed.                                                            |
 | OpenCV Haar fallback       | OpenCV built-in fallback                           | Used when optional model weights are absent and OpenCV is available.                              |
 
@@ -512,14 +529,14 @@ Best validation accuracy: 80.67%
 Test accuracy: 79.94%
 ```
 
-Recommended runtime checkpoint installation target:
+Runtime checkpoint targets included through Git LFS:
 
 ```text
 models/emotion_model/best_model.pt
-models/emotion_model/metadata.json
+models/emotion_model/raw_8class_best.pt
 ```
 
-Use the installer:
+Use the installer only when replacing the bundled academic-state checkpoint:
 
 ```bash
 python scripts/install_emotion_checkpoint.py --source /path/to/convnext_best_checkpoint_or_folder
@@ -557,7 +574,7 @@ emotion_recognition/checkpoints/resnet50/best.pt
 emotion_recognition/checkpoints/efficientnet/best.pt
 ```
 
-For the final application, copy/install only the selected ConvNeXt-Tiny best checkpoint into `models/emotion_model/best_model.pt` and keep all weights untracked.
+For the final demo-ready application, the selected ConvNeXt-Tiny academic-state checkpoint is stored at `models/emotion_model/best_model.pt` and the raw-emotion checkpoint is stored at `models/emotion_model/raw_8class_best.pt`. Both are tracked through Git LFS.
 
 ### 9.4 Why ConvNeXt-Tiny was selected
 
@@ -985,12 +1002,9 @@ These are stored locally and should not be committed:
 runtime_uploads/
 logs/*.jsonl
 logs/uploads/
-models/emotion_model/*.pt
-models/emotion_model/*.pth
-models/emotion_model/*.ckpt
 models/face_detector/*.pt
 models/face_detector/*.onnx
-external/OpenFace/
+runtime_uploads/local_llm_settings.json
 ```
 
 ### 16.2 Webcam privacy
@@ -1015,14 +1029,13 @@ Uploaded PDFs and derived artifacts are stored under `runtime_uploads/`. Do not 
 
 ## 17. Known Limitations
 
-- The current final checkpoint is a **4-class academic-state model**, and it does provide raw 8-class facial emotion output.
-- Raw-emotion display requires an 8-class checkpoint to be installed.
+- The current default academic checkpoint is a **4-class academic-state model**. The repository also includes the 8-class raw-emotion checkpoint through Git LFS for diagnostics and raw-emotion display.
 - Emotion inference quality depends on lighting, camera angle, face visibility, and the configured detector.
-- OpenFace must be installed/configured separately for full landmark transparency.
+- The bundled OpenFace runtime is Linux-specific. If it is incompatible, rebuild OpenFace from the submodule or use the fallback detector.
 - If no LLM API key is configured, the app can fall back to a dummy LLM for testing but not for final-quality explanations.
 - If embedding configuration is unavailable, RAG falls back to keyword retrieval.
 - The system should be described as a learning-support assistant, not as a psychological diagnosis system.
-- Model weights and private runtime uploads are intentionally excluded from Git and must be installed separately.
+- Private runtime uploads, logs, and credentials are intentionally excluded from Git.
 
 ---
 
@@ -1090,4 +1103,3 @@ The emotion-to-academic-state design is supported by research on basic emotions,
 5. R. S. J. d. Baker, S. K. D’Mello, M. M. T. Rodrigo, and A. C. Graesser, “Better to Be Frustrated than Bored: The Incidence, Persistence, and Impact of Learners’ Cognitive-Affective States During Interactions with Three Different Computer-Based Learning Environments,” _International Journal of Human-Computer Studies_, vol. 68, no. 4, pp. 223–241, 2010.
 
 ---
-

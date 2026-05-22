@@ -1,0 +1,58 @@
+{
+  "description": "Synthetic prompt library example for local demos. These prompts are complete templates and contain no provider credentials.",
+  "prompts": [
+    {
+      "id": "demo-base-followup",
+      "title": "Base Prompt: Normal PDF Follow-up",
+      "category": "Base Prompt",
+      "subcategory": null,
+      "description": "Normal typed or speech follow-up using the selected passage, paper context, and user question.",
+      "full_prompt_text": "You are helping a student read an academic paper. Use the selected passage and paper context as the factual source. Answer the user question directly. Treat the learning state only as a soft style cue: if it indicates confusion, be patient and define terms; if frustration, reduce cognitive load; if boredom, be concise and concrete; if engagement, provide normal depth. Do not label the answer as a strategy response.\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning state:\n{{learning_state}}\n\nAnswer:",
+      "variables": [
+        "selected_passage",
+        "paper_context",
+        "user_question",
+        "learning_state"
+      ],
+      "created_at": "2026-05-23T00:00:00Z",
+      "updated_at": "2026-05-23T00:00:00Z",
+      "system_default": true
+    },
+    {
+      "id": "demo-planner-confusion",
+      "title": "Planner Prompt: Confusion Support",
+      "category": "Planner Prompt",
+      "subcategory": "Confusion",
+      "description": "Recommends a pedagogical strategy when learning-state evidence suggests confusion.",
+      "full_prompt_text": "You are an adaptive reading-support planner. Review the selected passage, paper context, recent user question, and learning-state evidence. Recommend one strategy only if the evidence supports an explicit adaptive intervention. Return concise JSON with strategy_id, strategy_name, focus, rationale, and evidence.\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning-state evidence:\n{{learning_state}}\n\nAvailable strategies:\n- simplify_and_define_terms\n- step_by_step_breakdown\n- concrete_example\n- normal_followup\n\nPlanner JSON:",
+      "variables": [
+        "selected_passage",
+        "paper_context",
+        "user_question",
+        "learning_state"
+      ],
+      "created_at": "2026-05-23T00:00:00Z",
+      "updated_at": "2026-05-23T00:00:00Z",
+      "system_default": true
+    },
+    {
+      "id": "demo-strategy-response",
+      "title": "Strategy Response Prompt: Explicit Strategy",
+      "category": "Strategy Response Prompt",
+      "subcategory": "Step-by-step breakdown",
+      "description": "Generates an answer after the user explicitly selects a strategy or proactive support is active.",
+      "full_prompt_text": "You are generating a strategy-guided explanation for a student reading a paper. The strategy was explicitly selected or triggered by proactive support. Use the selected passage and paper context as factual grounding. Follow the selected strategy and include only the explanation content requested by the product UI.\n\nSelected strategy:\n{{selected_strategy}}\n\nStrategy rationale:\n{{strategy_rationale}}\n\nSelected passage:\n{{selected_passage}}\n\nPaper context:\n{{paper_context}}\n\nUser question:\n{{user_question}}\n\nLearning-state evidence:\n{{learning_state}}\n\nStrategy-guided answer:",
+      "variables": [
+        "selected_strategy",
+        "strategy_rationale",
+        "selected_passage",
+        "paper_context",
+        "user_question",
+        "learning_state"
+      ],
+      "created_at": "2026-05-23T00:00:00Z",
+      "updated_at": "2026-05-23T00:00:00Z",
+      "system_default": true
+    }
+  ]
+}

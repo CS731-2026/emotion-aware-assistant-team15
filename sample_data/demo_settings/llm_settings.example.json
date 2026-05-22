@@ -1,0 +1,56 @@
+{
+  "description": "Example local LLM settings shape for demos. Credentials are intentionally blank. Enter real keys through /settings and do not commit local settings files.",
+  "openrouter": {
+    "api_key": "",
+    "base_url": "https://openrouter.ai/api/v1",
+    "site_url": "http://localhost:8000",
+    "site_name": "CS731 Local Assistant"
+  },
+  "gemini": {
+    "api_key": "",
+    "display_name": "Gemini Direct",
+    "model": "gemini-2.5-flash",
+    "embedding_model": "gemini-embedding-001"
+  },
+  "model_profiles": [
+    {
+      "id": "demo-openrouter-free",
+      "provider": "openrouter",
+      "display_name": "OpenRouter Free",
+      "model_id": "openrouter/free",
+      "family": "OpenRouter",
+      "enabled": true,
+      "notes": "Demo placeholder. Replace with an exact model ID available to your account.",
+      "last_test_status": null,
+      "last_test_latency_ms": null,
+      "last_test_error_type": null,
+      "last_test_at": null
+    },
+    {
+      "id": "demo-gemini-flash",
+      "provider": "gemini",
+      "display_name": "Gemini 2.5 Flash",
+      "model_id": "gemini-2.5-flash",
+      "family": "Gemini",
+      "enabled": true,
+      "notes": "Direct Gemini chat model for local demos.",
+      "last_test_status": null,
+      "last_test_latency_ms": null,
+      "last_test_error_type": null,
+      "last_test_at": null
+    }
+  ],
+  "roles": {
+    "default_answer_model_profile_id": "demo-gemini-flash",
+    "strategy_model_profile_id": "demo-gemini-flash",
+    "compare_model_profile_ids": [
+      "demo-openrouter-free",
+      "demo-gemini-flash"
+    ]
+  },
+  "embedding": {
+    "provider": "gemini",
+    "api_key": "",
+    "model": "gemini-embedding-001"
+  }
+}
