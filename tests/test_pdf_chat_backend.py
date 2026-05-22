@@ -1,8 +1,11 @@
 import base64
 import json
+import os
+import sys
 import tempfile
 import threading
 import time
+import types
 import unittest
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
@@ -17,10 +20,23 @@ class PdfChatBackendTests(unittest.TestCase):
     def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp_dir.cleanup)
-        self.runtime_dir = Path(self.temp_dir.name) / "runtime_uploads"
+        self.root = Path(self.temp_dir.name)
+        self.runtime_dir = self.root / "runtime_uploads"
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        self.env_patch = patch.dict(os.environ, {}, clear=True)
+        self.env_patch.start()
+        self.addCleanup(self.env_patch.stop)
+        self.llm_root_patch = patch.object(llm_config, "PROJECT_ROOT", self.root, create=True)
+        self.state_root_patch = patch.object(state_module, "PROJECT_ROOT", self.root, create=True)
+        self.llm_root_patch.start()
+        self.state_root_patch.start()
+        self.addCleanup(self.llm_root_patch.stop)
+        self.addCleanup(self.state_root_patch.stop)
         from emotion_aware_assistant.web.server import create_web_app
 
-        self.app = create_web_app(force_dummy_llm=True)
+        self.app = create_web_app(force_dummy_llm=True, load_local_env=False)
         self.app.state.upload_dir = self.runtime_dir.resolve()
         self.app.state.documents_dir = self.app.state.upload_dir / "documents"
 
@@ -107,6 +123,59 @@ class PdfChatBackendTests(unittest.TestCase):
         meta = json.loads((document_dir / "meta.json").read_text(encoding="utf-8"))
         self.assertEqual(meta["uploaded_from"], "pdf_chat")
         self.assertTrue(meta["library_visible"])
+
+    def test_speech_transcribe_reports_unavailable_when_faster_whisper_is_missing(self):
+        with patch.dict(sys.modules, {"faster_whisper": None}):
+            response = self.app.test_request(
+                "POST",
+                "/api/speech/transcribe",
+                files={"audio": ("question.webm", b"\x1a\x45\xdf\xa3webm-audio")},
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        payload = response["json"]
+        self.assertFalse(payload["available"])
+        self.assertEqual(payload["text"], "")
+        self.assertEqual(payload["error"], "Speech transcription unavailable")
+        self.assertIn("faster-whisper", payload["message"])
+
+    def test_speech_transcribe_uses_faster_whisper_for_uploaded_audio(self):
+        calls = []
+
+        class FakeWhisperModel:
+            def __init__(self, model_name, device="cpu", compute_type="int8"):
+                calls.append(("init", model_name, device, compute_type))
+
+            def transcribe(self, audio_path):
+                calls.append(("transcribe", Path(audio_path).suffix, Path(audio_path).exists()))
+                segment = types.SimpleNamespace(text=" What is the main claim? ")
+                return [segment], {"language": "en"}
+
+        fake_module = types.SimpleNamespace(WhisperModel=FakeWhisperModel)
+        with patch.dict(sys.modules, {"faster_whisper": fake_module}), patch.dict(os.environ, {"SPEECH_WHISPER_MODEL": "tiny"}, clear=False):
+            response = self.app.test_request(
+                "POST",
+                "/api/speech/transcribe",
+                files={"audio": ("question.wav", b"RIFF\x24\x00\x00\x00WAVEfmt ")},
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(response["json"]["text"], "What is the main claim?")
+        self.assertTrue(response["json"]["available"])
+        self.assertEqual(calls[0], ("init", "tiny", "cpu", "int8"))
+        self.assertEqual(calls[1][0], "transcribe")
+        self.assertEqual(calls[1][1], ".wav")
+        self.assertTrue(calls[1][2])
+
+    def test_speech_transcribe_rejects_non_audio_uploads(self):
+        response = self.app.test_request(
+            "POST",
+            "/api/speech/transcribe",
+            files={"audio": ("notes.txt", b"not audio")},
+        )
+
+        self.assertEqual(response["status"], 400)
+        self.assertIn("audio/webm or wav", response["json"]["error"])
 
     def test_fresh_upload_creates_persistence_subdirectories_and_matching_meta(self):
         payload = self.upload_pdf()
@@ -628,6 +697,323 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(thread["messages"][-1]["role"], "assistant")
         self.assertIn("mock explanation", thread["messages"][-1]["content"])
 
+    def test_pdf_chat_explain_uses_configured_default_llm_settings(self):
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self):
+                return json.dumps({"choices": [{"message": {"content": "Configured model answer"}}]}).encode("utf-8")
+
+        requests = []
+
+        def fake_urlopen(request, timeout=0):
+            requests.append(request)
+            return FakeResponse()
+
+        root = Path(self.temp_dir.name)
+        secret = "or-pdf-chat-secret"
+        with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root, create=True), patch.dict(os.environ, {}, clear=True), patch("urllib.request.urlopen", fake_urlopen):
+            self.app.state.upload_dir = (root / "runtime_uploads").resolve()
+            self.app.state.documents_dir = self.app.state.upload_dir / "documents"
+            save = self.app.test_request("POST", "/api/settings/openrouter", {"api_key": secret})
+            profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"display_name": "GPT via OpenRouter", "model_id": "openai/gpt-4o-mini", "enabled": True},
+            )
+            profile_id = profile["json"]["model_profile"]["id"]
+            roles = self.app.test_request("POST", "/api/settings/roles", {"default_answer_model_profile_id": profile_id})
+            upload = self.upload_pdf()
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{upload['document_id']}/explain-selection",
+                {
+                    "highlight_id": "h-configured",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "PDF chat should use the configured answer model.",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                    "matched_block": {"markdown_content": "PDF chat should use the configured answer model."},
+                },
+            )
+
+        payload = response["json"]
+        request_body = json.loads(requests[0].data.decode("utf-8")) if requests else {}
+        serialized = json.dumps(payload)
+        self.assertEqual(save["status"], 200, save)
+        self.assertEqual(roles["status"], 200, roles)
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(payload["provider"], "openrouter")
+        self.assertEqual(payload["model"], "openai/gpt-4o-mini")
+        self.assertEqual(payload["answer"], "Configured model answer")
+        self.assertEqual(request_body["model"], "openai/gpt-4o-mini")
+        self.assertNotIn(secret, serialized)
+
+    def test_pdf_chat_explain_can_use_configured_gemini_default_profile(self):
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self):
+                return json.dumps({"candidates": [{"content": {"parts": [{"text": "Gemini configured answer"}]}}]}).encode("utf-8")
+
+        requests = []
+
+        def fake_urlopen(request, timeout=0):
+            requests.append(request)
+            return FakeResponse()
+
+        root = Path(self.temp_dir.name)
+        secret = "AI" + "za" + "pdf-chat-gemini-secret"
+        stale_secret = "AI" + "za" + "stale-pdf-chat-env"
+        with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root, create=True), patch.dict(os.environ, {"GEMINI_API_KEY": stale_secret}, clear=True), patch("urllib.request.urlopen", fake_urlopen):
+            self.app.state.upload_dir = (root / "runtime_uploads").resolve()
+            self.app.state.documents_dir = self.app.state.upload_dir / "documents"
+            save = self.app.test_request("POST", "/api/settings/gemini", {"api_key": secret, "model": "gemini-2.5-flash"})
+            profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"provider": "gemini", "display_name": "Gemini 2.5 Flash", "model_id": "gemini-2.5-flash", "enabled": True},
+            )
+            profile_id = profile["json"]["model_profile"]["id"]
+            roles = self.app.test_request("POST", "/api/settings/roles", {"default_answer_model_profile_id": profile_id})
+            upload = self.upload_pdf()
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{upload['document_id']}/explain-selection",
+                {
+                    "highlight_id": "h-gemini-configured",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "PDF chat should use the configured Gemini answer model.",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                    "matched_block": {"markdown_content": "PDF chat should use the configured Gemini answer model."},
+                },
+            )
+
+        payload = response["json"]
+        serialized = json.dumps(payload)
+        self.assertEqual(save["status"], 200, save)
+        self.assertEqual(roles["status"], 200, roles)
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(payload["provider"], "gemini")
+        self.assertEqual(payload["model"], "gemini-2.5-flash")
+        self.assertEqual(payload["key_source"], "local_settings")
+        self.assertEqual(payload["answer"], "Gemini configured answer")
+        self.assertIn("/models/gemini-2.5-flash:generateContent", requests[0].full_url)
+        headers = {key.lower(): value for key, value in requests[0].header_items()}
+        self.assertEqual(headers["x-goog-api-key"], secret)
+        self.assertNotEqual(headers["x-goog-api-key"], stale_secret)
+        self.assertNotIn(secret, serialized)
+        self.assertNotIn(stale_secret, serialized)
+
+    def test_pdf_chat_uses_changed_default_role_and_key_without_restart(self):
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self):
+                return json.dumps({"choices": [{"message": {"content": "Fresh answer model output"}, "finish_reason": "stop"}]}).encode("utf-8")
+
+        requests = []
+
+        def fake_urlopen(request, timeout=0):
+            requests.append(request)
+            return FakeResponse()
+
+        root = Path(self.temp_dir.name)
+        old_secret = "or-old-pdf-chat"
+        new_secret = "or-new-pdf-chat"
+        stale_secret = "or-stale-env-pdf-chat"
+        with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root, create=True), patch.dict(
+            os.environ,
+            {
+                "OPENROUTER_API_KEY": stale_secret,
+                "LLM_PROVIDER": "openrouter",
+                "LLM_MODEL": "openai/stale-env-model",
+            },
+            clear=True,
+        ), patch("urllib.request.urlopen", fake_urlopen):
+            self.app.state.upload_dir = (root / "runtime_uploads").resolve()
+            self.app.state.documents_dir = self.app.state.upload_dir / "documents"
+            self.app.test_request("POST", "/api/settings/openrouter", {"api_key": old_secret})
+            old_profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"provider": "openrouter", "display_name": "Old Router", "model_id": "openai/old-model", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            self.app.test_request("POST", "/api/settings/roles", {"default_answer_model_profile_id": old_profile})
+            self.app.test_request("POST", "/api/settings/openrouter", {"api_key": new_secret})
+            new_profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"provider": "openrouter", "display_name": "New Router", "model_id": "openai/new-model", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            self.app.test_request("POST", "/api/settings/roles", {"default_answer_model_profile_id": new_profile})
+            upload = self.upload_pdf()
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{upload['document_id']}/explain-selection",
+                {
+                    "highlight_id": "h-runtime-role-change",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "PDF chat should use the new runtime answer model.",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                    "matched_block": {"markdown_content": "PDF chat should use the new runtime answer model."},
+                },
+            )
+
+        headers = {key.lower(): value for key, value in requests[0].header_items()}
+        body = json.loads(requests[0].data.decode("utf-8"))
+        serialized = json.dumps(response["json"])
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(response["json"]["provider"], "openrouter")
+        self.assertEqual(response["json"]["model"], "openai/new-model")
+        self.assertEqual(body["model"], "openai/new-model")
+        self.assertEqual(headers["authorization"], f"Bearer {new_secret}")
+        self.assertNotIn(old_secret, serialized)
+        self.assertNotIn(new_secret, serialized)
+        self.assertNotIn(stale_secret, serialized)
+
+    def test_strategy_planner_uses_configured_strategy_profile_and_falls_back_to_default(self):
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        root = Path(self.temp_dir.name)
+        with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root, create=True), patch.dict(os.environ, {}, clear=True):
+            self.app.state.upload_dir = (root / "runtime_uploads").resolve()
+            self.app.state.documents_dir = self.app.state.upload_dir / "documents"
+            self.app.test_request("POST", "/api/settings/openrouter", {"api_key": "or-strategy-secret"})
+            default = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"display_name": "Default Model", "model_id": "openai/gpt-4o-mini", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            strategy = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"display_name": "Strategy Model", "model_id": "anthropic/claude-opus-4.7-fast", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            self.app.test_request(
+                "POST",
+                "/api/settings/roles",
+                {"default_answer_model_profile_id": default, "strategy_model_profile_id": strategy},
+            )
+            strategy_role = llm_config.role_config_from_env("strategy_planner_model")
+            self.app.test_request("DELETE", f"/api/settings/models/{strategy}")
+            fallback_role = llm_config.role_config_from_env("strategy_planner_model")
+
+        self.assertEqual(strategy_role["provider"], "openrouter")
+        self.assertEqual(strategy_role["model"], "anthropic/claude-opus-4.7-fast")
+        self.assertEqual(fallback_role["provider"], "openrouter")
+        self.assertEqual(fallback_role["model"], "openai/gpt-4o-mini")
+
+    def test_strategy_response_generation_uses_configured_openrouter_strategy_profile(self):
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self):
+                return json.dumps({"choices": [{"message": {"content": "Strategy model answer"}, "finish_reason": "stop"}]}).encode("utf-8")
+
+        requests = []
+
+        def fake_urlopen(request, timeout=0):
+            requests.append(request)
+            return FakeResponse()
+
+        root = Path(self.temp_dir.name)
+        secret = "or-strategy-response-secret"
+        stale_secret = "or-stale-strategy-response"
+        selected_strategy = self.strategy_candidate("concrete_example", "Use a concrete example")
+        with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root, create=True), patch.dict(
+            os.environ,
+            {
+                "OPENROUTER_API_KEY": stale_secret,
+                "LLM_PROVIDER": "openrouter",
+                "LLM_MODEL": "openai/stale-default",
+                "STRATEGY_PLANNER_MODEL": "openai/stale-strategy",
+            },
+            clear=True,
+        ), patch("urllib.request.urlopen", fake_urlopen):
+            self.app.state.upload_dir = (root / "runtime_uploads").resolve()
+            self.app.state.documents_dir = self.app.state.upload_dir / "documents"
+            self.app.test_request("POST", "/api/settings/openrouter", {"api_key": secret})
+            default_profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"provider": "openrouter", "display_name": "Default Answer", "model_id": "openai/default-answer", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            strategy_profile = self.app.test_request(
+                "POST",
+                "/api/settings/models",
+                {"provider": "openrouter", "display_name": "Strategy Answer", "model_id": "anthropic/strategy-answer", "enabled": True},
+            )["json"]["model_profile"]["id"]
+            self.app.test_request(
+                "POST",
+                "/api/settings/roles",
+                {"default_answer_model_profile_id": default_profile, "strategy_model_profile_id": strategy_profile},
+            )
+            upload = self.upload_pdf()
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{upload['document_id']}/explain-selection",
+                {
+                    "highlight_id": "h-strategy-openrouter",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "Strategy responses should use the configured strategy model.",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                    "matched_block": {"markdown_content": "Strategy responses should use the configured strategy model."},
+                    "default_task": "explain_current_selection_with_selected_strategy",
+                    "selected_strategy_id": selected_strategy["strategy_id"],
+                    "selected_strategy": selected_strategy,
+                },
+            )
+
+        body = json.loads(requests[0].data.decode("utf-8"))
+        headers = {key.lower(): value for key, value in requests[0].header_items()}
+        serialized = json.dumps(response["json"])
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(body["model"], "anthropic/strategy-answer")
+        self.assertEqual(headers["authorization"], f"Bearer {secret}")
+        self.assertEqual(response["json"]["provider"], "openrouter")
+        self.assertEqual(response["json"]["model"], "anthropic/strategy-answer")
+        self.assertEqual(response["json"]["model_source"], "role_profile")
+        self.assertEqual(response["json"]["key_source"], "local_settings")
+        self.assertNotIn(secret, serialized)
+        self.assertNotIn(stale_secret, serialized)
+
     def test_area_crop_is_saved_under_document_highlight_crops(self):
         upload = self.upload_pdf()
         document_id = upload["document_id"]
@@ -766,6 +1152,102 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(messages[-1]["role"], "assistant")
         self.assertIn("Why does that matter?", response["json"]["prompt_preview"])
 
+    def test_normal_text_follow_up_ignores_saved_selected_strategy_but_keeps_context_and_learning_cue(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        selected_strategy = self.strategy_candidate("structured_breakdown", "Structured breakdown")
+        self.app.test_request(
+            "PUT",
+            f"/api/documents/{document_id}/threads/h-normal-text",
+            {
+                "selection_snapshot": {
+                    "highlight_id": "h-normal-text",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "PDF debug test",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                    "matched_block": {"markdown_content": "PDF debug test context"},
+                    "global_rag_context": [{"text": "Retrieved RAG context for the selected passage."}],
+                },
+                "selected_strategy": selected_strategy,
+                "selected_strategy_id": selected_strategy["strategy_id"],
+                "messages": [{"role": "assistant", "content": "First answer.", "turn_id": "turn-base"}],
+            },
+        )
+
+        response = self.app.test_request(
+            "POST",
+            f"/api/documents/{document_id}/threads/h-normal-text/follow-up",
+            {
+                "question": "How does this connect to the method?",
+                "input_source": "text",
+                "learning_state": {
+                    "academic_state": "confusion",
+                    "confidence": 0.72,
+                    "distribution": {"confusion": 0.72, "engagement": 0.18},
+                    "trend": "rising",
+                },
+            },
+        )
+
+        self.assertEqual(response["status"], 200, response)
+        prompt = response["json"]["prompt_preview"]
+        assistant = response["json"]["thread"]["messages"][-1]
+        self.assertEqual(assistant["turn_type"], "follow_up")
+        self.assertEqual(assistant["input_source"], "text")
+        self.assertEqual(assistant["response_mode"], "normal_followup")
+        self.assertIsNone(assistant["selected_strategy_id"])
+        self.assertFalse(assistant.get("strategy_id"))
+        self.assertFalse(assistant.get("strategy_title"))
+        self.assertNotIn("Selected pedagogical support strategy", prompt)
+        self.assertIn('follow_up_question: "How does this connect to the method?"', prompt)
+        self.assertIn("selected_text:", prompt)
+        self.assertIn("PDF debug test", prompt)
+        self.assertIn("Soft learning-state style cue", prompt)
+        self.assertIn("confusion", prompt)
+
+    def test_speech_follow_up_uses_normal_followup_mode_not_strategy_mode(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        selected_strategy = self.strategy_candidate("concrete_example", "Concrete example")
+        self.app.test_request(
+            "PUT",
+            f"/api/documents/{document_id}/threads/h-speech",
+            {
+                "selection_snapshot": {
+                    "highlight_id": "h-speech",
+                    "highlight_type": "text",
+                    "page_number": 1,
+                    "selected_text": "Speech follow-up should stay grounded in this passage.",
+                    "text_available": True,
+                    "recommended_llm_mode": "text_context",
+                },
+                "selected_strategy": selected_strategy,
+                "selected_strategy_id": selected_strategy["strategy_id"],
+                "messages": [{"role": "assistant", "content": "First answer.", "turn_id": "turn-base"}],
+            },
+        )
+
+        response = self.app.test_request(
+            "POST",
+            f"/api/documents/{document_id}/threads/h-speech/follow-up",
+            {
+                "question": "Can you restate it more simply?",
+                "input_source": "speech",
+                "selected_strategy": selected_strategy,
+                "selected_strategy_id": selected_strategy["strategy_id"],
+            },
+        )
+
+        self.assertEqual(response["status"], 200, response)
+        assistant = response["json"]["thread"]["messages"][-1]
+        self.assertEqual(assistant["input_source"], "speech")
+        self.assertEqual(assistant["response_mode"], "normal_followup")
+        self.assertIsNone(assistant["selected_strategy_id"])
+        self.assertFalse(assistant.get("strategy_status"))
+        self.assertNotIn("Selected pedagogical support strategy", response["json"]["prompt_preview"])
+
     def test_reading_session_start_creates_simulated_learning_state_stream(self):
         upload = self.upload_pdf()
         document_id = upload["document_id"]
@@ -865,14 +1347,19 @@ class PdfChatBackendTests(unittest.TestCase):
                 }
 
         self.app.state._emotion_adapter = FakeAdapter()
-        response = self.app.test_request(
-            "POST",
-            f"/api/reading-sessions/{session_id}/emotion/frame",
-            {
-                "document_id": document_id,
-                "image": "data:image/png;base64,QUJDRA==",
-            },
-        )
+        missing_academic_checkpoint = Path(self.temp_dir.name) / "missing-academic.pt"
+        with patch.dict(
+            os.environ,
+            {"EMOTION_MODEL_MODE": "academic_state", "EMOTION_CHECKPOINT_PATH": str(missing_academic_checkpoint)},
+        ):
+            response = self.app.test_request(
+                "POST",
+                f"/api/reading-sessions/{session_id}/emotion/frame",
+                {
+                    "document_id": document_id,
+                    "image": "data:image/png;base64,QUJDRA==",
+                },
+            )
 
         self.assertEqual(response["status"], 200, response)
         self.assertTrue(response["json"]["ok"])
@@ -1045,6 +1532,11 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(state["raw_facial_emotion"], "fear")
         self.assertEqual(state["academic_state"], "confusion")
         self.assertEqual(state["distribution"]["confusion"], 0.75)
+        package = state["learning_signal_package"]
+        self.assertEqual(package["active_source"], "raw_8class_process_aware")
+        self.assertEqual(package["raw_emotion_evidence"]["raw_emotion_label"], "fear")
+        self.assertEqual(package["academic_state_mapping"]["mapped_academic_state"], "confusion")
+        self.assertFalse((package.get("diagnostic_only_direct_4class") or {}).get("used_for_strategy", True))
         serialized = json.dumps(payload)
         self.assertNotIn("data:image", serialized)
         self.assertNotIn("crop_preview_data_url", serialized)
@@ -1053,6 +1545,7 @@ class PdfChatBackendTests(unittest.TestCase):
         event_text = (self.app.state.upload_dir / "sessions" / session_id / "events.jsonl").read_text(encoding="utf-8")
         self.assertIn('"model_output_type": "raw_emotion"', event_text)
         self.assertIn('"raw_detection_available": true', event_text)
+        self.assertIn('"learning_signal_package"', event_text)
         self.assertIn('"detector": "openface"', event_text)
         self.assertIn('"crop_strategy": "openface_landmark_bbox"', event_text)
         self.assertNotIn("data:image", event_text)
@@ -1159,10 +1652,364 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(flat["support_cue"], "neutral_or_uncertain")
         self.assertEqual(flat["support_cue_label"], "Possible ways to continue")
 
+    def test_reaction_window_summary_keeps_frustration_cue_when_confidence_is_low(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.406,
+                    "distribution": {"boredom": 0.0, "confusion": 0.005, "engagement": 0.206, "frustration": 0.789},
+                    "trend": "rising",
+                }
+            ],
+            source_turn_id="turn_adaptive",
+            highlight_id="h-low-confidence",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:08Z",
+            source_turn_type="strategy_reexplanation",
+        )
+
+        self.assertEqual(summary["dominant_state"], "frustration")
+        self.assertEqual(summary["support_cue"], "difficulty_support")
+        self.assertEqual(summary["confidence_handling"], "low_confidence")
+        self.assertIn("low-confidence signal", summary["academic_state_evidence_text"])
+        self.assertIn("previous adaptive explanation", summary["trigger_reason"])
+        self.assertIn("frustration 79%", summary["trigger_reason"])
+        self.assertNotIn("learning signal was mixed", summary["trigger_reason"])
+
+    def test_reaction_window_summary_tracks_reading_phases_and_resolved_confusion(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "confusion",
+                    "confidence": 0.80,
+                    "distribution": {"boredom": 0.04, "confusion": 0.72, "engagement": 0.16, "frustration": 0.08},
+                    "trend": "stable",
+                },
+                {
+                    "academic_state": "confusion",
+                    "confidence": 0.76,
+                    "distribution": {"boredom": 0.05, "confusion": 0.66, "engagement": 0.20, "frustration": 0.09},
+                    "trend": "stable",
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.74,
+                    "distribution": {"boredom": 0.04, "confusion": 0.38, "engagement": 0.49, "frustration": 0.09},
+                    "trend": "rising",
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.82,
+                    "distribution": {"boredom": 0.03, "confusion": 0.14, "engagement": 0.76, "frustration": 0.07},
+                    "trend": "rising",
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.84,
+                    "distribution": {"boredom": 0.02, "confusion": 0.10, "engagement": 0.82, "frustration": 0.06},
+                    "trend": "rising",
+                },
+            ],
+            source_turn_id="turn_base",
+            highlight_id="h-reading",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:18Z",
+            end_reason="near_bottom_reached",
+            read_progress_estimate=0.9,
+        )
+
+        self.assertEqual(summary["end_reason"], "near_bottom_reached")
+        self.assertEqual(summary["read_progress_estimate"], 0.9)
+        self.assertEqual(summary["sample_count"], 5)
+        self.assertIn("early_distribution", summary)
+        self.assertIn("middle_distribution", summary)
+        self.assertIn("late_distribution", summary)
+        self.assertEqual(summary["early_dominant_state"], "confusion")
+        self.assertEqual(summary["late_dominant_state"], "engagement")
+        self.assertEqual(summary["state_transition"], "confusion_to_engagement")
+        self.assertEqual(summary["transition_label"], "early confusion -> late engagement")
+        self.assertEqual(summary["support_cue"], "deepening")
+        self.assertIn("early confusion -> late engagement", summary["academic_state_evidence_text"])
+
+    def test_reaction_window_summary_persistent_frustration_uses_difficulty_support(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.74,
+                    "distribution": {"boredom": 0.02, "confusion": 0.08, "engagement": 0.16, "frustration": 0.74},
+                    "trend": "rising",
+                },
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.78,
+                    "distribution": {"boredom": 0.03, "confusion": 0.07, "engagement": 0.14, "frustration": 0.76},
+                    "trend": "rising",
+                },
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.82,
+                    "distribution": {"boredom": 0.02, "confusion": 0.06, "engagement": 0.10, "frustration": 0.82},
+                    "trend": "rising",
+                },
+            ],
+            source_turn_id="turn_adaptive",
+            highlight_id="h-reading",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:21Z",
+            source_turn_type="strategy_reexplanation",
+            end_reason="near_bottom_reached",
+            read_progress_estimate=0.95,
+        )
+
+        self.assertEqual(summary["state_transition"], "persistent_frustration")
+        self.assertEqual(summary["transition_label"], "persistent frustration")
+        self.assertEqual(summary["dominant_state"], "frustration")
+        self.assertEqual(summary["support_cue"], "difficulty_support")
+        self.assertEqual(summary["support_cue_label"], "Reduce cognitive load cue")
+        self.assertIn("frustration", summary["academic_state_evidence_text"])
+        self.assertIn("reduce cognitive load", summary["reason_text"])
+
+    def test_reaction_window_falling_frustration_with_close_engagement_marks_resolving_difficulty(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.72,
+                    "distribution": {"boredom": 0.01, "confusion": 0.01, "engagement": 0.26, "frustration": 0.72},
+                    "trend": "falling",
+                },
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.54,
+                    "distribution": {"boredom": 0.01, "confusion": 0.01, "engagement": 0.44, "frustration": 0.54},
+                    "trend": "falling",
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.62,
+                    "distribution": {"boredom": 0.01, "confusion": 0.01, "engagement": 0.62, "frustration": 0.36},
+                    "trend": "rising",
+                },
+            ],
+            source_turn_id="turn_base",
+            highlight_id="h-resolving",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:20Z",
+            source_turn_type="baseline_explanation",
+            end_reason="near_bottom_reached",
+            read_progress_estimate=0.9,
+        )
+
+        self.assertEqual(summary["dominant_state"], "frustration")
+        self.assertEqual(summary["secondary_state"], "engagement")
+        self.assertEqual(summary["trend"], "falling")
+        self.assertEqual(summary["state_transition"], "resolving_difficulty")
+        self.assertEqual(summary["transition_label"], "resolving_difficulty")
+        self.assertEqual(summary["support_cue"], "deepening")
+        self.assertIn("resolving_difficulty", summary["academic_state_evidence_text"])
+        self.assertIn("difficulty signal was falling", summary["reason_text"])
+        self.assertIn("engagement was close behind", summary["reason_text"])
+        self.assertIn("cautious deepening strategy", summary["reason_text"])
+        self.assertNotIn("answer could be extended", summary["reason_text"])
+
+    def test_resolved_confusion_reaction_window_recommends_deepening_not_clarification(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "confusion",
+                    "confidence": 0.78,
+                    "distribution": {"boredom": 0.04, "confusion": 0.70, "engagement": 0.18, "frustration": 0.08},
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.82,
+                    "distribution": {"boredom": 0.03, "confusion": 0.12, "engagement": 0.78, "frustration": 0.07},
+                },
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.84,
+                    "distribution": {"boredom": 0.03, "confusion": 0.09, "engagement": 0.82, "frustration": 0.06},
+                },
+            ],
+            source_turn_id="turn_base",
+            highlight_id="h-resolved",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:16Z",
+            end_reason="near_bottom_reached",
+            read_progress_estimate=0.9,
+        )
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-resolved",
+                    "source_turn_id": "turn_base",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves related chunks before answering.",
+                    "baseline_explanation": "The baseline explanation described retrieval before answering.",
+                    "reaction_window_summary": summary,
+                    "support_cue": summary["support_cue"],
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        payload = response["json"]
+        self.assertEqual(payload["support_cue"], "deepening")
+        self.assertEqual(payload["learning_signal_package"]["inferred_process_state"], "engaged_deepening")
+        self.assertIn(payload["candidates"][0]["strategy_family"], self.app.state._allowed_strategy_families_for_support_cue("deepening"))
+        self.assertNotIn(payload["candidates"][0]["strategy_family"], {"define_key_terms", "step_by_step_breakdown"})
+
+    def test_persistent_frustration_reaction_window_recommends_reduce_load_family(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.78,
+                    "distribution": {"boredom": 0.02, "confusion": 0.06, "engagement": 0.14, "frustration": 0.78},
+                },
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.82,
+                    "distribution": {"boredom": 0.02, "confusion": 0.05, "engagement": 0.11, "frustration": 0.82},
+                },
+                {
+                    "academic_state": "frustration",
+                    "confidence": 0.84,
+                    "distribution": {"boredom": 0.01, "confusion": 0.05, "engagement": 0.10, "frustration": 0.84},
+                },
+            ],
+            source_turn_id="turn_adaptive",
+            highlight_id="h-persistent",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:20Z",
+            source_turn_type="strategy_reexplanation",
+            end_reason="near_bottom_reached",
+            read_progress_estimate=0.9,
+        )
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-persistent",
+                    "source_turn_id": "turn_adaptive",
+                    "source_turn_type": "strategy_reexplanation",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves related chunks before answering.",
+                    "baseline_explanation": "The adaptive explanation walked through the passage.",
+                    "reaction_window_summary": summary,
+                    "support_cue": summary["support_cue"],
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        payload = response["json"]
+        self.assertEqual(payload["support_cue"], "difficulty_support")
+        self.assertEqual(payload["learning_signal_package"]["inferred_process_state"], "continued_difficulty")
+        self.assertIn(payload["candidates"][0]["strategy_family"], self.app.state._allowed_strategy_families_for_support_cue("difficulty_support"))
+
+    def test_reaction_window_max_timeout_uses_conservative_end_reason(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.78,
+                    "distribution": {"boredom": 0.03, "confusion": 0.07, "engagement": 0.82, "frustration": 0.08},
+                }
+            ],
+            source_turn_id="turn_base",
+            highlight_id="h-timeout",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:01:00Z",
+            end_reason="max_timeout",
+            read_progress_estimate=0.45,
+        )
+
+        self.assertEqual(summary["end_reason"], "max_timeout")
+        self.assertEqual(summary["read_progress_estimate"], 0.45)
+        self.assertEqual(summary["support_cue"], "neutral_or_uncertain")
+        self.assertEqual(summary["support_cue_label"], "Possible ways to continue")
+
+    def test_followup_interrupted_reaction_window_marks_early_reliability_note(self):
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "engagement",
+                    "confidence": 0.60,
+                    "distribution": {"boredom": 0.06, "confusion": 0.08, "engagement": 0.60, "frustration": 0.26},
+                }
+            ],
+            source_turn_id="turn_base",
+            highlight_id="h-followup-early",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:00:04Z",
+            end_reason="followup_submitted",
+            read_progress_estimate=0.35,
+        )
+
+        self.assertEqual(summary["end_reason"], "followup_submitted")
+        self.assertIn("reading window ended early", " ".join(summary["reliability_notes"]))
+
+    def test_max_timeout_low_sample_reaction_window_still_generates_strategy_candidates(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        summary = self.app.state.summarize_reaction_window(
+            samples=[
+                {
+                    "academic_state": "confusion",
+                    "confidence": 0.42,
+                    "distribution": {"boredom": 0.20, "confusion": 0.42, "engagement": 0.25, "frustration": 0.13},
+                }
+            ],
+            source_turn_id="turn_timeout",
+            highlight_id="h-timeout-low-sample",
+            window_start="2026-05-17T10:00:00Z",
+            window_end="2026-05-17T10:01:00Z",
+            end_reason="max_timeout",
+            read_progress_estimate=0.4,
+        )
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-timeout-low-sample",
+                    "source_turn_id": "turn_timeout",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves related chunks before answering.",
+                    "baseline_explanation": "The baseline explanation described retrieval before answering.",
+                    "reaction_window_summary": summary,
+                    "support_cue": summary["support_cue"],
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        self.assertTrue(response["json"]["candidates"])
+        self.assertEqual(response["json"]["reaction_window_summary"]["end_reason"], "max_timeout")
+        self.assertIn("low sample count", " ".join(response["json"]["reaction_window_summary"]["reliability_notes"]))
+        self.assertEqual(response["json"]["support_cue"], "neutral_or_uncertain")
+
     def test_support_cue_maps_to_allowed_strategy_families(self):
         expected = {
             "sustained_clarification": {"step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"},
-            "reduce_load": {"simplest_version_first", "one_small_next_step", "analogy_or_reframe", "reduce_information_density", "key_takeaway_first"},
+            "difficulty_support": {"concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"},
+            "reduce_load": {"concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"},
             "re_engagement": {"why_it_matters", "one_sentence_takeaway", "make_it_relevant", "compare_with_familiar_method", "quick_quiz"},
             "deepening": {"deep_technical_explanation", "critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"},
             "clarify_and_reengage": {"concise_explanation", "concrete_example", "why_it_matters", "step_by_step_breakdown", "compare_with_familiar_method"},
@@ -1242,6 +2089,365 @@ class PdfChatBackendTests(unittest.TestCase):
             self.assertTrue(candidate["context_focus"])
         self.assertTrue(any("Why this appeared" not in candidate["why_recommended"] for candidate in payload["candidates"]))
         self.assertIn("baseline explanation", payload["candidates"][0]["why_recommended"])
+        self.assertIn("academic_state_evidence_text", payload["candidates"][0])
+        self.assertIn("reason_text", payload["candidates"][0])
+        self.assertIn("confusion 58%", payload["candidates"][0]["academic_state_evidence_text"])
+
+    def test_reaction_window_overrides_stale_single_frame_learning_signal_package(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        stale_package = {
+            "active_source": "raw_8class_process_aware",
+            "academic_state_scores": {"boredom": 0.25, "confusion": 0.25, "engagement": 0.25, "frustration": 0.25},
+            "dominant_academic_state": "uncertain",
+            "secondary_academic_state": None,
+            "support_cue": "uncertain",
+            "inferred_process_state": "baseline_ready",
+            "strategy_state": "uncertain",
+            "recommended_strategy": "baseline_explanation",
+            "strategy_reason": "single frame fallback",
+            "prompt_guidance": [],
+            "reaction_window_summary": {
+                "trend": "single_frame_only",
+                "evidence_count": 0,
+                "support_cue": "neutral_or_uncertain",
+                "avg_mapped_scores": {"boredom": 0.25, "confusion": 0.25, "engagement": 0.25, "frustration": 0.25},
+            },
+            "learning_process_context": {"question_intent": "general_followup", "followup_count_for_highlight": 0},
+            "diagnostic_only_direct_4class": {"used_for_strategy": False},
+        }
+        reaction_summary = {
+            "source_turn_id": "turn_base",
+            "highlight_id": "h-reaction",
+            "duration_sec": 8.0,
+            "dominant_state": "engagement",
+            "secondary_state": "confusion",
+            "avg_confidence": 0.84,
+            "avg_distribution": {"boredom": 0.04, "confusion": 0.18, "engagement": 0.72, "frustration": 0.06},
+            "trend": "stable",
+            "support_cue": "deepening",
+            "support_cue_label": "Deepening cue",
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-reaction",
+                    "source_turn_id": "turn_base",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves related chunks before answering.",
+                    "baseline_explanation": "The baseline explanation described retrieval before answering.",
+                    "reaction_window_summary": reaction_summary,
+                    "support_cue": "deepening",
+                    "learning_state": {
+                        "academic_state": "engagement",
+                        "confidence": 0.70,
+                        "learning_signal_package": stale_package,
+                    },
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        package = response["json"]["learning_signal_package"]
+        package_reaction = package["reaction_window_summary"]
+        self.assertEqual(package_reaction["trend"], "stable")
+        self.assertGreater(package_reaction["evidence_count"], 0)
+        self.assertEqual(package["academic_state_scores"]["engagement"], 0.72)
+        self.assertEqual(package["dominant_academic_state"], "engagement")
+        self.assertEqual(package["secondary_academic_state"], "confusion")
+        self.assertEqual(package["support_cue"], "deepening")
+        self.assertEqual(package["inferred_process_state"], "engaged_deepening")
+        self.assertNotEqual(package["recommended_strategy"], "baseline_explanation")
+        self.assertEqual(response["json"]["planner_input_summary"]["support_cue"], "deepening")
+
+    def test_previous_strategy_reexplanation_is_extracted_and_not_repeated_when_alternatives_exist(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        reaction_summary = {
+            "source_turn_id": "turn_base",
+            "highlight_id": "h-repeat",
+            "duration_sec": 8.0,
+            "dominant_state": "engagement",
+            "secondary_state": "confusion",
+            "avg_confidence": 0.82,
+            "avg_distribution": {"boredom": 0.04, "confusion": 0.18, "engagement": 0.72, "frustration": 0.06},
+            "trend": "stable",
+            "support_cue": "deepening",
+            "support_cue_label": "Deepening cue",
+        }
+        planner_payload = {
+            "state_interpretation": {
+                "support_need": "deepening",
+                "confidence_handling": "Use signal as a support cue only.",
+                "context_reasoning": "Engaged follow-up after a baseline explanation.",
+                "safety_note": "Affective signal used only as a support cue, not as diagnosis.",
+            },
+            "candidates": [
+                self.strategy_candidate("deep_technical_explanation", "Deep technical explanation", recommended=True, score=0.95),
+                self.strategy_candidate("critique_assumptions", "Critique assumptions", recommended=False, score=0.80),
+                self.strategy_candidate("connect_to_related_work", "Connect to related work", recommended=False, score=0.75),
+            ],
+            "warnings": [],
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value=planner_payload, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-repeat",
+                    "source_turn_id": "turn_base",
+                    "selection_type": "text",
+                    "selected_text": "The discussion connects the method to related work.",
+                    "baseline_explanation": "The baseline explanation covered the main discussion point.",
+                    "reaction_window_summary": reaction_summary,
+                    "support_cue": "deepening",
+                    "paper_context": {"passage_type": "discussion", "difficulty_hint": "dense_theory"},
+                    "recent_conversation": [
+                        {"role": "assistant", "turn_type": "baseline_explanation", "content": "Baseline answer."},
+                        {
+                            "role": "assistant",
+                            "turn_type": "strategy_reexplanation",
+                            "content": "Prior adaptive explanation.",
+                            "strategy_id": "deep_technical_explanation",
+                            "strategy_family": "deep_technical_explanation",
+                        },
+                    ],
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        candidates = response["json"]["candidates"]
+        self.assertNotEqual(candidates[0]["strategy_family"], "deep_technical_explanation")
+        self.assertIn(
+            candidates[0]["strategy_family"],
+            {"critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"},
+        )
+        snapshot = self.app.test_request("GET", f"/api/llm-compare/prompt-snapshots/{response['json']['prompt_snapshot_id']}")["json"]["snapshot"]
+        constraints = snapshot["strategy_planning_context"]["strategy_constraints"]
+        self.assertEqual(constraints["previous_strategy_family"], "deep_technical_explanation")
+        self.assertEqual(constraints["previous_strategy_id"], "deep_technical_explanation")
+
+    def test_previous_strategy_reexplanation_uses_applied_strategy_family_metadata(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        reaction_summary = {
+            "source_turn_id": "turn_adaptive",
+            "highlight_id": "h-applied-prev",
+            "duration_sec": 8.0,
+            "dominant_state": "engagement",
+            "secondary_state": "confusion",
+            "avg_confidence": 0.82,
+            "avg_distribution": {"boredom": 0.04, "confusion": 0.18, "engagement": 0.72, "frustration": 0.06},
+            "trend": "stable",
+            "support_cue": "deepening",
+            "support_cue_label": "Deepening cue",
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-applied-prev",
+                    "source_turn_id": "turn_adaptive",
+                    "selection_type": "text",
+                    "selected_text": "The discussion connects the method to related work.",
+                    "baseline_explanation": "Prior adaptive explanation.",
+                    "reaction_window_summary": reaction_summary,
+                    "support_cue": "deepening",
+                    "paper_context": {"passage_type": "discussion", "difficulty_hint": "dense_theory"},
+                    "recent_conversation": [
+                        {
+                            "role": "assistant",
+                            "turn_type": "strategy_reexplanation",
+                            "content": "Prior adaptive explanation.",
+                            "applied_strategy_id": "deep_technical_explanation",
+                            "applied_strategy_family": "deep_technical_explanation",
+                            "strategy_status": "applied",
+                        },
+                    ],
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        self.assertNotEqual(response["json"]["candidates"][0]["strategy_family"], "deep_technical_explanation")
+        snapshot = self.app.test_request("GET", f"/api/llm-compare/prompt-snapshots/{response['json']['prompt_snapshot_id']}")["json"]["snapshot"]
+        constraints = snapshot["strategy_planning_context"]["strategy_constraints"]
+        self.assertEqual(constraints["previous_strategy_family"], "deep_technical_explanation")
+        self.assertEqual(constraints["previous_strategy_id"], "deep_technical_explanation")
+
+    def test_difficulty_support_escalates_after_recent_step_by_step_move(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        reaction_summary = {
+            "source_turn_id": "turn_after_step",
+            "highlight_id": "h-escalate",
+            "duration_sec": 8.0,
+            "dominant_state": "frustration",
+            "secondary_state": "engagement",
+            "avg_confidence": 0.82,
+            "avg_distribution": {"boredom": 0.0, "confusion": 0.02, "engagement": 0.16, "frustration": 0.82},
+            "trend": "rising",
+            "support_cue": "difficulty_support",
+            "support_cue_label": "Reduce cognitive load cue",
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-escalate",
+                    "source_turn_id": "turn_after_step",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves evidence, ranks it, and generates an answer.",
+                    "baseline_explanation": "Previous adaptive explanation walked through the method step by step.",
+                    "reaction_window_summary": reaction_summary,
+                    "support_cue": "difficulty_support",
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "recent_conversation": [
+                        {
+                            "role": "assistant",
+                            "turn_type": "strategy_reexplanation",
+                            "content": "Prior adaptive explanation.",
+                            "applied_strategy_id": "step_by_step_breakdown",
+                            "applied_strategy_family": "step_by_step_breakdown",
+                            "applied_pedagogical_move": "Walk through the passage step by step",
+                            "applied_title": "Walk through the passage step by step",
+                            "strategy_status": "applied",
+                        }
+                    ],
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        first = response["json"]["candidates"][0]
+        self.assertNotEqual(first["normalized_pedagogical_move_key"], "step_by_step")
+        self.assertIn(first["normalized_pedagogical_move_key"], {"worked_example", "analogy", "connect_to_paper_argument", "concise_summary"})
+        self.assertNotEqual(first["title"].lower(), "walk through the passage step by step")
+
+    def test_candidate_normalization_demotes_near_identical_previous_title(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        planner_payload = {
+            "state_interpretation": {
+                "support_need": "clarification",
+                "confidence_handling": "Use signal as a support cue only.",
+                "context_reasoning": "Still needs support.",
+                "safety_note": "Affective signal used only as a support cue, not as diagnosis.",
+            },
+            "candidates": [
+                self.strategy_candidate("step_by_step_breakdown", "Walk through the passage step by step", recommended=True, score=0.99),
+                self.strategy_candidate("concrete_example", "Use a concrete example", recommended=False, score=0.70),
+                self.strategy_candidate("define_key_terms", "Define the key terms", recommended=False, score=0.68),
+            ],
+            "warnings": [],
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value=planner_payload, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-title-repeat",
+                    "source_turn_id": "turn_title_repeat",
+                    "selection_type": "text",
+                    "selected_text": "The passage describes a multi-step method.",
+                    "baseline_explanation": "Previous adaptive explanation.",
+                    "reaction_window_summary": {
+                        "source_turn_id": "turn_title_repeat",
+                        "highlight_id": "h-title-repeat",
+                        "duration_sec": 8.0,
+                        "dominant_state": "confusion",
+                        "secondary_state": "engagement",
+                        "avg_confidence": 0.72,
+                        "avg_distribution": {"boredom": 0.02, "confusion": 0.68, "engagement": 0.20, "frustration": 0.10},
+                        "trend": "rising",
+                        "support_cue": "clarification",
+                    },
+                    "support_cue": "clarification",
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "recent_conversation": [
+                        {
+                            "role": "assistant",
+                            "turn_type": "strategy_reexplanation",
+                            "applied_strategy_id": "step_by_step_breakdown",
+                            "applied_strategy_family": "step_by_step_breakdown",
+                            "applied_pedagogical_move": "Walk through the passage step by step",
+                            "applied_title": "Walk through the passage step by step",
+                            "strategy_status": "applied",
+                        }
+                    ],
+                    "trigger_context": {"triggered_by": "reaction_window"},
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        self.assertNotEqual(response["json"]["candidates"][0]["title"].lower(), "walk through the passage step by step")
+        self.assertNotEqual(response["json"]["candidates"][0]["normalized_pedagogical_move_key"], "step_by_step")
+
+    def test_strategy_candidates_prefer_process_aware_package_over_direct_state(self):
+        upload = self.upload_pdf()
+        document_id = upload["document_id"]
+        package = {
+            "active_source": "raw_8class_process_aware",
+            "inferred_process_state": "continued_difficulty",
+            "strategy_state": "confusion",
+            "recommended_strategy": "worked_example",
+            "strategy_reason": "recent learning signal suggested continued difficulty after the previous explanation",
+            "prompt_guidance": ["Use a concrete worked example before returning to the paper."],
+            "academic_state_mapping": {
+                "mapped_academic_state": "confusion",
+                "mapped_academic_scores": {"boredom": 0.03, "confusion": 0.74, "engagement": 0.14, "frustration": 0.09},
+            },
+            "reaction_window_summary": {
+                "support_cue": "sustained_clarification",
+                "dominant_mapped_states": [{"state": "confusion", "probability": 0.74}],
+                "avg_mapped_scores": {"boredom": 0.03, "confusion": 0.74, "engagement": 0.14, "frustration": 0.09},
+                "evidence_count": 5,
+            },
+            "learning_process_context": {
+                "highlight_id": "h-process",
+                "followup_count_for_highlight": 2,
+                "same_highlight_repeated_questions": True,
+                "current_user_question": "I still do not understand. Can you give an example?",
+                "question_intent": "still_confused",
+                "previous_strategy": "simplify_and_define_terms",
+                "recent_strategies": ["baseline_explanation", "simplify_and_define_terms"],
+            },
+            "diagnostic_only_direct_4class": {"state": "engagement", "confidence": 0.95, "used_for_strategy": False},
+        }
+
+        with patch.object(self.app.state, "_call_strategy_planner_llm", return_value={"not": "valid"}, create=True):
+            response = self.app.test_request(
+                "POST",
+                f"/api/documents/{document_id}/strategy-candidates",
+                {
+                    "highlight_id": "h-process",
+                    "selection_type": "text",
+                    "selected_text": "The method retrieves paper evidence before answering.",
+                    "learning_state": {"academic_state": "engagement", "confidence": 0.95},
+                    "learning_signal_package": package,
+                    "paper_context": {"passage_type": "method", "difficulty_hint": "multi_step_process"},
+                    "user_question": "I still do not understand. Can you give an example?",
+                },
+            )
+
+        self.assertEqual(response["status"], 200, response)
+        payload = response["json"]
+        self.assertEqual(payload["learning_signal_package"]["recommended_strategy"], "worked_example")
+        self.assertEqual(payload["state_interpretation"]["support_need"], "clarification")
+        self.assertEqual(payload["candidates"][0]["strategy_family"], "concrete_example")
+        self.assertIn("continued difficulty", payload["candidates"][0]["why_recommended"])
+        self.assertIn("confusion 74%", payload["candidates"][0]["academic_state_evidence_text"])
 
     def test_strategy_candidates_endpoint_returns_contextual_cards_and_logs_metadata(self):
         upload = self.upload_pdf()
@@ -1535,7 +2741,10 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(thread["strategy_candidates"][0]["strategy_id"], "input_process_output_map")
         self.assertEqual(thread["trigger_context"]["trigger_reason"], "sustained support cue")
         self.assertEqual(follow_up["status"], 200, follow_up)
-        self.assertIn("Selected pedagogical support strategy", follow_up["json"]["prompt_preview"])
+        follow_up_assistant = follow_up["json"]["thread"]["messages"][-1]
+        self.assertEqual(follow_up_assistant["response_mode"], "normal_followup")
+        self.assertIsNone(follow_up_assistant["selected_strategy_id"])
+        self.assertNotIn("Selected pedagogical support strategy", follow_up["json"]["prompt_preview"])
 
     def test_baseline_explain_without_selected_strategy_persists_baseline_turn(self):
         upload = self.upload_pdf()
@@ -1701,7 +2910,10 @@ class PdfChatBackendTests(unittest.TestCase):
         document_id = upload["document_id"]
         selected_strategy = {
             "strategy_id": "concrete_example",
+            "strategy_family": "concrete_example",
             "title": "Use a concrete example for this method passage",
+            "pedagogical_move": "Use a concrete example",
+            "context_focus": "Anchor the retrieval step in a small paper-reading scenario.",
             "short_description": "Anchor the explanation in a small example.",
             "why_recommended": "This may help with a dense method passage.",
             "prompt_instruction": "Explain using one small example, then connect it back to the paper.",
@@ -1764,11 +2976,23 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertTrue(message["turn_id"].startswith("turn_"))
         self.assertEqual(message["strategy_short_description"], selected_strategy["short_description"])
         self.assertEqual(message["turn_type"], "strategy_reexplanation")
+        self.assertEqual(message["strategy_status"], "applied")
+        self.assertEqual(message["applied_strategy_id"], "concrete_example")
+        self.assertEqual(message["applied_strategy_family"], "concrete_example")
+        self.assertEqual(message["applied_pedagogical_move"], selected_strategy["pedagogical_move"])
+        self.assertEqual(message["applied_context_focus"], selected_strategy["context_focus"])
+        self.assertEqual(message["source_reaction_turn_id"], "turn_base")
         self.assertEqual(message["source_turn_id"], "turn_base")
         self.assertEqual(message["reaction_window_summary"]["support_cue"], "sustained_clarification")
-        self.assertEqual(message["strategy_reason"], selected_strategy["why_recommended"])
+        self.assertIn("confusion 76%", message["academic_state_evidence_text"])
+        self.assertIn("baseline explanation", message["strategy_reason"])
+        self.assertIn("clarification", message["strategy_reason"])
+        self.assertNotEqual(message["strategy_reason"], selected_strategy["why_recommended"])
         self.assertEqual(message["planner_prompt_version"], "reaction_strategy_planner_v2")
         self.assertEqual(message["face_detection_summary"]["mode"], "center_crop")
+        self.assertEqual(thread["turn_metadata"]["turn_base"]["strategy_status"], "applied")
+        self.assertEqual(thread["turn_metadata"]["turn_base"]["applied_strategy_id"], "concrete_example")
+        self.assertEqual(thread["turn_metadata"]["turn_base"]["applied_strategy_family"], "concrete_example")
 
     def test_follow_up_user_and_assistant_messages_share_turn_id(self):
         upload = self.upload_pdf()
@@ -1802,7 +3026,10 @@ class PdfChatBackendTests(unittest.TestCase):
         self.assertEqual(assistant_message["role"], "assistant")
         self.assertTrue(user_message["turn_id"].startswith("turn_"))
         self.assertEqual(user_message["turn_id"], assistant_message["turn_id"])
-        self.assertEqual(assistant_message["strategy_id"], "structured_breakdown")
+        self.assertEqual(assistant_message["input_source"], "text")
+        self.assertEqual(assistant_message["response_mode"], "normal_followup")
+        self.assertIsNone(assistant_message["selected_strategy_id"])
+        self.assertFalse(assistant_message.get("strategy_id"))
 
     def test_interaction_logs_do_not_store_api_keys_or_base64_crop_payload(self):
         upload = self.upload_pdf()

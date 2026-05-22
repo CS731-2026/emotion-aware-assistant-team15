@@ -8,8 +8,8 @@
     :root {
       color-scheme: light;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f4f6f8;
-      color: #182230;
+      background: #f5f7fb;
+      color: #172033;
     }
 
     * {
@@ -23,13 +23,13 @@
     }
 
     main {
-      width: min(1120px, 100%);
+      width: min(1180px, 100%);
       margin: 0 auto;
       display: grid;
       gap: 18px;
     }
 
-    header {
+    header, .stack {
       display: grid;
       gap: 8px;
     }
@@ -51,7 +51,7 @@
       font-size: 15px;
     }
 
-    p, .note, .meta {
+    p, .meta, .hint {
       color: #52616f;
       line-height: 1.5;
     }
@@ -66,25 +66,27 @@
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .provider-card, .model-profile {
-      border: 1px solid #dfe7ef;
+    .note {
+      padding: 12px;
       border-radius: 8px;
-      padding: 14px;
-      display: grid;
-      gap: 12px;
-      background: #fbfcfe;
+      background: #eef6ff;
+      color: #25476a;
     }
 
-    .role-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+    .warning {
+      border: 1px solid #fedf89;
+      background: #fffbeb;
+      color: #7a4f01;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .error-box {
+      border: 1px solid #fecdca;
+      background: #fff1f3;
+      color: #b42318;
+      border-radius: 8px;
+      padding: 10px;
     }
 
     label {
@@ -107,7 +109,7 @@
     }
 
     textarea {
-      min-height: 64px;
+      min-height: 68px;
       resize: vertical;
     }
 
@@ -149,18 +151,30 @@
       align-items: center;
     }
 
-    .status-grid {
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
     }
 
-    .status-item {
-      border: 1px solid #e2e8f0;
+    .status-item, .model-profile {
+      border: 1px solid #dfe7ef;
       border-radius: 8px;
-      padding: 10px;
+      padding: 12px;
+      background: #fbfcfe;
       min-width: 0;
-      background: #f8fafc;
     }
 
     .status-item span {
@@ -189,24 +203,42 @@
       color: #b42318;
     }
 
-    .warning {
-      border: 1px solid #fedf89;
-      background: #fffbeb;
-      color: #7a4f01;
-      border-radius: 8px;
-      padding: 10px;
+    .model-profile {
+      display: grid;
+      gap: 12px;
     }
 
-    .profiles {
+    .model-profile-fields {
       display: grid;
+      grid-template-columns: 0.75fr 1fr 1.35fr 0.75fr;
       gap: 10px;
     }
 
-    .profile-row {
+    .role-list {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1.5fr auto auto;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .compare-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
-      align-items: end;
+    }
+
+    .check-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcfe;
+      font-weight: 650;
+    }
+
+    .check-row input {
+      width: auto;
     }
 
     details {
@@ -232,19 +264,8 @@
       font-size: 12px;
     }
 
-    .note {
-      padding: 12px;
-      border-radius: 8px;
-      background: #eef6ff;
-      color: #25476a;
-    }
-
-    @media (max-width: 880px) {
-      .grid, .role-grid, .status-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-row {
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .status-grid, .model-profile-fields, .role-list, .compare-list {
         grid-template-columns: 1fr;
       }
     }
@@ -254,46 +275,38 @@
   <main>
     <header>
       <h1>Local Model & API Settings</h1>
-      <p>Configure local provider credentials, role-specific models, and comparison profiles for the reading assistant.</p>
+      <p>Configure OpenRouter and Gemini credentials, saved model profiles, and role assignments for local development.</p>
     </header>
 
-    <p class="note">This page writes local configuration only. API keys are stored in `.env.local` and are not stored in the browser.</p>
+    <p class="note">API keys are stored backend-side in the ignored runtime settings file or environment variables. Full keys are never returned by the settings API.</p>
     <div id="message" class="message" role="status"></div>
 
-    <section class="panel" aria-labelledby="provider-title">
-      <h2 id="provider-title">Provider credentials</h2>
-      <div class="grid">
-        <form class="provider-card" data-provider-form="gemini" autocomplete="off">
-          <h3>Gemini</h3>
-          <p class="meta" id="gemini-status">Checking...</p>
-          <label>
-            API key
-            <input id="gemini-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
-          </label>
-          <label>
-            Default answer model
-            <input id="gemini-model" type="text" value="gemini-flash-latest">
-          </label>
-          <label>
-            Embedding model
-            <input id="gemini-embedding-model" type="text" value="gemini-embedding-001">
-          </label>
-          <div class="actions">
-            <button class="primary" type="submit">Save Gemini</button>
-            <button type="button" data-test-provider="gemini">Test</button>
-          </div>
-        </form>
+    <section class="panel" aria-labelledby="runtime-title">
+      <div class="stack">
+        <h2 id="runtime-title">Runtime status</h2>
+        <p class="meta">Active server process and settings resolution for this running backend.</p>
+      </div>
+      <div class="status-grid" id="runtime-grid"></div>
+      <div id="runtime-warnings"></div>
+      <div class="actions">
+        <button type="button" id="refresh-runtime-status">Refresh runtime status</button>
+      </div>
+    </section>
 
-        <form class="provider-card" data-provider-form="openrouter" autocomplete="off">
-          <h3>OpenRouter</h3>
-          <p class="meta" id="openrouter-status">Checking...</p>
+    <section class="panel" aria-labelledby="openrouter-title">
+      <div class="stack">
+        <h2 id="openrouter-title">OpenRouter API configuration</h2>
+        <p class="meta" id="openrouter-status">Checking...</p>
+      </div>
+      <form id="openrouter-form" autocomplete="off">
+        <div class="grid-2">
           <label>
             API key
             <input id="openrouter-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
           </label>
           <label>
-            Default model
-            <input id="openrouter-model" type="text" value="openai/gpt-4o-mini">
+            Base URL
+            <input id="openrouter-base-url" type="text" value="https://openrouter.ai/api/v1">
           </label>
           <label>
             Site URL
@@ -303,106 +316,150 @@
             Site name
             <input id="openrouter-site-name" type="text" placeholder="CS731 Local Assistant">
           </label>
-          <div class="actions">
-            <button class="primary" type="submit">Save OpenRouter</button>
-            <button type="button" data-test-provider="openrouter">Test</button>
-          </div>
-        </form>
-
-        <form class="provider-card" data-provider-form="openai_compatible" autocomplete="off">
-          <h3>OpenAI-compatible</h3>
-          <p class="meta" id="openai-status">Checking...</p>
-          <label>
-            API key
-            <input id="openai-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
-          </label>
-          <label>
-            Base URL
-            <input id="openai-base-url" type="text" placeholder="http://localhost:11434/v1">
-          </label>
-          <label>
-            Default model
-            <input id="openai-model" type="text" placeholder="local/model">
-          </label>
-          <div class="actions">
-            <button class="primary" type="submit">Save</button>
-            <button type="button" data-test-provider="openai_compatible">Test</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="panel" aria-labelledby="roles-title">
-      <h2 id="roles-title">Role-based model settings</h2>
-      <form id="roles-form" autocomplete="off">
-        <div class="role-grid">
-          <div class="provider-card">
-            <h3>Answer model</h3>
-            <label>
-              Provider
-              <select id="answer-provider">
-                <option value="gemini">Gemini</option>
-                <option value="openrouter">OpenRouter</option>
-                <option value="openai_compatible">OpenAI-compatible</option>
-              </select>
-            </label>
-            <label>
-              Model
-              <input id="answer-model" type="text" value="gemini-flash-latest">
-            </label>
-          </div>
-
-          <div class="provider-card">
-            <h3>Strategy planner model</h3>
-            <label>
-              Provider
-              <select id="strategy-provider">
-                <option value="gemini">Gemini</option>
-                <option value="openrouter">OpenRouter</option>
-                <option value="openai_compatible">OpenAI-compatible</option>
-              </select>
-            </label>
-            <label>
-              Model
-              <input id="strategy-model" type="text" value="gemini-flash-latest">
-            </label>
-          </div>
-
-          <div class="provider-card">
-            <h3>Embedding model</h3>
-            <label>
-              Provider
-              <select id="embedding-provider">
-                <option value="gemini">Gemini</option>
-                <option value="openrouter">OpenRouter</option>
-                <option value="openai_compatible">OpenAI-compatible</option>
-              </select>
-            </label>
-            <label>
-              Model
-              <input id="embedding-model" type="text" value="gemini-embedding-001">
-            </label>
-            <p class="warning" id="embedding-warning" hidden>Some providers do not support the current embedding path.</p>
-          </div>
         </div>
+        <label class="check-row">
+          <input id="openrouter-clear-key" type="checkbox">
+          Clear saved key on save
+        </label>
         <div class="actions" style="margin-top: 12px;">
-          <button class="primary" type="submit">Save role settings</button>
+          <button class="primary" type="submit">Save OpenRouter key/settings</button>
+          <button type="button" id="test-openrouter-key">Test key</button>
+          <button class="danger" type="button" id="clear-openrouter-key">Clear saved key</button>
         </div>
       </form>
     </section>
 
-    <section class="panel" aria-labelledby="comparison-title">
-      <h2 id="comparison-title">Comparison models</h2>
-      <p class="meta">These profiles are non-secret presets for future LLM comparison. API keys are not stored here.</p>
-      <div id="profiles" class="profiles"></div>
-      <div class="actions">
-        <button type="button" id="add-profile">Add model profile</button>
-        <button class="primary" type="button" id="save-profiles">Save comparison list</button>
+    <section class="panel" aria-labelledby="gemini-title">
+      <div class="stack">
+        <h2 id="gemini-title">Gemini API configuration</h2>
+        <p class="meta" id="gemini-status">Checking...</p>
       </div>
+      <form id="gemini-form" autocomplete="off">
+        <div class="grid-2">
+          <label>
+            API key
+            <input id="gemini-key" type="password" autocomplete="off" placeholder="Paste a new key to replace">
+          </label>
+          <label>
+            Display name
+            <input id="gemini-display-name" type="text" value="Gemini Direct">
+          </label>
+          <label>
+            Default Gemini chat model
+            <input id="gemini-model" type="text" value="gemini-2.5-flash">
+          </label>
+          <label>
+            Gemini embedding model
+            <input id="gemini-embedding-model" type="text" value="gemini-embedding-001">
+          </label>
+        </div>
+        <label class="check-row">
+          <input id="gemini-clear-key" type="checkbox">
+          Clear saved Gemini key on save
+        </label>
+        <div class="actions" style="margin-top: 12px;">
+          <button class="primary" type="submit">Save Gemini</button>
+          <button type="button" id="test-gemini-chat">Test Gemini Chat</button>
+          <button type="button" id="test-gemini-embedding">Test Gemini Embedding</button>
+          <button class="danger" type="button" id="clear-gemini-key">Clear saved Gemini key</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="model-library-title">
+      <div class="stack">
+        <h2 id="model-library-title">Saved model library</h2>
+        <p class="meta">Model profiles use either the saved OpenRouter key or the saved Gemini Direct key.</p>
+      </div>
+
+      <form id="new-model-form" autocomplete="off">
+        <div class="grid-3">
+          <label>
+            Provider
+            <select id="new-provider">
+              <option value="openrouter">OpenRouter</option>
+              <option value="gemini">Gemini Direct</option>
+            </select>
+          </label>
+          <label>
+            Display name
+            <input id="new-display-name" type="text" placeholder="Claude Opus 4.7 Fast">
+          </label>
+          <label>
+            Model ID
+            <input id="new-model-id" type="text" placeholder="anthropic/claude-opus-4.7-fast">
+          </label>
+          <label>
+            Family/tag
+            <input id="new-family" type="text" placeholder="Claude">
+          </label>
+        </div>
+        <label style="margin-top: 10px;">
+          Notes
+          <textarea id="new-notes" placeholder="Optional local note"></textarea>
+        </label>
+        <div class="actions" style="margin-top: 12px;">
+          <button type="button" data-preset="openrouter_free">OpenRouter Free</button>
+          <button type="button" data-preset="claude_opus_47_fast">Claude Opus 4.7 Fast</button>
+          <button type="button" data-preset="gemini_25_flash">Gemini 2.5 Flash</button>
+          <button class="primary" type="submit">Add model</button>
+          <button type="button" id="test-all-models">Test all enabled models</button>
+          <button class="danger" type="button" id="clear-model-profiles">Clear all saved model profiles</button>
+        </div>
+      </form>
+
+      <div id="model-profiles" class="stack"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="roles-title">
+      <h2 id="roles-title">Role assignments</h2>
+      <form id="roles-form" autocomplete="off">
+        <div class="role-list">
+          <label>
+            Default answer model
+            <select id="default-answer-model-profile-id"></select>
+          </label>
+          <label>
+            Strategy model
+            <select id="strategy-model-profile-id"></select>
+          </label>
+          <div class="stack">
+            <h3>Compare models</h3>
+            <div id="compare-model-profile-ids" class="compare-list"></div>
+          </div>
+        </div>
+        <div class="actions" style="margin-top: 12px;">
+          <button class="primary" type="submit">Save role assignments</button>
+        </div>
+      </form>
+      <div id="role-warnings"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="embedding-title">
+      <h2 id="embedding-title">Embedding configuration</h2>
+      <form id="embedding-form" autocomplete="off">
+        <div class="grid-3">
+          <label>
+            Provider
+            <select id="embedding-provider">
+              <option value="">Not configured</option>
+              <option value="gemini">Gemini Direct</option>
+            </select>
+          </label>
+          <label>
+            Model
+            <input id="embedding-model" type="text" placeholder="gemini-embedding-001">
+          </label>
+        </div>
+        <p class="meta" style="margin-top: 10px;">Gemini embeddings use the saved Gemini Direct API key.</p>
+        <div class="actions" style="margin-top: 12px;">
+          <button class="primary" type="submit">Save embedding configuration</button>
+        </div>
+      </form>
     </section>
 
     <section class="panel" aria-labelledby="status-title">
-      <h2 id="status-title">Provider test/status</h2>
+      <h2 id="status-title">Status</h2>
       <div class="status-grid" id="status-grid"></div>
       <div id="warnings"></div>
     </section>
@@ -418,30 +475,34 @@
 
   <script>
     const endpoints = {
-      status: "/api/local-config/llm/status",
-      provider: "/api/local-config/llm/provider",
-      roles: "/api/local-config/llm/roles",
-      comparison: "/api/local-config/llm/comparison-models",
-      test: "/api/local-config/llm/test",
-    };
-
-    const providerLabels = {
-      gemini: "Gemini",
-      openrouter: "OpenRouter",
-      openai_compatible: "OpenAI-compatible",
+      status: "/api/settings/llm",
+      runtime: "/api/runtime/status",
+      openrouter: "/api/settings/openrouter",
+      testKey: "/api/settings/openrouter/test-key",
+      gemini: "/api/settings/gemini",
+      testGeminiChat: "/api/settings/gemini/test-chat",
+      testGeminiEmbedding: "/api/settings/gemini/test-embedding",
+      models: "/api/settings/models",
+      testAll: "/api/settings/models/test-all",
+      roles: "/api/settings/roles",
+      saveLegacy: "/api/settings/llm",
     };
 
     const state = {
       status: null,
-      profiles: [],
+      runtime: null,
+      modelProfiles: [],
+      presets: [],
     };
 
     const message = document.getElementById("message");
-    const profilesEl = document.getElementById("profiles");
+    const profilesEl = document.getElementById("model-profiles");
     const statusGrid = document.getElementById("status-grid");
     const warningsEl = document.getElementById("warnings");
+    const runtimeGrid = document.getElementById("runtime-grid");
+    const runtimeWarningsEl = document.getElementById("runtime-warnings");
+    const roleWarningsEl = document.getElementById("role-warnings");
     const statusJson = document.getElementById("status-json");
-    const embeddingWarning = document.getElementById("embedding-warning");
 
     function setMessage(text, tone) {
       message.textContent = text || "";
@@ -460,119 +521,6 @@
       return data;
     }
 
-    function providerStatusText(provider) {
-      const details = state.status?.providers?.[provider] || {};
-      const key = details.masked_key ? `key ${details.masked_key}` : "key not configured";
-      const configured = details.configured ? "configured" : "not configured";
-      return `${configured}; ${key}`;
-    }
-
-    function renderStatus(data) {
-      state.status = data;
-      state.profiles = data.comparison_models || state.profiles || [];
-
-      document.getElementById("gemini-status").textContent = providerStatusText("gemini");
-      document.getElementById("openrouter-status").textContent = providerStatusText("openrouter");
-      document.getElementById("openai-status").textContent = providerStatusText("openai_compatible");
-
-      document.getElementById("gemini-model").value = data.providers?.gemini?.models?.default || "gemini-flash-latest";
-      document.getElementById("gemini-embedding-model").value = data.providers?.gemini?.models?.embedding || "gemini-embedding-001";
-      document.getElementById("openrouter-model").value = data.providers?.openrouter?.model || "openai/gpt-4o-mini";
-      document.getElementById("openrouter-site-url").value = data.providers?.openrouter?.site_url || "";
-      document.getElementById("openrouter-site-name").value = data.providers?.openrouter?.site_name || "";
-      document.getElementById("openai-base-url").value = data.providers?.openai_compatible?.base_url || "";
-      document.getElementById("openai-model").value = data.providers?.openai_compatible?.model || "";
-
-      setRoleValue("answer", data.roles?.answer_model);
-      setRoleValue("strategy", data.roles?.strategy_planner_model);
-      setRoleValue("embedding", data.roles?.embedding_model);
-      renderProfiles();
-      renderStatusGrid(data);
-      renderWarnings(data.warnings || []);
-      statusJson.textContent = JSON.stringify(data, null, 2);
-    }
-
-    function setRoleValue(prefix, role) {
-      if (!role) return;
-      document.getElementById(`${prefix}-provider`).value = role.provider || "gemini";
-      document.getElementById(`${prefix}-model`).value = role.model || "";
-    }
-
-    function renderStatusGrid(data) {
-      const roles = data.roles || {};
-      const providers = data.providers || {};
-      const rows = [
-        ["Gemini", providerStatusText("gemini")],
-        ["OpenRouter", providerStatusText("openrouter")],
-        ["OpenAI-compatible", providerStatusText("openai_compatible")],
-        ["Answer model", roleText(roles.answer_model)],
-        ["Strategy planner", roleText(roles.strategy_planner_model)],
-        ["Embedding model", roleText(roles.embedding_model)],
-      ];
-      statusGrid.innerHTML = rows.map(([label, value]) => `
-        <div class="status-item">
-          <span>${escapeHtml(label)}</span>
-          <strong>${escapeHtml(value)}</strong>
-        </div>
-      `).join("");
-      void providers;
-    }
-
-    function roleText(role) {
-      if (!role) return "not configured";
-      return `${providerLabels[role.provider] || role.provider}: ${role.model || "model not set"}`;
-    }
-
-    function renderWarnings(warnings) {
-      warningsEl.innerHTML = warnings.length
-        ? `<div class="warning">${warnings.map(escapeHtml).join("<br>")}</div>`
-        : "";
-      const embeddingProvider = document.getElementById("embedding-provider").value;
-      embeddingWarning.hidden = embeddingProvider === "gemini";
-    }
-
-    function renderProfiles() {
-      if (!state.profiles.length) {
-        profilesEl.innerHTML = `<p class="meta">No comparison profiles saved yet.</p>`;
-        return;
-      }
-      profilesEl.innerHTML = state.profiles.map((profile, index) => `
-        <div class="profile-row" data-profile-index="${index}">
-          <label>Label<input type="text" value="${escapeAttr(profile.label || "")}" data-profile-field="label"></label>
-          <label>Provider
-            <select data-profile-field="provider">
-              ${providerOption("gemini", profile.provider)}
-              ${providerOption("openrouter", profile.provider)}
-              ${providerOption("openai_compatible", profile.provider)}
-            </select>
-          </label>
-          <label>Model id<input type="text" value="${escapeAttr(profile.model || "")}" data-profile-field="model"></label>
-          <label>Enabled<input type="checkbox" ${profile.enabled ? "checked" : ""} data-profile-field="enabled"></label>
-          <button type="button" class="danger" data-remove-profile="${index}">Remove</button>
-        </div>
-      `).join("");
-    }
-
-    function providerOption(value, selected) {
-      return `<option value="${value}" ${value === selected ? "selected" : ""}>${providerLabels[value]}</option>`;
-    }
-
-    function collectProfiles() {
-      return Array.from(profilesEl.querySelectorAll("[data-profile-index]")).map((row, index) => {
-        const get = (field) => row.querySelector(`[data-profile-field="${field}"]`);
-        const label = get("label").value.trim();
-        const model = get("model").value.trim();
-        return {
-          id: `${(label || model || `profile_${index + 1}`).toLowerCase().replace(/[^a-z0-9_.-]+/g, "_")}`,
-          label,
-          provider: get("provider").value,
-          model,
-          enabled: get("enabled").checked,
-          role: "comparison",
-        };
-      }).filter((profile) => profile.model);
-    }
-
     async function loadStatus() {
       try {
         const data = await requestJson(endpoints.status);
@@ -582,125 +530,471 @@
       }
     }
 
-    document.querySelectorAll("[data-provider-form]").forEach((form) => {
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const provider = form.dataset.providerForm;
-        const keyInput = form.querySelector('input[type="password"]');
-        const payload = { provider };
-        if (keyInput.value.trim()) payload.api_key = keyInput.value.trim();
-        if (provider === "gemini") {
-          payload.default_model = document.getElementById("gemini-model").value.trim();
-          payload.embedding_model = document.getElementById("gemini-embedding-model").value.trim();
-        } else if (provider === "openrouter") {
-          payload.default_model = document.getElementById("openrouter-model").value.trim();
-          payload.site_url = document.getElementById("openrouter-site-url").value.trim();
-          payload.site_name = document.getElementById("openrouter-site-name").value.trim();
-        } else {
-          payload.base_url = document.getElementById("openai-base-url").value.trim();
-          payload.default_model = document.getElementById("openai-model").value.trim();
-        }
-        try {
-          setMessage("", "");
-          const data = await requestJson(endpoints.provider, {
-            method: "POST",
-            body: JSON.stringify(payload),
-          });
-          keyInput.value = "";
-          renderStatus(data);
-          setMessage(`Saved ${providerLabels[provider]} settings.`, "success");
-        } catch (error) {
-          setMessage(error.message, "error");
-        }
-      });
-    });
+    function renderStatus(data) {
+      state.status = data;
+      state.modelProfiles = Array.isArray(data.model_profiles) ? data.model_profiles : [];
+      state.presets = Array.isArray(data.model_presets) ? data.model_presets : [];
+      renderOpenRouter(data.openrouter || {});
+      renderGemini(data.gemini || {});
+      renderEmbedding(data.embedding || {});
+      renderModelProfiles();
+      renderRoleControls();
+      renderStatusGrid(data);
+      renderWarnings(data.warnings || []);
+      statusJson.textContent = JSON.stringify(data, null, 2);
+      loadRuntimeStatus();
+    }
 
-    document.querySelectorAll("[data-test-provider]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const provider = button.dataset.testProvider;
-        const modelInput = provider === "gemini"
-          ? document.getElementById("gemini-model")
-          : provider === "openrouter"
-            ? document.getElementById("openrouter-model")
-            : document.getElementById("openai-model");
-        try {
-          const data = await requestJson(endpoints.test, {
-            method: "POST",
-            body: JSON.stringify({
-              provider,
-              model: modelInput.value.trim(),
-              role: "answer_model",
-              test_type: "configured_only",
-            }),
-          });
-          setMessage(data.configured ? `${providerLabels[provider]} is configured.` : data.error || `${providerLabels[provider]} is not configured.`, data.configured ? "success" : "error");
-        } catch (error) {
-          setMessage(error.message, "error");
-        }
-      });
-    });
-
-    document.getElementById("roles-form").addEventListener("submit", async (event) => {
-      event.preventDefault();
+    async function loadRuntimeStatus() {
       try {
-        const data = await requestJson(endpoints.roles, {
-          method: "POST",
-          body: JSON.stringify({
-            answer_model: {
-              provider: document.getElementById("answer-provider").value,
-              model: document.getElementById("answer-model").value.trim(),
-            },
-            strategy_planner_model: {
-              provider: document.getElementById("strategy-provider").value,
-              model: document.getElementById("strategy-model").value.trim(),
-            },
-            embedding_model: {
-              provider: document.getElementById("embedding-provider").value,
-              model: document.getElementById("embedding-model").value.trim(),
-            },
-          }),
-        });
-        await loadStatus();
-        setMessage(data.warnings?.length ? data.warnings.join(" ") : "Saved role-based model settings.", data.warnings?.length ? "error" : "success");
+        const data = await requestJson(endpoints.runtime);
+        renderRuntimeStatus(data);
+      } catch (error) {
+        runtimeWarningsEl.innerHTML = `<div class="error-box">${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    function renderRuntimeStatus(data) {
+      state.runtime = data;
+      const gemini = data.gemini || {};
+      const openrouter = data.openrouter || {};
+      const defaultModel = data.resolved_default_model;
+      const rows = [
+        ["Server PID", data.server_pid || "unknown"],
+        ["Server port", data.server_port || "unknown"],
+        ["Settings modified", data.settings_file_mtime || "not saved yet"],
+        ["Settings revision", data.settings_revision || "missing"],
+        ["Active default model", runtimeModelLabel(defaultModel)],
+        ["Gemini key source", runtimeKeyLabel(gemini.key_source, gemini.masked_key_suffix)],
+        ["Gemini model source", `${gemini.model_source || "missing"}${gemini.model_id ? `: ${gemini.model_id}` : ""}`],
+        ["OpenRouter key source", runtimeKeyLabel(openrouter.key_source, openrouter.masked_key_suffix)],
+      ];
+      runtimeGrid.innerHTML = rows.map(([label, value]) => `
+        <div class="status-item">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>
+      `).join("");
+      renderRuntimeWarnings(data.warnings || []);
+    }
+
+    function runtimeModelLabel(model) {
+      if (!model) return "not selected";
+      const name = model.display_name || model.model_id || "model";
+      return `${name} [${model.provider || "provider missing"}]${model.model_id ? ` (${model.model_id})` : ""}`;
+    }
+
+    function runtimeKeyLabel(source, suffix) {
+      const cleanSource = source || "missing";
+      return suffix ? `${cleanSource} (...${suffix})` : cleanSource;
+    }
+
+    function renderRuntimeWarnings(warnings) {
+      const staleGeminiModel = "gemini-" + "flash-latest";
+      const runtimeWarnings = warnings.filter((warning) => {
+        const text = String(warning || "");
+        return text.includes("Gemini environment")
+          || text.includes("OpenRouter environment")
+          || text.includes(`GEMINI_MODEL=${staleGeminiModel}`);
+      });
+      runtimeWarningsEl.innerHTML = runtimeWarnings.length
+        ? `<div class="warning">${runtimeWarnings.map(escapeHtml).join("<br>")}</div>`
+        : "";
+    }
+
+    function renderOpenRouter(openrouter) {
+      const last = openrouter.last_test?.status
+        ? `; last test ${openrouter.last_test.status}${openrouter.last_test.latency_ms ? ` ${openrouter.last_test.latency_ms}ms` : ""}`
+        : "";
+      document.getElementById("openrouter-status").textContent = `${openrouter.status || "missing key"}; ${openrouter.masked_key_display || "not configured"}${last}`;
+      document.getElementById("openrouter-base-url").value = openrouter.base_url || "https://openrouter.ai/api/v1";
+      document.getElementById("openrouter-site-url").value = openrouter.site_url || "";
+      document.getElementById("openrouter-site-name").value = openrouter.site_name || "";
+      document.getElementById("openrouter-key").value = "";
+      document.getElementById("openrouter-clear-key").checked = false;
+    }
+
+    function renderGemini(gemini) {
+      const chatLast = gemini.last_test?.status
+        ? `; chat ${gemini.last_test.status}${gemini.last_test.latency_ms ? ` ${gemini.last_test.latency_ms}ms` : ""}`
+        : "";
+      const embeddingLast = state.status?.embedding?.last_test?.status
+        ? `; embedding ${state.status.embedding.last_test.status}${state.status.embedding.last_test.latency_ms ? ` ${state.status.embedding.last_test.latency_ms}ms` : ""}`
+        : "";
+      document.getElementById("gemini-status").textContent = `${gemini.status || "missing key"}; ${gemini.masked_key_display || "not configured"}${chatLast}${embeddingLast}`;
+      document.getElementById("gemini-display-name").value = gemini.display_name || "Gemini Direct";
+      document.getElementById("gemini-model").value = gemini.model || "gemini-2.5-flash";
+      document.getElementById("gemini-embedding-model").value = gemini.embedding_model || "gemini-embedding-001";
+      document.getElementById("gemini-key").value = "";
+      document.getElementById("gemini-clear-key").checked = false;
+    }
+
+    function renderEmbedding(embedding) {
+      document.getElementById("embedding-provider").value = embedding.provider || "";
+      document.getElementById("embedding-model").value = embedding.model || "";
+    }
+
+    function renderModelProfiles() {
+      if (!state.modelProfiles.length) {
+        profilesEl.innerHTML = `<p class="meta">No model profiles saved.</p>`;
+        return;
+      }
+      profilesEl.innerHTML = state.modelProfiles.map((profile) => `
+        <form class="model-profile" data-profile-id="${escapeAttr(profile.id)}" autocomplete="off">
+          <div class="model-profile-fields">
+            <label>Provider
+              <select data-field="provider">
+                ${providerOption("openrouter", profile.provider)}
+                ${providerOption("gemini", profile.provider)}
+              </select>
+            </label>
+            <label>Display name<input type="text" data-field="display_name" value="${escapeAttr(profile.display_name)}"></label>
+            <label>Model ID<input type="text" data-field="model_id" value="${escapeAttr(profile.model_id)}"></label>
+            <label>Family/tag<input type="text" data-field="family" value="${escapeAttr(profile.family)}"></label>
+          </div>
+          <label>Notes<textarea data-field="notes">${escapeHtml(profile.notes || "")}</textarea></label>
+          <label class="check-row"><input type="checkbox" data-field="enabled" ${profile.enabled ? "checked" : ""}> Enabled</label>
+          <p class="meta">${profileTestText(profile)}</p>
+          <div class="actions">
+            <button class="primary" type="submit">Save model</button>
+            <button type="button" data-action="test">Test model</button>
+            <button class="danger" type="button" data-action="delete">Delete model</button>
+          </div>
+        </form>
+      `).join("");
+    }
+
+    function profileTestText(profile) {
+      const status = profile.last_test_status || "not tested";
+      const latency = profile.last_test_latency_ms ? `, ${profile.last_test_latency_ms}ms` : "";
+      const error = profile.last_test_error_type ? `, ${profile.last_test_error_type}` : "";
+      return `Last test: ${status}${latency}${error}`;
+    }
+
+    function providerOption(value, selected) {
+      const label = value === "gemini" ? "Gemini Direct" : "OpenRouter";
+      return `<option value="${value}" ${value === selected ? "selected" : ""}>${label}</option>`;
+    }
+
+    function renderRoleControls() {
+      const roles = state.status?.roles || {};
+      const defaultSelect = document.getElementById("default-answer-model-profile-id");
+      const strategySelect = document.getElementById("strategy-model-profile-id");
+      const options = [`<option value="">Select saved model</option>`].concat(
+        state.modelProfiles.map((profile) => `<option value="${escapeAttr(profile.id)}">${escapeHtml(profileLabel(profile))}${profile.enabled ? "" : " (disabled)"}</option>`)
+      ).join("");
+      defaultSelect.innerHTML = options;
+      strategySelect.innerHTML = `<option value="">Use default answer model</option>` + state.modelProfiles.map((profile) => `<option value="${escapeAttr(profile.id)}">${escapeHtml(profileLabel(profile))}${profile.enabled ? "" : " (disabled)"}</option>`).join("");
+      defaultSelect.value = roles.default_answer_model_profile_id || "";
+      strategySelect.value = roles.strategy_model_profile_id || "";
+
+      const compareIds = new Set(Array.isArray(roles.compare_model_profile_ids) ? roles.compare_model_profile_ids : []);
+      const compareEl = document.getElementById("compare-model-profile-ids");
+      compareEl.innerHTML = state.modelProfiles.length
+        ? state.modelProfiles.map((profile) => `
+            <label class="check-row">
+              <input type="checkbox" value="${escapeAttr(profile.id)}" ${compareIds.has(profile.id) ? "checked" : ""} ${profile.enabled ? "" : "disabled"}>
+              ${escapeHtml(profileLabel(profile))}
+            </label>
+          `).join("")
+        : `<p class="meta">No saved models available.</p>`;
+
+      const roleWarnings = [];
+      if (!roles.default_answer_model_profile_id) {
+        roleWarnings.push("No default answer model is selected.");
+      }
+      (state.status?.warnings || []).forEach((warning) => {
+        if (String(warning).toLowerCase().includes("role")) roleWarnings.push(warning);
+      });
+      roleWarningsEl.innerHTML = roleWarnings.length ? `<div class="warning">${roleWarnings.map(escapeHtml).join("<br>")}</div>` : "";
+    }
+
+    function renderStatusGrid(data) {
+      const openrouter = data.openrouter || {};
+      const gemini = data.gemini || {};
+      const embedding = data.embedding || {};
+      const roles = data.roles || {};
+      const profileById = Object.fromEntries(state.modelProfiles.map((profile) => [profile.id, profile]));
+      const rows = [
+        ["OpenRouter key", openrouter.status || "missing key"],
+        ["Gemini key", gemini.status || "missing key"],
+        ["Gemini chat test", testStatusText(gemini.last_test)],
+        ["Gemini embedding test", testStatusText(embedding.last_test)],
+        ["Base URL", openrouter.base_url || "https://openrouter.ai/api/v1"],
+        ["Default answer", profileLabel(profileById[roles.default_answer_model_profile_id]) || "not selected"],
+        ["Strategy", profileLabel(profileById[roles.strategy_model_profile_id]) || "uses default"],
+        ["Compare slots", String((roles.compare_model_profile_ids || []).length)],
+        ["Embedding", embedding.provider ? `${embedding.provider}: ${embedding.model || "model not set"}` : "not configured"],
+      ];
+      statusGrid.innerHTML = rows.map(([label, value]) => `
+        <div class="status-item">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>
+      `).join("");
+    }
+
+    function profileLabel(profile) {
+      if (!profile) return "";
+      const provider = profile.provider === "gemini" ? "Gemini" : "OpenRouter";
+      return `${profile.display_name || profile.model_id} [${provider}] (${profile.model_id})`;
+    }
+
+    function testStatusText(test) {
+      if (!test || !test.status) return "not tested";
+      const code = test.status_code ? ` HTTP ${test.status_code}` : "";
+      const latency = test.latency_ms ? ` ${test.latency_ms}ms` : "";
+      return `${test.status}${code}${latency}`;
+    }
+
+    function providerTestMessage(prefix, data) {
+      const suffix = data.latency_ms ? ` (${data.latency_ms}ms)` : "";
+      if (data.ok) return `${prefix} succeeded${suffix}.`;
+      const details = [data.error_type, data.status_code ? `HTTP ${data.status_code}` : "", data.message].filter(Boolean).join(": ");
+      return details || `${prefix} failed.`;
+    }
+
+    function renderWarnings(warnings) {
+      warningsEl.innerHTML = warnings.length
+        ? `<div class="warning">${warnings.map(escapeHtml).join("<br>")}</div>`
+        : "";
+    }
+
+    function collectProfilePayload(form) {
+      const get = (field) => form.querySelector(`[data-field="${field}"]`);
+      return {
+        provider: get("provider").value,
+        display_name: get("display_name").value.trim(),
+        model_id: get("model_id").value.trim(),
+        family: get("family").value.trim(),
+        notes: get("notes").value.trim(),
+        enabled: get("enabled").checked,
+      };
+    }
+
+    document.getElementById("openrouter-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        api_key: document.getElementById("openrouter-key").value.trim(),
+        base_url: document.getElementById("openrouter-base-url").value.trim(),
+        site_url: document.getElementById("openrouter-site-url").value.trim(),
+        site_name: document.getElementById("openrouter-site-name").value.trim(),
+        clear_key: document.getElementById("openrouter-clear-key").checked,
+      };
+      try {
+        const data = await requestJson(endpoints.openrouter, { method: "POST", body: JSON.stringify(payload) });
+        renderStatus(data);
+        setMessage("Saved OpenRouter settings.", "success");
       } catch (error) {
         setMessage(error.message, "error");
       }
     });
 
-    document.getElementById("embedding-provider").addEventListener("change", () => {
-      renderWarnings(state.status?.warnings || []);
-    });
+    document.getElementById("refresh-runtime-status").addEventListener("click", loadRuntimeStatus);
 
-    document.getElementById("add-profile").addEventListener("click", () => {
-      state.profiles.push({
-        id: `profile_${state.profiles.length + 1}`,
-        label: "New comparison model",
-        provider: "openrouter",
-        model: "",
-        enabled: false,
-        role: "comparison",
-      });
-      renderProfiles();
-    });
-
-    profilesEl.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-remove-profile]");
-      if (!button) return;
-      state.profiles = collectProfiles();
-      state.profiles.splice(Number(button.dataset.removeProfile), 1);
-      renderProfiles();
-    });
-
-    document.getElementById("save-profiles").addEventListener("click", async () => {
+    document.getElementById("test-openrouter-key").addEventListener("click", async () => {
       try {
-        const data = await requestJson(endpoints.comparison, {
-          method: "PUT",
-          body: JSON.stringify({ comparison_models: collectProfiles() }),
-        });
-        state.profiles = data.comparison_models || [];
-        renderProfiles();
+        const data = await requestJson(endpoints.testKey, { method: "POST", body: JSON.stringify({}) });
         await loadStatus();
-        setMessage("Saved comparison model profiles.", "success");
+        const suffix = data.latency_ms ? ` (${data.latency_ms}ms)` : "";
+        setMessage(data.ok ? `OpenRouter key test succeeded${suffix}.` : data.message || "OpenRouter key test failed.", data.ok ? "success" : "error");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("clear-openrouter-key").addEventListener("click", async () => {
+      if (!confirm("Clear the saved OpenRouter key?")) return;
+      try {
+        const data = await requestJson(endpoints.openrouter, { method: "POST", body: JSON.stringify({ clear_key: true }) });
+        renderStatus(data);
+        setMessage("Cleared saved OpenRouter key.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("gemini-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        api_key: document.getElementById("gemini-key").value.trim(),
+        display_name: document.getElementById("gemini-display-name").value.trim(),
+        model: document.getElementById("gemini-model").value.trim(),
+        embedding_model: document.getElementById("gemini-embedding-model").value.trim(),
+        clear_key: document.getElementById("gemini-clear-key").checked,
+      };
+      try {
+        const data = await requestJson(endpoints.gemini, { method: "POST", body: JSON.stringify(payload) });
+        renderStatus(data);
+        setMessage("Saved Gemini settings.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("test-gemini-chat").addEventListener("click", async () => {
+      try {
+        const data = await requestJson(endpoints.testGeminiChat, {
+          method: "POST",
+          body: JSON.stringify({ model_id: document.getElementById("gemini-model").value.trim() }),
+        });
+        await loadStatus();
+        setMessage(providerTestMessage("Gemini chat test", data), data.ok ? "success" : "error");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("test-gemini-embedding").addEventListener("click", async () => {
+      try {
+        const data = await requestJson(endpoints.testGeminiEmbedding, {
+          method: "POST",
+          body: JSON.stringify({ model_id: document.getElementById("gemini-embedding-model").value.trim() }),
+        });
+        await loadStatus();
+        setMessage(providerTestMessage("Gemini embedding test", data), data.ok ? "success" : "error");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("clear-gemini-key").addEventListener("click", async () => {
+      if (!confirm("Clear the saved Gemini key?")) return;
+      try {
+        const data = await requestJson(endpoints.gemini, { method: "POST", body: JSON.stringify({ clear_key: true }) });
+        renderStatus(data);
+        setMessage("Cleared saved Gemini key.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.querySelectorAll("[data-preset]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const preset = state.presets.find((item) => item.id === button.dataset.preset);
+        if (!preset) return;
+        document.getElementById("new-provider").value = preset.provider || "openrouter";
+        document.getElementById("new-display-name").value = preset.display_name || "";
+        document.getElementById("new-model-id").value = preset.model_id || "";
+        document.getElementById("new-family").value = preset.family || "";
+      });
+    });
+
+    document.getElementById("new-model-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        provider: document.getElementById("new-provider").value,
+        display_name: document.getElementById("new-display-name").value.trim(),
+        model_id: document.getElementById("new-model-id").value.trim(),
+        family: document.getElementById("new-family").value.trim(),
+        notes: document.getElementById("new-notes").value.trim(),
+        enabled: true,
+      };
+      try {
+        const data = await requestJson(endpoints.models, { method: "POST", body: JSON.stringify(payload) });
+        renderStatus(data);
+        event.target.reset();
+        setMessage("Added model profile.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    profilesEl.addEventListener("submit", async (event) => {
+      const form = event.target.closest("[data-profile-id]");
+      if (!form) return;
+      event.preventDefault();
+      try {
+        const data = await requestJson(`${endpoints.models}/${encodeURIComponent(form.dataset.profileId)}`, {
+          method: "PUT",
+          body: JSON.stringify(collectProfilePayload(form)),
+        });
+        renderStatus(data);
+        setMessage("Saved model profile.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    profilesEl.addEventListener("click", async (event) => {
+      const button = event.target.closest("[data-action]");
+      const form = event.target.closest("[data-profile-id]");
+      if (!button || !form) return;
+      const profileId = encodeURIComponent(form.dataset.profileId);
+      try {
+        if (button.dataset.action === "test") {
+          const data = await requestJson(`${endpoints.models}/${profileId}/test`, { method: "POST", body: JSON.stringify({}) });
+          await loadStatus();
+          const suffix = data.latency_ms ? ` (${data.latency_ms}ms)` : "";
+          setMessage(data.ok ? `Model test succeeded${suffix}.` : data.message || "Model test failed.", data.ok ? "success" : "error");
+        }
+        if (button.dataset.action === "delete" && confirm("Delete this model profile?")) {
+          const data = await requestJson(`${endpoints.models}/${profileId}`, { method: "DELETE" });
+          renderStatus(data);
+          setMessage("Deleted model profile.", "success");
+        }
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("test-all-models").addEventListener("click", async () => {
+      try {
+        const data = await requestJson(endpoints.testAll, { method: "POST", body: JSON.stringify({}) });
+        await loadStatus();
+        const failures = (data.results || []).filter((result) => !result.ok).length;
+        setMessage(failures ? `${failures} model test(s) failed.` : "Enabled model tests completed.", failures ? "error" : "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("clear-model-profiles").addEventListener("click", async () => {
+      if (!state.modelProfiles.length || !confirm("Delete all saved model profiles?")) return;
+      try {
+        for (const profile of [...state.modelProfiles]) {
+          await requestJson(`${endpoints.models}/${encodeURIComponent(profile.id)}`, { method: "DELETE" });
+        }
+        await loadStatus();
+        setMessage("Cleared saved model profiles.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("roles-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const compareIds = Array.from(document.querySelectorAll("#compare-model-profile-ids input:checked")).map((input) => input.value).slice(0, 6);
+      if (compareIds.length > 0 && compareIds.length < 3) {
+        setMessage("Select at least 3 compare models when comparison roles are configured.", "error");
+        return;
+      }
+      const payload = {
+        default_answer_model_profile_id: document.getElementById("default-answer-model-profile-id").value,
+        strategy_model_profile_id: document.getElementById("strategy-model-profile-id").value,
+        compare_model_profile_ids: compareIds,
+      };
+      try {
+        const data = await requestJson(endpoints.roles, { method: "POST", body: JSON.stringify(payload) });
+        renderStatus(data);
+        setMessage("Saved role assignments.", "success");
+      } catch (error) {
+        setMessage(error.message, "error");
+      }
+    });
+
+    document.getElementById("embedding-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        embedding: {
+          provider: document.getElementById("embedding-provider").value,
+          model: document.getElementById("embedding-model").value.trim(),
+        },
+      };
+      try {
+        const data = await requestJson(endpoints.saveLegacy, { method: "POST", body: JSON.stringify(payload) });
+        renderStatus(data);
+        setMessage("Saved embedding configuration.", "success");
       } catch (error) {
         setMessage(error.message, "error");
       }
@@ -708,11 +1002,11 @@
 
     function escapeHtml(value) {
       return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
     function escapeAttr(value) {

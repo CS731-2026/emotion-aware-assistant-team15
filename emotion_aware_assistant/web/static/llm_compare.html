@@ -8,7 +8,7 @@
     :root {
       color-scheme: light;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f4f6f8;
+      background: #f5f7fb;
       color: #182230;
     }
 
@@ -25,14 +25,14 @@
       width: min(1280px, 100%);
       margin: 0 auto;
       display: grid;
-      gap: 18px;
+      gap: 14px;
     }
 
-    header, section {
+    header, section, .panel {
       background: #ffffff;
       border: 1px solid #d8e0ea;
       border-radius: 8px;
-      padding: 18px;
+      padding: 16px;
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
     }
 
@@ -42,11 +42,12 @@
 
     h1 {
       font-size: 28px;
+      line-height: 1.15;
     }
 
     h2 {
       font-size: 18px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     h3 {
@@ -59,17 +60,20 @@
       line-height: 1.5;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 360px minmax(0, 1fr);
-      gap: 14px;
+    .tabs, .actions, .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
     }
 
-    .row, .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
+    .tab-button[aria-selected="true"] {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
     }
 
     label {
@@ -92,7 +96,7 @@
 
     textarea {
       width: 100%;
-      min-height: 76px;
+      min-height: 96px;
       resize: vertical;
     }
 
@@ -117,56 +121,36 @@
       color: #b42318;
     }
 
-    .snapshot-list, .results {
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .library-layout {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .prompt-list, .model-list, .result-list, .evaluation-list, .directory-grid {
       display: grid;
       gap: 10px;
     }
 
-    .snapshot-item, .model-row, .result-card {
-      border: 1px solid #dfe7ef;
-      border-radius: 8px;
-      background: #fbfcfe;
-      padding: 12px;
-    }
-
-    .snapshot-item {
-      display: grid;
-      gap: 6px;
-      text-align: left;
-      width: 100%;
-    }
-
-    .snapshot-item.active {
-      outline: 2px solid #2563eb;
-    }
-
-    .model-row {
-      display: grid;
-      grid-template-columns: auto 1fr 140px 1.5fr 100px 100px auto;
-      gap: 8px;
-      align-items: end;
-    }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 12px;
-    }
-
-    pre {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      background: #f1f5f9;
-      color: #182230;
-      padding: 12px;
-      border-radius: 6px;
-      max-height: 420px;
-      overflow: auto;
-      font-size: 12px;
-    }
-
     details {
-      border: 1px solid #e2e8f0;
+      border: 1px solid #dfe7ef;
       border-radius: 8px;
       padding: 10px;
       background: #fbfcfe;
@@ -177,11 +161,87 @@
       font-weight: 750;
     }
 
-    .scores {
+    .prompt-button, .model-row, .result-card, .score-card, .evaluation-row {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+    }
+
+    .prompt-button {
+      width: 100%;
+      display: grid;
+      gap: 5px;
+      text-align: left;
+      margin-top: 8px;
+    }
+
+    .prompt-button.active {
+      outline: 2px solid #2563eb;
+    }
+
+    .prompt-directory {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .directory-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid #e7edf5;
+      padding-top: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: #344054;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .model-row {
+      display: grid;
+      grid-template-columns: auto 1fr 110px 1.4fr 130px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .result-card details {
+      margin-top: 8px;
+    }
+
+    .score-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
       margin-top: 10px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #f1f5f9;
+      color: #182230;
+      padding: 12px;
+      border-radius: 6px;
+      max-height: 360px;
+      overflow: auto;
+      font-size: 12px;
     }
 
     .message {
@@ -205,37 +265,9 @@
       padding: 10px;
     }
 
-    .empty-state {
-      display: grid;
-      gap: 10px;
-      border: 1px dashed #b8c4d4;
-      border-radius: 8px;
-      background: #fbfcfe;
-      padding: 14px;
-    }
-
-    .empty-state ol {
-      margin: 0;
-      padding-left: 20px;
-      color: #52616f;
-      line-height: 1.5;
-    }
-
-    .check-list {
-      display: grid;
-      gap: 4px;
-      margin: 10px 0;
-      color: #25313d;
-      font-size: 13px;
-    }
-
     @media (max-width: 980px) {
-      .grid, .model-row {
+      .grid-2, .grid-3, .library-layout, .model-row, .settings-grid, .score-grid, .directory-row {
         grid-template-columns: 1fr;
-      }
-
-      .scores {
-        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -243,116 +275,157 @@
 <body>
   <main>
     <header>
-      <h1>Prompt-based LLM Compare</h1>
-      <p>Compare real prompt snapshots saved by /pdf-chat: RAG baseline prompts, strategy planner prompts, and strategy-conditioned adaptive prompts.</p>
+      <h1>Manual LLM Evaluation Workspace</h1>
+      <p>Prompt-based LLM Compare sends one selected prompt to selected OpenRouter or Gemini model profiles, then stores manual scores for report tables.</p>
     </header>
 
     <div id="message" class="message" role="status"></div>
 
-    <section aria-labelledby="snapshot-title">
-      <h2 id="snapshot-title">Snapshot selector</h2>
-      <div class="row">
-        <label>
-          Stage filter
-          <select id="stage-filter">
-            <option value="">All stages</option>
-            <option value="rag_baseline">RAG baseline</option>
-            <option value="strategy_planner">Strategy planner</option>
-            <option value="emotion_strategy">Strategy-conditioned answer</option>
-          </select>
-        </label>
-        <label>
-          Document filter
-          <input id="document-filter" type="text" placeholder="optional document_id">
-        </label>
-        <button type="button" id="refresh-snapshots">Refresh snapshots</button>
+    <section id="selected-prompt-panel" aria-labelledby="selected-title">
+      <h2 id="selected-title">Selected prompt</h2>
+      <div id="selected-prompt-summary" class="muted">Select a prompt from the Prompt Library.</div>
+      <div class="actions" style="margin-top: 10px;">
+        <button type="button" class="primary" id="run-selected-compare">Run compare with this prompt</button>
+        <button type="button" id="quick-model-check">Quick model check</button>
+        <button type="button" id="copy-selected-prompt">Copy prompt</button>
       </div>
-      <div class="grid" style="margin-top: 12px;">
-        <div id="snapshot-list" class="snapshot-list"></div>
+    </section>
+
+    <nav class="tabs" aria-label="Compare workspace tabs">
+      <button type="button" class="tab-button" data-tab="library" aria-selected="true">Prompt Library</button>
+      <button type="button" class="tab-button" data-tab="run">Compare Run</button>
+      <button type="button" class="tab-button" data-tab="results">Results & Scoring</button>
+      <button type="button" class="tab-button" data-tab="saved">Saved Evaluations</button>
+    </nav>
+
+    <section class="tab-panel" data-panel="library" aria-labelledby="library-title">
+      <h2 id="library-title">Prompt Library</h2>
+      <div id="prompt-directory" class="prompt-directory">
+        <h3>Prompt Directory</h3>
+        <p class="muted">Total prompts: 0</p>
+        <div class="actions" style="margin-top: 8px;">
+          <button type="button" id="expand-all-categories">Expand all</button>
+          <button type="button" id="collapse-all-categories">Collapse all</button>
+        </div>
+      </div>
+      <div class="actions">
+        <label>
+          Search/filter
+          <input id="prompt-search" type="search" placeholder="Search prompts">
+        </label>
+        <button type="button" id="refresh-prompts">Refresh</button>
+        <button type="button" class="primary" id="create-prompt">Create prompt</button>
+        <button type="button" id="duplicate-prompt">Duplicate prompt</button>
+        <button type="button" id="edit-prompt">Edit prompt</button>
+        <button type="button" class="danger" id="delete-prompt">Delete prompt</button>
+      </div>
+      <div class="library-layout" style="margin-top: 12px;">
+        <div id="prompt-library" class="prompt-list"></div>
+        <form id="prompt-editor" class="panel" autocomplete="off">
+          <h3>Prompt editor</h3>
+          <div class="grid-2">
+            <label>Title<input id="prompt-title" type="text"></label>
+            <label>Category
+              <select id="prompt-category">
+                <option>Base Prompt</option>
+                <option>Planner Prompt</option>
+                <option>Strategy Response Prompt</option>
+                <option>Custom / Experimental</option>
+              </select>
+            </label>
+          </div>
+          <label>Subcategory<input id="prompt-subcategory" type="text" list="planner-subcategories" placeholder="Optional"></label>
+          <datalist id="planner-subcategories">
+            <option value="Confusion"></option>
+            <option value="Frustration"></option>
+            <option value="Boredom"></option>
+            <option value="Engagement"></option>
+            <option value="Mixed / uncertain"></option>
+          </datalist>
+          <label>Description<textarea id="prompt-description"></textarea></label>
+          <label>Full prompt text<textarea id="prompt-text"></textarea></label>
+          <label>Variables/placeholders<input id="prompt-variables" type="text" placeholder="selected_passage, paper_context"></label>
+          <div class="actions">
+            <button type="submit" class="primary">Save prompt</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="run" hidden aria-labelledby="run-title">
+      <h2 id="run-title">Compare Run</h2>
+      <div class="grid-2">
         <div>
-          <h3>Prompt preview</h3>
-          <div id="prompt-preview" class="muted">Select a saved prompt snapshot.</div>
+          <h3>Model selection</h3>
+          <p class="muted">Temporary deselection affects only this compare run. Direct OpenAI is not available here.</p>
+          <div id="model-list" class="model-list" style="margin-top: 10px;"></div>
+          <div class="actions" style="margin-top: 10px;">
+            <button type="button" id="reload-models">Reload compare profiles</button>
+          </div>
+        </div>
+        <div>
+          <h3>Generation settings</h3>
+          <p class="muted">temperature controls randomness; top_p controls nucleus sampling; top_k restricts sampling to the top k tokens.</p>
+          <div class="settings-grid" style="margin-top: 10px;">
+            <label>Temperature<input id="temperature" type="number" step="0.1" min="0" max="2" value="0.2"></label>
+            <label>top_p<input id="top-p" type="number" step="0.05" min="0" max="1" value="0.9"></label>
+            <label>top_k<input id="top-k" type="number" min="1" placeholder="optional"></label>
+            <label>max_tokens<input id="max-tokens" type="number" min="1" value="700"></label>
+            <label>timeout<input id="timeout" type="number" min="1" value="60"></label>
+          </div>
+          <p class="muted" style="margin-top: 10px;">If top_k is blank, it is not sent.</p>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="models-title">
-      <h2 id="models-title">Model selection</h2>
-      <p class="note">OpenRouter model availability, pricing, and rate limits may change. Enter any model ID you want to test.</p>
-      <div id="model-list" style="display: grid; gap: 10px; margin-top: 12px;"></div>
-      <div class="actions" style="margin-top: 12px;">
-        <button type="button" id="add-model">Add model row</button>
-        <button type="button" id="load-settings-models">Load comparison profiles from settings</button>
-        <button type="button" class="primary" id="run-comparison">Run comparison</button>
-      </div>
-    </section>
-
-    <section aria-labelledby="results-title">
-      <h2 id="results-title">Results</h2>
-      <div id="results" class="results muted">Run a comparison to see outputs side by side.</div>
-    </section>
-
-    <section aria-labelledby="manual-title">
-      <h2 id="manual-title">Manual evaluation</h2>
-      <p class="muted">Rubric fields change by snapshot stage. Strategy planner comparisons focus on JSON validity, pedagogical strategy quality, context sensitivity, safety wording, and usefulness for next explanation.</p>
-      <div id="manual-evaluation" class="results"></div>
-      <label style="margin-top: 12px;">
-        Notes
-        <textarea id="comparison-notes" placeholder="Overall comparison notes"></textarea>
-      </label>
-    </section>
-
-    <section aria-labelledby="export-title">
-      <h2 id="export-title">Export</h2>
+    <section class="tab-panel" data-panel="results" hidden aria-labelledby="results-title">
+      <h2 id="results-title">Results & Scoring</h2>
       <div class="actions">
-        <button type="button" id="copy-json">Copy JSON</button>
-        <button type="button" id="download-json">Download JSON</button>
-        <button type="button" id="download-markdown">Download Markdown summary</button>
-        <button type="button" id="save-comparison">Save comparison</button>
+        <button type="button" id="export-current-json">Export current run as JSON</button>
       </div>
+      <div id="results" class="result-list muted" style="margin-top: 12px;">Run a comparison to see model outputs.</div>
+    </section>
+
+    <section class="tab-panel" data-panel="saved" hidden aria-labelledby="saved-title">
+      <h2 id="saved-title">Saved Evaluations</h2>
+      <div class="actions">
+        <button type="button" id="refresh-evaluations">Refresh saved evaluations</button>
+        <button type="button" id="export-evaluations-csv">Export saved evaluations as CSV</button>
+      </div>
+      <div id="saved-evaluations" class="evaluation-list muted" style="margin-top: 12px;">No saved evaluations loaded.</div>
     </section>
   </main>
 
   <script>
-    const defaultModels = [
-      { enabled: true, label: "Gemini Flash", provider: "gemini", model: "gemini-flash-latest", temperature: 0.2, max_tokens: 800 },
-      { enabled: false, label: "DeepSeek Chat V3 Free", provider: "openrouter", model: "deepseek/deepseek-chat-v3-0324:free", temperature: 0.2, max_tokens: 800 },
-      { enabled: false, label: "DeepSeek R1 Free", provider: "openrouter", model: "deepseek/deepseek-r1:free", temperature: 0.2, max_tokens: 800 },
-      { enabled: false, label: "GPT via OpenRouter", provider: "openrouter", model: "openai/gpt-5.2", temperature: 0.2, max_tokens: 800 },
-      { enabled: false, label: "Custom OpenRouter Model", provider: "openrouter", model: "", temperature: 0.2, max_tokens: 800 },
+    const EXPANDED_CATEGORIES_KEY = "llmCompareExpandedCategories";
+    const categories = [
+      "Base Prompt",
+      "Planner Prompt",
+      "Strategy Response Prompt",
+      "Custom / Experimental",
     ];
 
     const state = {
-      snapshots: [],
-      selectedSnapshot: null,
-      models: defaultModels.map((item) => ({ ...item })),
+      prompts: [],
+      selectedPrompt: null,
+      editingPromptId: "",
+      models: [],
       comparison: null,
-      manualScores: {},
+      evaluations: [],
+      expandedCategories: loadExpandedCategories(),
     };
 
-    function maxTokensForStage(stage) {
-      return stage === "strategy_planner" ? 3000 : 800;
-    }
-
-    function applyStageModelDefaults(model, stage) {
-      const fallback = maxTokensForStage(stage);
-      const tokens = Number(model.max_tokens || 0);
-      if (stage === "strategy_planner" && (!tokens || tokens <= 800)) {
-        return { ...model, max_tokens: fallback };
-      }
-      return { ...model, max_tokens: tokens || fallback };
-    }
-
     const message = document.getElementById("message");
-    const snapshotList = document.getElementById("snapshot-list");
-    const promptPreview = document.getElementById("prompt-preview");
+    const promptDirectory = document.getElementById("prompt-directory");
+    const promptLibrary = document.getElementById("prompt-library");
+    const selectedSummary = document.getElementById("selected-prompt-summary");
     const modelList = document.getElementById("model-list");
     const resultsEl = document.getElementById("results");
-    const manualEl = document.getElementById("manual-evaluation");
+    const savedEvaluationsEl = document.getElementById("saved-evaluations");
 
-    function setMessage(text, tone) {
+    function setMessage(text, tone = "") {
       message.textContent = text || "";
-      message.dataset.tone = tone || "";
+      message.dataset.tone = tone;
     }
 
     async function requestJson(url, options = {}) {
@@ -365,303 +438,425 @@
       return payload;
     }
 
-    async function loadSnapshots() {
-      const params = new URLSearchParams();
-      const stage = document.getElementById("stage-filter").value;
-      const documentId = document.getElementById("document-filter").value.trim();
-      if (stage) params.set("stage", stage);
-      if (documentId) params.set("document_id", documentId);
-      const payload = await requestJson(`/api/llm-compare/prompt-snapshots?${params.toString()}`);
-      state.snapshots = payload.prompt_snapshots || [];
-      renderSnapshots(payload.message || "");
+    function switchTab(name) {
+      document.querySelectorAll("[data-tab]").forEach((button) => {
+        button.setAttribute("aria-selected", button.dataset.tab === name ? "true" : "false");
+      });
+      document.querySelectorAll("[data-panel]").forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== name;
+      });
     }
 
-    function renderSnapshots(emptyMessage = "") {
-      if (!state.snapshots.length) {
-        const stage = document.getElementById("stage-filter").value;
-        const documentId = document.getElementById("document-filter").value.trim();
-        const filtersActive = Boolean(stage || documentId);
-        snapshotList.innerHTML = filtersActive ? `
-          <div class="empty-state">
-            <h3>No prompt snapshots match the current filters.</h3>
-            <div class="actions">
-              <button type="button" id="clear-snapshot-filters">Clear filters</button>
-              <button type="button" id="open-pdf-chat-empty-filtered">Open /pdf-chat</button>
-            </div>
-          </div>
-        ` : `
-          <div class="empty-state">
-            <h3>No prompt snapshots found.</h3>
-            <p>Run a new explanation in /pdf-chat first:</p>
-            <ol>
-              <li>Select a passage.</li>
-              <li>Click Explain.</li>
-              <li>Optionally choose a strategy.</li>
-              <li>Then return here.</li>
-            </ol>
-            <div class="actions">
-              <button type="button" id="open-pdf-chat-empty">Open /pdf-chat</button>
-            </div>
-          </div>
-        `;
+    function loadExpandedCategories() {
+      try {
+        const raw = window.localStorage?.getItem(EXPANDED_CATEGORIES_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (Array.isArray(parsed)) return new Set(parsed);
+      } catch (_error) {
+        return new Set(categories.map(categoryId));
+      }
+      return new Set(categories.map(categoryId));
+    }
+
+    function saveExpandedCategories() {
+      try {
+        window.localStorage?.setItem(EXPANDED_CATEGORIES_KEY, JSON.stringify(Array.from(state.expandedCategories)));
+      } catch (_error) {
         return;
       }
-      snapshotList.innerHTML = state.snapshots.map((snapshot) => {
-        const summary = snapshot.summary || {};
-        const stage = stageLabel(snapshot.stage);
-        const secondary = snapshot.stage === "strategy_planner"
-          ? [
-            `cue ${summary.support_cue || "n/a"}`,
-            `dominant ${summary.dominant_state || "n/a"}`,
-            `allowed strategy families ${(summary.allowed_strategy_families || []).join(", ") || "n/a"}`,
-            `baseline ${summary.baseline_explanation_length || 0} chars`,
-            `window ${summary.reaction_window_duration || 0}s`,
-          ].join(" · ")
-          : `${summary.strategy_family || "no strategy"}${summary.pedagogical_move ? ` · ${summary.pedagogical_move}` : ""}`;
-        return `
-          <button type="button" class="snapshot-item ${state.selectedSnapshot?.snapshot_id === snapshot.snapshot_id ? "active" : ""}" data-snapshot-id="${escapeAttr(snapshot.snapshot_id)}">
-            <strong>${escapeHtml(stage)} · ${escapeHtml(snapshot.created_at)}</strong>
-            <span>${escapeHtml(summary.selected_text_preview || "No text preview")}</span>
-            <span class="muted">${escapeHtml(snapshot.document_id)} · page ${escapeHtml(summary.page_number || "")} · ${escapeHtml(secondary)}</span>
-          </button>
-        `;
-      }).join("");
     }
 
-    function stageLabel(stage) {
-      if (stage === "rag_baseline") return "RAG baseline";
-      if (stage === "strategy_planner") return "Strategy planner";
-      if (stage === "emotion_strategy") return "Strategy-conditioned answer";
-      return stage || "Unknown stage";
+    function categoryId(category) {
+      return String(category || "custom")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "custom";
     }
 
-    async function selectSnapshot(snapshotId) {
-      const payload = await requestJson(`/api/llm-compare/prompt-snapshots/${encodeURIComponent(snapshotId)}`);
-      state.selectedSnapshot = payload.snapshot;
-      state.models = collectModels().map((model) => applyStageModelDefaults(model, state.selectedSnapshot.stage));
-      renderSnapshots();
-      renderModels();
-      renderPromptPreview();
+    function isCategoryExpanded(categoryIdValue) {
+      return state.expandedCategories.has(categoryIdValue);
     }
 
-    function renderPromptPreview() {
-      const snapshot = state.selectedSnapshot;
-      if (!snapshot) {
-        promptPreview.textContent = "Select a saved prompt snapshot.";
+    function setCategoryExpanded(categoryIdValue, expanded) {
+      if (expanded) state.expandedCategories.add(categoryIdValue);
+      else state.expandedCategories.delete(categoryIdValue);
+      saveExpandedCategories();
+    }
+
+    function fullPromptText(prompt) {
+      return prompt?.full_prompt_text || prompt?.prompt_text || "";
+    }
+
+    function promptPreview(prompt) {
+      const lines = fullPromptText(prompt).split(/\n+/).map((line) => line.trim()).filter(Boolean);
+      const preview = lines.slice(0, 2).join(" ");
+      return preview.length > 220 ? `${preview.slice(0, 220)}...` : preview;
+    }
+
+    async function loadPrompts() {
+      const search = document.getElementById("prompt-search").value.trim();
+      const payload = await requestJson(`/api/llm-compare/prompts${search ? `?search=${encodeURIComponent(search)}` : ""}`);
+      state.prompts = payload.prompts || [];
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+      if (!state.selectedPrompt && state.prompts[0]) selectPrompt(state.prompts[0].id);
+    }
+
+    function renderPromptLibrary(groups) {
+      if (!state.prompts.length) {
+        promptLibrary.innerHTML = `<p class="muted">No prompts found. Create prompt or run /pdf-chat to save prompt snapshots.</p>`;
         return;
       }
-      const messages = (snapshot.messages || []).map((message) => `
-        <details open>
-          <summary>${escapeHtml(message.role)}</summary>
-          <pre>${escapeHtml(message.content || "")}</pre>
+      promptLibrary.innerHTML = groups.filter((group) => group.prompts.length).map((group) => `
+        <details id="prompt-category-${escapeAttr(group.id)}" data-category-id="${escapeAttr(group.id)}" ${isCategoryExpanded(group.id) ? "open" : ""}>
+          <summary>${escapeHtml(group.category)} (${group.prompts.length}) ${isCategoryExpanded(group.id) ? "" : "collapsed"}</summary>
+          ${group.prompts.map((prompt) => `
+            <button type="button" class="prompt-button ${state.selectedPrompt?.id === prompt.id ? "active" : ""}" data-prompt-id="${escapeAttr(prompt.id)}">
+              <strong>${escapeHtml(prompt.title)}</strong>
+              <span class="muted">${escapeHtml(prompt.subcategory || prompt.description || "")}</span>
+              <span>${escapeHtml(promptPreview(prompt))}</span>
+              <span class="muted">${escapeHtml(prompt.source || "custom")} · ${escapeHtml(prompt.updated_at || prompt.created_at || "")}</span>
+            </button>
+          `).join("")}
         </details>
       `).join("");
-      promptPreview.innerHTML = `
-        <div class="actions" style="margin-bottom: 10px;">
-          <button type="button" id="copy-prompt">Copy prompt</button>
+    }
+
+    function renderPromptDirectory(groups) {
+      const total = state.prompts.length;
+      promptDirectory.innerHTML = `
+        <h3>Prompt Directory</h3>
+        <p class="muted">Total prompts: ${total}</p>
+        <div class="actions" style="margin-top: 8px;">
+          <button type="button" id="expand-all-categories">Expand all</button>
+          <button type="button" id="collapse-all-categories">Collapse all</button>
         </div>
-        <dl>
-          <dt>stage</dt><dd>${escapeHtml(snapshot.stage)}</dd>
-          <dt>provider/model</dt><dd>${escapeHtml(snapshot.provider)} / ${escapeHtml(snapshot.model)}</dd>
-        </dl>
-        <details>
-          <summary>Context summary</summary>
-          <pre>${escapeHtml(JSON.stringify(snapshot.context_summary || {}, null, 2))}</pre>
-        </details>
-        ${messages}
+        <div class="directory-grid" style="margin-top: 10px;">
+          ${groups.map((group) => directoryRow(group)).join("")}
+        </div>
       `;
-      document.getElementById("copy-prompt").addEventListener("click", () => {
-        navigator.clipboard?.writeText(snapshot.prompt_text || JSON.stringify(snapshot.messages || [], null, 2));
-      });
+    }
+
+    function directoryRow(group) {
+      const subcategories = subcategoryCounts(group.prompts);
+      return `
+        <div class="directory-row">
+          <div>
+            <strong>${escapeHtml(group.category)} (${group.prompts.length})</strong>
+            ${subcategories.length ? `<p class="muted">${subcategories.map((item) => `${escapeHtml(item.name)} ${item.count}`).join(" · ")}</p>` : ""}
+          </div>
+          <span class="badge">${isCategoryExpanded(group.id) ? "expanded" : "collapsed"}</span>
+          <button type="button" data-category-jump="${escapeAttr(group.id)}">Jump</button>
+        </div>
+      `;
+    }
+
+    function subcategoryCounts(prompts) {
+      const counts = new Map();
+      for (const prompt of prompts) {
+        const name = prompt.subcategory || "";
+        if (!name) continue;
+        counts.set(name, (counts.get(name) || 0) + 1);
+      }
+      return Array.from(counts.entries()).map(([name, count]) => ({ name, count }));
+    }
+
+    function selectPrompt(promptId) {
+      const prompt = state.prompts.find((item) => item.id === promptId);
+      if (!prompt) return;
+      state.selectedPrompt = prompt;
+      state.editingPromptId = prompt.id;
+      document.getElementById("prompt-title").value = prompt.title || "";
+      document.getElementById("prompt-category").value = prompt.category || "Custom / Experimental";
+      document.getElementById("prompt-subcategory").value = prompt.subcategory || "";
+      document.getElementById("prompt-description").value = prompt.description || "";
+      document.getElementById("prompt-text").value = fullPromptText(prompt);
+      document.getElementById("prompt-variables").value = (prompt.variables || []).join(", ");
+      renderSelectedPrompt();
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+    }
+
+    function groupPrompts(prompts) {
+      return categories.map((category) => ({
+        id: categoryId(category),
+        category,
+        prompts: prompts.filter((prompt) => (prompt.category || "Custom / Experimental") === category),
+      }));
+    }
+
+    function renderSelectedPrompt() {
+      const prompt = state.selectedPrompt;
+      if (!prompt) {
+        selectedSummary.textContent = "Select a prompt from the Prompt Library.";
+        return;
+      }
+      const text = fullPromptText(prompt);
+      const length = text.length;
+      selectedSummary.innerHTML = `
+        <div class="grid-2">
+          <div>
+            <h3>${escapeHtml(prompt.title)}</h3>
+            <p class="muted">${escapeHtml(prompt.category)}${prompt.subcategory ? ` · ${escapeHtml(prompt.subcategory)}` : ""} · ${length} chars · about ${Math.ceil(length / 4)} tokens</p>
+            <p class="muted">${escapeHtml(prompt.description || "")}</p>
+            ${(prompt.variables || []).length ? `<p class="muted">Variables/placeholders: ${escapeHtml(prompt.variables.join(", "))}</p>` : ""}
+          </div>
+          <details>
+            <summary>Full prompt</summary>
+            <pre>${escapeHtml(text)}</pre>
+          </details>
+        </div>
+      `;
+    }
+
+    async function loadModels() {
+      const payload = await requestJson("/api/settings/llm");
+      const slots = payload.compare_model_slots || payload.comparison_models || [];
+      state.models = slots.map((model) => ({
+        selected: Boolean(model.enabled),
+        profile_id: model.id || model.profile_id || "",
+        display_name: model.display_name || model.label || model.model || "",
+        provider: model.provider || "openrouter",
+        model_id: model.model_id || model.model || "",
+        enabled: Boolean(model.enabled),
+        last_test_status: model.last_test_status || "not tested",
+        notes: model.notes || "",
+      }));
+      renderModels();
     }
 
     function renderModels() {
+      if (!state.models.length) {
+        modelList.innerHTML = `<p class="muted">No compare model profiles are assigned in /settings.</p>`;
+        return;
+      }
       modelList.innerHTML = state.models.map((model, index) => `
         <div class="model-row" data-model-index="${index}">
-          <label>Enabled<input type="checkbox" data-model-field="enabled" ${model.enabled ? "checked" : ""}></label>
-          <label>Label<input type="text" data-model-field="label" value="${escapeAttr(model.label || "")}"></label>
-          <label>Provider
-            <select data-model-field="provider">
-              ${providerOption("gemini", model.provider)}
-              ${providerOption("openrouter", model.provider)}
-              ${providerOption("openai_compatible", model.provider)}
-            </select>
-          </label>
-          <label>Model id<input type="text" data-model-field="model" value="${escapeAttr(model.model || "")}"></label>
-          <label>Temperature<input type="number" step="0.1" min="0" max="2" data-model-field="temperature" value="${escapeAttr(model.temperature ?? 0.2)}"></label>
-          <label>Max tokens<input type="number" min="1" max="8192" data-model-field="max_tokens" value="${escapeAttr(model.max_tokens ?? maxTokensForStage(state.selectedSnapshot?.stage || ""))}"></label>
-          <button type="button" class="danger" data-remove-model="${index}">Remove</button>
+          <label><input type="checkbox" data-model-field="selected" ${model.selected && model.enabled ? "checked" : ""} ${model.enabled ? "" : "disabled"}> Use</label>
+          <div>
+            <strong>${escapeHtml(model.display_name)}</strong>
+            <p class="muted">${escapeHtml(model.notes || "")}</p>
+          </div>
+          <span>${escapeHtml(model.provider)}</span>
+          <code>${escapeHtml(model.model_id)}</code>
+          <span class="muted">${escapeHtml(model.enabled ? model.last_test_status : "disabled")}</span>
         </div>
       `).join("");
     }
 
-    function providerOption(value, selected) {
-      const label = value === "openai_compatible" ? "OpenAI-compatible" : value === "openrouter" ? "OpenRouter" : "Gemini";
-      return `<option value="${value}" ${value === selected ? "selected" : ""}>${label}</option>`;
-    }
-
-    function collectModels() {
-      const fallbackTokens = maxTokensForStage(state.selectedSnapshot?.stage || "");
+    function selectedModels() {
       return Array.from(modelList.querySelectorAll("[data-model-index]")).map((row) => {
-        const get = (field) => row.querySelector(`[data-model-field="${field}"]`);
+        const index = Number(row.dataset.modelIndex);
+        const model = state.models[index];
         return {
-          enabled: get("enabled").checked,
-          label: get("label").value.trim(),
-          provider: get("provider").value,
-          model: get("model").value.trim(),
-          temperature: Number(get("temperature").value || 0.2),
-          max_tokens: Number(get("max_tokens").value || fallbackTokens),
+          ...model,
+          selected: row.querySelector('[data-model-field="selected"]').checked,
         };
-      });
+      }).filter((model) => model.selected && model.enabled);
     }
 
-    async function runComparison() {
-      if (!state.selectedSnapshot) throw new Error("Select a prompt snapshot first.");
-      state.models = collectModels();
-      const enabled = state.models.filter((model) => model.enabled);
-      if (!enabled.length) throw new Error("Enable at least one model.");
-      resultsEl.textContent = "Running comparison...";
+    function generationParameters() {
+      const params = {
+        temperature: Number(document.getElementById("temperature").value || 0.2),
+        top_p: Number(document.getElementById("top-p").value || 0.9),
+        max_tokens: Number(document.getElementById("max-tokens").value || 700),
+        timeout: Number(document.getElementById("timeout").value || 60),
+      };
+      const topK = document.getElementById("top-k").value.trim();
+      if (topK) params.top_k = Number(topK);
+      return params;
+    }
+
+    function selectedModelPayloads() {
+      return selectedModels().map((model) => ({
+        enabled: true,
+        profile_id: model.profile_id,
+        label: model.display_name,
+        display_name: model.display_name,
+        provider: model.provider,
+        model: model.model_id,
+        model_id: model.model_id,
+      }));
+    }
+
+    async function runCompare() {
+      if (!state.selectedPrompt) throw new Error("Select one prompt first.");
+      const models = selectedModelPayloads();
+      if (!models.length) throw new Error("Select at least one enabled model.");
+      switchTab("results");
+      resultsEl.textContent = "Running compare...";
       const payload = await requestJson("/api/llm-compare/run", {
         method: "POST",
-        body: JSON.stringify({ snapshot_id: state.selectedSnapshot.snapshot_id, models: enabled }),
+        body: JSON.stringify({
+          prompt_id: state.selectedPrompt.id,
+          generation_parameters: generationParameters(),
+          models,
+        }),
       });
-      state.comparison = { ...payload, models: enabled };
+      state.comparison = payload;
       renderResults();
-      renderManualEvaluation();
+    }
+
+    async function runQuickModelCheck() {
+      const models = selectedModelPayloads();
+      if (!models.length) throw new Error("Select at least one enabled model.");
+      switchTab("results");
+      resultsEl.textContent = "Running quick model check...";
+      const payload = await requestJson("/api/llm-compare/quick-check", {
+        method: "POST",
+        body: JSON.stringify({
+          generation_parameters: { ...generationParameters(), max_tokens: 16 },
+          models,
+        }),
+      });
+      state.comparison = payload;
+      renderResults();
     }
 
     function renderResults() {
       const results = state.comparison?.results || [];
       if (!results.length) {
-        resultsEl.textContent = "No results yet.";
+        resultsEl.textContent = "Run a comparison to see model outputs.";
         return;
       }
       resultsEl.classList.remove("muted");
-      resultsEl.innerHTML = `<div class="result-grid">${results.map((result, index) => `
-        <article class="result-card">
-          <h3>${escapeHtml(result.label || result.model)}</h3>
-          <p class="muted">${escapeHtml(result.provider)} / ${escapeHtml(result.model)} · ${result.ok ? "ok" : "error"} · ${escapeHtml(result.latency_ms || 0)} ms</p>
-          ${result.error ? `<p class="message" data-tone="error">${escapeHtml(result.error)}</p>` : ""}
-          <pre>${escapeHtml(result.output || "")}</pre>
-          ${renderAutoCheckSummary(result)}
+      resultsEl.innerHTML = results.map((result, index) => `
+        <article class="result-card" data-result-index="${index}">
           <details>
-            <summary>Auto checks</summary>
-            <pre>${escapeHtml(JSON.stringify(result.auto_checks || {}, null, 2))}</pre>
+            <summary>${escapeHtml(result.display_name || result.label || result.model_id)} · ${escapeHtml(result.provider)} · ${result.ok ? "success" : "failure"} · ${escapeHtml(result.latency_ms || 0)} ms</summary>
+            ${result.error ? `<p class="message" data-tone="error">${escapeHtml(result.error)}</p>` : ""}
+            ${renderResultDiagnostics(result)}
+            <pre>${escapeHtml(result.output || "")}</pre>
           </details>
+          <form class="score-card" data-score-form="${index}">
+            <h3>Manual scoring</h3>
+            <div class="score-grid">
+              ${scoreInput("clarity", "Clarity", "Is the explanation easy to understand?")}
+              ${scoreInput("pedagogical_quality", "Pedagogical quality", "Does the response effectively teach the relevant concept?")}
+              ${scoreInput("emotional_alignment", "Emotional alignment", "Does the response appropriately match the learner's emotional/learning state?")}
+              ${scoreInput("structure", "Structure", "Is the response well organized and easy to follow?")}
+              ${scoreInput("cognitive_load", "Cognitive load", "Is the explanation appropriately simplified or detailed for the learner's state?")}
+            </div>
+            <label>Notes<textarea data-score-field="notes"></textarea></label>
+            <div class="grid-2">
+              <label>Overall preference<input type="checkbox" data-score-field="overall_preference"></label>
+              <label>Rank<input type="number" min="1" data-score-field="rank"></label>
+            </div>
+            <button type="submit" class="primary">Save score</button>
+          </form>
         </article>
-      `).join("")}</div>`;
+      `).join("");
     }
 
-    function renderAutoCheckSummary(result) {
-      if (state.selectedSnapshot?.stage !== "strategy_planner") return "";
-      const checks = result.auto_checks || {};
-      return `
-        <div class="check-list">
-          <span>JSON validity: ${checks.json_valid ? "valid" : "invalid"}</span>
-          <span>Candidates: ${escapeHtml(checks.candidate_count ?? 0)}</span>
-          <span>Exactly one recommended: ${checks.exactly_one_recommended ? "yes" : "no"}</span>
-          <span>Required fields present: ${checks.required_fields_present ? "yes" : "no"}</span>
-          <span>Allowed strategy families: ${checks.allowed_strategy_family ? "yes" : "no"}</span>
-        </div>
-      `;
+    function renderResultDiagnostics(result) {
+      if (result.ok) return "";
+      const diagnostics = {
+        provider: result.provider || "",
+        model_display_name: result.display_name || result.label || "",
+        model_id: result.model_id || result.model || "",
+        key_source: result.key_source || "",
+        model_source: result.model_source || "",
+        status_code: result.status_code || null,
+        google_error_status: result.google_error_status || "",
+        google_error_message: result.google_error_message || "",
+        provider_error_message: result.provider_error_message || "",
+        generation_parameters_sent: result.generation_parameters_sent || result.generation_parameters || {},
+        prompt_chars: result.prompt_chars || 0,
+        estimated_prompt_tokens: result.estimated_prompt_tokens || 0,
+      };
+      return `<details class="diagnostics"><summary>Safe diagnostics</summary><pre>${escapeHtml(JSON.stringify(diagnostics, null, 2))}</pre></details>`;
     }
 
-    function renderManualEvaluation() {
-      const results = state.comparison?.results || [];
-      const fields = rubricFieldsForStage(state.selectedSnapshot?.stage || "");
-      manualEl.innerHTML = results.map((result, index) => `
-        <div class="result-card" data-score-index="${index}">
-          <h3>${escapeHtml(result.label || result.model)}</h3>
-          <div class="scores">
-            ${fields.map((field) => scoreField(field.key, field.label)).join("")}
-          </div>
-          <label style="margin-top: 8px;">Notes<textarea data-score-field="notes"></textarea></label>
+    function scoreInput(key, label, question) {
+      return `<label title="${escapeAttr(question)}">${label}<input type="number" min="1" max="5" data-score-field="${key}"></label>`;
+    }
+
+    async function saveScore(form) {
+      const index = Number(form.dataset.scoreForm);
+      const result = state.comparison.results[index];
+      const get = (field) => form.querySelector(`[data-score-field="${field}"]`);
+      const record = {
+        run_id: state.comparison.comparison_id,
+        selected_prompt_id: state.comparison.selected_prompt_id,
+        selected_prompt_title: state.comparison.selected_prompt_title,
+        prompt_text: state.comparison.full_prompt_text || state.comparison.prompt_text,
+        model_profile_id: result.model_profile_id,
+        model_display_name: result.display_name || result.label,
+        provider: result.provider,
+        model_id: result.model_id || result.model,
+        generation_parameters: state.comparison.generation_parameters,
+        response_text: result.output || "",
+        latency_ms: result.latency_ms || 0,
+        status: result.ok ? "success" : "failure",
+        manual_scores: {
+          clarity: get("clarity").value,
+          pedagogical_quality: get("pedagogical_quality").value,
+          emotional_alignment: get("emotional_alignment").value,
+          structure: get("structure").value,
+          cognitive_load: get("cognitive_load").value,
+        },
+        evaluator_notes: get("notes").value,
+        overall_preference: get("overall_preference").checked,
+        rank: get("rank").value,
+      };
+      await requestJson("/api/llm-compare/evaluations", { method: "POST", body: JSON.stringify(record) });
+      setMessage("Saved evaluation score.", "success");
+      await loadEvaluations();
+    }
+
+    async function loadEvaluations() {
+      const payload = await requestJson("/api/llm-compare/evaluations");
+      state.evaluations = payload.evaluations || [];
+      renderEvaluations();
+    }
+
+    function renderEvaluations() {
+      if (!state.evaluations.length) {
+        savedEvaluationsEl.textContent = "No saved evaluations yet.";
+        return;
+      }
+      savedEvaluationsEl.classList.remove("muted");
+      savedEvaluationsEl.innerHTML = state.evaluations.map((item) => `
+        <div class="evaluation-row">
+          <strong>${escapeHtml(item.model_display_name || item.model_id)}</strong>
+          <p class="muted">${escapeHtml(item.selected_prompt_title)} · ${escapeHtml(item.timestamp)} · rank ${escapeHtml(item.rank || "")}</p>
+          <pre>${escapeHtml(JSON.stringify(item.manual_scores || {}, null, 2))}</pre>
         </div>
       `).join("");
     }
 
-    function rubricFieldsForStage(stage) {
-      if (stage === "strategy_planner") {
-        return [
-          { key: "json_validity", label: "JSON validity" },
-          { key: "pedagogical_strategy_quality", label: "pedagogical strategy quality" },
-          { key: "context_sensitivity", label: "context sensitivity" },
-          { key: "safety_wording", label: "safety wording" },
-          { key: "usefulness_for_next_explanation", label: "usefulness for next explanation" },
-        ];
+    function exportCurrentRun() {
+      downloadFile("llm-compare-run.json", JSON.stringify(state.comparison || {}, null, 2), "application/json");
+    }
+
+    function exportEvaluationsCsv() {
+      const rows = [["run_id", "timestamp", "selected_prompt_id", "selected_prompt_title", "model_profile_id", "model_display_name", "provider", "model_id", "latency_ms", "status", "clarity", "pedagogical_quality", "emotional_alignment", "structure", "cognitive_load", "rank", "notes"]];
+      for (const item of state.evaluations) {
+        const scores = item.manual_scores || {};
+        rows.push([
+          item.run_id,
+          item.timestamp,
+          item.selected_prompt_id,
+          item.selected_prompt_title,
+          item.model_profile_id,
+          item.model_display_name,
+          item.provider,
+          item.model_id,
+          item.latency_ms,
+          item.status,
+          scores.clarity,
+          scores.pedagogical_quality,
+          scores.emotional_alignment,
+          scores.structure,
+          scores.cognitive_load,
+          item.rank,
+          item.evaluator_notes,
+        ]);
       }
-      if (stage === "emotion_strategy") {
-        return [
-          { key: "strategy_adherence", label: "strategy adherence" },
-          { key: "grounding", label: "grounding" },
-          { key: "clarity", label: "clarity" },
-          { key: "safety_wording", label: "safety wording" },
-          { key: "usefulness", label: "usefulness" },
-        ];
-      }
-      return [
-        { key: "grounding", label: "grounding" },
-        { key: "clarity", label: "clarity" },
-        { key: "completeness", label: "completeness" },
-        { key: "conciseness", label: "conciseness" },
-        { key: "usefulness", label: "usefulness" },
-      ];
-    }
-
-    function scoreField(field, label) {
-      return `<label>${label}<input type="number" min="1" max="5" data-score-field="${field}"></label>`;
-    }
-
-    function collectManualScores() {
-      const scores = {};
-      manualEl.querySelectorAll("[data-score-index]").forEach((card, index) => {
-        const result = state.comparison?.results?.[index] || {};
-        const key = result.label || result.model || `model_${index + 1}`;
-        scores[key] = {};
-        card.querySelectorAll("[data-score-field]").forEach((input) => {
-          scores[key][input.dataset.scoreField] = input.value;
-        });
-      });
-      return scores;
-    }
-
-    function exportPayload() {
-      return {
-        comparison_id: state.comparison?.comparison_id || "",
-        snapshot_id: state.selectedSnapshot?.snapshot_id || "",
-        stage: state.selectedSnapshot?.stage || "",
-        prompt_summary: state.selectedSnapshot?.context_summary || {},
-        models: state.comparison?.models || collectModels().filter((model) => model.enabled),
-        results: state.comparison?.results || [],
-        manual_scores: collectManualScores(),
-        notes: document.getElementById("comparison-notes").value,
-      };
-    }
-
-    function markdownSummary(payload) {
-      const lines = [
-        `# LLM Comparison ${payload.comparison_id || ""}`.trim(),
-        "",
-        `Snapshot: ${payload.snapshot_id}`,
-        `Stage: ${payload.stage}`,
-        "",
-        "## Prompt Summary",
-        "```json",
-        JSON.stringify(payload.prompt_summary || {}, null, 2),
-        "```",
-        "",
-        "## Scores",
-        "```json",
-        JSON.stringify(payload.manual_scores || {}, null, 2),
-        "```",
-        "",
-        "## Outputs",
-      ];
-      for (const result of payload.results || []) {
-        lines.push("", `### ${result.label || result.model}`, "", `Provider/model: ${result.provider} / ${result.model}`, "", result.output || result.error || "");
-      }
-      if (payload.notes) lines.push("", "## Notes", "", payload.notes);
-      return lines.join("\n");
+      const csv = rows.map((row) => row.map((cell) => `"${String(cell ?? "").replaceAll('"', '""')}"`).join(",")).join("\n");
+      downloadFile("llm-evaluations.csv", csv, "text/csv");
     }
 
     function downloadFile(name, text, type) {
@@ -672,6 +867,16 @@
       link.download = name;
       link.click();
       URL.revokeObjectURL(url);
+    }
+
+    function clearEditor() {
+      state.editingPromptId = "";
+      document.getElementById("prompt-title").value = "";
+      document.getElementById("prompt-category").value = "Custom / Experimental";
+      document.getElementById("prompt-subcategory").value = "";
+      document.getElementById("prompt-description").value = "";
+      document.getElementById("prompt-text").value = "";
+      document.getElementById("prompt-variables").value = "";
     }
 
     function escapeHtml(value) {
@@ -687,61 +892,104 @@
       return escapeHtml(value);
     }
 
-    snapshotList.addEventListener("click", async (event) => {
-      if (event.target.closest("#open-pdf-chat-empty, #open-pdf-chat-empty-filtered")) {
-        window.location.href = "/pdf-chat";
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => switchTab(button.dataset.tab));
+    });
+
+    promptLibrary.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-prompt-id]");
+      if (button) selectPrompt(button.dataset.promptId);
+    });
+
+    promptLibrary.addEventListener("toggle", (event) => {
+      if (!event.target.matches("[data-category-id]")) return;
+      setCategoryExpanded(event.target.dataset.categoryId, event.target.open);
+      renderPromptDirectory(groupPrompts(state.prompts));
+    }, true);
+
+    function jumpToCategory(categoryIdValue) {
+      setCategoryExpanded(categoryIdValue, true);
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+      document.getElementById(`prompt-category-${categoryIdValue}`)?.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+
+    promptDirectory.addEventListener("click", (event) => {
+      const jumpButton = event.target.closest("[data-category-jump]");
+      if (jumpButton) {
+        jumpToCategory(jumpButton.dataset.categoryJump);
         return;
       }
-      if (event.target.closest("#clear-snapshot-filters")) {
-        document.getElementById("stage-filter").value = "";
-        document.getElementById("document-filter").value = "";
-        await loadSnapshots().catch((error) => setMessage(error.message, "error"));
-        return;
+      if (event.target.id === "expand-all-categories") {
+        categories.forEach((category) => setCategoryExpanded(categoryId(category), true));
+        const groups = groupPrompts(state.prompts);
+        renderPromptDirectory(groups);
+        renderPromptLibrary(groups);
       }
-      const button = event.target.closest("[data-snapshot-id]");
-      if (!button) return;
-      try {
-        await selectSnapshot(button.dataset.snapshotId);
-      } catch (error) {
-        setMessage(error.message, "error");
+      if (event.target.id === "collapse-all-categories") {
+        categories.forEach((category) => setCategoryExpanded(categoryId(category), false));
+        const groups = groupPrompts(state.prompts);
+        renderPromptDirectory(groups);
+        renderPromptLibrary(groups);
       }
     });
 
-    modelList.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-remove-model]");
-      if (!button) return;
-      state.models = collectModels();
-      state.models.splice(Number(button.dataset.removeModel), 1);
-      renderModels();
+    document.getElementById("prompt-search").addEventListener("input", () => loadPrompts().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("refresh-prompts").addEventListener("click", () => loadPrompts().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("create-prompt").addEventListener("click", clearEditor);
+    document.getElementById("edit-prompt").addEventListener("click", () => state.selectedPrompt && selectPrompt(state.selectedPrompt.id));
+    document.getElementById("duplicate-prompt").addEventListener("click", async () => {
+      if (!state.selectedPrompt) return;
+      const payload = await requestJson(`/api/llm-compare/prompts/${encodeURIComponent(state.selectedPrompt.id)}/duplicate`, { method: "POST" });
+      await loadPrompts();
+      selectPrompt(payload.prompt.id);
+    });
+    document.getElementById("delete-prompt").addEventListener("click", async () => {
+      if (!state.selectedPrompt || !confirm("Delete prompt?")) return;
+      await requestJson(`/api/llm-compare/prompts/${encodeURIComponent(state.selectedPrompt.id)}`, { method: "DELETE" });
+      state.selectedPrompt = null;
+      await loadPrompts();
+      renderSelectedPrompt();
     });
 
-    document.getElementById("refresh-snapshots").addEventListener("click", () => loadSnapshots().catch((error) => setMessage(error.message, "error")));
-    document.getElementById("stage-filter").addEventListener("change", () => loadSnapshots().catch((error) => setMessage(error.message, "error")));
-    document.getElementById("add-model").addEventListener("click", () => {
-      state.models = collectModels();
-      state.models.push({ enabled: true, label: "Custom OpenRouter Model", provider: "openrouter", model: "", temperature: 0.2, max_tokens: maxTokensForStage(state.selectedSnapshot?.stage || "") });
-      renderModels();
-    });
-    document.getElementById("load-settings-models").addEventListener("click", async () => {
-      const payload = await requestJson("/api/local-config/llm/comparison-models");
-      state.models = (payload.comparison_models || defaultModels).map((item) => applyStageModelDefaults({ temperature: 0.2, ...item }, state.selectedSnapshot?.stage || ""));
-      renderModels();
-    });
-    document.getElementById("run-comparison").addEventListener("click", () => runComparison().then(() => setMessage("Comparison finished.", "success")).catch((error) => setMessage(error.message, "error")));
-    document.getElementById("copy-json").addEventListener("click", () => navigator.clipboard?.writeText(JSON.stringify(exportPayload(), null, 2)));
-    document.getElementById("download-json").addEventListener("click", () => downloadFile("llm-comparison.json", JSON.stringify(exportPayload(), null, 2), "application/json"));
-    document.getElementById("download-markdown").addEventListener("click", () => downloadFile("llm-comparison.md", markdownSummary(exportPayload()), "text/markdown"));
-    document.getElementById("save-comparison").addEventListener("click", async () => {
-      const payload = await requestJson("/api/llm-compare/save", {
-        method: "POST",
-        body: JSON.stringify(exportPayload()),
-      });
-      state.comparison = { ...(state.comparison || {}), comparison_id: payload.comparison?.comparison_id };
-      setMessage("Saved comparison locally.", "success");
+    document.getElementById("prompt-editor").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        title: document.getElementById("prompt-title").value.trim(),
+        category: document.getElementById("prompt-category").value,
+        subcategory: document.getElementById("prompt-subcategory").value.trim(),
+        description: document.getElementById("prompt-description").value.trim(),
+        prompt_text: document.getElementById("prompt-text").value,
+        full_prompt_text: document.getElementById("prompt-text").value,
+        variables: document.getElementById("prompt-variables").value.split(",").map((item) => item.trim()).filter(Boolean),
+      };
+      const url = state.editingPromptId ? `/api/llm-compare/prompts/${encodeURIComponent(state.editingPromptId)}` : "/api/llm-compare/prompts";
+      const method = state.editingPromptId ? "PUT" : "POST";
+      const saved = await requestJson(url, { method, body: JSON.stringify(payload) });
+      await loadPrompts();
+      selectPrompt(saved.prompt.id);
+      setMessage("Saved prompt.", "success");
     });
 
-    renderModels();
-    loadSnapshots().catch((error) => setMessage(error.message, "error"));
+    document.getElementById("reload-models").addEventListener("click", () => loadModels().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("run-selected-compare").addEventListener("click", () => runCompare().then(() => setMessage("Compare run finished.", "success")).catch((error) => setMessage(error.message, "error")));
+    document.getElementById("quick-model-check").addEventListener("click", () => runQuickModelCheck().then(() => setMessage("Quick model check finished.", "success")).catch((error) => setMessage(error.message, "error")));
+    document.getElementById("copy-selected-prompt").addEventListener("click", () => navigator.clipboard?.writeText(fullPromptText(state.selectedPrompt)));
+    document.getElementById("export-current-json").addEventListener("click", exportCurrentRun);
+    document.getElementById("refresh-evaluations").addEventListener("click", () => loadEvaluations().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("export-evaluations-csv").addEventListener("click", exportEvaluationsCsv);
+
+    resultsEl.addEventListener("submit", (event) => {
+      const form = event.target.closest("[data-score-form]");
+      if (!form) return;
+      event.preventDefault();
+      saveScore(form).catch((error) => setMessage(error.message, "error"));
+    });
+
+    loadPrompts().catch((error) => setMessage(error.message, "error"));
+    loadModels().catch((error) => setMessage(error.message, "error"));
+    loadEvaluations().catch(() => {});
   </script>
 </body>
 </html>

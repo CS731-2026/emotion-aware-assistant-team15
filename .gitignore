@@ -12,9 +12,13 @@ logs/*.jsonl
 logs/assistant.log
 logs/uploads/
 runtime_uploads/
+runtime_uploads/local_llm_settings.json
 models/emotion_model/*.pt
 models/emotion_model/*.pth
 models/emotion_model/*.ckpt
+models/emotion_model/**/*.pt
+models/emotion_model/**/*.pth
+models/emotion_model/**/*.ckpt
 models/face_detector/*.pt
 models/face_detector/*.pth
 models/face_detector/*.ckpt

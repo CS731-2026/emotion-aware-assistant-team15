@@ -1,0 +1,1045 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+  "created_at": 1779256208.5342202,
+  "updated_at": 1779256272.6392844,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+    "highlight_type": "text",
+    "page_number": 8,
+    "selected_text": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries. DiaryMate suggests up to 5 sentences upon the user\u2019s request, and the user can select a sentence among them.",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 452.75,
+        "y1": 315.09375,
+        "x2": 773.007019,
+        "y2": 328.59375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 8
+      },
+      {
+        "x1": 438.976562,
+        "y1": 330.171875,
+        "x2": 770.905945,
+        "y2": 343.671875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 8
+      },
+      {
+        "x1": 438.976562,
+        "y1": 345.367188,
+        "x2": 770.906982,
+        "y2": 358.867188,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 8
+      },
+      {
+        "x1": 438.976562,
+        "y1": 360.453125,
+        "x2": 557.100281,
+        "y2": 373.953125,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 8
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.535799,
+        "y1": 0.288144,
+        "x2": 0.914801,
+        "y2": 0.300489,
+        "pageNumber": 8
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.301932,
+        "x2": 0.912315,
+        "y2": 0.314278,
+        "pageNumber": 8
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.315828,
+        "x2": 0.912316,
+        "y2": 0.328173,
+        "pageNumber": 8
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.329624,
+        "x2": 0.65929,
+        "y2": 0.341969,
+        "pageNumber": 8
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 535.799,
+        "y1": 288.144,
+        "x2": 914.801,
+        "y2": 300.489,
+        "pageNumber": 8
+      },
+      {
+        "x1": 519.499,
+        "y1": 301.932,
+        "x2": 912.315,
+        "y2": 314.278,
+        "pageNumber": 8
+      },
+      {
+        "x1": 519.499,
+        "y1": 315.828,
+        "x2": 912.316,
+        "y2": 328.173,
+        "pageNumber": 8
+      },
+      {
+        "x1": 519.499,
+        "y1": 329.624,
+        "x2": 659.29,
+        "y2": 341.969,
+        "pageNumber": 8
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+      "page_number": 8,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywords.\" (P24, 21(F)). Another difference in the usage between the two features was that while participants tended to use Generating sentences using keywords when they had a clear idea of what they wanted to write, they turned to Recommending next sentences when seeking a broader perspective or unexpected suggestions. We then wanted to know what kinds of LLM-generated sentences people brought into their diaries. DiaryMate suggests up to 5 sentences upon the user\u2019s request, and the user can select a sentence among them. We analyzed the characteristics of the sentences selected by the participants in the study. We classified the sentences selected by users into five themes as follows: Description of situations, Expression of emotional responses, Reflection, and Lesson learned, Mindsets and Future events and hopes (See Table 2)."
+    },
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b221",
+      "page_number": 8,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "pared to English. Additionally, the agglutinative nature of Korea, particularly its use of particles, makes word counting challenging."
+    },
+    "next_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+      "page_number": 8,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommending next sentences, there was a moderately positive correlation with the length of the journal (\ud835\udc5f = .5797, \ud835\udc5d = .003), but in the case of Generating sentences using keywords, there was no significant correlation (\ud835\udc5f = \u2212.2479, \ud835\udc5d = .242). We wondered if the journal was getting long simply because the participants used LLM-generated sentences. Therefore, we further investigated whether there was a correlation between the number of sentences participants selected (brought) from the LLM\u2019s suggestions and journal length. Interestingly, there was no significant correlation between journal length and the number of sentences chosen to use from the LLM suggestions (Generating sentences using keywords: r = -.2253, \ud835\udc5d = .2898, Recommending next sentences: \ud835\udc5f = .1886, \ud835\udc5d = .3775) (See Figure 4). In summary, these results imply that the more users browse the LLM-generated sentences from Recommending the next sentences, the more likely they will write. However, the number of sentences participants incorporated into their journals was not correlated with the journal length. In other words, the increased length of the journal wasn\u2019t merely due to the convenience of having text written on their behalf."
+    },
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b223",
+        "page_number": 8,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "keywords (\ud835\udc40 = .27, \ud835\udc46\ud835\udc37 = .31) in the earlier phase of writing an entry than using sentences from Recommending next sentences (\ud835\udc40 = .53, \ud835\udc46\ud835\udc37 = .27) (\ud835\udc61 (432) = 9.59, \ud835\udc5d < .001) (See Figure 3). Similarly, in the qualitative analysis, many participants responded that they used Generating sentences using keywords at the beginning of the journal to initiate writing. \u201cI think the most challenging part is starting the first sentence of the diary. I liked that it was easy to generate starting sentences using just a few keywords.\" (P24, 21(F)). Another difference in the usage between the two features was that while participants tended to use Generating sentences using keywords when they had a clear idea of what they wanted to write, they turned to Recommending next sentences when seeking a broader perspective or unexpected suggestions. We then wanted to know what kinds of LLM-generated sentences people brought into their diaries. DiaryMate suggests up to 5 sentences upon the user\u2019s request, and the user can select a sentence among them. We analyzed the characteristics of the sentences selected by the participants in the study. We classified the sentences selected by users into five themes as follows: Description of situations, Expression of emotional responses, Reflection, and Lesson learned, Mindsets and Future events and hopes (See Table 2)."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b221",
+        "page_number": 8,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "pared to English. Additionally, the agglutinative nature of Korea, particularly its use of particles, makes word counting challenging."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b222",
+        "page_number": 8,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+        "page_number": 8,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommending next sentences, there was a moderately positive correlation with the length of the journal (\ud835\udc5f = .5797, \ud835\udc5d = .003), but in the case of Generating sentences using keywords, there was no significant correlation (\ud835\udc5f = \u2212.2479, \ud835\udc5d = .242). We wondered if the journal was getting long simply because the participants used LLM-generated sentences. Therefore, we further investigated whether there was a correlation between the number of sentences participants selected (brought) from the LLM\u2019s suggestions and journal length. Interestingly, there was no significant correlation between journal length and the number of sentences chosen to use from the LLM suggestions (Generating sentences using keywords: r = -.2253, \ud835\udc5d = .2898, Recommending next sentences: \ud835\udc5f = .1886, \ud835\udc5d = .3775) (See Figure 4). In summary, these results imply that the more users browse the LLM-generated sentences from Recommending the next sentences, the more likely they will write. However, the number of sentences participants incorporated into their journals was not correlated with the journal length. In other words, the increased length of the journal wasn\u2019t merely due to the convenience of having text written on their behalf."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+        "page_number": 8,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p ="
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+    "learning_state": {
+      "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-20T05:49:58Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.8,
+      "distribution": {
+        "boredom": 0.06,
+        "confusion": 0.8,
+        "engagement": 0.07,
+        "frustration": 0.07
+      },
+      "trend": "stable",
+      "duration_sec": 15,
+      "intensity": 0.8,
+      "stability": "stable",
+      "trigger_recommended": true,
+      "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_e655eff0028241fa9c383089c2bb0e63"
+  },
+  "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+  "learning_state_snapshot": {
+    "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-20T05:50:42Z",
+    "source": "webcam_model",
+    "model_output_type": "academic_state",
+    "raw_facial_emotion_available": false,
+    "raw_facial_emotion": null,
+    "academic_state": "boredom",
+    "confidence": 0.9938,
+    "distribution": {
+      "boredom": 0.9938,
+      "confusion": 0.0052,
+      "engagement": 0.0009,
+      "frustration": 0.0001
+    },
+    "trend": "rising",
+    "duration_sec": 24.1,
+    "intensity": 0.9938,
+    "stability": "stable",
+    "trigger_recommended": true,
+    "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "concise_explanation",
+      "strategy_family": "concise_explanation",
+      "pedagogical_move": "Give a concise grounded explanation",
+      "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+      "title": "Get a concise explanation of this passage",
+      "short_description": "Keep the answer short and evidence-focused.",
+      "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.",
+      "prompt_instruction": "Explain the passage in a concise, grounded way.",
+      "expected_answer_shape": [
+        "Main idea",
+        "Paper context",
+        "Why it matters"
+      ],
+      "recommended": true,
+      "recommended_score": 0.88
+    },
+    {
+      "strategy_id": "structured_breakdown",
+      "strategy_family": "structured_breakdown",
+      "pedagogical_move": "Break the passage into claim, evidence, and purpose",
+      "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+      "title": "Use a structured breakdown for this passage",
+      "short_description": "Organize the explanation without assuming a specific support need.",
+      "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+      "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+      "expected_answer_shape": [
+        "Claim",
+        "Evidence",
+        "Purpose"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8
+    },
+    {
+      "strategy_id": "example_based_explanation",
+      "strategy_family": "example_based_explanation",
+      "pedagogical_move": "Explain through an illustrative example",
+      "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+      "title": "Try an example-based explanation for this passage",
+      "short_description": "Use an example while keeping the factual claims grounded.",
+      "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with use an example while keeping the factual claims grounded.",
+      "prompt_instruction": "Explain with one example and clearly mark it as illustrative.",
+      "expected_answer_shape": [
+        "Paper idea",
+        "Illustrative example",
+        "Return to evidence"
+      ],
+      "recommended": false,
+      "recommended_score": 0.72
+    }
+  ],
+  "selected_strategy_id": "concise_explanation",
+  "selected_strategy": {
+    "strategy_id": "concise_explanation",
+    "strategy_family": "concise_explanation",
+    "pedagogical_move": "Give a concise grounded explanation",
+    "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+    "title": "Get a concise explanation of this passage",
+    "short_description": "Keep the answer short and evidence-focused.",
+    "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.",
+    "prompt_instruction": "Explain the passage in a concise, grounded way.",
+    "expected_answer_shape": [
+      "Main idea",
+      "Paper context",
+      "Why it matters"
+    ],
+    "recommended": true,
+    "recommended_score": 0.88
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+    "duration_sec": 8.1,
+    "trend": "rising",
+    "intensity": 0.268,
+    "refresh_requested": false,
+    "support_cue": "neutral_or_uncertain",
+    "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63",
+    "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+    "window_start": "2026-05-20T05:50:08.766Z",
+    "window_end": "2026-05-20T05:50:16.911Z",
+    "duration_sec": 8.1,
+    "sample_count": 5,
+    "dominant_state": "engagement",
+    "secondary_state": "boredom",
+    "avg_confidence": 0.268,
+    "max_confidence": 0.778,
+    "avg_distribution": {
+      "boredom": 0.268,
+      "confusion": 0.141,
+      "engagement": 0.334,
+      "frustration": 0.258
+    },
+    "trend": "rising",
+    "stability": "mixed",
+    "support_cue": "neutral_or_uncertain",
+    "support_cue_label": "Possible ways to continue",
+    "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+    "model_output_type": "academic_state",
+    "raw_detection_available": false,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage marks a transition in the authors' analysis. After examining *when* and *how frequently* participants used the AI features, the researchers shift their focus to investigating the *specific content and nature* of the AI-generated sentences that users actually chose to incorporate into their private journals. \n\nTo do this, they highlight a key interaction design choice of their system, DiaryMate: rather than automatically inserting text, the system generates up to five distinct sentence suggestions upon request, allowing the user to select the one that best fits their thoughts. \n\nThis design choice is highly relevant to the paper's core theme of human-AI collaboration. By offering a menu of options, the system preserves the user's agency and control over their deeply personal narrative. The user acts as a curator or editor, which is crucial in a reflective task like journaling where authenticity and self-ownership are paramount. \n\nUltimately, analyzing these selected sentences allows the researchers to evaluate how effectively the LLM aids in self-disclosure and emotional reflection, while also helping them identify potential risks, such as users over-relying on AI-generated expressions to articulate their own feelings."
+  },
+  "turn_metadata": {
+    "turn_e655eff0028241fa9c383089c2bb0e63": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63",
+        "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+        "window_start": "2026-05-20T05:50:08.766Z",
+        "window_end": "2026-05-20T05:50:16.911Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.268,
+        "max_confidence": 0.778,
+        "avg_distribution": {
+          "boredom": 0.268,
+          "confusion": 0.141,
+          "engagement": 0.334,
+          "frustration": 0.258
+        },
+        "trend": "rising",
+        "stability": "mixed",
+        "support_cue": "neutral_or_uncertain",
+        "support_cue_label": "Possible ways to continue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage marks a transition in the authors' analysis. After examining *when* and *how frequently* participants used the AI features, the researchers shift their focus to investigating the *specific content and nature* of the AI-generated sentences that users actually chose to incorporate into their private journals. \n\nTo do this, they highlight a key interaction design choice of their system, DiaryMate: rather than automatically inserting text, the system generates up to five distinct sentence suggestions upon request, allowing the user to select the one that best fits their thoughts. \n\nThis design choice is highly relevant to the paper's core theme of human-AI collaboration. By offering a menu of options, the system preserves the user's agency and control over their deeply personal narrative. The user acts as a curator or editor, which is crucial in a reflective task like journaling where authenticity and self-ownership are paramount. \n\nUltimately, analyzing these selected sentences allows the researchers to evaluate how effectively the LLM aids in self-disclosure and emotional reflection, while also helping them identify potential risks, such as users over-relying on AI-generated expressions to articulate their own feelings."
+      },
+      "support_cue": "neutral_or_uncertain",
+      "support_cue_label": "Possible ways to continue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+        "duration_sec": 8.1,
+        "trend": "rising",
+        "intensity": 0.268,
+        "refresh_requested": false,
+        "support_cue": "neutral_or_uncertain",
+        "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "concise_explanation",
+          "strategy_family": "concise_explanation",
+          "pedagogical_move": "Give a concise grounded explanation",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Get a concise explanation of this passage",
+          "short_description": "Keep the answer short and evidence-focused.",
+          "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.",
+          "prompt_instruction": "Explain the passage in a concise, grounded way.",
+          "expected_answer_shape": [
+            "Main idea",
+            "Paper context",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "structured_breakdown",
+          "strategy_family": "structured_breakdown",
+          "pedagogical_move": "Break the passage into claim, evidence, and purpose",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Use a structured breakdown for this passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "example_based_explanation",
+          "strategy_family": "example_based_explanation",
+          "pedagogical_move": "Explain through an illustrative example",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Try an example-based explanation for this passage",
+          "short_description": "Use an example while keeping the factual claims grounded.",
+          "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with use an example while keeping the factual claims grounded.",
+          "prompt_instruction": "Explain with one example and clearly mark it as illustrative.",
+          "expected_answer_shape": [
+            "Paper idea",
+            "Illustrative example",
+            "Return to evidence"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 204,
+        "caption_length": 0,
+        "baseline_explanation_length": 1244,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 5,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "neutral_or_uncertain",
+        "allowed_strategy_families": [
+          "concise_explanation",
+          "structured_breakdown",
+          "example_based_explanation",
+          "connect_to_paper_argument"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "formula"
+      }
+    },
+    "turn_dcbd6a52bd5e4485a964de678706d788": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_dcbd6a52bd5e4485a964de678706d788",
+        "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+        "window_start": "2026-05-20T05:50:49.997Z",
+        "window_end": "2026-05-20T05:50:58.162Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "boredom",
+        "secondary_state": "engagement",
+        "avg_confidence": 0.568,
+        "max_confidence": 0.995,
+        "avg_distribution": {
+          "boredom": 0.568,
+          "confusion": 0.013,
+          "engagement": 0.406,
+          "frustration": 0.013
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "re_engagement",
+        "support_cue_label": "Re-engagement cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage introduces the researchers' investigation into the specific content and characteristics of the AI-generated sentences that users chose to adopt into their personal diaries. \n\nIn the context of the paper, the \"DiaryMate\" system supports users by offering two generative features: generating sentences from user-provided keywords and recommending the next sentence in a sequence. For each request, the system presents up to five options, giving the user control over which sentence (if any) best fits their narrative. Having established *when* and *how often* users interacted with these features, the authors transition here to analyzing the qualitative nature of the selected sentences.\n\nThis analysis is crucial because it helps reveal the role the LLM plays in highly personal, reflective writing. By looking at the types of sentences users accepted, the researchers can understand whether participants used the AI for emotional articulation, structural assistance, or creative inspiration. Ultimately, this informs how future human-AI collaborative tools can support self-expression without overshadowing the user's authentic voice."
+      },
+      "support_cue": "re_engagement",
+      "support_cue_label": "Re-engagement cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a re-engagement cue.",
+        "duration_sec": 8.2,
+        "trend": "rising",
+        "intensity": 0.568,
+        "refresh_requested": false,
+        "support_cue": "re_engagement",
+        "source_turn_id": "turn_dcbd6a52bd5e4485a964de678706d788"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "why_it_matters",
+          "strategy_family": "why_it_matters",
+          "pedagogical_move": "Connect the passage to why it matters",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Explain why this passage matters",
+          "short_description": "Connect the selected passage to the paper's larger argument.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with connect the selected passage to the paper's larger argument.",
+          "prompt_instruction": "State the takeaway, then explain why it matters for the method, result, or argument.",
+          "expected_answer_shape": [
+            "Takeaway",
+            "Connection to paper",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88
+        },
+        {
+          "strategy_id": "one_sentence_takeaway",
+          "strategy_family": "one_sentence_takeaway",
+          "pedagogical_move": "Start with a one-sentence takeaway",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Start with a one-sentence takeaway",
+          "short_description": "Condense the previous explanation into the central point before expanding.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with condense the previous explanation into the central point before expanding.",
+          "prompt_instruction": "Give one sentence, then one short paragraph connecting it back to the paper.",
+          "expected_answer_shape": [
+            "One-sentence takeaway",
+            "Paper connection",
+            "Optional detail"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8
+        },
+        {
+          "strategy_id": "make_it_relevant",
+          "strategy_family": "make_it_relevant",
+          "pedagogical_move": "Make the passage relevant to the paper goal",
+          "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+          "title": "Use a structured breakdown for this passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "The baseline explanation was being read while the learning signal showed a re-engagement cue. This strategy may help by adapting the previous explanation with organize the explanation without assuming a specific support need.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72
+        }
+      ],
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 204,
+        "caption_length": 0,
+        "baseline_explanation_length": 1145,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 5,
+        "reaction_window_duration_sec": 8.2,
+        "support_cue": "re_engagement",
+        "allowed_strategy_families": [
+          "why_it_matters",
+          "one_sentence_takeaway",
+          "make_it_relevant",
+          "compare_with_familiar_method",
+          "quick_quiz"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "formula"
+      }
+    }
+  },
+  "support_cue": "neutral_or_uncertain",
+  "support_cue_label": "Possible ways to continue",
+  "planner_mode": "heuristic",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 204,
+    "caption_length": 0,
+    "baseline_explanation_length": 1244,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 5,
+    "reaction_window_duration_sec": 8.1,
+    "support_cue": "neutral_or_uncertain",
+    "allowed_strategy_families": [
+      "concise_explanation",
+      "structured_breakdown",
+      "example_based_explanation",
+      "connect_to_paper_argument"
+    ],
+    "recent_conversation_count": 1,
+    "previous_strategy_id": "",
+    "passage_type": "unknown",
+    "difficulty_hint": "formula"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage marks a transition in the authors' analysis. After examining *when* and *how frequently* participants used the AI features, the researchers shift their focus to investigating the *specific content and nature* of the AI-generated sentences that users actually chose to incorporate into their private journals. \n\nTo do this, they highlight a key interaction design choice of their system, DiaryMate: rather than automatically inserting text, the system generates up to five distinct sentence suggestions upon request, allowing the user to select the one that best fits their thoughts. \n\nThis design choice is highly relevant to the paper's core theme of human-AI collaboration. By offering a menu of options, the system preserves the user's agency and control over their deeply personal narrative. The user acts as a curator or editor, which is crucial in a reflective task like journaling where authenticity and self-ownership are paramount. \n\nUltimately, analyzing these selected sentences allows the researchers to evaluate how effectively the LLM aids in self-disclosure and emotional reflection, while also helping them identify potential risks, such as users over-relying on AI-generated expressions to articulate their own feelings.",
+      "created_at": 1779256208.5342424,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 15,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "score": 0.8668
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.853
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p6-b74",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "We conducted quantitative and qualitative analyses to understand how participants used DiaryMate in their daily lives and how it affected their journaling experience. We first conducted a descriptive statistical analysis to understand the usage patterns and to obtain an overview of how participants used the system during the 10-day field deployment study. We also used t-test and Pearson correlation analysis to compare each LLM feature\u2019s characteristics and usage patterns (i.e., Generating sentences using keyword...",
+            "score": 0.8415
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "score": 0.8668
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.853
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p6-b74",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "We conducted quantitative and qualitative analyses to understand how participants used DiaryMate in their daily lives and how it affected their journaling experience. We first conducted a descriptive statistical analysis to understand the usage patterns and to obtain an overview of how participants used the system during the 10-day field deployment study. We also used t-test and Pearson correlation analysis to compare each LLM feature\u2019s characteristics and usage patterns (i.e., Generating sentences using keyword...",
+            "score": 0.8415
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b221",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "pared to English. Additionally, the agglutinative nature of Korea, particularly its use of particles, makes word counting challenging.",
+            "reading_order_index": 221
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b222",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong",
+            "reading_order_index": 222
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "reading_order_index": 224
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "reading_order_index": 225
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 8\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\npaper_profile:\ntitle: DiaryMate: Understanding User Perceptions and Experience in Human-AI Collaboration for Personal Journaling\none_sentence_summary: This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.\nresearch_problem: A gap in understanding people's perceptions and experiences with Large Language Models (LLMs) in the specific context of personal and retrospective writing tasks.\nmethod_summary: The researchers developed DiaryMate as a technology probe and conducted a 10-day field study followed by interviews to observe real-world usage and perceptions.\ndataset_or_materials: The DiaryMate system (featuring keyword-based and next-sentence generation) and data from a field study involving 24 participants (N=24).\nmain_findings: Participants utilized LLM-generated sentences to reflect on past experiences from multiple perspectives, yet showed signs of over-reliance by prioritizing AI-generated emotional expressions over their own.\nkey_terms: human-centered computing, empirical studies in hci, journaling, "
+      },
+      "turn_id": "turn_e655eff0028241fa9c383089c2bb0e63",
+      "prompt_snapshot_id": "snap_cd8ebb34b6b3",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "learning_state_snapshot": {
+        "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-20T05:49:58Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.8,
+        "distribution": {
+          "boredom": 0.06,
+          "confusion": 0.8,
+          "engagement": 0.07,
+          "frustration": 0.07
+        },
+        "trend": "stable",
+        "duration_sec": 15,
+        "intensity": 0.8,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "confusion confidence remained above threshold for 8 seconds while the user had an active selection"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage introduces the researchers' investigation into the specific content and characteristics of the AI-generated sentences that users chose to adopt into their personal diaries. \n\nIn the context of the paper, the \"DiaryMate\" system supports users by offering two generative features: generating sentences from user-provided keywords and recommending the next sentence in a sequence. For each request, the system presents up to five options, giving the user control over which sentence (if any) best fits their narrative. Having established *when* and *how often* users interacted with these features, the authors transition here to analyzing the qualitative nature of the selected sentences.\n\nThis analysis is crucial because it helps reveal the role the LLM plays in highly personal, reflective writing. By looking at the types of sentences users accepted, the researchers can understand whether participants used the AI for emotional articulation, structural assistance, or creative inspiration. Ultimately, this informs how future human-AI collaborative tools can support self-expression without overshadowing the user's authentic voice.",
+      "created_at": 1779256249.8573947,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 15,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "score": 0.8668
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.853
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p6-b74",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "We conducted quantitative and qualitative analyses to understand how participants used DiaryMate in their daily lives and how it affected their journaling experience. We first conducted a descriptive statistical analysis to understand the usage patterns and to obtain an overview of how participants used the system during the 10-day field deployment study. We also used t-test and Pearson correlation analysis to compare each LLM feature\u2019s characteristics and usage patterns (i.e., Generating sentences using keyword...",
+            "score": 0.8415
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p9-b229",
+            "page_number": 9,
+            "block_type": "text",
+            "markdown_content": ".5148, Recommending next sentences: r = -.2223, p = .2965). In other words, the participants used LLM regardless of their journal-writing proficiency. Through qualitative analysis, we could understand how LLM was useful to those who used to keep their diaries and those who were new to journaling. First, those who write in their diary regularly evaluate the fact that they can reflect on their feelings through LLM sentences. \u201cPeople who regularly write in their diary want to understand more about their emotions an...",
+            "score": 0.8668
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b217",
+            "page_number": 8,
+            "block_type": "caption",
+            "markdown_content": "Figure 3: Box whisker plot illustrated when participants used each LLM feature (i.e., Generating sentences using keywords, Recommending next sentences) during the writing of a journal. The x-axis represents the start and end positions of the journal, with 0 representing the start and 1 representing the end. Participants used sentences generated from the Generating sentences using keywords in a significantly earlier phase of writing than sentences generated from the Recommending next sentences feature. Statistica...",
+            "score": 0.853
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p6-b74",
+            "page_number": 6,
+            "block_type": "text",
+            "markdown_content": "We conducted quantitative and qualitative analyses to understand how participants used DiaryMate in their daily lives and how it affected their journaling experience. We first conducted a descriptive statistical analysis to understand the usage patterns and to obtain an overview of how participants used the system during the 10-day field deployment study. We also used t-test and Pearson correlation analysis to compare each LLM feature\u2019s characteristics and usage patterns (i.e., Generating sentences using keyword...",
+            "score": 0.8415
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b221",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "pared to English. Additionally, the agglutinative nature of Korea, particularly its use of particles, makes word counting challenging.",
+            "reading_order_index": 221
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b222",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong",
+            "reading_order_index": 222
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b224",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.2 Did the use of the LLM feature affect the journal length? We examined the impact of LLM features on the length of participants\u2019 journals. The length of a journal can serve as a data point that can help understand the extent of participants\u2019 self-disclosure and expression. First, a correlation analysis was conducted to determine how the number of LLM feature requests (i.e., Generating sentences using keywords, Recommending next sentences) affected the participants\u2019 journal length. In the case of Recommendin...",
+            "reading_order_index": 224
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p8-b225",
+            "page_idx": 7,
+            "page_number": 8,
+            "block_type": "text",
+            "markdown_content": "5.1.3 Does the existing habit of keeping a journal affect the use of LLM. Next, we wondered whether the LLM feature was used frequently, even for those who regularly kept a journal. To this end, we examined the difference in the use of LLM features between those with a journal-keeping habit and those without. Through correlation analysis, we found no significant correlation between the participants\u2019 existing journal-keeping habits and the use of LLM features (Generating sentences using keywords: r = -.1398, p =",
+            "reading_order_index": 225
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 8\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: concise_explanation\n- Pedagogical move: Give a concise grounded explanation\n- Context focus: We then wanted to know what kinds of LLM-generated sentences people brought into their diaries\n- Strategy title: Get a concise explanation of this passage\n- Why selected: The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.\n- Instruction for answer: Explain the passage in a concise, grounded way.\n- Expected answer shape: Main"
+      },
+      "turn_id": "turn_dcbd6a52bd5e4485a964de678706d788",
+      "prompt_snapshot_id": "snap_1ae76acde3a8",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63",
+        "highlight_id": "c809a8a1-78c4-4b9d-80a8-3f1668e19e55",
+        "window_start": "2026-05-20T05:50:08.766Z",
+        "window_end": "2026-05-20T05:50:16.911Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "boredom",
+        "avg_confidence": 0.268,
+        "max_confidence": 0.778,
+        "avg_distribution": {
+          "boredom": 0.268,
+          "confusion": 0.141,
+          "engagement": 0.334,
+          "frustration": 0.258
+        },
+        "trend": "rising",
+        "stability": "mixed",
+        "support_cue": "neutral_or_uncertain",
+        "support_cue_label": "Possible ways to continue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+        "model_output_type": "academic_state",
+        "raw_detection_available": false,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage marks a transition in the authors' analysis. After examining *when* and *how frequently* participants used the AI features, the researchers shift their focus to investigating the *specific content and nature* of the AI-generated sentences that users actually chose to incorporate into their private journals. \n\nTo do this, they highlight a key interaction design choice of their system, DiaryMate: rather than automatically inserting text, the system generates up to five distinct sentence suggestions upon request, allowing the user to select the one that best fits their thoughts. \n\nThis design choice is highly relevant to the paper's core theme of human-AI collaboration. By offering a menu of options, the system preserves the user's agency and control over their deeply personal narrative. The user acts as a curator or editor, which is crucial in a reflective task like journaling where authenticity and self-ownership are paramount. \n\nUltimately, analyzing these selected sentences allows the researchers to evaluate how effectively the LLM aids in self-disclosure and emotional reflection, while also helping them identify potential risks, such as users over-relying on AI-generated expressions to articulate their own feelings."
+      },
+      "support_cue": "neutral_or_uncertain",
+      "support_cue_label": "Possible ways to continue",
+      "strategy_id": "concise_explanation",
+      "strategy_family": "concise_explanation",
+      "pedagogical_move": "Give a concise grounded explanation",
+      "context_focus": "We then wanted to know what kinds of LLM-generated sentences people brought into their diaries",
+      "strategy_title": "Get a concise explanation of this passage",
+      "strategy_short_description": "Keep the answer short and evidence-focused.",
+      "why_recommended": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.",
+      "strategy_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested. This strategy may help by adapting the previous explanation with keep the answer short and evidence-focused.",
+      "learning_state_snapshot": {
+        "session_id": "4d5192f8f4c344f185fd46c12233cbd8",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-20T05:50:42Z",
+        "source": "webcam_model",
+        "model_output_type": "academic_state",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "boredom",
+        "confidence": 0.9938,
+        "distribution": {
+          "boredom": 0.9938,
+          "confusion": 0.0052,
+          "engagement": 0.0009,
+          "frustration": 0.0001
+        },
+        "trend": "rising",
+        "duration_sec": 24.1,
+        "intensity": 0.9938,
+        "stability": "stable",
+        "trigger_recommended": true,
+        "trigger_reason": "boredom confidence remained above threshold for 12 seconds while the user had an active selection",
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested.",
+        "duration_sec": 8.1,
+        "trend": "rising",
+        "intensity": 0.268,
+        "refresh_requested": false,
+        "support_cue": "neutral_or_uncertain",
+        "source_turn_id": "turn_e655eff0028241fa9c383089c2bb0e63"
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 204,
+        "caption_length": 0,
+        "baseline_explanation_length": 1244,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 5,
+        "reaction_window_duration_sec": 8.1,
+        "support_cue": "neutral_or_uncertain",
+        "allowed_strategy_families": [
+          "concise_explanation",
+          "structured_breakdown",
+          "example_based_explanation",
+          "connect_to_paper_argument"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "unknown",
+        "difficulty_hint": "formula"
+      }
+    }
+  ]
+}

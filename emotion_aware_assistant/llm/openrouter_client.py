@@ -7,6 +7,7 @@ from typing import Any
 import requests
 
 from emotion_aware_assistant.core.config import load_env_file
+from emotion_aware_assistant.core import llm_config
 from emotion_aware_assistant.core.types import ChatRequest, ChatResponse
 
 from .prompt_builder import PromptBuilder
@@ -15,22 +16,20 @@ from .prompt_builder import PromptBuilder
 class OpenRouterClient:
     def __init__(self, timeout_sec: int = 60):
         load_env_file()
-        self.api_key = os.getenv("OPENROUTER_API_KEY", "").strip()
-        self.site_url = os.getenv("OPENROUTER_SITE_URL", "http://localhost")
-        self.app_name = os.getenv("OPENROUTER_APP_NAME", "EmotionAwareAcademicAssistant")
         self.timeout_sec = timeout_sec
         self.prompt_builder = PromptBuilder()
 
     @property
     def is_available(self) -> bool:
-        return bool(self.api_key)
+        return bool(self._runtime_config()["api_key"])
 
     @property
     def name(self) -> str:
         return "openrouter"
 
     def chat(self, request: ChatRequest) -> ChatResponse:
-        if not self.is_available:
+        config = self._runtime_config()
+        if not config["api_key"]:
             return ChatResponse(
                 text="OpenRouter API key is not configured; using dummy mode is recommended.",
                 model_name=request.model_name,
@@ -45,10 +44,10 @@ class OpenRouterClient:
             "max_tokens": 900,
         }
         headers = {
-            "Authorization": f"Bearer {self.api_key}",
+            "Authorization": f"Bearer {config['api_key']}",
             "Content-Type": "application/json",
-            "HTTP-Referer": self.site_url,
-            "X-Title": self.app_name,
+            "HTTP-Referer": config["site_url"],
+            "X-Title": config["site_name"],
         }
         start = time.perf_counter()
         try:
@@ -77,3 +76,12 @@ class OpenRouterClient:
                 latency_sec=time.perf_counter() - start,
                 error=str(exc),
             )
+
+    def _runtime_config(self) -> dict[str, str]:
+        values = llm_config.read_llm_values(include_env_file=False)
+        key_info = llm_config.resolve_provider_api_key("openrouter", include_env_file=False, values=values)
+        return {
+            "api_key": str(key_info.get("key") or ""),
+            "site_url": str(values.get("OPENROUTER_SITE_URL") or os.getenv("OPENROUTER_SITE_URL") or "http://localhost"),
+            "site_name": str(values.get("OPENROUTER_SITE_NAME") or os.getenv("OPENROUTER_APP_NAME") or "EmotionAwareAcademicAssistant"),
+        }

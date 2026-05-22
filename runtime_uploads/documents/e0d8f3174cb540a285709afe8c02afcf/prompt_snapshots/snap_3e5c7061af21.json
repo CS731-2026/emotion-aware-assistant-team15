@@ -1,0 +1,286 @@
+{
+  "snapshot_id": "snap_3e5c7061af21",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "ffcb56ed-4a50-4fc9-a0ab-78536d808ddc",
+  "source_turn_id": "turn_b94be623d02c4bd586c3ceda52471c56",
+  "created_at": "2026-05-21T06:21:10Z",
+  "stage": "strategy_planner",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}"
+    },
+    {
+      "role": "user",
+      "content": "strategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 10,\n    \"selected_text\": \"Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"5.2.4 Biased towards feelings and emotions suggested by the LLM. Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output. Because it is difficult to determine an individual\u2019s mental/psychological state, people often tend to trust the output of the algorithm rather than their judgment [23]. Similarly, while writing a journal, at some point, participants looked back at their writings and asked, \u2018Did I really feel that way?\u2019: \u201cBefore I started writing my journal, I had thoughts and emotions. But after I read some suggestions from AI, I forgot my feelings and followed what AI said.\u201d (P15, 22(F)) In particular, participants reported similar evaluations when\",\n    \"nearby_context\": [\n      \"\u201cI\u2019m planning to wake up early in the morning tomorrow, wash, eat breakfast, and leave right away.\\\"\",\n      \"of flow mainly occurred while using the Generating sentences using keywords feature and when the LLM showed the sentences sequentially. For example, P01 mentioned that after requesting an AI feature, he felt as if the flow of his thoughts had stopped while simply staring at the text being generated: \u201cThis is what I thought was negative (...) Earlier, when I used to write a journal, I used to constantly organize my thoughts and think about what I wanted to write. However, when I clicked on AI features and sentences started to pop up, I found myself not thinking about anything.\u201d (P01, 23(F)) Such disruption also occurred when an additional task for the LLM feature was required, such as thinking about keywords in generating sentences using keywords: \u201cNow that I have to come up with keywords, I sometimes felt that the flow of writing a journal was cut off when coming up with appropriate keywords.\u201d (P04, 21(M)) Furthermore, LLMs sometimes interfered with the further inner exploration of human writers by trying to finish the journal: \u201cAI sometimes tries to stop my thinking process For example, I wanted to go [truncated; original length: 1218 characters]\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"method\",\n    \"difficulty_hint\": \"multi_step_process\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n    \"source_turn_type\": \"baseline_explanation\",\n    \"baseline_explanation\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n      \"source_turn_type\": \"baseline_explanation\",\n      \"highlight_id\": \"ffcb56ed-4a50-4fc9-a0ab-78536d808ddc\",\n      \"window_start\": \"2026-05-21T06:21:01.902Z\",\n      \"window_end\": \"2026-05-21T06:21:10.068Z\",\n      \"duration_sec\": 8.2,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.618,\n      \"max_confidence\": 0.997,\n      \"avg_distribution\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"support_cue_display_label\": \"deepening\",\n      \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n      \"confidence_handling\": \"standard_confidence\",\n      \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"trigger_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. \\n\\nIn the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\"\\n\\nThis finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.618,\n    \"avg_distribution\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.2\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": null,\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"mapping_explanation\": \"mapped academic scores from reaction-window or current learning-state payload\",\n      \"confidence_notes\": [\n        \"process-aware package synthesized from existing pdf-chat signal fields\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": \"2026-05-21T06:21:01.902Z\",\n      \"window_end\": \"2026-05-21T06:21:10.068Z\",\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.618\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.16\n        },\n        {\n          \"state\": \"confusion\",\n          \"probability\": 0.149\n        }\n      ],\n      \"trend\": \"rising\",\n      \"evidence_count\": 5,\n      \"reliability_notes\": [\n        \"reaction window summary is used as learning-support evidence, not diagnosis\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"support_cue\": \"deepening\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": \"ffcb56ed-4a50-4fc9-a0ab-78536d808ddc\",\n      \"turn_index\": 1,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"baseline\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"deepening\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"strategy_state\": \"engagement\",\n    \"recommended_strategy\": \"deepen_or_extend\",\n    \"strategy_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"source_turn_type\": \"baseline_explanation\",\n    \"support_cue_label\": \"deepening\",\n    \"prompt_guidance\": [\n      \"Offer a deeper explanation with connections to the paper.\",\n      \"Extend only where the provided paper context supports it.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\",\n    \"process_strategy_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"recommended_strategy\": \"deep_technical_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"role\": \"assistant\",\n      \"turn_type\": \"baseline_explanation\",\n      \"turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n      \"content\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n    }\n  ]\n}"
+    }
+  ],
+  "prompt_text": "system:\nYou are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}\n\nuser:\nstrategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 10,\n    \"selected_text\": \"Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"5.2.4 Biased towards feelings and emotions suggested by the LLM. Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output. Because it is difficult to determine an individual\u2019s mental/psychological state, people often tend to trust the output of the algorithm rather than their judgment [23]. Similarly, while writing a journal, at some point, participants looked back at their writings and asked, \u2018Did I really feel that way?\u2019: \u201cBefore I started writing my journal, I had thoughts and emotions. But after I read some suggestions from AI, I forgot my feelings and followed what AI said.\u201d (P15, 22(F)) In particular, participants reported similar evaluations when\",\n    \"nearby_context\": [\n      \"\u201cI\u2019m planning to wake up early in the morning tomorrow, wash, eat breakfast, and leave right away.\\\"\",\n      \"of flow mainly occurred while using the Generating sentences using keywords feature and when the LLM showed the sentences sequentially. For example, P01 mentioned that after requesting an AI feature, he felt as if the flow of his thoughts had stopped while simply staring at the text being generated: \u201cThis is what I thought was negative (...) Earlier, when I used to write a journal, I used to constantly organize my thoughts and think about what I wanted to write. However, when I clicked on AI features and sentences started to pop up, I found myself not thinking about anything.\u201d (P01, 23(F)) Such disruption also occurred when an additional task for the LLM feature was required, such as thinking about keywords in generating sentences using keywords: \u201cNow that I have to come up with keywords, I sometimes felt that the flow of writing a journal was cut off when coming up with appropriate keywords.\u201d (P04, 21(M)) Furthermore, LLMs sometimes interfered with the further inner exploration of human writers by trying to finish the journal: \u201cAI sometimes tries to stop my thinking process For example, I wanted to go [truncated; original length: 1218 characters]\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"method\",\n    \"difficulty_hint\": \"multi_step_process\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n    \"source_turn_type\": \"baseline_explanation\",\n    \"baseline_explanation\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n      \"source_turn_type\": \"baseline_explanation\",\n      \"highlight_id\": \"ffcb56ed-4a50-4fc9-a0ab-78536d808ddc\",\n      \"window_start\": \"2026-05-21T06:21:01.902Z\",\n      \"window_end\": \"2026-05-21T06:21:10.068Z\",\n      \"duration_sec\": 8.2,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.618,\n      \"max_confidence\": 0.997,\n      \"avg_distribution\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"support_cue_display_label\": \"deepening\",\n      \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n      \"confidence_handling\": \"standard_confidence\",\n      \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"trigger_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. \\n\\nIn the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\"\\n\\nThis finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.618,\n    \"avg_distribution\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.2\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": null,\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"mapping_explanation\": \"mapped academic scores from reaction-window or current learning-state payload\",\n      \"confidence_notes\": [\n        \"process-aware package synthesized from existing pdf-chat signal fields\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": \"2026-05-21T06:21:01.902Z\",\n      \"window_end\": \"2026-05-21T06:21:10.068Z\",\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.618\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.16\n        },\n        {\n          \"state\": \"confusion\",\n          \"probability\": 0.149\n        }\n      ],\n      \"trend\": \"rising\",\n      \"evidence_count\": 5,\n      \"reliability_notes\": [\n        \"reaction window summary is used as learning-support evidence, not diagnosis\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.074,\n        \"confusion\": 0.149,\n        \"engagement\": 0.618,\n        \"frustration\": 0.16\n      },\n      \"support_cue\": \"deepening\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": \"ffcb56ed-4a50-4fc9-a0ab-78536d808ddc\",\n      \"turn_index\": 1,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"baseline\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"deepening\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"strategy_state\": \"engagement\",\n    \"recommended_strategy\": \"deepen_or_extend\",\n    \"strategy_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"source_turn_type\": \"baseline_explanation\",\n    \"support_cue_label\": \"deepening\",\n    \"prompt_guidance\": [\n      \"Offer a deeper explanation with connections to the paper.\",\n      \"Extend only where the provided paper context supports it.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\",\n    \"process_strategy_reason\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.074,\n      \"confusion\": 0.149,\n      \"engagement\": 0.618,\n      \"frustration\": 0.16\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"engagement 62%, frustration 16% \u00b7 trend rising\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"recommended_strategy\": \"deep_technical_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"role\": \"assistant\",\n      \"turn_type\": \"baseline_explanation\",\n      \"turn_id\": \"turn_b94be623d02c4bd586c3ceda52471c56\",\n      \"content\": \"This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \\\"Did I really feel that way?\\\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \\\"emotional hijacking.\\\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences.\"\n    }\n  ]\n}",
+  "strategy_planning_context": {
+    "selected_evidence": {
+      "selection_type": "text",
+      "page_number": 10,
+      "selected_text": "Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output.",
+      "caption": "",
+      "crop_available": false,
+      "selection_note": ""
+    },
+    "paper_context": {
+      "matched_block": "5.2.4 Biased towards feelings and emotions suggested by the LLM. Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output. Because it is difficult to determine an individual\u2019s mental/psychological state, people often tend to trust the output of the algorithm rather than their judgment [23]. Similarly, while writing a journal, at some point, participants looked back at their writings and asked, \u2018Did I really feel that way?\u2019: \u201cBefore I started writing my journal, I had thoughts and emotions. But after I read some suggestions from AI, I forgot my feelings and followed what AI said.\u201d (P15, 22(F)) In particular, participants reported similar evaluations when",
+      "nearby_context": [
+        "\u201cI\u2019m planning to wake up early in the morning tomorrow, wash, eat breakfast, and leave right away.\"",
+        "of flow mainly occurred while using the Generating sentences using keywords feature and when the LLM showed the sentences sequentially. For example, P01 mentioned that after requesting an AI feature, he felt as if the flow of his thoughts had stopped while simply staring at the text being generated: \u201cThis is what I thought was negative (...) Earlier, when I used to write a journal, I used to constantly organize my thoughts and think about what I wanted to write. However, when I clicked on AI features and sentences started to pop up, I found myself not thinking about anything.\u201d (P01, 23(F)) Such disruption also occurred when an additional task for the LLM feature was required, such as thinking about keywords in generating sentences using keywords: \u201cNow that I have to come up with keywords, I sometimes felt that the flow of writing a journal was cut off when coming up with appropriate keywords.\u201d (P04, 21(M)) Furthermore, LLMs sometimes interfered with the further inner exploration of human writers by trying to finish the journal: \u201cAI sometimes tries to stop my thinking process For example, I wanted to go [truncated; original length: 1218 characters]"
+      ],
+      "retrieved_rag_chunks": [],
+      "paper_profile_summary": "",
+      "passage_type": "method",
+      "difficulty_hint": "multi_step_process"
+    },
+    "previous_explanation": {
+      "source_turn_id": "turn_b94be623d02c4bd586c3ceda52471c56",
+      "source_turn_type": "baseline_explanation",
+      "baseline_explanation": "This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \"Did I really feel that way?\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \"emotional hijacking.\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences."
+    },
+    "reaction_context": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_b94be623d02c4bd586c3ceda52471c56",
+        "source_turn_type": "baseline_explanation",
+        "highlight_id": "ffcb56ed-4a50-4fc9-a0ab-78536d808ddc",
+        "window_start": "2026-05-21T06:21:01.902Z",
+        "window_end": "2026-05-21T06:21:10.068Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.618,
+        "max_confidence": 0.997,
+        "avg_distribution": {
+          "boredom": 0.074,
+          "confusion": 0.149,
+          "engagement": 0.618,
+          "frustration": 0.16
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "support_cue_display_label": "deepening",
+        "academic_state_evidence_text": "engagement 62%, frustration 16% \u00b7 trend rising",
+        "confidence_handling": "standard_confidence",
+        "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "trigger_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. \n\nIn the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \"Did I really feel that way?\"\n\nThis finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \"emotional hijacking.\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "engagement 62%, frustration 16% \u00b7 trend rising",
+      "confidence_handling": "standard_confidence",
+      "dominant_state": "engagement",
+      "secondary_state": "frustration",
+      "avg_confidence": 0.618,
+      "avg_distribution": {
+        "boredom": 0.074,
+        "confusion": 0.149,
+        "engagement": 0.618,
+        "frustration": 0.16
+      },
+      "trend": "rising",
+      "duration_sec": 8.2
+    },
+    "learning_signal": {
+      "active_source": "raw_8class_process_aware",
+      "raw_emotion_evidence": null,
+      "academic_state_mapping": {
+        "mapping_rule_version": "required_8class_probability_aggregation_v1",
+        "mapped_academic_state": "engagement",
+        "mapped_academic_scores": {
+          "boredom": 0.074,
+          "confusion": 0.149,
+          "engagement": 0.618,
+          "frustration": 0.16
+        },
+        "mapping_explanation": "mapped academic scores from reaction-window or current learning-state payload",
+        "confidence_notes": [
+          "process-aware package synthesized from existing pdf-chat signal fields"
+        ]
+      },
+      "reaction_window_summary": {
+        "window_start": "2026-05-21T06:21:01.902Z",
+        "window_end": "2026-05-21T06:21:10.068Z",
+        "dominant_raw_emotions": [],
+        "dominant_mapped_states": [
+          {
+            "state": "engagement",
+            "probability": 0.618
+          },
+          {
+            "state": "frustration",
+            "probability": 0.16
+          },
+          {
+            "state": "confusion",
+            "probability": 0.149
+          }
+        ],
+        "trend": "rising",
+        "evidence_count": 5,
+        "reliability_notes": [
+          "reaction window summary is used as learning-support evidence, not diagnosis"
+        ],
+        "avg_mapped_scores": {
+          "boredom": 0.074,
+          "confusion": 0.149,
+          "engagement": 0.618,
+          "frustration": 0.16
+        },
+        "support_cue": "deepening"
+      },
+      "learning_process_context": {
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "highlight_id": "ffcb56ed-4a50-4fc9-a0ab-78536d808ddc",
+        "turn_index": 1,
+        "followup_count_for_highlight": 0,
+        "same_highlight_repeated_questions": false,
+        "last_user_question": null,
+        "current_user_question": null,
+        "question_intent": "general_followup",
+        "previous_strategy": null,
+        "recent_strategies": [],
+        "last_response_was_baseline_or_adaptive": "baseline",
+        "time_since_last_assistant_answer": null
+      },
+      "academic_state_scores": {
+        "boredom": 0.074,
+        "confusion": 0.149,
+        "engagement": 0.618,
+        "frustration": 0.16
+      },
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "support_cue": "deepening",
+      "inferred_process_state": "engaged_deepening",
+      "strategy_state": "engagement",
+      "recommended_strategy": "deepen_or_extend",
+      "strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "engagement 62%, frustration 16% \u00b7 trend rising",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "baseline_explanation",
+      "support_cue_label": "deepening",
+      "prompt_guidance": [
+        "Offer a deeper explanation with connections to the paper.",
+        "Extend only where the provided paper context supports it."
+      ],
+      "diagnostic_only_direct_4class": {
+        "used_for_strategy": false
+      },
+      "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis.",
+      "process_strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy."
+    },
+    "academic_state_layer": {
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "academic_state_scores": {
+        "boredom": 0.074,
+        "confusion": 0.149,
+        "engagement": 0.618,
+        "frustration": 0.16
+      }
+    },
+    "support_cue_layer": {
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 62%, secondary frustration 16%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "engagement 62%, frustration 16% \u00b7 trend rising",
+      "confidence_handling": "standard_confidence",
+      "inferred_process_state": "engaged_deepening",
+      "recommended_strategy": "deep_technical_explanation",
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ]
+    },
+    "strategy_constraints": {
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ],
+      "previous_strategy_id": "",
+      "previous_strategy_family": ""
+    },
+    "recent_conversation": [
+      {
+        "role": "assistant",
+        "turn_type": "baseline_explanation",
+        "turn_id": "turn_b94be623d02c4bd586c3ceda52471c56",
+        "content": "This passage highlights a key finding from the study: when users collaborated with the AI journaling assistant (DiaryMate), the AI's suggested text subtly shifted how they perceived and wrote about their own feelings. Instead of simply helping them write, the LLM\u2019s suggestions actually nudged the emotional tone of their diaries in directions they might not have originally intended. In the context of the paper, the authors explain that because human emotions and mental states are often complex and hard to define, people have a tendency to trust a confident algorithmic suggestion over their own vague recollections. This led to moments where participants later re-read their diaries and felt disconnected from their own entries, even asking themselves, \"Did I really feel that way?\" This finding is crucial to the paper's broader argument about the risks of human-AI collaborative writing. While AI can be a helpful tool for brainstorming or finding the right words, in highly personal and reflective tasks like journaling, it carries a risk of \"emotional hijacking.\" If the AI too easily influences the user's emotional narrative, it can compromise the authenticity of their self-reflection and lead to an over-reliance on the algorithm to define their personal experiences."
+      }
+    ]
+  },
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 10,
+    "selected_text_preview": "Some participants noted that the overall mood and flow of emotions seemed to have been unwittingly influenced by the LLM\u2019s output.",
+    "selected_text_length": 130,
+    "baseline_explanation_length": 1280,
+    "has_reaction_window_summary": true,
+    "support_cue": "deepening",
+    "dominant_state": "engagement",
+    "secondary_state": "frustration",
+    "dominant_academic_state": "engagement",
+    "secondary_academic_state": "frustration",
+    "academic_state_scores": {
+      "boredom": 0.074,
+      "confusion": 0.149,
+      "engagement": 0.618,
+      "frustration": 0.16
+    },
+    "reaction_window_duration": 8.2,
+    "reaction_window_avg_confidence": 0.618,
+    "allowed_strategy_families": [
+      "deep_technical_explanation",
+      "critique_assumptions",
+      "connect_to_related_work",
+      "limitations_and_implications",
+      "compare_methods"
+    ],
+    "passage_type": "method",
+    "difficulty_hint": "multi_step_process",
+    "rag_chunk_count": 0,
+    "nearby_context_count": 2,
+    "recent_conversation_count": 1,
+    "inferred_process_state": "engaged_deepening",
+    "recommended_strategy": "deepen_or_extend",
+    "question_intent": "general_followup"
+  },
+  "allowed_strategy_families": [
+    "deep_technical_explanation",
+    "critique_assumptions",
+    "connect_to_related_work",
+    "limitations_and_implications",
+    "compare_methods"
+  ],
+  "support_cue": "deepening",
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": true
+  }
+}

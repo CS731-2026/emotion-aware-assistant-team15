@@ -2,6 +2,18 @@ import unittest
 
 
 class AdaptiveCoreFlowTests(unittest.TestCase):
+    def test_anger_and_angry_labels_map_to_frustration(self):
+        from emotion_aware_assistant.core.types import EmotionPrediction
+        from emotion_aware_assistant.emotion.labels import normalize_emotion
+        from emotion_aware_assistant.emotion.state_mapper import map_prediction_to_learning_state
+
+        self.assertEqual(normalize_emotion("anger"), "angry")
+        for label in ("anger", "angry"):
+            state = map_prediction_to_learning_state(
+                EmotionPrediction(emotion=label, confidence=0.8, probabilities={label: 0.8}, timestamp=0.0),
+            )
+            self.assertEqual(state.state, "frustration")
+
     def test_manual_emotion_changes_learning_state_policy_and_answer_style(self):
         from emotion_aware_assistant.app import AssistantSession
         from emotion_aware_assistant.core.config import load_config

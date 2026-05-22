@@ -11,8 +11,16 @@ import "pdfjs-dist/web/pdf_viewer.css";
 import "react-pdf-highlighter-plus/style/style.css";
 import "./pdf_chat.css";
 
-const REACTION_WINDOW_DURATION_MS = 10000;
+const REACTION_WINDOW_MAX_MS = 60000;
 const REACTION_WINDOW_SAMPLE_MS = 2000;
+const REACTION_WINDOW_MIN_SAMPLES = 2;
+const REACTION_WINDOW_SENTINEL_DELAY_MS = 1000;
+const REACTION_PROGRAMMATIC_SCROLL_MS = 800;
+const REACTION_WINDOW_LAYOUT_SETTLE_MS = 400;
+const REACTION_WINDOW_MIN_READ_SEC_FLOOR = 8;
+const REACTION_WINDOW_MIN_READ_SEC_CEIL = 25;
+const REACTION_WINDOW_READING_WORDS_PER_SEC = 12;
+const SPEECH_RECORDING_MAX_MS = 15000;
 
 function HighlightContainer({ onActivate }) {
   const { highlight, isScrolledTo } = useHighlightContainerContext();
@@ -360,6 +368,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [cleanupLoading, setCleanupLoading] = useState(false);
   const [followUpText, setFollowUpText] = useState("");
+  const [followUpInputSource, setFollowUpInputSource] = useState("text");
   const [readingSessionId, setReadingSessionId] = useState("");
   const [learningState, setLearningState] = useState(null);
   const [strategyCandidates, setStrategyCandidates] = useState([]);
@@ -377,6 +386,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
   const [cameraStartStatus, setCameraStartStatus] = useState("standby");
   const [reactionWindowActive, setReactionWindowActive] = useState(false);
   const [reactionWindowSummary, setReactionWindowSummary] = useState(null);
+  const [reactionWindowScrollTargetId, setReactionWindowScrollTargetId] = useState("");
   const highlighterUtilsRef = useRef(null);
   const pendingSelectionRef = useRef(null);
   const selectionDebugRef = useRef(emptySelectionDebug());
@@ -397,6 +407,15 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
   const cameraSelfViewPreferenceRef = useRef("visible");
   const completedReactionTurnIdsRef = useRef(new Set());
   const reactionWindowTurnIdRef = useRef("");
+  const reactionWindowStateRef = useRef(null);
+  const reactionWindowSampleTimerRef = useRef(null);
+  const reactionWindowMinTimerRef = useRef(null);
+  const reactionWindowMaxTimerRef = useRef(null);
+  const reactionWindowSentinelTimerRef = useRef(null);
+  const reactionWindowProgrammaticScrollTimerRef = useRef(null);
+  const reactionWindowLayoutTimerRef = useRef(null);
+  const reactionWindowObserverRef = useRef(null);
+  const reactionSentinelRefs = useRef(new Map());
   const pdfUrl = documentReady ? `/api/documents/${documentId}/file` : "";
 
   const currentMeta = documentDetail?.meta || documentSummary;
@@ -473,7 +492,10 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     };
   }, [readingSessionId, learningSignalSource]);
 
-  useEffect(() => () => stopLiveSignal("unmount"), []);
+  useEffect(() => () => {
+    clearReactionWindowTimers();
+    stopLiveSignal("unmount");
+  }, []);
 
   useEffect(() => {
     activeSelectionRef.current = activeSelection;
@@ -522,8 +544,10 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     setSelectedStrategy(null);
     setStrategySourceKey("");
     setReactionWindowSummary(null);
+    setReactionWindowScrollTargetId("");
     reactionWindowRunRef.current += 1;
     reactionWindowTurnIdRef.current = "";
+    reactionWindowStateRef.current = null;
     completedReactionTurnIdsRef.current = new Set();
     setReactionWindowActive(false);
   }
@@ -838,6 +862,9 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     const lastTriggeredAt = strategyCooldownRef.current[key] || 0;
     if (triggeredBy !== "manual_refresh" && Date.now() - lastTriggeredAt < 30000) return;
     strategyRequestRef.current = true;
+    resolvedReactionWindowSummary.strategy_request_sent = true;
+    resolvedReactionWindowSummary.strategy_response_received = false;
+    resolvedReactionWindowSummary.reaction_window_status = resolvedReactionWindowSummary.reaction_window_status || "completed";
     setStrategyLoading(true);
     setError("");
     const triggerContext = {
@@ -849,6 +876,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
       refresh_requested: triggeredBy === "manual_refresh",
       support_cue: summary.support_cue || "",
       source_turn_id: resolvedSourceTurnId,
+      source_turn_type: summary.source_turn_type || "",
     };
     try {
       const preview = selection.llmInputPreview || {};
@@ -866,6 +894,9 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         document_id: documentId,
         highlight_id: preview.highlight_id,
         source_turn_id: resolvedSourceTurnId,
+        source_turn_type: summary.source_turn_type || "",
+        input_source: "proactive_recommendation",
+        response_mode: "proactive_support",
         selection_type: preview.highlight_type,
         page_number: preview.page_number,
         selected_text: preview.selected_text,
@@ -875,12 +906,14 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         reaction_window_summary: resolvedReactionWindowSummary,
         support_cue: summary.support_cue || "",
         learning_state: stateSnapshot,
+        learning_signal_package: stateSnapshot.learning_signal_package || {},
         paper_context: paperContext,
         planner_input_summary: plannerInputSummary,
         recent_conversation: (threadRef.current?.messages || []).slice(-6),
         trigger_context: triggerContext,
       });
       const candidates = payload.candidates || [];
+      resolvedReactionWindowSummary.strategy_response_received = true;
       setStrategyCandidates(candidates);
       setStrategyPlannerMode(payload.planner_mode || "");
       setStrategyTriggerContext(triggerContext);
@@ -890,8 +923,10 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
       const updatedThread = mergeTurnMetadata(threadRef.current, resolvedSourceTurnId, {
         reaction_window_summary: resolvedReactionWindowSummary,
         strategy_candidates: candidates,
+        strategy_status: "suggested",
         support_cue: payload.support_cue || summary.support_cue || "",
         support_cue_label: payload.support_cue_label || summary.support_cue_label || "",
+        learning_signal_package: payload.learning_signal_package || stateSnapshot.learning_signal_package || {},
         planner_mode: payload.planner_mode || "",
         planner_prompt_version: payload.planner_prompt_version || "reaction_strategy_planner_v2",
         planner_input_summary: plannerInputSummary,
@@ -907,11 +942,34 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         reaction_window_summary: resolvedReactionWindowSummary,
         support_cue: summary.support_cue || "",
         support_cue_label: summary.support_cue_label || "",
+        learning_signal_package: payload.learning_signal_package || stateSnapshot.learning_signal_package || {},
         academic_state: summary.dominant_state || stateSnapshot.academic_state,
         confidence: summary.avg_confidence ?? stateSnapshot.confidence,
         distribution: summary.avg_distribution || stateSnapshot.distribution,
         trend: summary.trend || stateSnapshot.trend,
         duration_sec: summary.duration_sec,
+        end_reason: summary.end_reason,
+        read_progress_estimate: summary.read_progress_estimate,
+        state_transition: summary.state_transition,
+        transition_label: summary.transition_label,
+        reaction_window_status: summary.reaction_window_status,
+        sample_count: summary.sample_count,
+        min_duration_met: summary.min_duration_met,
+        min_read_time_met: summary.min_read_time_met,
+        min_samples_met: summary.min_samples_met,
+        top_seen: summary.top_seen,
+        bottom_seen: summary.bottom_seen,
+        user_scroll_progressed: summary.user_scroll_progressed,
+        suppressed_auto_scroll: summary.suppressed_auto_scroll,
+        word_count: summary.word_count,
+        message_height: summary.message_height,
+        viewport_height: summary.viewport_height,
+        is_short_answer: summary.is_short_answer,
+        estimated_min_read_sec: summary.estimated_min_read_sec,
+        elapsed_sec: summary.elapsed_sec,
+        end_blocked_reason: summary.end_blocked_reason,
+        strategy_request_sent: summary.strategy_request_sent,
+        strategy_response_received: summary.strategy_response_received,
         intensity: triggerContext.intensity,
         trigger_reason: triggerContext.trigger_reason,
         passage_type: paperContext.passage_type,
@@ -951,7 +1009,392 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     return learningStateRef.current || null;
   }
 
-  async function startReactionWindow(sourceTurnId, baselineExplanation, selectionOverride = activeSelectionRef.current) {
+  function clearReactionWindowTimers() {
+    if (reactionWindowSampleTimerRef.current) window.clearInterval(reactionWindowSampleTimerRef.current);
+    if (reactionWindowMinTimerRef.current) window.clearTimeout(reactionWindowMinTimerRef.current);
+    if (reactionWindowMaxTimerRef.current) window.clearTimeout(reactionWindowMaxTimerRef.current);
+    if (reactionWindowSentinelTimerRef.current) window.clearTimeout(reactionWindowSentinelTimerRef.current);
+    if (reactionWindowProgrammaticScrollTimerRef.current) window.clearTimeout(reactionWindowProgrammaticScrollTimerRef.current);
+    if (reactionWindowLayoutTimerRef.current) window.clearTimeout(reactionWindowLayoutTimerRef.current);
+    reactionWindowSampleTimerRef.current = null;
+    reactionWindowMinTimerRef.current = null;
+    reactionWindowMaxTimerRef.current = null;
+    reactionWindowSentinelTimerRef.current = null;
+    reactionWindowProgrammaticScrollTimerRef.current = null;
+    reactionWindowLayoutTimerRef.current = null;
+    if (reactionWindowObserverRef.current) {
+      reactionWindowObserverRef.current.disconnect();
+      reactionWindowObserverRef.current = null;
+    }
+  }
+
+  function registerReactionSentinel(turnId, sentinelKind, node) {
+    if (!turnId) return;
+    const kind = sentinelKind === "top" ? "top" : "bottom";
+    const current = reactionSentinelRefs.current.get(turnId) || {};
+    if (!node) {
+      delete current[kind];
+      if (current.top || current.bottom || current.message) {
+        reactionSentinelRefs.current.set(turnId, current);
+      } else {
+        reactionSentinelRefs.current.delete(turnId);
+      }
+      return;
+    }
+    current[kind] = node;
+    current.message = node.closest(".pdf-chat-message") || current.message || null;
+    reactionSentinelRefs.current.set(turnId, current);
+    if (reactionWindowTurnIdRef.current === turnId) {
+      scrollReactionMessageTopIntoView(turnId);
+      observeReactionSentinels(turnId);
+      scheduleReactionWindowLayoutSettle(turnId);
+    }
+  }
+
+  function observeReactionSentinels(turnId) {
+    const sentinels = reactionSentinelRefs.current.get(turnId) || {};
+    const nodes = [sentinels.top, sentinels.bottom].filter(Boolean);
+    if (!nodes.length || reactionWindowTurnIdRef.current !== turnId) return;
+    if (reactionWindowObserverRef.current) {
+      reactionWindowObserverRef.current.disconnect();
+      reactionWindowObserverRef.current = null;
+    }
+    if (typeof IntersectionObserver === "undefined") return;
+    const root = nodes[0].closest(".pdf-chat-conversation-scroll") || nodes[0].closest(".pdf-chat-side-scroll") || null;
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting && entry.intersectionRatio <= 0) continue;
+        const active = reactionWindowStateRef.current;
+        if (!active || active.done || active.sourceTurnId !== turnId) continue;
+        const kind = entry.target?.dataset?.reactionSentinel || "bottom";
+        if (kind === "top") {
+          active.topSeen = true;
+          continue;
+        }
+        if (!active.layoutSettled) {
+          active.bottomSeenBeforeLayoutSettled = true;
+          active.endBlockedReason = "waiting_for_layout_settle";
+          continue;
+        }
+        if (active.programmaticScrollActive || Date.now() < Number(active.programmaticScrollUntil || 0)) {
+          active.suppressedAutoScroll = true;
+          active.bottomSeenFromProgrammaticScroll = true;
+          active.endBlockedReason = "programmatic_scroll_ignored";
+          continue;
+        }
+        markReactionWindowBottomSeen(active);
+      }
+    }, {
+      root,
+      threshold: 0.1,
+      rootMargin: "0px 0px -15% 0px",
+    });
+    nodes.forEach((node) => observer.observe(node));
+    reactionWindowObserverRef.current = observer;
+  }
+
+  function scheduleReactionWindowLayoutSettle(sourceTurnId) {
+    if (reactionWindowLayoutTimerRef.current) window.clearTimeout(reactionWindowLayoutTimerRef.current);
+    reactionWindowLayoutTimerRef.current = window.setTimeout(() => {
+      reactionWindowLayoutTimerRef.current = null;
+      updateReactionWindowLayoutState(sourceTurnId);
+    }, REACTION_WINDOW_LAYOUT_SETTLE_MS);
+  }
+
+  function updateReactionWindowLayoutState(turnId) {
+    const active = reactionWindowStateRef.current;
+    const sentinels = reactionSentinelRefs.current.get(turnId) || {};
+    const root = sentinels.top?.closest(".pdf-chat-conversation-scroll") || sentinels.bottom?.closest(".pdf-chat-conversation-scroll") || null;
+    if (!active || active.sourceTurnId !== turnId || !root || !sentinels.top || !sentinels.bottom) return;
+    const topRect = sentinels.top.getBoundingClientRect();
+    const bottomRect = sentinels.bottom.getBoundingClientRect();
+    const rootRect = root.getBoundingClientRect();
+    const messageHeight = Math.max(0, bottomRect.bottom - topRect.top);
+    const viewportHeight = Number(root.clientHeight || rootRect.height || 0);
+    const topVisible = topRect.top >= rootRect.top && topRect.bottom <= rootRect.bottom;
+    const bottomVisible = bottomRect.top >= rootRect.top && bottomRect.bottom <= rootRect.bottom;
+    active.layoutSettled = true;
+    active.messageHeight = roundNumber(messageHeight, 1);
+    active.viewportHeight = roundNumber(viewportHeight, 1);
+    active.isShortAnswer = Boolean(
+      (messageHeight > 0 && viewportHeight > 0 && messageHeight <= viewportHeight * 0.75)
+      || (topVisible && bottomVisible)
+    );
+    if (topVisible) active.topSeen = true;
+    if (active.isShortAnswer && bottomVisible) {
+      active.bottomSeen = true;
+      active.readProgressEstimate = Math.max(Number(active.readProgressEstimate || 0), 1);
+    }
+    maybeEndReactionWindowForReading(active);
+  }
+
+  function scrollReactionMessageTopIntoView(turnId) {
+    const active = reactionWindowStateRef.current;
+    const sentinels = reactionSentinelRefs.current.get(turnId) || {};
+    const target = sentinels.top || sentinels.message;
+    if (!active || active.sourceTurnId !== turnId || !target) return;
+    if (active.didInitialTopScroll) return;
+    active.didInitialTopScroll = true;
+    active.programmaticScrollActive = true;
+    active.suppressedAutoScroll = true;
+    active.topSeen = true;
+    active.programmaticScrollUntil = Date.now() + REACTION_PROGRAMMATIC_SCROLL_MS;
+    target.scrollIntoView({ behavior: "auto", block: "start" });
+    if (reactionWindowProgrammaticScrollTimerRef.current) window.clearTimeout(reactionWindowProgrammaticScrollTimerRef.current);
+    reactionWindowProgrammaticScrollTimerRef.current = window.setTimeout(() => {
+      const latest = reactionWindowStateRef.current;
+      if (latest && latest.sourceTurnId === turnId) latest.programmaticScrollActive = false;
+      reactionWindowProgrammaticScrollTimerRef.current = null;
+    }, REACTION_PROGRAMMATIC_SCROLL_MS);
+  }
+
+  function handleReactionWindowScroll(event) {
+    const active = reactionWindowStateRef.current;
+    if (!active || active.done) return;
+    const target = event?.currentTarget;
+    if (!target) return;
+    const scrollTop = Number(target.scrollTop || 0);
+    const previousScrollTop = Number(active.lastScrollTop ?? scrollTop);
+    active.lastScrollTop = scrollTop;
+    if (active.programmaticScrollActive || Date.now() < Number(active.programmaticScrollUntil || 0)) {
+      active.suppressedAutoScroll = true;
+      return; // programmatic scrolls must not count as reading progress
+    }
+    active.userHasScrolledDuringWindow = true;
+    if (scrollTop > previousScrollTop + 4) {
+      active.userScrollProgressed = true;
+      const progress = (scrollTop + Number(target.clientHeight || 0)) / Math.max(1, Number(target.scrollHeight || 1));
+      active.readProgressEstimate = Math.max(Number(active.readProgressEstimate || 0), Math.min(1, progress));
+      maybeEndReactionWindowForReading(active);
+    }
+  }
+
+  function reactionWindowMinSamplesMet(active) {
+    return Boolean(active && (active.samples || []).length >= REACTION_WINDOW_MIN_SAMPLES);
+  }
+
+  function canEndReactionWindowForReading(active) {
+    if (!active || active.done) return false;
+    if (!active.layoutSettled) {
+      active.endBlockedReason = "waiting_for_layout_settle";
+      return false;
+    }
+    if (!active.topSeen) {
+      active.endBlockedReason = "waiting_for_top_seen";
+      return false;
+    }
+    if (!active.bottomSeen) {
+      active.endBlockedReason = "waiting_for_bottom_seen";
+      return false;
+    }
+    if (!active.minReadTimeMet) {
+      active.endBlockedReason = "waiting_for_min_read_time";
+      return false;
+    }
+    if (!reactionWindowMinSamplesMet(active)) {
+      active.endBlockedReason = "waiting_for_min_samples";
+      return false;
+    }
+    if (active.isShortAnswer) {
+      active.endBlockedReason = "";
+      return true;
+    }
+    if (!active.userScrollProgressed) {
+      active.endBlockedReason = "waiting_for_user_scroll_progress";
+      return false;
+    }
+    active.endBlockedReason = "";
+    return true;
+  }
+
+  function markReactionWindowBottomSeen(active) {
+    if (!active.layoutSettled) {
+      active.bottomSeenBeforeLayoutSettled = true;
+      active.endBlockedReason = "waiting_for_layout_settle";
+      return;
+    }
+    active.bottomSeen = true;
+    active.readProgressEstimate = Math.max(Number(active.readProgressEstimate || 0), 0.9);
+    active.pendingEndReason = "near_bottom_reached";
+    if (!canEndReactionWindowForReading(active)) return;
+    scheduleReactionWindowEnd("near_bottom_reached", { readProgressEstimate: active.readProgressEstimate });
+  }
+
+  function maybeEndReactionWindowForReading(active = reactionWindowStateRef.current) {
+    if (!active || active.done || active.ending) return;
+    if (active.isShortAnswer && canEndReactionWindowForReading(active)) {
+      void endReactionWindow("short_answer_min_elapsed", { readProgressEstimate: 1 });
+      return;
+    }
+    if (canEndReactionWindowForReading(active)) {
+      scheduleReactionWindowEnd("near_bottom_reached", { readProgressEstimate: active.readProgressEstimate || 0.9 });
+    }
+  }
+
+  function reactionWindowDebugFields(active, endReason) {
+    const elapsedSec = active.windowStartEpoch
+      ? Math.max(0, (Date.now() - active.windowStartEpoch) / 1000)
+      : 0;
+    return {
+      reaction_window_status: "completed",
+      start_turn_id: active.sourceTurnId || "",
+      source_turn_id: active.sourceTurnId || "",
+      end_reason: endReason || "",
+      sample_count: (active.samples || []).length,
+      word_count: Number(active.wordCount || 0),
+      message_height: Number(active.messageHeight || 0),
+      viewport_height: Number(active.viewportHeight || 0),
+      is_short_answer: Boolean(active.isShortAnswer),
+      estimated_min_read_sec: Number(active.estimatedMinReadSec || 0),
+      elapsed_sec: roundNumber(elapsedSec, 1),
+      min_duration_met: Boolean(active.minReadTimeMet),
+      min_read_time_met: Boolean(active.minReadTimeMet),
+      min_samples_met: reactionWindowMinSamplesMet(active),
+      top_seen: Boolean(active.topSeen),
+      bottom_seen: Boolean(active.bottomSeen),
+      user_scroll_progressed: Boolean(active.userScrollProgressed),
+      suppressed_auto_scroll: Boolean(active.suppressedAutoScroll),
+      end_blocked_reason: active.endBlockedReason || "",
+      strategy_request_sent: false,
+      strategy_response_received: false,
+    };
+  }
+
+  function scheduleReactionWindowEnd(endReason, options = {}) {
+    if (reactionWindowSentinelTimerRef.current) window.clearTimeout(reactionWindowSentinelTimerRef.current);
+    reactionWindowSentinelTimerRef.current = window.setTimeout(() => {
+      if (endReason === "near_bottom_reached") {
+        void endReactionWindow("near_bottom_reached", options);
+        return;
+      }
+      void endReactionWindow(endReason, options);
+    }, REACTION_WINDOW_SENTINEL_DELAY_MS);
+  }
+
+  async function sampleReactionWindow(runId, options = {}) {
+    const active = reactionWindowStateRef.current;
+    if (!active || (!options.force && active.done) || active.runId !== runId) return;
+    const sample = await readLearningStateSample();
+    const latest = reactionWindowStateRef.current;
+    if (!sample || !latest || (!options.force && latest.done) || latest.runId !== runId) return;
+    latest.samples.push({ ...sample, sample_index: latest.samples.length, sample_timestamp: new Date().toISOString() });
+    maybeEndReactionWindowForReading(latest);
+  }
+
+  async function endReactionWindow(endReason, options = {}) {
+    const active = reactionWindowStateRef.current;
+    if (!active || active.done) return null;
+    active.ending = true;
+    clearReactionWindowTimers();
+    await sampleReactionWindow(active.runId, { force: true });
+    active.done = true;
+    const windowEnd = new Date().toISOString();
+    const readProgressEstimate = Number(options.readProgressEstimate ?? active.readProgressEstimate ?? (endReason === "max_timeout" ? 0.5 : 0.9));
+    const summary = summarizeReactionWindowSamples(
+      active.samples,
+      active.sourceTurnId,
+      active.preview.highlight_id,
+      active.windowStart,
+      windowEnd,
+      active.sourceTurnType,
+      endReason,
+      readProgressEstimate,
+    );
+    summary.baseline_explanation = active.baselineExplanation || "";
+    Object.assign(summary, reactionWindowDebugFields(active, endReason));
+    summary.reliability_notes = Array.isArray(summary.reliability_notes) ? summary.reliability_notes : [];
+    if (["followup_submitted", "strategy_clicked"].includes(endReason) && !active.minReadTimeMet) {
+      summary.reliability_notes.push("reading window ended early; use conservative strategy inference");
+    }
+    setReactionWindowSummary(summary);
+    const triggerContext = {
+      triggered_by: "reaction_window",
+      trigger_reason: summary.trigger_reason,
+      duration_sec: summary.duration_sec,
+      trend: summary.trend,
+      intensity: summary.avg_confidence,
+      support_cue: summary.support_cue,
+      source_turn_id: active.sourceTurnId,
+      source_turn_type: active.sourceTurnType,
+      end_reason: summary.end_reason,
+      read_progress_estimate: summary.read_progress_estimate,
+      transition_label: summary.transition_label,
+      reaction_window_status: summary.reaction_window_status,
+      sample_count: summary.sample_count,
+      min_duration_met: summary.min_duration_met,
+      min_read_time_met: summary.min_read_time_met,
+      min_samples_met: summary.min_samples_met,
+      top_seen: summary.top_seen,
+      bottom_seen: summary.bottom_seen,
+      user_scroll_progressed: summary.user_scroll_progressed,
+      suppressed_auto_scroll: summary.suppressed_auto_scroll,
+      word_count: summary.word_count,
+      message_height: summary.message_height,
+      viewport_height: summary.viewport_height,
+      is_short_answer: summary.is_short_answer,
+      estimated_min_read_sec: summary.estimated_min_read_sec,
+      elapsed_sec: summary.elapsed_sec,
+      end_blocked_reason: summary.end_blocked_reason,
+    };
+    setStrategyTriggerContext(triggerContext);
+    completedReactionTurnIdsRef.current.add(active.sourceTurnId);
+    const threadWithSummary = mergeTurnMetadata(threadRef.current, active.sourceTurnId, {
+      reaction_window_summary: summary,
+      support_cue: summary.support_cue,
+      support_cue_label: summary.support_cue_label,
+      trigger_context: triggerContext,
+    });
+    try {
+      const persistedThread = await persistThreadForHighlight(threadWithSummary);
+      setThread(persistedThread);
+      threadRef.current = persistedThread;
+    } catch (err) {
+      setThread(threadWithSummary);
+      threadRef.current = threadWithSummary;
+    }
+    const shouldRequestStrategy = options.requestCandidates !== false && !["followup_submitted", "strategy_clicked"].includes(endReason);
+    summary.strategy_request_sent = shouldRequestStrategy;
+    await postSessionEvent("reaction_window_completed", {
+      highlight_id: active.preview.highlight_id,
+      source_turn_id: active.sourceTurnId,
+      source_turn_type: active.sourceTurnType,
+      end_reason: summary.end_reason,
+      read_progress_estimate: summary.read_progress_estimate,
+      reaction_window_status: summary.reaction_window_status,
+      sample_count: summary.sample_count,
+      min_duration_met: summary.min_duration_met,
+      min_read_time_met: summary.min_read_time_met,
+      min_samples_met: summary.min_samples_met,
+      top_seen: summary.top_seen,
+      bottom_seen: summary.bottom_seen,
+      user_scroll_progressed: summary.user_scroll_progressed,
+      suppressed_auto_scroll: summary.suppressed_auto_scroll,
+      word_count: summary.word_count,
+      message_height: summary.message_height,
+      viewport_height: summary.viewport_height,
+      is_short_answer: summary.is_short_answer,
+      estimated_min_read_sec: summary.estimated_min_read_sec,
+      elapsed_sec: summary.elapsed_sec,
+      end_blocked_reason: summary.end_blocked_reason,
+      strategy_request_sent: summary.strategy_request_sent,
+      strategy_response_received: summary.strategy_response_received,
+      reaction_window_summary: summary,
+      support_cue: summary.support_cue,
+      support_cue_label: summary.support_cue_label,
+    });
+    if (shouldRequestStrategy) {
+      await requestStrategyCandidates("reaction_window", summary, active.baselineExplanation, active.sourceTurnId, active.selection);
+    }
+    if (reactionWindowStateRef.current?.runId === active.runId) {
+      reactionWindowStateRef.current = null;
+      setReactionWindowActive(false);
+      setReactionWindowScrollTargetId("");
+      reactionWindowTurnIdRef.current = "";
+    }
+    return summary;
+  }
+
+  async function startReactionWindow(sourceTurnId, baselineExplanation, selectionOverride = activeSelectionRef.current, sourceTurnType = "baseline_explanation") {
     const selection = selectionOverride || activeSelectionRef.current;
     const preview = selection?.llmInputPreview || {};
     if (!readingSessionId || !preview.highlight_id || !sourceTurnId || !normalizePdfText(baselineExplanation)) return;
@@ -960,9 +1403,13 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
       return;
     }
 
+    clearReactionWindowTimers();
     const runId = Date.now();
+    const wordCount = wordCountForReadingEstimate(baselineExplanation);
+    const estimatedMinReadSec = estimateReactionWindowMinReadSec(baselineExplanation);
     reactionWindowRunRef.current = runId;
     reactionWindowTurnIdRef.current = sourceTurnId;
+    setReactionWindowScrollTargetId(sourceTurnId);
     setReactionWindowActive(true);
     setReactionWindowSummary(null);
     setStrategyCandidates([]);
@@ -970,60 +1417,67 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     setStrategyTriggerContext(null);
 
     const windowStart = new Date().toISOString();
-    const samples = [];
-    await postSessionEvent("reaction_window_started", {
+    reactionWindowStateRef.current = {
+      runId,
+      sourceTurnId,
+      sourceTurnType,
+      baselineExplanation,
+      selection,
+      preview,
+      windowStart,
+      windowStartEpoch: Date.now(),
+      samples: [],
+      readProgressEstimate: 0,
+      wordCount,
+      estimatedMinReadSec,
+      minReadTimeMet: false,
+      topSeen: false,
+      bottomSeen: false,
+      bottomSeenFromProgrammaticScroll: false,
+      bottomSeenBeforeLayoutSettled: false,
+      userHasScrolledDuringWindow: false,
+      userScrollProgressed: false,
+      programmaticScrollActive: false,
+      programmaticScrollUntil: 0,
+      suppressedAutoScroll: true,
+      didInitialTopScroll: false,
+      lastScrollTop: null,
+      pendingEndReason: "",
+      layoutSettled: false,
+      messageHeight: 0,
+      viewportHeight: 0,
+      isShortAnswer: false,
+      endBlockedReason: "",
+      done: false,
+    };
+    void postSessionEvent("reaction_window_started", {
       highlight_id: preview.highlight_id,
       source_turn_id: sourceTurnId,
+      source_turn_type: sourceTurnType,
       source: liveSignalActive ? "webcam_model" : "simulated_fallback",
+      word_count: wordCount,
+      estimated_min_read_sec: estimatedMinReadSec,
+      maximum_duration_ms: REACTION_WINDOW_MAX_MS,
     });
 
-    try {
-      const sampleCount = Math.max(2, Math.ceil(REACTION_WINDOW_DURATION_MS / REACTION_WINDOW_SAMPLE_MS));
-      for (let index = 0; index < sampleCount; index += 1) {
-        if (reactionWindowRunRef.current !== runId) return;
-        const sample = await readLearningStateSample();
-        if (sample) samples.push({ ...sample, sample_index: index });
-        if (index < sampleCount - 1) await delay(REACTION_WINDOW_SAMPLE_MS);
-      }
-      if (reactionWindowRunRef.current !== runId) return;
-      const windowEnd = new Date().toISOString();
-      const summary = summarizeReactionWindowSamples(samples, sourceTurnId, preview.highlight_id, windowStart, windowEnd);
-      summary.baseline_explanation = baselineExplanation || "";
-      setReactionWindowSummary(summary);
-      const triggerContext = {
-        triggered_by: "reaction_window",
-        trigger_reason: summary.trigger_reason,
-        duration_sec: summary.duration_sec,
-        trend: summary.trend,
-        intensity: summary.avg_confidence,
-        support_cue: summary.support_cue,
-        source_turn_id: sourceTurnId,
-      };
-      setStrategyTriggerContext(triggerContext);
-      completedReactionTurnIdsRef.current.add(sourceTurnId);
-      const threadWithSummary = mergeTurnMetadata(threadRef.current, sourceTurnId, {
-        reaction_window_summary: summary,
-        support_cue: summary.support_cue,
-        support_cue_label: summary.support_cue_label,
-        trigger_context: triggerContext,
-      });
-      const persistedThread = await persistThreadForHighlight(threadWithSummary);
-      setThread(persistedThread);
-      threadRef.current = persistedThread;
-      await postSessionEvent("reaction_window_completed", {
-        highlight_id: preview.highlight_id,
-        source_turn_id: sourceTurnId,
-        reaction_window_summary: summary,
-        support_cue: summary.support_cue,
-        support_cue_label: summary.support_cue_label,
-      });
-      await requestStrategyCandidates("reaction_window", summary, baselineExplanation, sourceTurnId, selection);
-    } finally {
-      if (reactionWindowRunRef.current === runId) {
-        setReactionWindowActive(false);
-        reactionWindowTurnIdRef.current = "";
-      }
-    }
+    void sampleReactionWindow(runId);
+    reactionWindowSampleTimerRef.current = window.setInterval(() => {
+      void sampleReactionWindow(runId);
+    }, REACTION_WINDOW_SAMPLE_MS);
+    reactionWindowMinTimerRef.current = window.setTimeout(() => {
+      const active = reactionWindowStateRef.current;
+      if (!active || active.done || active.runId !== runId) return;
+      active.minReadTimeMet = true;
+      maybeEndReactionWindowForReading(active);
+    }, estimatedMinReadSec * 1000);
+    reactionWindowMaxTimerRef.current = window.setTimeout(() => {
+      void endReactionWindow("max_timeout", { readProgressEstimate: reactionWindowStateRef.current?.readProgressEstimate || 0.5 });
+    }, REACTION_WINDOW_MAX_MS);
+    window.setTimeout(() => {
+      scrollReactionMessageTopIntoView(sourceTurnId);
+      observeReactionSentinels(sourceTurnId);
+      scheduleReactionWindowLayoutSettle(sourceTurnId);
+    }, 0);
   }
 
   function monitorableAssistantMessage(message) {
@@ -1038,7 +1492,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
 
   function startReactionWindowForAssistantMessage(message, selectionOverride = activeSelectionRef.current) {
     if (!monitorableAssistantMessage(message)) return;
-    startReactionWindow(message.turn_id, message.content || "", selectionOverride);
+    startReactionWindow(message.turn_id, message.content || "", selectionOverride, message.turn_type || "previous_explanation");
   }
 
   async function explainSelection(strategyOverride = null, defaultTask = "baseline_explain_current_selection", strategyContextOverride = null) {
@@ -1080,6 +1534,9 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         response_style: "chat_conversational",
         session_id: readingSessionId,
         learning_state: learningState,
+        learning_signal_package: learningState?.learning_signal_package || {},
+        input_source: isStrategyExplain ? "strategy_click" : "text",
+        response_mode: isStrategyExplain ? "strategy_response" : "normal_followup",
         strategy_candidates: isStrategyExplain ? currentStrategyCandidates : [],
         selected_strategy_id: effectiveStrategy?.strategy_id || "",
         selected_strategy: effectiveStrategy || null,
@@ -1118,6 +1575,10 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         logExplainSelectionDebug(endpoint, payload, result, normalizedResult, nextThread);
         return;
       }
+      const generatedAssistantMessage = latestAssistantMessage(persistedThread);
+      if (monitorableAssistantMessage(generatedAssistantMessage)) {
+        setReactionWindowScrollTargetId(generatedAssistantMessage.turn_id || generatedAssistantMessage.conversation_turn_id || "");
+      }
       setThread(persistedThread);
       threadRef.current = persistedThread;
       setActiveSelection((current) => current ? { ...current, explainResult: result } : current);
@@ -1137,7 +1598,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
           reaction_window_summary: currentReactionSummary || {},
         });
       }
-      startReactionWindowForAssistantMessage(latestAssistantMessage(persistedThread), selectionSnapshot);
+      startReactionWindowForAssistantMessage(generatedAssistantMessage, selectionSnapshot);
     } catch (err) {
       setError(userFacingErrorMessage(err));
     } finally {
@@ -1157,6 +1618,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     setFollowUpLoading(true);
     setError("");
     try {
+      await endReactionWindow("followup_submitted", { requestCandidates: false, readProgressEstimate: 0.75 });
       const result = await postJson(
         `/api/documents/${documentId}/threads/${highlightId}/follow-up`,
         {
@@ -1164,26 +1626,36 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
           selection_snapshot: activeSelection.llmInputPreview,
           session_id: readingSessionId,
           learning_state: learningState,
-          strategy_candidates: strategyCandidates,
-          selected_strategy_id: selectedStrategy?.strategy_id || "",
-          selected_strategy: selectedStrategy || null,
-          trigger_context: strategyTriggerContext,
-          reaction_window_summary: reactionWindowSummary,
-          source_turn_id: reactionWindowSummary?.source_turn_id || strategyTriggerContext?.source_turn_id || "",
+          input_source: followUpInputSource === "speech" ? "speech" : "text",
+          response_mode: "normal_followup",
+          strategy_candidates: [],
+          selected_strategy_id: null,
+          selected_strategy: null,
+          trigger_context: null,
+          reaction_window_summary: null,
+          learning_signal_package: {},
+          source_turn_id: "",
         },
       );
       const nextThread = result.thread || null;
+      const generatedAssistantMessage = latestAssistantMessage(nextThread);
+      if (monitorableAssistantMessage(generatedAssistantMessage)) {
+        setReactionWindowScrollTargetId(generatedAssistantMessage.turn_id || generatedAssistantMessage.conversation_turn_id || "");
+      }
       setThread(nextThread);
       threadRef.current = nextThread;
       setActiveSelection((current) => current ? { ...current, explainResult: result } : current);
       applyThreadStrategyState(nextThread);
       await postSessionEvent("follow_up_sent", {
         highlight_id: highlightId,
-        selected_strategy_id: selectedStrategy?.strategy_id || "",
-        selected_strategy_title: selectedStrategy?.title || "",
+        input_source: followUpInputSource === "speech" ? "speech" : "text",
+        response_mode: "normal_followup",
+        selected_strategy_id: "",
+        selected_strategy_title: "",
       });
-      startReactionWindowForAssistantMessage(latestAssistantMessage(nextThread), activeSelectionRef.current);
+      startReactionWindowForAssistantMessage(generatedAssistantMessage, activeSelectionRef.current);
       setFollowUpText("");
+      setFollowUpInputSource("text");
     } catch (err) {
       setError(err?.message || String(err));
     } finally {
@@ -1195,6 +1667,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     const sourceReactionSummary = sourceContext.reactionWindowSummary || reactionWindowSummary || {};
     const sourceCandidates = sourceContext.strategyCandidates || strategyCandidates;
     const sourceTriggerContext = sourceContext.triggerContext || strategyTriggerContext;
+    await endReactionWindow("strategy_clicked", { requestCandidates: false, readProgressEstimate: sourceReactionSummary?.read_progress_estimate || 0.9 });
     setSelectedStrategy(candidate);
     if (sourceContext.reactionWindowSummary) setReactionWindowSummary(sourceContext.reactionWindowSummary);
     if (sourceContext.strategyCandidates) setStrategyCandidates(sourceContext.strategyCandidates);
@@ -1337,6 +1810,11 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
     setStrategySourceKey("");
   }
 
+  function handleFollowUpTextChange(value, inputSource = "text") {
+    setFollowUpText(value);
+    setFollowUpInputSource(inputSource === "speech" ? "speech" : "text");
+  }
+
   return (
     <main className="pdf-chat-workspace">
       <section className="pdf-chat-reader-pane">
@@ -1401,6 +1879,7 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         cameraPausedByUser={cameraPausedByUser}
         cameraStartStatus={cameraStartStatus}
         reactionWindowActive={reactionWindowActive}
+        reactionWindowScrollTargetId={reactionWindowScrollTargetId}
         strategyCandidates={strategyCandidates}
         strategyPlannerMode={strategyPlannerMode}
         strategySourceTurnId={strategySourceTurnId}
@@ -1418,13 +1897,15 @@ function PdfChatWorkspace({ documentSummary, onBack, onDocumentChanged }) {
         onClearConversation={handleClearConversation}
         onDeleteHighlight={handleDeleteHighlight}
         onDeleteTurn={handleDeleteCurrentTurn}
+        registerReactionSentinel={registerReactionSentinel}
+        onConversationScroll={handleReactionWindowScroll}
         onStartLiveSignal={startLiveSignal}
         onUseSimulatedSignal={pauseLiveSignal}
         onToggleSelfView={() => setShowSelfView((value) => {
           cameraSelfViewPreferenceRef.current = value ? "hidden" : "visible";
           return !value;
         })}
-        onFollowUpTextChange={setFollowUpText}
+        onFollowUpTextChange={handleFollowUpTextChange}
         onSendFollowUp={sendFollowUp}
         cameraVideoRef={cameraVideoRef}
       />
@@ -1448,6 +1929,7 @@ function ChatSidePanel({
   cameraPausedByUser,
   cameraStartStatus,
   reactionWindowActive,
+  reactionWindowScrollTargetId,
   strategyCandidates,
   strategyPlannerMode,
   strategySourceTurnId,
@@ -1465,6 +1947,8 @@ function ChatSidePanel({
   onClearConversation,
   onDeleteHighlight,
   onDeleteTurn,
+  registerReactionSentinel,
+  onConversationScroll,
   onStartLiveSignal,
   onUseSimulatedSignal,
   onToggleSelfView,
@@ -1473,16 +1957,159 @@ function ChatSidePanel({
   cameraVideoRef,
 }) {
   const threadEndRef = useRef(null);
+  const lastAutoScrollKeyRef = useRef("");
+  const [speechState, setSpeechState] = useState("idle");
+  const [speechMessage, setSpeechMessage] = useState("");
+  const mediaRecorderRef = useRef(null);
+  const speechStreamRef = useRef(null);
+  const speechChunksRef = useRef([]);
+  const speechStopTimerRef = useRef(null);
   const isConversationLoading = explainLoading || followUpLoading;
   const messageCount = thread?.messages?.length || 0;
+  const suppressAutoScrollForReactionWindow = Boolean(reactionWindowActive || reactionWindowScrollTargetId);
+  const isSpeechRecording = speechState === "recording";
+  const isSpeechTranscribing = speechState === "transcribing";
+  const speechButtonLabel = isSpeechRecording ? "Stop speech recording" : "Record speech question";
+  const speechButtonDisabled = isSpeechTranscribing || (!isSpeechRecording && (!documentReady || !activeSelection || followUpLoading));
+  const speechStatusLabel = speechState === "recording"
+    ? "Recording..."
+    : speechState === "transcribing"
+      ? "Transcribing..."
+      : speechState === "error"
+        ? speechMessage || "Speech unavailable"
+        : "";
 
   useEffect(() => {
     if (!messageCount && !isConversationLoading) return;
+    const autoScrollKey = `${messageCount}:${isConversationLoading}`;
+    if (lastAutoScrollKeyRef.current === autoScrollKey) return;
+    lastAutoScrollKeyRef.current = autoScrollKey;
+    if (suppressAutoScrollForReactionWindow) return;
     threadEndRef.current?.scrollIntoView({
       behavior: isConversationLoading ? "auto" : "smooth",
       block: "end",
     });
-  }, [messageCount, isConversationLoading]);
+  }, [messageCount, isConversationLoading, suppressAutoScrollForReactionWindow]);
+
+  useEffect(() => () => {
+    cleanupSpeechRecording();
+  }, []);
+
+  function clearSpeechStopTimer() {
+    if (!speechStopTimerRef.current) return;
+    window.clearTimeout(speechStopTimerRef.current);
+    speechStopTimerRef.current = null;
+  }
+
+  function stopSpeechStream() {
+    speechStreamRef.current?.getTracks?.().forEach((track) => track.stop());
+    speechStreamRef.current = null;
+  }
+
+  function cleanupSpeechRecording() {
+    clearSpeechStopTimer();
+    const recorder = mediaRecorderRef.current;
+    if (recorder && recorder.state !== "inactive") {
+      recorder.onstop = null;
+      recorder.stop();
+    }
+    mediaRecorderRef.current = null;
+    speechChunksRef.current = [];
+    stopSpeechStream();
+  }
+
+  async function startSpeechRecording() {
+    if (!browserSupportsSpeechRecording()) {
+      setSpeechState("error");
+      setSpeechMessage("Speech unavailable");
+      return;
+    }
+    clearSpeechStopTimer();
+    speechChunksRef.current = [];
+    setSpeechMessage("");
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = preferredSpeechMimeType();
+      const recorder = mimeType
+        ? new MediaRecorder(stream, { mimeType })
+        : new MediaRecorder(stream);
+      speechStreamRef.current = stream;
+      mediaRecorderRef.current = recorder;
+      recorder.ondataavailable = (event) => {
+        if (event.data?.size) speechChunksRef.current.push(event.data);
+      };
+      recorder.onerror = () => {
+        setSpeechState("error");
+        setSpeechMessage("Speech unavailable");
+        cleanupSpeechRecording();
+      };
+      recorder.onstop = () => {
+        clearSpeechStopTimer();
+        stopSpeechStream();
+        void transcribeRecordedSpeech();
+      };
+      setSpeechState("recording");
+      recorder.start();
+      speechStopTimerRef.current = window.setTimeout(stopSpeechRecording, SPEECH_RECORDING_MAX_MS);
+    } catch (err) {
+      cleanupSpeechRecording();
+      setSpeechState("error");
+      setSpeechMessage("Speech unavailable");
+    }
+  }
+
+  function stopSpeechRecording() {
+    clearSpeechStopTimer();
+    const recorder = mediaRecorderRef.current;
+    if (recorder && recorder.state !== "inactive") {
+      recorder.stop();
+      return;
+    }
+    stopSpeechStream();
+    if (speechState === "recording") setSpeechState("idle");
+  }
+
+  async function transcribeRecordedSpeech() {
+    const chunks = speechChunksRef.current;
+    speechChunksRef.current = [];
+    if (!chunks.length) {
+      setSpeechState("error");
+      setSpeechMessage("Speech unavailable");
+      return;
+    }
+    setSpeechState("transcribing");
+    setSpeechMessage("");
+    try {
+      const mimeType = chunks.find((chunk) => chunk.type)?.type || preferredSpeechMimeType() || "audio/webm";
+      const extension = mimeType.includes("wav") ? "wav" : "webm";
+      const blob = new Blob(chunks, { type: mimeType });
+      const formData = new FormData();
+      formData.append("audio", blob, `speech.${extension}`);
+      const response = await fetch("/api/speech/transcribe", {
+        method: "POST",
+        body: formData,
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
+      if (!payload.available) throw new Error(payload.error || payload.message || "Speech transcription unavailable");
+      const transcript = normalizePdfText(payload.text || "");
+      if (!transcript) throw new Error("Speech transcription unavailable");
+      onFollowUpTextChange(transcript, "speech");
+      setSpeechState("idle");
+      setSpeechMessage("");
+    } catch (err) {
+      setSpeechState("error");
+      setSpeechMessage("Speech unavailable");
+    }
+  }
+
+  function handleSpeechButtonClick() {
+    if (isSpeechRecording) {
+      stopSpeechRecording();
+      return;
+    }
+    void startSpeechRecording();
+  }
 
   return (
     <aside className="pdf-chat-side-panel">
@@ -1521,7 +2148,7 @@ function ChatSidePanel({
 
       <div className="pdf-chat-conversation-region">
       <div className="pdf-chat-side-scroll">
-        <div className="pdf-chat-conversation-scroll">
+        <div className="pdf-chat-conversation-scroll" onScroll={onConversationScroll}>
         {error ? <p className="pdf-chat-error">{error}</p> : null}
 
           <HighlightThreadView
@@ -1540,19 +2167,35 @@ function ChatSidePanel({
           onDismissStrategies={onDismissStrategies}
           onRefreshStrategies={onRefreshStrategies}
           onDeleteTurn={onDeleteTurn}
+          registerReactionSentinel={registerReactionSentinel}
         />
         </div>
       </div>
       </div>
 
       <form className="pdf-chat-follow-up compact" onSubmit={onSendFollowUp}>
-        <FollowUpContextLine activeSelection={activeSelection} strategy={selectedStrategy} />
+        <FollowUpContextLine activeSelection={activeSelection} />
+        {speechStatusLabel ? (
+          <span className={`pdf-chat-speech-status ${speechState}`} title={speechMessage || speechStatusLabel}>
+            {speechStatusLabel}
+          </span>
+        ) : null}
         <input
           value={followUpText}
-          onChange={(event) => onFollowUpTextChange(event.target.value)}
+          onChange={(event) => onFollowUpTextChange(event.target.value, "text")}
           placeholder="Ask a follow-up about this selection..."
           disabled={!documentReady || !activeSelection || followUpLoading}
         />
+        <button
+          type="button"
+          className={`pdf-chat-speech-button ${isSpeechRecording ? "recording" : ""}`}
+          onClick={handleSpeechButtonClick}
+          disabled={speechButtonDisabled}
+          aria-label={speechButtonLabel}
+          title={speechButtonLabel}
+        >
+          {isSpeechRecording ? "Stop" : "Mic"}
+        </button>
         <button type="submit" disabled={!documentReady || !activeSelection || !followUpText.trim() || followUpLoading}>
           Send
         </button>
@@ -1701,7 +2344,7 @@ function LearningSignalPanel({
           : liveSignalError
             ? "Simulated fallback"
             : "Camera standby";
-  const cueLabel = learningState?.academic_state || "warming up";
+  const cueLabel = learningSupportCueLabel(learningState);
   const trendLabel = learningState?.trend || "stable";
   return (
     <section className="pdf-chat-learning-strip" aria-label="Live learning signal">
@@ -1715,7 +2358,7 @@ function LearningSignalPanel({
             <h3>Learning signal</h3>
           </div>
           <p className="pdf-chat-signal-line">
-            {liveSignalActive || learningState ? <>Cue: {cueLabel} · {formatPercent(learningState?.confidence)} · {trendLabel}</> : statusLabel}
+            {liveSignalActive || learningState ? <>Learning cue: {cueLabel} · {formatPercent(learningState?.confidence)} · {trendLabel}</> : statusLabel}
           </p>
           {reactionWindowActive ? <p className="pdf-chat-learning-note compact">Observing response...</p> : null}
         </div>
@@ -1757,7 +2400,7 @@ function LearningSignalPanel({
                   <dd>Face detection: {faceDetectionLabel}</dd>
                   <dt>Model</dt>
                   <dd>Model output type: {modelOutputLabel}</dd>
-                  <dt>Raw signal</dt>
+                  <dt>Learning support</dt>
                   <dd>{rawSignalLabel}</dd>
                   <dt>Tools</dt>
                   <dd>
@@ -1775,7 +2418,7 @@ function LearningSignalPanel({
                 <div className="pdf-chat-distribution-list" aria-label="Learning-state distribution">
                   {states.map((state) => (
                     <div className="pdf-chat-distribution-row" key={state}>
-                      <span>{state}</span>
+                      <span>{learningStateDisplayLabel(state)}</span>
                       <div className="pdf-chat-distribution-track">
                         <div className="pdf-chat-distribution-bar" style={{ width: `${Math.round(Number(distribution[state] || 0) * 100)}%` }} />
                       </div>
@@ -1799,6 +2442,7 @@ function LearningSignalPanel({
 function StrategyCandidatePanel({
   candidates,
   plannerMode,
+  sourceTurnType,
   selectedStrategy,
   loading,
   answerLoading,
@@ -1809,7 +2453,7 @@ function StrategyCandidatePanel({
   if (loading && !candidates.length) {
     return (
       <section className="pdf-chat-strategy-panel">
-        <h3>Suggested ways to improve this explanation</h3>
+        <h3>{strategyPanelHeading(sourceTurnType)}</h3>
         <p className="pdf-chat-muted">Preparing context-specific strategies...</p>
       </section>
     );
@@ -1822,7 +2466,7 @@ function StrategyCandidatePanel({
     <section className="pdf-chat-strategy-panel">
       <div className="pdf-chat-strategy-header">
         <div>
-          <h3>Suggested ways to improve this explanation</h3>
+          <h3>{strategyPanelHeading(sourceTurnType)}</h3>
           <p>Based on the recent learning signal while this explanation was being read, here is one recommended way to continue.</p>
         </div>
         <span>{plannerMode || "heuristic"}</span>
@@ -1868,6 +2512,9 @@ function StrategyCandidatePanel({
 function StrategyCard({ candidate, selected, loading, answerLoading, badgeText, onSelectStrategy }) {
   const move = candidate.pedagogical_move || strategyPedagogicalMove(candidate);
   const focus = candidate.context_focus || strategyContextFocus(candidate);
+  const evidenceText = strategyAcademicStateEvidenceText(candidate);
+  const supportCue = strategySupportCueLabel(candidate);
+  const reason = strategyReasonText(candidate);
   return (
     <article className={`pdf-chat-strategy-card ${selected ? "selected" : ""}`}>
       <div className="pdf-chat-strategy-card-title">
@@ -1881,7 +2528,13 @@ function StrategyCard({ candidate, selected, loading, answerLoading, badgeText, 
         </p>
       ) : null}
       <p>{candidate.short_description}</p>
-      <p className="pdf-chat-strategy-why"><span>Why this appeared:</span>{candidate.why_recommended}</p>
+      {evidenceText ? (
+        <p className="pdf-chat-strategy-evidence"><span>Learning-state evidence: </span>{evidenceText}</p>
+      ) : null}
+      {supportCue ? (
+        <p className="pdf-chat-strategy-evidence"><span>Support cue: </span>{supportCue}</p>
+      ) : null}
+      <p className="pdf-chat-strategy-why"><span>Why this appeared:</span>{reason}</p>
       <button type="button" onClick={() => onSelectStrategy(candidate)} disabled={loading || answerLoading}>
         {selected && answerLoading ? "Explaining this way..." : "Explain with this strategy"}
       </button>
@@ -1915,6 +2568,22 @@ function strategyContextFocus(strategy) {
   return strategy?.context_focus || "";
 }
 
+function strategyReasonText(strategy) {
+  return strategy?.reason_text || strategy?.why_recommended || "";
+}
+
+function strategyAcademicStateEvidenceText(strategy) {
+  return strategy?.academic_state_evidence_text || "";
+}
+
+function strategySupportCueLabel(strategy) {
+  return strategy?.support_cue_label || strategy?.support_cue_display_label || (strategy?.support_cue ? supportCueReasonLabel(canonicalSupportCueForDisplay(strategy.support_cue)) : "");
+}
+
+function strategyPanelHeading(sourceTurnType) {
+  return sourceTurnType === "strategy_reexplanation" ? "Suggested next move" : "Suggested ways to improve this explanation";
+}
+
 function FollowUpContextLine({ activeSelection, strategy }) {
   const selectionLabel = activeSelection?.llmInputPreview ? selectionKindLabel(activeSelection.llmInputPreview) : "No active selection";
   const pageLabel = activeSelection?.llmInputPreview?.page_number ? ` · Page ${activeSelection.llmInputPreview.page_number}` : "";
@@ -1940,6 +2609,7 @@ function HighlightThreadView({
   onDismissStrategies,
   onRefreshStrategies,
   onDeleteTurn,
+  registerReactionSentinel,
 }) {
   const messages = thread?.messages || [];
   const turns = useMemo(() => deriveConversationTurns(messages), [messages]);
@@ -1989,7 +2659,25 @@ function HighlightThreadView({
                 <ConversationStrategyBadge message={message} continuing={continuingStrategy} />
               ) : null}
               <div className="pdf-chat-message-content">
+                {message.role === "assistant" ? (
+                  <span
+                    className="pdf-chat-reaction-sentinel top"
+                    data-reaction-turn-id={message.turn_id || message.conversation_turn_id || ""}
+                    data-reaction-sentinel="top"
+                    ref={(node) => registerReactionSentinel?.(message.turn_id || message.conversation_turn_id || "", "top", node)}
+                    aria-hidden="true"
+                  />
+                ) : null}
                 <MarkdownText content={message.content || ""} />
+                {message.role === "assistant" ? (
+                  <span
+                    className="pdf-chat-reaction-sentinel bottom"
+                    data-reaction-turn-id={message.turn_id || message.conversation_turn_id || ""}
+                    data-reaction-sentinel="bottom"
+                    ref={(node) => registerReactionSentinel?.(message.turn_id || message.conversation_turn_id || "", "bottom", node)}
+                    aria-hidden="true"
+                  />
+                ) : null}
               </div>
             </div>
           </article>
@@ -2038,11 +2726,15 @@ function TurnStrategySuggestions({
   const matchesSourceTurn = Boolean(turn && turn.turn_id === strategySourceTurnId);
   const turnSpecificCandidates = strategyCandidatesForTurn(turn, turnMetadata, candidates, strategySourceTurnId);
   const metadata = turnMetadataForThread({ turn_metadata: turnMetadata || {} }, turn?.turn_id);
+  if (metadata.strategy_status === "applied") {
+    return <AppliedStrategyRecord metadata={metadata} />;
+  }
   if (!matchesSourceTurn && !turnSpecificCandidates.length) return null;
   return (
     <StrategyCandidatePanel
       candidates={turnSpecificCandidates}
       plannerMode={metadata?.planner_mode || plannerMode}
+      sourceTurnType={metadata?.reaction_window_summary?.source_turn_type || metadata?.source_turn_type || ""}
       selectedStrategy={selectedStrategy}
       loading={matchesSourceTurn && loading}
       answerLoading={answerLoading}
@@ -2059,11 +2751,52 @@ function TurnStrategySuggestions({
   );
 }
 
+function AppliedStrategyRecord({ metadata }) {
+  const reactionSummary = metadata?.reaction_window_summary || {};
+  const observedWindow = observedWindowLabel(reactionSummary);
+  const applied = {
+    strategy_id: metadata?.applied_strategy_id || "",
+    strategy_family: metadata?.applied_strategy_family || "",
+    pedagogical_move: metadata?.applied_pedagogical_move || "",
+    context_focus: metadata?.applied_context_focus || "",
+    title: metadata?.applied_strategy_title || "",
+    strategy_status: "applied",
+  };
+  const move = strategyPedagogicalMove(applied);
+  const reason = strategyReasonText(metadata) || metadata?.strategy_reason || reactionSummary.reason_text || reactionSummary.trigger_reason || metadata?.trigger_context?.trigger_reason || "";
+  const evidenceText = strategyAcademicStateEvidenceText(metadata) || reactionSummary.academic_state_evidence_text || "";
+  const supportCue = strategySupportCueLabel(metadata) || reactionSummary.support_cue_display_label || reactionSummary.support_cue_label || "";
+  if (!metadata?.applied_strategy_id && !metadata?.applied_strategy_family && !move) return null;
+  return (
+    <section className="pdf-chat-strategy-panel applied">
+      <div className="pdf-chat-strategy-header">
+        <div>
+          <h3>Strategy used</h3>
+          <p>Applied strategy: {move}</p>
+        </div>
+        <span>Applied</span>
+      </div>
+      {evidenceText ? (
+        <p className="pdf-chat-strategy-evidence"><span>Learning-state evidence: </span>{evidenceText}</p>
+      ) : null}
+      {supportCue ? (
+        <p className="pdf-chat-strategy-evidence"><span>Support cue: </span>{supportCue}</p>
+      ) : null}
+      {reason ? (
+        <p className="pdf-chat-strategy-why"><span>Why this strategy was used:</span>{reason}</p>
+      ) : null}
+      {observedWindow ? <p className="pdf-chat-muted">Observed window: {observedWindow}</p> : null}
+    </section>
+  );
+}
+
 function ConversationStrategyBadge({ message, continuing }) {
   if (!message.strategy_title && !message.pedagogical_move) return null;
   const reactionSummary = message.reaction_window_summary || {};
   const observedWindow = observedWindowLabel(reactionSummary);
-  const strategyReason = message.strategy_reason || reactionSummary.trigger_reason || message.trigger_context?.trigger_reason || "";
+  const strategyReason = strategyReasonText(message) || message.strategy_reason || reactionSummary.reason_text || reactionSummary.trigger_reason || message.trigger_context?.trigger_reason || "";
+  const evidenceText = strategyAcademicStateEvidenceText(message) || reactionSummary.academic_state_evidence_text || "";
+  const supportCue = strategySupportCueLabel(message) || reactionSummary.support_cue_display_label || reactionSummary.support_cue_label || "";
   const move = strategyPedagogicalMove(message);
   const focus = strategyContextFocus(message);
   const tracePayload = {
@@ -2071,15 +2804,28 @@ function ConversationStrategyBadge({ message, continuing }) {
     reaction_window_summary: reactionSummary,
     planner_mode: message.planner_mode || null,
     planner_prompt_version: message.planner_prompt_version || "",
-    selected_strategy_id: message.strategy_id || "",
+    selected_strategy_id: message.applied_strategy_id || message.strategy_id || "",
     selected_strategy: {
-      strategy_id: message.strategy_id || "",
-      strategy_family: message.strategy_family || fallbackStrategyFamily(message),
-      pedagogical_move: message.pedagogical_move || "",
-      context_focus: message.context_focus || "",
+      strategy_id: message.applied_strategy_id || message.strategy_id || "",
+      strategy_family: message.applied_strategy_family || message.strategy_family || fallbackStrategyFamily(message),
+      pedagogical_move: message.applied_pedagogical_move || message.pedagogical_move || "",
+      context_focus: message.applied_context_focus || message.context_focus || "",
       title: message.strategy_title || "",
       short_description: message.strategy_short_description || "",
     },
+    legacy_selected_strategy: {
+      pedagogical_move: message.pedagogical_move || "",
+      context_focus: message.context_focus || "",
+    },
+    applied_strategy_id: message.applied_strategy_id || "",
+    applied_strategy_family: message.applied_strategy_family || "",
+    source_reaction_turn_id: message.source_reaction_turn_id || "",
+    reason_text: message.reason_text || "",
+    academic_state_evidence_text: message.academic_state_evidence_text || reactionSummary.academic_state_evidence_text || "",
+    confidence_handling: message.confidence_handling || reactionSummary.confidence_handling || "",
+    source_turn_type: message.source_turn_type || reactionSummary.source_turn_type || "",
+    support_cue_label: message.support_cue_label || reactionSummary.support_cue_display_label || reactionSummary.support_cue_label || "",
+    strategy_status: message.strategy_status || "",
     trigger_reason: strategyReason,
     support_cue: message.support_cue || reactionSummary.support_cue || "",
     average_distribution: reactionSummary.avg_distribution || {},
@@ -2097,9 +2843,21 @@ function ConversationStrategyBadge({ message, continuing }) {
         </div>
       ) : null}
       {message.strategy_short_description ? <small>{message.strategy_short_description}</small> : null}
+      {evidenceText ? (
+        <div className="pdf-chat-strategy-focus compact">
+          <span>Learning-state evidence: </span>
+          <p>{evidenceText}</p>
+        </div>
+      ) : null}
+      {supportCue ? (
+        <div className="pdf-chat-strategy-focus compact">
+          <span>Support cue: </span>
+          <p>{supportCue}</p>
+        </div>
+      ) : null}
       {strategyReason ? (
         <div className="pdf-chat-strategy-reason">
-          <span>Why this strategy appeared</span>
+          <span>Why this strategy was used</span>
           <p>{strategyReason}</p>
         </div>
       ) : null}
@@ -2992,8 +3750,43 @@ function modelModeLabelForLearningSignal(modelOutputType) {
 function rawSignalLabelForLearningSignal(learningState, modelStatus) {
   const statusAvailable = Boolean(modelStatus?.emotion_pipeline_status?.raw_detection_available || modelStatus?.raw_emotion_available);
   const rawAvailable = Boolean(learningState?.raw_facial_emotion_available || statusAvailable);
-  if (rawAvailable) return "Raw emotion available";
-  return "Raw emotion unavailable for this checkpoint";
+  if (rawAvailable) return "Learning-support signal available";
+  return "Learning-support signal unavailable for this checkpoint";
+}
+
+function learningSupportCueLabel(learningState) {
+  const packageCue = learningState?.learning_signal_package?.support_cue || learningState?.learning_signal_package?.reaction_window_summary?.support_cue;
+  if (packageCue) return supportCueDisplayLabel(packageCue);
+  const state = String(learningState?.academic_state || "").toLowerCase();
+  const labels = {
+    boredom: "possible re-engagement cue",
+    confusion: "clarification cue",
+    engagement: "deepening cue",
+    frustration: "continued difficulty cue",
+  };
+  return labels[state] || "warming up";
+}
+
+function learningStateDisplayLabel(state) {
+  const academicState = String(state || "").toLowerCase();
+  return ["boredom", "confusion", "engagement", "frustration"].includes(academicState) ? academicState : state;
+}
+
+function supportCueDisplayLabel(supportCue) {
+  const labels = {
+    clarification: "clarification cue",
+    difficulty_support: "difficulty-support cue",
+    sustained_clarification: "clarification cue",
+    reduce_load: "reduce-load cue",
+    re_engagement: "re-engagement cue",
+    deepening: "deepening cue",
+    clarify_and_reengage: "clarify and re-engage cue",
+    gentle_clarification: "gentle clarification cue",
+    uncertain: "mixed signal",
+    neutral_or_uncertain: "mixed signal",
+    neutral: "neutral cue",
+  };
+  return labels[supportCue] || "learning-support cue";
 }
 
 function reactionStrategyKey(activeSelection, reactionSummary) {
@@ -3003,7 +3796,16 @@ function reactionStrategyKey(activeSelection, reactionSummary) {
   return `${highlightId}:${sourceTurnId}:${cue}`;
 }
 
-function summarizeReactionWindowSamples(samples, sourceTurnId, highlightId, windowStart, windowEnd) {
+function summarizeReactionWindowSamples(
+  samples,
+  sourceTurnId,
+  highlightId,
+  windowStart,
+  windowEnd,
+  sourceTurnType = "baseline_explanation",
+  endReason = "near_bottom_reached",
+  readProgressEstimate = 0.9,
+) {
   const usableSamples = (samples || []).filter(Boolean);
   const states = ["boredom", "confusion", "engagement", "frustration"];
   const totals = Object.fromEntries(states.map((state) => [state, 0]));
@@ -3035,9 +3837,33 @@ function summarizeReactionWindowSamples(samples, sourceTurnId, highlightId, wind
   const dominantState = orderedStates[0] || "engagement";
   const secondaryState = orderedStates[1] || "";
   const avgConfidence = roundNumber(confidenceTotal / divisor, 3);
-  const trend = trends.includes("rising") ? "rising" : trends.includes("stable") ? "stable" : trends[0] || "stable";
-  const stability = Math.abs((avgDistribution[dominantState] || 0) - (avgDistribution[secondaryState] || 0)) < 0.12 ? "mixed" : "stable";
-  const supportCue = supportCueForReaction(dominantState, secondaryState, avgDistribution, avgConfidence);
+  const phases = splitReactionPhaseSamples(usableSamples);
+  const earlyDistribution = aggregateReactionDistribution(phases.early, states);
+  const middleDistribution = aggregateReactionDistribution(phases.middle, states);
+  const lateDistribution = aggregateReactionDistribution(phases.late, states);
+  const earlyDominantState = dominantStateFromDistribution(earlyDistribution, states);
+  const middleDominantState = dominantStateFromDistribution(middleDistribution, states);
+  const lateDominantState = dominantStateFromDistribution(lateDistribution, states);
+  let transition = reactionTransitionSummary(earlyDominantState, middleDominantState, lateDominantState, earlyDistribution, lateDistribution, usableSamples.length);
+  const trend = transition.trend || (trends.includes("rising") ? "rising" : trends.includes("stable") ? "stable" : trends[0] || "stable");
+  if (isResolvingDifficultyPattern(avgDistribution, dominantState, secondaryState, trend)) {
+    transition = {
+      ...transition,
+      state_transition: "resolving_difficulty",
+      transition_label: "resolving_difficulty",
+      stability: "transitioning",
+    };
+  }
+  const stability = transition.stability || (Math.abs((avgDistribution[dominantState] || 0) - (avgDistribution[secondaryState] || 0)) < 0.12 ? "mixed" : "stable");
+  const supportCue = supportCueForReadingTransition(
+    transition.state_transition,
+    dominantState,
+    secondaryState,
+    avgDistribution,
+    avgConfidence,
+    endReason,
+    usableSamples.length,
+  );
   const modeCounts = detectorModes.reduce((counts, mode) => ({ ...counts, [mode]: (counts[mode] || 0) + 1 }), {});
   const faceMode = Object.entries(modeCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "center_crop";
   const outputCounts = modelOutputTypes.reduce((counts, mode) => ({ ...counts, [mode]: (counts[mode] || 0) + 1 }), {});
@@ -3045,16 +3871,41 @@ function summarizeReactionWindowSamples(samples, sourceTurnId, highlightId, wind
   const cropStrategyCounts = cropStrategies.reduce((counts, strategy) => ({ ...counts, [strategy]: (counts[strategy] || 0) + 1 }), {});
   const cropStrategy = Object.entries(cropStrategyCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || "";
   const windowDuration = Math.max(0, (Date.parse(windowEnd) - Date.parse(windowStart)) / 1000);
-  const triggerReason = supportCue.support_cue === "neutral_or_uncertain"
-    ? "The baseline explanation was being read while the learning signal was mixed, so neutral continuation options are suggested."
-    : `The baseline explanation was being read while the learning signal showed a ${supportCue.support_cue_label.toLowerCase()}.`;
+  const reason = buildStrategyReasonText({
+    source_turn_type: sourceTurnType,
+    academic_state_scores: avgDistribution,
+    dominant_academic_state: dominantState,
+    secondary_academic_state: secondaryState,
+    support_cue: supportCue.support_cue,
+    trend,
+    avg_confidence: avgConfidence,
+    recommended_strategy: recommendedStrategyForSupportCue(supportCue.support_cue),
+    pedagogical_move: supportCue.support_cue === "deepening" ? "deeper explanation strategy" : "step-by-step strategy",
+  });
+  const phaseEvidence = transition.transition_label && transition.state_transition !== "mixed_or_uncertain"
+    ? `${transition.transition_label} · ${reason.academic_state_evidence_text}`
+    : reason.academic_state_evidence_text;
   return {
     source_turn_id: sourceTurnId || "",
+    source_turn_type: sourceTurnType || "previous_explanation",
     highlight_id: highlightId || "",
+    start_time: windowStart,
+    end_time: windowEnd,
     window_start: windowStart,
     window_end: windowEnd,
+    end_reason: endReason || "near_bottom_reached",
+    read_progress_estimate: roundNumber(finiteScore(readProgressEstimate, 0), 2),
     duration_sec: roundNumber(windowDuration || (usableSamples.length * REACTION_WINDOW_SAMPLE_MS / 1000), 1),
     sample_count: usableSamples.length,
+    evidence_count: usableSamples.length,
+    early_distribution: earlyDistribution,
+    middle_distribution: middleDistribution,
+    late_distribution: lateDistribution,
+    early_dominant_state: earlyDominantState,
+    middle_dominant_state: middleDominantState,
+    late_dominant_state: lateDominantState,
+    state_transition: transition.state_transition,
+    transition_label: transition.transition_label,
     dominant_state: dominantState,
     secondary_state: secondaryState,
     avg_confidence: avgConfidence,
@@ -3064,7 +3915,15 @@ function summarizeReactionWindowSamples(samples, sourceTurnId, highlightId, wind
     stability,
     support_cue: supportCue.support_cue,
     support_cue_label: supportCue.support_cue_label,
-    trigger_reason: triggerReason,
+    support_cue_display_label: reason.support_cue_label,
+    academic_state_evidence_text: phaseEvidence,
+    confidence_handling: reason.confidence_handling,
+    reason_text: reason.reason_text,
+    trigger_reason: reason.reason_text,
+    reliability_notes: [
+      "reaction window summary is used as learning-support evidence, not diagnosis",
+      ...(usableSamples.length < REACTION_WINDOW_MIN_SAMPLES ? ["low sample count; avoid strong process inference"] : []),
+    ],
     model_output_type: modelOutputType,
     raw_detection_available: rawDetectionAvailable,
     face_detection_summary: {
@@ -3073,6 +3932,113 @@ function summarizeReactionWindowSamples(samples, sourceTurnId, highlightId, wind
       crop_strategy: cropStrategy,
     },
   };
+}
+
+function splitReactionPhaseSamples(samples) {
+  const usable = (samples || []).filter(Boolean);
+  if (!usable.length) return { early: [], middle: [], late: [] };
+  if (usable.length === 1) return { early: usable, middle: usable, late: usable };
+  if (usable.length === 2) return { early: [usable[0]], middle: usable, late: [usable[1]] };
+  const third = Math.max(1, Math.ceil(usable.length / 3));
+  const early = usable.slice(0, third);
+  const middle = usable.slice(third, Math.max(third + 1, usable.length - third));
+  const late = usable.slice(Math.max(third, usable.length - third));
+  return {
+    early: early.length ? early : usable,
+    middle: middle.length ? middle : usable,
+    late: late.length ? late : usable,
+  };
+}
+
+function aggregateReactionDistribution(samples, states) {
+  const usable = (samples || []).filter(Boolean);
+  const totals = Object.fromEntries(states.map((state) => [state, 0]));
+  if (!usable.length) return Object.fromEntries(states.map((state) => [state, 0]));
+  for (const sample of usable) {
+    const distribution = sample.distribution || sample.state_distribution || {};
+    for (const state of states) {
+      totals[state] += Number(distribution[state] || (sample.academic_state === state ? sample.confidence || 0 : 0));
+    }
+  }
+  return Object.fromEntries(states.map((state) => [state, roundNumber(totals[state] / usable.length, 3)]));
+}
+
+function dominantStateFromDistribution(distribution, states) {
+  const ordered = [...states].sort((a, b) => Number(distribution?.[b] || 0) - Number(distribution?.[a] || 0));
+  return ordered[0] || "uncertain";
+}
+
+function reactionTransitionSummary(earlyState, middleState, lateState, earlyDistribution, lateDistribution, sampleCount) {
+  if (!sampleCount) {
+    return {
+      state_transition: "mixed_or_uncertain",
+      transition_label: "mixed or uncertain",
+      trend: "uncertain",
+      stability: "low_evidence",
+    };
+  }
+  const earlyDifficulty = ["confusion", "frustration"].includes(earlyState);
+  const lateDifficulty = ["confusion", "frustration"].includes(lateState);
+  const earlyScore = Number(earlyDistribution?.[earlyState] || 0);
+  const lateScore = Number(lateDistribution?.[lateState] || 0);
+  const scoreDelta = lateScore - earlyScore;
+  let stateTransition = "mixed_or_uncertain";
+  if (earlyDifficulty && lateState === "engagement") {
+    stateTransition = `${earlyState}_to_engagement`;
+  } else if (earlyState === "engagement" && lateDifficulty) {
+    stateTransition = `engagement_to_${lateState}`;
+  } else if (lateState === "confusion" && (earlyState === "confusion" || middleState === "confusion")) {
+    stateTransition = "persistent_confusion";
+  } else if (lateState === "frustration" && (earlyState === "frustration" || middleState === "frustration")) {
+    stateTransition = "persistent_frustration";
+  } else if (earlyState === "engagement" && middleState === "engagement" && lateState === "engagement") {
+    stateTransition = "stable_engagement";
+  } else if (earlyState === "boredom" && middleState === "boredom" && lateState === "boredom") {
+    stateTransition = "persistent_boredom";
+  }
+  const labels = {
+    confusion_to_engagement: "early confusion -> late engagement",
+    frustration_to_engagement: "early frustration -> late engagement",
+    engagement_to_confusion: "early engagement -> late confusion",
+    engagement_to_frustration: "early engagement -> late frustration",
+    persistent_confusion: "persistent confusion",
+    persistent_frustration: "persistent frustration",
+    persistent_boredom: "persistent low engagement",
+    stable_engagement: "stable engagement",
+    mixed_or_uncertain: "mixed or uncertain",
+  };
+  return {
+    state_transition: stateTransition,
+    transition_label: labels[stateTransition] || "mixed or uncertain",
+    trend: Math.abs(scoreDelta) < 0.08 ? "stable" : scoreDelta > 0 ? "rising" : "falling",
+    stability: stateTransition.startsWith("persistent") || stateTransition === "stable_engagement" ? "stable" : "transitioning",
+  };
+}
+
+function supportCueForReadingTransition(stateTransition, dominantState, secondaryState, distribution, avgConfidence, endReason, sampleCount) {
+  if (endReason === "max_timeout" || sampleCount < 2) {
+    return { support_cue: "neutral_or_uncertain", support_cue_label: "Possible ways to continue" };
+  }
+  const baseCue = supportCueForReaction(dominantState, secondaryState, distribution, avgConfidence);
+  if (stateTransition === "resolving_difficulty") {
+    return { support_cue: "deepening", support_cue_label: "Cautious deepening cue" };
+  }
+  if (["confusion_to_engagement", "frustration_to_engagement", "stable_engagement"].includes(stateTransition)) {
+    return { support_cue: "deepening", support_cue_label: "Deepening cue" };
+  }
+  if (["clarify_and_reengage", "gentle_clarification", "neutral_or_uncertain"].includes(baseCue.support_cue)) {
+    return baseCue;
+  }
+  if (stateTransition === "persistent_confusion" || stateTransition === "engagement_to_confusion") {
+    return { support_cue: "sustained_clarification", support_cue_label: "Sustained clarification cue" };
+  }
+  if (stateTransition === "persistent_frustration" || stateTransition === "engagement_to_frustration") {
+    return { support_cue: "difficulty_support", support_cue_label: "Reduce cognitive load cue" };
+  }
+  if (stateTransition === "persistent_boredom") {
+    return { support_cue: "re_engagement", support_cue_label: "Re-engagement cue" };
+  }
+  return baseCue;
 }
 
 function supportCueForReaction(dominantState, secondaryState, distribution, avgConfidence) {
@@ -3088,22 +4054,171 @@ function supportCueForReaction(dominantState, secondaryState, distribution, avgC
   if (values.confusion >= 0.35 && values.frustration >= 0.25) {
     return { support_cue: "gentle_clarification", support_cue_label: "Gentle clarification cue" };
   }
-  if (avgConfidence < 0.55 || top < 0.45 || top - second < 0.05 || spread < 0.18) {
+  if (top >= 0.55) {
+    if (ordered[0] === "engagement") return { support_cue: "deepening", support_cue_label: "Deepening cue" };
+    if (ordered[0] === "boredom") return { support_cue: "re_engagement", support_cue_label: "Re-engagement cue" };
+    if (ordered[0] === "frustration") return { support_cue: "difficulty_support", support_cue_label: "Reduce cognitive load cue" };
+    if (ordered[0] === "confusion") return { support_cue: "sustained_clarification", support_cue_label: "Sustained clarification cue" };
+  }
+  if (top < 0.45 || top - second < 0.05 || spread < 0.18) {
     return { support_cue: "neutral_or_uncertain", support_cue_label: "Possible ways to continue" };
   }
   if (values.engagement >= 0.65 || dominantState === "engagement") return { support_cue: "deepening", support_cue_label: "Deepening cue" };
   if (values.boredom >= 0.50 || dominantState === "boredom") return { support_cue: "re_engagement", support_cue_label: "Re-engagement cue" };
-  if (values.frustration >= 0.45 || dominantState === "frustration") return { support_cue: "reduce_load", support_cue_label: "Reduce cognitive load cue" };
+  if (values.frustration >= 0.45 || dominantState === "frustration") return { support_cue: "difficulty_support", support_cue_label: "Reduce cognitive load cue" };
   if (values.confusion >= 0.45 || dominantState === "confusion") return { support_cue: "sustained_clarification", support_cue_label: "Sustained clarification cue" };
   return { support_cue: "neutral_or_uncertain", support_cue_label: "Possible ways to continue" };
 }
 
+function isResolvingDifficultyPattern(scores, dominantState, secondaryState, trend) {
+  if (dominantState !== "frustration" || secondaryState !== "engagement" || trend !== "falling") return false;
+  const frustration = finiteScore(scores?.frustration, 0);
+  const engagement = finiteScore(scores?.engagement, 0);
+  return frustration > 0 && engagement > 0 && frustration - engagement >= 0 && frustration - engagement <= 0.15;
+}
+
+function buildStrategyReasonText({
+  source_turn_type,
+  academic_state_scores,
+  dominant_academic_state,
+  secondary_academic_state,
+  support_cue,
+  trend,
+  avg_confidence,
+  recommended_strategy,
+  pedagogical_move,
+}) {
+  const states = ["boredom", "confusion", "engagement", "frustration"];
+  const scores = Object.fromEntries(states.map((state) => [state, finiteScore(academic_state_scores?.[state], 0)]));
+  const ordered = [...states].sort((a, b) => scores[b] - scores[a]);
+  const dominant = states.includes(dominant_academic_state) ? dominant_academic_state : ordered[0] || "uncertain";
+  const secondary = states.includes(secondary_academic_state) && secondary_academic_state !== dominant
+    ? secondary_academic_state
+    : ordered.find((state) => state !== dominant && scores[state] > 0) || "";
+  const confidenceHandling = Number(avg_confidence) < 0.5 ? "low_confidence" : "standard_confidence";
+  const sourceLabel = sourceExplanationLabel(source_turn_type);
+  const cue = canonicalSupportCueForDisplay(support_cue, dominant);
+  const evidenceText = academicStateEvidenceText(scores, dominant, secondary, trend, confidenceHandling);
+  const stateDetail = [
+    `${dominant} ${formatPercent(scores[dominant] || 0)}`,
+    secondary ? `secondary ${secondary} ${formatPercent(scores[secondary] || 0)}` : "",
+  ].filter(Boolean).join(", ");
+  const trendClause = trend ? ` with a ${trend} trend` : "";
+  const confidenceClause = confidenceHandling === "low_confidence" ? ", but the average confidence was low" : "";
+  const resolvingDifficulty = isResolvingDifficultyPattern(scores, dominant, secondary, trend);
+  let strategySentence = strategyReasonSentence(cue, recommended_strategy, pedagogical_move, confidenceHandling);
+  if (resolvingDifficulty && cue === "deepening") {
+    strategySentence = "The difficulty signal was falling and engagement was close behind, suggesting the earlier difficulty may be resolving. The system therefore selected a cautious deepening strategy.";
+  } else if (cue === "deepening" && dominant !== "engagement") {
+    strategySentence = "The signal did not show persistent difficulty or clarification needs across the full window, so the system selected a cautious continuation strategy.";
+  }
+  const reasonText = `While ${sourceLabel} was being read, the reaction window was ${dominant}-dominant (${stateDetail})${trendClause}${confidenceClause}. ${strategySentence}`;
+  return {
+    reason_text: reasonText,
+    academic_state_evidence_text: evidenceText,
+    confidence_handling: confidenceHandling,
+    source_turn_type: source_turn_type || "previous_explanation",
+    support_cue_label: supportCueReasonLabel(cue),
+  };
+}
+
+function sourceExplanationLabel(sourceTurnType) {
+  if (sourceTurnType === "baseline_explanation" || sourceTurnType === "baseline") return "the baseline explanation";
+  if (sourceTurnType === "strategy_reexplanation" || sourceTurnType === "adaptive") return "the previous adaptive explanation";
+  return "the previous explanation";
+}
+
+function canonicalSupportCueForDisplay(supportCue, dominantState) {
+  const aliases = {
+    sustained_clarification: "clarification",
+    gentle_clarification: "clarification",
+    clarify_and_reengage: "clarification",
+    reduce_load: "difficulty_support",
+    difficulty_support: "difficulty_support",
+    deepening: "deepening",
+    re_engagement: "re_engagement",
+    neutral_or_uncertain: "uncertain",
+    uncertain: "uncertain",
+    neutral: "neutral",
+  };
+  if (aliases[supportCue]) return aliases[supportCue];
+  const byState = {
+    boredom: "re_engagement",
+    confusion: "clarification",
+    engagement: "deepening",
+    frustration: "difficulty_support",
+  };
+  return byState[dominantState] || "uncertain";
+}
+
+function academicStateEvidenceText(scores, dominant, secondary, trend, confidenceHandling) {
+  const pieces = [
+    [dominant, scores[dominant]],
+    secondary ? [secondary, scores[secondary]] : null,
+  ].filter((item) => item && Number(item[1]) > 0).map(([state, score]) => `${state} ${formatPercent(score)}`);
+  const parts = [pieces.join(", ") || "mixed learning-state evidence"];
+  if (confidenceHandling === "low_confidence") parts.push("low-confidence signal");
+  if (trend) parts.push(`trend ${trend}`);
+  return parts.join(" · ");
+}
+
+function supportCueReasonLabel(supportCue) {
+  const labels = {
+    re_engagement: "re-engagement",
+    clarification: "clarification",
+    deepening: "deepening",
+    difficulty_support: "reduce cognitive load",
+    neutral: "neutral",
+    uncertain: "mixed / low-confidence signal",
+  };
+  return labels[supportCue] || "mixed / low-confidence signal";
+}
+
+function recommendedStrategyForSupportCue(supportCue) {
+  const cue = canonicalSupportCueForDisplay(supportCue);
+  const strategies = {
+    clarification: "simplify_and_define_terms",
+    difficulty_support: "step_by_step_decomposition",
+    re_engagement: "relevance_hook",
+    deepening: "deepen_or_extend",
+  };
+  return strategies[cue] || "baseline_explanation";
+}
+
+function strategyReasonSentence(supportCue, recommendedStrategy, pedagogicalMove, confidenceHandling) {
+  const strategy = String(recommendedStrategy || "").toLowerCase();
+  const move = String(pedagogicalMove || "").toLowerCase();
+  const stepLike = strategy.includes("step") || strategy.includes("decomposition") || move.includes("step");
+  if (supportCue === "deepening") return "This suggested the answer could be extended, so the system selected a deeper explanation strategy.";
+  if (supportCue === "difficulty_support") {
+    if (confidenceHandling === "low_confidence") {
+      return `The system therefore chose a conservative ${stepLike ? "step-by-step strategy" : "support strategy"} to reduce cognitive load.`;
+    }
+    return `This suggested a strategy to reduce cognitive load, so the system selected a ${stepLike ? "step-by-step support strategy" : "support strategy"}.`;
+  }
+  if (supportCue === "clarification") return "This suggested clarification would help, so the system selected a clarification strategy.";
+  if (supportCue === "re_engagement") return "This suggested a light re-engagement move, so the system selected a relevance-focused strategy.";
+  return "Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.";
+}
+
 function observedWindowLabel(summary) {
   if (!summary || !Object.keys(summary).length) return "";
+  const endReason = endReasonObservedLabel(summary.end_reason);
   const duration = formatDuration(summary.duration_sec || 0);
   const confidence = formatPercent(summary.avg_confidence ?? summary.max_confidence ?? 0);
   const trend = summary.trend || "stable";
-  return `${duration} · avg confidence ${confidence} · trend ${trend}`;
+  return ["Observed while the explanation was being read", endReason, duration, `avg confidence ${confidence}`, `trend ${trend}`].filter(Boolean).join(" · ");
+}
+
+function endReasonObservedLabel(endReason) {
+  const labels = {
+    near_bottom_reached: "reached near the end of the explanation",
+    short_answer_min_elapsed: "observed for the minimum reading window",
+    max_timeout: "observed until the reading window timed out",
+    followup_submitted: "observed until a follow-up was submitted",
+    strategy_clicked: "observed until a strategy was selected",
+  };
+  return labels[endReason] || "";
 }
 
 function reactionSummaryFromThread(thread) {
@@ -3171,6 +4286,7 @@ function completedReactionTurnIdsFromThread(thread) {
 function strategyCandidatesForTurn(turn, turnMetadata, candidates, strategySourceTurnId) {
   if (!turn?.turn_id) return [];
   const metadata = turnMetadataForThread({ turn_metadata: turnMetadata || {} }, turn.turn_id);
+  if (metadata.strategy_status === "applied") return [];
   if (Array.isArray(metadata.strategy_candidates) && metadata.strategy_candidates.length) return metadata.strategy_candidates;
   if (turn.turn_id === strategySourceTurnId) return candidates || [];
   return [];
@@ -3278,6 +4394,23 @@ function plannerInputSummaryForStrategyRequest({
     rag_chunk_count: Array.isArray(paperContext?.retrieved_chunks) ? paperContext.retrieved_chunks.length : 0,
     nearby_context_count: Array.isArray(paperContext?.nearby_context) ? paperContext.nearby_context.length : 0,
     reaction_window_duration_sec: Number(reactionWindowSummary?.duration_sec || 0),
+    reaction_window_end_reason: reactionWindowSummary?.end_reason || "",
+    read_progress_estimate: Number(reactionWindowSummary?.read_progress_estimate || 0),
+    word_count: Number(reactionWindowSummary?.word_count || 0),
+    estimated_min_read_sec: Number(reactionWindowSummary?.estimated_min_read_sec || 0),
+    elapsed_sec: Number(reactionWindowSummary?.elapsed_sec || reactionWindowSummary?.duration_sec || 0),
+    min_read_time_met: Boolean(reactionWindowSummary?.min_read_time_met),
+    min_samples_met: Boolean(reactionWindowSummary?.min_samples_met),
+    top_seen: Boolean(reactionWindowSummary?.top_seen),
+    bottom_seen: Boolean(reactionWindowSummary?.bottom_seen),
+    user_scroll_progressed: Boolean(reactionWindowSummary?.user_scroll_progressed),
+    is_short_answer: Boolean(reactionWindowSummary?.is_short_answer),
+    end_blocked_reason: reactionWindowSummary?.end_blocked_reason || "",
+    state_transition: reactionWindowSummary?.state_transition || "",
+    transition_label: reactionWindowSummary?.transition_label || "",
+    early_distribution: reactionWindowSummary?.early_distribution || {},
+    middle_distribution: reactionWindowSummary?.middle_distribution || {},
+    late_distribution: reactionWindowSummary?.late_distribution || {},
     support_cue: reactionWindowSummary?.support_cue || "",
     allowed_strategy_families: allowedStrategyFamiliesForSupportCue(reactionWindowSummary?.support_cue || "neutral_or_uncertain"),
     recent_conversation_count: Array.isArray(recentConversation) ? recentConversation.length : 0,
@@ -3290,7 +4423,8 @@ function plannerInputSummaryForStrategyRequest({
 function allowedStrategyFamiliesForSupportCue(supportCue) {
   const families = {
     sustained_clarification: ["step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"],
-    reduce_load: ["simplest_version_first", "one_small_next_step", "analogy_or_reframe", "reduce_information_density", "key_takeaway_first"],
+    difficulty_support: ["concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"],
+    reduce_load: ["concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"],
     re_engagement: ["why_it_matters", "one_sentence_takeaway", "make_it_relevant", "compare_with_familiar_method", "quick_quiz"],
     deepening: ["deep_technical_explanation", "critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"],
     clarify_and_reengage: ["concise_explanation", "concrete_example", "why_it_matters", "step_by_step_breakdown", "compare_with_familiar_method"],
@@ -3377,6 +4511,21 @@ function deriveConversationTurns(messages) {
   return turns.filter((turn) => turn.messages.length);
 }
 
+function wordCountForReadingEstimate(text) {
+  const normalized = normalizePdfText(text || "");
+  if (!normalized) return 0;
+  return normalized.split(/\s+/).filter(Boolean).length;
+}
+
+function estimateReactionWindowMinReadSec(text) {
+  const wordCount = wordCountForReadingEstimate(text);
+  const estimated = wordCount / REACTION_WINDOW_READING_WORDS_PER_SEC;
+  return Math.max(
+    REACTION_WINDOW_MIN_READ_SEC_FLOOR,
+    Math.min(REACTION_WINDOW_MIN_READ_SEC_CEIL, Math.ceil(estimated)),
+  );
+}
+
 function finiteScore(value, fallback) {
   const score = Number(value);
   if (!Number.isFinite(score)) return fallback;
@@ -3401,6 +4550,22 @@ function defaultPrepareSteps(status) {
 
 function formatJson(value) {
   return JSON.stringify(value ?? null, null, 2);
+}
+
+function browserSupportsSpeechRecording() {
+  return Boolean(
+    typeof navigator !== "undefined"
+    && navigator.mediaDevices?.getUserMedia
+    && typeof MediaRecorder !== "undefined",
+  );
+}
+
+function preferredSpeechMimeType() {
+  if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") return "";
+  for (const mimeType of ["audio/webm;codecs=opus", "audio/webm", "audio/wav"]) {
+    if (MediaRecorder.isTypeSupported(mimeType)) return mimeType;
+  }
+  return "";
 }
 
 async function pollPreparationStatus(documentId, onStatus) {

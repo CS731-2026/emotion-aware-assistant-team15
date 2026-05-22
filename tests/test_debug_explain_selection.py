@@ -1,4 +1,5 @@
 import os
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -99,11 +100,23 @@ RETRIEVAL_CONTEXT = {
 
 class DebugExplainSelectionTests(unittest.TestCase):
     def setUp(self):
+        self._temp_dir = tempfile.TemporaryDirectory()
+        self._project_root = Path(self._temp_dir.name)
         self._env_patch = patch.dict(os.environ, {}, clear=True)
         self._env_patch.start()
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        self._llm_root_patch = patch.object(llm_config, "PROJECT_ROOT", self._project_root, create=True)
+        self._state_root_patch = patch.object(state_module, "PROJECT_ROOT", self._project_root, create=True)
+        self._llm_root_patch.start()
+        self._state_root_patch.start()
 
     def tearDown(self):
+        self._state_root_patch.stop()
+        self._llm_root_patch.stop()
         self._env_patch.stop()
+        self._temp_dir.cleanup()
 
     def test_debug_explain_selection_uses_mock_provider_for_text_payload(self):
         from emotion_aware_assistant.web.server import create_web_app
@@ -140,17 +153,36 @@ class DebugExplainSelectionTests(unittest.TestCase):
         self.assertIn("selected area", payload["answer"])
         self.assertIn("crop image available true", payload["answer"])
 
-    def test_missing_gemini_key_falls_back_to_mock_with_warning(self):
+    def test_missing_gemini_key_returns_settings_error(self):
         from emotion_aware_assistant.llm.providers import explain_selection
 
-        with patch.dict(os.environ, {"LLM_PROVIDER": "gemini", "GEMINI_MODEL": "gemini-flash-latest"}, clear=True):
+        with patch.dict(os.environ, {"LLM_PROVIDER": "gemini", "GEMINI_MODEL": "gemini-2.5-flash"}, clear=True):
             result = explain_selection(TEXT_PAYLOAD)
 
-        self.assertEqual(result["provider"], "mock")
-        self.assertEqual(result["model"], "mock")
+        self.assertEqual(result["provider"], "gemini")
+        self.assertEqual(result["model"], "gemini-2.5-flash")
         self.assertEqual(result["mode"], "text_context")
-        self.assertIn("GEMINI_API_KEY is missing", result["answer"])
-        self.assertIsNone(result["error"])
+        self.assertEqual(result["answer"], "")
+        self.assertIn("/settings", result["error"])
+
+    def test_unconfigured_live_app_returns_settings_error_instead_of_mock(self):
+        from emotion_aware_assistant.web.server import create_web_app
+        import emotion_aware_assistant.core.llm_config as llm_config
+        import emotion_aware_assistant.web.state as state_module
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            with patch.object(state_module, "PROJECT_ROOT", root), patch.object(llm_config, "PROJECT_ROOT", root), patch.dict(os.environ, {}, clear=True):
+                app = create_web_app(force_dummy_llm=False, load_local_env=False)
+                app.state.upload_dir = root / "runtime_uploads"
+                app.state.documents_dir = app.state.upload_dir / "documents"
+                response = app.test_request("POST", "/api/debug/explain-selection", TEXT_PAYLOAD)
+
+        payload = response["json"]
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(payload["provider"], "not_configured")
+        self.assertEqual(payload["answer"], "")
+        self.assertIn("/settings", payload["error"])
 
     def test_explain_selection_prompt_includes_paper_profile_and_retrieved_blocks(self):
         from emotion_aware_assistant.llm.providers import explain_selection

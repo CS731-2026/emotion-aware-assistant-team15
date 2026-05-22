@@ -1,0 +1,17 @@
+{
+  "document_id": "831497e16a244ed28171d4fbea38cb9e",
+  "status": "completed",
+  "profile_provider": "rule_based",
+  "block_count": 2,
+  "useful_block_count": 2,
+  "prepared_at": 1779340313.9149363,
+  "paper_profile_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/831497e16a244ed28171d4fbea38cb9e/rag/paper_profile.json",
+  "section_map_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/831497e16a244ed28171d4fbea38cb9e/rag/section_map.json",
+  "keyword_index_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/831497e16a244ed28171d4fbea38cb9e/rag/keyword_index.json",
+  "rag_prepare_status_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/831497e16a244ed28171d4fbea38cb9e/rag/prepare_status.json",
+  "embedding_provider": "gemini",
+  "embedding_model": "gemini-embedding-001",
+  "embedding_index_status": "unavailable",
+  "embedding_message": "GEMINI_API_KEY is not configured; keyword retrieval will be used.",
+  "embeddings_path": "/home/rli/CS731-Work/emotion-aware-assistant-team15/runtime_uploads/documents/831497e16a244ed28171d4fbea38cb9e/rag/embeddings.json"
+}

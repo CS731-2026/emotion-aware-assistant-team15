@@ -78,8 +78,17 @@ def main() -> int:
             print(f"arch: {info.get('arch') or info.get('architecture') or ''}")
             print(f"num_classes: {info.get('num_classes')}")
             print(f"classes: {info.get('classes')}")
+            print(f"class_to_idx: {info.get('class_to_idx')}")
+            print(f"head.fc.weight shape: {_format_shape(info.get('head_fc_weight_shape'))}")
+            print(f"epoch: {info.get('epoch')}")
+            print(f"val_acc: {info.get('val_acc')}")
+            print(f"output_type: {info.get('output_type') or info.get('model_output_type') or info.get('detected_model_mode')}")
             print(f"detected model mode: {info.get('detected_model_mode')}")
+            print(f"metadata source: {info.get('metadata_source')}")
+            print(f"class order source: {info.get('class_order_source')}")
+            print(f"preprocessing summary: {json.dumps(info.get('preprocessing_summary') or {}, sort_keys=True)}")
             print(f"model_state_dict presence: {bool(info.get('model_state_dict_present'))}")
+            print(f"classifier head shapes: {info.get('classifier_head_shapes')}")
             print(f"checkpoint keys: {info.get('checkpoint_keys')}")
             print(f"sample keys: {info.get('sample_keys')}")
         if temp_dir:
@@ -88,6 +97,12 @@ def main() -> int:
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
+
+
+def _format_shape(value: Any) -> str:
+    if isinstance(value, (list, tuple)):
+        return "(" + ", ".join(str(item) for item in value) + ")"
+    return str(value or "")
 
 
 if __name__ == "__main__":

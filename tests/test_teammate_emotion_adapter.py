@@ -1,7 +1,10 @@
 import json
+import sys
 import tempfile
+import types
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 class TeammateEmotionAdapterTests(unittest.TestCase):
@@ -69,6 +72,76 @@ class TeammateEmotionAdapterTests(unittest.TestCase):
         self.assertEqual(payload["academic_state"], "confusion")
         self.assertAlmostEqual(payload["confidence"], 0.81)
         self.assertEqual(set(payload["state_distribution"]), {"boredom", "confusion", "engagement", "frustration"})
+
+    def test_raw_prediction_payload_aggregates_anger_and_angry_aliases(self):
+        from emotion_aware_assistant.emotion.teammate_emotion_adapter import TeammateEmotionAdapter
+
+        payload = TeammateEmotionAdapter.raw_emotion_prediction_payload(
+            probabilities={
+                "anger": 0.22,
+                "angry": 0.08,
+                "sad": 0.10,
+                "disgust": 0.05,
+                "fear": 0.04,
+                "surprise": 0.03,
+                "contempt": 0.02,
+                "happy": 0.16,
+                "neutral": 0.30,
+            },
+            architecture="convnext_tiny.fb_in22k_ft_in1k",
+            classes=["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"],
+            device="cpu",
+        )
+
+        self.assertEqual(payload["model_output_type"], "raw_emotion")
+        self.assertEqual(payload["raw_emotion"], "anger")
+        self.assertAlmostEqual(payload["raw_distribution"]["anger"], 0.30)
+        self.assertAlmostEqual(payload["state_distribution"]["frustration"], 0.45)
+        self.assertAlmostEqual(payload["state_distribution"]["engagement"], 0.46)
+        self.assertNotIn("angry", payload["raw_distribution"])
+
+    def test_load_uses_checkpoint_class_to_idx_as_academic_label_order(self):
+        from emotion_aware_assistant.emotion.teammate_emotion_adapter import TeammateEmotionAdapter
+
+        checkpoint = {
+            "arch": "convnext_tiny.fb_in22k_ft_in1k",
+            "num_classes": 4,
+            "class_to_idx": {"frustration": 0, "engagement": 1, "confusion": 2, "boredom": 3},
+            "model_state_dict": {"head.weight": object()},
+        }
+        created_models = []
+
+        class FakeModel:
+            def load_state_dict(self, state_dict, strict=True):
+                return types.SimpleNamespace(missing_keys=[], unexpected_keys=[])
+
+            def to(self, device):
+                return self
+
+            def eval(self):
+                return self
+
+        fake_timm = types.SimpleNamespace(
+            create_model=lambda architecture, pretrained, num_classes: created_models.append(
+                {"architecture": architecture, "num_classes": num_classes}
+            )
+            or FakeModel()
+        )
+        fake_torch = types.SimpleNamespace(
+            cuda=types.SimpleNamespace(is_available=lambda: False),
+            load=lambda path, map_location=None: checkpoint,
+        )
+
+        with tempfile.TemporaryDirectory() as tmp, patch.dict(sys.modules, {"timm": fake_timm, "torch": fake_torch}):
+            model_dir = Path(tmp)
+            (model_dir / "best_model.pt").write_bytes(b"placeholder")
+            adapter = TeammateEmotionAdapter(model_dir=model_dir)
+            status = adapter.load()
+
+        self.assertTrue(status["model_loaded"])
+        self.assertEqual(status["classes"], ["frustration", "engagement", "confusion", "boredom"])
+        self.assertEqual(status["academic_label_order_source"], "checkpoint_metadata")
+        self.assertEqual(created_models[0]["num_classes"], 4)
 
 
 if __name__ == "__main__":

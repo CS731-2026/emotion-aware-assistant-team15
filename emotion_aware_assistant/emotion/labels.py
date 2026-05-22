@@ -15,6 +15,7 @@ LEARNING_STATES: list[str] = ["confusion", "frustration", "boredom", "engagement
 
 EMOTION_TO_STATE: dict[str, str] = {
     "sad": "frustration",
+    "anger": "frustration",
     "angry": "frustration",
     "disgust": "frustration",
     "fear": "confusion",
@@ -26,6 +27,7 @@ EMOTION_TO_STATE: dict[str, str] = {
 
 VALENCE_AROUSAL: dict[str, tuple[float, float]] = {
     "sad": (-0.7, 0.4),
+    "anger": (-0.8, 0.8),
     "angry": (-0.8, 0.8),
     "disgust": (-0.7, 0.7),
     "fear": (-0.8, 0.9),

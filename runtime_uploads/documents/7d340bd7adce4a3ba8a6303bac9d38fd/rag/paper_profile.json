@@ -1,0 +1,29 @@
+{
+  "title": "PDF Reader Test",
+  "one_sentence_summary": "This text serves as a test to identify a highlighted passage originating from a PDF page.",
+  "research_problem": "Verifying the source and extraction of highlighted text from a PDF page.",
+  "method_summary": "Reading and parsing a highlighted passage from a PDF page.",
+  "dataset_or_materials": "A PDF page containing a highlighted passage.",
+  "main_findings": "The highlighted passage is confirmed to originate from a PDF page.",
+  "key_terms": [
+    "pdf reader test",
+    "highlighted passage",
+    "pdf page"
+  ],
+  "section_map": [
+    {
+      "heading": "PDF Reader Test",
+      "page_number": 1,
+      "block_id": "7d340bd7adce4a3ba8a6303bac9d38fd-p1-b0",
+      "start_order": 0,
+      "end_order": 1
+    },
+    {
+      "heading": "The highlighted passage comes from a PDF page.",
+      "page_number": 1,
+      "block_id": "7d340bd7adce4a3ba8a6303bac9d38fd-p1-b1",
+      "start_order": 1,
+      "end_order": 1000000000
+    }
+  ]
+}

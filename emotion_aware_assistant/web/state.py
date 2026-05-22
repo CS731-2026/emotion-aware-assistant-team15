@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import base64
 import binascii
+import hashlib
 import json
 import math
 import os
 import re
+import tempfile
 import threading
 import time
 import urllib.error
@@ -21,11 +23,23 @@ from emotion_aware_assistant.core.config import LOCAL_ENV_FILE, PROJECT_ROOT, lo
 from emotion_aware_assistant.core.types import EmotionPrediction, PaperContext
 from emotion_aware_assistant.emotion.labels import ALLOWED_EMOTIONS
 from emotion_aware_assistant.emotion.face_detector import create_face_detector, detector_status, expand_face_bbox
+from emotion_aware_assistant.emotion.learning_signal import (
+    AcademicStateMapping,
+    LearningProcessContext,
+    RawEmotionEvidence,
+    ReactionWindowSummary,
+    build_learning_signal_package,
+    build_strategy_reason_text,
+    canonical_support_cue,
+    detect_question_intent,
+    package_from_dict,
+    top_probability_items,
+)
 from emotion_aware_assistant.emotion.raw_emotion_pipeline import CombinedEmotionPipeline
 from emotion_aware_assistant.emotion.state_mapper import map_prediction_to_learning_state
 from emotion_aware_assistant.emotion.teammate_emotion_adapter import TeammateEmotionAdapter
 from emotion_aware_assistant.llm.response_policy import get_response_policy
-from emotion_aware_assistant.llm.providers import DEFAULT_GEMINI_MODEL, GEMINI_ENDPOINT_TEMPLATE, build_prompt_messages, explain_selection
+from emotion_aware_assistant.llm.providers import DEFAULT_GEMINI_MODEL, GEMINI_ENDPOINT_TEMPLATE, build_prompt_messages, explain_selection, generate_gemini_direct
 from emotion_aware_assistant.paper.document import Document, Page
 from emotion_aware_assistant.llm.model_registry import configured_models
 from emotion_aware_assistant.paper.passage_analyzer import analyze_passage, surrounding_text
@@ -54,12 +68,15 @@ class WebState:
         "neutral": ("concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"),
     }
     SUPPORT_CUE_STRATEGY_FAMILIES = {
+        "clarification": ("step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"),
+        "difficulty_support": ("concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"),
         "sustained_clarification": ("step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"),
-        "reduce_load": ("simplest_version_first", "one_small_next_step", "analogy_or_reframe", "reduce_information_density", "key_takeaway_first"),
+        "reduce_load": ("concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"),
         "re_engagement": ("why_it_matters", "one_sentence_takeaway", "make_it_relevant", "compare_with_familiar_method", "quick_quiz"),
         "deepening": ("deep_technical_explanation", "critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"),
         "clarify_and_reengage": ("concise_explanation", "concrete_example", "why_it_matters", "step_by_step_breakdown", "compare_with_familiar_method"),
         "gentle_clarification": ("simplest_version_first", "one_small_next_step", "define_key_terms", "analogy_or_reframe", "concrete_example"),
+        "uncertain": ("concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"),
         "neutral_or_uncertain": ("concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"),
         "neutral": ("concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"),
     }
@@ -105,12 +122,15 @@ class WebState:
     }
 
     def __init__(self, config: dict[str, Any] | None = None, force_dummy_llm: bool = False):
+        self.server_start_time = time.time()
+        self.server_port: int | None = None
         self.config = config or load_config("config.yaml")
+        self.force_dummy_llm = force_dummy_llm
         self.session = AssistantSession(self.config, force_dummy_llm=force_dummy_llm)
         self.last_prompt_preview = ""
         self.last_request_summary: dict[str, Any] = {}
         self.last_frame_status = "No frame processed yet."
-        self.upload_dir = Path("runtime_uploads").resolve()
+        self.upload_dir = (PROJECT_ROOT / "runtime_uploads").resolve()
         self.documents_dir = self.upload_dir / "documents"
         self.documents: dict[str, dict[str, Any]] = {}
         self.current_document_id: str | None = None
@@ -120,13 +140,19 @@ class WebState:
         self._emotion_adapter: Any | None = None
         self._emotion_pipeline: Any | None = None
         self._face_detector: Any | None = None
+        self._speech_model: Any | None = None
+        self._speech_model_name: str | None = None
+        self._llm_runtime_config_invalidated_at = self.server_start_time
 
     def status(self) -> dict[str, Any]:
         document = self.session.document
         emotion_model = self.emotion_model_status()
-        llm_provider = os.environ.get("LLM_PROVIDER", "").strip().lower()
-        strategy_provider = os.environ.get("STRATEGY_PLANNER_PROVIDER", "").strip().lower()
-        gemini_key_configured = bool(os.environ.get("GEMINI_API_KEY", "").strip())
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir)
+        answer_role = llm_config.role_config("answer_model", values)
+        strategy_role = llm_config.role_config("strategy_planner_model", values)
+        llm_provider = str(answer_role.get("provider") or "").strip().lower()
+        strategy_provider = str(strategy_role.get("provider") or "").strip().lower()
+        gemini_key_configured = bool(llm_config.provider_api_key("gemini", values))
         return {
             "app": {"name": "Emotion-Aware Academic Assistant", "mode": "web"},
             "models": configured_models(self.config),
@@ -145,8 +171,8 @@ class WebState:
             "llm_client": self.session.llm.name,
             "llm_provider": llm_provider or "not configured",
             "strategy_planner_provider": strategy_provider or "not configured",
-            "llm_provider_configured": llm_provider == "gemini" and gemini_key_configured,
-            "strategy_planner_provider_configured": strategy_provider == "gemini" and gemini_key_configured,
+            "llm_provider_configured": bool(answer_role.get("configured")),
+            "strategy_planner_provider_configured": bool(strategy_role.get("configured")),
             "gemini_api_key_configured": gemini_key_configured,
             "api_key_status": "configured" if self.session.llm.name == "openrouter" else "not configured; dummy active",
             "dependency_status": self._dependency_status(),
@@ -157,24 +183,21 @@ class WebState:
 
     def local_config_status(self) -> dict[str, Any]:
         env_path = PROJECT_ROOT / LOCAL_ENV_FILE
-        values = parse_env_file(env_path)
-        api_key = os.environ.get("GEMINI_API_KEY") or values.get("GEMINI_API_KEY") or ""
-        llm_provider = os.environ.get("LLM_PROVIDER") or values.get("LLM_PROVIDER") or "not configured"
-        strategy_provider = (
-            os.environ.get("STRATEGY_PLANNER_PROVIDER")
-            or values.get("STRATEGY_PLANNER_PROVIDER")
-            or "not configured"
-        )
-        gemini_model = os.environ.get("GEMINI_MODEL") or values.get("GEMINI_MODEL") or GEMINI_CONFIG_DEFAULTS["GEMINI_MODEL"]
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir)
+        key_info = llm_config.resolve_gemini_api_key(PROJECT_ROOT, self.upload_dir)
+        api_key = str(key_info.get("key") or "")
+        llm_provider = values.get("LLM_PROVIDER") or "not configured"
+        strategy_provider = values.get("STRATEGY_PLANNER_PROVIDER") or "not configured"
+        gemini_model = values.get("GEMINI_MODEL") or GEMINI_CONFIG_DEFAULTS["GEMINI_MODEL"]
         gemini_embedding_model = (
-            os.environ.get("GEMINI_EMBEDDING_MODEL")
-            or values.get("GEMINI_EMBEDDING_MODEL")
+            values.get("GEMINI_EMBEDDING_MODEL")
             or GEMINI_CONFIG_DEFAULTS["GEMINI_EMBEDDING_MODEL"]
         )
-        crop_settings = self._safe_face_crop_settings(file_values=values)
+        crop_settings = self._safe_face_crop_settings(file_values=parse_env_file(env_path))
         return {
             "env_local_present": env_path.exists(),
             "gemini_api_key_configured": bool(api_key.strip()),
+            "gemini_key_source": str(key_info.get("key_source") or ""),
             "llm_provider": llm_provider,
             "strategy_planner_provider": strategy_provider,
             "gemini_model": gemini_model,
@@ -310,21 +333,25 @@ class WebState:
         }
 
     def save_local_emotion_checkpoint_config(self, data: dict[str, Any]) -> dict[str, Any]:
-        checkpoint_path = str(
-            data.get("EMOTION_CHECKPOINT_PATH")
-            or data.get("RAW_EMOTION_CHECKPOINT_PATH")
-            or data.get("emotion_checkpoint_path")
-            or ""
-        ).strip()
+        mode = str(data.get("EMOTION_MODEL_MODE") or data.get("emotion_model_mode") or "auto").strip().lower()
+        mode = mode if mode in {"auto", "raw_emotion", "academic_state"} else "auto"
+        generic_path = str(data.get("emotion_checkpoint_path") or data.get("checkpoint_path") or "").strip()
+        raw_checkpoint_path = str(data.get("RAW_EMOTION_CHECKPOINT_PATH") or data.get("raw_emotion_checkpoint_path") or "").strip()
+        academic_checkpoint_path = str(data.get("EMOTION_CHECKPOINT_PATH") or data.get("emotion_academic_checkpoint_path") or "").strip()
+        checkpoint_path = raw_checkpoint_path or academic_checkpoint_path or generic_path
         if not checkpoint_path:
             raise ValueError("Emotion checkpoint path is required.")
         env_path = PROJECT_ROOT / LOCAL_ENV_FILE
         lines = env_path.read_text(encoding="utf-8").splitlines() if env_path.exists() else []
-        mode = str(data.get("EMOTION_MODEL_MODE") or data.get("emotion_model_mode") or "auto").strip().lower()
-        mode = mode if mode in {"auto", "raw_emotion", "academic_state"} else "auto"
-        updates = {"EMOTION_CHECKPOINT_PATH": checkpoint_path, "EMOTION_MODEL_MODE": mode}
-        if data.get("RAW_EMOTION_CHECKPOINT_PATH"):
-            updates["RAW_EMOTION_CHECKPOINT_PATH"] = str(data.get("RAW_EMOTION_CHECKPOINT_PATH")).strip()
+        updates = {"EMOTION_MODEL_MODE": mode}
+        if mode == "raw_emotion":
+            updates["RAW_EMOTION_CHECKPOINT_PATH"] = raw_checkpoint_path or generic_path or academic_checkpoint_path
+        elif mode == "academic_state":
+            updates["EMOTION_CHECKPOINT_PATH"] = academic_checkpoint_path or generic_path or raw_checkpoint_path
+        else:
+            updates["EMOTION_CHECKPOINT_PATH"] = academic_checkpoint_path or generic_path or raw_checkpoint_path
+            if raw_checkpoint_path:
+                updates["RAW_EMOTION_CHECKPOINT_PATH"] = raw_checkpoint_path
         for key, value in updates.items():
             lines, _ = _replace_or_append(lines, key, value)
         env_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
@@ -335,11 +362,15 @@ class WebState:
         _ensure_gitignore_entry(PROJECT_ROOT)
         os.environ.update(updates)
         self._emotion_pipeline = None
+        self._emotion_adapter = None
         return {
             "saved": True,
             "restart_required": False,
             "env_local_present": env_path.exists(),
             "emotion_checkpoint_path": checkpoint_path,
+            "raw_emotion_checkpoint_path": updates.get("RAW_EMOTION_CHECKPOINT_PATH", ""),
+            "academic_checkpoint_path": updates.get("EMOTION_CHECKPOINT_PATH", ""),
+            "emotion_model_mode": mode,
             "emotion_pipeline_status": self._get_emotion_pipeline().status(),
         }
 
@@ -371,7 +402,96 @@ class WebState:
         return llm_config.save_comparison_models(self.upload_dir, data)
 
     def test_local_llm_config(self, data: dict[str, Any]) -> dict[str, Any]:
+        if str(data.get("test_type") or "").strip() and str(data.get("test_type") or "").strip() != "configured_only":
+            return llm_config.test_llm_connection(PROJECT_ROOT, self.upload_dir, data)
         return llm_config.test_provider_config(PROJECT_ROOT, self.upload_dir, data)
+
+    def llm_settings(self) -> dict[str, Any]:
+        return llm_config.llm_settings_status(PROJECT_ROOT, self.upload_dir)
+
+    def save_llm_settings(self, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.save_llm_settings(PROJECT_ROOT, self.upload_dir, data))
+
+    def test_llm_settings(self, data: dict[str, Any]) -> dict[str, Any]:
+        return llm_config.test_llm_connection(PROJECT_ROOT, self.upload_dir, data)
+
+    def save_openrouter_settings(self, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.save_openrouter_settings(PROJECT_ROOT, self.upload_dir, data))
+
+    def test_openrouter_key(self, data: dict[str, Any] | None = None) -> dict[str, Any]:
+        return llm_config.test_openrouter_key(PROJECT_ROOT, self.upload_dir, data or {})
+
+    def save_gemini_settings(self, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.save_gemini_settings(PROJECT_ROOT, self.upload_dir, data))
+
+    def test_gemini_key(self, data: dict[str, Any] | None = None) -> dict[str, Any]:
+        return llm_config.test_gemini_key(PROJECT_ROOT, self.upload_dir, data or {})
+
+    def test_gemini_chat(self, data: dict[str, Any] | None = None) -> dict[str, Any]:
+        return llm_config.test_gemini_chat(PROJECT_ROOT, self.upload_dir, data or {})
+
+    def test_gemini_embedding(self, data: dict[str, Any] | None = None) -> dict[str, Any]:
+        return llm_config.test_gemini_embedding(PROJECT_ROOT, self.upload_dir, data or {})
+
+    def runtime_status(self) -> dict[str, Any]:
+        settings_path = llm_config.local_llm_settings_path(PROJECT_ROOT, self.upload_dir)
+        settings_stat = settings_path.stat() if settings_path.exists() else None
+        settings = llm_config.read_local_llm_settings(PROJECT_ROOT, self.upload_dir)
+        public_status = llm_config.llm_settings_status(PROJECT_ROOT, self.upload_dir)
+        env_values = self._runtime_env_values()
+        roles = public_status.get("roles") if isinstance(public_status.get("roles"), dict) else {}
+        default_profile = self._runtime_profile_by_id(public_status, roles.get("default_answer_model_profile_id"))
+        strategy_profile = self._runtime_profile_by_id(public_status, roles.get("strategy_model_profile_id"))
+        gemini_key = llm_config.resolve_gemini_api_key(PROJECT_ROOT, self.upload_dir)
+        gemini_model = self._runtime_gemini_model_source(settings, public_status, env_values)
+        openrouter_key = self._runtime_openrouter_key_source(settings, env_values)
+        warnings = self._runtime_config_warnings(settings, public_status, env_values)
+        settings_mtime = settings_stat.st_mtime if settings_stat else None
+        return {
+            "server_pid": os.getpid(),
+            "server_start_time": self._iso_timestamp(self.server_start_time),
+            "server_start_timestamp": self.server_start_time,
+            "server_port": self.server_port,
+            "runtime_config_invalidated_at": self._iso_timestamp(self._llm_runtime_config_invalidated_at),
+            "settings_file_path": str(settings_path),
+            "settings_file_mtime": self._iso_timestamp(settings_mtime) if settings_mtime else None,
+            "settings_file_mtime_epoch": settings_mtime,
+            "settings_loaded_at": self._iso_timestamp(time.time()),
+            "settings_revision": int(settings.get("settings_revision") or 0),
+            "settings_file_revision": f"{settings_stat.st_mtime_ns}:{settings_stat.st_size}" if settings_stat else "missing",
+            "default_answer_model_profile_id": roles.get("default_answer_model_profile_id"),
+            "strategy_model_profile_id": roles.get("strategy_model_profile_id"),
+            "compare_model_profile_ids": list(roles.get("compare_model_profile_ids") or []),
+            "resolved_default_model": self._runtime_public_model_profile(default_profile),
+            "resolved_strategy_model": self._runtime_public_model_profile(strategy_profile),
+            "gemini": {
+                "key_source": gemini_key.get("key_source") or "missing",
+                "masked_key_suffix": gemini_key.get("masked_suffix") or "",
+                "model_source": gemini_model["model_source"],
+                "model_id": gemini_model["model_id"],
+            },
+            "openrouter": openrouter_key,
+            "env_gemini_variables_present": self._runtime_gemini_env_names(env_values),
+            "warnings": warnings,
+        }
+
+    def create_llm_model_profile(self, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.create_model_profile(PROJECT_ROOT, self.upload_dir, data))
+
+    def update_llm_model_profile(self, profile_id: str, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.update_model_profile(PROJECT_ROOT, self.upload_dir, profile_id, data))
+
+    def delete_llm_model_profile(self, profile_id: str) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.delete_model_profile(PROJECT_ROOT, self.upload_dir, profile_id))
+
+    def test_llm_model_profile(self, profile_id: str) -> dict[str, Any]:
+        return llm_config.test_model_profile(PROJECT_ROOT, self.upload_dir, profile_id)
+
+    def test_all_llm_model_profiles(self) -> dict[str, Any]:
+        return llm_config.test_all_enabled_model_profiles(PROJECT_ROOT, self.upload_dir)
+
+    def save_llm_profile_roles(self, data: dict[str, Any]) -> dict[str, Any]:
+        return self._after_llm_settings_saved(llm_config.save_profile_roles(PROJECT_ROOT, self.upload_dir, data))
 
     def list_llm_prompt_snapshots(self, filters: dict[str, Any] | None = None) -> dict[str, Any]:
         filters = filters or {}
@@ -408,22 +528,207 @@ class WebState:
             raise KeyError(f"Unknown prompt snapshot: {snapshot_id}")
         return {"snapshot": snapshot}
 
+    def list_llm_prompts(self, filters: dict[str, Any] | None = None) -> dict[str, Any]:
+        filters = filters or {}
+        search = str(filters.get("search") or "").strip().lower()
+        prompts_by_id: dict[str, dict[str, Any]] = {}
+        for snapshot_path in self._iter_prompt_snapshot_paths():
+            snapshot = self._read_json(snapshot_path, {})
+            if isinstance(snapshot, dict) and snapshot.get("snapshot_id"):
+                prompt = self._prompt_from_snapshot(snapshot)
+                prompts_by_id[prompt["id"]] = prompt
+        for prompt in self._read_custom_prompts():
+            prompts_by_id[str(prompt.get("id"))] = prompt
+        prompts = list(prompts_by_id.values())
+        if search:
+            prompts = [
+                prompt
+                for prompt in prompts
+                if search in " ".join(
+                    [
+                        str(prompt.get("title") or ""),
+                        str(prompt.get("category") or ""),
+                        str(prompt.get("subcategory") or ""),
+                        str(prompt.get("description") or ""),
+                        str(prompt.get("prompt_text") or ""),
+                        str(prompt.get("full_prompt_text") or ""),
+                    ]
+                ).lower()
+            ]
+        category_order = {category: index for index, category in enumerate(self._prompt_categories())}
+        prompts.sort(
+            key=lambda item: (
+                category_order.get(str(item.get("category") or "Custom / Experimental"), 99),
+                str(item.get("subcategory") or ""),
+                str(item.get("updated_at") or item.get("created_at") or ""),
+            ),
+            reverse=False,
+        )
+        categories: dict[str, list[dict[str, Any]]] = {}
+        for prompt in prompts:
+            categories.setdefault(str(prompt.get("category") or "Custom / Experimental"), []).append(prompt)
+        return {
+            "prompts": prompts,
+            "categories": [
+                {
+                    "id": self._prompt_category_id(category),
+                    "category": category,
+                    "count": len(items),
+                    "prompts": items,
+                }
+                for category, items in sorted(categories.items(), key=lambda item: category_order.get(item[0], 99))
+            ],
+        }
+
+    def create_llm_prompt(self, data: dict[str, Any]) -> dict[str, Any]:
+        prompt = self._sanitize_prompt_record(data, existing_id=None)
+        prompts = [item for item in self._read_custom_prompts() if item.get("id") != prompt["id"]]
+        prompts.append(prompt)
+        self._write_custom_prompts(prompts)
+        return {"saved": True, "prompt": prompt}
+
+    def update_llm_prompt(self, prompt_id: str, data: dict[str, Any]) -> dict[str, Any]:
+        prompt_id = self._safe_file_id(prompt_id)
+        existing = self._prompt_by_id(prompt_id)
+        prompt = self._sanitize_prompt_record({**existing, **data, "source": "custom"}, existing_id=prompt_id)
+        prompts = [item for item in self._read_custom_prompts() if item.get("id") != prompt_id]
+        prompts.append(prompt)
+        self._write_custom_prompts(prompts)
+        return {"saved": True, "prompt": prompt}
+
+    def duplicate_llm_prompt(self, prompt_id: str) -> dict[str, Any]:
+        source = self._prompt_by_id(prompt_id)
+        duplicate = self._sanitize_prompt_record(
+            {
+                **source,
+                "id": "",
+                "title": f"{source.get('title') or 'Prompt'} copy",
+                "source": "custom",
+                "snapshot_id": "",
+            },
+            existing_id=None,
+        )
+        prompts = self._read_custom_prompts()
+        prompts.append(duplicate)
+        self._write_custom_prompts(prompts)
+        return {"saved": True, "prompt": duplicate}
+
+    def delete_llm_prompt(self, prompt_id: str) -> dict[str, Any]:
+        prompt_id = self._safe_file_id(prompt_id)
+        prompts = self._read_custom_prompts()
+        removed_prompts = [item for item in prompts if item.get("id") == prompt_id]
+        next_prompts = [item for item in prompts if item.get("id") != prompt_id]
+        deleted = len(next_prompts) != len(prompts)
+        if deleted:
+            self._write_custom_prompts(next_prompts)
+            if any(self._safe_file_id(item.get("snapshot_id") or "") == prompt_id for item in removed_prompts):
+                try:
+                    self._prompt_snapshot_path_by_id(prompt_id).unlink()
+                except KeyError:
+                    pass
+            return {"deleted": True}
+        path = self._prompt_snapshot_path_by_id(prompt_id)
+        path.unlink()
+        return {"deleted": True}
+
     def run_llm_comparison(self, data: dict[str, Any]) -> dict[str, Any]:
-        snapshot_id = self._safe_file_id(data.get("snapshot_id") or "")
-        snapshot = self.get_llm_prompt_snapshot(snapshot_id)["snapshot"]
+        selected_prompt_id = self._safe_file_id(data.get("selected_prompt_id") or data.get("prompt_id") or data.get("snapshot_id") or "")
+        prompt = self._prompt_by_id(selected_prompt_id)
+        snapshot = self._snapshot_from_prompt(prompt)
         models = data.get("models") if isinstance(data.get("models"), list) else []
+        if not models:
+            models = [model for model in llm_config.load_comparison_models(self.upload_dir) if isinstance(model, dict) and model.get("enabled")]
+        if not models:
+            raise ValueError("No LLM compare models are configured. Open /settings and assign compare model profiles.")
+        generation_parameters = self._sanitize_generation_parameters(data.get("generation_parameters"), snapshot)
         comparison_id = self._safe_comparison_id(data.get("comparison_id") or f"comparison_{uuid.uuid4().hex[:12]}")
         results = [
-            self._run_single_comparison_model(snapshot, model)
+            self._run_single_comparison_model(snapshot, model, generation_parameters)
             for model in models
-            if isinstance(model, dict)
+            if isinstance(model, dict) and bool(model.get("enabled", True))
         ]
         return {
             "comparison_id": comparison_id,
-            "snapshot_id": snapshot_id,
+            "snapshot_id": str(prompt.get("snapshot_id") or ""),
+            "selected_prompt_id": selected_prompt_id,
+            "selected_prompt_title": prompt.get("title") or "",
+            "prompt_text": prompt.get("full_prompt_text") or prompt.get("prompt_text") or "",
+            "full_prompt_text": prompt.get("full_prompt_text") or prompt.get("prompt_text") or "",
             "stage": snapshot.get("stage") or "",
+            "generation_parameters": generation_parameters,
             "results": results,
         }
+
+    def quick_check_llm_comparison(self, data: dict[str, Any]) -> dict[str, Any]:
+        prompt_text = "Reply with exactly: OK"
+        snapshot = {
+            "snapshot_id": "quick_model_check",
+            "stage": "custom",
+            "created_at": self._iso_timestamp(time.time()),
+            "provider": "",
+            "model": "",
+            "messages": [{"role": "user", "content": prompt_text}],
+            "prompt_text": prompt_text,
+            "context_summary": {},
+        }
+        models = data.get("models") if isinstance(data.get("models"), list) else []
+        if not models:
+            models = [model for model in llm_config.load_comparison_models(self.upload_dir) if isinstance(model, dict) and model.get("enabled")]
+        if not models:
+            raise ValueError("No LLM compare models are configured. Open /settings and assign compare model profiles.")
+        raw_params = data.get("generation_parameters") if isinstance(data.get("generation_parameters"), dict) else {}
+        generation_parameters = self._sanitize_generation_parameters({"max_tokens": 16, **raw_params}, snapshot)
+        comparison_id = self._safe_comparison_id(data.get("comparison_id") or f"quick_check_{uuid.uuid4().hex[:12]}")
+        results = [
+            self._run_single_comparison_model(snapshot, model, generation_parameters)
+            for model in models
+            if isinstance(model, dict) and bool(model.get("enabled", True))
+        ]
+        return {
+            "comparison_id": comparison_id,
+            "quick_check": True,
+            "snapshot_id": "quick_model_check",
+            "selected_prompt_id": "quick_model_check",
+            "selected_prompt_title": "Quick model check",
+            "prompt_text": prompt_text,
+            "full_prompt_text": prompt_text,
+            "stage": "custom",
+            "generation_parameters": generation_parameters,
+            "results": results,
+        }
+
+    def save_llm_evaluation(self, data: dict[str, Any]) -> dict[str, Any]:
+        record = self._sanitize_evaluation_record(data)
+        path = self._llm_evaluation_jsonl_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        existing = self._read_evaluation_records()
+        key = (
+            record.get("run_id"),
+            record.get("selected_prompt_id"),
+            record.get("model_profile_id") or record.get("model_id"),
+        )
+        replaced = False
+        next_records = []
+        for item in existing:
+            item_key = (
+                item.get("run_id"),
+                item.get("selected_prompt_id"),
+                item.get("model_profile_id") or item.get("model_id"),
+            )
+            if item_key == key:
+                next_records.append(record)
+                replaced = True
+            else:
+                next_records.append(item)
+        if not replaced:
+            next_records.append(record)
+        path.write_text("\n".join(json.dumps(item, sort_keys=True) for item in next_records) + "\n", encoding="utf-8")
+        return {"saved": True, "evaluation": record}
+
+    def list_llm_evaluations(self) -> dict[str, Any]:
+        records = self._read_evaluation_records()
+        records.sort(key=lambda item: str(item.get("timestamp") or ""), reverse=True)
+        return {"evaluations": records}
 
     def save_llm_comparison(self, data: dict[str, Any]) -> dict[str, Any]:
         comparison_id = self._safe_comparison_id(data.get("comparison_id") or f"comparison_{uuid.uuid4().hex[:12]}")
@@ -459,6 +764,150 @@ class WebState:
         if not isinstance(payload, dict) or not payload.get("comparison_id"):
             raise KeyError(f"Unknown LLM comparison: {comparison_id}")
         return {"comparison": payload}
+
+    def _runtime_env_values(self) -> dict[str, str]:
+        env_values: dict[str, str] = {}
+        for filename in (LOCAL_ENV_FILE, ".env"):
+            env_values.update(
+                {
+                    key: str(value or "")
+                    for key, value in parse_env_file(PROJECT_ROOT / filename).items()
+                    if key in llm_config.SUPPORTED_ENV_KEYS
+                }
+            )
+        for key in llm_config.SUPPORTED_ENV_KEYS:
+            if key in os.environ:
+                env_values[key] = os.environ[key]
+        return env_values
+
+    def _after_llm_settings_saved(self, result: dict[str, Any]) -> dict[str, Any]:
+        self._llm_runtime_config_invalidated_at = time.time()
+        if not self.force_dummy_llm:
+            self.session.llm = self.session._create_llm(False)
+        return result
+
+    @staticmethod
+    def _runtime_profile_by_id(public_status: dict[str, Any], profile_id: Any) -> dict[str, Any] | None:
+        profile_id = str(profile_id or "").strip()
+        if not profile_id:
+            return None
+        profiles = public_status.get("model_profiles") if isinstance(public_status.get("model_profiles"), list) else []
+        for profile in profiles:
+            if isinstance(profile, dict) and str(profile.get("id") or "") == profile_id:
+                return profile
+        return None
+
+    @staticmethod
+    def _runtime_public_model_profile(profile: dict[str, Any] | None) -> dict[str, Any] | None:
+        if not profile:
+            return None
+        return {
+            "id": str(profile.get("id") or ""),
+            "display_name": str(profile.get("display_name") or ""),
+            "provider": str(profile.get("provider") or ""),
+            "model_id": str(profile.get("model_id") or ""),
+            "enabled": bool(profile.get("enabled", True)),
+        }
+
+    def _runtime_gemini_model_source(
+        self,
+        settings: dict[str, Any],
+        public_status: dict[str, Any],
+        env_values: dict[str, str],
+    ) -> dict[str, str]:
+        roles = public_status.get("roles") if isinstance(public_status.get("roles"), dict) else {}
+        for role_key in ("default_answer_model_profile_id", "strategy_model_profile_id"):
+            profile = self._runtime_profile_by_id(public_status, roles.get(role_key))
+            if profile and str(profile.get("provider") or "").strip().lower() == "gemini":
+                model_id = str(profile.get("model_id") or "").strip()
+                if model_id:
+                    return {"model_source": "role_profile", "model_id": model_id}
+        gemini = settings.get("gemini") if isinstance(settings.get("gemini"), dict) else {}
+        model_id = str(gemini.get("model") or "").strip()
+        if model_id:
+            return {"model_source": "settings", "model_id": model_id}
+        env_model = str(env_values.get("GEMINI_MODEL") or "").strip()
+        if env_model:
+            return {"model_source": "environment", "model_id": env_model}
+        return {"model_source": "missing", "model_id": ""}
+
+    @staticmethod
+    def _runtime_openrouter_key_source(settings: dict[str, Any], env_values: dict[str, str]) -> dict[str, str]:
+        openrouter = settings.get("openrouter") if isinstance(settings.get("openrouter"), dict) else {}
+        settings_key = str(openrouter.get("api_key") or "").strip()
+        if settings_key:
+            return {"key_source": "local_settings", "masked_key_suffix": settings_key[-4:]}
+        env_key = str(env_values.get("OPENROUTER_API_KEY") or "").strip()
+        if env_key:
+            return {"key_source": "environment", "masked_key_suffix": env_key[-4:]}
+        return {"key_source": "missing", "masked_key_suffix": ""}
+
+    def _runtime_config_warnings(
+        self,
+        settings: dict[str, Any],
+        public_status: dict[str, Any],
+        env_values: dict[str, str],
+    ) -> list[str]:
+        warnings = list(public_status.get("warnings") if isinstance(public_status.get("warnings"), list) else [])
+        env_gemini_names = self._runtime_gemini_env_names(env_values)
+        settings_has_gemini = self._runtime_settings_has_gemini_config(settings)
+        if settings_has_gemini and env_gemini_names:
+            warnings.append(
+                "Warning: Gemini environment variables are present. Settings will be used first, but stale env values may confuse debugging. Consider removing Gemini entries from .env.local."
+            )
+        saved_key = str((settings.get("gemini") if isinstance(settings.get("gemini"), dict) else {}).get("api_key") or "").strip()
+        env_keys = self._runtime_env_value_candidates("GEMINI_API_KEY", env_values)
+        env_keys.extend(self._runtime_env_value_candidates("GOOGLE_API_KEY", env_values))
+        if saved_key and any(env_key and env_key != saved_key for env_key in env_keys):
+            warnings.append("Warning: Gemini environment key differs from the saved Settings key. Settings will be used first.")
+        if "gemini-flash-latest" in self._runtime_env_value_candidates("GEMINI_MODEL", env_values):
+            warnings.append("Warning: GEMINI_MODEL=gemini-flash-latest is present in the environment; use gemini-2.5-flash instead.")
+        openrouter = settings.get("openrouter") if isinstance(settings.get("openrouter"), dict) else {}
+        saved_openrouter_key = str(openrouter.get("api_key") or "").strip()
+        openrouter_env_keys = self._runtime_env_value_candidates("OPENROUTER_API_KEY", env_values)
+        if saved_openrouter_key and openrouter_env_keys:
+            warnings.append(
+                "Warning: OpenRouter environment variables are present. Settings will be used first, but stale env values may confuse debugging. Consider removing OpenRouter entries from .env.local."
+            )
+        if saved_openrouter_key and any(env_key and env_key != saved_openrouter_key for env_key in openrouter_env_keys):
+            warnings.append("Warning: OpenRouter environment key differs from the saved Settings key. Settings will be used first.")
+        return list(dict.fromkeys(warnings))
+
+    def _runtime_env_value_candidates(self, key: str, env_values: dict[str, str]) -> list[str]:
+        candidates: list[str] = []
+        for filename in (LOCAL_ENV_FILE, ".env"):
+            value = str(parse_env_file(PROJECT_ROOT / filename).get(key) or "").strip()
+            if value:
+                candidates.append(value)
+        value = str(os.environ.get(key) or "").strip()
+        if value:
+            candidates.append(value)
+        resolved_value = str(env_values.get(key) or "").strip()
+        if resolved_value:
+            candidates.append(resolved_value)
+        return list(dict.fromkeys(candidates))
+
+    @staticmethod
+    def _runtime_gemini_env_names(env_values: dict[str, str]) -> list[str]:
+        return [
+            key
+            for key in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "GEMINI_MODEL", "GEMINI_EMBEDDING_MODEL")
+            if str(env_values.get(key) or "").strip()
+        ]
+
+    @staticmethod
+    def _runtime_settings_has_gemini_config(settings: dict[str, Any]) -> bool:
+        gemini = settings.get("gemini") if isinstance(settings.get("gemini"), dict) else {}
+        if any(str(gemini.get(key) or "").strip() for key in ("api_key", "model", "embedding_model")):
+            return True
+        embedding = settings.get("embedding") if isinstance(settings.get("embedding"), dict) else {}
+        if str(embedding.get("provider") or "").strip().lower() == "gemini":
+            return True
+        profiles = settings.get("model_profiles") if isinstance(settings.get("model_profiles"), list) else []
+        return any(
+            isinstance(profile, dict) and str(profile.get("provider") or "").strip().lower() == "gemini"
+            for profile in profiles
+        )
 
     @staticmethod
     def _mask_api_key(api_key: str) -> str:
@@ -586,6 +1035,7 @@ class WebState:
             raise ValueError("frame image is required.")
         frame_image, warnings = self._decode_frame_image_for_model(image_data)
         frame_id = f"frame_{uuid.uuid4().hex[:12]}"
+        frame_timestamp = self._iso_timestamp(time.time())
         frame_width, frame_height = self._image_size(frame_image)
         mirrored = self._truthy_setting(data.get("mirrored"), False)
         analyzed_frame_preview = self._image_preview_data_url(frame_image)
@@ -604,6 +1054,7 @@ class WebState:
         if not status.get("model_loaded"):
             status = adapter.load() if hasattr(adapter, "load") else status
         crop_preview = self._image_preview_data_url(face_crop)
+        crop_hash = self._image_content_sha256(face_crop)
         model_input_image = self._resize_image(face_crop, (224, 224))
         input_preview = self._image_preview_data_url(model_input_image)
         frame_warnings.extend(self._camera_debug_assertions(frame_width, frame_height, face_detection, model_input_image))
@@ -622,15 +1073,25 @@ class WebState:
             fallback_prediction=prediction,
             fallback_status=status,
         )
+        debug_fields = self._camera_debug_model_comparison_fields(
+            crop_hash=crop_hash,
+            frame_timestamp=frame_timestamp,
+            academic_status=status,
+            direct_prediction=prediction,
+            emotion_pipeline=emotion_pipeline,
+        )
         response_base = {
             "frame_id": frame_id,
+            "frame_timestamp": frame_timestamp,
             "analyzed_frame_size": [frame_width, frame_height],
             "analyzed_frame_preview_data_url": analyzed_frame_preview,
             "face_detection": face_detection,
             "crop_preview_data_url": crop_preview,
+            "crop_hash": crop_hash,
             "model_input_preview_data_url": input_preview,
             "model_input_size": [224, 224],
             "emotion_pipeline": emotion_pipeline,
+            **debug_fields,
         }
         if self._truthy_setting(data.get("include_debug_previews"), False):
             response_base["annotated_frame_preview_data_url"] = self._annotated_frame_preview_data_url(
@@ -947,6 +1408,7 @@ class WebState:
 
     def explain_debug_selection(self, data: dict[str, Any]) -> dict[str, Any]:
         payload = dict(data)
+        payload.setdefault("allow_mock_llm", self.force_dummy_llm)
         document_id = str(payload.get("document_id") or "debug-pdf")
         payload["document_id"] = document_id
         try:
@@ -963,7 +1425,7 @@ class WebState:
                 "retrieval_strategy": "payload_fallback",
                 "error": str(exc),
             }
-        return explain_selection(payload)
+        return explain_selection(payload, project_root=PROJECT_ROOT, profiles_dir=self.upload_dir)
 
 
     def document_file_path(self, document_id: str) -> Path:
@@ -1278,6 +1740,7 @@ class WebState:
         payload["support_cue"] = request.get("support_cue") or (request.get("reaction_window_summary") or {}).get("support_cue") or ""
         payload["support_cue_label"] = (request.get("reaction_window_summary") or {}).get("support_cue_label") or ""
         payload["reaction_window_summary"] = request.get("reaction_window_summary") or {}
+        payload["learning_signal_package"] = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
         payload["planner_input_summary"] = request.get("planner_input_summary") if isinstance(request.get("planner_input_summary"), dict) else {}
         payload["document_id"] = document_id
         payload["highlight_id"] = request.get("highlight_id")
@@ -1634,13 +2097,28 @@ class WebState:
         payload["thread_history"] = thread.get("messages", [])[-8:]
         turn_id = self._new_turn_id(data.get("turn_id"))
         payload["turn_id"] = turn_id
-        for key in ("session_id", "learning_state", "strategy_candidates", "selected_strategy_id", "selected_strategy", "trigger_context"):
+        payload["input_source"] = str(data.get("input_source") or "text")
+        payload["response_mode"] = str(data.get("response_mode") or "normal_followup")
+        payload = self._normalize_interaction_flags(payload, default_input_source="text")
+        strategy_mode = payload.get("response_mode") in {"strategy_response", "proactive_support"}
+        copy_keys = ["session_id", "learning_state"]
+        if strategy_mode:
+            copy_keys.extend(["learning_signal_package", "strategy_candidates", "selected_strategy_id", "selected_strategy", "trigger_context"])
+        for key in copy_keys:
             if key == "trigger_context" and thread.get(key) not in (None, "", [], {}):
                 payload[key] = thread.get(key)
             elif key in data:
                 payload[key] = data.get(key)
             elif thread.get(key) not in (None, "", [], {}):
                 payload[key] = thread.get(key)
+        if not strategy_mode:
+            payload["selected_strategy_id"] = None
+            payload["selected_strategy"] = None
+            payload["strategy_candidates"] = []
+            payload["trigger_context"] = {}
+            payload["reaction_window_summary"] = {}
+            payload["learning_signal_package"] = {}
+            payload["source_turn_id"] = ""
         payload = self._attach_crop_data_url(document_id, payload)
         payload = self._with_strategy_payload(payload)
         user_message = {"role": "user", "content": question, "created_at": time.time(), "turn_id": turn_id}
@@ -1815,6 +2293,7 @@ class WebState:
             session_id=session_id,
             document_id=document_id,
             prediction=prediction_for_state,
+            emotion_pipeline=emotion_pipeline,
             warnings=warnings,
             face_detection=compact_face_detection,
             now=time.time(),
@@ -1833,6 +2312,7 @@ class WebState:
                 "academic_state": state.get("academic_state"),
                 "confidence": state.get("confidence"),
                 "distribution": state.get("distribution"),
+                "learning_signal_package": state.get("learning_signal_package") if isinstance(state.get("learning_signal_package"), dict) else {},
                 "trend": state.get("trend"),
                 "duration_sec": state.get("duration_sec"),
                 "warnings": warnings,
@@ -1926,8 +2406,84 @@ class WebState:
             "error": response.error,
         }
 
-    def speech_transcribe(self) -> dict[str, Any]:
-        return {"available": False, "text": "", "message": "Speech is optional and no speech backend is configured."}
+    def speech_transcribe(self, files: dict[str, Any] | None = None) -> dict[str, Any]:
+        files = files or {}
+        audio_upload = files.get("audio") or files.get("file") or next(iter(files.values()), None)
+        if not audio_upload:
+            raise ValueError("Speech audio upload is required.")
+        filename, content = audio_upload[:2]
+        if not isinstance(content, bytes) or not content:
+            raise ValueError("Speech audio upload is empty.")
+        suffix = self._speech_audio_suffix(str(filename), content)
+        if not suffix:
+            raise ValueError("Speech transcription accepts audio/webm or wav uploads.")
+
+        model, error_message = self._speech_whisper_model()
+        if model is None:
+            return self._speech_unavailable(error_message)
+
+        temp_path = ""
+        try:
+            with tempfile.NamedTemporaryFile(prefix="speech-", suffix=suffix, delete=False) as temp_file:
+                temp_file.write(content)
+                temp_path = temp_file.name
+            segments, info = model.transcribe(temp_path)
+            text = " ".join(str(getattr(segment, "text", segment)).strip() for segment in segments).strip()
+            return {
+                "available": True,
+                "text": re.sub(r"\s+", " ", text),
+                "message": "Speech transcription complete.",
+                "language": self._speech_language(info),
+            }
+        finally:
+            if temp_path:
+                try:
+                    Path(temp_path).unlink(missing_ok=True)
+                except OSError:
+                    pass
+
+    def _speech_whisper_model(self) -> tuple[Any | None, str]:
+        model_name = os.environ.get("SPEECH_WHISPER_MODEL", "base").strip() or "base"
+        if self._speech_model is not None and self._speech_model_name == model_name:
+            return self._speech_model, ""
+        try:
+            from faster_whisper import WhisperModel  # type: ignore
+        except Exception as exc:
+            return None, f"faster-whisper is not installed or could not be imported: {exc}"
+        try:
+            self._speech_model = WhisperModel(model_name, device="cpu", compute_type="int8")
+            self._speech_model_name = model_name
+            return self._speech_model, ""
+        except Exception as exc:
+            self._speech_model = None
+            self._speech_model_name = None
+            return None, f"faster-whisper model could not be loaded: {exc}"
+
+    @staticmethod
+    def _speech_audio_suffix(filename: str, content: bytes) -> str:
+        suffix = Path(filename).suffix.lower()
+        if suffix in {".webm", ".wav"}:
+            return suffix
+        if content.startswith(b"RIFF") and b"WAVE" in content[:16]:
+            return ".wav"
+        if content.startswith(b"\x1a\x45\xdf\xa3"):
+            return ".webm"
+        return ""
+
+    @staticmethod
+    def _speech_language(info: Any) -> str:
+        if isinstance(info, dict):
+            return str(info.get("language") or "")
+        return str(getattr(info, "language", "") or "")
+
+    @staticmethod
+    def _speech_unavailable(message: str) -> dict[str, Any]:
+        return {
+            "available": False,
+            "text": "",
+            "error": "Speech transcription unavailable",
+            "message": message or "faster-whisper is not installed.",
+        }
 
     def _document_response(self, page_text: str) -> dict[str, Any]:
         document = self.session.document
@@ -2304,6 +2860,348 @@ class WebState:
         except TypeError:
             return pipeline.predict(image)
 
+    def _camera_debug_model_comparison_fields(
+        self,
+        crop_hash: str,
+        frame_timestamp: str,
+        academic_status: dict[str, Any],
+        direct_prediction: dict[str, Any],
+        emotion_pipeline: dict[str, Any],
+    ) -> dict[str, Any]:
+        active_mode = str(emotion_pipeline.get("model_output_type") or academic_status.get("model_output_type") or "unknown")
+        mapped = emotion_pipeline.get("mapped_academic_state") if isinstance(emotion_pipeline.get("mapped_academic_state"), dict) else {}
+        direct_state = ""
+        if str(direct_prediction.get("model_output_type") or academic_status.get("model_output_type") or "") == "academic_state":
+            direct_state = str(direct_prediction.get("academic_state") or "")
+        mapped_state = str(mapped.get("state") or "")
+        raw_checkpoint_path = str(
+            emotion_pipeline.get("raw_checkpoint_path")
+            or (emotion_pipeline.get("checkpoint_path") if active_mode == "raw_emotion" else "")
+            or ""
+        )
+        raw_checkpoint_classes = emotion_pipeline.get("raw_checkpoint_classes")
+        if not isinstance(raw_checkpoint_classes, list):
+            raw_checkpoint_classes = list(emotion_pipeline.get("classes") or []) if active_mode == "raw_emotion" else []
+        academic_classes = list(academic_status.get("classes") or direct_prediction.get("classes") or [])
+        active_chain = self._camera_debug_active_chain(
+            active_mode=active_mode,
+            raw_checkpoint_path=raw_checkpoint_path,
+            raw_checkpoint_classes=raw_checkpoint_classes,
+            academic_status=academic_status,
+            direct_prediction=direct_prediction,
+            emotion_pipeline=emotion_pipeline,
+        )
+        direct_diagnostic = self._camera_debug_direct_4class_diagnostic(
+            active_mode=active_mode,
+            academic_status=academic_status,
+            direct_prediction=direct_prediction,
+            academic_classes=academic_classes,
+        )
+        learning_signal_package = self._learning_signal_package_from_pipeline(
+            emotion_pipeline=emotion_pipeline,
+            active_chain=active_chain,
+            direct_diagnostic=direct_diagnostic,
+            frame_timestamp=frame_timestamp,
+            crop_hash=crop_hash,
+        )
+        fields = {
+            "raw_checkpoint_path": raw_checkpoint_path,
+            "raw_checkpoint_classes": raw_checkpoint_classes,
+            "academic_checkpoint_path": str(academic_status.get("checkpoint_path") or ""),
+            "academic_checkpoint_classes": academic_classes,
+            "academic_label_order_source": str(academic_status.get("academic_label_order_source") or "unavailable"),
+            "active_model_mode": active_mode,
+            "crop_hash": crop_hash,
+            "frame_timestamp": frame_timestamp,
+            "raw_preprocessing_summary": dict(
+                emotion_pipeline.get("raw_preprocessing_summary")
+                or emotion_pipeline.get("preprocessing_summary")
+                or {}
+            ),
+            "academic_preprocessing_summary": self._preprocessing_summary_from_status(
+                academic_status,
+                direct_prediction,
+            ),
+            "direct_4class_state": direct_state,
+            "mapped_from_8class_state": mapped_state,
+            "direct_4class_used_for_strategy": active_mode == "academic_state",
+            "mapped_8class_used_for_strategy": active_mode == "raw_emotion",
+            "active_chain": active_chain,
+            "direct_4class_diagnostic": direct_diagnostic,
+            "learning_signal_package": learning_signal_package,
+        }
+        fields["model_comparison"] = dict(fields)
+        return fields
+
+    def _camera_debug_active_chain(
+        self,
+        active_mode: str,
+        raw_checkpoint_path: str,
+        raw_checkpoint_classes: list[Any],
+        academic_status: dict[str, Any],
+        direct_prediction: dict[str, Any],
+        emotion_pipeline: dict[str, Any],
+    ) -> dict[str, Any]:
+        if active_mode == "raw_emotion":
+            raw = emotion_pipeline.get("raw_detection") if isinstance(emotion_pipeline.get("raw_detection"), dict) else {}
+            mapped = emotion_pipeline.get("mapped_academic_state") if isinstance(emotion_pipeline.get("mapped_academic_state"), dict) else {}
+            smoothed = emotion_pipeline.get("smoothed_state") if isinstance(emotion_pipeline.get("smoothed_state"), dict) else {}
+            raw_probabilities = emotion_pipeline.get("raw_emotion_probabilities")
+            if not isinstance(raw_probabilities, dict):
+                raw_probabilities = raw.get("probabilities") if isinstance(raw.get("probabilities"), dict) else {}
+            mapped_scores = mapped.get("scores") if isinstance(mapped.get("scores"), dict) else {}
+            return {
+                "source": "raw_8class_checkpoint",
+                "checkpoint_path": raw_checkpoint_path,
+                "num_classes": len(raw_checkpoint_classes),
+                "classes": list(raw_checkpoint_classes),
+                "raw_label": str(emotion_pipeline.get("raw_emotion") or raw.get("label") or ""),
+                "raw_confidence": self._bounded_probability(emotion_pipeline.get("raw_emotion_confidence"), raw.get("confidence", 0.0)),
+                "raw_probabilities": dict(raw_probabilities),
+                "mapping_rule_version": "required_8class_probability_aggregation_v1",
+                "mapping_rule": str(mapped.get("mapping_rule") or ""),
+                "mapped_state": str(mapped.get("state") or ""),
+                "mapped_academic_state": str(mapped.get("state") or ""),
+                "mapped_scores": dict(mapped_scores),
+                "mapped_academic_scores": dict(mapped_scores),
+                "smoothed_state": str(smoothed.get("state") or mapped.get("state") or ""),
+                "smoothed_academic_state": str(smoothed.get("state") or mapped.get("state") or ""),
+                "used_for_strategy": True,
+            }
+        direct = self._camera_debug_direct_4class_diagnostic(
+            active_mode=active_mode,
+            academic_status=academic_status,
+            direct_prediction=direct_prediction,
+            academic_classes=list(academic_status.get("classes") or direct_prediction.get("classes") or []),
+        )
+        return {
+            "source": "direct_4class_checkpoint" if active_mode == "academic_state" else str(active_mode or "unknown"),
+            "checkpoint_path": direct.get("checkpoint_path", ""),
+            "num_classes": direct.get("num_classes", 0),
+            "classes": direct.get("classes", []),
+            "state": direct.get("state", ""),
+            "confidence": direct.get("confidence", 0.0),
+            "probabilities": direct.get("probabilities", {}),
+            "smoothed_state": direct.get("state", ""),
+            "used_for_strategy": active_mode == "academic_state",
+        }
+
+    def _camera_debug_direct_4class_diagnostic(
+        self,
+        active_mode: str,
+        academic_status: dict[str, Any],
+        direct_prediction: dict[str, Any],
+        academic_classes: list[Any],
+    ) -> dict[str, Any]:
+        probabilities = direct_prediction.get("state_distribution") or direct_prediction.get("distribution") or {}
+        probabilities = probabilities if isinstance(probabilities, dict) else {}
+        state = str(direct_prediction.get("academic_state") or max(probabilities, key=probabilities.get, default=""))
+        confidence = self._bounded_probability(direct_prediction.get("confidence"), probabilities.get(state, 0.0))
+        return {
+            "source": "direct_4class_checkpoint",
+            "checkpoint_path": str(academic_status.get("checkpoint_path") or ""),
+            "num_classes": len(academic_classes),
+            "classes": list(academic_classes),
+            "class_order_source": str(academic_status.get("academic_label_order_source") or "unavailable"),
+            "state": state,
+            "direct_academic_state": state,
+            "confidence": confidence,
+            "direct_academic_confidence": confidence,
+            "probabilities": dict(probabilities),
+            "direct_academic_probabilities": dict(probabilities),
+            "used_for_strategy": active_mode == "academic_state",
+        }
+
+    def _learning_signal_package_from_pipeline(
+        self,
+        *,
+        emotion_pipeline: dict[str, Any],
+        active_chain: dict[str, Any] | None = None,
+        direct_diagnostic: dict[str, Any] | None = None,
+        frame_timestamp: str | None = None,
+        crop_hash: str | None = None,
+        document_id: str | None = None,
+        highlight_id: str | None = None,
+        reaction_window_summary: dict[str, Any] | None = None,
+        current_user_question: str | None = None,
+        last_user_question: str | None = None,
+        previous_strategy: str | None = None,
+        recent_strategies: list[str] | None = None,
+        turn_index: int = 0,
+        followup_count_for_highlight: int = 0,
+        same_highlight_repeated_questions: bool = False,
+        last_response_was_baseline_or_adaptive: str = "unknown",
+        time_since_last_assistant_answer: float | None = None,
+    ) -> dict[str, Any]:
+        if not isinstance(emotion_pipeline, dict) or str(emotion_pipeline.get("model_output_type") or "") != "raw_emotion":
+            return {}
+        active = active_chain if isinstance(active_chain, dict) else self._camera_debug_active_chain(
+            active_mode="raw_emotion",
+            raw_checkpoint_path=str(emotion_pipeline.get("raw_checkpoint_path") or emotion_pipeline.get("checkpoint_path") or ""),
+            raw_checkpoint_classes=list(emotion_pipeline.get("raw_checkpoint_classes") or emotion_pipeline.get("classes") or []),
+            academic_status={},
+            direct_prediction={},
+            emotion_pipeline=emotion_pipeline,
+        )
+        raw_probabilities = active.get("raw_probabilities") if isinstance(active.get("raw_probabilities"), dict) else {}
+        mapped_scores = active.get("mapped_academic_scores") if isinstance(active.get("mapped_academic_scores"), dict) else active.get("mapped_scores")
+        mapped_scores = mapped_scores if isinstance(mapped_scores, dict) else {}
+        raw_evidence = RawEmotionEvidence(
+            source="raw_8class_checkpoint",
+            checkpoint_path=str(active.get("checkpoint_path") or emotion_pipeline.get("checkpoint_path") or ""),
+            raw_emotion_label=str(active.get("raw_label") or emotion_pipeline.get("raw_emotion") or "") or None,
+            raw_emotion_confidence=self._bounded_probability(active.get("raw_confidence"), 0.0),
+            raw_emotion_probabilities={str(key): self._bounded_probability(value) for key, value in raw_probabilities.items()},
+            raw_top_emotions=top_probability_items(raw_probabilities, limit=3),
+            frame_timestamp=frame_timestamp,
+            crop_hash=crop_hash,
+        )
+        mapped_state = str(active.get("smoothed_academic_state") or active.get("mapped_academic_state") or active.get("mapped_state") or "uncertain")
+        if mapped_state not in {*self.ACADEMIC_STATES, "uncertain"}:
+            mapped_state = "uncertain"
+        mapping = AcademicStateMapping(
+            mapping_rule_version=str(active.get("mapping_rule_version") or "required_8class_probability_aggregation_v1"),
+            mapped_academic_state=mapped_state,  # type: ignore[arg-type]
+            mapped_academic_scores={state: self._bounded_probability(mapped_scores.get(state), 0.0) for state in self.ACADEMIC_STATES},
+            mapping_explanation=str(active.get("mapping_rule") or "raw 8-class probabilities aggregated to academic support scores"),
+            confidence_notes=["single-frame mapped scores should be interpreted through reaction windows and dialogue context"],
+        )
+        reaction = self._reaction_window_package_from_summary(reaction_window_summary or {}, mapping)
+        question = current_user_question or ""
+        process_context = LearningProcessContext(
+            document_id=document_id,
+            highlight_id=highlight_id,
+            turn_index=max(0, int(turn_index or 0)),
+            followup_count_for_highlight=max(0, int(followup_count_for_highlight or 0)),
+            same_highlight_repeated_questions=bool(same_highlight_repeated_questions),
+            last_user_question=last_user_question,
+            current_user_question=question or None,
+            question_intent=detect_question_intent(question),
+            previous_strategy=previous_strategy,
+            recent_strategies=[str(item) for item in (recent_strategies or []) if str(item)],
+            last_response_was_baseline_or_adaptive=str(last_response_was_baseline_or_adaptive or "unknown"),  # type: ignore[arg-type]
+            time_since_last_assistant_answer=time_since_last_assistant_answer,
+        )
+        package = build_learning_signal_package(
+            raw_emotion_evidence=raw_evidence,
+            academic_state_mapping=mapping,
+            reaction_window_summary=reaction,
+            learning_process_context=process_context,
+            diagnostic_only_direct_4class=direct_diagnostic or {},
+        )
+        return package.to_dict()
+
+    def _reaction_window_package_from_summary(
+        self,
+        summary: dict[str, Any],
+        fallback_mapping: AcademicStateMapping | None = None,
+    ) -> ReactionWindowSummary | None:
+        if not isinstance(summary, dict) or not summary:
+            if not fallback_mapping:
+                return None
+            return ReactionWindowSummary(
+                window_start=None,
+                window_end=None,
+                dominant_raw_emotions=[],
+                dominant_mapped_states=top_probability_items(fallback_mapping.mapped_academic_scores, label_key="state", limit=3),
+                trend="single_frame_only",
+                evidence_count=0,
+                reliability_notes=["no reaction window; do not infer a strong learning process state from this frame alone"],
+                avg_mapped_scores=dict(fallback_mapping.mapped_academic_scores),
+                support_cue="neutral_or_uncertain",
+                sample_count=0,
+                state_transition="mixed_or_uncertain",
+                transition_label="mixed or uncertain",
+                dominant_state=fallback_mapping.mapped_academic_state,
+            )
+        avg_scores = summary.get("avg_mapped_scores") if isinstance(summary.get("avg_mapped_scores"), dict) else summary.get("avg_distribution")
+        if not isinstance(avg_scores, dict) and fallback_mapping:
+            avg_scores = fallback_mapping.mapped_academic_scores
+        avg_scores = avg_scores if isinstance(avg_scores, dict) else {}
+        dominant_raw = summary.get("dominant_raw_emotions") if isinstance(summary.get("dominant_raw_emotions"), list) else []
+        dominant_mapped = summary.get("dominant_mapped_states") if isinstance(summary.get("dominant_mapped_states"), list) else []
+        if not dominant_mapped:
+            dominant_mapped = top_probability_items(avg_scores, label_key="state", limit=3)
+        evidence_count = int(summary.get("evidence_count") or summary.get("sample_count") or (summary.get("face_detection_summary") or {}).get("sample_count") or 0)
+        if evidence_count <= 0 and self._reaction_window_has_evidence(summary):
+            evidence_count = 1
+        ordered_states = sorted(self.ACADEMIC_STATES, key=lambda state: self._bounded_probability(avg_scores.get(state), 0.0), reverse=True)
+        dominant_state = str(summary.get("dominant_state") or (ordered_states[0] if ordered_states else "uncertain"))
+        secondary_state = str(summary.get("secondary_state") or (ordered_states[1] if len(ordered_states) > 1 else ""))
+        derived_support_cue, _derived_support_label = self._support_cue_for_reaction(
+            {state: self._bounded_probability(avg_scores.get(state), 0.0) for state in self.ACADEMIC_STATES},
+            dominant_state,
+            secondary_state,
+            self._bounded_probability(summary.get("avg_confidence"), 0.0),
+        )
+        provided_support_cue = str(summary.get("support_cue") or "")
+        support_cue = provided_support_cue
+        if canonical_support_cue(provided_support_cue) in {"neutral", "uncertain"} and canonical_support_cue(derived_support_cue) not in {"neutral", "uncertain"}:
+            support_cue = derived_support_cue
+        if not support_cue:
+            support_cue = derived_support_cue
+        reliability_notes = summary.get("reliability_notes") if isinstance(summary.get("reliability_notes"), list) else []
+        if not reliability_notes:
+            reliability_notes = ["reaction window summary is used as learning-support evidence, not diagnosis"]
+        return ReactionWindowSummary(
+            window_start=str(summary.get("window_start") or "") or None,
+            window_end=str(summary.get("window_end") or "") or None,
+            dominant_raw_emotions=dominant_raw,
+            dominant_mapped_states=dominant_mapped,
+            trend=str(summary.get("trend") or "stable"),
+            evidence_count=evidence_count,
+            reliability_notes=[str(item) for item in reliability_notes],
+            avg_mapped_scores={state: self._bounded_probability(avg_scores.get(state), 0.0) for state in self.ACADEMIC_STATES},
+            support_cue=support_cue or "neutral_or_uncertain",
+            start_time=str(summary.get("start_time") or summary.get("window_start") or "") or None,
+            end_time=str(summary.get("end_time") or summary.get("window_end") or "") or None,
+            duration_sec=self._float_between(summary.get("duration_sec"), 0.0, 3600.0),
+            end_reason=str(summary.get("end_reason") or "") or None,
+            read_progress_estimate=self._float_between(summary.get("read_progress_estimate"), 0.0, 1.0),
+            sample_count=evidence_count,
+            early_distribution={
+                state: self._bounded_probability((summary.get("early_distribution") or {}).get(state), 0.0)
+                for state in self.ACADEMIC_STATES
+            } if isinstance(summary.get("early_distribution"), dict) else None,
+            middle_distribution={
+                state: self._bounded_probability((summary.get("middle_distribution") or {}).get(state), 0.0)
+                for state in self.ACADEMIC_STATES
+            } if isinstance(summary.get("middle_distribution"), dict) else None,
+            late_distribution={
+                state: self._bounded_probability((summary.get("late_distribution") or {}).get(state), 0.0)
+                for state in self.ACADEMIC_STATES
+            } if isinstance(summary.get("late_distribution"), dict) else None,
+            early_dominant_state=str(summary.get("early_dominant_state") or "") or None,
+            middle_dominant_state=str(summary.get("middle_dominant_state") or "") or None,
+            late_dominant_state=str(summary.get("late_dominant_state") or "") or None,
+            state_transition=str(summary.get("state_transition") or "") or None,
+            transition_label=str(summary.get("transition_label") or "") or None,
+            dominant_state=dominant_state,
+            secondary_state=secondary_state,
+            stability=str(summary.get("stability") or "") or None,
+            confidence_handling=str(summary.get("confidence_handling") or "") or None,
+        )
+
+    @staticmethod
+    def _preprocessing_summary_from_status(*statuses: dict[str, Any]) -> dict[str, Any]:
+        for status in statuses:
+            summary = status.get("preprocessing_summary") if isinstance(status, dict) else None
+            if isinstance(summary, dict) and summary:
+                return dict(summary)
+        for status in statuses:
+            if not isinstance(status, dict):
+                continue
+            if status.get("input_size") or status.get("mean") or status.get("std"):
+                return {
+                    "input_size": int(status.get("input_size") or 224),
+                    "mean": list(status.get("mean") or [0.485, 0.456, 0.406]),
+                    "std": list(status.get("std") or [0.229, 0.224, 0.225]),
+                    "color_space": "RGB",
+                    "tensor_layout": "NCHW",
+                    "resize_method": "PIL.Image.resize default",
+                }
+        return {}
+
     def _prediction_from_emotion_pipeline(
         self,
         emotion_pipeline: dict[str, Any],
@@ -2436,6 +3334,27 @@ class WebState:
         except Exception:
             return ""
 
+    @staticmethod
+    def _image_content_sha256(image: Any) -> str:
+        try:
+            from PIL import Image  # type: ignore
+
+            if isinstance(image, Image.Image):
+                normalized = image.copy().convert("RGB")
+            else:
+                import numpy as np  # type: ignore
+
+                arr = np.asarray(image)
+                if arr.ndim == 2:
+                    normalized = Image.fromarray(arr.astype("uint8"), mode="L").convert("RGB")
+                else:
+                    normalized = Image.fromarray(arr[:, :, :3].astype("uint8")).convert("RGB")
+            output = BytesIO()
+            normalized.save(output, format="PNG")
+            return hashlib.sha256(output.getvalue()).hexdigest()
+        except Exception:
+            return ""
+
     def _annotated_frame_preview_data_url(self, image: Any, face_detection: dict[str, Any]) -> str:
         try:
             from PIL import Image, ImageDraw  # type: ignore
@@ -2505,11 +3424,11 @@ class WebState:
     @staticmethod
     def _camera_debug_mode_explanation() -> dict[str, Any]:
         return {
-            "current_mode": "Academic-state checkpoint. Raw 8-class facial emotion output is unavailable.",
-            "mapping_step": "Bypassed because the current checkpoint predicts boredom, confusion, engagement, and frustration directly.",
-            "strategy_input": "Academic-state probabilities are used directly as a noisy support cue for strategy planning.",
-            "current_mode_chain": "webcam frame -> face crop -> academic-state model -> support cue -> strategy families",
-            "future_mode_chain": "webcam frame -> face crop -> raw-emotion model -> raw-to-academic mapping -> support cue -> strategy families",
+            "current_mode": "auto selects a configured raw_emotion checkpoint when available, otherwise it falls back to an academic-state checkpoint.",
+            "mapping_step": "Raw 8-class facial emotion probabilities are aggregated into boredom, confusion, engagement, and frustration. A direct academic-state checkpoint bypasses that mapping.",
+            "strategy_input": "The mapped or direct academic state is treated as a noisy learning-support signal, not a psychological diagnosis.",
+            "raw_mode_chain": "webcam frame -> face crop -> raw-emotion model -> mapped academic state -> smoothed state -> response strategy",
+            "academic_mode_chain": "webcam frame -> face crop -> academic-state model -> smoothed state -> response strategy",
         }
 
     @staticmethod
@@ -2910,6 +3829,7 @@ class WebState:
         session_id: str,
         document_id: str,
         prediction: dict[str, Any],
+        emotion_pipeline: dict[str, Any] | None,
         warnings: list[str],
         now: float,
         face_detection: dict[str, Any] | None = None,
@@ -2935,10 +3855,30 @@ class WebState:
         if academic_state == "engagement" and previous_state not in {"", "engagement"}:
             stability = "recovering"
         trigger_recommended, trigger_reason = self._learning_trigger_metadata(academic_state, confidence, trend, duration)
+        timestamp = self._iso_timestamp(now)
+        direct_diagnostic = {}
+        learning_signal_package = {}
+        if isinstance(emotion_pipeline, dict) and str(emotion_pipeline.get("model_output_type") or "") == "raw_emotion":
+            active_chain = self._camera_debug_active_chain(
+                active_mode="raw_emotion",
+                raw_checkpoint_path=str(emotion_pipeline.get("raw_checkpoint_path") or emotion_pipeline.get("checkpoint_path") or ""),
+                raw_checkpoint_classes=list(emotion_pipeline.get("raw_checkpoint_classes") or emotion_pipeline.get("classes") or []),
+                academic_status={},
+                direct_prediction={},
+                emotion_pipeline=emotion_pipeline,
+            )
+            learning_signal_package = self._learning_signal_package_from_pipeline(
+                emotion_pipeline=emotion_pipeline,
+                active_chain=active_chain,
+                direct_diagnostic=direct_diagnostic,
+                frame_timestamp=timestamp,
+                document_id=document_id,
+                last_response_was_baseline_or_adaptive="unknown",
+            )
         return {
             "session_id": session_id,
             "document_id": document_id,
-            "timestamp": self._iso_timestamp(now),
+            "timestamp": timestamp,
             "source": "webcam_model",
             "model_output_type": str(prediction.get("model_output_type") or "academic_state"),
             "raw_facial_emotion_available": bool(prediction.get("raw_emotion_available")) if prediction.get("model_output_type") == "raw_emotion" else False,
@@ -2952,6 +3892,7 @@ class WebState:
             "stability": stability,
             "trigger_recommended": trigger_recommended,
             "trigger_reason": trigger_reason,
+            "learning_signal_package": learning_signal_package,
             "warnings": list(dict.fromkeys(warnings)),
             "face_detection": face_detection or {},
         }
@@ -3137,12 +4078,16 @@ class WebState:
         highlight_id: str,
         window_start: str,
         window_end: str,
+        source_turn_type: str = "baseline_explanation",
+        end_reason: str = "near_bottom_reached",
+        read_progress_estimate: float | int | str | None = 0.9,
     ) -> dict[str, Any]:
         valid_samples = [sample for sample in samples if isinstance(sample, dict)]
         states = list(self.ACADEMIC_STATES)
         distributions = []
         confidences = []
         state_weights = {state: 0.0 for state in states}
+        raw_weights: dict[str, float] = {}
         trends = []
         face_modes: dict[str, int] = {}
         fallback_used = False
@@ -3158,6 +4103,15 @@ class WebState:
                 distributions.append(normalized)
                 for item_state, value in normalized.items():
                     state_weights[item_state] = state_weights.get(item_state, 0.0) + float(value)
+            package = sample.get("learning_signal_package") if isinstance(sample.get("learning_signal_package"), dict) else {}
+            evidence = package.get("raw_emotion_evidence") if isinstance(package.get("raw_emotion_evidence"), dict) else {}
+            raw_probabilities = evidence.get("raw_emotion_probabilities") if isinstance(evidence.get("raw_emotion_probabilities"), dict) else sample.get("raw_emotion_probabilities")
+            if isinstance(raw_probabilities, dict):
+                for raw_label, value in raw_probabilities.items():
+                    raw_weights[str(raw_label)] = raw_weights.get(str(raw_label), 0.0) + self._bounded_probability(value, 0.0)
+            raw_label = evidence.get("raw_emotion_label") or sample.get("raw_facial_emotion") or sample.get("raw_emotion")
+            if raw_label:
+                raw_weights[str(raw_label)] = raw_weights.get(str(raw_label), 0.0) + max(confidence, 0.01)
             if sample.get("trend"):
                 trends.append(str(sample.get("trend")))
             face_detection = sample.get("face_detection") if isinstance(sample.get("face_detection"), dict) else {}
@@ -3178,31 +4132,224 @@ class WebState:
         avg_confidence = round(sum(confidences) / len(confidences), 4) if confidences else 0.0
         max_confidence = round(max(confidences), 4) if confidences else 0.0
         duration = max(0.0, self._epoch_from_iso_timestamp(window_end) - self._epoch_from_iso_timestamp(window_start))
-        trend = self._reaction_trend(trends, dominant_state)
-        support_cue, support_cue_label = self._support_cue_for_reaction(avg_distribution, dominant_state, secondary_state, avg_confidence)
+        phase_distributions = self._reading_phase_distributions(valid_samples)
+        early_distribution = phase_distributions["early"]
+        middle_distribution = phase_distributions["middle"]
+        late_distribution = phase_distributions["late"]
+        early_dominant_state = self._dominant_state_from_distribution(early_distribution)
+        middle_dominant_state = self._dominant_state_from_distribution(middle_distribution)
+        late_dominant_state = self._dominant_state_from_distribution(late_distribution)
+        transition = self._reading_transition_summary(
+            early_dominant_state,
+            middle_dominant_state,
+            late_dominant_state,
+            early_distribution,
+            late_distribution,
+            len(valid_samples),
+        )
+        trend = str(transition.get("trend") or self._reaction_trend(trends, dominant_state))
+        if self._is_resolving_difficulty_distribution(avg_distribution, dominant_state, secondary_state, trend):
+            transition = {
+                **transition,
+                "state_transition": "resolving_difficulty",
+                "transition_label": "resolving_difficulty",
+                "stability": "transitioning",
+            }
+        support_cue, support_cue_label = self._support_cue_for_reading_transition(
+            str(transition.get("state_transition") or ""),
+            avg_distribution,
+            dominant_state,
+            secondary_state,
+            avg_confidence,
+            str(end_reason or ""),
+        )
         face_mode = max(face_modes, key=face_modes.get) if face_modes else "center_crop"
+        dominant_raw_emotions = top_probability_items(raw_weights, limit=3)
+        dominant_mapped_states = top_probability_items(avg_distribution, label_key="state", limit=3)
+        reliability_notes = ["reaction window summary is used as learning-support evidence, not diagnosis"]
+        if len(valid_samples) < 2:
+            reliability_notes.append("low sample count; avoid strong process inference")
+        if str(end_reason or "").lower() in {"followup_submitted", "strategy_clicked"} and duration < 8:
+            reliability_notes.append("reading window ended early; use conservative strategy inference")
+        reason_metadata = build_strategy_reason_text(
+            source_turn_type=source_turn_type,
+            academic_state_scores=avg_distribution,
+            dominant_academic_state=dominant_state,
+            secondary_academic_state=secondary_state,
+            support_cue=support_cue,
+            trend=trend,
+            avg_confidence=avg_confidence,
+            recommended_strategy=self._recommended_strategy_for_support_cue(support_cue),
+            pedagogical_move=self._pedagogical_move_for_family(
+                self._allowed_strategy_families_for_support_cue(support_cue)[0]
+                if self._allowed_strategy_families_for_support_cue(support_cue)
+                else ""
+            ),
+        )
+        academic_state_evidence_text = reason_metadata["academic_state_evidence_text"]
+        transition_label = str(transition.get("transition_label") or "")
+        if transition_label and transition.get("state_transition") != "mixed_or_uncertain":
+            academic_state_evidence_text = f"{transition_label} · {academic_state_evidence_text}"
         return {
             "source_turn_id": self._safe_file_id(source_turn_id) if source_turn_id else "",
+            "source_turn_type": str(source_turn_type or "previous_explanation"),
             "highlight_id": self._safe_file_id(highlight_id) if highlight_id else "",
+            "start_time": window_start,
+            "end_time": window_end,
             "window_start": window_start,
             "window_end": window_end,
+            "end_reason": str(end_reason or "near_bottom_reached"),
+            "read_progress_estimate": round(self._float_between(read_progress_estimate, 0.0, 1.0), 2),
             "duration_sec": round(duration, 1),
+            "sample_count": len(valid_samples),
             "dominant_state": dominant_state,
             "secondary_state": secondary_state,
             "avg_confidence": avg_confidence,
             "max_confidence": max_confidence,
             "avg_distribution": avg_distribution,
+            "avg_mapped_scores": avg_distribution,
+            "early_distribution": early_distribution,
+            "middle_distribution": middle_distribution,
+            "late_distribution": late_distribution,
+            "early_dominant_state": early_dominant_state,
+            "middle_dominant_state": middle_dominant_state,
+            "late_dominant_state": late_dominant_state,
+            "state_transition": str(transition.get("state_transition") or "mixed_or_uncertain"),
+            "transition_label": transition_label,
+            "dominant_raw_emotions": dominant_raw_emotions,
+            "dominant_mapped_states": dominant_mapped_states,
             "trend": trend,
-            "stability": "stable" if max_confidence >= 0.6 and avg_confidence >= 0.55 else "low_confidence",
+            "stability": str(transition.get("stability") or ("stable" if max_confidence >= 0.6 and avg_confidence >= 0.55 else "low_confidence")),
             "support_cue": support_cue,
             "support_cue_label": support_cue_label,
-            "trigger_reason": f"The baseline explanation was being read while the learning signal showed a {support_cue_label.lower()}.",
+            "support_cue_display_label": reason_metadata["support_cue_label"],
+            "academic_state_evidence_text": academic_state_evidence_text,
+            "confidence_handling": reason_metadata["confidence_handling"],
+            "reason_text": reason_metadata["reason_text"],
+            "evidence_count": len(valid_samples),
+            "reliability_notes": reliability_notes,
+            "trigger_reason": reason_metadata["reason_text"],
             "face_detection_summary": {
                 "mode": face_mode,
                 "fallback_used": fallback_used,
                 "sample_count": len(valid_samples),
             },
         }
+
+    def _reading_phase_distributions(self, samples: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
+        valid_samples = [sample for sample in samples if isinstance(sample, dict)]
+        if not valid_samples:
+            empty = {state: 0.0 for state in self.ACADEMIC_STATES}
+            return {"early": dict(empty), "middle": dict(empty), "late": dict(empty)}
+        if len(valid_samples) == 1:
+            distribution = self._distribution_for_reaction_samples(valid_samples)
+            return {"early": dict(distribution), "middle": dict(distribution), "late": dict(distribution)}
+        if len(valid_samples) == 2:
+            return {
+                "early": self._distribution_for_reaction_samples(valid_samples[:1]),
+                "middle": self._distribution_for_reaction_samples(valid_samples),
+                "late": self._distribution_for_reaction_samples(valid_samples[1:]),
+            }
+        third = max(1, math.ceil(len(valid_samples) / 3))
+        early_samples = valid_samples[:third]
+        middle_samples = valid_samples[third:max(third + 1, len(valid_samples) - third)]
+        late_samples = valid_samples[max(third, len(valid_samples) - third):]
+        return {
+            "early": self._distribution_for_reaction_samples(early_samples or valid_samples),
+            "middle": self._distribution_for_reaction_samples(middle_samples or valid_samples),
+            "late": self._distribution_for_reaction_samples(late_samples or valid_samples),
+        }
+
+    def _distribution_for_reaction_samples(self, samples: list[dict[str, Any]]) -> dict[str, float]:
+        valid_samples = [sample for sample in samples if isinstance(sample, dict)]
+        if not valid_samples:
+            return {state: 0.0 for state in self.ACADEMIC_STATES}
+        distributions = []
+        for sample in valid_samples:
+            state = str(sample.get("academic_state") or sample.get("state") or "").lower()
+            confidence = self._bounded_probability(sample.get("confidence"), 0.0)
+            distribution = sample.get("distribution") if isinstance(sample.get("distribution"), dict) else sample.get("state_distribution")
+            if isinstance(distribution, dict):
+                distributions.append(self._normalized_state_distribution(distribution, state if state in self.ACADEMIC_STATES else "engagement", confidence))
+            else:
+                distributions.append(self._state_distribution(state if state in self.ACADEMIC_STATES else "engagement", confidence))
+        return {
+            state: round(sum(item.get(state, 0.0) for item in distributions) / len(distributions), 4)
+            for state in self.ACADEMIC_STATES
+        }
+
+    def _dominant_state_from_distribution(self, distribution: dict[str, float]) -> str:
+        if not isinstance(distribution, dict) or not distribution:
+            return "uncertain"
+        ordered = sorted(self.ACADEMIC_STATES, key=lambda state: self._bounded_probability(distribution.get(state), 0.0), reverse=True)
+        return ordered[0] if ordered else "uncertain"
+
+    def _reading_transition_summary(
+        self,
+        early_state: str,
+        middle_state: str,
+        late_state: str,
+        early_distribution: dict[str, float],
+        late_distribution: dict[str, float],
+        sample_count: int,
+    ) -> dict[str, str]:
+        if sample_count <= 0:
+            return {
+                "state_transition": "mixed_or_uncertain",
+                "transition_label": "mixed or uncertain",
+                "trend": "uncertain",
+                "stability": "low_evidence",
+            }
+        early_difficulty = early_state in {"confusion", "frustration"}
+        late_difficulty = late_state in {"confusion", "frustration"}
+        state_transition = "mixed_or_uncertain"
+        if early_difficulty and late_state == "engagement":
+            state_transition = f"{early_state}_to_engagement"
+        elif early_state == "engagement" and late_difficulty:
+            state_transition = f"engagement_to_{late_state}"
+        elif late_state == "confusion" and (early_state == "confusion" or middle_state == "confusion"):
+            state_transition = "persistent_confusion"
+        elif late_state == "frustration" and (early_state == "frustration" or middle_state == "frustration"):
+            state_transition = "persistent_frustration"
+        elif early_state == "engagement" and middle_state == "engagement" and late_state == "engagement":
+            state_transition = "stable_engagement"
+        elif early_state == "boredom" and middle_state == "boredom" and late_state == "boredom":
+            state_transition = "persistent_boredom"
+        labels = {
+            "confusion_to_engagement": "early confusion -> late engagement",
+            "frustration_to_engagement": "early frustration -> late engagement",
+            "engagement_to_confusion": "early engagement -> late confusion",
+            "engagement_to_frustration": "early engagement -> late frustration",
+            "persistent_confusion": "persistent confusion",
+            "persistent_frustration": "persistent frustration",
+            "persistent_boredom": "persistent low engagement",
+            "stable_engagement": "stable engagement",
+            "mixed_or_uncertain": "mixed or uncertain",
+        }
+        early_score = self._bounded_probability(early_distribution.get(early_state), 0.0)
+        late_score = self._bounded_probability(late_distribution.get(late_state), 0.0)
+        delta = late_score - early_score
+        trend = "stable" if abs(delta) < 0.08 else "rising" if delta > 0 else "falling"
+        stability = "stable" if state_transition.startswith("persistent") or state_transition == "stable_engagement" else "transitioning"
+        return {
+            "state_transition": state_transition,
+            "transition_label": labels.get(state_transition, "mixed or uncertain"),
+            "trend": trend,
+            "stability": stability,
+        }
+
+    def _is_resolving_difficulty_distribution(
+        self,
+        distribution: dict[str, float],
+        dominant_state: str,
+        secondary_state: str,
+        trend: str,
+    ) -> bool:
+        if dominant_state != "frustration" or secondary_state != "engagement" or str(trend or "").lower() != "falling":
+            return False
+        frustration = self._bounded_probability(distribution.get("frustration"), 0.0)
+        engagement = self._bounded_probability(distribution.get("engagement"), 0.0)
+        return frustration > 0 and engagement > 0 and 0 <= frustration - engagement <= 0.15
 
     @staticmethod
     def _reaction_trend(trends: list[str], dominant_state: str) -> str:
@@ -3214,6 +4361,33 @@ class WebState:
         if lowered:
             return "stable"
         return "stable" if dominant_state else "uncertain"
+
+    def _support_cue_for_reading_transition(
+        self,
+        state_transition: str,
+        distribution: dict[str, float],
+        dominant_state: str,
+        secondary_state: str,
+        avg_confidence: float,
+        end_reason: str,
+    ) -> tuple[str, str]:
+        if str(end_reason or "").lower() == "max_timeout":
+            return "neutral_or_uncertain", "Possible ways to continue"
+        transition = str(state_transition or "").lower()
+        base_cue, base_label = self._support_cue_for_reaction(distribution, dominant_state, secondary_state, avg_confidence)
+        if transition == "resolving_difficulty":
+            return "deepening", "Cautious deepening cue"
+        if transition in {"confusion_to_engagement", "frustration_to_engagement", "stable_engagement"}:
+            return "deepening", "Deepening cue"
+        if base_cue in {"clarify_and_reengage", "gentle_clarification", "neutral_or_uncertain"}:
+            return base_cue, base_label
+        if transition in {"persistent_confusion", "engagement_to_confusion"}:
+            return "sustained_clarification", "Sustained clarification cue"
+        if transition in {"persistent_frustration", "engagement_to_frustration"}:
+            return "difficulty_support", "Reduce cognitive load cue"
+        if transition == "persistent_boredom":
+            return "re_engagement", "Re-engagement cue"
+        return base_cue, base_label
 
     def _support_cue_for_reaction(
         self,
@@ -3231,14 +4405,23 @@ class WebState:
             return "clarify_and_reengage", "Clarify and re-engage cue"
         if states.get("confusion", 0.0) >= 0.35 and states.get("frustration", 0.0) >= 0.25:
             return "gentle_clarification", "Gentle clarification cue"
-        if avg_confidence < 0.55 or top_value < 0.45 or top_value - second_value < 0.05 or spread < 0.18:
+        if top_value >= 0.55:
+            if top_state == "engagement":
+                return "deepening", "Deepening cue"
+            if top_state == "boredom":
+                return "re_engagement", "Re-engagement cue"
+            if top_state == "frustration":
+                return "difficulty_support", "Reduce cognitive load cue"
+            if top_state == "confusion":
+                return "sustained_clarification", "Sustained clarification cue"
+        if top_value < 0.45 or top_value - second_value < 0.05 or spread < 0.18:
             return "neutral_or_uncertain", "Possible ways to continue"
         if states.get("engagement", 0.0) >= 0.65 or top_state == "engagement":
             return "deepening", "Deepening cue"
         if states.get("boredom", 0.0) >= 0.50 or top_state == "boredom":
             return "re_engagement", "Re-engagement cue"
         if states.get("frustration", 0.0) >= 0.45 or top_state == "frustration":
-            return "reduce_load", "Reduce cognitive load cue"
+            return "difficulty_support", "Reduce cognitive load cue"
         if states.get("confusion", 0.0) >= 0.45 or top_state == "confusion":
             return "sustained_clarification", "Sustained clarification cue"
         return "neutral_or_uncertain", "Possible ways to continue"
@@ -3247,9 +4430,236 @@ class WebState:
         cue = str(support_cue or "").strip().lower()
         if cue in self.SUPPORT_CUE_STRATEGY_FAMILIES:
             return list(self.SUPPORT_CUE_STRATEGY_FAMILIES[cue])
+        canonical_cue = canonical_support_cue(cue)
+        if canonical_cue in self.SUPPORT_CUE_STRATEGY_FAMILIES:
+            return list(self.SUPPORT_CUE_STRATEGY_FAMILIES[canonical_cue])
         if cue in self.STRATEGY_FAMILY:
             return list(self.STRATEGY_FAMILY[cue])
         return list(self.SUPPORT_CUE_STRATEGY_FAMILIES["neutral_or_uncertain"])
+
+    @staticmethod
+    def _recommended_strategy_for_support_cue(support_cue: str) -> str:
+        cue = canonical_support_cue(support_cue)
+        return {
+            "clarification": "simplify_and_define_terms",
+            "difficulty_support": "step_by_step_decomposition",
+            "re_engagement": "relevance_hook",
+            "deepening": "deepen_or_extend",
+            "neutral": "baseline_explanation",
+            "uncertain": "baseline_explanation",
+        }.get(cue, "baseline_explanation")
+
+    def _reaction_window_has_evidence(self, summary: dict[str, Any]) -> bool:
+        if not isinstance(summary, dict) or not summary:
+            return False
+        if int(summary.get("sample_count") or summary.get("evidence_count") or 0) > 0:
+            return True
+        face_summary = summary.get("face_detection_summary") if isinstance(summary.get("face_detection_summary"), dict) else {}
+        if int(face_summary.get("sample_count") or 0) > 0:
+            return True
+        if self._float_between(summary.get("duration_sec"), 0.0, 3600.0) > 0:
+            return True
+        for key in ("avg_distribution", "avg_mapped_scores"):
+            scores = summary.get(key) if isinstance(summary.get(key), dict) else {}
+            if any(self._bounded_probability(value, 0.0) > 0 for value in scores.values()):
+                return True
+        return False
+
+    def _academic_state_layer_for_strategy(
+        self,
+        learning_signal_package: dict[str, Any],
+        reaction_summary: dict[str, Any],
+        learning_state: dict[str, Any],
+    ) -> dict[str, Any]:
+        package_scores = learning_signal_package.get("academic_state_scores") if isinstance(learning_signal_package.get("academic_state_scores"), dict) else {}
+        reaction_scores = reaction_summary.get("avg_mapped_scores") if isinstance(reaction_summary.get("avg_mapped_scores"), dict) else reaction_summary.get("avg_distribution")
+        state_scores = learning_state.get("distribution") if isinstance(learning_state.get("distribution"), dict) else {}
+        source_scores = package_scores or (reaction_scores if isinstance(reaction_scores, dict) else {}) or state_scores
+        scores = {state: self._bounded_probability(source_scores.get(state), 0.0) for state in self.ACADEMIC_STATES}
+        dominant = str(
+            learning_signal_package.get("dominant_academic_state")
+            or reaction_summary.get("dominant_state")
+            or learning_state.get("academic_state")
+            or learning_state.get("state")
+            or ""
+        ).lower()
+        secondary = str(learning_signal_package.get("secondary_academic_state") or reaction_summary.get("secondary_state") or "").lower()
+        ordered = sorted(self.ACADEMIC_STATES, key=lambda state: scores.get(state, 0.0), reverse=True)
+        if dominant not in {*self.ACADEMIC_STATES, "uncertain"}:
+            dominant = ordered[0] if ordered and scores.get(ordered[0], 0.0) > 0 else "uncertain"
+        if secondary not in self.ACADEMIC_STATES:
+            secondary = ordered[1] if len(ordered) > 1 and scores.get(ordered[1], 0.0) > 0 else ""
+        return {
+            "dominant_academic_state": dominant,
+            "secondary_academic_state": secondary or None,
+            "academic_state_scores": scores,
+        }
+
+    def _support_cue_layer_for_strategy(
+        self,
+        learning_signal_package: dict[str, Any],
+        reaction_summary: dict[str, Any],
+        academic_state_layer: dict[str, Any],
+        allowed_strategy_families: list[str],
+        previous_strategy_family: str = "",
+        continuation_requested: bool = False,
+    ) -> dict[str, Any]:
+        dominant = str(academic_state_layer.get("dominant_academic_state") or "uncertain")
+        support_cue = canonical_support_cue(
+            reaction_summary.get("support_cue") or learning_signal_package.get("support_cue"),
+            dominant_academic_state=dominant,
+        )
+        allowed = list(allowed_strategy_families or self._allowed_strategy_families_for_support_cue(support_cue))
+        return {
+            "support_cue": support_cue,
+            "support_cue_label": str(learning_signal_package.get("support_cue_label") or reaction_summary.get("support_cue_display_label") or reaction_summary.get("support_cue_label") or support_cue),
+            "reason_text": str(learning_signal_package.get("reason_text") or reaction_summary.get("reason_text") or reaction_summary.get("trigger_reason") or ""),
+            "academic_state_evidence_text": str(learning_signal_package.get("academic_state_evidence_text") or reaction_summary.get("academic_state_evidence_text") or ""),
+            "confidence_handling": str(learning_signal_package.get("confidence_handling") or reaction_summary.get("confidence_handling") or ""),
+            "inferred_process_state": str(learning_signal_package.get("inferred_process_state") or ""),
+            "recommended_strategy": self._recommended_strategy_family_for_support_layer(
+                str(learning_signal_package.get("recommended_strategy") or ""),
+                allowed,
+                previous_strategy_family=previous_strategy_family,
+                continuation_requested=continuation_requested,
+            ),
+            "allowed_strategy_families": allowed,
+        }
+
+    def _recommended_strategy_family_for_support_layer(
+        self,
+        recommended_strategy: str,
+        allowed_strategy_families: list[str],
+        *,
+        previous_strategy_family: str = "",
+        continuation_requested: bool = False,
+    ) -> str | None:
+        allowed = [str(item) for item in allowed_strategy_families if str(item)]
+        if not allowed:
+            return None
+        recommended = str(recommended_strategy or "").strip().lower()
+        if recommended == "baseline_explanation":
+            return None
+        strategy_to_families = {
+            "simplify_and_define_terms": ["define_key_terms", "simplest_version_first", "one_small_next_step"],
+            "step_by_step_decomposition": ["step_by_step_breakdown", "input_process_output_map", "mechanism_walkthrough"],
+            "worked_example": ["concrete_example", "step_by_step_breakdown", "input_process_output_map"],
+            "analogy_or_intuition": ["analogy_or_reframe", "simplest_version_first", "concrete_example"],
+            "relevance_hook": ["why_it_matters", "make_it_relevant", "one_sentence_takeaway"],
+            "deepen_or_extend": ["deep_technical_explanation", "connect_to_related_work", "limitations_and_implications", "critique_assumptions", "compare_methods"],
+            "compare_or_contrast": ["compare_methods", "compare_with_familiar_method", "critique_assumptions"],
+        }
+        candidates = [recommended] if recommended in allowed else []
+        candidates.extend(strategy_to_families.get(recommended, []))
+        candidates.extend(allowed)
+        ordered = []
+        seen = set()
+        for family in candidates:
+            if family in allowed and family not in seen:
+                seen.add(family)
+                ordered.append(family)
+        ordered = self._avoid_repeating_previous_strategy_family(
+            ordered,
+            previous_strategy_family,
+            continuation_requested=continuation_requested,
+        )
+        return ordered[0] if ordered else None
+
+    def _learning_signal_package_from_request(
+        self,
+        *,
+        document_id: str,
+        data: dict[str, Any],
+        learning_state: dict[str, Any],
+        reaction_window_summary: dict[str, Any],
+        recent_conversation: list[Any],
+    ) -> dict[str, Any]:
+        has_reaction_window = self._reaction_window_has_evidence(reaction_window_summary)
+        provided = data.get("learning_signal_package")
+        if isinstance(provided, dict) and provided and not has_reaction_window:
+            clean = package_from_dict(provided)
+            clean.setdefault("active_source", "raw_8class_process_aware")
+            clean.setdefault("non_diagnostic_disclaimer", "Use this as a lightweight learning-support signal, not as a psychological diagnosis.")
+            diagnostic = clean.get("diagnostic_only_direct_4class")
+            if isinstance(diagnostic, dict):
+                diagnostic["used_for_strategy"] = False
+            return clean
+        if isinstance(learning_state.get("learning_signal_package"), dict) and learning_state["learning_signal_package"] and not has_reaction_window:
+            clean = package_from_dict(learning_state["learning_signal_package"])
+            diagnostic = clean.get("diagnostic_only_direct_4class")
+            if isinstance(diagnostic, dict):
+                diagnostic["used_for_strategy"] = False
+            return clean
+        if not has_reaction_window:
+            return {}
+        scores = reaction_window_summary.get("avg_mapped_scores") if isinstance(reaction_window_summary.get("avg_mapped_scores"), dict) else reaction_window_summary.get("avg_distribution")
+        if not isinstance(scores, dict):
+            scores = learning_state.get("distribution") if isinstance(learning_state.get("distribution"), dict) else {}
+        academic_state = str(reaction_window_summary.get("dominant_state") or learning_state.get("academic_state") or learning_state.get("state") or "uncertain")
+        if academic_state not in {*self.ACADEMIC_STATES, "uncertain"}:
+            academic_state = "uncertain"
+        mapping = AcademicStateMapping(
+            mapping_rule_version="required_8class_probability_aggregation_v1",
+            mapped_academic_state=academic_state,  # type: ignore[arg-type]
+            mapped_academic_scores={state: self._bounded_probability(scores.get(state), 0.0) for state in self.ACADEMIC_STATES} if isinstance(scores, dict) else {},
+            mapping_explanation="mapped academic scores from reaction-window or current learning-state payload",
+            confidence_notes=["process-aware package synthesized from existing pdf-chat signal fields"],
+        )
+        reaction = self._reaction_window_package_from_summary(reaction_window_summary, mapping)
+        current_question = str(data.get("current_user_question") or data.get("user_question") or data.get("question") or "")
+        recent_messages = [item for item in recent_conversation if isinstance(item, dict)]
+        recent_strategies = [
+            str(item.get("strategy_id") or item.get("strategy_family") or "")
+            for item in recent_messages
+            if item.get("strategy_id") or item.get("strategy_family")
+        ][-4:]
+        user_turns = [item for item in recent_messages if str(item.get("role") or "") == "user"]
+        previous_strategy = str(data.get("previous_strategy_id") or data.get("previous_strategy_family") or data.get("selected_strategy_id") or (recent_strategies[-1] if recent_strategies else ""))
+        source_turn_type = str(
+            data.get("source_turn_type")
+            or reaction_window_summary.get("source_turn_type")
+            or self._source_turn_type_from_recent(
+                str(data.get("source_turn_id") or reaction_window_summary.get("source_turn_id") or ""),
+                recent_messages,
+            )
+            or "baseline_explanation"
+        )
+        context = LearningProcessContext(
+            document_id=document_id,
+            highlight_id=self._safe_file_id(data.get("highlight_id") or reaction_window_summary.get("highlight_id") or uuid.uuid4().hex),
+            turn_index=max(0, len(recent_messages)),
+            followup_count_for_highlight=max(0, int(data.get("followup_count_for_highlight") or data.get("followup_count") or len(user_turns))),
+            same_highlight_repeated_questions=bool(data.get("same_highlight_repeated_questions") or len(user_turns) > 1),
+            last_user_question=str(user_turns[-1].get("content") or "") if user_turns else None,
+            current_user_question=current_question or None,
+            question_intent=detect_question_intent(current_question),
+            previous_strategy=previous_strategy or None,
+            recent_strategies=[item for item in recent_strategies if item],
+            last_response_was_baseline_or_adaptive="adaptive" if previous_strategy else "baseline" if has_reaction_window else "unknown",
+            time_since_last_assistant_answer=None,
+        )
+        package = build_learning_signal_package(
+            raw_emotion_evidence=None,
+            academic_state_mapping=mapping,
+            reaction_window_summary=reaction,
+            learning_process_context=context,
+            diagnostic_only_direct_4class={},
+        )
+        payload = package.to_dict()
+        reason_metadata = build_strategy_reason_text(
+            source_turn_type=source_turn_type,
+            academic_state_scores=payload.get("academic_state_scores") if isinstance(payload.get("academic_state_scores"), dict) else {},
+            dominant_academic_state=payload.get("dominant_academic_state"),
+            secondary_academic_state=payload.get("secondary_academic_state"),
+            support_cue=payload.get("support_cue"),
+            trend=reaction_window_summary.get("trend") or (reaction.to_dict().get("trend") if reaction else ""),
+            avg_confidence=reaction_window_summary.get("avg_confidence"),
+            recommended_strategy=payload.get("recommended_strategy"),
+            pedagogical_move=payload.get("recommended_strategy"),
+        )
+        payload.update(reason_metadata)
+        payload["strategy_reason"] = reason_metadata["reason_text"]
+        return payload
 
     def _strategy_request_payload(self, document_id: str, data: dict[str, Any]) -> dict[str, Any]:
         learning_state = data.get("learning_state") if isinstance(data.get("learning_state"), dict) else {}
@@ -3258,12 +4668,99 @@ class WebState:
         recent_conversation = data.get("recent_conversation") if isinstance(data.get("recent_conversation"), list) else []
         reaction_window_summary = data.get("reaction_window_summary") if isinstance(data.get("reaction_window_summary"), dict) else {}
         planner_input_summary = data.get("planner_input_summary") if isinstance(data.get("planner_input_summary"), dict) else {}
-        support_cue = str(data.get("support_cue") or reaction_window_summary.get("support_cue") or "")
+        learning_signal_package = self._learning_signal_package_from_request(
+            document_id=document_id,
+            data=data,
+            learning_state=learning_state,
+            reaction_window_summary=reaction_window_summary,
+            recent_conversation=recent_conversation,
+        )
+        package_reaction = learning_signal_package.get("reaction_window_summary") if isinstance(learning_signal_package.get("reaction_window_summary"), dict) else {}
+        if not reaction_window_summary and package_reaction:
+            reaction_window_summary = package_reaction
+        support_cue = str(reaction_window_summary.get("support_cue") or data.get("support_cue") or learning_signal_package.get("support_cue") or "")
+        package_support_cue = str(learning_signal_package.get("support_cue") or "")
+        if canonical_support_cue(support_cue) in {"neutral", "uncertain"} and canonical_support_cue(package_support_cue) not in {"neutral", "uncertain"}:
+            support_cue = package_support_cue
+        if not support_cue and isinstance(learning_signal_package.get("reaction_window_summary"), dict):
+            support_cue = str(learning_signal_package["reaction_window_summary"].get("support_cue") or "")
+        sanitized_recent_conversation = self._sanitize_strategy_recent_conversation(recent_conversation[-6:])
+        previous_strategy_metadata = self._latest_strategy_metadata(sanitized_recent_conversation)
+        source_turn_id = self._safe_file_id(data.get("source_turn_id") or reaction_window_summary.get("source_turn_id") or "") if (data.get("source_turn_id") or reaction_window_summary.get("source_turn_id")) else ""
+        source_turn_type = str(
+            data.get("source_turn_type")
+            or reaction_window_summary.get("source_turn_type")
+            or self._source_turn_type_from_recent(source_turn_id, sanitized_recent_conversation)
+            or "baseline_explanation"
+        )
+        previous_strategy_id = str(
+            data.get("previous_strategy_id")
+            or data.get("selected_strategy_id")
+            or previous_strategy_metadata.get("strategy_id")
+            or ""
+        )
+        previous_strategy_family = str(
+            data.get("previous_strategy_family")
+            or previous_strategy_metadata.get("strategy_family")
+            or previous_strategy_id
+            or ""
+        )
+        support_cue = str(reaction_window_summary.get("support_cue") or data.get("support_cue") or learning_signal_package.get("support_cue") or "")
+        package_support_cue = str(learning_signal_package.get("support_cue") or "")
+        if canonical_support_cue(support_cue) in {"neutral", "uncertain"} and canonical_support_cue(package_support_cue) not in {"neutral", "uncertain"}:
+            support_cue = package_support_cue
+        if reaction_window_summary and support_cue:
+            reaction_window_summary = dict(reaction_window_summary)
+            reaction_window_summary["support_cue"] = support_cue
+            original_process_reason = str(learning_signal_package.get("process_strategy_reason") or learning_signal_package.get("strategy_reason") or "")
+            reason_metadata = build_strategy_reason_text(
+                source_turn_type=source_turn_type,
+                academic_state_scores=(
+                    reaction_window_summary.get("avg_mapped_scores")
+                    if isinstance(reaction_window_summary.get("avg_mapped_scores"), dict)
+                    else reaction_window_summary.get("avg_distribution")
+                    if isinstance(reaction_window_summary.get("avg_distribution"), dict)
+                    else learning_signal_package.get("academic_state_scores")
+                    if isinstance(learning_signal_package.get("academic_state_scores"), dict)
+                    else {}
+                ),
+                dominant_academic_state=learning_signal_package.get("dominant_academic_state") or reaction_window_summary.get("dominant_state"),
+                secondary_academic_state=learning_signal_package.get("secondary_academic_state") or reaction_window_summary.get("secondary_state"),
+                support_cue=support_cue,
+                trend=reaction_window_summary.get("trend"),
+                avg_confidence=reaction_window_summary.get("avg_confidence"),
+                recommended_strategy=learning_signal_package.get("recommended_strategy") or self._recommended_strategy_for_support_cue(support_cue),
+                pedagogical_move=self._pedagogical_move_for_family(
+                    self._allowed_strategy_families_for_support_cue(support_cue)[0]
+                    if self._allowed_strategy_families_for_support_cue(support_cue)
+                    else ""
+                ),
+            )
+            reaction_window_summary.setdefault("reason_text", reason_metadata["reason_text"])
+            reaction_window_summary["trigger_reason"] = reason_metadata["reason_text"]
+            reaction_window_summary["academic_state_evidence_text"] = str(
+                reaction_window_summary.get("academic_state_evidence_text")
+                or reason_metadata["academic_state_evidence_text"]
+            )
+            reaction_window_summary["confidence_handling"] = reason_metadata["confidence_handling"]
+            reaction_window_summary["source_turn_type"] = source_turn_type
+            reaction_window_summary["support_cue_display_label"] = reason_metadata["support_cue_label"]
+            learning_signal_package.update({
+                "reason_text": reason_metadata["reason_text"],
+                "academic_state_evidence_text": reaction_window_summary["academic_state_evidence_text"],
+                "confidence_handling": reason_metadata["confidence_handling"],
+                "source_turn_type": reason_metadata["source_turn_type"],
+                "support_cue_label": reason_metadata["support_cue_label"],
+            })
+            if original_process_reason:
+                learning_signal_package["process_strategy_reason"] = original_process_reason
+            learning_signal_package["strategy_reason"] = reason_metadata["reason_text"]
         request = {
             "session_id": str(data.get("session_id") or ""),
             "document_id": document_id,
             "highlight_id": self._safe_file_id(data.get("highlight_id") or uuid.uuid4().hex),
-            "source_turn_id": self._safe_file_id(data.get("source_turn_id") or reaction_window_summary.get("source_turn_id") or "") if (data.get("source_turn_id") or reaction_window_summary.get("source_turn_id")) else "",
+            "source_turn_id": source_turn_id,
+            "source_turn_type": source_turn_type,
             "selection_type": str(data.get("selection_type") or data.get("highlight_type") or "text"),
             "page_number": self._positive_int(data.get("page_number")),
             "selected_text": normalize_pdf_text(data.get("selected_text")),
@@ -3274,12 +4771,13 @@ class WebState:
             "crop_available": bool(data.get("crop_available") or data.get("crop_image_available") or data.get("crop_url") or data.get("crop_image_path")),
             "user_question": normalize_pdf_text(data.get("user_question") or data.get("question")),
             "learning_state": learning_state,
+            "learning_signal_package": learning_signal_package,
             "paper_context": paper_context,
             "planner_input_summary": self._safe_log_payload(planner_input_summary),
-            "recent_conversation": self._sanitize_strategy_recent_conversation(recent_conversation[-6:]),
+            "recent_conversation": sanitized_recent_conversation,
             "trigger_context": trigger_context,
-            "previous_strategy_id": str(data.get("previous_strategy_id") or data.get("selected_strategy_id") or ""),
-            "previous_strategy_family": str(data.get("previous_strategy_family") or ""),
+            "previous_strategy_id": previous_strategy_id,
+            "previous_strategy_family": previous_strategy_family,
         }
         request["allowed_strategy_families"] = self._allowed_strategy_families_for_support_cue(support_cue) if support_cue else []
         request["planner_input_summary"] = self._strategy_planner_input_summary(request, planner_input_summary)
@@ -3288,12 +4786,39 @@ class WebState:
     def _strategy_planner_input_summary(self, request: dict[str, Any], provided: dict[str, Any] | None = None) -> dict[str, Any]:
         paper_context = request.get("paper_context") if isinstance(request.get("paper_context"), dict) else {}
         reaction_summary = request.get("reaction_window_summary") if isinstance(request.get("reaction_window_summary"), dict) else {}
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        process_context = learning_signal_package.get("learning_process_context") if isinstance(learning_signal_package.get("learning_process_context"), dict) else {}
         recent_conversation = request.get("recent_conversation") if isinstance(request.get("recent_conversation"), list) else []
         selected_strategy = request.get("selected_strategy") if isinstance(request.get("selected_strategy"), dict) else {}
+        academic_layer = self._academic_state_layer_for_strategy(learning_signal_package, reaction_summary, request.get("learning_state") if isinstance(request.get("learning_state"), dict) else {})
+        support_layer = self._support_cue_layer_for_strategy(
+            learning_signal_package,
+            reaction_summary,
+            academic_layer,
+            list(request.get("allowed_strategy_families") or []),
+        )
         summary = dict(provided or {})
         summary.update({
-            "support_cue": request.get("support_cue") or reaction_summary.get("support_cue") or "",
+            "support_cue": support_layer["support_cue"],
+            "support_cue_label": str(learning_signal_package.get("support_cue_label") or reaction_summary.get("support_cue_display_label") or reaction_summary.get("support_cue_label") or support_layer["support_cue"]),
+            "academic_state_evidence_text": str(learning_signal_package.get("academic_state_evidence_text") or reaction_summary.get("academic_state_evidence_text") or ""),
+            "confidence_handling": str(learning_signal_package.get("confidence_handling") or reaction_summary.get("confidence_handling") or ""),
+            "reason_text": str(learning_signal_package.get("reason_text") or reaction_summary.get("reason_text") or reaction_summary.get("trigger_reason") or ""),
+            "source_turn_type": str(request.get("source_turn_type") or learning_signal_package.get("source_turn_type") or reaction_summary.get("source_turn_type") or ""),
+            "dominant_academic_state": academic_layer["dominant_academic_state"],
+            "secondary_academic_state": academic_layer["secondary_academic_state"],
+            "academic_state_scores": academic_layer["academic_state_scores"],
+            "inferred_process_state": str(learning_signal_package.get("inferred_process_state") or ""),
+            "recommended_strategy": str(learning_signal_package.get("recommended_strategy") or ""),
+            "question_intent": str(process_context.get("question_intent") or ""),
             "allowed_strategy_families": list(request.get("allowed_strategy_families") or []),
+            "reaction_window_end_reason": str(reaction_summary.get("end_reason") or ""),
+            "read_progress_estimate": self._float_between(reaction_summary.get("read_progress_estimate"), 0.0, 1.0),
+            "state_transition": str(reaction_summary.get("state_transition") or ""),
+            "transition_label": str(reaction_summary.get("transition_label") or ""),
+            "early_distribution": self._safe_log_payload(reaction_summary.get("early_distribution") if isinstance(reaction_summary.get("early_distribution"), dict) else {}),
+            "middle_distribution": self._safe_log_payload(reaction_summary.get("middle_distribution") if isinstance(reaction_summary.get("middle_distribution"), dict) else {}),
+            "late_distribution": self._safe_log_payload(reaction_summary.get("late_distribution") if isinstance(reaction_summary.get("late_distribution"), dict) else {}),
             "selected_text_length": len(normalize_pdf_text(request.get("selected_text"))),
             "caption_length": len(normalize_pdf_text(request.get("caption"))),
             "baseline_explanation_length": len(normalize_pdf_text(request.get("baseline_explanation"))),
@@ -3309,6 +4834,10 @@ class WebState:
         reaction_summary = request.get("reaction_window_summary") if isinstance(request.get("reaction_window_summary"), dict) else {}
         planner_summary = request.get("planner_input_summary") if isinstance(request.get("planner_input_summary"), dict) else {}
         learning_state = request.get("learning_state") if isinstance(request.get("learning_state"), dict) else {}
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        package_reaction = learning_signal_package.get("reaction_window_summary") if isinstance(learning_signal_package.get("reaction_window_summary"), dict) else {}
+        if not reaction_summary and package_reaction:
+            reaction_summary = package_reaction
         recent_conversation = self._sanitize_strategy_recent_conversation(request.get("recent_conversation") if isinstance(request.get("recent_conversation"), list) else [])
         previous_strategy = self._latest_strategy_metadata(recent_conversation)
         support_cue = str(request.get("support_cue") or reaction_summary.get("support_cue") or "")
@@ -3319,6 +4848,16 @@ class WebState:
             if isinstance(learning_state.get("distribution"), dict)
             else {}
         )
+        academic_state_layer = self._academic_state_layer_for_strategy(learning_signal_package, reaction_summary, learning_state)
+        support_cue_layer = self._support_cue_layer_for_strategy(
+            learning_signal_package,
+            reaction_summary,
+            academic_state_layer,
+            list(request.get("allowed_strategy_families") or []),
+            previous_strategy_family=str(request.get("previous_strategy_family") or previous_strategy.get("strategy_family") or previous_strategy.get("strategy_id") or ""),
+            continuation_requested=self._continuation_requested(request),
+        )
+        support_cue = support_cue or str(support_cue_layer.get("support_cue") or "")
         return {
             "selected_evidence": {
                 "selection_type": str(request.get("selection_type") or "text"),
@@ -3331,23 +4870,43 @@ class WebState:
             "paper_context": self._strategy_paper_context(request),
             "previous_explanation": {
                 "source_turn_id": str(request.get("source_turn_id") or ""),
+                "source_turn_type": str(request.get("source_turn_type") or reaction_summary.get("source_turn_type") or learning_signal_package.get("source_turn_type") or ""),
                 "baseline_explanation": self._bounded_baseline_for_strategy(request.get("baseline_explanation")),
             },
             "reaction_context": {
                 "reaction_window_summary": self._safe_log_payload(reaction_summary),
                 "support_cue": support_cue,
-                "support_cue_label": str(reaction_summary.get("support_cue_label") or planner_summary.get("support_cue_label") or support_cue or ""),
+                "support_cue_label": str(learning_signal_package.get("support_cue_label") or reaction_summary.get("support_cue_display_label") or reaction_summary.get("support_cue_label") or planner_summary.get("support_cue_label") or support_cue or ""),
+                "reason_text": str(learning_signal_package.get("reason_text") or reaction_summary.get("reason_text") or reaction_summary.get("trigger_reason") or planner_summary.get("reason_text") or ""),
+                "academic_state_evidence_text": str(learning_signal_package.get("academic_state_evidence_text") or reaction_summary.get("academic_state_evidence_text") or planner_summary.get("academic_state_evidence_text") or ""),
+                "confidence_handling": str(learning_signal_package.get("confidence_handling") or reaction_summary.get("confidence_handling") or planner_summary.get("confidence_handling") or ""),
                 "dominant_state": str(reaction_summary.get("dominant_state") or learning_state.get("academic_state") or ""),
                 "secondary_state": str(reaction_summary.get("secondary_state") or ""),
                 "avg_confidence": self._float_between(reaction_summary.get("avg_confidence") or learning_state.get("confidence"), 0.0, 1.0),
                 "avg_distribution": self._safe_log_payload(avg_distribution),
                 "trend": str(reaction_summary.get("trend") or learning_state.get("trend") or ""),
                 "duration_sec": float(reaction_summary.get("duration_sec") or planner_summary.get("reaction_window_duration") or 0),
+                "end_reason": str(reaction_summary.get("end_reason") or planner_summary.get("reaction_window_end_reason") or ""),
+                "read_progress_estimate": self._float_between(reaction_summary.get("read_progress_estimate") or planner_summary.get("read_progress_estimate"), 0.0, 1.0),
+                "early_distribution": self._safe_log_payload(reaction_summary.get("early_distribution") if isinstance(reaction_summary.get("early_distribution"), dict) else {}),
+                "middle_distribution": self._safe_log_payload(reaction_summary.get("middle_distribution") if isinstance(reaction_summary.get("middle_distribution"), dict) else {}),
+                "late_distribution": self._safe_log_payload(reaction_summary.get("late_distribution") if isinstance(reaction_summary.get("late_distribution"), dict) else {}),
+                "early_dominant_state": str(reaction_summary.get("early_dominant_state") or ""),
+                "middle_dominant_state": str(reaction_summary.get("middle_dominant_state") or ""),
+                "late_dominant_state": str(reaction_summary.get("late_dominant_state") or ""),
+                "state_transition": str(reaction_summary.get("state_transition") or planner_summary.get("state_transition") or ""),
+                "transition_label": str(reaction_summary.get("transition_label") or planner_summary.get("transition_label") or ""),
             },
+            "learning_signal": self._safe_log_payload(learning_signal_package),
+            "academic_state_layer": self._safe_log_payload(academic_state_layer),
+            "support_cue_layer": self._safe_log_payload(support_cue_layer),
             "strategy_constraints": {
                 "allowed_strategy_families": list(request.get("allowed_strategy_families") or []),
                 "previous_strategy_id": str(request.get("previous_strategy_id") or planner_summary.get("previous_strategy_id") or previous_strategy.get("strategy_id") or ""),
                 "previous_strategy_family": str(request.get("previous_strategy_family") or planner_summary.get("previous_strategy_family") or previous_strategy.get("strategy_family") or ""),
+                "previous_pedagogical_move": str(previous_strategy.get("applied_pedagogical_move") or previous_strategy.get("pedagogical_move") or ""),
+                "previous_title": str(previous_strategy.get("applied_title") or previous_strategy.get("applied_strategy_title") or previous_strategy.get("title") or ""),
+                "previous_normalized_pedagogical_move_key": str(previous_strategy.get("normalized_pedagogical_move_key") or ""),
             },
             "recent_conversation": recent_conversation,
         }
@@ -3467,11 +5026,23 @@ class WebState:
             "turn_id",
             "conversation_turn_id",
             "turn_type",
+            "source_turn_type",
             "strategy_id",
             "selected_strategy_id",
             "strategy_family",
+            "applied_strategy_id",
+            "applied_strategy_family",
+            "applied_pedagogical_move",
+            "applied_title",
+            "applied_strategy_title",
+            "applied_context_focus",
+            "source_reaction_turn_id",
+            "source_reaction_window_id",
+            "strategy_status",
+            "normalized_pedagogical_move_key",
             "pedagogical_move",
             "context_focus",
+            "title",
             "why_recommended",
         }
         sanitized: list[dict[str, Any]] = []
@@ -3488,6 +5059,7 @@ class WebState:
                 ("strategy_family", "strategy_family"),
                 ("pedagogical_move", "pedagogical_move"),
                 ("context_focus", "context_focus"),
+                ("title", "title"),
                 ("why_recommended", "why_recommended"),
             ):
                 if target_key not in clean and selected_strategy.get(source_key):
@@ -3500,22 +5072,62 @@ class WebState:
 
     @staticmethod
     def _latest_strategy_metadata(recent_conversation: list[dict[str, Any]]) -> dict[str, Any]:
+        def with_normalized_metadata(item: dict[str, Any], strategy_id: Any, strategy_family: Any) -> dict[str, Any]:
+            move = item.get("applied_pedagogical_move") or item.get("pedagogical_move") or ""
+            title = item.get("applied_title") or item.get("applied_strategy_title") or item.get("title") or ""
+            move_key = (
+                item.get("normalized_pedagogical_move_key")
+                or WebState._normalized_pedagogical_move_key(strategy_family=str(strategy_family or strategy_id or ""), pedagogical_move=move, title=title)
+            )
+            return {
+                **item,
+                "strategy_id": strategy_id,
+                "strategy_family": strategy_family,
+                "applied_pedagogical_move": move,
+                "applied_title": title,
+                "normalized_pedagogical_move_key": move_key,
+                "normalized_title_key": WebState._normalized_strategy_title_key(title),
+            }
+
         for item in reversed(recent_conversation):
-            if item.get("strategy_id") or item.get("strategy_family"):
-                return item
+            if str(item.get("turn_type") or "") == "strategy_reexplanation":
+                strategy_id = item.get("applied_strategy_id") or item.get("strategy_id")
+                strategy_family = item.get("applied_strategy_family") or item.get("strategy_family") or strategy_id
+                if strategy_id or strategy_family:
+                    return with_normalized_metadata(item, strategy_id, strategy_family)
+        for item in reversed(recent_conversation):
+            strategy_id = item.get("applied_strategy_id") or item.get("strategy_id")
+            strategy_family = item.get("applied_strategy_family") or item.get("strategy_family") or strategy_id
+            if strategy_id or strategy_family:
+                return with_normalized_metadata(item, strategy_id, strategy_family)
         return {}
 
+    @staticmethod
+    def _source_turn_type_from_recent(source_turn_id: str, recent_conversation: list[dict[str, Any]]) -> str:
+        source_id = str(source_turn_id or "")
+        for item in reversed(recent_conversation):
+            if not isinstance(item, dict):
+                continue
+            item_turn_id = str(item.get("turn_id") or item.get("conversation_turn_id") or "")
+            if source_id and item_turn_id and item_turn_id != source_id:
+                continue
+            turn_type = str(item.get("turn_type") or "").strip()
+            if turn_type:
+                return turn_type
+        return ""
+
     def _call_strategy_planner_llm(self, request: dict[str, Any]) -> dict[str, Any] | None:
-        role = llm_config.role_config_from_env("strategy_planner_model")
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        role = llm_config.role_config_with_source("strategy_planner_model", PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        revision = llm_config.settings_revision_info(PROJECT_ROOT, self.upload_dir)
         provider = str(role.get("provider") or "").strip().lower()
         model = str(role.get("model") or DEFAULT_GEMINI_MODEL).strip() or DEFAULT_GEMINI_MODEL
         messages = self._strategy_planner_messages(request)
         if provider in {"openrouter", "openai_compatible"}:
-            api_key = llm_config.provider_api_key_from_env(provider)
-            base_url = (
-                llm_config.DEFAULT_OPENROUTER_BASE_URL
-                if provider == "openrouter"
-                else llm_config.provider_base_url_from_env("openai_compatible")
+            key_info = llm_config.resolve_provider_api_key(provider, PROJECT_ROOT, self.upload_dir, include_env_file=False, values=values)
+            api_key = str(key_info.get("key") or "")
+            base_url = llm_config.provider_base_url(provider, values) or (
+                llm_config.DEFAULT_OPENROUTER_BASE_URL if provider == "openrouter" else ""
             )
             if not api_key or not base_url or not model:
                 return None
@@ -3525,10 +5137,15 @@ class WebState:
                 base_url=base_url,
                 model=model,
                 messages=messages,
+                key_source=str(key_info.get("key_source") or ""),
+                masked_key_suffix=str(key_info.get("masked_suffix") or ""),
+                model_source=str(role.get("model_source") or ""),
+                revision=revision,
             )
         if provider not in {"gemini", "google"}:
             return None
-        api_key = llm_config.provider_api_key_from_env("gemini")
+        key_info = llm_config.resolve_gemini_api_key(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        api_key = str(key_info.get("key") or "")
         if not api_key:
             return None
         prompt = self._messages_to_prompt_text(messages)
@@ -3560,6 +5177,18 @@ class WebState:
             parsed = self._parse_strict_json_output(text)
             if isinstance(parsed, dict):
                 parsed.setdefault("warnings", [])
+                parsed.setdefault(
+                    "llm_diagnostics",
+                    {
+                        "provider": "gemini",
+                        "model_id": model,
+                        "key_source": str(key_info.get("key_source") or ""),
+                        "masked_key_suffix": str(key_info.get("masked_suffix") or ""),
+                        "model_source": str(role.get("model_source") or ""),
+                        "settings_revision": revision.get("settings_revision"),
+                        "settings_file_mtime": revision.get("settings_file_mtime"),
+                    },
+                )
                 return parsed
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             return None
@@ -3573,6 +5202,10 @@ class WebState:
         base_url: str,
         model: str,
         messages: list[dict[str, str]],
+        key_source: str = "",
+        masked_key_suffix: str = "",
+        model_source: str = "",
+        revision: dict[str, Any] | None = None,
     ) -> dict[str, Any] | None:
         body = {
             "model": model,
@@ -3594,6 +5227,18 @@ class WebState:
                 parsed.setdefault("warnings", [])
                 parsed.setdefault("provider", provider)
                 parsed.setdefault("model", model)
+                parsed.setdefault(
+                    "llm_diagnostics",
+                    {
+                        "provider": provider,
+                        "model_id": model,
+                        "key_source": key_source,
+                        "masked_key_suffix": masked_key_suffix,
+                        "model_source": model_source,
+                        "settings_revision": (revision or {}).get("settings_revision"),
+                        "settings_file_mtime": (revision or {}).get("settings_file_mtime"),
+                    },
+                )
                 return parsed
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             return None
@@ -3632,19 +5277,25 @@ You are a pedagogical strategy planner for an academic paper reading assistant.
 You are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.
 
 The context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.
+The academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.
+The support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.
+Keep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.
 The support cue suggests the learner's possible support need.
 The paper context determines the strategy focus.
 The previous explanation tells you what the user has already seen.
 
 The strategy should combine:
-1. support need from reaction_context
+1. academic learning-state evidence from academic_state_layer
 2. pedagogical move from allowed_strategy_families
-3. context focus from selected_evidence and paper_context
-4. continuation logic from previous_explanation and recent_conversation
+3. support cue from support_cue_layer
+4. context focus from selected_evidence and paper_context
+5. continuation logic from previous_explanation and recent_conversation
 
-The learning-state signal is a noisy support cue, not a diagnosis.
+Use this as a lightweight learning-support signal, not as a psychological diagnosis.
+The learning-state signal is noisy academic support evidence, not a diagnosis.
 Do not say the user is confused, bored, frustrated, or engaged.
 Use neutral phrasing such as "clarification cue", "re-engagement cue", or "deepening cue".
+Do not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.
 Do not mention webcam, face, facial expression, or camera detection.
 Do not include Chinese translations.
 
@@ -3735,10 +5386,22 @@ Return strict JSON only with:
             normalized.append(item)
         if not normalized:
             return []
-        best_index = max(range(len(normalized)), key=lambda index: (normalized[index]["recommended_score"], -index))
+        previous = self._recent_applied_strategy_for_request(request or {})
+        continuation_requested = self._continuation_requested(request or {})
+        avoid_repeating = bool(previous) and not continuation_requested
+        for candidate in normalized:
+            candidate["repeats_recent_strategy"] = bool(avoid_repeating and self._candidate_repeats_recent_strategy(candidate, previous))
+        alternatives_exist = any(not candidate.get("repeats_recent_strategy") for candidate in normalized)
+        if avoid_repeating and not alternatives_exist and normalized:
+            normalized[0]["warning"] = "Only repeated strategy was available."
+        candidate_indices = [
+            index for index, candidate in enumerate(normalized)
+            if not avoid_repeating or not alternatives_exist or not candidate.get("repeats_recent_strategy")
+        ]
+        best_index = max(candidate_indices or range(len(normalized)), key=lambda index: (normalized[index]["recommended_score"], -index))
         for index, candidate in enumerate(normalized):
             candidate["recommended"] = index == best_index
-        normalized.sort(key=lambda candidate: (not candidate.get("recommended"), -float(candidate.get("recommended_score") or 0)))
+        normalized.sort(key=lambda candidate: (not candidate.get("recommended"), bool(candidate.get("repeats_recent_strategy")), -float(candidate.get("recommended_score") or 0)))
         return normalized
 
     def _normalize_strategy_candidate(
@@ -3769,9 +5432,243 @@ Return strict JSON only with:
         item.setdefault("why_recommended", self._strategy_reason_for_family(family, request or {}))
         item.setdefault("prompt_instruction", self._strategy_instruction_for_family(family))
         item.setdefault("expected_answer_shape", self._strategy_shape_for_family(family))
+        reason_metadata = self._strategy_reason_metadata_for_family(family, request or {}, item)
+        if reason_metadata:
+            item.update(reason_metadata)
+            item["why_recommended"] = reason_metadata["reason_text"]
+        item["normalized_pedagogical_move_key"] = self._normalized_pedagogical_move_key(
+            strategy_family=family,
+            pedagogical_move=item.get("pedagogical_move"),
+            title=item.get("title"),
+        )
+        item["normalized_title_key"] = self._normalized_strategy_title_key(item.get("title"))
         if not isinstance(item.get("expected_answer_shape"), list):
             item["expected_answer_shape"] = [str(item.get("expected_answer_shape") or "Explanation")]
         return item
+
+    def _previous_strategy_family_for_request(self, request: dict[str, Any]) -> str:
+        previous = str(request.get("previous_strategy_family") or "").strip().lower()
+        if previous:
+            return previous
+        recent = request.get("recent_conversation") if isinstance(request.get("recent_conversation"), list) else []
+        metadata = self._latest_strategy_metadata([item for item in recent if isinstance(item, dict)])
+        return str(metadata.get("strategy_family") or metadata.get("strategy_id") or "").strip().lower()
+
+    def _recent_applied_strategy_for_request(self, request: dict[str, Any]) -> dict[str, Any]:
+        recent = request.get("recent_conversation") if isinstance(request.get("recent_conversation"), list) else []
+        metadata = self._latest_strategy_metadata([item for item in recent if isinstance(item, dict)])
+        strategy_id = str(request.get("previous_strategy_id") or metadata.get("strategy_id") or "").strip().lower()
+        strategy_family = str(request.get("previous_strategy_family") or metadata.get("strategy_family") or strategy_id).strip().lower()
+        move = str(metadata.get("applied_pedagogical_move") or metadata.get("pedagogical_move") or "").strip()
+        title = str(metadata.get("applied_title") or metadata.get("applied_strategy_title") or metadata.get("title") or "").strip()
+        move_key = str(
+            metadata.get("normalized_pedagogical_move_key")
+            or self._normalized_pedagogical_move_key(strategy_family=strategy_family, pedagogical_move=move, title=title)
+        ).strip().lower()
+        return {
+            "strategy_id": strategy_id,
+            "strategy_family": strategy_family,
+            "applied_strategy_id": str(metadata.get("applied_strategy_id") or strategy_id),
+            "applied_strategy_family": str(metadata.get("applied_strategy_family") or strategy_family),
+            "applied_pedagogical_move": move,
+            "applied_title": title,
+            "normalized_pedagogical_move_key": move_key,
+            "normalized_title_key": self._normalized_strategy_title_key(title),
+        } if strategy_id or strategy_family or move_key or title else {}
+
+    def _candidate_repeats_recent_strategy(self, candidate: dict[str, Any], previous: dict[str, Any]) -> bool:
+        if not previous:
+            return False
+        candidate_id = str(candidate.get("strategy_id") or "").strip().lower()
+        candidate_family = str(candidate.get("strategy_family") or "").strip().lower()
+        previous_ids = {
+            str(previous.get("strategy_id") or "").strip().lower(),
+            str(previous.get("applied_strategy_id") or "").strip().lower(),
+        }
+        previous_families = {
+            str(previous.get("strategy_family") or "").strip().lower(),
+            str(previous.get("applied_strategy_family") or "").strip().lower(),
+        }
+        if candidate_id and candidate_id in previous_ids:
+            return True
+        if candidate_family and candidate_family in previous_families:
+            return True
+        candidate_move_key = str(candidate.get("normalized_pedagogical_move_key") or self._normalized_pedagogical_move_key(
+            strategy_family=candidate_family,
+            pedagogical_move=candidate.get("pedagogical_move"),
+            title=candidate.get("title"),
+        )).strip().lower()
+        previous_move_key = str(previous.get("normalized_pedagogical_move_key") or "").strip().lower()
+        if candidate_move_key and previous_move_key and candidate_move_key == previous_move_key:
+            return True
+        candidate_title = self._normalized_strategy_title_key(candidate.get("title"))
+        previous_title = str(previous.get("normalized_title_key") or "").strip()
+        return bool(candidate_title and previous_title and candidate_title == previous_title)
+
+    def _continuation_requested(self, request: dict[str, Any]) -> bool:
+        text = " ".join(
+            normalize_pdf_text(request.get(key)).lower()
+            for key in ("user_question", "current_user_question", "follow_up_question")
+            if request.get(key)
+        )
+        if not text:
+            return False
+        return any(
+            phrase in text
+            for phrase in (
+                "continue with the same",
+                "same strategy",
+                "keep going with",
+                "keep using",
+                "continue this",
+                "more of the same",
+            )
+        )
+
+    def _avoid_repeating_previous_strategy_family(
+        self,
+        strategy_ids: list[str],
+        previous_strategy_family: str,
+        *,
+        continuation_requested: bool = False,
+    ) -> list[str]:
+        previous = str(previous_strategy_family or "").strip().lower()
+        if not previous or continuation_requested or previous not in strategy_ids:
+            return strategy_ids
+        alternatives = [strategy_id for strategy_id in strategy_ids if strategy_id != previous]
+        if not alternatives:
+            return strategy_ids
+        return [*alternatives, previous]
+
+    def _avoid_repeating_recent_strategy_ids(
+        self,
+        strategy_ids: list[str],
+        request: dict[str, Any],
+        *,
+        support_cue: str = "",
+        state: str = "",
+        continuation_requested: bool = False,
+    ) -> list[str]:
+        if continuation_requested:
+            return strategy_ids
+        previous = self._recent_applied_strategy_for_request(request)
+        if not previous:
+            return strategy_ids
+        ordered = self._prepend_escalation_strategy_ids(strategy_ids, previous, support_cue=support_cue, state=state)
+        alternatives = [
+            strategy_id for strategy_id in ordered
+            if not self._candidate_repeats_recent_strategy(
+                {
+                    "strategy_id": strategy_id,
+                    "strategy_family": strategy_id,
+                    "pedagogical_move": self._pedagogical_move_for_family(strategy_id),
+                    "title": self._strategy_title_for_family(strategy_id, ""),
+                    "normalized_pedagogical_move_key": self._normalized_pedagogical_move_key(strategy_family=strategy_id),
+                },
+                previous,
+            )
+        ]
+        repeated = [strategy_id for strategy_id in ordered if strategy_id not in alternatives]
+        return [*alternatives, *repeated] if alternatives else ordered
+
+    def _prepend_escalation_strategy_ids(
+        self,
+        strategy_ids: list[str],
+        previous: dict[str, Any],
+        *,
+        support_cue: str = "",
+        state: str = "",
+    ) -> list[str]:
+        previous_move = str(previous.get("normalized_pedagogical_move_key") or "").strip().lower()
+        cue = canonical_support_cue(support_cue, dominant_academic_state=state)
+        preferred: list[str] = []
+        if previous_move == "step_by_step" and cue == "difficulty_support":
+            preferred = ["concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument"]
+        elif previous_move == "define_terms" and cue == "clarification":
+            preferred = ["concrete_example", "step_by_step_breakdown", "input_process_output_map"]
+        elif previous_move == "deepen" and (cue == "clarification" or state == "confusion"):
+            preferred = ["define_key_terms", "compare_methods", "compare_with_familiar_method", "concrete_example"]
+        elif previous_move == "deepen" and cue == "deepening":
+            preferred = ["critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"]
+        elif previous_move == "concise_summary" and cue == "difficulty_support":
+            preferred = ["step_by_step_breakdown", "concrete_example", "example_based_explanation"]
+        if not preferred:
+            return strategy_ids
+        all_families = self._all_strategy_families()
+        seen: set[str] = set()
+        ordered: list[str] = []
+        for strategy_id in [*preferred, *strategy_ids]:
+            if strategy_id in all_families and strategy_id not in seen:
+                seen.add(strategy_id)
+                ordered.append(strategy_id)
+        return ordered
+
+    @staticmethod
+    def _normalized_strategy_title_key(value: Any) -> str:
+        text = normalize_pdf_text(value).lower()
+        text = re.sub(r"[^a-z0-9]+", " ", text)
+        words = [word for word in text.split() if word not in {"a", "an", "the", "this", "that", "for", "of", "to"}]
+        return " ".join(words)
+
+    @staticmethod
+    def _normalized_pedagogical_move_key(
+        *,
+        strategy_family: Any = "",
+        pedagogical_move: Any = "",
+        title: Any = "",
+    ) -> str:
+        family = str(strategy_family or "").strip().lower()
+        family_map = {
+            "deep_technical_explanation": "deepen",
+            "define_key_terms": "define_terms",
+            "formula_intuition": "define_terms",
+            "step_by_step_breakdown": "step_by_step",
+            "input_process_output_map": "step_by_step",
+            "mechanism_walkthrough": "step_by_step",
+            "concrete_example": "worked_example",
+            "example_based_explanation": "worked_example",
+            "analogy_or_reframe": "analogy",
+            "compare_methods": "compare",
+            "compare_with_familiar_method": "compare",
+            "critique_assumptions": "critique",
+            "connect_to_related_work": "connect_to_paper_argument",
+            "connect_to_paper_argument": "connect_to_paper_argument",
+            "limitations_and_implications": "connect_to_paper_argument",
+            "concise_explanation": "concise_summary",
+            "one_sentence_takeaway": "concise_summary",
+            "key_takeaway_first": "concise_summary",
+            "simplest_version_first": "concise_summary",
+            "reduce_information_density": "concise_summary",
+            "one_small_next_step": "concise_summary",
+            "why_it_matters": "relevance_hook",
+            "make_it_relevant": "relevance_hook",
+            "quick_quiz": "relevance_hook",
+            "structured_breakdown": "step_by_step",
+        }
+        if family in family_map:
+            return family_map[family]
+        text = f"{pedagogical_move or ''} {title or ''}".lower()
+        if any(token in text for token in ("step by step", "numbered step", "walk through", "breakdown", "map the method", "input process output")):
+            return "step_by_step"
+        if any(token in text for token in ("define", "key term", "term first", "formula", "symbol")):
+            return "define_terms"
+        if any(token in text for token in ("example", "worked", "concrete", "illustrative")):
+            return "worked_example"
+        if any(token in text for token in ("analogy", "reframe")):
+            return "analogy"
+        if any(token in text for token in ("compare", "contrast", "trade off")):
+            return "compare"
+        if any(token in text for token in ("critique", "assumption")):
+            return "critique"
+        if any(token in text for token in ("connect", "related work", "paper argument", "implication", "limitation")):
+            return "connect_to_paper_argument"
+        if any(token in text for token in ("concise", "takeaway", "summary", "simplest", "small next")):
+            return "concise_summary"
+        if any(token in text for token in ("relevance", "matters", "relevant", "quiz")):
+            return "relevance_hook"
+        if any(token in text for token in ("deepen", "technical read", "deeper")):
+            return "deepen"
+        return family or "custom"
 
     def _all_strategy_families(self) -> set[str]:
         families: set[str] = set()
@@ -3888,21 +5785,77 @@ Return strict JSON only with:
         support_label = normalize_pdf_text(reaction_summary.get("support_cue_label") or request.get("support_cue") or "support cue")
         return f"The current {support_label.lower()} suggests this pedagogical move may be useful for the selected passage."
 
+    def _strategy_reason_metadata_for_family(
+        self,
+        strategy_family: str,
+        request: dict[str, Any],
+        candidate: dict[str, Any] | None = None,
+    ) -> dict[str, str]:
+        reaction_summary = request.get("reaction_window_summary") if isinstance(request.get("reaction_window_summary"), dict) else {}
+        if not reaction_summary:
+            return {}
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        scores = (
+            reaction_summary.get("avg_mapped_scores")
+            if isinstance(reaction_summary.get("avg_mapped_scores"), dict)
+            else reaction_summary.get("avg_distribution")
+            if isinstance(reaction_summary.get("avg_distribution"), dict)
+            else learning_signal_package.get("academic_state_scores")
+            if isinstance(learning_signal_package.get("academic_state_scores"), dict)
+            else {}
+        )
+        reason_metadata = build_strategy_reason_text(
+            source_turn_type=request.get("source_turn_type") or reaction_summary.get("source_turn_type") or learning_signal_package.get("source_turn_type") or "baseline_explanation",
+            academic_state_scores=scores,
+            dominant_academic_state=learning_signal_package.get("dominant_academic_state") or reaction_summary.get("dominant_state"),
+            secondary_academic_state=learning_signal_package.get("secondary_academic_state") or reaction_summary.get("secondary_state"),
+            support_cue=request.get("support_cue") or learning_signal_package.get("support_cue") or reaction_summary.get("support_cue"),
+            trend=reaction_summary.get("trend"),
+            avg_confidence=reaction_summary.get("avg_confidence"),
+            recommended_strategy=learning_signal_package.get("recommended_strategy") or self._recommended_strategy_for_support_cue(str(request.get("support_cue") or reaction_summary.get("support_cue") or "")),
+            pedagogical_move=(candidate or {}).get("pedagogical_move") or self._pedagogical_move_for_family(strategy_family),
+        )
+        process_reason = normalize_pdf_text(learning_signal_package.get("process_strategy_reason") or learning_signal_package.get("strategy_reason"))
+        if process_reason and "continued difficulty" in process_reason.lower() and "continued difficulty" not in reason_metadata["reason_text"].lower():
+            reason_metadata["reason_text"] = (
+                f"{reason_metadata['reason_text']} The process context also suggested continued difficulty after the previous explanation."
+            )
+        return reason_metadata
+
     def _heuristic_strategy_candidates(self, request: dict[str, Any]) -> dict[str, Any]:
         learning_state = request.get("learning_state") if isinstance(request.get("learning_state"), dict) else {}
         reaction_summary = request.get("reaction_window_summary") if isinstance(request.get("reaction_window_summary"), dict) else {}
-        support_cue = str(request.get("support_cue") or reaction_summary.get("support_cue") or "").lower()
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        package_reaction = learning_signal_package.get("reaction_window_summary") if isinstance(learning_signal_package.get("reaction_window_summary"), dict) else {}
+        if not reaction_summary and package_reaction:
+            reaction_summary = package_reaction
+        support_cue = str(request.get("support_cue") or reaction_summary.get("support_cue") or package_reaction.get("support_cue") or "").lower()
         state = str(reaction_summary.get("dominant_state") or learning_state.get("academic_state") or learning_state.get("state") or "neutral").lower()
+        strategy_state = str(learning_signal_package.get("strategy_state") or "").lower()
+        if strategy_state in self.ACADEMIC_STATES:
+            state = strategy_state
         confidence = self._float_between(learning_state.get("confidence"), 0.0, 1.0)
         if reaction_summary.get("avg_confidence") is not None:
             confidence = self._float_between(reaction_summary.get("avg_confidence"), 0.0, 1.0)
-        if confidence < 0.55 or state not in self.ACADEMIC_STATES:
+        if not learning_signal_package and (confidence < 0.55 or state not in self.ACADEMIC_STATES):
+            state = "neutral"
+        elif state not in self.ACADEMIC_STATES:
             state = "neutral"
         paper_context = request.get("paper_context") if isinstance(request.get("paper_context"), dict) else {}
         passage_type = str(paper_context.get("passage_type") or "unknown").lower()
         difficulty_hint = str(paper_context.get("difficulty_hint") or "unknown").lower()
         selection_type = str(request.get("selection_type") or "text").lower()
-        strategy_ids = self._strategy_ids_for_context(state, passage_type, difficulty_hint, selection_type, support_cue)
+        strategy_ids = self._process_aware_strategy_ids(
+            learning_signal_package,
+            state,
+            passage_type,
+            difficulty_hint,
+            selection_type,
+            support_cue,
+            request=request,
+            previous_strategy_family=self._previous_strategy_family_for_request(request),
+            continuation_requested=self._continuation_requested(request),
+        )
         candidates = [
             self._strategy_candidate(strategy_id, state, passage_type, difficulty_hint, request, index)
             for index, strategy_id in enumerate(strategy_ids[:3])
@@ -3925,17 +5878,76 @@ Return strict JSON only with:
             "planner_prompt_version": "reaction_strategy_planner_v2" if reaction_summary else "strategy_planner_v1",
             "support_cue": support_cue,
             "reaction_window_summary": reaction_summary,
+            "learning_signal_package": learning_signal_package,
             "warnings": ["LLM strategy planner unavailable or invalid; used heuristic fallback."],
         }
 
+    def _process_aware_strategy_ids(
+        self,
+        learning_signal_package: dict[str, Any],
+        state: str,
+        passage_type: str,
+        difficulty_hint: str,
+        selection_type: str,
+        support_cue: str = "",
+        request: dict[str, Any] | None = None,
+        previous_strategy_family: str = "",
+        continuation_requested: bool = False,
+    ) -> list[str]:
+        recommended = str((learning_signal_package or {}).get("recommended_strategy") or "").lower()
+        preferred = {
+            "baseline_explanation": ["concise_explanation", "structured_breakdown", "example_based_explanation"],
+            "simplify_and_define_terms": ["define_key_terms", "simplest_version_first", "one_small_next_step"],
+            "step_by_step_decomposition": ["step_by_step_breakdown", "input_process_output_map", "mechanism_walkthrough"],
+            "worked_example": ["concrete_example", "step_by_step_breakdown", "input_process_output_map"],
+            "analogy_or_intuition": ["analogy_or_reframe", "simplest_version_first", "concrete_example"],
+            "relevance_hook": ["why_it_matters", "make_it_relevant", "one_sentence_takeaway"],
+            "deepen_or_extend": ["deep_technical_explanation", "connect_to_related_work", "limitations_and_implications"],
+            "compare_or_contrast": ["compare_methods", "compare_with_familiar_method", "critique_assumptions"],
+        }
+        if recommended in preferred:
+            seen = set()
+            ordered = []
+            for strategy_id in [*preferred[recommended], *self._strategy_ids_for_context(state, passage_type, difficulty_hint, selection_type, support_cue)]:
+                if strategy_id not in seen:
+                    seen.add(strategy_id)
+                    ordered.append(strategy_id)
+            ordered = self._avoid_repeating_previous_strategy_family(
+                ordered,
+                previous_strategy_family,
+                continuation_requested=continuation_requested,
+            )
+            return self._avoid_repeating_recent_strategy_ids(
+                ordered,
+                request or {},
+                support_cue=support_cue,
+                state=state,
+                continuation_requested=continuation_requested,
+            )
+        ordered = self._avoid_repeating_previous_strategy_family(
+            self._strategy_ids_for_context(state, passage_type, difficulty_hint, selection_type, support_cue),
+            previous_strategy_family,
+            continuation_requested=continuation_requested,
+        )
+        return self._avoid_repeating_recent_strategy_ids(
+            ordered,
+            request or {},
+            support_cue=support_cue,
+            state=state,
+            continuation_requested=continuation_requested,
+        )
+
     def _strategy_ids_for_context(self, state: str, passage_type: str, difficulty_hint: str, selection_type: str, support_cue: str = "") -> list[str]:
         support_map = {
+            "clarification": ["step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"],
+            "difficulty_support": ["concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"],
             "sustained_clarification": ["step_by_step_breakdown", "define_key_terms", "concrete_example", "input_process_output_map", "mechanism_walkthrough", "formula_intuition"],
-            "reduce_load": ["simplest_version_first", "one_small_next_step", "analogy_or_reframe", "reduce_information_density", "key_takeaway_first"],
+            "reduce_load": ["concrete_example", "example_based_explanation", "analogy_or_reframe", "connect_to_paper_argument", "simplest_version_first", "one_small_next_step", "reduce_information_density", "key_takeaway_first"],
             "re_engagement": ["why_it_matters", "one_sentence_takeaway", "make_it_relevant", "compare_with_familiar_method", "quick_quiz"],
             "deepening": ["deep_technical_explanation", "critique_assumptions", "connect_to_related_work", "limitations_and_implications", "compare_methods"],
             "clarify_and_reengage": ["concise_explanation", "concrete_example", "why_it_matters", "step_by_step_breakdown", "compare_with_familiar_method"],
             "gentle_clarification": ["simplest_version_first", "one_small_next_step", "define_key_terms", "analogy_or_reframe", "concrete_example"],
+            "uncertain": ["concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"],
             "neutral_or_uncertain": ["concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"],
             "neutral": ["concise_explanation", "structured_breakdown", "example_based_explanation", "connect_to_paper_argument"],
         }
@@ -4101,8 +6113,12 @@ Return strict JSON only with:
         reaction_summary = request.get("reaction_window_summary") if isinstance(request.get("reaction_window_summary"), dict) else {}
         trigger_reason = str(reaction_summary.get("trigger_reason") or "")
         support_label = str(reaction_summary.get("support_cue_label") or "support cue")
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        process_reason = normalize_pdf_text(learning_signal_package.get("strategy_reason"))
         if trigger_reason:
             why = f"{trigger_reason} This strategy may help by adapting the previous explanation with {description[0].lower() + description[1:]}"
+        elif process_reason:
+            why = f"{process_reason}. This strategy may help by adapting the previous explanation with {description[0].lower() + description[1:]}"
         else:
             why = (
                 f"This may help with a {difficulty_label} {passage_label}. "
@@ -4157,8 +6173,36 @@ Return strict JSON only with:
             f"and support cue {state}."
         )
 
+    @staticmethod
+    def _normalize_interaction_flags(payload: dict[str, Any], *, default_input_source: str = "text") -> dict[str, Any]:
+        payload = dict(payload)
+        input_source = str(payload.get("input_source") or default_input_source or "text").strip().lower()
+        if input_source not in {"text", "speech", "strategy_click", "proactive_recommendation"}:
+            input_source = default_input_source if default_input_source in {"text", "speech", "strategy_click", "proactive_recommendation"} else "text"
+        if input_source in {"text", "speech"}:
+            response_mode = "normal_followup"
+        elif input_source == "strategy_click":
+            response_mode = "strategy_response"
+        else:
+            response_mode = "proactive_support"
+        payload["input_source"] = input_source
+        payload["response_mode"] = response_mode
+        return payload
+
     def _with_strategy_payload(self, payload: dict[str, Any]) -> dict[str, Any]:
         payload = dict(payload)
+        requested_strategy = isinstance(payload.get("selected_strategy"), dict) and bool(payload.get("selected_strategy"))
+        default_input_source = "strategy_click" if requested_strategy and not payload.get("follow_up_question") else "text"
+        payload = self._normalize_interaction_flags(payload, default_input_source=default_input_source)
+        strategy_mode = payload.get("response_mode") in {"strategy_response", "proactive_support"}
+        if not strategy_mode:
+            payload["selected_strategy_id"] = None
+            payload["selected_strategy"] = None
+            payload["strategy_candidates"] = []
+            payload["trigger_context"] = {}
+            payload["reaction_window_summary"] = {}
+            payload["learning_signal_package"] = {}
+            payload["source_turn_id"] = ""
         reaction_summary = payload.get("reaction_window_summary") if isinstance(payload.get("reaction_window_summary"), dict) else {}
         support_cue = str(payload.get("support_cue") or reaction_summary.get("support_cue") or "")
         payload["allowed_strategy_families"] = self._allowed_strategy_families_for_support_cue(support_cue) if support_cue else []
@@ -4171,11 +6215,16 @@ Return strict JSON only with:
             payload["selected_strategy_id"] = str(payload["selected_strategy"].get("strategy_id") or payload["selected_strategy_id"])
         if isinstance(payload.get("learning_state"), dict):
             payload["learning_state"] = self._safe_log_payload(payload["learning_state"])
+            if not isinstance(payload.get("learning_signal_package"), dict) and isinstance(payload["learning_state"].get("learning_signal_package"), dict):
+                payload["learning_signal_package"] = payload["learning_state"]["learning_signal_package"]
+        if strategy_mode and isinstance(payload.get("learning_signal_package"), dict):
+            payload["learning_signal_package"] = package_from_dict(self._safe_log_payload(payload["learning_signal_package"]))
         if isinstance(payload.get("reaction_window_summary"), dict):
             payload["reaction_window_summary"] = self._safe_log_payload(payload["reaction_window_summary"])
             payload["support_cue"] = str(payload.get("support_cue") or payload["reaction_window_summary"].get("support_cue") or "")
             payload["support_cue_label"] = str(payload.get("support_cue_label") or payload["reaction_window_summary"].get("support_cue_label") or "")
             payload["source_turn_id"] = str(payload.get("source_turn_id") or payload["reaction_window_summary"].get("source_turn_id") or "")
+            payload["source_turn_type"] = str(payload.get("source_turn_type") or payload["reaction_window_summary"].get("source_turn_type") or "baseline_explanation")
             payload["face_detection_summary"] = payload["reaction_window_summary"].get("face_detection_summary") if isinstance(payload["reaction_window_summary"].get("face_detection_summary"), dict) else {}
         if isinstance(payload.get("strategy_candidates"), list):
             payload["strategy_candidates"] = self._normalize_strategy_candidates([
@@ -4186,16 +6235,61 @@ Return strict JSON only with:
         if isinstance(payload.get("planner_input_summary"), dict):
             payload["planner_input_summary"] = self._safe_log_payload(payload["planner_input_summary"])
         if payload.get("selected_strategy"):
-            payload["strategy_reason"] = str(payload.get("strategy_reason") or payload["selected_strategy"].get("why_recommended") or "")
+            payload["strategy_reason"] = str(
+                payload.get("strategy_reason")
+                or payload["selected_strategy"].get("reason_text")
+                or payload["selected_strategy"].get("why_recommended")
+                or ""
+            )
             payload["planner_prompt_version"] = str(payload.get("planner_prompt_version") or "reaction_strategy_planner_v2")
         return payload
 
     @staticmethod
-    def _apply_strategy_thread_metadata(thread: dict[str, Any], payload: dict[str, Any]) -> None:
+    def _applied_strategy_metadata(payload: dict[str, Any]) -> dict[str, Any]:
+        selected_strategy = payload.get("selected_strategy") if isinstance(payload.get("selected_strategy"), dict) else {}
+        if not selected_strategy:
+            return {}
+        reaction_summary = payload.get("reaction_window_summary") if isinstance(payload.get("reaction_window_summary"), dict) else {}
+        source_turn_id = str(payload.get("source_turn_id") or reaction_summary.get("source_turn_id") or "")
+        strategy_id = str(payload.get("selected_strategy_id") or selected_strategy.get("strategy_id") or "")
+        strategy_family = str(selected_strategy.get("strategy_family") or selected_strategy.get("strategy_id") or "")
+        pedagogical_move = str(selected_strategy.get("pedagogical_move") or "")
+        title = str(selected_strategy.get("title") or "")
+        return {
+            "strategy_status": "applied",
+            "applied_strategy_id": strategy_id,
+            "applied_strategy_family": strategy_family,
+            "applied_pedagogical_move": pedagogical_move,
+            "normalized_pedagogical_move_key": str(
+                selected_strategy.get("normalized_pedagogical_move_key")
+                or WebState._normalized_pedagogical_move_key(strategy_family=strategy_family, pedagogical_move=pedagogical_move, title=title)
+            ),
+            "applied_context_focus": str(selected_strategy.get("context_focus") or ""),
+            "applied_title": title,
+            "applied_strategy_title": title,
+            "applied_strategy_short_description": str(selected_strategy.get("short_description") or ""),
+            "reason_text": str(selected_strategy.get("reason_text") or payload.get("strategy_reason") or selected_strategy.get("why_recommended") or ""),
+            "academic_state_evidence_text": str(selected_strategy.get("academic_state_evidence_text") or ""),
+            "confidence_handling": str(selected_strategy.get("confidence_handling") or ""),
+            "source_turn_type": str(selected_strategy.get("source_turn_type") or payload.get("source_turn_type") or reaction_summary.get("source_turn_type") or ""),
+            "support_cue_label": str(selected_strategy.get("support_cue_label") or payload.get("support_cue_label") or reaction_summary.get("support_cue_display_label") or reaction_summary.get("support_cue_label") or ""),
+            "source_reaction_turn_id": source_turn_id,
+            "source_reaction_window_id": str(
+                payload.get("source_reaction_window_id")
+                or reaction_summary.get("reaction_window_id")
+                or reaction_summary.get("window_id")
+                or ""
+            ),
+        }
+
+    def _apply_strategy_thread_metadata(self, thread: dict[str, Any], payload: dict[str, Any]) -> None:
+        strategy_mode = str(payload.get("response_mode") or "") in {"strategy_response", "proactive_support"}
         if payload.get("session_id"):
             thread["session_id"] = str(payload.get("session_id"))
         if isinstance(payload.get("learning_state"), dict) and payload["learning_state"]:
             thread["learning_state_snapshot"] = payload["learning_state"]
+        if not strategy_mode:
+            return
         if isinstance(payload.get("strategy_candidates"), list):
             thread["strategy_candidates"] = payload["strategy_candidates"]
         if payload.get("selected_strategy_id"):
@@ -4218,18 +6312,55 @@ Return strict JSON only with:
             thread["strategy_reason"] = str(payload.get("strategy_reason"))
         if isinstance(payload.get("planner_input_summary"), dict):
             thread["planner_input_summary"] = payload["planner_input_summary"]
+        if isinstance(payload.get("learning_signal_package"), dict) and payload["learning_signal_package"]:
+            thread["learning_signal_package"] = payload["learning_signal_package"]
+        applied = self._applied_strategy_metadata(payload)
+        if applied:
+            source_turn_id = applied.get("source_reaction_turn_id") or str(payload.get("source_turn_id") or "")
+            if source_turn_id:
+                turn_metadata = thread.get("turn_metadata") if isinstance(thread.get("turn_metadata"), dict) else {}
+                existing = turn_metadata.get(source_turn_id) if isinstance(turn_metadata.get(source_turn_id), dict) else {}
+                turn_metadata[source_turn_id] = {
+                    **existing,
+                    "reaction_window_summary": payload.get("reaction_window_summary") if isinstance(payload.get("reaction_window_summary"), dict) else existing.get("reaction_window_summary", {}),
+                    "strategy_candidates": payload.get("strategy_candidates") if isinstance(payload.get("strategy_candidates"), list) else existing.get("strategy_candidates", []),
+                    "support_cue": str(payload.get("support_cue") or existing.get("support_cue") or ""),
+                    "support_cue_label": str(payload.get("support_cue_label") or existing.get("support_cue_label") or ""),
+                    "strategy_reason": str(payload.get("strategy_reason") or existing.get("strategy_reason") or ""),
+                    "reason_text": str(applied.get("reason_text") or payload.get("strategy_reason") or existing.get("reason_text") or ""),
+                    "academic_state_evidence_text": str(applied.get("academic_state_evidence_text") or existing.get("academic_state_evidence_text") or ""),
+                    "confidence_handling": str(applied.get("confidence_handling") or existing.get("confidence_handling") or ""),
+                    "source_turn_type": str(applied.get("source_turn_type") or existing.get("source_turn_type") or ""),
+                    "trigger_context": payload.get("trigger_context") if isinstance(payload.get("trigger_context"), dict) else existing.get("trigger_context", {}),
+                    **applied,
+                }
+                thread["turn_metadata"] = turn_metadata
 
     @staticmethod
     def _assistant_strategy_metadata(payload: dict[str, Any]) -> dict[str, Any]:
         selected_strategy = payload.get("selected_strategy") if isinstance(payload.get("selected_strategy"), dict) else {}
         learning_state = payload.get("learning_state") if isinstance(payload.get("learning_state"), dict) else {}
+        learning_signal_package = payload.get("learning_signal_package") if isinstance(payload.get("learning_signal_package"), dict) else {}
         trigger_context = payload.get("trigger_context") if isinstance(payload.get("trigger_context"), dict) else {}
         reaction_summary = payload.get("reaction_window_summary") if isinstance(payload.get("reaction_window_summary"), dict) else {}
+        input_source = str(payload.get("input_source") or "text")
+        response_mode = str(payload.get("response_mode") or ("strategy_response" if selected_strategy else "normal_followup"))
+        strategy_mode = response_mode in {"strategy_response", "proactive_support"} and bool(selected_strategy)
         turn_type = "follow_up" if payload.get("follow_up_question") else "strategy_reexplanation" if selected_strategy else "baseline_explanation"
-        if not selected_strategy and not learning_state and not trigger_context and not reaction_summary:
-            return {"turn_type": turn_type}
+        if not strategy_mode:
+            return {
+                "turn_type": turn_type,
+                "input_source": input_source,
+                "response_mode": "normal_followup" if input_source in {"text", "speech"} else response_mode,
+                "selected_strategy_id": None,
+                "learning_state_snapshot": learning_state,
+            }
+        applied = WebState._applied_strategy_metadata(payload)
         return {
             "turn_type": turn_type,
+            "input_source": input_source,
+            "response_mode": response_mode,
+            "selected_strategy_id": str(payload.get("selected_strategy_id") or selected_strategy.get("strategy_id") or ""),
             "source_turn_id": str(payload.get("source_turn_id") or reaction_summary.get("source_turn_id") or ""),
             "reaction_window_summary": reaction_summary,
             "support_cue": str(payload.get("support_cue") or reaction_summary.get("support_cue") or ""),
@@ -4242,7 +6373,13 @@ Return strict JSON only with:
             "strategy_short_description": str(selected_strategy.get("short_description") or ""),
             "why_recommended": str(selected_strategy.get("why_recommended") or ""),
             "strategy_reason": str(payload.get("strategy_reason") or selected_strategy.get("why_recommended") or ""),
+            "reason_text": str(selected_strategy.get("reason_text") or payload.get("strategy_reason") or selected_strategy.get("why_recommended") or ""),
+            "academic_state_evidence_text": str(selected_strategy.get("academic_state_evidence_text") or reaction_summary.get("academic_state_evidence_text") or ""),
+            "confidence_handling": str(selected_strategy.get("confidence_handling") or reaction_summary.get("confidence_handling") or ""),
+            "source_turn_type": str(selected_strategy.get("source_turn_type") or payload.get("source_turn_type") or reaction_summary.get("source_turn_type") or ""),
+            **applied,
             "learning_state_snapshot": learning_state,
+            "learning_signal_package": learning_signal_package,
             "trigger_context": trigger_context,
             "planner_mode": str(payload.get("planner_mode") or ""),
             "planner_prompt_version": str(payload.get("planner_prompt_version") or ("reaction_strategy_planner_v2" if selected_strategy else "")),
@@ -4260,11 +6397,19 @@ Return strict JSON only with:
         learning_state = payload.get("learning_state") if isinstance(payload.get("learning_state"), dict) else {}
         selected_strategy = payload.get("selected_strategy") if isinstance(payload.get("selected_strategy"), dict) else {}
         trigger_context = payload.get("trigger_context") if isinstance(payload.get("trigger_context"), dict) else {}
+        learning_signal_package = payload.get("learning_signal_package") if isinstance(payload.get("learning_signal_package"), dict) else {}
+        process_context = learning_signal_package.get("learning_process_context") if isinstance(learning_signal_package.get("learning_process_context"), dict) else {}
         return {
             "session_id": payload.get("session_id"),
+            "learning_signal_package": learning_signal_package,
+            "learning_process_context": process_context,
+            "question_intent": process_context.get("question_intent") or "",
+            "prompt_guidance": learning_signal_package.get("prompt_guidance") if isinstance(learning_signal_package.get("prompt_guidance"), list) else [],
             "strategy_candidates": payload.get("strategy_candidates") if isinstance(payload.get("strategy_candidates"), list) else [],
             "selected_strategy_id": payload.get("selected_strategy_id"),
             "selected_strategy_title": selected_strategy.get("title") or "",
+            "strategy_changed": bool(payload.get("selected_strategy_id") and payload.get("previous_strategy_id") and payload.get("selected_strategy_id") != payload.get("previous_strategy_id")),
+            "previous_strategy": payload.get("previous_strategy_id") or process_context.get("previous_strategy") or "",
             "academic_state": learning_state.get("academic_state") or learning_state.get("state") or "",
             "confidence": learning_state.get("confidence"),
             "distribution": learning_state.get("distribution") if isinstance(learning_state.get("distribution"), dict) else {},
@@ -4312,6 +6457,8 @@ Return strict JSON only with:
         result: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         learning_state = request.get("learning_state") if isinstance(request.get("learning_state"), dict) else {}
+        learning_signal_package = request.get("learning_signal_package") if isinstance(request.get("learning_signal_package"), dict) else {}
+        process_context = learning_signal_package.get("learning_process_context") if isinstance(learning_signal_package.get("learning_process_context"), dict) else {}
         trigger_context = request.get("trigger_context") if isinstance(request.get("trigger_context"), dict) else {}
         paper_context = request.get("paper_context") if isinstance(request.get("paper_context"), dict) else {}
         selected_strategy = request.get("selected_strategy") if isinstance(request.get("selected_strategy"), dict) else {}
@@ -4325,12 +6472,22 @@ Return strict JSON only with:
                 "highlight_id": request.get("highlight_id"),
                 "source_turn_id": request.get("source_turn_id") or reaction_summary.get("source_turn_id") or "",
                 "reaction_window_summary": reaction_summary,
+                "learning_signal_package": learning_signal_package,
+                "learning_process_context": process_context,
+                "question_intent": process_context.get("question_intent") or "",
+                "prompt_guidance": learning_signal_package.get("prompt_guidance") if isinstance(learning_signal_package.get("prompt_guidance"), list) else [],
                 "support_cue": request.get("support_cue") or reaction_summary.get("support_cue") or "",
-                "support_cue_label": reaction_summary.get("support_cue_label") or "",
+                "support_cue_label": learning_signal_package.get("support_cue_label") or reaction_summary.get("support_cue_display_label") or reaction_summary.get("support_cue_label") or "",
+                "reason_text": learning_signal_package.get("reason_text") or reaction_summary.get("reason_text") or reaction_summary.get("trigger_reason") or "",
+                "academic_state_evidence_text": learning_signal_package.get("academic_state_evidence_text") or reaction_summary.get("academic_state_evidence_text") or "",
+                "confidence_handling": learning_signal_package.get("confidence_handling") or reaction_summary.get("confidence_handling") or "",
+                "source_turn_type": request.get("source_turn_type") or learning_signal_package.get("source_turn_type") or reaction_summary.get("source_turn_type") or "",
                 "strategy_candidates": planner_payload.get("candidates") or request.get("strategy_candidates") or [],
                 "selected_strategy_id": request.get("selected_strategy_id") or selected_strategy.get("strategy_id") or "",
                 "selected_strategy_title": selected_strategy.get("title") or "",
                 "selected_strategy_family": selected_strategy.get("strategy_family") or selected_strategy.get("strategy_id") or "",
+                "strategy_changed": bool((request.get("selected_strategy_id") or selected_strategy.get("strategy_id")) and request.get("previous_strategy_id") and (request.get("selected_strategy_id") or selected_strategy.get("strategy_id")) != request.get("previous_strategy_id")),
+                "previous_strategy": request.get("previous_strategy_id") or process_context.get("previous_strategy") or "",
                 "selected_pedagogical_move": selected_strategy.get("pedagogical_move") or "",
                 "selected_context_focus": selected_strategy.get("context_focus") or "",
                 "planner_mode": planner_payload.get("planner_mode") or "",
@@ -4621,6 +6778,9 @@ Return strict JSON only with:
         identity = self._active_answer_model_identity()
         snapshot_id = f"snap_{uuid.uuid4().hex[:12]}"
         prompt_text = self._messages_to_prompt_text(messages)
+        context_summary = self._prompt_context_summary(payload, stage)
+        prompt_category = self._prompt_category_from_snapshot({"stage": stage}, context_summary)
+        prompt_subcategory = self._prompt_subcategory_from_snapshot({"stage": stage}, context_summary, prompt_category)
         snapshot = {
             "snapshot_id": snapshot_id,
             "document_id": document_id,
@@ -4634,7 +6794,11 @@ Return strict JSON only with:
             "model": identity["model"],
             "messages": messages,
             "prompt_text": prompt_text,
-            "context_summary": self._prompt_context_summary(payload, stage),
+            "full_prompt_text": prompt_text,
+            "prompt_category": prompt_category,
+            "prompt_subcategory": prompt_subcategory,
+            "variables": self._prompt_variables({}, prompt_text, prompt_category),
+            "context_summary": context_summary,
             "redaction": {
                 "api_keys_removed": True,
                 "raw_frames_removed": True,
@@ -4671,6 +6835,10 @@ Return strict JSON only with:
         strategy_context = self._strategy_planning_context(request)
         messages = self._strategy_planner_messages(request, strategy_context)
         identity = self._active_strategy_model_identity()
+        prompt_text = self._messages_to_prompt_text(messages)
+        context_summary = self._strategy_planner_context_summary(request, strategy_context)
+        prompt_category = self._prompt_category_from_snapshot({"stage": "strategy_planner"}, context_summary)
+        prompt_subcategory = self._prompt_subcategory_from_snapshot({"stage": "strategy_planner"}, context_summary, prompt_category)
         snapshot = {
             "snapshot_id": snapshot_id,
             "document_id": document_id,
@@ -4682,9 +6850,13 @@ Return strict JSON only with:
             "provider": identity["provider"],
             "model": identity["model"],
             "messages": messages,
-            "prompt_text": self._messages_to_prompt_text(messages),
+            "prompt_text": prompt_text,
+            "full_prompt_text": prompt_text,
+            "prompt_category": prompt_category,
+            "prompt_subcategory": prompt_subcategory,
+            "variables": self._prompt_variables({}, prompt_text, prompt_category),
             "strategy_planning_context": strategy_context,
-            "context_summary": self._strategy_planner_context_summary(request, strategy_context),
+            "context_summary": context_summary,
             "allowed_strategy_families": strategy_context.get("strategy_constraints", {}).get("allowed_strategy_families", []),
             "support_cue": strategy_context.get("reaction_context", {}).get("support_cue", ""),
             "redaction": {
@@ -4714,6 +6886,9 @@ Return strict JSON only with:
         retrieval_context = payload.get("retrieval_context") if isinstance(payload.get("retrieval_context"), dict) else {}
         selected_strategy = payload.get("selected_strategy") if isinstance(payload.get("selected_strategy"), dict) else {}
         reaction_summary = payload.get("reaction_window_summary") if isinstance(payload.get("reaction_window_summary"), dict) else {}
+        learning_signal_package = payload.get("learning_signal_package") if isinstance(payload.get("learning_signal_package"), dict) else {}
+        process_context = learning_signal_package.get("learning_process_context") if isinstance(learning_signal_package.get("learning_process_context"), dict) else {}
+        academic_scores = learning_signal_package.get("academic_state_scores") if isinstance(learning_signal_package.get("academic_state_scores"), dict) else {}
         selected_text = normalize_pdf_text(payload.get("selected_text"))
         rag_chunks = (
             retrieval_context.get("global_rag_context")
@@ -4746,6 +6921,12 @@ Return strict JSON only with:
             "context_focus": selected_strategy.get("context_focus") if stage == "emotion_strategy" else None,
             "reaction_window_duration": reaction_summary.get("duration_sec") if stage == "emotion_strategy" else None,
             "reaction_window_avg_confidence": reaction_summary.get("avg_confidence") if stage == "emotion_strategy" else None,
+            "dominant_academic_state": learning_signal_package.get("dominant_academic_state") if stage == "emotion_strategy" else None,
+            "secondary_academic_state": learning_signal_package.get("secondary_academic_state") if stage == "emotion_strategy" else None,
+            "academic_state_scores": academic_scores if stage == "emotion_strategy" else None,
+            "inferred_process_state": learning_signal_package.get("inferred_process_state") if stage == "emotion_strategy" else None,
+            "recommended_strategy": learning_signal_package.get("recommended_strategy") if stage == "emotion_strategy" else None,
+            "question_intent": process_context.get("question_intent") if stage == "emotion_strategy" else None,
         }
 
     def _strategy_planner_context_summary(self, request: dict[str, Any], context: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -4754,6 +6935,10 @@ Return strict JSON only with:
         paper_context = strategy_context.get("paper_context") if isinstance(strategy_context.get("paper_context"), dict) else {}
         previous = strategy_context.get("previous_explanation") if isinstance(strategy_context.get("previous_explanation"), dict) else {}
         reaction = strategy_context.get("reaction_context") if isinstance(strategy_context.get("reaction_context"), dict) else {}
+        learning_signal = strategy_context.get("learning_signal") if isinstance(strategy_context.get("learning_signal"), dict) else {}
+        academic_layer = strategy_context.get("academic_state_layer") if isinstance(strategy_context.get("academic_state_layer"), dict) else {}
+        support_layer = strategy_context.get("support_cue_layer") if isinstance(strategy_context.get("support_cue_layer"), dict) else {}
+        process_context = learning_signal.get("learning_process_context") if isinstance(learning_signal.get("learning_process_context"), dict) else {}
         constraints = strategy_context.get("strategy_constraints") if isinstance(strategy_context.get("strategy_constraints"), dict) else {}
         selected_text = normalize_pdf_text(selected.get("selected_text"))
         baseline = normalize_pdf_text(previous.get("baseline_explanation"))
@@ -4768,31 +6953,39 @@ Return strict JSON only with:
             "selected_text_length": len(selected_text),
             "baseline_explanation_length": len(baseline),
             "has_reaction_window_summary": bool(reaction_summary),
-            "support_cue": reaction.get("support_cue") or "",
+            "support_cue": support_layer.get("support_cue") or reaction.get("support_cue") or "",
             "dominant_state": reaction.get("dominant_state") or "",
             "secondary_state": reaction.get("secondary_state") or "",
+            "dominant_academic_state": academic_layer.get("dominant_academic_state") or learning_signal.get("dominant_academic_state") or reaction.get("dominant_state") or "",
+            "secondary_academic_state": academic_layer.get("secondary_academic_state") or learning_signal.get("secondary_academic_state") or reaction.get("secondary_state") or "",
+            "academic_state_scores": academic_layer.get("academic_state_scores") if isinstance(academic_layer.get("academic_state_scores"), dict) else {},
             "reaction_window_duration": float(reaction.get("duration_sec") or 0),
             "reaction_window_avg_confidence": self._float_between(reaction.get("avg_confidence"), 0.0, 1.0),
-            "allowed_strategy_families": list(constraints.get("allowed_strategy_families") or []),
+            "allowed_strategy_families": list(support_layer.get("allowed_strategy_families") or constraints.get("allowed_strategy_families") or []),
             "passage_type": str(paper_context.get("passage_type") or "unknown"),
             "difficulty_hint": str(paper_context.get("difficulty_hint") or "unknown"),
             "rag_chunk_count": len(rag_chunks),
             "nearby_context_count": len(nearby_context),
             "recent_conversation_count": len(recent_conversation),
+            "inferred_process_state": support_layer.get("inferred_process_state") or learning_signal.get("inferred_process_state") or "",
+            "recommended_strategy": learning_signal.get("recommended_strategy") or support_layer.get("recommended_strategy") or "",
+            "question_intent": process_context.get("question_intent") or "",
         }
 
     def _active_answer_model_identity(self) -> dict[str, str]:
-        if not os.environ.get("LLM_PROVIDER", "").strip():
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        if not llm_config.has_explicit_llm_config(values):
             return {"provider": "mock", "model": "mock"}
-        role = llm_config.role_config_from_env("answer_model")
+        role = llm_config.role_config("answer_model", values)
         provider = str(role.get("provider") or "mock").strip().lower() or "mock"
         model = str(role.get("model") or "").strip() or ("mock" if provider == "mock" else "")
         return {"provider": provider, "model": model}
 
     def _active_strategy_model_identity(self) -> dict[str, str]:
-        if not os.environ.get("STRATEGY_PLANNER_PROVIDER", "").strip() and not os.environ.get("LLM_PROVIDER", "").strip():
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        if not llm_config.has_explicit_llm_config(values):
             return {"provider": "mock", "model": "mock"}
-        role = llm_config.role_config_from_env("strategy_planner_model")
+        role = llm_config.role_config("strategy_planner_model", values)
         provider = str(role.get("provider") or "mock").strip().lower() or "mock"
         model = str(role.get("model") or "").strip() or ("mock" if provider == "mock" else "")
         return {"provider": provider, "model": model}
@@ -4852,54 +7045,427 @@ Return strict JSON only with:
             },
         }
 
-    def _run_single_comparison_model(self, snapshot: dict[str, Any], model_config: dict[str, Any]) -> dict[str, Any]:
-        label = str(model_config.get("label") or model_config.get("model") or "Model").strip()
+    def _prompt_library_path(self) -> Path:
+        return self.upload_dir / "llm_prompts" / "prompts.json"
+
+    def _read_custom_prompts(self) -> list[dict[str, Any]]:
+        payload = self._read_json(self._prompt_library_path(), {"prompts": []})
+        prompts = payload.get("prompts") if isinstance(payload, dict) else []
+        return [self._sanitize_prompt_record(item, existing_id=item.get("id")) for item in prompts if isinstance(item, dict)]
+
+    def _write_custom_prompts(self, prompts: list[dict[str, Any]]) -> None:
+        path = self._prompt_library_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        clean = [self._sanitize_prompt_record(item, existing_id=item.get("id")) for item in prompts if isinstance(item, dict)]
+        path.write_text(json.dumps({"prompts": clean}, indent=2), encoding="utf-8")
+
+    def _sanitize_prompt_record(self, data: dict[str, Any], existing_id: Any | None = None) -> dict[str, Any]:
+        now = self._iso_timestamp(time.time())
+        prompt_id = self._safe_file_id(existing_id or data.get("id") or f"prompt_{uuid.uuid4().hex[:12]}")
+        category = self._normalize_prompt_category(data.get("category"), stage=str(data.get("stage") or ""))
+        subcategory = self._normalize_prompt_subcategory(
+            category,
+            data.get("subcategory"),
+            data.get("context_fields") if isinstance(data.get("context_fields"), dict) else {},
+            stage=str(data.get("stage") or ""),
+        )
+        full_prompt_text = self._sanitize_prompt_text(str(data.get("full_prompt_text") or data.get("prompt_text") or ""))
+        prompt_text = full_prompt_text
+        variables = self._prompt_variables(data, full_prompt_text, category)
+        return {
+            "id": prompt_id,
+            "title": str(data.get("title") or "Untitled prompt").strip()[:160],
+            "category": category,
+            "subcategory": subcategory,
+            "description": str(data.get("description") or "").strip()[:1000],
+            "prompt_text": prompt_text,
+            "full_prompt_text": full_prompt_text,
+            "variables": variables,
+            "context_fields": self._safe_log_payload(data.get("context_fields") if isinstance(data.get("context_fields"), dict) else {}),
+            "created_at": str(data.get("created_at") or now),
+            "updated_at": now,
+            "source": str(data.get("source") or "custom").strip() or "custom",
+            "snapshot_id": str(data.get("snapshot_id") or "").strip(),
+        }
+
+    @staticmethod
+    def _prompt_categories() -> tuple[str, ...]:
+        return (
+            "Base Prompt",
+            "Planner Prompt",
+            "Strategy Response Prompt",
+            "Custom / Experimental",
+        )
+
+    @classmethod
+    def _normalize_prompt_category(cls, category: Any, *, stage: str = "") -> str:
+        raw = str(category or "").strip()
+        if raw in cls._prompt_categories():
+            return raw
+        legacy = {
+            "Baseline explanation": "Base Prompt",
+            "Confusion support": "Planner Prompt",
+            "Frustration support": "Planner Prompt",
+            "Boredom support": "Planner Prompt",
+            "Engagement / deepen": "Planner Prompt",
+            "Strategy-guided explanation": "Strategy Response Prompt",
+            "Technical explanation": "Custom / Experimental",
+            "Custom": "Custom / Experimental",
+        }
+        if raw in legacy:
+            return legacy[raw]
+        stage_category = {
+            "rag_baseline": "Base Prompt",
+            "strategy_planner": "Planner Prompt",
+            "emotion_strategy": "Strategy Response Prompt",
+        }.get(str(stage or ""))
+        return stage_category or "Custom / Experimental"
+
+    @classmethod
+    def _normalize_prompt_subcategory(
+        cls,
+        category: str,
+        subcategory: Any,
+        context: dict[str, Any] | None = None,
+        *,
+        stage: str = "",
+    ) -> str:
+        raw = str(subcategory or "").strip()
+        if category != "Planner Prompt":
+            return raw
+        valid = {"Confusion", "Frustration", "Boredom", "Engagement", "Mixed / uncertain"}
+        if raw in valid:
+            return raw
+        context = context or {}
+        support = " ".join(
+            str(context.get(key) or "").lower()
+            for key in ("support_cue", "dominant_state", "dominant_academic_state", "learning_state", "inferred_process_state")
+        )
+        if not support and stage:
+            support = str(stage).lower()
+        if "frustr" in support or "reduce" in support or "gentle" in support:
+            return "Frustration"
+        if "bored" in support or "re_engagement" in support or "re-engagement" in support:
+            return "Boredom"
+        if "engagement" in support or "deep" in support:
+            return "Engagement"
+        if "confus" in support or "clarif" in support:
+            return "Confusion"
+        return "Mixed / uncertain"
+
+    @staticmethod
+    def _prompt_category_id(category: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "-", str(category or "custom").lower()).strip("-") or "custom"
+
+    @classmethod
+    def _prompt_variables(cls, data: dict[str, Any], full_prompt_text: str, category: str) -> list[str]:
+        raw_values = data.get("variables") or data.get("placeholders") or []
+        if isinstance(raw_values, str):
+            raw_values = [item.strip() for item in raw_values.split(",")]
+        variables: list[str] = []
+        for value in raw_values if isinstance(raw_values, list) else []:
+            name = re.sub(r"[^a-zA-Z0-9_]+", "", str(value or "").replace("{", "").replace("}", "").strip())
+            if name and name not in variables:
+                variables.append(name)
+        for match in re.findall(r"{{\s*([a-zA-Z0-9_]+)\s*}}", full_prompt_text or ""):
+            if match not in variables:
+                variables.append(match)
+        if variables:
+            return variables
+        defaults = {
+            "Base Prompt": ["selected_passage", "paper_context", "user_question", "learning_state"],
+            "Planner Prompt": ["selected_passage", "paper_context", "learning_state"],
+            "Strategy Response Prompt": [
+                "selected_passage",
+                "paper_context",
+                "user_question",
+                "learning_state",
+                "selected_strategy",
+                "strategy_rationale",
+            ],
+        }
+        return list(defaults.get(category, []))
+
+    def _prompt_from_snapshot(self, snapshot: dict[str, Any]) -> dict[str, Any]:
+        snapshot_id = str(snapshot.get("snapshot_id") or "").strip()
+        summary = snapshot.get("context_summary") if isinstance(snapshot.get("context_summary"), dict) else {}
+        title = self._prompt_title_from_snapshot(snapshot, summary)
+        prompt_text = self._sanitize_prompt_text(
+            str(snapshot.get("prompt_text") or self._messages_to_prompt_text(snapshot.get("messages") if isinstance(snapshot.get("messages"), list) else []))
+        )
+        category = self._prompt_category_from_snapshot(snapshot, summary)
+        subcategory = self._prompt_subcategory_from_snapshot(snapshot, summary, category)
+        context_fields = {
+            "selected_passage": summary.get("selected_text_preview") or "",
+            "learning_state": summary.get("dominant_academic_state") or summary.get("dominant_state") or "",
+            "support_cue": summary.get("support_cue") or "",
+            "dominant_state": summary.get("dominant_state") or summary.get("dominant_academic_state") or "",
+            "strategy": summary.get("strategy_family") or summary.get("pedagogical_move") or "",
+            "paper_context": {
+                "rag_chunk_count": summary.get("rag_chunk_count") or 0,
+                "nearby_context_count": summary.get("nearby_context_count") or 0,
+                "page_number": summary.get("page_number") or 0,
+            },
+        }
+        return {
+            "id": snapshot_id,
+            "title": title,
+            "category": category,
+            "subcategory": subcategory,
+            "description": f"{self._prompt_stage_label(str(snapshot.get('stage') or ''))} prompt from /pdf-chat.",
+            "prompt_text": prompt_text,
+            "full_prompt_text": prompt_text,
+            "variables": self._prompt_variables({}, prompt_text, category),
+            "context_fields": context_fields,
+            "created_at": str(snapshot.get("created_at") or ""),
+            "updated_at": str(snapshot.get("created_at") or ""),
+            "source": "snapshot",
+            "snapshot_id": snapshot_id,
+        }
+
+    def _prompt_by_id(self, prompt_id: str) -> dict[str, Any]:
+        safe_id = self._safe_file_id(prompt_id)
+        for prompt in self._read_custom_prompts():
+            if prompt.get("id") == safe_id:
+                return prompt
+        snapshot = self.get_llm_prompt_snapshot(safe_id)["snapshot"]
+        return self._prompt_from_snapshot(snapshot)
+
+    def _snapshot_from_prompt(self, prompt: dict[str, Any]) -> dict[str, Any]:
+        if prompt.get("source") == "snapshot" and prompt.get("snapshot_id"):
+            try:
+                return self.get_llm_prompt_snapshot(str(prompt.get("snapshot_id")))["snapshot"]
+            except KeyError:
+                pass
+        prompt_text = self._sanitize_prompt_text(str(prompt.get("full_prompt_text") or prompt.get("prompt_text") or ""))
+        return {
+            "snapshot_id": prompt.get("snapshot_id") or prompt.get("id") or "",
+            "stage": "custom",
+            "created_at": prompt.get("created_at") or "",
+            "provider": "",
+            "model": "",
+            "messages": [{"role": "user", "content": prompt_text}],
+            "prompt_text": prompt_text,
+            "context_summary": prompt.get("context_fields") if isinstance(prompt.get("context_fields"), dict) else {},
+        }
+
+    def _prompt_title_from_snapshot(self, snapshot: dict[str, Any], summary: dict[str, Any]) -> str:
+        stage = self._prompt_stage_label(str(snapshot.get("stage") or ""))
+        preview = str(summary.get("selected_text_preview") or "").strip()
+        if preview:
+            return f"{stage}: {preview[:70]}"
+        strategy = str(summary.get("strategy_family") or summary.get("pedagogical_move") or "").strip()
+        return f"{stage}: {strategy or snapshot.get('highlight_id') or snapshot.get('snapshot_id') or 'prompt'}"
+
+    @staticmethod
+    def _prompt_stage_label(stage: str) -> str:
+        labels = {
+            "rag_baseline": "Base Prompt",
+            "strategy_planner": "Planner Prompt",
+            "emotion_strategy": "Strategy Response Prompt",
+            "custom": "Custom / Experimental",
+        }
+        return labels.get(stage, stage or "Custom / Experimental")
+
+    def _prompt_category_from_snapshot(self, snapshot: dict[str, Any], summary: dict[str, Any]) -> str:
+        stage = str(snapshot.get("stage") or "")
+        if stage == "rag_baseline":
+            return "Base Prompt"
+        if stage == "strategy_planner":
+            return "Planner Prompt"
+        if stage == "emotion_strategy":
+            return "Strategy Response Prompt"
+        return "Custom / Experimental"
+
+    def _prompt_subcategory_from_snapshot(self, snapshot: dict[str, Any], summary: dict[str, Any], category: str) -> str:
+        if category != "Planner Prompt":
+            strategy = str(summary.get("strategy_family") or summary.get("pedagogical_move") or "").strip()
+            return strategy[:80]
+        context = {
+            "support_cue": summary.get("support_cue") or snapshot.get("support_cue") or "",
+            "dominant_state": summary.get("dominant_state") or summary.get("dominant_academic_state") or "",
+            "learning_state": summary.get("learning_state") or "",
+        }
+        return self._normalize_prompt_subcategory(category, "", context, stage=str(snapshot.get("stage") or ""))
+
+    def _sanitize_generation_parameters(self, payload: Any, snapshot: dict[str, Any]) -> dict[str, Any]:
+        data = payload if isinstance(payload, dict) else {}
+        max_tokens_default = self._default_compare_max_tokens(snapshot)
+        params = {
+            "temperature": self._float_between(data.get("temperature", 0.2), 0.0, 2.0),
+            "top_p": self._float_between(data.get("top_p", 0.9), 0.0, 1.0),
+            "max_tokens": int(self._float_between(data.get("max_tokens", max_tokens_default), 1, 8192)),
+            "timeout": int(self._float_between(data.get("timeout", 60), 1, 180)),
+        }
+        top_k = str(data.get("top_k") or "").strip()
+        if top_k:
+            params["top_k"] = int(self._float_between(top_k, 1, 1000))
+        return params
+
+    def _llm_evaluation_jsonl_path(self) -> Path:
+        return self.upload_dir / "llm_evaluations" / "evaluations.jsonl"
+
+    def _read_evaluation_records(self) -> list[dict[str, Any]]:
+        path = self._llm_evaluation_jsonl_path()
+        if not path.exists():
+            return []
+        records: list[dict[str, Any]] = []
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                item = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(item, dict):
+                records.append(item)
+        return records
+
+    def _sanitize_evaluation_record(self, data: dict[str, Any]) -> dict[str, Any]:
+        scores = data.get("manual_scores") if isinstance(data.get("manual_scores"), dict) else {}
+        clean_scores = {}
+        for key in ("clarity", "pedagogical_quality", "emotional_alignment", "structure", "cognitive_load"):
+            value = scores.get(key)
+            clean_scores[key] = None if value in (None, "") else int(self._float_between(value, 1, 5))
+        rank = data.get("rank")
+        return {
+            "run_id": self._safe_file_id(data.get("run_id") or data.get("comparison_id") or f"run_{uuid.uuid4().hex[:12]}"),
+            "timestamp": self._iso_timestamp(time.time()),
+            "selected_prompt_id": self._safe_file_id(data.get("selected_prompt_id") or data.get("prompt_id") or ""),
+            "selected_prompt_title": str(data.get("selected_prompt_title") or "")[:200],
+            "prompt_text": self._sanitize_prompt_text(str(data.get("prompt_text") or "")),
+            "model_profile_id": self._safe_file_id(data.get("model_profile_id") or data.get("profile_id") or data.get("model_id") or ""),
+            "model_display_name": str(data.get("model_display_name") or data.get("display_name") or data.get("label") or "")[:160],
+            "provider": self._normalize_llm_provider(data.get("provider")),
+            "model_id": str(data.get("model_id") or data.get("model") or "").strip(),
+            "generation_parameters": self._sanitize_comparison_payload(data.get("generation_parameters") if isinstance(data.get("generation_parameters"), dict) else {}),
+            "response_text": self._sanitize_prompt_text(str(data.get("response_text") or data.get("output") or "")),
+            "latency_ms": int(self._float_between(data.get("latency_ms", 0), 0, 600000)),
+            "status": str(data.get("status") or ("success" if data.get("ok", True) else "failure")),
+            "manual_scores": clean_scores,
+            "evaluator_notes": self._sanitize_prompt_text(str(data.get("evaluator_notes") or data.get("notes") or "")),
+            "overall_preference": bool(data.get("overall_preference")),
+            "rank": None if rank in (None, "") else int(self._float_between(rank, 1, 99)),
+        }
+
+    def _run_single_comparison_model(self, snapshot: dict[str, Any], model_config: dict[str, Any], generation_parameters: dict[str, Any] | None = None) -> dict[str, Any]:
+        raw_model = str(model_config.get("model") or "").strip()
+        model_id = str(model_config.get("model_id") or raw_model).strip()
+        model = raw_model or model_id
+        label = str(model_config.get("label") or model_config.get("display_name") or model_id or "Model").strip()
+        display_name = str(model_config.get("display_name") or label).strip() or label
         provider = self._normalize_llm_provider(model_config.get("provider"))
-        model = str(model_config.get("model") or "").strip()
-        temperature = self._float_between(model_config.get("temperature", 0.2), 0.0, 2.0)
-        max_tokens_value = model_config.get("max_tokens")
-        if max_tokens_value in (None, ""):
-            max_tokens_value = self._default_compare_max_tokens(snapshot)
-        max_tokens = int(self._float_between(max_tokens_value, 1, 8192))
-        base = {"label": label, "provider": provider, "model": model}
+        profile_id = str(model_config.get("profile_id") or model_config.get("id") or "").strip()
+        model_source = "model_profile" if (profile_id or model_id) else "missing"
+        params = generation_parameters or self._sanitize_generation_parameters(
+            {
+                "temperature": model_config.get("temperature", 0.2),
+                "max_tokens": model_config.get("max_tokens", self._default_compare_max_tokens(snapshot)),
+            },
+            snapshot,
+        )
+        prompt_text = self._comparison_prompt_text(snapshot)
+        base = {
+            "label": label,
+            "display_name": display_name,
+            "model_profile_id": profile_id,
+            "provider": provider,
+            "model": model,
+            "model_id": model_id,
+            "model_source": model_source,
+            "generation_parameters": dict(params),
+            "generation_parameters_sent": dict(params),
+            "prompt_chars": len(prompt_text),
+            "estimated_prompt_tokens": int(math.ceil(len(prompt_text) / 4)) if prompt_text else 0,
+        }
+        revision = llm_config.settings_revision_info(PROJECT_ROOT, self.upload_dir)
+        base["settings_revision"] = revision.get("settings_revision")
+        base["settings_file_mtime"] = revision.get("settings_file_mtime")
         if provider not in {"gemini", "openrouter", "openai_compatible"} or not model:
             return {**base, "ok": False, "latency_ms": 0, "output": "", "error": "Provider is not configured.", "auto_checks": self._llm_compare_auto_checks("", snapshot)}
-        key = llm_config.provider_api_key_from_env(provider)
+        key_info: dict[str, str] = {}
+        values = llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+        if provider == "gemini":
+            key_info = llm_config.resolve_gemini_api_key(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+            key = str(key_info.get("key") or "")
+        else:
+            key_info = llm_config.resolve_provider_api_key(provider, PROJECT_ROOT, self.upload_dir, include_env_file=False, values=values)
+            key = str(key_info.get("key") or "")
+        base["key_source"] = str(key_info.get("key_source") or "")
+        base["masked_key_suffix"] = str(key_info.get("masked_suffix") or "")
         base_url = ""
         if provider == "openrouter":
-            base_url = llm_config.DEFAULT_OPENROUTER_BASE_URL
+            base_url = llm_config.provider_base_url(provider, values) or llm_config.DEFAULT_OPENROUTER_BASE_URL
         elif provider == "openai_compatible":
-            base_url = llm_config.provider_base_url_from_env(provider)
+            base_url = llm_config.provider_base_url(provider, values)
         if not key or (provider == "openai_compatible" and not base_url):
             return {**base, "ok": False, "latency_ms": 0, "output": "", "error": "Provider is not configured.", "auto_checks": self._llm_compare_auto_checks("", snapshot)}
 
         started = time.time()
         try:
             if provider == "gemini":
-                output, finish_reason = self._run_gemini_snapshot(snapshot, api_key=key, model=model, temperature=temperature, max_tokens=max_tokens)
+                gemini_result = self._run_gemini_snapshot(snapshot, api_key=key, model=model_id or model, generation_parameters=params)
+                latency_ms = int((time.time() - started) * 1000)
+                output = str(gemini_result.get("text") or "")
+                finish_reason = str(gemini_result.get("finish_reason") or "")
+                auto_checks = self._llm_compare_auto_checks(output, snapshot)
+                if finish_reason:
+                    auto_checks["finish_reason"] = finish_reason
+                result_base = {
+                    **base,
+                    "generation_parameters_sent": gemini_result.get("generation_parameters_sent") or {},
+                    "status_code": gemini_result.get("status_code"),
+                    "google_error_status": str(gemini_result.get("google_error_status") or ""),
+                    "google_error_message": str(gemini_result.get("google_error_message") or ""),
+                    "endpoint_url": str(gemini_result.get("endpoint_url") or ""),
+                    "payload_shape": str(gemini_result.get("payload_shape") or ""),
+                    "latency_ms": latency_ms,
+                    "output": output,
+                    "finish_reason": finish_reason,
+                    "auto_checks": auto_checks,
+                }
+                if bool(gemini_result.get("ok")):
+                    return {**result_base, "ok": True, "error": None}
+                return {
+                    **result_base,
+                    "ok": False,
+                    "error": str(gemini_result.get("error") or "Gemini request failed."),
+                }
             else:
-                output, finish_reason = self._run_chat_completions_snapshot(
+                chat_result = self._run_chat_completions_snapshot(
                     snapshot,
                     provider=provider,
                     api_key=key,
                     base_url=base_url,
                     model=model,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
+                    generation_parameters=params,
+                    provider_values=values,
                 )
-            latency_ms = int((time.time() - started) * 1000)
-            auto_checks = self._llm_compare_auto_checks(output, snapshot)
-            if finish_reason:
-                auto_checks["finish_reason"] = finish_reason
-            return {
-                **base,
-                "ok": bool(output.strip()),
-                "latency_ms": latency_ms,
-                "output": output,
-                "error": None if output.strip() else "Provider returned an empty output.",
-                "finish_reason": finish_reason,
-                "auto_checks": auto_checks,
-            }
+                latency_ms = int((time.time() - started) * 1000)
+                output = str(chat_result.get("text") or "")
+                finish_reason = str(chat_result.get("finish_reason") or "")
+                auto_checks = self._llm_compare_auto_checks(output, snapshot)
+                if finish_reason:
+                    auto_checks["finish_reason"] = finish_reason
+                result_base = {
+                    **base,
+                    "generation_parameters_sent": chat_result.get("generation_parameters_sent") or {},
+                    "status_code": chat_result.get("status_code"),
+                    "provider_error_message": str(chat_result.get("provider_error_message") or ""),
+                    "endpoint_url": str(chat_result.get("endpoint_url") or ""),
+                    "payload_shape": str(chat_result.get("payload_shape") or ""),
+                    "latency_ms": latency_ms,
+                    "output": output,
+                    "finish_reason": finish_reason,
+                    "auto_checks": auto_checks,
+                }
+                if bool(chat_result.get("ok")):
+                    return {**result_base, "ok": True, "error": None}
+                return {
+                    **result_base,
+                    "ok": False,
+                    "error": str(chat_result.get("error") or "Provider request failed."),
+                }
         except Exception as exc:
             latency_ms = int((time.time() - started) * 1000)
             return {
@@ -4907,7 +7473,7 @@ Return strict JSON only with:
                 "ok": False,
                 "latency_ms": latency_ms,
                 "output": "",
-                "error": f"{type(exc).__name__}: {exc}",
+                "error": f"{type(exc).__name__}: provider request failed.",
                 "auto_checks": self._llm_compare_auto_checks("", snapshot),
             }
 
@@ -4915,21 +7481,26 @@ Return strict JSON only with:
     def _default_compare_max_tokens(snapshot: dict[str, Any]) -> int:
         return 3000 if str(snapshot.get("stage") or "") == "strategy_planner" else 800
 
-    def _run_gemini_snapshot(self, snapshot: dict[str, Any], *, api_key: str, model: str, temperature: float, max_tokens: int) -> tuple[str, str]:
-        prompt = self._messages_to_prompt_text(snapshot.get("messages") if isinstance(snapshot.get("messages"), list) else [])
-        body = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": temperature, "maxOutputTokens": max_tokens},
-        }
-        request = urllib.request.Request(
-            GEMINI_ENDPOINT_TEMPLATE.format(model=model),
-            data=json.dumps(body).encode("utf-8"),
-            headers={"Content-Type": "application/json", "X-goog-api-key": api_key},
-            method="POST",
+    def _comparison_prompt_text(self, snapshot: dict[str, Any]) -> str:
+        prompt_text = str(snapshot.get("full_prompt_text") or snapshot.get("prompt_text") or "").strip()
+        if prompt_text:
+            return prompt_text
+        messages = snapshot.get("messages") if isinstance(snapshot.get("messages"), list) else []
+        if len(messages) == 1 and isinstance(messages[0], dict):
+            content = messages[0].get("content")
+            if isinstance(content, str) and content.strip():
+                return content.strip()
+        return self._messages_to_prompt_text(messages)
+
+    def _run_gemini_snapshot(self, snapshot: dict[str, Any], *, api_key: str, model: str, generation_parameters: dict[str, Any]) -> dict[str, Any]:
+        prompt = self._comparison_prompt_text(snapshot)
+        return generate_gemini_direct(
+            prompt_text=prompt,
+            api_key=api_key,
+            model=model,
+            generation_parameters=generation_parameters,
+            timeout=int(generation_parameters.get("timeout", 60)),
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-        return self._gemini_strategy_text(payload), self._gemini_finish_reason(payload)
 
     def _run_chat_completions_snapshot(
         self,
@@ -4939,20 +7510,24 @@ Return strict JSON only with:
         api_key: str,
         base_url: str,
         model: str,
-        temperature: float,
-        max_tokens: int,
-    ) -> tuple[str, str]:
+        generation_parameters: dict[str, Any],
+        provider_values: dict[str, str] | None = None,
+    ) -> dict[str, Any]:
         messages = snapshot.get("messages") if isinstance(snapshot.get("messages"), list) else []
         body = {
             "model": model,
             "messages": self._clean_snapshot_messages(messages),
-            "temperature": temperature,
-            "max_tokens": max_tokens,
+            "temperature": generation_parameters.get("temperature", 0.2),
+            "top_p": generation_parameters.get("top_p", 0.9),
+            "max_tokens": generation_parameters.get("max_tokens", self._default_compare_max_tokens(snapshot)),
         }
+        if "top_k" in generation_parameters:
+            body["top_k"] = generation_parameters["top_k"]
         headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
         if provider == "openrouter":
-            site_url = os.environ.get("OPENROUTER_SITE_URL", "").strip()
-            site_name = os.environ.get("OPENROUTER_SITE_NAME", "").strip()
+            values = provider_values or llm_config.read_llm_values(PROJECT_ROOT, self.upload_dir, include_env_file=False)
+            site_url = str(values.get("OPENROUTER_SITE_URL") or "").strip()
+            site_name = str(values.get("OPENROUTER_SITE_NAME") or "").strip()
             if site_url:
                 headers["HTTP-Referer"] = site_url
             if site_name:
@@ -4963,9 +7538,70 @@ Return strict JSON only with:
             headers=headers,
             method="POST",
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-        return self._chat_completions_strategy_text(payload), self._chat_completions_finish_reason(payload)
+        try:
+            with urllib.request.urlopen(request, timeout=int(generation_parameters.get("timeout", 60))) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+                status_code = getattr(response, "status", 200)
+            text = self._chat_completions_strategy_text(payload)
+            return {
+                "ok": bool(text.strip()),
+                "text": text,
+                "finish_reason": self._chat_completions_finish_reason(payload),
+                "status_code": status_code,
+                "endpoint_url": base_url.rstrip("/") + "/chat/completions",
+                "payload_shape": "messages",
+                "generation_parameters_sent": {
+                    key: value
+                    for key, value in body.items()
+                    if key not in {"model", "messages"}
+                },
+                "error": "" if text.strip() else "Provider returned an empty output.",
+                "provider_error_message": "",
+            }
+        except urllib.error.HTTPError as exc:
+            safe_error = self._safe_compare_http_error(exc, redact_values=[api_key])
+            return {
+                "ok": False,
+                "text": "",
+                "finish_reason": "",
+                "status_code": exc.code,
+                "endpoint_url": base_url.rstrip("/") + "/chat/completions",
+                "payload_shape": "messages",
+                "generation_parameters_sent": {
+                    key: value
+                    for key, value in body.items()
+                    if key not in {"model", "messages"}
+                },
+                "error": f"HTTPError: provider request failed.",
+                "provider_error_message": safe_error,
+            }
+
+    @staticmethod
+    def _safe_compare_http_error(exc: urllib.error.HTTPError, redact_values: list[str] | None = None) -> str:
+        raw = ""
+        try:
+            raw = exc.read().decode("utf-8", errors="replace")
+        except Exception:
+            raw = ""
+        message = str(getattr(exc, "reason", "") or "")
+        if raw:
+            try:
+                payload = json.loads(raw)
+                error = payload.get("error") if isinstance(payload, dict) else {}
+                if isinstance(error, dict):
+                    message = str(error.get("message") or error.get("code") or message or "")
+                elif isinstance(payload, dict):
+                    message = str(payload.get("message") or message or "")
+            except json.JSONDecodeError:
+                message = raw
+        message = str(message or "")[:500]
+        for secret in redact_values or []:
+            secret = str(secret or "")
+            if secret:
+                message = message.replace(secret, "[redacted]")
+        message = re.sub(r"or-[0-9A-Za-z_-]{8,}", "or-...[redacted]", message)
+        message = re.sub(r"AIza[0-9A-Za-z_-]{8,}", "AIza...[redacted]", message)
+        return message
 
     @staticmethod
     def _gemini_finish_reason(payload: dict[str, Any]) -> str:

@@ -51,8 +51,12 @@ Before the demo:
 8. Show the active model mode:
    - academic-state mode, or
    - raw-emotion mode if an 8-class checkpoint is configured.
-9. Show the raw/mapped panel.
-10. Explain that `/pdf-chat` uses only the compact learning signal, while `/camera-debug` is for transparency and troubleshooting.
+9. Show the raw/mapped panel and the learning-signal package debug JSON.
+10. Point out the two separate panels:
+   - **Active Raw 8-Class Emotion Chain**
+   - **Direct 4-Class Academic-State Diagnostic**
+11. Explain that in raw-emotion mode the direct 4-class diagnostic has `used_for_strategy: false`.
+12. Explain that `/pdf-chat` uses only safe compact learning-support wording, while `/camera-debug` is for transparency and troubleshooting.
 
 ## Demo Part 3: PDF Chat
 
@@ -64,7 +68,7 @@ Before the demo:
 6. Explain that this is Stage A: the RAG baseline explanation prompt.
 7. Wait for the reaction window to complete.
 8. Show the strategy candidates under the baseline turn.
-9. Explain that this is Stage B: the strategy planner prompt.
+9. Explain that this is Stage B: the strategy planner prompt. It combines the selected passage, baseline answer, reaction-window summary, question/follow-up context, and strategy history.
 10. Select a strategy and click **Explain with this strategy**.
 11. Show the strategy-conditioned answer.
 12. Explain that this is Stage C: the strategy-conditioned answer prompt.

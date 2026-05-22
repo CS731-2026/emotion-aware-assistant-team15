@@ -1,0 +1,312 @@
+{
+  "snapshot_id": "snap_8265ecf57954",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "5dbd72ab-3ea0-46c1-b39d-1359acc0c1f9",
+  "source_turn_id": "turn_7d40d36364a84bb0b2c30b5d4b2bd166",
+  "created_at": "2026-05-21T05:18:59Z",
+  "stage": "strategy_planner",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}"
+    },
+    {
+      "role": "user",
+      "content": "strategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 4,\n    \"selected_text\": \"Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed the criteria for clustering until we reached an agreement among four researchers. Through this process, we were able to elicit two major approaches to implementing the system: User-guided authoring and Unguided authoring. User-guided authoring lets users operationalize factors in the system, so that they can intentionally guide the output. For example, in the TaleBrush system [10], the user\u2019s intent can be included in the LLM\u2019s sentence generation through the drawing of fortune lines. Likewise, we decided to simplify the process for users to establish their intentions by asking users to add keywords that they wanted. On the other hand, unguided authoring simply generates the next sentences based exclusively on the existing contents as proposed in [29, 47]. Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure. First, just as in conventional diary writi [truncated; original length: 1679 characters]\",\n    \"nearby_context\": [\n      \"Overall Concept and Interaction Flow\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"method\",\n    \"difficulty_hint\": \"multi_step_process\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\",\n    \"baseline_explanation\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\",\n      \"highlight_id\": \"5dbd72ab-3ea0-46c1-b39d-1359acc0c1f9\",\n      \"window_start\": \"2026-05-21T05:18:51.319Z\",\n      \"window_end\": \"2026-05-21T05:18:59.461Z\",\n      \"duration_sec\": 8.1,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.708,\n      \"max_confidence\": 0.865,\n      \"avg_distribution\": {\n        \"boredom\": 0.018,\n        \"confusion\": 0,\n        \"engagement\": 0.708,\n        \"frustration\": 0.273\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"trigger_reason\": \"The baseline explanation was being read while the learning signal showed a deepening cue.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. \\n\\nIn personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). \\n\\nThis design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"Deepening cue\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.708,\n    \"avg_distribution\": {\n      \"boredom\": 0.018,\n      \"confusion\": 0,\n      \"engagement\": 0.708,\n      \"frustration\": 0.273\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.1\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": {\n      \"source\": \"raw_8class_checkpoint\",\n      \"checkpoint_path\": \"models/emotion_model/raw_8class_best.pt\",\n      \"raw_emotion_label\": \"neutral\",\n      \"raw_emotion_confidence\": 0.8424,\n      \"raw_emotion_probabilities\": {\n        \"anger\": 0,\n        \"contempt\": 0.0219,\n        \"disgust\": 0.0006,\n        \"fear\": 0,\n        \"happy\": 0.0222,\n        \"neutral\": 0.8424,\n        \"sad\": 0.1122,\n        \"surprise\": 0.0006\n      },\n      \"raw_top_emotions\": [\n        {\n          \"label\": \"neutral\",\n          \"probability\": 0.8424\n        },\n        {\n          \"label\": \"sad\",\n          \"probability\": 0.1122\n        },\n        {\n          \"label\": \"happy\",\n          \"probability\": 0.0222\n        }\n      ],\n      \"frame_timestamp\": \"2026-05-21T05:18:58Z\",\n      \"crop_hash\": null\n    },\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.0219,\n        \"confusion\": 0.0007,\n        \"engagement\": 0.8646,\n        \"frustration\": 0.1128\n      },\n      \"mapping_explanation\": \"happy + neutral -> engagement\",\n      \"confidence_notes\": [\n        \"single-frame mapped scores should be interpreted through reaction windows and dialogue context\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": null,\n      \"window_end\": null,\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.8646\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.1128\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.0219\n        }\n      ],\n      \"trend\": \"single_frame_only\",\n      \"evidence_count\": 0,\n      \"reliability_notes\": [\n        \"no reaction window; do not infer a strong learning process state from this frame alone\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.0219,\n        \"confusion\": 0.0007,\n        \"engagement\": 0.8646,\n        \"frustration\": 0.1128\n      },\n      \"support_cue\": \"neutral_or_uncertain\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": null,\n      \"turn_index\": 0,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"unknown\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.0219,\n      \"confusion\": 0.0007,\n      \"engagement\": 0.8646,\n      \"frustration\": 0.1128\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"strategy_state\": \"uncertain\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"strategy_reason\": \"first explanation should stay paper-grounded before adapting from process signals\",\n    \"prompt_guidance\": [\n      \"Use a baseline paper-grounded explanation and avoid overfitting to weak signals.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.0219,\n      \"confusion\": 0.0007,\n      \"engagement\": 0.8646,\n      \"frustration\": 0.1128\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"mechanism_walkthrough\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"content\": \"This passage introduces the core operational structure of DiaryMate, the AI-assisted journaling tool developed for this study. It marks the transition from theoretical \\\"design goals\\\" to the actual implementation of the system\u2019s \\\"writing flow,\\\" which is the specific sequence of steps a user follows to create a diary entry. The researchers emphasize two distinct modes: **guided and unguided authoring**. In a personal journaling context, \\\"guided\\\" authoring typically involves the AI providing prompts, keywords, or suggested sentences to help the user reflect, while \\\"unguided\\\" authoring allows for traditional, free-form writing. This balance is critical because the paper explores how much \\\"AI intervention\\\" is helpful versus how much it might interfere with the user's authentic voice. This structure is essential to the paper's central argument about Human-AI collaboration. By providing both modes, the researchers can observe when users choose to lean on the AI and when they prefer to write independently. This allows them to identify key findings mentioned later in the paper, such as \\\"over-reliance,\\\" where users might prioritize the AI\u2019s polished emotional descriptions over their own raw thoughts. Ultimately, this section sets the stage for the field study. It explains the mechanics of how the 24 participants interacted with the Large Language Model (LLM) to bridge the gap between their daily experiences and a finished, reflective journal entry.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"content\": \"I still don't understand, can you explain more\",\n      \"role\": \"user\"\n    },\n    {\n      \"content\": \"To put it simply, this sentence is the bridge between the researchers' theories and the actual tool they built. After coming up with \\\"design goals\\\" (the ideas for what an AI journal should do), they created a specific step-by-step process\u2014the \\\"writing flow\\\"\u2014that lets users choose how much help they want. The terms \\\"guided\\\" and \\\"unguided\\\" are the most important parts here. In the context of this paper, **guided authoring** means the AI leads the way, perhaps by asking questions or generating ideas based on keywords. **Unguided authoring** means the user writes freely, and the AI only steps in when asked (like suggesting the next sentence). This balance is crucial to the paper's argument because journaling is a very personal, introspective task. If the AI is too \\\"guided,\\\" the diary entry might not feel like it belongs to the user anymore. If it\u2019s too \\\"unguided,\\\" the user might struggle with writer's block. By designing a flow that supports both, the researchers can study exactly where users prefer to hand over control to the AI. Ultimately, this \\\"writing flow\\\" is the environment where the study\u2019s main findings happen. It\u2019s the framework that allowed the researchers to observe that while users liked the AI's perspectives, they sometimes became *too* reliant on it, letting the AI's suggested emotions replace their own.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"content\": \"Based on the passage and the subsequent description of the system's procedure, the \\\"writing flow\\\" in DiaryMate is designed to move seamlessly between user-led drafting and AI-assisted reflection. The process follows this sequence: 1. **Entry Initiation:** The user begins by entering a title for their journal entry, which sets the initial context for the AI. 2. **AI Triggering:** As the user writes, they can trigger AI assistance at any point. This is typically done through a specific interaction, such as pressing a keyboard shortcut (like the \\\"Tab\\\" key) when they feel stuck or want to see a new perspective. 3. **Suggestion and Selection:** The AI then provides multiple \\\"next-sentence\\\" suggestions or keywords based on what the user has already written. These suggestions are designed to reflect various emotional tones or viewpoints. 4. **Integration and Refinement:** The user reviews these AI-generated options and can either select one to insert directly into the text, use a suggestion as a jumping-off point for their own original sentence, or ignore the suggestions entirely to continue writing manually. This step-by-step flow is critical to the paper\u2019s argument because it demonstrates how a system can provide \\\"guided\\\" support without taking over the user's voice. By requiring the user to manually trigger the AI and choose from multiple suggestions, the design aims to maintain the user\u2019s agency in a highly personal task\u2014journaling\u2014where the authenticity of the \\\"self\\\" is paramount. It allows the LLM to act as a collaborative partner that aids reflection rather than just a tool that completes a task.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\",\n      \"role\": \"assistant\",\n      \"turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\"\n    }\n  ]\n}"
+    }
+  ],
+  "prompt_text": "system:\nYou are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}\n\nuser:\nstrategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 4,\n    \"selected_text\": \"Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed the criteria for clustering until we reached an agreement among four researchers. Through this process, we were able to elicit two major approaches to implementing the system: User-guided authoring and Unguided authoring. User-guided authoring lets users operationalize factors in the system, so that they can intentionally guide the output. For example, in the TaleBrush system [10], the user\u2019s intent can be included in the LLM\u2019s sentence generation through the drawing of fortune lines. Likewise, we decided to simplify the process for users to establish their intentions by asking users to add keywords that they wanted. On the other hand, unguided authoring simply generates the next sentences based exclusively on the existing contents as proposed in [29, 47]. Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure. First, just as in conventional diary writi [truncated; original length: 1679 characters]\",\n    \"nearby_context\": [\n      \"Overall Concept and Interaction Flow\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"method\",\n    \"difficulty_hint\": \"multi_step_process\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\",\n    \"baseline_explanation\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\",\n      \"highlight_id\": \"5dbd72ab-3ea0-46c1-b39d-1359acc0c1f9\",\n      \"window_start\": \"2026-05-21T05:18:51.319Z\",\n      \"window_end\": \"2026-05-21T05:18:59.461Z\",\n      \"duration_sec\": 8.1,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.708,\n      \"max_confidence\": 0.865,\n      \"avg_distribution\": {\n        \"boredom\": 0.018,\n        \"confusion\": 0,\n        \"engagement\": 0.708,\n        \"frustration\": 0.273\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"trigger_reason\": \"The baseline explanation was being read while the learning signal showed a deepening cue.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. \\n\\nIn personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). \\n\\nThis design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"Deepening cue\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.708,\n    \"avg_distribution\": {\n      \"boredom\": 0.018,\n      \"confusion\": 0,\n      \"engagement\": 0.708,\n      \"frustration\": 0.273\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.1\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": {\n      \"source\": \"raw_8class_checkpoint\",\n      \"checkpoint_path\": \"models/emotion_model/raw_8class_best.pt\",\n      \"raw_emotion_label\": \"neutral\",\n      \"raw_emotion_confidence\": 0.8424,\n      \"raw_emotion_probabilities\": {\n        \"anger\": 0,\n        \"contempt\": 0.0219,\n        \"disgust\": 0.0006,\n        \"fear\": 0,\n        \"happy\": 0.0222,\n        \"neutral\": 0.8424,\n        \"sad\": 0.1122,\n        \"surprise\": 0.0006\n      },\n      \"raw_top_emotions\": [\n        {\n          \"label\": \"neutral\",\n          \"probability\": 0.8424\n        },\n        {\n          \"label\": \"sad\",\n          \"probability\": 0.1122\n        },\n        {\n          \"label\": \"happy\",\n          \"probability\": 0.0222\n        }\n      ],\n      \"frame_timestamp\": \"2026-05-21T05:18:58Z\",\n      \"crop_hash\": null\n    },\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.0219,\n        \"confusion\": 0.0007,\n        \"engagement\": 0.8646,\n        \"frustration\": 0.1128\n      },\n      \"mapping_explanation\": \"happy + neutral -> engagement\",\n      \"confidence_notes\": [\n        \"single-frame mapped scores should be interpreted through reaction windows and dialogue context\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": null,\n      \"window_end\": null,\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.8646\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.1128\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.0219\n        }\n      ],\n      \"trend\": \"single_frame_only\",\n      \"evidence_count\": 0,\n      \"reliability_notes\": [\n        \"no reaction window; do not infer a strong learning process state from this frame alone\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.0219,\n        \"confusion\": 0.0007,\n        \"engagement\": 0.8646,\n        \"frustration\": 0.1128\n      },\n      \"support_cue\": \"neutral_or_uncertain\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": null,\n      \"turn_index\": 0,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"unknown\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.0219,\n      \"confusion\": 0.0007,\n      \"engagement\": 0.8646,\n      \"frustration\": 0.1128\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"strategy_state\": \"uncertain\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"strategy_reason\": \"first explanation should stay paper-grounded before adapting from process signals\",\n    \"prompt_guidance\": [\n      \"Use a baseline paper-grounded explanation and avoid overfitting to weak signals.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.0219,\n      \"confusion\": 0.0007,\n      \"engagement\": 0.8646,\n      \"frustration\": 0.1128\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"mechanism_walkthrough\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"content\": \"This passage introduces the core operational structure of DiaryMate, the AI-assisted journaling tool developed for this study. It marks the transition from theoretical \\\"design goals\\\" to the actual implementation of the system\u2019s \\\"writing flow,\\\" which is the specific sequence of steps a user follows to create a diary entry. The researchers emphasize two distinct modes: **guided and unguided authoring**. In a personal journaling context, \\\"guided\\\" authoring typically involves the AI providing prompts, keywords, or suggested sentences to help the user reflect, while \\\"unguided\\\" authoring allows for traditional, free-form writing. This balance is critical because the paper explores how much \\\"AI intervention\\\" is helpful versus how much it might interfere with the user's authentic voice. This structure is essential to the paper's central argument about Human-AI collaboration. By providing both modes, the researchers can observe when users choose to lean on the AI and when they prefer to write independently. This allows them to identify key findings mentioned later in the paper, such as \\\"over-reliance,\\\" where users might prioritize the AI\u2019s polished emotional descriptions over their own raw thoughts. Ultimately, this section sets the stage for the field study. It explains the mechanics of how the 24 participants interacted with the Large Language Model (LLM) to bridge the gap between their daily experiences and a finished, reflective journal entry.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"content\": \"I still don't understand, can you explain more\",\n      \"role\": \"user\"\n    },\n    {\n      \"content\": \"To put it simply, this sentence is the bridge between the researchers' theories and the actual tool they built. After coming up with \\\"design goals\\\" (the ideas for what an AI journal should do), they created a specific step-by-step process\u2014the \\\"writing flow\\\"\u2014that lets users choose how much help they want. The terms \\\"guided\\\" and \\\"unguided\\\" are the most important parts here. In the context of this paper, **guided authoring** means the AI leads the way, perhaps by asking questions or generating ideas based on keywords. **Unguided authoring** means the user writes freely, and the AI only steps in when asked (like suggesting the next sentence). This balance is crucial to the paper's argument because journaling is a very personal, introspective task. If the AI is too \\\"guided,\\\" the diary entry might not feel like it belongs to the user anymore. If it\u2019s too \\\"unguided,\\\" the user might struggle with writer's block. By designing a flow that supports both, the researchers can study exactly where users prefer to hand over control to the AI. Ultimately, this \\\"writing flow\\\" is the environment where the study\u2019s main findings happen. It\u2019s the framework that allowed the researchers to observe that while users liked the AI's perspectives, they sometimes became *too* reliant on it, letting the AI's suggested emotions replace their own.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"content\": \"Based on the passage and the subsequent description of the system's procedure, the \\\"writing flow\\\" in DiaryMate is designed to move seamlessly between user-led drafting and AI-assisted reflection. The process follows this sequence: 1. **Entry Initiation:** The user begins by entering a title for their journal entry, which sets the initial context for the AI. 2. **AI Triggering:** As the user writes, they can trigger AI assistance at any point. This is typically done through a specific interaction, such as pressing a keyboard shortcut (like the \\\"Tab\\\" key) when they feel stuck or want to see a new perspective. 3. **Suggestion and Selection:** The AI then provides multiple \\\"next-sentence\\\" suggestions or keywords based on what the user has already written. These suggestions are designed to reflect various emotional tones or viewpoints. 4. **Integration and Refinement:** The user reviews these AI-generated options and can either select one to insert directly into the text, use a suggestion as a jumping-off point for their own original sentence, or ignore the suggestions entirely to continue writing manually. This step-by-step flow is critical to the paper\u2019s argument because it demonstrates how a system can provide \\\"guided\\\" support without taking over the user's voice. By requiring the user to manually trigger the AI and choose from multiple suggestions, the design aims to maintain the user\u2019s agency in a highly personal task\u2014journaling\u2014where the authenticity of the \\\"self\\\" is paramount. It allows the LLM to act as a collaborative partner that aids reflection rather than just a tool that completes a task.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.\",\n      \"role\": \"assistant\",\n      \"turn_id\": \"turn_7d40d36364a84bb0b2c30b5d4b2bd166\"\n    }\n  ]\n}",
+  "strategy_planning_context": {
+    "selected_evidence": {
+      "selection_type": "text",
+      "page_number": 4,
+      "selected_text": "Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure.",
+      "caption": "",
+      "crop_available": false,
+      "selection_note": ""
+    },
+    "paper_context": {
+      "matched_block": "DiaryMate is a writing assistant that supports users\u2019 journal-writing processes. Using DiaryMate, users can get AI assistance while writing their daily diaries. We intend to use DiaryMate to explore how people embrace and perceive recent LLM technologies in journal writing. To inform the design of an AI-assisted writing feature, we first clustered the types of features of existing LLM-based co-authoring systems [10, 16, 17, 29, 46, 47], as well as the capabilities of widely used LLMs [5, 6]. Then, we discussed the criteria for clustering until we reached an agreement among four researchers. Through this process, we were able to elicit two major approaches to implementing the system: User-guided authoring and Unguided authoring. User-guided authoring lets users operationalize factors in the system, so that they can intentionally guide the output. For example, in the TaleBrush system [10], the user\u2019s intent can be included in the LLM\u2019s sentence generation through the drawing of fortune lines. Likewise, we decided to simplify the process for users to establish their intentions by asking users to add keywords that they wanted. On the other hand, unguided authoring simply generates the next sentences based exclusively on the existing contents as proposed in [29, 47]. Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure. First, just as in conventional diary writi [truncated; original length: 1679 characters]",
+      "nearby_context": [
+        "Overall Concept and Interaction Flow"
+      ],
+      "retrieved_rag_chunks": [],
+      "paper_profile_summary": "",
+      "passage_type": "method",
+      "difficulty_hint": "multi_step_process"
+    },
+    "previous_explanation": {
+      "source_turn_id": "turn_7d40d36364a84bb0b2c30b5d4b2bd166",
+      "baseline_explanation": "This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language."
+    },
+    "reaction_context": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_7d40d36364a84bb0b2c30b5d4b2bd166",
+        "highlight_id": "5dbd72ab-3ea0-46c1-b39d-1359acc0c1f9",
+        "window_start": "2026-05-21T05:18:51.319Z",
+        "window_end": "2026-05-21T05:18:59.461Z",
+        "duration_sec": 8.1,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.708,
+        "max_confidence": 0.865,
+        "avg_distribution": {
+          "boredom": 0.018,
+          "confusion": 0,
+          "engagement": 0.708,
+          "frustration": 0.273
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. \n\nIn personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). \n\nThis design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "dominant_state": "engagement",
+      "secondary_state": "frustration",
+      "avg_confidence": 0.708,
+      "avg_distribution": {
+        "boredom": 0.018,
+        "confusion": 0,
+        "engagement": 0.708,
+        "frustration": 0.273
+      },
+      "trend": "rising",
+      "duration_sec": 8.1
+    },
+    "learning_signal": {
+      "active_source": "raw_8class_process_aware",
+      "raw_emotion_evidence": {
+        "source": "raw_8class_checkpoint",
+        "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+        "raw_emotion_label": "neutral",
+        "raw_emotion_confidence": 0.8424,
+        "raw_emotion_probabilities": {
+          "anger": 0,
+          "contempt": 0.0219,
+          "disgust": 0.0006,
+          "fear": 0,
+          "happy": 0.0222,
+          "neutral": 0.8424,
+          "sad": 0.1122,
+          "surprise": 0.0006
+        },
+        "raw_top_emotions": [
+          {
+            "label": "neutral",
+            "probability": 0.8424
+          },
+          {
+            "label": "sad",
+            "probability": 0.1122
+          },
+          {
+            "label": "happy",
+            "probability": 0.0222
+          }
+        ],
+        "frame_timestamp": "2026-05-21T05:18:58Z",
+        "crop_hash": null
+      },
+      "academic_state_mapping": {
+        "mapping_rule_version": "required_8class_probability_aggregation_v1",
+        "mapped_academic_state": "engagement",
+        "mapped_academic_scores": {
+          "boredom": 0.0219,
+          "confusion": 0.0007,
+          "engagement": 0.8646,
+          "frustration": 0.1128
+        },
+        "mapping_explanation": "happy + neutral -> engagement",
+        "confidence_notes": [
+          "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+        ]
+      },
+      "reaction_window_summary": {
+        "window_start": null,
+        "window_end": null,
+        "dominant_raw_emotions": [],
+        "dominant_mapped_states": [
+          {
+            "state": "engagement",
+            "probability": 0.8646
+          },
+          {
+            "state": "frustration",
+            "probability": 0.1128
+          },
+          {
+            "state": "boredom",
+            "probability": 0.0219
+          }
+        ],
+        "trend": "single_frame_only",
+        "evidence_count": 0,
+        "reliability_notes": [
+          "no reaction window; do not infer a strong learning process state from this frame alone"
+        ],
+        "avg_mapped_scores": {
+          "boredom": 0.0219,
+          "confusion": 0.0007,
+          "engagement": 0.8646,
+          "frustration": 0.1128
+        },
+        "support_cue": "neutral_or_uncertain"
+      },
+      "learning_process_context": {
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "highlight_id": null,
+        "turn_index": 0,
+        "followup_count_for_highlight": 0,
+        "same_highlight_repeated_questions": false,
+        "last_user_question": null,
+        "current_user_question": null,
+        "question_intent": "general_followup",
+        "previous_strategy": null,
+        "recent_strategies": [],
+        "last_response_was_baseline_or_adaptive": "unknown",
+        "time_since_last_assistant_answer": null
+      },
+      "academic_state_scores": {
+        "boredom": 0.0219,
+        "confusion": 0.0007,
+        "engagement": 0.8646,
+        "frustration": 0.1128
+      },
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "support_cue": "uncertain",
+      "inferred_process_state": "baseline_ready",
+      "strategy_state": "uncertain",
+      "recommended_strategy": "baseline_explanation",
+      "strategy_reason": "first explanation should stay paper-grounded before adapting from process signals",
+      "prompt_guidance": [
+        "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+      ],
+      "diagnostic_only_direct_4class": {
+        "used_for_strategy": false
+      },
+      "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+    },
+    "academic_state_layer": {
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "academic_state_scores": {
+        "boredom": 0.0219,
+        "confusion": 0.0007,
+        "engagement": 0.8646,
+        "frustration": 0.1128
+      }
+    },
+    "support_cue_layer": {
+      "support_cue": "uncertain",
+      "inferred_process_state": "baseline_ready",
+      "recommended_strategy": "baseline_explanation",
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ]
+    },
+    "strategy_constraints": {
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ],
+      "previous_strategy_id": "mechanism_walkthrough",
+      "previous_strategy_family": ""
+    },
+    "recent_conversation": [
+      {
+        "content": "This passage introduces the core operational structure of DiaryMate, the AI-assisted journaling tool developed for this study. It marks the transition from theoretical \"design goals\" to the actual implementation of the system\u2019s \"writing flow,\" which is the specific sequence of steps a user follows to create a diary entry. The researchers emphasize two distinct modes: **guided and unguided authoring**. In a personal journaling context, \"guided\" authoring typically involves the AI providing prompts, keywords, or suggested sentences to help the user reflect, while \"unguided\" authoring allows for traditional, free-form writing. This balance is critical because the paper explores how much \"AI intervention\" is helpful versus how much it might interfere with the user's authentic voice. This structure is essential to the paper's central argument about Human-AI collaboration. By providing both modes, the researchers can observe when users choose to lean on the AI and when they prefer to write independently. This allows them to identify key findings mentioned later in the paper, such as \"over-reliance,\" where users might prioritize the AI\u2019s polished emotional descriptions over their own raw thoughts. Ultimately, this section sets the stage for the field study. It explains the mechanics of how the 24 participants interacted with the Large Language Model (LLM) to bridge the gap between their daily experiences and a finished, reflective journal entry.",
+        "role": "assistant"
+      },
+      {
+        "content": "I still don't understand, can you explain more",
+        "role": "user"
+      },
+      {
+        "content": "To put it simply, this sentence is the bridge between the researchers' theories and the actual tool they built. After coming up with \"design goals\" (the ideas for what an AI journal should do), they created a specific step-by-step process\u2014the \"writing flow\"\u2014that lets users choose how much help they want. The terms \"guided\" and \"unguided\" are the most important parts here. In the context of this paper, **guided authoring** means the AI leads the way, perhaps by asking questions or generating ideas based on keywords. **Unguided authoring** means the user writes freely, and the AI only steps in when asked (like suggesting the next sentence). This balance is crucial to the paper's argument because journaling is a very personal, introspective task. If the AI is too \"guided,\" the diary entry might not feel like it belongs to the user anymore. If it\u2019s too \"unguided,\" the user might struggle with writer's block. By designing a flow that supports both, the researchers can study exactly where users prefer to hand over control to the AI. Ultimately, this \"writing flow\" is the environment where the study\u2019s main findings happen. It\u2019s the framework that allowed the researchers to observe that while users liked the AI's perspectives, they sometimes became *too* reliant on it, letting the AI's suggested emotions replace their own.",
+        "role": "assistant"
+      },
+      {
+        "content": "Based on the passage and the subsequent description of the system's procedure, the \"writing flow\" in DiaryMate is designed to move seamlessly between user-led drafting and AI-assisted reflection. The process follows this sequence: 1. **Entry Initiation:** The user begins by entering a title for their journal entry, which sets the initial context for the AI. 2. **AI Triggering:** As the user writes, they can trigger AI assistance at any point. This is typically done through a specific interaction, such as pressing a keyboard shortcut (like the \"Tab\" key) when they feel stuck or want to see a new perspective. 3. **Suggestion and Selection:** The AI then provides multiple \"next-sentence\" suggestions or keywords based on what the user has already written. These suggestions are designed to reflect various emotional tones or viewpoints. 4. **Integration and Refinement:** The user reviews these AI-generated options and can either select one to insert directly into the text, use a suggestion as a jumping-off point for their own original sentence, or ignore the suggestions entirely to continue writing manually. This step-by-step flow is critical to the paper\u2019s argument because it demonstrates how a system can provide \"guided\" support without taking over the user's voice. By requiring the user to manually trigger the AI and choose from multiple suggestions, the design aims to maintain the user\u2019s agency in a highly personal task\u2014journaling\u2014where the authenticity of the \"self\" is paramount. It allows the LLM to act as a collaborative partner that aids reflection rather than just a tool that completes a task.",
+        "role": "assistant"
+      },
+      {
+        "turn_type": "baseline_explanation",
+        "content": "This passage introduces the core interaction design and user workflow of **DiaryMate**, the LLM-based journaling assistant developed for this study. In personal writing, finding the right balance of AI assistance is a major challenge. If the system is too passive, it fails to help users who are stuck; if it is too active or prescriptive, it can strip away the user's authentic voice and agency. To address this, the authors designed DiaryMate to support both **guided authoring** (where the AI actively prompts or structures the writing) and **unguided authoring** (where the user writes freely, and the AI only step in with subtle suggestions like next-sentence generation when prompted). This design choice is central to the paper\u2019s broader research goal: understanding how users negotiate ownership over their personal thoughts when collaborating with an AI. By providing a flexible workflow that accommodates both styles of writing, the researchers were able to study how different levels of AI involvement impact reflection, self-expression, and the risk of over-reliance on AI-generated emotional language.",
+        "role": "assistant",
+        "turn_id": "turn_7d40d36364a84bb0b2c30b5d4b2bd166"
+      }
+    ]
+  },
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 4,
+    "selected_text_preview": "Based on the design goals suggesting both guided and unguided authoring capabilities, we designed and instantiated DiaryMate\u2019s writing flow such that users can undertake the following procedure.",
+    "selected_text_length": 194,
+    "baseline_explanation_length": 1114,
+    "has_reaction_window_summary": true,
+    "support_cue": "uncertain",
+    "dominant_state": "engagement",
+    "secondary_state": "frustration",
+    "dominant_academic_state": "engagement",
+    "secondary_academic_state": "frustration",
+    "academic_state_scores": {
+      "boredom": 0.0219,
+      "confusion": 0.0007,
+      "engagement": 0.8646,
+      "frustration": 0.1128
+    },
+    "reaction_window_duration": 8.1,
+    "reaction_window_avg_confidence": 0.708,
+    "allowed_strategy_families": [
+      "deep_technical_explanation",
+      "critique_assumptions",
+      "connect_to_related_work",
+      "limitations_and_implications",
+      "compare_methods"
+    ],
+    "passage_type": "method",
+    "difficulty_hint": "multi_step_process",
+    "rag_chunk_count": 0,
+    "nearby_context_count": 1,
+    "recent_conversation_count": 5,
+    "inferred_process_state": "baseline_ready",
+    "recommended_strategy": "baseline_explanation",
+    "question_intent": "general_followup"
+  },
+  "allowed_strategy_families": [
+    "deep_technical_explanation",
+    "critique_assumptions",
+    "connect_to_related_work",
+    "limitations_and_implications",
+    "compare_methods"
+  ],
+  "support_cue": "deepening",
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": true
+  }
+}

@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULTS = {
     "LLM_PROVIDER": "gemini",
-    "GEMINI_MODEL": "gemini-flash-latest",
+    "GEMINI_MODEL": "gemini-2.5-flash",
     "GEMINI_EMBEDDING_MODEL": "gemini-embedding-001",
     "STRATEGY_PLANNER_PROVIDER": "gemini",
 }

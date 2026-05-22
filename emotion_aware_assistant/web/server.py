@@ -119,7 +119,13 @@ def run_web_server(host: str = "127.0.0.1", port: int = 8000, config_path: str =
 
     server = _bind_server(host, port, Handler)
     actual_host, actual_port = server.server_address
+    if hasattr(app, "state"):
+        app.state.server_port = int(actual_port)
     print(f"Web app running at http://{actual_host}:{actual_port}")
+    if hasattr(app, "state") and hasattr(app.state, "runtime_status"):
+        for warning in app.state.runtime_status().get("warnings", []):
+            if "Gemini environment" in warning or "GEMINI_MODEL=gemini-flash-latest" in warning:
+                print(warning)
     print("Press Ctrl+C to stop.")
     try:
         server.serve_forever()
@@ -176,7 +182,12 @@ class WebRequestHandler(BaseHTTPRequestHandler):
             self._send_document_library_file(path)
             return
         if path.startswith("/api/"):
-            if (path.startswith("/api/local-config") or path.startswith("/api/camera-debug") or path.startswith("/api/llm-compare")) and not self._is_local_client():
+            if (
+                path.startswith("/api/local-config")
+                or path.startswith("/api/camera-debug")
+                or path.startswith("/api/llm-compare")
+                or path.startswith("/api/runtime")
+            ) and not self._is_local_client():
                 self._send_json({"status": 403, "json": {"error": "This local-development API is only available from localhost."}})
                 return
             route_path = path + (f"?{parsed.query}" if parsed.query else "")
@@ -205,7 +216,12 @@ class WebRequestHandler(BaseHTTPRequestHandler):
         if not path.startswith("/api/"):
             self._send_json({"status": 404, "json": {"error": "Not found"}})
             return
-        if (path.startswith("/api/local-config") or path.startswith("/api/camera-debug") or path.startswith("/api/llm-compare")) and not self._is_local_client():
+        if (
+            path.startswith("/api/local-config")
+            or path.startswith("/api/camera-debug")
+            or path.startswith("/api/llm-compare")
+            or path.startswith("/api/runtime")
+        ) and not self._is_local_client():
             self._send_json({"status": 403, "json": {"error": "This local-development API is only available from localhost."}})
             return
         content_type = self.headers.get("Content-Type", "")

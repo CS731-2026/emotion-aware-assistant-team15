@@ -444,7 +444,7 @@
 <body>
   <header>
     <h1>Camera Debug Workspace</h1>
-    <p>One captured frame, one OpenFace result, one crop, and one 224x224 academic-state model input.</p>
+    <p>One captured frame, one OpenFace result, one crop, one 224x224 model input, and a learning-support signal. This is not a psychological diagnosis.</p>
   </header>
 
   <main>
@@ -556,6 +556,7 @@
         <div class="row"><span>Crop strategy</span><span id="crop-strategy">n/a</span></div>
         <div class="row"><span>Crop mode</span><span id="crop-mode-readout">square_face_context</span></div>
         <div class="row"><span>Frame size</span><span id="frame-size">n/a</span></div>
+        <div class="row"><span>Crop hash</span><span id="crop-hash-readout">n/a</span></div>
         <div class="row"><span>Mirrored</span><span id="mirrored-readout">false</span></div>
         <div class="row"><span>Warning</span><span id="warning-readout">n/a</span></div>
       </div>
@@ -566,34 +567,56 @@
     </section>
 
     <section class="panel wide">
-      <h2>Raw Detection and Mapped Academic State</h2>
+      <h2>Active Raw 8-Class Emotion Chain</h2>
       <label class="checkpoint-row" for="emotion-checkpoint-path">
         <span>Emotion checkpoint path</span>
-        <input id="emotion-checkpoint-path" type="text" placeholder="models/emotion_model/best_model.pt">
+        <input id="emotion-checkpoint-path" type="text" placeholder="models/emotion_model/raw_8class_best.pt">
         <button id="save-emotion-checkpoint" type="button">Save checkpoint path</button>
       </label>
+      <p class="subheading">Raw 8-Class Emotion Evidence</p>
+      <p class="subheading">Raw Facial Emotion Model (8-class)</p>
       <div class="kv">
+        <div class="row"><span>inference_source</span><span id="active-chain-source">n/a</span></div>
         <div class="row"><span>Model mode</span><span id="pipeline-mode">unknown</span></div>
-        <div class="row"><span>Checkpoint</span><span id="pipeline-checkpoint">n/a</span></div>
-        <div class="row"><span>Classes</span><span id="pipeline-classes">n/a</span></div>
+        <div class="row"><span>checkpoint_path</span><span id="pipeline-checkpoint">n/a</span></div>
+        <div class="row"><span>num_classes</span><span id="active-chain-num-classes">n/a</span></div>
+        <div class="row"><span>classes</span><span id="pipeline-classes">n/a</span></div>
         <div class="row"><span>Raw detection available</span><span id="pipeline-raw-available">no</span></div>
-        <div class="row"><span>Raw label</span><span id="raw-label">n/a</span></div>
-        <div class="row"><span>Raw confidence</span><span id="raw-confidence">n/a</span></div>
+        <div class="row"><span>raw_label</span><span id="raw-label">n/a</span></div>
+        <div class="row"><span>raw_confidence</span><span id="raw-confidence">n/a</span></div>
         <div class="row"><span>Raw detection</span><span id="raw-unavailable">Raw detection unavailable for this checkpoint.</span></div>
+      </div>
+      <p class="subheading" style="margin-top: 14px;">Academic Learning-State Scores</p>
+      <p class="subheading" style="margin-top: 6px;">Mapped Academic Reading State</p>
+      <div class="kv">
+        <div class="row"><span>mapping_rule_version</span><span id="active-chain-mapping-rule-version">n/a</span></div>
         <div class="row"><span>Mapping step</span><span id="mapping-step">n/a</span></div>
-        <div class="row"><span>Mapped academic state</span><span id="mapped-academic-state">n/a</span></div>
-        <div class="row"><span>Smoothed state</span><span id="smoothed-state">n/a</span></div>
+        <div class="row"><span>mapped_academic_state</span><span id="mapped-academic-state">n/a</span></div>
+        <div class="row"><span>smoothed_academic_state</span><span id="smoothed-state">n/a</span></div>
+        <div class="row"><span>dominant_academic_state</span><span id="learning-dominant-academic-state">n/a</span></div>
+        <div class="row"><span>secondary_academic_state</span><span id="learning-secondary-academic-state">n/a</span></div>
+        <div class="row"><span>used_for_strategy</span><span id="active-chain-used-for-strategy">false</span></div>
         <div class="row"><span>Buffer contents</span><span id="buffer-contents">n/a</span></div>
         <div class="row"><span>Response strategy</span><span id="response-strategy">n/a</span></div>
       </div>
-      <p class="hint">Set RAW_EMOTION_CHECKPOINT_PATH or EMOTION_CHECKPOINT_PATH to an 8-class checkpoint.</p>
+      <p class="subheading" style="margin-top: 14px;">Process-Aware Support Cue</p>
+      <div class="kv">
+        <div class="row"><span>support_cue</span><span id="learning-support-cue">n/a</span></div>
+        <div class="row"><span>inferred_process_state</span><span id="learning-inferred-process-state">n/a</span></div>
+      </div>
+      <p class="subheading" style="margin-top: 14px;">Strategy Recommendation</p>
+      <div class="kv">
+        <div class="row"><span>recommended_strategy</span><span id="learning-recommended-strategy">n/a</span></div>
+        <div class="row"><span>strategy_reason</span><span id="learning-strategy-reason">n/a</span></div>
+      </div>
+      <p class="hint">Set RAW_EMOTION_CHECKPOINT_PATH to an 8-class checkpoint, or EMOTION_CHECKPOINT_PATH to keep the 4-class academic-state fallback.</p>
       <div class="probability-grid">
         <div>
-          <p class="subheading">Raw emotion probabilities</p>
+          <p class="subheading">raw_probabilities</p>
           <div class="bars" id="raw-probability-bars"></div>
         </div>
         <div>
-          <p class="subheading">Academic-state scores</p>
+          <p class="subheading">mapped_academic_scores</p>
           <div class="bars" id="mapped-state-bars"></div>
         </div>
       </div>
@@ -603,17 +626,27 @@
         <span>contempt -> boredom</span>
         <span>happy + neutral -> engagement</span>
       </div>
+      <details>
+        <summary>Learning Signal Package</summary>
+        <pre class="snapshot" id="learning-signal-package-json">{}</pre>
+      </details>
     </section>
 
     <section class="panel">
-      <h2>Model prediction</h2>
+      <h2>Direct 4-Class Academic-State Diagnostic</h2>
       <div class="kv">
         <div class="row"><span>model_loaded</span><span id="model-loaded">checking</span></div>
-        <div class="row"><span>mode</span><span>Current Mode B: academic-state checkpoint</span></div>
-        <div class="row"><span>academic_state</span><span id="latest-state">n/a</span></div>
-        <div class="row"><span>confidence</span><span id="latest-confidence">n/a</span></div>
+        <div class="row"><span>inference_source</span><span id="direct-diagnostic-source">direct_4class_checkpoint</span></div>
+        <div class="row"><span>checkpoint_path</span><span id="direct-diagnostic-checkpoint">n/a</span></div>
+        <div class="row"><span>num_classes</span><span id="direct-diagnostic-num-classes">4</span></div>
+        <div class="row"><span>classes</span><span id="direct-diagnostic-classes">boredom, confusion, engagement, frustration</span></div>
+        <div class="row"><span>class_order_source</span><span id="direct-diagnostic-class-order-source">n/a</span></div>
+        <div class="row"><span>direct_academic_state</span><span id="latest-state">n/a</span></div>
+        <div class="row"><span>direct_academic_confidence</span><span id="latest-confidence">n/a</span></div>
+        <div class="row"><span>used_for_strategy</span><span id="direct-diagnostic-used-for-strategy">false</span></div>
       </div>
-      <div class="bars" id="prediction-bars"></div>
+      <p class="subheading">direct_academic_probabilities</p>
+      <div class="bars" id="direct-diagnostic-probability-bars"></div>
       <details>
         <summary>Debug JSON</summary>
         <pre class="snapshot" id="snapshot">{}</pre>
@@ -797,7 +830,8 @@
     function renderAnalysis(analysis) {
       const face = analysis.face_detection || {};
       const prediction = analysis.prediction || {};
-      const distribution = prediction.state_distribution || prediction.distribution || {};
+      const directDiagnostic = analysis.direct_4class_diagnostic || {};
+      const distribution = directDiagnostic.probabilities || prediction.state_distribution || prediction.distribution || {};
       const frameSizeText = Array.isArray(analysis.analyzed_frame_size) && analysis.analyzed_frame_size.length >= 2
         ? `${analysis.analyzed_frame_size[0]} x ${analysis.analyzed_frame_size[1]}`
         : "frame size missing";
@@ -811,14 +845,15 @@
       setText("crop-strategy", face.crop_strategy || "n/a");
       setText("crop-mode-readout", face.crop_mode || cropSettingsPayload().crop_mode);
       setText("frame-size", formatBBox(analysis.analyzed_frame_size));
+      setText("crop-hash-readout", analysis.crop_hash || "n/a");
       setText("mirrored-readout", String(Boolean(face.mirrored)));
       setText("live-mirror-state", "mirrored: false");
       const frameWarnings = currentFrameWarnings(analysis, face);
       setText("warning-readout", frameWarnings.join(" | ") || "n/a");
-      setText("latest-state", prediction.academic_state || "n/a");
-      setText("latest-confidence", prediction.confidence ? pct(prediction.confidence) : "n/a");
-      renderBars(elements["prediction-bars"], distribution);
+      setText("latest-state", directDiagnostic.state || prediction.academic_state || "n/a");
+      setText("latest-confidence", Number(directDiagnostic.confidence ?? prediction.confidence ?? 0) > 0 ? pct(directDiagnostic.confidence ?? prediction.confidence) : "n/a");
       renderEmotionPipeline(analysis.emotion_pipeline || {});
+      renderExplicitChains(analysis);
       renderAnalyzedFrameSvg(analysis);
       renderCoordinateDebug(analysis);
       updatePreviewImage("crop-preview", "crop-placeholder", analysis.crop_preview_data_url);
@@ -826,8 +861,9 @@
     }
 
     function modelModeLabel(mode) {
-      if (mode === "raw_emotion") return "raw emotion model";
-      if (mode === "academic_state") return "academic-state model";
+      if (mode === "raw_emotion") return "raw_emotion";
+      if (mode === "academic_state") return "academic_state";
+      if (mode === "auto") return "auto";
       return "unknown";
     }
 
@@ -837,22 +873,70 @@
       const smoothed = pipeline.smoothed_state || {};
       const academic = pipeline.academic_state || {};
       const mode = pipeline.model_output_type || "unknown";
-      setText("pipeline-mode", modelModeLabel(mode));
+      const requestedMode = pipeline.requested_model_mode || emotionPipelineStatus.requested_model_mode || "auto";
+      setText("pipeline-mode", `${modelModeLabel(mode)} / configured ${modelModeLabel(requestedMode)}`);
       setText("pipeline-checkpoint", pipeline.checkpoint_path || emotionPipelineStatus.checkpoint_path || "n/a");
       setText("pipeline-classes", Array.isArray(pipeline.classes) && pipeline.classes.length ? pipeline.classes.join(", ") : Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
-      setText("pipeline-raw-available", pipeline.raw_detection_available ? "yes" : "no");
-      setText("raw-label", raw?.label || "n/a");
-      setText("raw-confidence", raw?.confidence ? pct(raw.confidence) : "n/a");
+      setText("pipeline-raw-available", pipeline.raw_emotion_available || pipeline.raw_detection_available ? "yes" : "no");
+      setText("raw-label", pipeline.raw_emotion || raw?.label || "n/a");
+      setText("raw-confidence", Number(pipeline.raw_emotion_confidence ?? raw?.confidence ?? 0) > 0 ? pct(pipeline.raw_emotion_confidence ?? raw.confidence) : "n/a");
       setText("raw-unavailable", raw ? "available" : "Raw detection unavailable for this checkpoint.");
       setText("mapping-step", mapped.mapping_rule || (mode === "academic_state" ? "bypassed: checkpoint directly predicts academic states" : "n/a"));
       setText("mapped-academic-state", mapped.state || academic.state || "n/a");
       setText("smoothed-state", smoothed.state || "n/a");
       setText("buffer-contents", Array.isArray(smoothed.buffer) && smoothed.buffer.length ? smoothed.buffer.join(", ") : "n/a");
       setText("response-strategy", pipeline.response_strategy || "n/a");
-      renderBars(elements["raw-probability-bars"], raw?.probabilities || {}, rawEmotionLabels);
+      renderBars(elements["raw-probability-bars"], pipeline.raw_emotion_probabilities || raw?.probabilities || {}, rawEmotionLabels);
       const mappedScores = mapped.scores || academic.distribution || {};
       const scoreOrder = mode === "raw_emotion" ? mappedStateOrder : states;
       renderBars(elements["mapped-state-bars"], mappedScores, scoreOrder);
+    }
+
+    function renderExplicitChains(analysis) {
+      const active = analysis.active_chain || {};
+      const activeRaw = active.source === "raw_8class_checkpoint" ? active : {};
+      const direct = analysis.direct_4class_diagnostic || {};
+      const learningSignalPackage = analysis.learning_signal_package || {};
+      setText("learning-signal-package-json", JSON.stringify(learningSignalPackage, null, 2));
+      setText("learning-dominant-academic-state", learningSignalPackage.dominant_academic_state || activeRaw.mapped_academic_state || activeRaw.mapped_state || "n/a");
+      setText("learning-secondary-academic-state", learningSignalPackage.secondary_academic_state || "n/a");
+      setText("learning-support-cue", learningSignalPackage.support_cue || "n/a");
+      setText("learning-inferred-process-state", learningSignalPackage.inferred_process_state || "n/a");
+      setText("learning-recommended-strategy", learningSignalPackage.recommended_strategy || "n/a");
+      setText("learning-strategy-reason", learningSignalPackage.strategy_reason || "n/a");
+      setText("active-chain-source", activeRaw.source || "n/a");
+      setText("active-chain-num-classes", activeRaw.num_classes ?? "n/a");
+      if (Array.isArray(activeRaw.classes) && activeRaw.classes.length) {
+        setText("pipeline-classes", activeRaw.classes.join(", "));
+      } else {
+        setText("pipeline-classes", "n/a");
+      }
+      if (activeRaw.checkpoint_path) {
+        setText("pipeline-checkpoint", activeRaw.checkpoint_path);
+      } else {
+        setText("pipeline-checkpoint", "n/a");
+      }
+      setText("pipeline-raw-available", activeRaw.source ? "yes" : "no");
+      setText("raw-label", activeRaw.raw_label || "n/a");
+      setText("raw-confidence", Number(activeRaw.raw_confidence || 0) > 0 ? pct(activeRaw.raw_confidence) : "n/a");
+      setText("raw-unavailable", activeRaw.source ? "available" : "Raw detection unavailable for this checkpoint.");
+      setText("active-chain-mapping-rule-version", activeRaw.mapping_rule_version || "n/a");
+      setText("mapping-step", activeRaw.mapping_rule || activeRaw.mapping_rule_version || "n/a");
+      setText("mapped-academic-state", activeRaw.mapped_academic_state || activeRaw.mapped_state || "n/a");
+      setText("smoothed-state", activeRaw.smoothed_academic_state || activeRaw.smoothed_state || "n/a");
+      setText("active-chain-used-for-strategy", String(Boolean(activeRaw.used_for_strategy)));
+      renderBars(elements["raw-probability-bars"], activeRaw.raw_probabilities || {}, rawEmotionLabels);
+      renderBars(elements["mapped-state-bars"], activeRaw.mapped_academic_scores || activeRaw.mapped_scores || {}, mappedStateOrder);
+
+      setText("direct-diagnostic-source", direct.source || "direct_4class_checkpoint");
+      setText("direct-diagnostic-checkpoint", direct.checkpoint_path || "n/a");
+      setText("direct-diagnostic-num-classes", direct.num_classes ?? "n/a");
+      setText("direct-diagnostic-classes", Array.isArray(direct.classes) && direct.classes.length ? direct.classes.join(", ") : "n/a");
+      setText("direct-diagnostic-class-order-source", direct.class_order_source || "n/a");
+      setText("latest-state", direct.direct_academic_state || direct.state || "n/a");
+      setText("latest-confidence", Number(direct.direct_academic_confidence ?? direct.confidence ?? 0) > 0 ? pct(direct.direct_academic_confidence ?? direct.confidence) : "n/a");
+      setText("direct-diagnostic-used-for-strategy", String(Boolean(direct.used_for_strategy)));
+      renderBars(elements["direct-diagnostic-probability-bars"], direct.direct_academic_probabilities || direct.probabilities || {}, states);
     }
 
     function updatePreviewImage(imageId, placeholderId, dataUrl) {
@@ -976,6 +1060,23 @@
         },
         emotion_pipeline: analysis.emotion_pipeline || {},
         prediction: analysis.prediction || {},
+        active_model_mode: analysis.active_model_mode || "",
+        crop_hash: analysis.crop_hash || "",
+        frame_timestamp: analysis.frame_timestamp || "",
+        raw_checkpoint_path: analysis.raw_checkpoint_path || "",
+        raw_checkpoint_classes: analysis.raw_checkpoint_classes || [],
+        academic_checkpoint_path: analysis.academic_checkpoint_path || "",
+        academic_checkpoint_classes: analysis.academic_checkpoint_classes || [],
+        academic_label_order_source: analysis.academic_label_order_source || "",
+        raw_preprocessing_summary: analysis.raw_preprocessing_summary || {},
+        academic_preprocessing_summary: analysis.academic_preprocessing_summary || {},
+        direct_4class_state: analysis.direct_4class_state || "",
+        mapped_from_8class_state: analysis.mapped_from_8class_state || "",
+        direct_4class_used_for_strategy: Boolean(analysis.direct_4class_used_for_strategy),
+        mapped_8class_used_for_strategy: Boolean(analysis.mapped_8class_used_for_strategy),
+        active_chain: analysis.active_chain || {},
+        direct_4class_diagnostic: analysis.direct_4class_diagnostic || {},
+        learning_signal_package: analysis.learning_signal_package || {},
         model_input_size: analysis.model_input_size || [224, 224],
         warnings: analysis.warnings || [],
       };
@@ -1005,13 +1106,20 @@
       modelStatus = data.model_status || {};
       faceDetectorStatus = data.face_detector_status || {};
       emotionPipelineStatus = data.emotion_pipeline_status || {};
+      const statusIsRaw = emotionPipelineStatus.model_output_type === "raw_emotion";
       setCropControls(data.face_crop_settings || {});
       setText("model-loaded", String(Boolean(modelStatus.model_loaded)));
       setText("actual-detector", faceDetectorStatus.actual_detector || faceDetectorStatus.mode || "unknown");
-      setText("pipeline-mode", modelModeLabel(emotionPipelineStatus.model_output_type || modelStatus.model_output_type));
-      setText("pipeline-checkpoint", emotionPipelineStatus.checkpoint_path || modelStatus.checkpoint_path || "n/a");
-      setText("pipeline-classes", Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
-      setText("pipeline-raw-available", emotionPipelineStatus.raw_detection_available ? "yes" : "no");
+      setText("pipeline-mode", `${modelModeLabel(emotionPipelineStatus.model_output_type || modelStatus.model_output_type)} / configured ${modelModeLabel(emotionPipelineStatus.requested_model_mode || "auto")}`);
+      setText("pipeline-checkpoint", statusIsRaw ? emotionPipelineStatus.checkpoint_path || "n/a" : "n/a");
+      setText("pipeline-classes", statusIsRaw && Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
+      setText("active-chain-source", statusIsRaw ? "raw_8class_checkpoint" : "n/a");
+      setText("active-chain-num-classes", statusIsRaw && Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.length : "n/a");
+      setText("pipeline-raw-available", statusIsRaw && (emotionPipelineStatus.raw_emotion_available || emotionPipelineStatus.raw_detection_available) ? "yes" : "no");
+      setText("direct-diagnostic-checkpoint", modelStatus.checkpoint_path || "n/a");
+      setText("direct-diagnostic-classes", Array.isArray(modelStatus.classes) ? modelStatus.classes.join(", ") : "n/a");
+      setText("direct-diagnostic-num-classes", Array.isArray(modelStatus.classes) ? modelStatus.classes.length : "n/a");
+      setText("direct-diagnostic-class-order-source", modelStatus.academic_label_order_source || "n/a");
       if (emotionPipelineStatus.checkpoint_path && !elements["emotion-checkpoint-path"].value) {
         elements["emotion-checkpoint-path"].value = emotionPipelineStatus.checkpoint_path;
       }
@@ -1028,10 +1136,13 @@
         EMOTION_CHECKPOINT_PATH: checkpointPath,
       });
       emotionPipelineStatus = result.emotion_pipeline_status || {};
-      setText("pipeline-mode", modelModeLabel(emotionPipelineStatus.model_output_type));
-      setText("pipeline-checkpoint", emotionPipelineStatus.checkpoint_path || checkpointPath);
-      setText("pipeline-classes", Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
-      setText("pipeline-raw-available", emotionPipelineStatus.raw_detection_available ? "yes" : "no");
+      const statusIsRaw = emotionPipelineStatus.model_output_type === "raw_emotion";
+      setText("pipeline-mode", `${modelModeLabel(emotionPipelineStatus.model_output_type)} / configured ${modelModeLabel(emotionPipelineStatus.requested_model_mode || "auto")}`);
+      setText("pipeline-checkpoint", statusIsRaw ? emotionPipelineStatus.checkpoint_path || checkpointPath : "n/a");
+      setText("pipeline-classes", statusIsRaw && Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.join(", ") : "n/a");
+      setText("active-chain-source", statusIsRaw ? "raw_8class_checkpoint" : "n/a");
+      setText("active-chain-num-classes", statusIsRaw && Array.isArray(emotionPipelineStatus.classes) ? emotionPipelineStatus.classes.length : "n/a");
+      setText("pipeline-raw-available", statusIsRaw && (emotionPipelineStatus.raw_emotion_available || emotionPipelineStatus.raw_detection_available) ? "yes" : "no");
       showMessage("Emotion checkpoint path saved.");
       renderSnapshot();
     }
@@ -1075,7 +1186,7 @@
     });
     elements["save-emotion-checkpoint"].addEventListener("click", () => saveEmotionCheckpointPath().catch((error) => showMessage(error.message)));
 
-    renderBars(elements["prediction-bars"], {}, states);
+    renderBars(elements["direct-diagnostic-probability-bars"], {}, states);
     renderBars(elements["raw-probability-bars"], {}, rawEmotionLabels);
     renderBars(elements["mapped-state-bars"], {}, states);
     renderCropControlValues();

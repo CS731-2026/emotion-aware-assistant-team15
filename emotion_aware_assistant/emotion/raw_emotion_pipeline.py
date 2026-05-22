@@ -11,7 +11,9 @@ from emotion_aware_assistant.core.config import PROJECT_ROOT
 RAW_EMOTION_CLASSES = ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 ACADEMIC_STATE_CLASSES = ["boredom", "confusion", "engagement", "frustration"]
 MAPPED_STATE_CLASSES = ["frustration", "confusion", "boredom", "engagement"]
-DEFAULT_RAW_ARCHITECTURE = "convnextv2_pico.fcmae_ft_in1k"
+DEFAULT_RAW_ARCHITECTURE = "convnext_tiny.fb_in22k_ft_in1k"
+DEFAULT_IMAGE_MEAN = [0.485, 0.456, 0.406]
+DEFAULT_IMAGE_STD = [0.229, 0.224, 0.225]
 DEFAULT_RAW_CHECKPOINT_CANDIDATE = "models/emotion_model/raw_8class_best.pt"
 DEFAULT_ACADEMIC_CHECKPOINT_CANDIDATE = "models/emotion_model/best_model.pt"
 DEFAULT_CHECKPOINT_CANDIDATES = [
@@ -25,7 +27,7 @@ DEFAULT_CHECKPOINT_CANDIDATES = [
 
 
 def inspect_checkpoint_metadata(checkpoint: Any) -> dict[str, Any]:
-    classes = _classes_from_checkpoint(checkpoint)
+    classes, class_order_source = _classes_and_source_from_checkpoint(checkpoint)
     model_output_type = _detect_model_output_type(classes, checkpoint)
     if model_output_type == "raw_emotion":
         classes = [_canonical_raw_label(label) for label in classes]
@@ -41,10 +43,15 @@ def inspect_checkpoint_metadata(checkpoint: Any) -> dict[str, Any]:
         architecture = DEFAULT_RAW_ARCHITECTURE
     return {
         "model_output_type": model_output_type,
+        "output_type": model_output_type,
         "raw_detection_available": model_output_type == "raw_emotion",
+        "raw_emotion_available": model_output_type == "raw_emotion",
+        "academic_state_available": model_output_type == "academic_state",
         "architecture": architecture,
         "classes": classes,
         "num_classes": num_classes,
+        "metadata_source": "checkpoint_metadata" if class_order_source != "unavailable" else "unavailable",
+        "class_order_source": class_order_source,
     }
 
 
@@ -62,6 +69,7 @@ def inspect_checkpoint_file(path: str | Path) -> dict[str, Any]:
     checkpoint = load_checkpoint_for_inspection(checkpoint_path)
     info = inspect_checkpoint_metadata(checkpoint)
     state_dict = RawEmotionInferencer._extract_state_dict(checkpoint)
+    classifier_head_shapes = _classifier_head_shapes(state_dict)
     state_dict_present = isinstance(state_dict, dict) and (
         bool(state_dict)
         or (isinstance(checkpoint, dict) and any(isinstance(checkpoint.get(key), dict) for key in ("model_state_dict", "state_dict", "model", "net")))
@@ -72,10 +80,21 @@ def inspect_checkpoint_file(path: str | Path) -> dict[str, Any]:
         "architecture": info.get("architecture") or "",
         "num_classes": info.get("num_classes"),
         "classes": list(info.get("classes") or []),
+        "class_to_idx": _class_to_idx_from_checkpoint(checkpoint, list(info.get("classes") or [])),
+        "metadata_source": info.get("metadata_source") or "unavailable",
+        "class_order_source": info.get("class_order_source") or "unavailable",
         "detected_model_mode": info.get("model_output_type") or "unknown",
         "model_output_type": info.get("model_output_type") or "unknown",
+        "output_type": info.get("model_output_type") or "unknown",
         "raw_detection_available": bool(info.get("raw_detection_available")),
+        "raw_emotion_available": bool(info.get("raw_emotion_available")),
+        "academic_state_available": bool(info.get("academic_state_available")),
+        "epoch": checkpoint.get("epoch") if isinstance(checkpoint, dict) else None,
+        "val_acc": checkpoint.get("val_acc") if isinstance(checkpoint, dict) else None,
         "model_state_dict_present": state_dict_present,
+        "classifier_head_shapes": classifier_head_shapes,
+        "head_fc_weight_shape": classifier_head_shapes.get("head.fc.weight"),
+        "preprocessing_summary": _inspection_preprocessing_summary(checkpoint),
         "sample_keys": [str(key) for key in list(state_dict.keys())[:12]] if isinstance(state_dict, dict) else [],
         "checkpoint_keys": [str(key) for key in checkpoint.keys()] if isinstance(checkpoint, dict) else [],
     }
@@ -89,6 +108,7 @@ def select_emotion_checkpoint(
     root = Path(project_root).expanduser() if project_root else PROJECT_ROOT
     requested_mode = _normalize_model_mode(mode or os.environ.get("EMOTION_MODEL_MODE") or "auto")
     warnings: list[str] = []
+    availability = {"raw_emotion_available": False, "academic_state_available": False}
 
     candidates = _checkpoint_selection_candidates(checkpoint_path, requested_mode, root)
     explicit_sources = {"constructor", "RAW_EMOTION_CHECKPOINT_PATH", "EMOTION_CHECKPOINT_PATH"}
@@ -103,7 +123,9 @@ def select_emotion_checkpoint(
             "classes": [],
             "detected_model_mode": "unknown",
             "model_output_type": "unknown",
+            "output_type": "unknown",
             "raw_detection_available": False,
+            **availability,
             "model_state_dict_present": False,
             "sample_keys": [],
             "checkpoint_keys": [],
@@ -113,6 +135,7 @@ def select_emotion_checkpoint(
             "loading_error": f"Emotion checkpoint is missing: {missing_path}",
         }
     first_existing_unknown: dict[str, Any] | None = None
+    selected_result: dict[str, Any] | None = None
     for candidate in candidates:
         path = _resolve_candidate_path(candidate["path"], root)
         if not path.exists():
@@ -128,13 +151,20 @@ def select_emotion_checkpoint(
                 "classes": [],
                 "detected_model_mode": "unknown",
                 "model_output_type": "unknown",
+                "output_type": "unknown",
                 "raw_detection_available": False,
+                "raw_emotion_available": False,
+                "academic_state_available": False,
                 "model_state_dict_present": False,
                 "sample_keys": [],
                 "checkpoint_keys": [],
                 "loading_error": str(exc),
             }
         model_output_type = str(info.get("model_output_type") or info.get("detected_model_mode") or "unknown")
+        if model_output_type == "raw_emotion" and not info.get("loading_error"):
+            availability["raw_emotion_available"] = True
+        if model_output_type == "academic_state" and not info.get("loading_error"):
+            availability["academic_state_available"] = True
         result = {
             **info,
             "checkpoint_path": str(path),
@@ -145,23 +175,27 @@ def select_emotion_checkpoint(
         if requested_mode == "raw_emotion":
             if model_output_type != "raw_emotion":
                 result["warnings"] = [*result["warnings"], "Selected checkpoint does not expose the 8-class raw-emotion labels."]
-            return result
+            return {**result, **availability}
         if requested_mode == "academic_state":
             if model_output_type != "academic_state":
                 result["warnings"] = [*result["warnings"], "Selected checkpoint does not expose the 4-class academic-state labels."]
-            return result
+            return {**result, **availability}
         if candidate.get("requires_raw") and model_output_type != "raw_emotion":
             warnings.append(f"Skipped {path}: not an 8-class raw-emotion checkpoint.")
             if first_existing_unknown is None:
                 first_existing_unknown = result
             continue
-        if model_output_type in {"raw_emotion", "academic_state"}:
-            return result
+        if selected_result is None and model_output_type in {"raw_emotion", "academic_state"}:
+            selected_result = result
+            continue
         if first_existing_unknown is None:
             first_existing_unknown = result
+    if selected_result is not None:
+        selected_result["warnings"] = [*selected_result.get("warnings", []), *warnings]
+        return {**selected_result, **availability}
     if first_existing_unknown is not None:
         first_existing_unknown["warnings"] = [*first_existing_unknown.get("warnings", []), *warnings]
-        return first_existing_unknown
+        return {**first_existing_unknown, **availability}
     return {
         "checkpoint_path": "",
         "arch": "",
@@ -170,7 +204,9 @@ def select_emotion_checkpoint(
         "classes": [],
         "detected_model_mode": "unknown",
         "model_output_type": "unknown",
+        "output_type": "unknown",
         "raw_detection_available": False,
+        **availability,
         "model_state_dict_present": False,
         "sample_keys": [],
         "checkpoint_keys": [],
@@ -183,7 +219,10 @@ def select_emotion_checkpoint(
 
 class EmotionMapper:
     def map_probs_to_scores(self, probs: dict[str, float]) -> dict[str, float]:
-        normalized = {_canonical_raw_label(key): _safe_float(value) for key, value in probs.items()}
+        normalized: dict[str, float] = {}
+        for key, value in probs.items():
+            label = _canonical_raw_label(key)
+            normalized[label] = normalized.get(label, 0.0) + _safe_float(value)
         return {
             "frustration": normalized.get("sad", 0.0) + normalized.get("anger", 0.0) + normalized.get("disgust", 0.0),
             "confusion": normalized.get("fear", 0.0) + normalized.get("surprise", 0.0),
@@ -264,6 +303,9 @@ class RawEmotionInferencer:
         self.architecture = DEFAULT_RAW_ARCHITECTURE
         self.model_output_type = "unknown"
         self.checkpoint_path: Path | None = None
+        self.input_size = 224
+        self.mean = list(DEFAULT_IMAGE_MEAN)
+        self.std = list(DEFAULT_IMAGE_STD)
         self.load_error: str | None = None
         self.load_warnings: list[str] = []
         self._loaded = False
@@ -278,10 +320,17 @@ class RawEmotionInferencer:
         return {
             "model_loaded": self._loaded,
             "model_output_type": model_output_type,
+            "requested_model_mode": selection.get("requested_model_mode") or _normalize_model_mode(os.environ.get("EMOTION_MODEL_MODE") or "auto"),
             "raw_detection_available": model_output_type == "raw_emotion" and not bool(selection.get("loading_error")),
+            "raw_emotion_available": bool(selection.get("raw_emotion_available")) or (model_output_type == "raw_emotion" and not bool(selection.get("loading_error"))),
+            "academic_state_available": bool(selection.get("academic_state_available")) or (model_output_type == "academic_state" and not bool(selection.get("loading_error"))),
             "checkpoint_path": _safe_checkpoint_label(path) if path else "",
             "architecture": architecture,
             "classes": list(classes),
+            "input_size": self.input_size,
+            "mean": list(self.mean),
+            "std": list(self.std),
+            "preprocessing_summary": self.preprocessing_summary(),
             "loading_error": self.load_error or selection.get("loading_error"),
             "loading_warnings": list(dict.fromkeys([*self.load_warnings, *(selection.get("warnings") or [])])),
             "device": self.device,
@@ -315,6 +364,7 @@ class RawEmotionInferencer:
                 self.load_error = "Checkpoint classes do not match raw-emotion or academic-state labels."
                 return self.status()
             model = timm.create_model(self.architecture, pretrained=False, num_classes=len(self.classes))
+            self._set_preprocess_from_timm(model)
             state_dict = self._extract_state_dict(checkpoint)
             state_dict = self._clean_state_dict_keys(state_dict)
             try:
@@ -343,10 +393,12 @@ class RawEmotionInferencer:
             from PIL import Image  # type: ignore
 
             pil_image = self._to_pil_image(image, Image, np)
-            resized = pil_image.resize((224, 224))
+            resized = pil_image.resize((self.input_size, self.input_size))
             arr = np.asarray(resized).astype("float32") / 255.0
             tensor = torch.tensor(arr).permute(2, 0, 1)
-            tensor = (tensor - 0.5) / 0.5
+            mean = torch.tensor(self.mean, dtype=torch.float32).view(3, 1, 1)
+            std = torch.tensor(self.std, dtype=torch.float32).view(3, 1, 1)
+            tensor = (tensor - mean) / std
             tensor = tensor.unsqueeze(0).to(self.device)
             with torch.no_grad():
                 probs = torch.softmax(self.model(tensor), dim=1)[0].detach().cpu().numpy()
@@ -357,6 +409,16 @@ class RawEmotionInferencer:
             }
         except Exception as exc:
             return {**self.status(), "error": f"Emotion model prediction failed: {exc}"}
+
+    def preprocessing_summary(self) -> dict[str, Any]:
+        return {
+            "input_size": int(self.input_size or 224),
+            "mean": list(self.mean),
+            "std": list(self.std),
+            "color_space": "RGB",
+            "tensor_layout": "NCHW",
+            "resize_method": "PIL.Image.resize default",
+        }
 
     def _find_checkpoint_path(self) -> Path | None:
         selection = self.checkpoint_selection()
@@ -378,6 +440,25 @@ class RawEmotionInferencer:
             seen.add(text)
             candidates.append(Path(text).expanduser())
         return candidates
+
+    def _set_preprocess_from_timm(self, model: Any) -> None:
+        self.input_size = 224
+        self.mean = list(DEFAULT_IMAGE_MEAN)
+        self.std = list(DEFAULT_IMAGE_STD)
+        try:
+            from timm.data import resolve_data_config  # type: ignore
+
+            data_config = resolve_data_config({}, model=model)
+            mean = data_config.get("mean")
+            std = data_config.get("std")
+            if isinstance(mean, (tuple, list)) and len(mean) >= 3:
+                self.mean = [float(mean[0]), float(mean[1]), float(mean[2])]
+            if isinstance(std, (tuple, list)) and len(std) >= 3:
+                self.std = [float(std[0]), float(std[1]), float(std[2])]
+        except Exception:
+            self.input_size = 224
+            self.mean = list(DEFAULT_IMAGE_MEAN)
+            self.std = list(DEFAULT_IMAGE_STD)
 
     def checkpoint_selection(self) -> dict[str, Any]:
         return select_emotion_checkpoint(checkpoint_path=self.requested_checkpoint_path, project_root=PROJECT_ROOT)
@@ -445,8 +526,6 @@ class CombinedEmotionPipeline:
         self.inferencer = inferencer or RawEmotionInferencer(checkpoint_path=checkpoint_path)
 
     def status(self, fallback_status: dict[str, Any] | None = None) -> dict[str, Any]:
-        if self.inferencer.has_explicit_checkpoint() and not self.inferencer.status().get("model_loaded"):
-            self.inferencer.load()
         status = self.inferencer.status()
         fallback_mode = str((fallback_status or {}).get("model_output_type") or "unknown")
         should_use_fallback_status = bool(
@@ -464,7 +543,10 @@ class CombinedEmotionPipeline:
             return {
                 "model_loaded": bool(fallback_status.get("model_loaded")),
                 "model_output_type": fallback_mode,
+                "requested_model_mode": status.get("requested_model_mode") or "auto",
                 "raw_detection_available": bool(fallback_status.get("raw_emotion_available")),
+                "raw_emotion_available": bool(fallback_status.get("raw_emotion_available")),
+                "academic_state_available": fallback_mode == "academic_state",
                 "checkpoint_path": str(fallback_status.get("checkpoint_path") or ""),
                 "architecture": str(fallback_status.get("architecture") or ""),
                 "classes": list(fallback_status.get("classes") or []),
@@ -484,8 +566,10 @@ class CombinedEmotionPipeline:
         fallback_prediction: dict[str, Any] | None = None,
         fallback_status: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        selection = self.inferencer.checkpoint_selection()
-        selected_mode = str(selection.get("model_output_type") or "unknown")
+        selected_mode = str(getattr(self.inferencer, "model_output_type", "") or "")
+        if selected_mode == "unknown" or not selected_mode:
+            selection = self.inferencer.checkpoint_selection()
+            selected_mode = str(selection.get("model_output_type") or "unknown")
         if (
             fallback_prediction
             and str(fallback_prediction.get("model_output_type") or "") == "academic_state"
@@ -528,21 +612,37 @@ class CombinedEmotionPipeline:
         raw_label = max(raw_probabilities, key=raw_probabilities.get)
         raw_confidence = float(raw_probabilities[raw_label])
         mapped_state, scores = self.mapper.map_probs_to_state(raw_probabilities)
+        mapped_scores = {state: round(float(scores.get(state, 0.0)), 6) for state in MAPPED_STATE_CLASSES}
         stable_state = self.buffer.push(mapped_state)
         return {
             "model_output_type": "raw_emotion",
+            "requested_model_mode": str(prediction.get("requested_model_mode") or "auto"),
             "checkpoint_path": str(prediction.get("checkpoint_path") or ""),
             "architecture": str(prediction.get("architecture") or ""),
             "classes": list(prediction.get("classes") or RAW_EMOTION_CLASSES),
             "raw_detection_available": True,
+            "raw_emotion_available": True,
+            "raw_checkpoint_path": str(prediction.get("checkpoint_path") or ""),
+            "raw_checkpoint_classes": list(prediction.get("classes") or RAW_EMOTION_CLASSES),
+            "raw_preprocessing_summary": dict(prediction.get("preprocessing_summary") or {}),
+            "raw_emotion": raw_label,
+            "raw_emotion_confidence": raw_confidence,
+            "raw_emotion_probabilities": raw_probabilities,
             "raw_detection": {
                 "label": raw_label,
+                "raw_label": raw_label,
                 "confidence": raw_confidence,
+                "raw_confidence": raw_confidence,
                 "probabilities": raw_probabilities,
+            },
+            "academic_state": {
+                "state": mapped_state,
+                "confidence": mapped_scores.get(mapped_state, 0.0),
+                "distribution": mapped_scores,
             },
             "mapped_academic_state": {
                 "state": mapped_state,
-                "scores": {state: round(float(scores.get(state, 0.0)), 6) for state in MAPPED_STATE_CLASSES},
+                "scores": mapped_scores,
                 "mapping_rule": self.mapper.mapping_rule_for_state(mapped_state),
             },
             "smoothed_state": {
@@ -570,10 +670,19 @@ class CombinedEmotionPipeline:
         stable_state = self.buffer.push(academic_state)
         payload = {
             "model_output_type": "academic_state",
+            "requested_model_mode": str(status.get("requested_model_mode") or "auto"),
             "checkpoint_path": str(status.get("checkpoint_path") or ""),
             "architecture": str(status.get("architecture") or ""),
             "classes": list(status.get("classes") or ACADEMIC_STATE_CLASSES),
             "raw_detection_available": False,
+            "raw_emotion_available": False,
+            "academic_checkpoint_path": str(status.get("checkpoint_path") or ""),
+            "academic_checkpoint_classes": list(status.get("classes") or ACADEMIC_STATE_CLASSES),
+            "academic_label_order_source": str(status.get("academic_label_order_source") or "unavailable"),
+            "academic_preprocessing_summary": dict(status.get("preprocessing_summary") or {}),
+            "raw_emotion": None,
+            "raw_emotion_confidence": None,
+            "raw_emotion_probabilities": {},
             "raw_detection": None,
             "academic_state": {
                 "state": academic_state,
@@ -600,7 +709,12 @@ class CombinedEmotionPipeline:
         return {
             "model_output_type": "unknown",
             "raw_detection_available": False,
+            "raw_emotion_available": False,
+            "raw_emotion": None,
+            "raw_emotion_confidence": None,
+            "raw_emotion_probabilities": {},
             "raw_detection": None,
+            "academic_state": None,
             "mapped_academic_state": None,
             "smoothed_state": {
                 "state": self.buffer.get_stable_state(),
@@ -613,18 +727,103 @@ class CombinedEmotionPipeline:
 
 
 def _classes_from_checkpoint(checkpoint: Any) -> list[str]:
+    return _classes_and_source_from_checkpoint(checkpoint)[0]
+
+
+def _classes_and_source_from_checkpoint(checkpoint: Any) -> tuple[list[str], str]:
     if not isinstance(checkpoint, dict):
-        return []
-    classes = checkpoint.get("classes") or checkpoint.get("label_order")
-    if isinstance(classes, list) and classes:
-        return [str(item).strip().lower() for item in classes]
+        return [], "unavailable"
     class_to_idx = checkpoint.get("class_to_idx")
     if isinstance(class_to_idx, dict) and class_to_idx:
         try:
-            return [str(label).strip().lower() for label, _ in sorted(class_to_idx.items(), key=lambda item: int(item[1]))]
+            return [str(label).strip().lower() for label, _ in sorted(class_to_idx.items(), key=lambda item: int(item[1]))], "checkpoint_class_to_idx"
         except Exception:
-            return [str(label).strip().lower() for label in class_to_idx]
-    return []
+            return [str(label).strip().lower() for label in class_to_idx], "checkpoint_class_to_idx"
+    classes = checkpoint.get("classes") or checkpoint.get("label_order")
+    if isinstance(classes, list) and classes:
+        return [str(item).strip().lower() for item in classes], "checkpoint_classes"
+    return [], "unavailable"
+
+
+def _class_to_idx_from_checkpoint(checkpoint: Any, classes: list[str]) -> dict[str, int]:
+    if isinstance(checkpoint, dict):
+        class_to_idx = checkpoint.get("class_to_idx")
+        if isinstance(class_to_idx, dict) and class_to_idx:
+            values: dict[str, int] = {}
+            for label, index in class_to_idx.items():
+                try:
+                    values[str(label).strip().lower()] = int(index)
+                except Exception:
+                    continue
+            if values:
+                return values
+    return {str(label).strip().lower(): index for index, label in enumerate(classes)}
+
+
+def _classifier_head_shapes(state_dict: Any) -> dict[str, list[int]]:
+    if not isinstance(state_dict, dict):
+        return {}
+    preferred_suffixes = (
+        "head.fc.weight",
+        "head.fc.bias",
+        "head.weight",
+        "head.bias",
+        "classifier.weight",
+        "classifier.bias",
+        "fc.weight",
+        "fc.bias",
+    )
+    shapes: dict[str, list[int]] = {}
+    for key, value in state_dict.items():
+        key_text = str(key)
+        shape = _tensor_shape_list(value)
+        if not shape:
+            continue
+        if key_text.endswith(preferred_suffixes):
+            shapes[key_text] = shape
+    if shapes:
+        return shapes
+    for key, value in state_dict.items():
+        key_text = str(key)
+        shape = _tensor_shape_list(value)
+        if shape and "head" in key_text:
+            shapes[key_text] = shape
+    return shapes
+
+
+def _tensor_shape_list(value: Any) -> list[int]:
+    shape = getattr(value, "shape", None)
+    if shape is None:
+        return []
+    try:
+        return [int(item) for item in shape]
+    except Exception:
+        return []
+
+
+def _inspection_preprocessing_summary(checkpoint: Any) -> dict[str, Any]:
+    checkpoint_summary = "not stored"
+    if isinstance(checkpoint, dict):
+        if any(key in checkpoint for key in ("input_size", "mean", "std", "preprocessing", "data_config")):
+            checkpoint_summary = {
+                "input_size": checkpoint.get("input_size"),
+                "mean": checkpoint.get("mean"),
+                "std": checkpoint.get("std"),
+                "preprocessing": checkpoint.get("preprocessing"),
+                "data_config": checkpoint.get("data_config"),
+            }
+    return {
+        "current_runtime": {
+            "input_size": 224,
+            "mean": list(DEFAULT_IMAGE_MEAN),
+            "std": list(DEFAULT_IMAGE_STD),
+            "color_space": "RGB",
+            "tensor_layout": "NCHW",
+            "resize_method": "PIL.Image.resize default",
+            "source": "current runtime code; timm/ImageNet normalization unless timm model config resolves differently",
+        },
+        "checkpoint_metadata": checkpoint_summary,
+    }
 
 
 def _checkpoint_selection_candidates(checkpoint_path: str | Path | None, requested_mode: str, root: Path) -> list[dict[str, Any]]:
@@ -718,7 +917,10 @@ def _detect_model_output_type(classes: list[str], checkpoint: Any = None) -> str
 
 def _normalized_distribution(probabilities: dict[str, Any], labels: list[str], raw: bool = False) -> dict[str, float]:
     values: dict[str, float] = {}
-    source = {_canonical_raw_label(key) if raw else str(key).strip().lower(): value for key, value in probabilities.items()}
+    source: dict[str, float] = {}
+    for key, value in probabilities.items():
+        label = _canonical_raw_label(key) if raw else str(key).strip().lower()
+        source[label] = source.get(label, 0.0) + max(0.0, _safe_float(value, 0.0))
     for label in labels:
         key = _canonical_raw_label(label) if raw else label
         values[key] = max(0.0, _safe_float(source.get(key), 0.0))

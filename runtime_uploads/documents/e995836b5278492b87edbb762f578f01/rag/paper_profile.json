@@ -1,0 +1,18 @@
+{
+  "title": "Information not available from provided text",
+  "one_sentence_summary": "No summary can be extracted as the provided text is merely 'PDF debug test'.",
+  "research_problem": "The text 'PDF debug test' does not contain any research problem.",
+  "method_summary": "No research methodology is described in the provided text.",
+  "dataset_or_materials": "No datasets or materials are mentioned in 'PDF debug test'.",
+  "main_findings": "The provided text 'PDF debug test' contains no academic findings.",
+  "key_terms": [],
+  "section_map": [
+    {
+      "heading": "PDF debug test",
+      "page_number": 1,
+      "block_id": "e995836b5278492b87edbb762f578f01-p1-b0",
+      "start_order": 0,
+      "end_order": 1000000000
+    }
+  ]
+}

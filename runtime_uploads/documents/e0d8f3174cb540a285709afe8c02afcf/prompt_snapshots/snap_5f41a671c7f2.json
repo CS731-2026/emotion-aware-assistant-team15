@@ -1,0 +1,298 @@
+{
+  "snapshot_id": "snap_5f41a671c7f2",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "b8151c23-a388-470b-914d-8ce50c105244",
+  "source_turn_id": "turn_248a2fbfa1d9496d808e1ca8f09e1cb4",
+  "created_at": "2026-05-21T05:19:45Z",
+  "stage": "strategy_planner",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}"
+    },
+    {
+      "role": "user",
+      "content": "strategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 5,\n    \"selected_text\": \"Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"3.2.2 Recommending next sentences. This function automatically generates relevant sentences based on the existing text. Users can simply click \u201cGenerate next sentences\u201d to generate the next sentences corresponding to the existing text (See Figure 2-(C)). Similar to keyword-based sentence generation, users are asked to adjust the temperature slider to the desired level. Once clicked, users are given five sentence candidates, analogous to that of keyword-based recommendation. The user can choose one among up to five sentences recommended by DiaryMate, which is appended to the content upon click. We intended this feature to augment the introspective journaling process by offering sentence suggestions. When a user encounters a moment of hesitation or seeks to expand their thought process, they can utilize this feature. It leverages the context of the existing text to generate sentences that are coherent with the user\u2019s narrative and emotional tone. Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.\",\n    \"nearby_context\": [\n      \"can send a sentence generation request by several pre-defined keywords (See Figure 2-(B)) or without specific inputs except texts they have already generated in the text field (See Figure 2-(C)). Once completed, users can save the data (See Figure 2-(E)), and the system provides feedback (See Figure 1-(C)), a summarizing and empathizing message generated based on the diary content that the user saved.\",\n      \"3.2.1 Generating sentences using keywords. In the \u201cGenerate using keywords\u201d tab menu, users are shown a slider to manipulate temperature and keywords for sentence generation (See Figure 2- (B)). Using the slider, the user can change the temperature to any level between \u201ctypical sentence\u201d (low temperature) and \u201cunique sentence\u201d (high temperature). The system sources keywords from users, which later serve as material for generating sentences. Although there is no strict requirement for keywords, users are encouraged to separate keywords by a comma (i.e., chores, tired, roommate, ...), notified with placeholder text, to make the structure coherent with the format of our trained texts. Next, the user clicks \u201cGenerate sentences,\u201d which subsequently returns up to five sentence recommendations (See Figure 2-(D)). If the user is satisfied with any of the recommendations and wants to add them to the content text field, they can click the sentence; otherwise, users can start the process over or skip the recommendations. We intended this approach to allow the system to effectively use keywords as a writing aid wit [truncated; original length: 1436 characters]\",\n      \"3.2.3 Receiving feedback about a completed entry. Users can complete their journal entries by actively collaborating with AI-assisted sentence-generation functionalities (i.e., Generating sentences using keywords, Recommending next sentences). Once complete, users can record their diaries by clicking the \u201cSave today\u2019s diary\u201d\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"unknown\",\n    \"difficulty_hint\": \"unknown\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\",\n    \"baseline_explanation\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\",\n      \"highlight_id\": \"b8151c23-a388-470b-914d-8ce50c105244\",\n      \"window_start\": \"2026-05-21T05:19:36.800Z\",\n      \"window_end\": \"2026-05-21T05:19:44.976Z\",\n      \"duration_sec\": 8.2,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.701,\n      \"max_confidence\": 0.943,\n      \"avg_distribution\": {\n        \"boredom\": 0.059,\n        \"confusion\": 0.001,\n        \"engagement\": 0.701,\n        \"frustration\": 0.24\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"trigger_reason\": \"The baseline explanation was being read while the learning signal showed a deepening cue.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. \\n\\nThis design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries.\\n\\nThis connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"Deepening cue\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.701,\n    \"avg_distribution\": {\n      \"boredom\": 0.059,\n      \"confusion\": 0.001,\n      \"engagement\": 0.701,\n      \"frustration\": 0.24\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.2\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": {\n      \"source\": \"raw_8class_checkpoint\",\n      \"checkpoint_path\": \"models/emotion_model/raw_8class_best.pt\",\n      \"raw_emotion_label\": \"neutral\",\n      \"raw_emotion_confidence\": 0.9253,\n      \"raw_emotion_probabilities\": {\n        \"anger\": 0,\n        \"contempt\": 0.0025,\n        \"disgust\": 0.0004,\n        \"fear\": 0,\n        \"happy\": 0.0181,\n        \"neutral\": 0.9253,\n        \"sad\": 0.0526,\n        \"surprise\": 0.001\n      },\n      \"raw_top_emotions\": [\n        {\n          \"label\": \"neutral\",\n          \"probability\": 0.9253\n        },\n        {\n          \"label\": \"sad\",\n          \"probability\": 0.0526\n        },\n        {\n          \"label\": \"happy\",\n          \"probability\": 0.0181\n        }\n      ],\n      \"frame_timestamp\": \"2026-05-21T05:19:44Z\",\n      \"crop_hash\": null\n    },\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.0025,\n        \"confusion\": 0.001,\n        \"engagement\": 0.9434,\n        \"frustration\": 0.0531\n      },\n      \"mapping_explanation\": \"happy + neutral -> engagement\",\n      \"confidence_notes\": [\n        \"single-frame mapped scores should be interpreted through reaction windows and dialogue context\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": null,\n      \"window_end\": null,\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.9434\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.0531\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.0025\n        }\n      ],\n      \"trend\": \"single_frame_only\",\n      \"evidence_count\": 0,\n      \"reliability_notes\": [\n        \"no reaction window; do not infer a strong learning process state from this frame alone\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.0025,\n        \"confusion\": 0.001,\n        \"engagement\": 0.9434,\n        \"frustration\": 0.0531\n      },\n      \"support_cue\": \"neutral_or_uncertain\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": null,\n      \"turn_index\": 0,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"unknown\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.0025,\n      \"confusion\": 0.001,\n      \"engagement\": 0.9434,\n      \"frustration\": 0.0531\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"strategy_state\": \"uncertain\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"strategy_reason\": \"first explanation should stay paper-grounded before adapting from process signals\",\n    \"prompt_guidance\": [\n      \"Use a baseline paper-grounded explanation and avoid overfitting to weak signals.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.0025,\n      \"confusion\": 0.001,\n      \"engagement\": 0.9434,\n      \"frustration\": 0.0531\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\",\n      \"role\": \"assistant\",\n      \"turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\"\n    }\n  ]\n}"
+    }
+  ],
+  "prompt_text": "system:\nYou are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}\n\nuser:\nstrategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 5,\n    \"selected_text\": \"Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"3.2.2 Recommending next sentences. This function automatically generates relevant sentences based on the existing text. Users can simply click \u201cGenerate next sentences\u201d to generate the next sentences corresponding to the existing text (See Figure 2-(C)). Similar to keyword-based sentence generation, users are asked to adjust the temperature slider to the desired level. Once clicked, users are given five sentence candidates, analogous to that of keyword-based recommendation. The user can choose one among up to five sentences recommended by DiaryMate, which is appended to the content upon click. We intended this feature to augment the introspective journaling process by offering sentence suggestions. When a user encounters a moment of hesitation or seeks to expand their thought process, they can utilize this feature. It leverages the context of the existing text to generate sentences that are coherent with the user\u2019s narrative and emotional tone. Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.\",\n    \"nearby_context\": [\n      \"can send a sentence generation request by several pre-defined keywords (See Figure 2-(B)) or without specific inputs except texts they have already generated in the text field (See Figure 2-(C)). Once completed, users can save the data (See Figure 2-(E)), and the system provides feedback (See Figure 1-(C)), a summarizing and empathizing message generated based on the diary content that the user saved.\",\n      \"3.2.1 Generating sentences using keywords. In the \u201cGenerate using keywords\u201d tab menu, users are shown a slider to manipulate temperature and keywords for sentence generation (See Figure 2- (B)). Using the slider, the user can change the temperature to any level between \u201ctypical sentence\u201d (low temperature) and \u201cunique sentence\u201d (high temperature). The system sources keywords from users, which later serve as material for generating sentences. Although there is no strict requirement for keywords, users are encouraged to separate keywords by a comma (i.e., chores, tired, roommate, ...), notified with placeholder text, to make the structure coherent with the format of our trained texts. Next, the user clicks \u201cGenerate sentences,\u201d which subsequently returns up to five sentence recommendations (See Figure 2-(D)). If the user is satisfied with any of the recommendations and wants to add them to the content text field, they can click the sentence; otherwise, users can start the process over or skip the recommendations. We intended this approach to allow the system to effectively use keywords as a writing aid wit [truncated; original length: 1436 characters]\",\n      \"3.2.3 Receiving feedback about a completed entry. Users can complete their journal entries by actively collaborating with AI-assisted sentence-generation functionalities (i.e., Generating sentences using keywords, Recommending next sentences). Once complete, users can record their diaries by clicking the \u201cSave today\u2019s diary\u201d\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"unknown\",\n    \"difficulty_hint\": \"unknown\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\",\n    \"baseline_explanation\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\",\n      \"highlight_id\": \"b8151c23-a388-470b-914d-8ce50c105244\",\n      \"window_start\": \"2026-05-21T05:19:36.800Z\",\n      \"window_end\": \"2026-05-21T05:19:44.976Z\",\n      \"duration_sec\": 8.2,\n      \"sample_count\": 5,\n      \"dominant_state\": \"engagement\",\n      \"secondary_state\": \"frustration\",\n      \"avg_confidence\": 0.701,\n      \"max_confidence\": 0.943,\n      \"avg_distribution\": {\n        \"boredom\": 0.059,\n        \"confusion\": 0.001,\n        \"engagement\": 0.701,\n        \"frustration\": 0.24\n      },\n      \"trend\": \"rising\",\n      \"stability\": \"stable\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"trigger_reason\": \"The baseline explanation was being read while the learning signal showed a deepening cue.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. \\n\\nThis design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries.\\n\\nThis connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\"\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"Deepening cue\",\n    \"dominant_state\": \"engagement\",\n    \"secondary_state\": \"frustration\",\n    \"avg_confidence\": 0.701,\n    \"avg_distribution\": {\n      \"boredom\": 0.059,\n      \"confusion\": 0.001,\n      \"engagement\": 0.701,\n      \"frustration\": 0.24\n    },\n    \"trend\": \"rising\",\n    \"duration_sec\": 8.2\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": {\n      \"source\": \"raw_8class_checkpoint\",\n      \"checkpoint_path\": \"models/emotion_model/raw_8class_best.pt\",\n      \"raw_emotion_label\": \"neutral\",\n      \"raw_emotion_confidence\": 0.9253,\n      \"raw_emotion_probabilities\": {\n        \"anger\": 0,\n        \"contempt\": 0.0025,\n        \"disgust\": 0.0004,\n        \"fear\": 0,\n        \"happy\": 0.0181,\n        \"neutral\": 0.9253,\n        \"sad\": 0.0526,\n        \"surprise\": 0.001\n      },\n      \"raw_top_emotions\": [\n        {\n          \"label\": \"neutral\",\n          \"probability\": 0.9253\n        },\n        {\n          \"label\": \"sad\",\n          \"probability\": 0.0526\n        },\n        {\n          \"label\": \"happy\",\n          \"probability\": 0.0181\n        }\n      ],\n      \"frame_timestamp\": \"2026-05-21T05:19:44Z\",\n      \"crop_hash\": null\n    },\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"engagement\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.0025,\n        \"confusion\": 0.001,\n        \"engagement\": 0.9434,\n        \"frustration\": 0.0531\n      },\n      \"mapping_explanation\": \"happy + neutral -> engagement\",\n      \"confidence_notes\": [\n        \"single-frame mapped scores should be interpreted through reaction windows and dialogue context\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": null,\n      \"window_end\": null,\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.9434\n        },\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.0531\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.0025\n        }\n      ],\n      \"trend\": \"single_frame_only\",\n      \"evidence_count\": 0,\n      \"reliability_notes\": [\n        \"no reaction window; do not infer a strong learning process state from this frame alone\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.0025,\n        \"confusion\": 0.001,\n        \"engagement\": 0.9434,\n        \"frustration\": 0.0531\n      },\n      \"support_cue\": \"neutral_or_uncertain\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": null,\n      \"turn_index\": 0,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": null,\n      \"recent_strategies\": [],\n      \"last_response_was_baseline_or_adaptive\": \"unknown\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.0025,\n      \"confusion\": 0.001,\n      \"engagement\": 0.9434,\n      \"frustration\": 0.0531\n    },\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"strategy_state\": \"uncertain\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"strategy_reason\": \"first explanation should stay paper-grounded before adapting from process signals\",\n    \"prompt_guidance\": [\n      \"Use a baseline paper-grounded explanation and avoid overfitting to weak signals.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"engagement\",\n    \"secondary_academic_state\": \"frustration\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.0025,\n      \"confusion\": 0.001,\n      \"engagement\": 0.9434,\n      \"frustration\": 0.0531\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"uncertain\",\n    \"inferred_process_state\": \"baseline_ready\",\n    \"recommended_strategy\": \"baseline_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"\",\n    \"previous_strategy_family\": \"\"\n  },\n  \"recent_conversation\": [\n    {\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This passage highlights a key design choice in DiaryMate\u2019s \\\"Recommending next sentences\\\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \\\"temperature\\\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.\",\n      \"role\": \"assistant\",\n      \"turn_id\": \"turn_248a2fbfa1d9496d808e1ca8f09e1cb4\"\n    }\n  ]\n}",
+  "strategy_planning_context": {
+    "selected_evidence": {
+      "selection_type": "text",
+      "page_number": 5,
+      "selected_text": "Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.",
+      "caption": "",
+      "crop_available": false,
+      "selection_note": ""
+    },
+    "paper_context": {
+      "matched_block": "3.2.2 Recommending next sentences. This function automatically generates relevant sentences based on the existing text. Users can simply click \u201cGenerate next sentences\u201d to generate the next sentences corresponding to the existing text (See Figure 2-(C)). Similar to keyword-based sentence generation, users are asked to adjust the temperature slider to the desired level. Once clicked, users are given five sentence candidates, analogous to that of keyword-based recommendation. The user can choose one among up to five sentences recommended by DiaryMate, which is appended to the content upon click. We intended this feature to augment the introspective journaling process by offering sentence suggestions. When a user encounters a moment of hesitation or seeks to expand their thought process, they can utilize this feature. It leverages the context of the existing text to generate sentences that are coherent with the user\u2019s narrative and emotional tone. Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.",
+      "nearby_context": [
+        "can send a sentence generation request by several pre-defined keywords (See Figure 2-(B)) or without specific inputs except texts they have already generated in the text field (See Figure 2-(C)). Once completed, users can save the data (See Figure 2-(E)), and the system provides feedback (See Figure 1-(C)), a summarizing and empathizing message generated based on the diary content that the user saved.",
+        "3.2.1 Generating sentences using keywords. In the \u201cGenerate using keywords\u201d tab menu, users are shown a slider to manipulate temperature and keywords for sentence generation (See Figure 2- (B)). Using the slider, the user can change the temperature to any level between \u201ctypical sentence\u201d (low temperature) and \u201cunique sentence\u201d (high temperature). The system sources keywords from users, which later serve as material for generating sentences. Although there is no strict requirement for keywords, users are encouraged to separate keywords by a comma (i.e., chores, tired, roommate, ...), notified with placeholder text, to make the structure coherent with the format of our trained texts. Next, the user clicks \u201cGenerate sentences,\u201d which subsequently returns up to five sentence recommendations (See Figure 2-(D)). If the user is satisfied with any of the recommendations and wants to add them to the content text field, they can click the sentence; otherwise, users can start the process over or skip the recommendations. We intended this approach to allow the system to effectively use keywords as a writing aid wit [truncated; original length: 1436 characters]",
+        "3.2.3 Receiving feedback about a completed entry. Users can complete their journal entries by actively collaborating with AI-assisted sentence-generation functionalities (i.e., Generating sentences using keywords, Recommending next sentences). Once complete, users can record their diaries by clicking the \u201cSave today\u2019s diary\u201d"
+      ],
+      "retrieved_rag_chunks": [],
+      "paper_profile_summary": "",
+      "passage_type": "unknown",
+      "difficulty_hint": "unknown"
+    },
+    "previous_explanation": {
+      "source_turn_id": "turn_248a2fbfa1d9496d808e1ca8f09e1cb4",
+      "baseline_explanation": "This passage highlights a key design choice in DiaryMate\u2019s \"Recommending next sentences\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \"temperature\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice."
+    },
+    "reaction_context": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_248a2fbfa1d9496d808e1ca8f09e1cb4",
+        "highlight_id": "b8151c23-a388-470b-914d-8ce50c105244",
+        "window_start": "2026-05-21T05:19:36.800Z",
+        "window_end": "2026-05-21T05:19:44.976Z",
+        "duration_sec": 8.2,
+        "sample_count": 5,
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.701,
+        "max_confidence": 0.943,
+        "avg_distribution": {
+          "boredom": 0.059,
+          "confusion": 0.001,
+          "engagement": 0.701,
+          "frustration": 0.24
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "trigger_reason": "The baseline explanation was being read while the learning signal showed a deepening cue.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights a key design choice in DiaryMate\u2019s \"Recommending next sentences\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. \n\nThis design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \"temperature\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries.\n\nThis connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice."
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "dominant_state": "engagement",
+      "secondary_state": "frustration",
+      "avg_confidence": 0.701,
+      "avg_distribution": {
+        "boredom": 0.059,
+        "confusion": 0.001,
+        "engagement": 0.701,
+        "frustration": 0.24
+      },
+      "trend": "rising",
+      "duration_sec": 8.2
+    },
+    "learning_signal": {
+      "active_source": "raw_8class_process_aware",
+      "raw_emotion_evidence": {
+        "source": "raw_8class_checkpoint",
+        "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+        "raw_emotion_label": "neutral",
+        "raw_emotion_confidence": 0.9253,
+        "raw_emotion_probabilities": {
+          "anger": 0,
+          "contempt": 0.0025,
+          "disgust": 0.0004,
+          "fear": 0,
+          "happy": 0.0181,
+          "neutral": 0.9253,
+          "sad": 0.0526,
+          "surprise": 0.001
+        },
+        "raw_top_emotions": [
+          {
+            "label": "neutral",
+            "probability": 0.9253
+          },
+          {
+            "label": "sad",
+            "probability": 0.0526
+          },
+          {
+            "label": "happy",
+            "probability": 0.0181
+          }
+        ],
+        "frame_timestamp": "2026-05-21T05:19:44Z",
+        "crop_hash": null
+      },
+      "academic_state_mapping": {
+        "mapping_rule_version": "required_8class_probability_aggregation_v1",
+        "mapped_academic_state": "engagement",
+        "mapped_academic_scores": {
+          "boredom": 0.0025,
+          "confusion": 0.001,
+          "engagement": 0.9434,
+          "frustration": 0.0531
+        },
+        "mapping_explanation": "happy + neutral -> engagement",
+        "confidence_notes": [
+          "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+        ]
+      },
+      "reaction_window_summary": {
+        "window_start": null,
+        "window_end": null,
+        "dominant_raw_emotions": [],
+        "dominant_mapped_states": [
+          {
+            "state": "engagement",
+            "probability": 0.9434
+          },
+          {
+            "state": "frustration",
+            "probability": 0.0531
+          },
+          {
+            "state": "boredom",
+            "probability": 0.0025
+          }
+        ],
+        "trend": "single_frame_only",
+        "evidence_count": 0,
+        "reliability_notes": [
+          "no reaction window; do not infer a strong learning process state from this frame alone"
+        ],
+        "avg_mapped_scores": {
+          "boredom": 0.0025,
+          "confusion": 0.001,
+          "engagement": 0.9434,
+          "frustration": 0.0531
+        },
+        "support_cue": "neutral_or_uncertain"
+      },
+      "learning_process_context": {
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "highlight_id": null,
+        "turn_index": 0,
+        "followup_count_for_highlight": 0,
+        "same_highlight_repeated_questions": false,
+        "last_user_question": null,
+        "current_user_question": null,
+        "question_intent": "general_followup",
+        "previous_strategy": null,
+        "recent_strategies": [],
+        "last_response_was_baseline_or_adaptive": "unknown",
+        "time_since_last_assistant_answer": null
+      },
+      "academic_state_scores": {
+        "boredom": 0.0025,
+        "confusion": 0.001,
+        "engagement": 0.9434,
+        "frustration": 0.0531
+      },
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "support_cue": "uncertain",
+      "inferred_process_state": "baseline_ready",
+      "strategy_state": "uncertain",
+      "recommended_strategy": "baseline_explanation",
+      "strategy_reason": "first explanation should stay paper-grounded before adapting from process signals",
+      "prompt_guidance": [
+        "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+      ],
+      "diagnostic_only_direct_4class": {
+        "used_for_strategy": false
+      },
+      "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+    },
+    "academic_state_layer": {
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "academic_state_scores": {
+        "boredom": 0.0025,
+        "confusion": 0.001,
+        "engagement": 0.9434,
+        "frustration": 0.0531
+      }
+    },
+    "support_cue_layer": {
+      "support_cue": "uncertain",
+      "inferred_process_state": "baseline_ready",
+      "recommended_strategy": "baseline_explanation",
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ]
+    },
+    "strategy_constraints": {
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ],
+      "previous_strategy_id": "",
+      "previous_strategy_family": ""
+    },
+    "recent_conversation": [
+      {
+        "turn_type": "baseline_explanation",
+        "content": "This passage highlights a key design choice in DiaryMate\u2019s \"Recommending next sentences\" feature. Instead of pushing a single, automated continuation for the user to blindly accept, the system generates five different candidate sentences based on what the user has already written. This design matters because personal journaling is a deeply subjective and reflective task. By presenting a variety of choices\u2014which users can further customize by adjusting a \"temperature\" slider to get more typical or unique sentences\u2014the system shifts the AI's role from an authoritative writer to an exploratory brainstorming partner. It invites users to actively compare different tones, perspectives, and directions for their entries. This connects directly to the paper's main focus on the balance of agency in Human-AI collaborative writing. While the researchers designed this multi-option feature to help users reflect and maintain control over their narratives, their findings later show a complex tension: while it successfully helped users view their experiences from new perspectives, it also occasionally led to over-reliance, where users favored the AI's polished emotional expressions over their own authentic voice.",
+        "role": "assistant",
+        "turn_id": "turn_248a2fbfa1d9496d808e1ca8f09e1cb4"
+      }
+    ]
+  },
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 5,
+    "selected_text_preview": "Especially, rather than just recommending a single sentence and prompting its use, we designed the Recommending next sentences feature as a tool that allows users to explore a variety of sentences they could use in their journals.",
+    "selected_text_length": 230,
+    "baseline_explanation_length": 1215,
+    "has_reaction_window_summary": true,
+    "support_cue": "uncertain",
+    "dominant_state": "engagement",
+    "secondary_state": "frustration",
+    "dominant_academic_state": "engagement",
+    "secondary_academic_state": "frustration",
+    "academic_state_scores": {
+      "boredom": 0.0025,
+      "confusion": 0.001,
+      "engagement": 0.9434,
+      "frustration": 0.0531
+    },
+    "reaction_window_duration": 8.2,
+    "reaction_window_avg_confidence": 0.701,
+    "allowed_strategy_families": [
+      "deep_technical_explanation",
+      "critique_assumptions",
+      "connect_to_related_work",
+      "limitations_and_implications",
+      "compare_methods"
+    ],
+    "passage_type": "unknown",
+    "difficulty_hint": "unknown",
+    "rag_chunk_count": 0,
+    "nearby_context_count": 3,
+    "recent_conversation_count": 1,
+    "inferred_process_state": "baseline_ready",
+    "recommended_strategy": "baseline_explanation",
+    "question_intent": "general_followup"
+  },
+  "allowed_strategy_families": [
+    "deep_technical_explanation",
+    "critique_assumptions",
+    "connect_to_related_work",
+    "limitations_and_implications",
+    "compare_methods"
+  ],
+  "support_cue": "deepening",
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": true
+  }
+}

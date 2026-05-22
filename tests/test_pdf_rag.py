@@ -96,8 +96,15 @@ class PdfRagTests(unittest.TestCase):
     def setUp(self):
         self._env_patch = patch.dict(os.environ, {}, clear=True)
         self._env_patch.start()
+        self._project_temp = tempfile.TemporaryDirectory()
+        from emotion_aware_assistant.core import llm_config
+
+        self._project_patch = patch.object(llm_config, "PROJECT_ROOT", Path(self._project_temp.name), create=True)
+        self._project_patch.start()
 
     def tearDown(self):
+        self._project_patch.stop()
+        self._project_temp.cleanup()
         self._env_patch.stop()
 
     def test_text_normalization_removes_pdf_hyphenation_ligatures_and_headers(self):
@@ -129,7 +136,8 @@ class PdfRagTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             document_dir = Path(temp_dir) / "documents" / "doc"
             document_dir.mkdir(parents=True)
-            status = prepare_paper_memory("doc", document_dir, sample_blocks())
+            with patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
+                status = prepare_paper_memory("doc", document_dir, sample_blocks())
 
             self.assertEqual(status["status"], "completed")
             for relative in [
@@ -216,7 +224,8 @@ class PdfRagTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             document_dir = Path(temp_dir) / "documents" / "doc"
             document_dir.mkdir(parents=True)
-            status = prepare_paper_memory("doc", document_dir, sample_blocks())
+            with patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
+                status = prepare_paper_memory("doc", document_dir, sample_blocks())
 
             embeddings_path = document_dir / "rag" / "embeddings.json"
             self.assertTrue(embeddings_path.exists())

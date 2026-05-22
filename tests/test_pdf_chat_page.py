@@ -196,6 +196,38 @@ class PdfChatPageTests(unittest.TestCase):
         ]:
             self.assertIn(required, source)
 
+    def test_pdf_chat_has_optional_speech_input_without_auto_send(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+        styles = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.css").read_text(encoding="utf-8")
+
+        for required in [
+            'const [speechState, setSpeechState] = useState("idle");',
+            'speechState === "recording"',
+            'speechState === "transcribing"',
+            'setSpeechState("error")',
+            "mediaRecorderRef",
+            "navigator.mediaDevices.getUserMedia",
+            "new MediaRecorder",
+            "SPEECH_RECORDING_MAX_MS",
+            'fetch("/api/speech/transcribe"',
+            'formData.append("audio", blob, `speech.${extension}`)',
+            "onFollowUpTextChange(transcript, \"speech\")",
+            "onFollowUpTextChange(event.target.value, \"text\")",
+            "Recording...",
+            "Transcribing...",
+            "Speech unavailable",
+            'type="button"',
+            'aria-label={speechButtonLabel}',
+        ]:
+            self.assertIn(required, source)
+
+        for required_style in [
+            ".pdf-chat-speech-button",
+            ".pdf-chat-speech-status",
+            ".pdf-chat-follow-up.compact",
+        ]:
+            self.assertIn(required_style, styles)
+
     def test_pdf_chat_guards_persistence_until_document_id_is_stable(self):
         source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
 
@@ -218,8 +250,8 @@ class PdfChatPageTests(unittest.TestCase):
             "Source: simulated camera stream",
             "Model output type:",
             "academic-state model",
-            "Raw emotion unavailable for this checkpoint",
-            "Raw emotion available",
+            "Learning-support signal unavailable for this checkpoint",
+            "Learning-support signal available",
             "Settings",
             "LLM compare",
             "Camera debug",
@@ -229,7 +261,11 @@ class PdfChatPageTests(unittest.TestCase):
             "href=\"/camera-debug\"",
             "href=\"/pdf-test\"",
             "Open PDF/RAG debug workspace",
-            "Cue:",
+            "Learning cue:",
+            "boredom",
+            "confusion",
+            "engagement",
+            "frustration",
             "Face detection:",
             "Camera signal standby",
             "Signal monitoring starts after an explanation is shown.",
@@ -245,7 +281,9 @@ class PdfChatPageTests(unittest.TestCase):
             "manual academic-state selector",
             "Detected emotion",
             "You are confused",
+            "You are frustrated",
             "Camera detected",
+            "The camera detected",
             "I can see you",
             "Last analyzed frame",
             "OpenFace landmarks",
@@ -280,6 +318,7 @@ class PdfChatPageTests(unittest.TestCase):
             "Source: live webcam model",
             "modelModeLabelForLearningSignal",
             "rawSignalLabelForLearningSignal",
+            "learningSupportCueLabel",
         ]:
             self.assertIn(required, source)
 
@@ -289,7 +328,13 @@ class PdfChatPageTests(unittest.TestCase):
             "choose frustration",
             "Detected emotion",
             "Camera detected",
+            "The camera detected",
             "your face shows",
+            "Cue:",
+            "Raw emotion available",
+            "Raw emotion unavailable",
+            "difficulty support",
+            "steady engagement cue",
         ]:
             self.assertNotIn(forbidden, source)
 
@@ -298,7 +343,8 @@ class PdfChatPageTests(unittest.TestCase):
         styles = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.css").read_text(encoding="utf-8")
 
         for required in [
-            "REACTION_WINDOW_DURATION_MS",
+            "estimateReactionWindowMinReadSec",
+            "REACTION_WINDOW_MAX_MS",
             "startReactionWindow",
             "summarizeReactionWindowSamples",
             "reactionWindowSummary",
@@ -326,6 +372,170 @@ class PdfChatPageTests(unittest.TestCase):
             ".pdf-chat-strategy-badge",
         ]:
             self.assertIn(required_style, styles)
+
+        self.assertNotIn("Math.ceil(REACTION_WINDOW_DURATION_MS / REACTION_WINDOW_SAMPLE_MS)", source)
+
+    def test_pdf_chat_uses_reading_completion_reaction_window(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "const REACTION_WINDOW_MIN_READ_SEC_FLOOR = 8;",
+            "const REACTION_WINDOW_MIN_READ_SEC_CEIL = 25;",
+            "const REACTION_WINDOW_READING_WORDS_PER_SEC = 12;",
+            "const REACTION_WINDOW_LAYOUT_SETTLE_MS = 400;",
+            "const REACTION_WINDOW_MAX_MS = 60000;",
+            "const REACTION_WINDOW_MIN_SAMPLES = 2;",
+            "const REACTION_WINDOW_SENTINEL_DELAY_MS = 1000;",
+            "IntersectionObserver",
+            "registerReactionSentinel",
+            "observeReactionSentinels",
+            "endReactionWindow",
+            "data-reaction-turn-id",
+            "data-reaction-sentinel=\"top\"",
+            "data-reaction-sentinel=\"bottom\"",
+            "pdf-chat-reaction-sentinel",
+            "endReactionWindow(\"near_bottom_reached\"",
+            "endReactionWindow(\"short_answer_min_elapsed\"",
+            "endReactionWindow(\"max_timeout\"",
+            "endReactionWindow(\"followup_submitted\"",
+            "endReactionWindow(\"strategy_clicked\"",
+            "read_progress_estimate",
+            "end_reason",
+            "early_distribution",
+            "middle_distribution",
+            "late_distribution",
+            "state_transition",
+            "transition_label",
+            "Observed while the explanation was being read",
+        ]:
+            self.assertIn(required, source)
+
+        for required in [
+            "function endReasonObservedLabel",
+            "reached near the end of the explanation",
+            "observed for the minimum reading window",
+            "observed until the reading window timed out",
+            "observed until a follow-up was submitted",
+            "observed until a strategy was selected",
+            "endReasonObservedLabel(summary.end_reason)",
+        ]:
+            self.assertIn(required, source)
+
+        self.assertNotIn("8s", source)
+        self.assertNotIn("8 seconds", source)
+        self.assertNotIn("const REACTION_WINDOW_MIN_MS = 5000;", source)
+
+    def test_pdf_chat_reading_window_does_not_auto_scroll_to_bottom(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "reactionWindowScrollTargetId",
+            "suppressAutoScrollForReactionWindow",
+            "if (suppressAutoScrollForReactionWindow) return;",
+            "scrollReactionMessageTopIntoView(sourceTurnId)",
+            "block: \"start\"",
+            "programmaticScrollActive",
+            "suppressedAutoScroll",
+            "userHasScrolledDuringWindow",
+            "userScrollProgressed",
+            "handleReactionWindowScroll",
+            "onScroll={onConversationScroll}",
+        ]:
+            self.assertIn(required, source)
+
+        self.assertNotIn("threadEndRef.current?.scrollIntoView({\n      behavior: isConversationLoading ? \"auto\" : \"smooth\",\n      block: \"end\",\n    });\n  }, [messageCount, isConversationLoading]);", source)
+
+    def test_pdf_chat_bottom_sentinel_requires_user_progress_before_close(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "function canEndReactionWindowForReading(active)",
+            "active.topSeen",
+            "active.bottomSeen",
+            "active.minReadTimeMet",
+            "reactionWindowMinSamplesMet(active)",
+            "if (active.isShortAnswer) {",
+            "active.userScrollProgressed",
+            "markReactionWindowBottomSeen",
+            "if (!canEndReactionWindowForReading(active)) return;",
+            "programmatic scrolls must not count as reading progress",
+        ]:
+            self.assertIn(required, source)
+
+    def test_pdf_chat_reaction_window_uses_dynamic_estimated_reading_time(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "function wordCountForReadingEstimate(text)",
+            "function estimateReactionWindowMinReadSec(text)",
+            "wordCount / REACTION_WINDOW_READING_WORDS_PER_SEC",
+            "estimatedMinReadSec",
+            "estimatedMinReadSec * 1000",
+            "minReadTimeMet",
+            "min_read_time_met",
+            "elapsed_sec",
+            "word_count",
+            "message_height",
+            "viewport_height",
+            "is_short_answer",
+            "end_blocked_reason",
+            "waiting_for_min_read_time",
+            "waiting_for_user_scroll_progress",
+            "waiting_for_layout_settle",
+        ]:
+            self.assertIn(required, source)
+
+        for forbidden in [
+            "minimum_duration_ms: REACTION_WINDOW_MIN_MS",
+            "shortAnswer: normalizePdfText(baselineExplanation).length <= REACTION_SHORT_ANSWER_CHAR_LIMIT",
+            "active.shortAnswer && reactionWindowMinSamplesMet(active)",
+            "}, REACTION_WINDOW_MIN_MS);",
+        ]:
+            self.assertNotIn(forbidden, source)
+
+    def test_pdf_chat_short_answer_waits_for_layout_settle_and_estimated_read_time(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "function scheduleReactionWindowLayoutSettle(sourceTurnId)",
+            "window.setTimeout(() => {",
+            "REACTION_WINDOW_LAYOUT_SETTLE_MS",
+            "layoutSettled",
+            "messageHeight <= viewportHeight * 0.75",
+            "topVisible && bottomVisible",
+            "if (!active.layoutSettled)",
+            "bottomSeenBeforeLayoutSettled",
+            "short_answer_min_elapsed",
+        ]:
+            self.assertIn(required, source)
+
+    def test_pdf_chat_reaction_window_debug_fields_are_logged(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "reaction_window_status",
+            "start_turn_id",
+            "source_turn_id",
+            "end_reason",
+            "sample_count",
+            "min_duration_met",
+            "min_read_time_met",
+            "min_samples_met",
+            "top_seen",
+            "bottom_seen",
+            "user_scroll_progressed",
+            "suppressed_auto_scroll",
+            "strategy_request_sent",
+            "strategy_response_received",
+            "word_count",
+            "message_height",
+            "viewport_height",
+            "is_short_answer",
+            "estimated_min_read_sec",
+            "elapsed_sec",
+            "end_blocked_reason",
+        ]:
+            self.assertIn(required, source)
 
     def test_pdf_chat_strategy_panel_prioritizes_one_recommended_card(self):
         source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
@@ -378,7 +588,7 @@ class PdfChatPageTests(unittest.TestCase):
         self.assertNotIn("pdf-chat-signal-chips", source)
         self.assertNotIn("Current support cue:", source)
         self.assertIn("pdf-chat-signal-line", source)
-        self.assertIn("Cue: {cueLabel}", source)
+        self.assertIn("Learning cue: {cueLabel}", source)
         self.assertIn("<section className=\"pdf-chat-signal-details-section\">", source)
         self.assertIn("<h4>Signal details</h4>", source)
         self.assertIn("<h4>Document details</h4>", source)
@@ -485,23 +695,30 @@ class PdfChatPageTests(unittest.TestCase):
         self.assertIn("planner_input_summary: message.planner_input_summary || {}", source)
         self.assertIn("<MarkdownText content={message.content || \"\"} />", source)
 
-    def test_pdf_chat_sends_selected_strategy_to_explain_and_follow_up(self):
+    def test_pdf_chat_normal_follow_up_sends_explicit_normal_mode_without_selected_strategy(self):
         source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
 
         for required in [
-            "selectedStrategy",
-            "selected_strategy_id: selectedStrategy?.strategy_id || \"\"",
-            "selected_strategy: selectedStrategy || null",
-            "strategy_candidates: strategyCandidates",
+            "const [followUpInputSource, setFollowUpInputSource] = useState(\"text\");",
+            "input_source: followUpInputSource === \"speech\" ? \"speech\" : \"text\",",
+            "response_mode: \"normal_followup\"",
+            "selected_strategy_id: null",
+            "selected_strategy: null",
+            "strategy_candidates: []",
             "learning_state: learningState",
-            "reaction_window_summary: reactionWindowSummary",
-            "trigger_context: strategyTriggerContext",
-            "Strategy:",
+            "learning_signal_package: {}",
             "FollowUpContextLine",
             "postSessionEvent(\"answer_generated\"",
             "postSessionEvent(\"follow_up_sent\"",
         ]:
             self.assertIn(required, source)
+
+        follow_up_start = source.index("async function sendFollowUp")
+        follow_up_end = source.index("async function handleSelectStrategy", follow_up_start)
+        follow_up_body = source[follow_up_start:follow_up_end]
+        self.assertNotIn("selected_strategy_id: selectedStrategy?.strategy_id", follow_up_body)
+        self.assertNotIn("selected_strategy: selectedStrategy || null", follow_up_body)
+        self.assertNotIn("trigger_context: strategyTriggerContext", follow_up_body)
 
     def test_pdf_chat_strategy_card_click_generates_answer_without_follow_up_text(self):
         source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
@@ -509,6 +726,8 @@ class PdfChatPageTests(unittest.TestCase):
         for required in [
             "async function handleSelectStrategy(candidate, sourceContext = {})",
             "await explainSelection(candidate, \"explain_current_selection_with_selected_strategy\", {",
+            "input_source: isStrategyExplain ? \"strategy_click\" : \"text\",",
+            "response_mode: isStrategyExplain ? \"strategy_response\" : \"normal_followup\",",
             "default_task: defaultTask || \"baseline_explain_current_selection\"",
             "user_question: null",
             "answerLoading={explainLoading}",
@@ -561,7 +780,7 @@ class PdfChatPageTests(unittest.TestCase):
             "persistedThread = await persistThreadForHighlight(nextThread);",
             "setThread(persistedThread);",
             "threadRef.current = persistedThread;",
-            "startReactionWindowForAssistantMessage(latestAssistantMessage(persistedThread), selectionSnapshot);",
+            "startReactionWindowForAssistantMessage(generatedAssistantMessage, selectionSnapshot);",
             "logExplainSelectionDebug(",
             "extracted_answer_length",
             "message_appended",
@@ -622,7 +841,7 @@ class PdfChatPageTests(unittest.TestCase):
 
         persist_index = source.index("persistedThread = await persistThreadForHighlight(nextThread);")
         set_thread_index = source.index("setThread(persistedThread);", persist_index)
-        reaction_index = source.index("startReactionWindowForAssistantMessage(latestAssistantMessage(persistedThread), selectionSnapshot);", set_thread_index)
+        reaction_index = source.index("startReactionWindowForAssistantMessage(generatedAssistantMessage, selectionSnapshot);", set_thread_index)
         self.assertLess(persist_index, set_thread_index)
         self.assertLess(set_thread_index, reaction_index)
         self.assertIn("Answer generated, but conversation could not be saved.", source)
@@ -669,11 +888,13 @@ class PdfChatPageTests(unittest.TestCase):
             "baseline_explanation: resolvedBaselineExplanation",
             "reaction_window_summary: resolvedReactionWindowSummary",
             "source_turn_id: resolvedSourceTurnId",
+            "input_source: \"proactive_recommendation\"",
+            "response_mode: \"proactive_support\"",
             "isReactionWindowValidationError(err)",
             "if (!readingSessionId || !preview.highlight_id || !sourceTurnId || !normalizePdfText(baselineExplanation)) return;",
-            "startReactionWindowForAssistantMessage(latestAssistantMessage(persistedThread), selectionSnapshot);",
+            "startReactionWindowForAssistantMessage(generatedAssistantMessage, selectionSnapshot);",
             "if (completedReactionTurnIdsRef.current.has(sourceTurnId) || hasTurnReactionMetadata(threadRef.current, sourceTurnId)) {",
-            "await requestStrategyCandidates(\"reaction_window\", summary, baselineExplanation, sourceTurnId, selection);",
+            "await requestStrategyCandidates(\"reaction_window\", summary, active.baselineExplanation, active.sourceTurnId, active.selection);",
         ]:
             self.assertIn(required, source)
 
@@ -708,8 +929,8 @@ class PdfChatPageTests(unittest.TestCase):
         for required in [
             "function monitorableAssistantMessage(message)",
             "function startReactionWindowForAssistantMessage(message, selectionOverride = activeSelectionRef.current)",
-            "startReactionWindowForAssistantMessage(latestAssistantMessage(persistedThread), selectionSnapshot);",
-            "startReactionWindowForAssistantMessage(latestAssistantMessage(nextThread), activeSelectionRef.current);",
+            "startReactionWindowForAssistantMessage(generatedAssistantMessage, selectionSnapshot);",
+            "startReactionWindowForAssistantMessage(generatedAssistantMessage, activeSelectionRef.current);",
             "completedReactionTurnIdsRef.current.has(sourceTurnId)",
             "if (hasTurnStrategyCandidates(threadRef.current, resolvedSourceTurnId) && triggeredBy !== \"manual_refresh\") return;",
             "reactionWindowTurnIdRef.current = sourceTurnId;",
@@ -734,6 +955,44 @@ class PdfChatPageTests(unittest.TestCase):
             "strategy_candidates: candidates,",
             "reaction_window_summary: resolvedReactionWindowSummary,",
             "planner_mode: payload.planner_mode || \"\",",
+            "strategy_status: \"suggested\",",
+            "strategy_status: \"applied\",",
+            "AppliedStrategyRecord",
+            "if (metadata.strategy_status === \"applied\") return [];",
+        ]:
+            self.assertIn(required, source)
+
+    def test_pdf_chat_strategy_cards_show_state_evidence_not_generic_cue_only(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "Learning-state evidence:",
+            "Support cue:",
+            "<span>Learning-state evidence: </span>",
+            "<span>Support cue: </span>",
+            "strategyReasonText(candidate)",
+            "strategyAcademicStateEvidenceText(candidate)",
+            "strategySupportCueLabel(candidate)",
+            "source_turn_type: message.source_turn_type",
+        ]:
+            self.assertIn(required, source)
+
+        for forbidden in [
+            "learning signal showed a deepening cue",
+            "learning signal was mixed, so neutral continuation options are suggested",
+            "<span>Learning-state evidence:</span>",
+            "<span>Support cue:</span>",
+        ]:
+            self.assertNotIn(forbidden, source)
+
+    def test_pdf_chat_uses_next_move_heading_after_adaptive_context(self):
+        source = Path("emotion_aware_assistant/web/pdf_workspace/src/pdf_chat.jsx").read_text(encoding="utf-8")
+
+        for required in [
+            "strategyPanelHeading",
+            "Suggested next move",
+            "Suggested ways to improve this explanation",
+            "sourceTurnType",
         ]:
             self.assertIn(required, source)
 
@@ -748,10 +1007,13 @@ class PdfChatPageTests(unittest.TestCase):
             "ConversationStrategyBadge",
             "Using strategy:",
             "Continuing with strategy:",
-            "Why this strategy appeared",
+            "Why this strategy was used",
             "Observed window:",
             "Strategy trace",
             "message.reaction_window_summary",
+            "applied_strategy_id",
+            "applied_strategy_family",
+            "source_reaction_turn_id",
             "Previous",
             "Next",
             "Latest",

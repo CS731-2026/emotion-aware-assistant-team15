@@ -1,0 +1,408 @@
+{
+  "snapshot_id": "snap_80d118a851b8",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "e9c28d0f-7af3-4ec4-8665-fde7ccc599eb",
+  "source_turn_id": "turn_62f28dfabd6248a6b41a94849a21974d",
+  "created_at": "2026-05-21T07:15:53Z",
+  "stage": "strategy_planner",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}"
+    },
+    {
+      "role": "user",
+      "content": "strategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 2,\n    \"selected_text\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical advance allowed people to adopt LLMs in their writing practice in diverse domains, such as creative writing [3, 29, 46], scientific writing [17, 22], and journalism [33]. As people increasingly adopt LLMs for writing, understanding user perception and experience of writing with LLMs has become an emerging area of interest in the Human-Computer Interaction (HCI) community [8, 33, 46]. Recent work has discovered dynamics between users and LLM where users view the LLM more as an active writer rather than just a tool, gaining inspiration and ideas from unexpected machine-generated text [46, 47]. However, story writers hesitate to incorporate LLMs into their writing process [3]. This reluctance arises from a desire to retain control over their narrative, concerns that LLM mechanics may not align with their writing strategies [3], and perceived shortcomings in the LLM\u2019s contextual awareness [47]. These findings not only highlight the complexity and diversity of user perceptions regarding human-LLM [truncated; original length: 2781 characters]\",\n    \"nearby_context\": [\n      \"Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong\",\n      \"situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LL [truncated; original length: 2055 characters]\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"unknown\",\n    \"difficulty_hint\": \"technical_terms\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n    \"source_turn_type\": \"strategy_reexplanation\",\n    \"baseline_explanation\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"source_turn_type\": \"strategy_reexplanation\",\n      \"highlight_id\": \"e9c28d0f-7af3-4ec4-8665-fde7ccc599eb\",\n      \"start_time\": \"2026-05-21T07:15:48.360Z\",\n      \"end_time\": \"2026-05-21T07:15:53.365Z\",\n      \"window_start\": \"2026-05-21T07:15:48.360Z\",\n      \"window_end\": \"2026-05-21T07:15:53.365Z\",\n      \"end_reason\": \"short_answer_min_elapsed\",\n      \"read_progress_estimate\": 1,\n      \"duration_sec\": 5,\n      \"sample_count\": 4,\n      \"evidence_count\": 4,\n      \"early_distribution\": {\n        \"boredom\": 0,\n        \"confusion\": 0,\n        \"engagement\": 0.021,\n        \"frustration\": 0.979\n      },\n      \"middle_distribution\": {\n        \"boredom\": 0.007,\n        \"confusion\": 0,\n        \"engagement\": 0.91,\n        \"frustration\": 0.084\n      },\n      \"late_distribution\": {\n        \"boredom\": 0.005,\n        \"confusion\": 0,\n        \"engagement\": 0.888,\n        \"frustration\": 0.107\n      },\n      \"early_dominant_state\": \"frustration\",\n      \"middle_dominant_state\": \"engagement\",\n      \"late_dominant_state\": \"engagement\",\n      \"state_transition\": \"frustration_to_engagement\",\n      \"transition_label\": \"early frustration -> late engagement\",\n      \"dominant_state\": \"frustration\",\n      \"secondary_state\": \"engagement\",\n      \"avg_confidence\": 0.543,\n      \"max_confidence\": 0.999,\n      \"avg_distribution\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"trend\": \"falling\",\n      \"stability\": \"transitioning\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"support_cue_display_label\": \"deepening\",\n      \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n      \"confidence_handling\": \"standard_confidence\",\n      \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"trigger_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration.\\n\\n* **Step 1: The Shift in Natural Language Interaction**  \\n  The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language.\\n\\n* **Step 2: From Basic Editing to Active Collaboration**  \\n  As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors.\\n\\n* **Step 3: The Transition to Personal, Reflective Spaces**  \\n  While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling.\\n\\n**Why it matters:**  \\nUnderstanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\",\n      \"reaction_window_status\": \"completed\",\n      \"start_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"min_duration_met\": true,\n      \"min_samples_met\": true,\n      \"top_seen\": true,\n      \"bottom_seen\": false,\n      \"user_scroll_progressed\": false,\n      \"suppressed_auto_scroll\": true,\n      \"strategy_request_sent\": true,\n      \"strategy_response_received\": false\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"dominant_state\": \"frustration\",\n    \"secondary_state\": \"engagement\",\n    \"avg_confidence\": 0.543,\n    \"avg_distribution\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    },\n    \"trend\": \"falling\",\n    \"duration_sec\": 5.0,\n    \"end_reason\": \"short_answer_min_elapsed\",\n    \"read_progress_estimate\": 1.0,\n    \"early_distribution\": {\n      \"boredom\": 0,\n      \"confusion\": 0,\n      \"engagement\": 0.021,\n      \"frustration\": 0.979\n    },\n    \"middle_distribution\": {\n      \"boredom\": 0.007,\n      \"confusion\": 0,\n      \"engagement\": 0.91,\n      \"frustration\": 0.084\n    },\n    \"late_distribution\": {\n      \"boredom\": 0.005,\n      \"confusion\": 0,\n      \"engagement\": 0.888,\n      \"frustration\": 0.107\n    },\n    \"early_dominant_state\": \"frustration\",\n    \"middle_dominant_state\": \"engagement\",\n    \"late_dominant_state\": \"engagement\",\n    \"state_transition\": \"frustration_to_engagement\",\n    \"transition_label\": \"early frustration -> late engagement\"\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": null,\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"frustration\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0.0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"mapping_explanation\": \"mapped academic scores from reaction-window or current learning-state payload\",\n      \"confidence_notes\": [\n        \"process-aware package synthesized from existing pdf-chat signal fields\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": \"2026-05-21T07:15:48.360Z\",\n      \"window_end\": \"2026-05-21T07:15:53.365Z\",\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.543\n        },\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.454\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.003\n        }\n      ],\n      \"trend\": \"falling\",\n      \"evidence_count\": 4,\n      \"reliability_notes\": [\n        \"reaction window summary is used as learning-support evidence, not diagnosis\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0.0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"support_cue\": \"deepening\",\n      \"start_time\": \"2026-05-21T07:15:48.360Z\",\n      \"end_time\": \"2026-05-21T07:15:53.365Z\",\n      \"duration_sec\": 5.0,\n      \"end_reason\": \"short_answer_min_elapsed\",\n      \"read_progress_estimate\": 1.0,\n      \"sample_count\": 4,\n      \"early_distribution\": {\n        \"boredom\": 0.0,\n        \"confusion\": 0.0,\n        \"engagement\": 0.021,\n        \"frustration\": 0.979\n      },\n      \"middle_distribution\": {\n        \"boredom\": 0.007,\n        \"confusion\": 0.0,\n        \"engagement\": 0.91,\n        \"frustration\": 0.084\n      },\n      \"late_distribution\": {\n        \"boredom\": 0.005,\n        \"confusion\": 0.0,\n        \"engagement\": 0.888,\n        \"frustration\": 0.107\n      },\n      \"early_dominant_state\": \"frustration\",\n      \"middle_dominant_state\": \"engagement\",\n      \"late_dominant_state\": \"engagement\",\n      \"state_transition\": \"frustration_to_engagement\",\n      \"transition_label\": \"early frustration -> late engagement\",\n      \"dominant_state\": \"frustration\",\n      \"secondary_state\": \"engagement\",\n      \"stability\": \"transitioning\",\n      \"confidence_handling\": \"standard_confidence\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": \"e9c28d0f-7af3-4ec4-8665-fde7ccc599eb\",\n      \"turn_index\": 2,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": \"concrete_example\",\n      \"recent_strategies\": [\n        \"concrete_example\"\n      ],\n      \"last_response_was_baseline_or_adaptive\": \"adaptive\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0.0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    },\n    \"dominant_academic_state\": \"frustration\",\n    \"secondary_academic_state\": \"engagement\",\n    \"support_cue\": \"deepening\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"strategy_state\": \"engagement\",\n    \"recommended_strategy\": \"deepen_or_extend\",\n    \"strategy_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"source_turn_type\": \"strategy_reexplanation\",\n    \"support_cue_label\": \"deepening\",\n    \"prompt_guidance\": [\n      \"Offer a deeper explanation with connections to the paper.\",\n      \"Extend only where the provided paper context supports it.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\",\n    \"process_strategy_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"frustration\",\n    \"secondary_academic_state\": \"engagement\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0.0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"recommended_strategy\": \"deep_technical_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"concrete_example\",\n    \"previous_strategy_family\": \"concrete_example\",\n    \"previous_pedagogical_move\": \"Walk through the passage step by step\",\n    \"previous_title\": \"Walk through the passage step by step\",\n    \"previous_normalized_pedagogical_move_key\": \"worked_example\"\n  },\n  \"recent_conversation\": [\n    {\n      \"turn_id\": \"turn_ded214cab1284103881e828699cddd82\",\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This opening sentence highlights a major shift in how we interact with technology. Traditionally, computers required rigid inputs, code, or simple commands to perform tasks. With the rise of large language models (LLMs), we can now interact with computers using natural, everyday conversational language, which fundamentally changes our relationship with digital tools. In the context of the paper, this shift is crucial because it marks the transition of AI from a basic, passive assistant\u2014like a spellchecker or grammar corrector\u2014to an active \\\"co-author.\\\" The authors use this premise to set up their investigation into how this collaborative relationship plays out in highly personal, reflective tasks. While collaborative writing tools are increasingly common for professional emails or creative storytelling, the authors point out a gap in our understanding of how people use them for introspective tasks like personal journaling. By starting with this broad shift in human-AI interaction, they establish the foundation for their study on *DiaryMate*, exploring what happens when an AI actively participates in a user's private reflections and emotional expression.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"source_turn_type\": \"baseline_explanation\",\n      \"applied_pedagogical_move\": \"Walk through the passage step by step\",\n      \"applied_strategy_title\": \"Walk through the passage step by step\",\n      \"pedagogical_move\": \"Walk through the passage step by step\",\n      \"applied_strategy_family\": \"concrete_example\",\n      \"turn_type\": \"strategy_reexplanation\",\n      \"applied_context_focus\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i\",\n      \"applied_strategy_id\": \"concrete_example\",\n      \"context_focus\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i\",\n      \"normalized_pedagogical_move_key\": \"worked_example\",\n      \"source_reaction_turn_id\": \"turn_ded214cab1284103881e828699cddd82\",\n      \"content\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\",\n      \"strategy_status\": \"applied\",\n      \"why_recommended\": \"While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 71%, secondary engagement 28%) with a stable trend. This suggested a strategy to reduce cognitive load, so the system selected a step-by-step support strategy.\",\n      \"role\": \"assistant\",\n      \"applied_title\": \"Walk through the passage step by step\",\n      \"strategy_family\": \"concrete_example\",\n      \"strategy_id\": \"concrete_example\"\n    }\n  ]\n}"
+    }
+  ],
+  "prompt_text": "system:\nYou are a pedagogical strategy planner for an academic paper reading assistant.\n\nYou are given a structured context package containing selected evidence, paper context, previous explanation, recent learning signal, strategy constraints, and recent conversation. Use all of these to propose pedagogical strategies.\n\nThe context is rich on purpose. Do not ignore the paper context. Do not choose strategies solely from the support cue.\nThe academic_state_layer contains the internal four academic learning-state scores: boredom, confusion, engagement, and frustration.\nThe support_cue_layer contains a derived support cue: re_engagement, clarification, deepening, difficulty_support, neutral, or uncertain.\nKeep these layers distinct. Academic learning-state labels are internal support signals, not diagnoses.\nThe support cue suggests the learner's possible support need.\nThe paper context determines the strategy focus.\nThe previous explanation tells you what the user has already seen.\n\nThe strategy should combine:\n1. academic learning-state evidence from academic_state_layer\n2. pedagogical move from allowed_strategy_families\n3. support cue from support_cue_layer\n4. context focus from selected_evidence and paper_context\n5. continuation logic from previous_explanation and recent_conversation\n\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe learning-state signal is noisy academic support evidence, not a diagnosis.\nDo not say the user is confused, bored, frustrated, or engaged.\nUse neutral phrasing such as \"clarification cue\", \"re-engagement cue\", or \"deepening cue\".\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not mention webcam, face, facial expression, or camera detection.\nDo not include Chinese translations.\n\nOnly use the signal to decide what support style may be helpful. If confidence is low, make strategies less state-specific and more user-choice-oriented. Do not generate the final answer.\n\nThe rule layer provides allowed_strategy_families. Choose strategy_family only from that list. Do not invent a new strategy family.\n\nYou are not generating a topic title. You are generating a pedagogical support strategy.\nA good strategy title should describe how the assistant will help the user reason about the passage, not merely name the passage topic.\n\nExamples:\nBad: \"The Tension Between AI and Authenticity\"\nGood: \"Critique the core assumption about authenticity\"\nBad: \"DiaryMate Writing Flow\"\nGood: \"Map the writing flow step by step\"\n\nSeparate:\n- pedagogical_move: the learning support action\n- context_focus: the paper-specific content focus\n\nReturn strict JSON only with:\n{\n  \"state_interpretation\": {\n    \"support_need\": \"clarification | reassurance | re-engagement | deepening | neutral\",\n    \"confidence_handling\": \"...\",\n    \"context_reasoning\": \"...\",\n    \"safety_note\": \"Affective signal used only as a support cue, not as diagnosis.\"\n  },\n  \"candidates\": [\n    {\n      \"strategy_id\": \"...\",\n      \"strategy_family\": \"...\",\n      \"pedagogical_move\": \"...\",\n      \"context_focus\": \"...\",\n      \"title\": \"...\",\n      \"short_description\": \"...\",\n      \"why_recommended\": \"...\",\n      \"prompt_instruction\": \"...\",\n      \"expected_answer_shape\": [\"...\"],\n      \"recommended\": true,\n      \"recommended_score\": 0.0\n    }\n  ],\n  \"planner_prompt_version\": \"reaction_strategy_planner_v2\",\n  \"warnings\": []\n}\n\nuser:\nstrategy_planning_context:\n{\n  \"selected_evidence\": {\n    \"selection_type\": \"text\",\n    \"page_number\": 2,\n    \"selected_text\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language.\",\n    \"caption\": \"\",\n    \"crop_available\": false,\n    \"selection_note\": \"\"\n  },\n  \"paper_context\": {\n    \"matched_block\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical advance allowed people to adopt LLMs in their writing practice in diverse domains, such as creative writing [3, 29, 46], scientific writing [17, 22], and journalism [33]. As people increasingly adopt LLMs for writing, understanding user perception and experience of writing with LLMs has become an emerging area of interest in the Human-Computer Interaction (HCI) community [8, 33, 46]. Recent work has discovered dynamics between users and LLM where users view the LLM more as an active writer rather than just a tool, gaining inspiration and ideas from unexpected machine-generated text [46, 47]. However, story writers hesitate to incorporate LLMs into their writing process [3]. This reluctance arises from a desire to retain control over their narrative, concerns that LLM mechanics may not align with their writing strategies [3], and perceived shortcomings in the LLM\u2019s contextual awareness [47]. These findings not only highlight the complexity and diversity of user perceptions regarding human-LLM [truncated; original length: 2781 characters]\",\n    \"nearby_context\": [\n      \"Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong\",\n      \"situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LL [truncated; original length: 2055 characters]\"\n    ],\n    \"retrieved_rag_chunks\": [],\n    \"paper_profile_summary\": \"\",\n    \"passage_type\": \"unknown\",\n    \"difficulty_hint\": \"technical_terms\"\n  },\n  \"previous_explanation\": {\n    \"source_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n    \"source_turn_type\": \"strategy_reexplanation\",\n    \"baseline_explanation\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\"\n  },\n  \"reaction_context\": {\n    \"reaction_window_summary\": {\n      \"source_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"source_turn_type\": \"strategy_reexplanation\",\n      \"highlight_id\": \"e9c28d0f-7af3-4ec4-8665-fde7ccc599eb\",\n      \"start_time\": \"2026-05-21T07:15:48.360Z\",\n      \"end_time\": \"2026-05-21T07:15:53.365Z\",\n      \"window_start\": \"2026-05-21T07:15:48.360Z\",\n      \"window_end\": \"2026-05-21T07:15:53.365Z\",\n      \"end_reason\": \"short_answer_min_elapsed\",\n      \"read_progress_estimate\": 1,\n      \"duration_sec\": 5,\n      \"sample_count\": 4,\n      \"evidence_count\": 4,\n      \"early_distribution\": {\n        \"boredom\": 0,\n        \"confusion\": 0,\n        \"engagement\": 0.021,\n        \"frustration\": 0.979\n      },\n      \"middle_distribution\": {\n        \"boredom\": 0.007,\n        \"confusion\": 0,\n        \"engagement\": 0.91,\n        \"frustration\": 0.084\n      },\n      \"late_distribution\": {\n        \"boredom\": 0.005,\n        \"confusion\": 0,\n        \"engagement\": 0.888,\n        \"frustration\": 0.107\n      },\n      \"early_dominant_state\": \"frustration\",\n      \"middle_dominant_state\": \"engagement\",\n      \"late_dominant_state\": \"engagement\",\n      \"state_transition\": \"frustration_to_engagement\",\n      \"transition_label\": \"early frustration -> late engagement\",\n      \"dominant_state\": \"frustration\",\n      \"secondary_state\": \"engagement\",\n      \"avg_confidence\": 0.543,\n      \"max_confidence\": 0.999,\n      \"avg_distribution\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"trend\": \"falling\",\n      \"stability\": \"transitioning\",\n      \"support_cue\": \"deepening\",\n      \"support_cue_label\": \"Deepening cue\",\n      \"support_cue_display_label\": \"deepening\",\n      \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n      \"confidence_handling\": \"standard_confidence\",\n      \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"trigger_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n      \"model_output_type\": \"raw_emotion\",\n      \"raw_detection_available\": true,\n      \"face_detection_summary\": {\n        \"mode\": \"openface\",\n        \"fallback_used\": false,\n        \"crop_strategy\": \"openface_landmark_bbox\"\n      },\n      \"baseline_explanation\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration.\\n\\n* **Step 1: The Shift in Natural Language Interaction**  \\n  The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language.\\n\\n* **Step 2: From Basic Editing to Active Collaboration**  \\n  As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors.\\n\\n* **Step 3: The Transition to Personal, Reflective Spaces**  \\n  While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling.\\n\\n**Why it matters:**  \\nUnderstanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\",\n      \"reaction_window_status\": \"completed\",\n      \"start_turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"min_duration_met\": true,\n      \"min_samples_met\": true,\n      \"top_seen\": true,\n      \"bottom_seen\": false,\n      \"user_scroll_progressed\": false,\n      \"suppressed_auto_scroll\": true,\n      \"strategy_request_sent\": true,\n      \"strategy_response_received\": false\n    },\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"dominant_state\": \"frustration\",\n    \"secondary_state\": \"engagement\",\n    \"avg_confidence\": 0.543,\n    \"avg_distribution\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    },\n    \"trend\": \"falling\",\n    \"duration_sec\": 5.0,\n    \"end_reason\": \"short_answer_min_elapsed\",\n    \"read_progress_estimate\": 1.0,\n    \"early_distribution\": {\n      \"boredom\": 0,\n      \"confusion\": 0,\n      \"engagement\": 0.021,\n      \"frustration\": 0.979\n    },\n    \"middle_distribution\": {\n      \"boredom\": 0.007,\n      \"confusion\": 0,\n      \"engagement\": 0.91,\n      \"frustration\": 0.084\n    },\n    \"late_distribution\": {\n      \"boredom\": 0.005,\n      \"confusion\": 0,\n      \"engagement\": 0.888,\n      \"frustration\": 0.107\n    },\n    \"early_dominant_state\": \"frustration\",\n    \"middle_dominant_state\": \"engagement\",\n    \"late_dominant_state\": \"engagement\",\n    \"state_transition\": \"frustration_to_engagement\",\n    \"transition_label\": \"early frustration -> late engagement\"\n  },\n  \"learning_signal\": {\n    \"active_source\": \"raw_8class_process_aware\",\n    \"raw_emotion_evidence\": null,\n    \"academic_state_mapping\": {\n      \"mapping_rule_version\": \"required_8class_probability_aggregation_v1\",\n      \"mapped_academic_state\": \"frustration\",\n      \"mapped_academic_scores\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0.0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"mapping_explanation\": \"mapped academic scores from reaction-window or current learning-state payload\",\n      \"confidence_notes\": [\n        \"process-aware package synthesized from existing pdf-chat signal fields\"\n      ]\n    },\n    \"reaction_window_summary\": {\n      \"window_start\": \"2026-05-21T07:15:48.360Z\",\n      \"window_end\": \"2026-05-21T07:15:53.365Z\",\n      \"dominant_raw_emotions\": [],\n      \"dominant_mapped_states\": [\n        {\n          \"state\": \"frustration\",\n          \"probability\": 0.543\n        },\n        {\n          \"state\": \"engagement\",\n          \"probability\": 0.454\n        },\n        {\n          \"state\": \"boredom\",\n          \"probability\": 0.003\n        }\n      ],\n      \"trend\": \"falling\",\n      \"evidence_count\": 4,\n      \"reliability_notes\": [\n        \"reaction window summary is used as learning-support evidence, not diagnosis\"\n      ],\n      \"avg_mapped_scores\": {\n        \"boredom\": 0.003,\n        \"confusion\": 0.0,\n        \"engagement\": 0.454,\n        \"frustration\": 0.543\n      },\n      \"support_cue\": \"deepening\",\n      \"start_time\": \"2026-05-21T07:15:48.360Z\",\n      \"end_time\": \"2026-05-21T07:15:53.365Z\",\n      \"duration_sec\": 5.0,\n      \"end_reason\": \"short_answer_min_elapsed\",\n      \"read_progress_estimate\": 1.0,\n      \"sample_count\": 4,\n      \"early_distribution\": {\n        \"boredom\": 0.0,\n        \"confusion\": 0.0,\n        \"engagement\": 0.021,\n        \"frustration\": 0.979\n      },\n      \"middle_distribution\": {\n        \"boredom\": 0.007,\n        \"confusion\": 0.0,\n        \"engagement\": 0.91,\n        \"frustration\": 0.084\n      },\n      \"late_distribution\": {\n        \"boredom\": 0.005,\n        \"confusion\": 0.0,\n        \"engagement\": 0.888,\n        \"frustration\": 0.107\n      },\n      \"early_dominant_state\": \"frustration\",\n      \"middle_dominant_state\": \"engagement\",\n      \"late_dominant_state\": \"engagement\",\n      \"state_transition\": \"frustration_to_engagement\",\n      \"transition_label\": \"early frustration -> late engagement\",\n      \"dominant_state\": \"frustration\",\n      \"secondary_state\": \"engagement\",\n      \"stability\": \"transitioning\",\n      \"confidence_handling\": \"standard_confidence\"\n    },\n    \"learning_process_context\": {\n      \"document_id\": \"e0d8f3174cb540a285709afe8c02afcf\",\n      \"highlight_id\": \"e9c28d0f-7af3-4ec4-8665-fde7ccc599eb\",\n      \"turn_index\": 2,\n      \"followup_count_for_highlight\": 0,\n      \"same_highlight_repeated_questions\": false,\n      \"last_user_question\": null,\n      \"current_user_question\": null,\n      \"question_intent\": \"general_followup\",\n      \"previous_strategy\": \"concrete_example\",\n      \"recent_strategies\": [\n        \"concrete_example\"\n      ],\n      \"last_response_was_baseline_or_adaptive\": \"adaptive\",\n      \"time_since_last_assistant_answer\": null\n    },\n    \"academic_state_scores\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0.0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    },\n    \"dominant_academic_state\": \"frustration\",\n    \"secondary_academic_state\": \"engagement\",\n    \"support_cue\": \"deepening\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"strategy_state\": \"engagement\",\n    \"recommended_strategy\": \"deepen_or_extend\",\n    \"strategy_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"source_turn_type\": \"strategy_reexplanation\",\n    \"support_cue_label\": \"deepening\",\n    \"prompt_guidance\": [\n      \"Offer a deeper explanation with connections to the paper.\",\n      \"Extend only where the provided paper context supports it.\"\n    ],\n    \"diagnostic_only_direct_4class\": {\n      \"used_for_strategy\": false\n    },\n    \"non_diagnostic_disclaimer\": \"Use this as a lightweight learning-support signal, not as a psychological diagnosis.\",\n    \"process_strategy_reason\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\"\n  },\n  \"academic_state_layer\": {\n    \"dominant_academic_state\": \"frustration\",\n    \"secondary_academic_state\": \"engagement\",\n    \"academic_state_scores\": {\n      \"boredom\": 0.003,\n      \"confusion\": 0.0,\n      \"engagement\": 0.454,\n      \"frustration\": 0.543\n    }\n  },\n  \"support_cue_layer\": {\n    \"support_cue\": \"deepening\",\n    \"support_cue_label\": \"deepening\",\n    \"reason_text\": \"While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\",\n    \"academic_state_evidence_text\": \"early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling\",\n    \"confidence_handling\": \"standard_confidence\",\n    \"inferred_process_state\": \"engaged_deepening\",\n    \"recommended_strategy\": \"deep_technical_explanation\",\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ]\n  },\n  \"strategy_constraints\": {\n    \"allowed_strategy_families\": [\n      \"deep_technical_explanation\",\n      \"critique_assumptions\",\n      \"connect_to_related_work\",\n      \"limitations_and_implications\",\n      \"compare_methods\"\n    ],\n    \"previous_strategy_id\": \"concrete_example\",\n    \"previous_strategy_family\": \"concrete_example\",\n    \"previous_pedagogical_move\": \"Walk through the passage step by step\",\n    \"previous_title\": \"Walk through the passage step by step\",\n    \"previous_normalized_pedagogical_move_key\": \"worked_example\"\n  },\n  \"recent_conversation\": [\n    {\n      \"turn_id\": \"turn_ded214cab1284103881e828699cddd82\",\n      \"turn_type\": \"baseline_explanation\",\n      \"content\": \"This opening sentence highlights a major shift in how we interact with technology. Traditionally, computers required rigid inputs, code, or simple commands to perform tasks. With the rise of large language models (LLMs), we can now interact with computers using natural, everyday conversational language, which fundamentally changes our relationship with digital tools. In the context of the paper, this shift is crucial because it marks the transition of AI from a basic, passive assistant\u2014like a spellchecker or grammar corrector\u2014to an active \\\"co-author.\\\" The authors use this premise to set up their investigation into how this collaborative relationship plays out in highly personal, reflective tasks. While collaborative writing tools are increasingly common for professional emails or creative storytelling, the authors point out a gap in our understanding of how people use them for introspective tasks like personal journaling. By starting with this broad shift in human-AI interaction, they establish the foundation for their study on *DiaryMate*, exploring what happens when an AI actively participates in a user's private reflections and emotional expression.\",\n      \"role\": \"assistant\"\n    },\n    {\n      \"turn_id\": \"turn_62f28dfabd6248a6b41a94849a21974d\",\n      \"source_turn_type\": \"baseline_explanation\",\n      \"applied_pedagogical_move\": \"Walk through the passage step by step\",\n      \"applied_strategy_title\": \"Walk through the passage step by step\",\n      \"pedagogical_move\": \"Walk through the passage step by step\",\n      \"applied_strategy_family\": \"concrete_example\",\n      \"turn_type\": \"strategy_reexplanation\",\n      \"applied_context_focus\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i\",\n      \"applied_strategy_id\": \"concrete_example\",\n      \"context_focus\": \"Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i\",\n      \"normalized_pedagogical_move_key\": \"worked_example\",\n      \"source_reaction_turn_id\": \"turn_ded214cab1284103881e828699cddd82\",\n      \"content\": \"**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \\\"reshaped our understanding\\\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \\\"DiaryMate\\\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.\",\n      \"strategy_status\": \"applied\",\n      \"why_recommended\": \"While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 71%, secondary engagement 28%) with a stable trend. This suggested a strategy to reduce cognitive load, so the system selected a step-by-step support strategy.\",\n      \"role\": \"assistant\",\n      \"applied_title\": \"Walk through the passage step by step\",\n      \"strategy_family\": \"concrete_example\",\n      \"strategy_id\": \"concrete_example\"\n    }\n  ]\n}",
+  "strategy_planning_context": {
+    "selected_evidence": {
+      "selection_type": "text",
+      "page_number": 2,
+      "selected_text": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language.",
+      "caption": "",
+      "crop_available": false,
+      "selection_note": ""
+    },
+    "paper_context": {
+      "matched_block": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language. These capabilities open new possibilities for supporting people in various real-world writing tasks [13]. Language models no longer merely assist writers with repetitive, simple editing tasks such as fixing typos or grammar errors; LLMs are now evolving to a point where they can actively collaborate with human writers as co-authors [13, 29, 46]. This technical advance allowed people to adopt LLMs in their writing practice in diverse domains, such as creative writing [3, 29, 46], scientific writing [17, 22], and journalism [33]. As people increasingly adopt LLMs for writing, understanding user perception and experience of writing with LLMs has become an emerging area of interest in the Human-Computer Interaction (HCI) community [8, 33, 46]. Recent work has discovered dynamics between users and LLM where users view the LLM more as an active writer rather than just a tool, gaining inspiration and ideas from unexpected machine-generated text [46, 47]. However, story writers hesitate to incorporate LLMs into their writing process [3]. This reluctance arises from a desire to retain control over their narrative, concerns that LLM mechanics may not align with their writing strategies [3], and perceived shortcomings in the LLM\u2019s contextual awareness [47]. These findings not only highlight the complexity and diversity of user perceptions regarding human-LLM [truncated; original length: 2781 characters]",
+      "nearby_context": [
+        "Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong",
+        "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LL [truncated; original length: 2055 characters]"
+      ],
+      "retrieved_rag_chunks": [],
+      "paper_profile_summary": "",
+      "passage_type": "unknown",
+      "difficulty_hint": "technical_terms"
+    },
+    "previous_explanation": {
+      "source_turn_id": "turn_62f28dfabd6248a6b41a94849a21974d",
+      "source_turn_type": "strategy_reexplanation",
+      "baseline_explanation": "**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \"reshaped our understanding\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \"DiaryMate\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice."
+    },
+    "reaction_context": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_62f28dfabd6248a6b41a94849a21974d",
+        "source_turn_type": "strategy_reexplanation",
+        "highlight_id": "e9c28d0f-7af3-4ec4-8665-fde7ccc599eb",
+        "start_time": "2026-05-21T07:15:48.360Z",
+        "end_time": "2026-05-21T07:15:53.365Z",
+        "window_start": "2026-05-21T07:15:48.360Z",
+        "window_end": "2026-05-21T07:15:53.365Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.021,
+          "frustration": 0.979
+        },
+        "middle_distribution": {
+          "boredom": 0.007,
+          "confusion": 0,
+          "engagement": 0.91,
+          "frustration": 0.084
+        },
+        "late_distribution": {
+          "boredom": 0.005,
+          "confusion": 0,
+          "engagement": 0.888,
+          "frustration": 0.107
+        },
+        "early_dominant_state": "frustration",
+        "middle_dominant_state": "engagement",
+        "late_dominant_state": "engagement",
+        "state_transition": "frustration_to_engagement",
+        "transition_label": "early frustration -> late engagement",
+        "dominant_state": "frustration",
+        "secondary_state": "engagement",
+        "avg_confidence": 0.543,
+        "max_confidence": 0.999,
+        "avg_distribution": {
+          "boredom": 0.003,
+          "confusion": 0,
+          "engagement": 0.454,
+          "frustration": 0.543
+        },
+        "trend": "falling",
+        "stability": "transitioning",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "support_cue_display_label": "deepening",
+        "academic_state_evidence_text": "early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling",
+        "confidence_handling": "standard_confidence",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration.\n\n* **Step 1: The Shift in Natural Language Interaction**  \n  The passage notes that pre-trained LLMs have \"reshaped our understanding\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language.\n\n* **Step 2: From Basic Editing to Active Collaboration**  \n  As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors.\n\n* **Step 3: The Transition to Personal, Reflective Spaces**  \n  While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \"DiaryMate\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling.\n\n**Why it matters:**  \nUnderstanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_62f28dfabd6248a6b41a94849a21974d",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": false
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling",
+      "confidence_handling": "standard_confidence",
+      "dominant_state": "frustration",
+      "secondary_state": "engagement",
+      "avg_confidence": 0.543,
+      "avg_distribution": {
+        "boredom": 0.003,
+        "confusion": 0,
+        "engagement": 0.454,
+        "frustration": 0.543
+      },
+      "trend": "falling",
+      "duration_sec": 5.0,
+      "end_reason": "short_answer_min_elapsed",
+      "read_progress_estimate": 1.0,
+      "early_distribution": {
+        "boredom": 0,
+        "confusion": 0,
+        "engagement": 0.021,
+        "frustration": 0.979
+      },
+      "middle_distribution": {
+        "boredom": 0.007,
+        "confusion": 0,
+        "engagement": 0.91,
+        "frustration": 0.084
+      },
+      "late_distribution": {
+        "boredom": 0.005,
+        "confusion": 0,
+        "engagement": 0.888,
+        "frustration": 0.107
+      },
+      "early_dominant_state": "frustration",
+      "middle_dominant_state": "engagement",
+      "late_dominant_state": "engagement",
+      "state_transition": "frustration_to_engagement",
+      "transition_label": "early frustration -> late engagement"
+    },
+    "learning_signal": {
+      "active_source": "raw_8class_process_aware",
+      "raw_emotion_evidence": null,
+      "academic_state_mapping": {
+        "mapping_rule_version": "required_8class_probability_aggregation_v1",
+        "mapped_academic_state": "frustration",
+        "mapped_academic_scores": {
+          "boredom": 0.003,
+          "confusion": 0.0,
+          "engagement": 0.454,
+          "frustration": 0.543
+        },
+        "mapping_explanation": "mapped academic scores from reaction-window or current learning-state payload",
+        "confidence_notes": [
+          "process-aware package synthesized from existing pdf-chat signal fields"
+        ]
+      },
+      "reaction_window_summary": {
+        "window_start": "2026-05-21T07:15:48.360Z",
+        "window_end": "2026-05-21T07:15:53.365Z",
+        "dominant_raw_emotions": [],
+        "dominant_mapped_states": [
+          {
+            "state": "frustration",
+            "probability": 0.543
+          },
+          {
+            "state": "engagement",
+            "probability": 0.454
+          },
+          {
+            "state": "boredom",
+            "probability": 0.003
+          }
+        ],
+        "trend": "falling",
+        "evidence_count": 4,
+        "reliability_notes": [
+          "reaction window summary is used as learning-support evidence, not diagnosis"
+        ],
+        "avg_mapped_scores": {
+          "boredom": 0.003,
+          "confusion": 0.0,
+          "engagement": 0.454,
+          "frustration": 0.543
+        },
+        "support_cue": "deepening",
+        "start_time": "2026-05-21T07:15:48.360Z",
+        "end_time": "2026-05-21T07:15:53.365Z",
+        "duration_sec": 5.0,
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1.0,
+        "sample_count": 4,
+        "early_distribution": {
+          "boredom": 0.0,
+          "confusion": 0.0,
+          "engagement": 0.021,
+          "frustration": 0.979
+        },
+        "middle_distribution": {
+          "boredom": 0.007,
+          "confusion": 0.0,
+          "engagement": 0.91,
+          "frustration": 0.084
+        },
+        "late_distribution": {
+          "boredom": 0.005,
+          "confusion": 0.0,
+          "engagement": 0.888,
+          "frustration": 0.107
+        },
+        "early_dominant_state": "frustration",
+        "middle_dominant_state": "engagement",
+        "late_dominant_state": "engagement",
+        "state_transition": "frustration_to_engagement",
+        "transition_label": "early frustration -> late engagement",
+        "dominant_state": "frustration",
+        "secondary_state": "engagement",
+        "stability": "transitioning",
+        "confidence_handling": "standard_confidence"
+      },
+      "learning_process_context": {
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "highlight_id": "e9c28d0f-7af3-4ec4-8665-fde7ccc599eb",
+        "turn_index": 2,
+        "followup_count_for_highlight": 0,
+        "same_highlight_repeated_questions": false,
+        "last_user_question": null,
+        "current_user_question": null,
+        "question_intent": "general_followup",
+        "previous_strategy": "concrete_example",
+        "recent_strategies": [
+          "concrete_example"
+        ],
+        "last_response_was_baseline_or_adaptive": "adaptive",
+        "time_since_last_assistant_answer": null
+      },
+      "academic_state_scores": {
+        "boredom": 0.003,
+        "confusion": 0.0,
+        "engagement": 0.454,
+        "frustration": 0.543
+      },
+      "dominant_academic_state": "frustration",
+      "secondary_academic_state": "engagement",
+      "support_cue": "deepening",
+      "inferred_process_state": "engaged_deepening",
+      "strategy_state": "engagement",
+      "recommended_strategy": "deepen_or_extend",
+      "strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "support_cue_label": "deepening",
+      "prompt_guidance": [
+        "Offer a deeper explanation with connections to the paper.",
+        "Extend only where the provided paper context supports it."
+      ],
+      "diagnostic_only_direct_4class": {
+        "used_for_strategy": false
+      },
+      "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis.",
+      "process_strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy."
+    },
+    "academic_state_layer": {
+      "dominant_academic_state": "frustration",
+      "secondary_academic_state": "engagement",
+      "academic_state_scores": {
+        "boredom": 0.003,
+        "confusion": 0.0,
+        "engagement": 0.454,
+        "frustration": 0.543
+      }
+    },
+    "support_cue_layer": {
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 54%, secondary engagement 45%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "early frustration -> late engagement \u00b7 frustration 54%, engagement 45% \u00b7 trend falling",
+      "confidence_handling": "standard_confidence",
+      "inferred_process_state": "engaged_deepening",
+      "recommended_strategy": "deep_technical_explanation",
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ]
+    },
+    "strategy_constraints": {
+      "allowed_strategy_families": [
+        "deep_technical_explanation",
+        "critique_assumptions",
+        "connect_to_related_work",
+        "limitations_and_implications",
+        "compare_methods"
+      ],
+      "previous_strategy_id": "concrete_example",
+      "previous_strategy_family": "concrete_example",
+      "previous_pedagogical_move": "Walk through the passage step by step",
+      "previous_title": "Walk through the passage step by step",
+      "previous_normalized_pedagogical_move_key": "worked_example"
+    },
+    "recent_conversation": [
+      {
+        "turn_id": "turn_ded214cab1284103881e828699cddd82",
+        "turn_type": "baseline_explanation",
+        "content": "This opening sentence highlights a major shift in how we interact with technology. Traditionally, computers required rigid inputs, code, or simple commands to perform tasks. With the rise of large language models (LLMs), we can now interact with computers using natural, everyday conversational language, which fundamentally changes our relationship with digital tools. In the context of the paper, this shift is crucial because it marks the transition of AI from a basic, passive assistant\u2014like a spellchecker or grammar corrector\u2014to an active \"co-author.\" The authors use this premise to set up their investigation into how this collaborative relationship plays out in highly personal, reflective tasks. While collaborative writing tools are increasingly common for professional emails or creative storytelling, the authors point out a gap in our understanding of how people use them for introspective tasks like personal journaling. By starting with this broad shift in human-AI interaction, they establish the foundation for their study on *DiaryMate*, exploring what happens when an AI actively participates in a user's private reflections and emotional expression.",
+        "role": "assistant"
+      },
+      {
+        "turn_id": "turn_62f28dfabd6248a6b41a94849a21974d",
+        "source_turn_type": "baseline_explanation",
+        "applied_pedagogical_move": "Walk through the passage step by step",
+        "applied_strategy_title": "Walk through the passage step by step",
+        "pedagogical_move": "Walk through the passage step by step",
+        "applied_strategy_family": "concrete_example",
+        "turn_type": "strategy_reexplanation",
+        "applied_context_focus": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i",
+        "applied_strategy_id": "concrete_example",
+        "context_focus": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can i",
+        "normalized_pedagogical_move_key": "worked_example",
+        "source_reaction_turn_id": "turn_ded214cab1284103881e828699cddd82",
+        "content": "**Main Point:** The emergence of Large Language Models (LLMs) has fundamentally changed human-computer interaction, shifting technology from a simple utility tool into an active partner capable of natural language collaboration. * **Step 1: The Shift in Natural Language Interaction** The passage notes that pre-trained LLMs have \"reshaped our understanding\" of technology. Instead of forcing humans to use rigid computer commands, LLMs allow us to interact with machines using fluid, expressive natural language. * **Step 2: From Basic Editing to Active Collaboration** As detailed in the surrounding context, older writing assistance tools were limited to simple, repetitive chores like fixing typos and grammar mistakes. Today's LLMs are evolving past these basic tasks to actively collaborate with human writers as co-authors. * **Step 3: The Transition to Personal, Reflective Spaces** While these collaborative capabilities are already being utilized for general writing, the authors point out a research gap regarding highly subjective areas. The paper uses the technology probe \"DiaryMate\" to examine how this natural language partnership functions when applied to intimate, retrospective tasks like personal journaling. **Why it matters:** Understanding this shift is critical because personal writing is highly private and emotional. If an AI acts as a collaborative co-author rather than a simple text editor, it can deeply influence how writers express themselves. This step-by-step transition explains why the researchers must study the delicate balance between helpful AI suggestions and the preservation of a user's unique personal voice.",
+        "strategy_status": "applied",
+        "why_recommended": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 71%, secondary engagement 28%) with a stable trend. This suggested a strategy to reduce cognitive load, so the system selected a step-by-step support strategy.",
+        "role": "assistant",
+        "applied_title": "Walk through the passage step by step",
+        "strategy_family": "concrete_example",
+        "strategy_id": "concrete_example"
+      }
+    ]
+  },
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 2,
+    "selected_text_preview": "Pre-trained large language models (LLMs) have reshaped our understanding of how technology can interact with individuals through the natural language.",
+    "selected_text_length": 150,
+    "baseline_explanation_length": 1653,
+    "has_reaction_window_summary": true,
+    "support_cue": "deepening",
+    "dominant_state": "frustration",
+    "secondary_state": "engagement",
+    "dominant_academic_state": "frustration",
+    "secondary_academic_state": "engagement",
+    "academic_state_scores": {
+      "boredom": 0.003,
+      "confusion": 0.0,
+      "engagement": 0.454,
+      "frustration": 0.543
+    },
+    "reaction_window_duration": 5.0,
+    "reaction_window_avg_confidence": 0.543,
+    "allowed_strategy_families": [
+      "deep_technical_explanation",
+      "critique_assumptions",
+      "connect_to_related_work",
+      "limitations_and_implications",
+      "compare_methods"
+    ],
+    "passage_type": "unknown",
+    "difficulty_hint": "technical_terms",
+    "rag_chunk_count": 0,
+    "nearby_context_count": 2,
+    "recent_conversation_count": 2,
+    "inferred_process_state": "engaged_deepening",
+    "recommended_strategy": "deepen_or_extend",
+    "question_intent": "general_followup"
+  },
+  "allowed_strategy_families": [
+    "deep_technical_explanation",
+    "critique_assumptions",
+    "connect_to_related_work",
+    "limitations_and_implications",
+    "compare_methods"
+  ],
+  "support_cue": "deepening",
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": true
+  }
+}

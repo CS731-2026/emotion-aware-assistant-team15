@@ -31,12 +31,15 @@ def configure_emotion_checkpoint(
 
     env_path = root / LOCAL_ENV_FILE
     lines = env_path.read_text(encoding="utf-8").splitlines() if env_path.exists() else []
-    updates = {
-        "EMOTION_CHECKPOINT_PATH": str(checkpoint_path),
-        "EMOTION_MODEL_MODE": mode,
-    }
-    if detected_mode == "raw_emotion":
+    updates = {"EMOTION_MODEL_MODE": mode}
+    if mode == "raw_emotion":
         updates["RAW_EMOTION_CHECKPOINT_PATH"] = str(checkpoint_path)
+    elif mode == "academic_state":
+        updates["EMOTION_CHECKPOINT_PATH"] = str(checkpoint_path)
+    else:
+        updates["EMOTION_CHECKPOINT_PATH"] = str(checkpoint_path)
+        if detected_mode == "raw_emotion":
+            updates["RAW_EMOTION_CHECKPOINT_PATH"] = str(checkpoint_path)
     for key, value in updates.items():
         lines, _ = _replace_or_append(lines, key, value)
     env_path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
@@ -50,6 +53,8 @@ def configure_emotion_checkpoint(
         "saved": True,
         "env_local_present": env_path.exists(),
         "checkpoint_path": str(checkpoint_path),
+        "raw_emotion_checkpoint_path": updates.get("RAW_EMOTION_CHECKPOINT_PATH", ""),
+        "academic_checkpoint_path": updates.get("EMOTION_CHECKPOINT_PATH", ""),
         "mode": mode,
         "detected_model_mode": detected_mode,
         "classes": list(info.get("classes") or []),

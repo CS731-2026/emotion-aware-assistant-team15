@@ -1,7 +1,7 @@
 {
   "session_id": "152fd57fc2b341528a4aac35c6e5db9c",
   "document_id": "35fb83fd8fd74211980843d062743799",
-  "timestamp": "2026-05-19T01:48:38Z",
+  "timestamp": "2026-05-19T03:47:15Z",
   "source": "simulated_camera",
   "model_output_type": "academic_state_model",
   "raw_facial_emotion_available": false,
@@ -15,7 +15,7 @@
     "frustration": 0.74
   },
   "trend": "stable",
-  "duration_sec": 46718.5,
+  "duration_sec": 53835.5,
   "intensity": 0.74,
   "stability": "stable",
   "trigger_recommended": true,

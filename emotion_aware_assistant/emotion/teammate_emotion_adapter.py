@@ -8,7 +8,7 @@ from .labels import ALLOWED_EMOTIONS, EMOTION_TO_STATE
 
 
 ACADEMIC_STATE_CLASSES = ["boredom", "confusion", "engagement", "frustration"]
-RAW_EMOTION_CLASSES = ["neutral", "happy", "angry", "sad", "fear", "surprise", "disgust", "contempt"]
+RAW_EMOTION_CLASSES = ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 DEFAULT_ARCHITECTURE = "convnext_tiny.fb_in22k_ft_in1k"
 DEFAULT_METADATA: dict[str, Any] = {
     "model_output_type": "academic_state",
@@ -26,6 +26,7 @@ DEFAULT_METADATA: dict[str, Any] = {
     "mean": [0.485, 0.456, 0.406],
     "std": [0.229, 0.224, 0.225],
     "checkpoint_key": "model_state_dict",
+    "academic_label_order_source": "hardcoded",
 }
 
 
@@ -81,6 +82,8 @@ class TeammateEmotionAdapter:
         metadata = self.resolved_metadata
         classes = metadata.get("classes") or metadata.get("label_order") or []
         if isinstance(classes, list) and classes:
+            if self.model_output_type == "raw_emotion":
+                return [_canonical_raw_label(item) for item in classes]
             return [str(item) for item in classes]
         return ACADEMIC_STATE_CLASSES if self.model_output_type == "academic_state" else RAW_EMOTION_CLASSES
 
@@ -96,6 +99,11 @@ class TeammateEmotionAdapter:
             "classes": self.classes,
             "checkpoint_path": self._safe_checkpoint_label(checkpoint_path or self.checkpoint_path),
             "raw_emotion_available": self.model_output_type == "raw_emotion",
+            "academic_label_order_source": str(metadata.get("academic_label_order_source") or "unavailable"),
+            "input_size": int(metadata.get("input_size") or 224),
+            "mean": self._float_list(metadata.get("mean"), [0.485, 0.456, 0.406]),
+            "std": self._float_list(metadata.get("std"), [0.229, 0.224, 0.225]),
+            "preprocessing_summary": self._preprocessing_summary(metadata),
             "loading_error": self.load_error,
             "loading_warnings": list(self.load_warnings),
             "missing_keys": list(self.missing_keys),
@@ -118,12 +126,14 @@ class TeammateEmotionAdapter:
             self.load_error = f"PyTorch/timm dependencies are unavailable: {exc}"
             return self.status()
 
-        architecture = str(metadata.get("architecture") or DEFAULT_ARCHITECTURE)
-        num_classes = int(metadata.get("num_classes") or len(self.classes) or 4)
         try:
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
-            self.model = timm.create_model(architecture, pretrained=False, num_classes=num_classes)
             checkpoint = torch.load(checkpoint_path, map_location=self.device)
+            metadata = self._metadata_with_checkpoint(metadata, checkpoint)
+            self.metadata = metadata
+            architecture = str(metadata.get("architecture") or DEFAULT_ARCHITECTURE)
+            num_classes = int(metadata.get("num_classes") or len(self.classes) or 4)
+            self.model = timm.create_model(architecture, pretrained=False, num_classes=num_classes)
             state_dict = self._extract_state_dict(checkpoint, metadata)
             state_dict = self._clean_state_dict_keys(state_dict)
             try:
@@ -169,18 +179,23 @@ class TeammateEmotionAdapter:
                 probs = torch.softmax(self.model(tensor), dim=1)[0].detach().cpu().numpy()
             probabilities = {label: float(probs[index]) for index, label in enumerate(self.classes)}
             if self.model_output_type == "raw_emotion":
-                return self.raw_emotion_prediction_payload(
+                payload = self.raw_emotion_prediction_payload(
                     probabilities=probabilities,
                     architecture=str(self.resolved_metadata.get("architecture") or DEFAULT_ARCHITECTURE),
                     classes=self.classes,
                     device=self.device,
                 )
-            return self.academic_prediction_payload(
+                payload["preprocessing_summary"] = self._preprocessing_summary(self.resolved_metadata)
+                return payload
+            payload = self.academic_prediction_payload(
                 probabilities=probabilities,
                 architecture=str(self.resolved_metadata.get("architecture") or DEFAULT_ARCHITECTURE),
                 classes=self.classes,
                 device=self.device,
             )
+            payload["academic_label_order_source"] = str(self.resolved_metadata.get("academic_label_order_source") or "unavailable")
+            payload["preprocessing_summary"] = self._preprocessing_summary(self.resolved_metadata)
+            return payload
         except Exception as exc:
             return {
                 **self.status(),
@@ -218,7 +233,7 @@ class TeammateEmotionAdapter:
         classes: list[str],
         device: str,
     ) -> dict[str, Any]:
-        raw_distribution = _normalized_distribution(probabilities, RAW_EMOTION_CLASSES)
+        raw_distribution = _normalized_distribution(probabilities, RAW_EMOTION_CLASSES, raw=True)
         raw_emotion = max(raw_distribution, key=raw_distribution.get)
         state_distribution = {state: 0.0 for state in ACADEMIC_STATE_CLASSES}
         for emotion, probability in raw_distribution.items():
@@ -237,7 +252,7 @@ class TeammateEmotionAdapter:
             "academic_state": academic_state,
             "state_distribution": state_distribution,
             "architecture": architecture,
-            "classes": classes,
+            "classes": [_canonical_raw_label(label) for label in classes],
             "device": device,
         }
 
@@ -248,6 +263,8 @@ class TeammateEmotionAdapter:
                 loaded = json.loads(self.metadata_path.read_text(encoding="utf-8"))
                 if isinstance(loaded, dict):
                     metadata.update(loaded)
+                    if loaded.get("classes") or loaded.get("label_order") or loaded.get("class_to_idx"):
+                        metadata["academic_label_order_source"] = "checkpoint_metadata"
         except Exception as exc:
             self.load_error = f"metadata.json could not be read: {exc}"
         metadata["model_output_type"] = self._infer_model_output_type(metadata)
@@ -255,11 +272,42 @@ class TeammateEmotionAdapter:
             metadata["classes"] = list(metadata.get("classes") or ACADEMIC_STATE_CLASSES)
             metadata["num_classes"] = int(metadata.get("num_classes") or 4)
             metadata["raw_emotion_available"] = False
+            metadata["academic_label_order_source"] = str(metadata.get("academic_label_order_source") or "hardcoded")
         else:
-            metadata["classes"] = list(metadata.get("classes") or metadata.get("label_order") or RAW_EMOTION_CLASSES)
+            metadata["classes"] = [_canonical_raw_label(label) for label in list(metadata.get("classes") or metadata.get("label_order") or RAW_EMOTION_CLASSES)]
             metadata["num_classes"] = int(metadata.get("num_classes") or len(metadata["classes"]))
             metadata["raw_emotion_available"] = True
         return metadata
+
+    @staticmethod
+    def _metadata_with_checkpoint(metadata: dict[str, Any], checkpoint: Any) -> dict[str, Any]:
+        merged = dict(metadata)
+        if not isinstance(checkpoint, dict):
+            return merged
+        architecture = str(checkpoint.get("arch") or checkpoint.get("architecture") or "").strip()
+        if architecture:
+            merged["architecture"] = architecture
+        if checkpoint.get("num_classes") is not None:
+            try:
+                merged["num_classes"] = int(checkpoint.get("num_classes"))
+            except Exception:
+                pass
+        classes, source = _classes_from_checkpoint_metadata(checkpoint)
+        if classes:
+            merged["classes"] = classes
+            merged["class_to_idx"] = {
+                label: index
+                for index, label in enumerate(classes)
+            }
+            merged["model_output_type"] = TeammateEmotionAdapter._infer_model_output_type(merged)
+            if merged["model_output_type"] == "raw_emotion":
+                merged["classes"] = [_canonical_raw_label(label) for label in classes]
+            else:
+                merged["academic_label_order_source"] = source
+        elif int(merged.get("num_classes") or 0) == 4 and not merged.get("classes"):
+            merged["classes"] = list(ACADEMIC_STATE_CLASSES)
+            merged["academic_label_order_source"] = "guessed"
+        return merged
 
     def _find_weight_path(self) -> Path | None:
         candidates = [self.model_dir / name for name in ("best_model.pt", "best_model.pth", "best_model.ckpt")]
@@ -275,10 +323,14 @@ class TeammateEmotionAdapter:
             return "academic_state"
         if explicit in {"raw_emotion", "raw_facial_emotion"}:
             return "raw_emotion"
-        classes = [str(item).lower() for item in metadata.get("classes") or metadata.get("label_order") or []]
-        if classes == ACADEMIC_STATE_CLASSES:
+        classes = [str(item).strip().lower() for item in metadata.get("classes") or metadata.get("label_order") or []]
+        if len(classes) == len(ACADEMIC_STATE_CLASSES) and set(classes) == set(ACADEMIC_STATE_CLASSES):
             return "academic_state"
-        if classes == RAW_EMOTION_CLASSES or classes == ALLOWED_EMOTIONS:
+        canonical_raw = [_canonical_raw_label(item) for item in classes]
+        if len(canonical_raw) == len(RAW_EMOTION_CLASSES) and set(canonical_raw) == set(RAW_EMOTION_CLASSES):
+            return "raw_emotion"
+        allowed_canonical = [_canonical_raw_label(item) for item in ALLOWED_EMOTIONS]
+        if len(allowed_canonical) == len(canonical_raw) and set(canonical_raw) == set(allowed_canonical):
             return "raw_emotion"
         return "academic_state"
 
@@ -332,6 +384,17 @@ class TeammateEmotionAdapter:
         except Exception:
             return fallback
 
+    @classmethod
+    def _preprocessing_summary(cls, metadata: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "input_size": int(metadata.get("input_size") or 224),
+            "mean": cls._float_list(metadata.get("mean"), [0.485, 0.456, 0.406]),
+            "std": cls._float_list(metadata.get("std"), [0.229, 0.224, 0.225]),
+            "color_space": "RGB",
+            "tensor_layout": "NCHW",
+            "resize_method": "PIL.Image.resize default",
+        }
+
     @staticmethod
     def _safe_checkpoint_label(path: Path) -> str:
         parts = path.parts
@@ -340,14 +403,44 @@ class TeammateEmotionAdapter:
         return str(Path("models/emotion_model") / path.name)
 
 
-def _normalized_distribution(probabilities: dict[str, float], labels: list[str]) -> dict[str, float]:
+def _normalized_distribution(probabilities: dict[str, float], labels: list[str], raw: bool = False) -> dict[str, float]:
+    source: dict[str, float] = {}
+    for key, value in probabilities.items():
+        label = _canonical_raw_label(key) if raw else str(key).strip().lower()
+        try:
+            source[label] = source.get(label, 0.0) + max(0.0, float(value))
+        except Exception:
+            source.setdefault(label, 0.0)
     values: dict[str, float] = {}
     for label in labels:
+        key = _canonical_raw_label(label) if raw else str(label).strip().lower()
         try:
-            values[label] = max(0.0, float(probabilities.get(label, 0.0)))
+            values[key] = max(0.0, float(source.get(key, 0.0)))
         except Exception:
-            values[label] = 0.0
+            values[key] = 0.0
     total = sum(values.values())
     if total <= 0:
         return {label: round(1.0 / len(labels), 6) for label in labels}
-    return {label: round(value / total, 6) for label, value in values.items()}
+    return {_canonical_raw_label(label) if raw else str(label).strip().lower(): round(values[_canonical_raw_label(label) if raw else str(label).strip().lower()] / total, 6) for label in labels}
+
+
+def _canonical_raw_label(label: Any) -> str:
+    text = str(label or "").strip().lower()
+    aliases = {"angry": "anger", "happiness": "happy", "sadness": "sad"}
+    return aliases.get(text, text)
+
+
+def _classes_from_checkpoint_metadata(checkpoint: dict[str, Any]) -> tuple[list[str], str]:
+    class_to_idx = checkpoint.get("class_to_idx")
+    if isinstance(class_to_idx, dict) and class_to_idx:
+        try:
+            return [
+                str(label).strip().lower()
+                for label, _ in sorted(class_to_idx.items(), key=lambda item: int(item[1]))
+            ], "checkpoint_metadata"
+        except Exception:
+            return [str(label).strip().lower() for label in class_to_idx], "checkpoint_metadata"
+    classes = checkpoint.get("classes") or checkpoint.get("label_order")
+    if isinstance(classes, list) and classes:
+        return [str(item).strip().lower() for item in classes], "checkpoint_metadata"
+    return [], "unavailable"

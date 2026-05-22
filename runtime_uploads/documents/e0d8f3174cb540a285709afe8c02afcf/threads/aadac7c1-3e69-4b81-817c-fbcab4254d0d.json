@@ -1,0 +1,3004 @@
+{
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+  "created_at": 1779348888.747435,
+  "updated_at": 1779349009.4957662,
+  "selection_snapshot": {
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+    "highlight_type": "text",
+    "page_number": 2,
+    "selected_text": "By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [ 44 , 45 ].",
+    "text_available": true,
+    "reason": "",
+    "viewport_rects": [
+      {
+        "x1": 593.071777,
+        "y1": 723.4375,
+        "x2": 770.849915,
+        "y2": 736.9375,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 738.523438,
+        "x2": 771.225403,
+        "y2": 752.023438,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 753.710938,
+        "x2": 770.907776,
+        "y2": 767.210938,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 768.796875,
+        "x2": 770.901978,
+        "y2": 782.296875,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      },
+      {
+        "x1": 438.976562,
+        "y1": 783.992188,
+        "x2": 563.517273,
+        "y2": 797.492188,
+        "width": 845,
+        "height": 1093.529412,
+        "pageNumber": 2
+      }
+    ],
+    "normalized_rects": [
+      {
+        "x1": 0.70186,
+        "y1": 0.661562,
+        "x2": 0.912248,
+        "y2": 0.673907,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.675358,
+        "x2": 0.912693,
+        "y2": 0.687703,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.689246,
+        "x2": 0.912317,
+        "y2": 0.701591,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.703042,
+        "x2": 0.91231,
+        "y2": 0.715387,
+        "pageNumber": 2
+      },
+      {
+        "x1": 0.519499,
+        "y1": 0.716937,
+        "x2": 0.666884,
+        "y2": 0.729283,
+        "pageNumber": 2
+      }
+    ],
+    "parser_rects_1000": [
+      {
+        "x1": 701.86,
+        "y1": 661.562,
+        "x2": 912.248,
+        "y2": 673.907,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 675.358,
+        "x2": 912.693,
+        "y2": 687.703,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 689.246,
+        "x2": 912.317,
+        "y2": 701.591,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 703.042,
+        "x2": 912.31,
+        "y2": 715.387,
+        "pageNumber": 2
+      },
+      {
+        "x1": 519.499,
+        "y1": 716.937,
+        "x2": 666.884,
+        "y2": 729.283,
+        "pageNumber": 2
+      }
+    ],
+    "crop_image_available": false,
+    "crop_image_path": "",
+    "crop_path": "",
+    "crop_url": "",
+    "crop_image_data_url_length": 0,
+    "matched_block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+    "matched_block_type": "text",
+    "coordinate_overlap": 1,
+    "text_bonus": 0.05,
+    "match_score": 1,
+    "caption": "",
+    "selected_caption": null,
+    "caption_confidence": "",
+    "candidate_captions": [],
+    "matched_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+      "page_number": 2,
+      "block_type": "text",
+      "coordinate_overlap": 1,
+      "text_bonus": 0.05,
+      "match_score": 1,
+      "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves as a therapeutic outlet for stress relief [1, 42]. Then, what are the characteristics of the journal in terms of writing style? Prior research generally offers: writing regularly for a certain period of time, writing down your deep feelings and thoughts as openly as possible, and writing without worrying about writing skills such as grammar and spelling and evaluation [20, 37, 44]. As such, journaling gives writers a lot of freedom and seems easy to do, but it can be overwhelming and challenging for some writers who are not accustomed to writing. Empirically, people report difficulties in journaling with starting the first sentence, with the ability to write and express themselves, and with staying"
+    },
+    "previous_block": {
+      "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+      "page_number": 2,
+      "block_type": "text",
+      "coordinate_overlap": 0,
+      "text_bonus": 0,
+      "match_score": 0,
+      "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LLM \u2022 Results from the field deployment study conducted for ten days with 24 participants using the TP approach, where we gathered qualitative and quantitative data on how people embrace and leverage LLMs for journal writing \u2022 Future opportunities and design considerations of using an LLM for personal journal writing based on participants\u2019 experiences using DiaryMate Through this study, we offer insights into how individuals interact with, perceive, and derive value from LLM-assisted writing tools in a personal context. This exploration extends the current understanding of LLM applications beyond professional or creative writing domains to include more personal and subjective writing context, an area that has been less explored in the HCI research field. Furthermore, by focusing on personal journal writing, the study contributes to a broader discourse on the role of LLMs in supporting introspective and reflective practices."
+    },
+    "next_block": null,
+    "nearby_useful_context": [
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 1,
+        "text_bonus": 0.05,
+        "match_score": 1,
+        "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves as a therapeutic outlet for stress relief [1, 42]. Then, what are the characteristics of the journal in terms of writing style? Prior research generally offers: writing regularly for a certain period of time, writing down your deep feelings and thoughts as openly as possible, and writing without worrying about writing skills such as grammar and spelling and evaluation [20, 37, 44]. As such, journaling gives writers a lot of freedom and seems easy to do, but it can be overwhelming and challenging for some writers who are not accustomed to writing. Empirically, people report difficulties in journaling with starting the first sentence, with the ability to write and express themselves, and with staying"
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a personal journal. DiaryMate was designed as a technology probe (TP), for the purpose of understanding the perception and experience of writing with LLM in a real-world setting [24]. Through probe deployment and follow-up interviews, we collected data on how 24 participants used DiaryMate for ten days and their perceptions and experiences. We then discuss the design considerations about applying an LLMs in the journal writing context based on findings. The major contributions of our study are as follows: \u2022 DiaryMate, a web-based application where users can write a daily journal with assistance from an LLM \u2022 Results from the field deployment study conducted for ten days with 24 participants using the TP approach, where we gathered qualitative and quantitative data on how people embrace and leverage LLMs for journal writing \u2022 Future opportunities and design considerations of using an LLM for personal journal writing based on participants\u2019 experiences using DiaryMate Through this study, we offer insights into how individuals interact with, perceive, and derive value from LLM-assisted writing tools in a personal context. This exploration extends the current understanding of LLM applications beyond professional or creative writing domains to include more personal and subjective writing context, an area that has been less explored in the HCI research field. Furthermore, by focusing on personal journal writing, the study contributes to a broader discourse on the role of LLMs in supporting introspective and reflective practices."
+      },
+      {
+        "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+        "page_number": 2,
+        "block_type": "text",
+        "coordinate_overlap": 0,
+        "text_bonus": 0,
+        "match_score": 0,
+        "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing"
+      }
+    ],
+    "recommended_llm_mode": "text_context",
+    "response_style": "chat_conversational",
+    "selection_type": "text",
+    "session_id": "f988c132223245268fe3afae69869a6c",
+    "learning_state": {
+      "session_id": "f988c132223245268fe3afae69869a6c",
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "timestamp": "2026-05-21T07:34:39Z",
+      "source": "simulated_camera",
+      "model_output_type": "academic_state_model",
+      "raw_facial_emotion_available": false,
+      "raw_facial_emotion": null,
+      "academic_state": "confusion",
+      "confidence": 0.64,
+      "distribution": {
+        "boredom": 0.12,
+        "confusion": 0.64,
+        "engagement": 0.12,
+        "frustration": 0.12
+      },
+      "trend": "rising",
+      "duration_sec": 2.5,
+      "intensity": 0.64,
+      "stability": "transitioning",
+      "trigger_recommended": false,
+      "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+    },
+    "learning_signal_package": {
+      "academic_state_scores": {
+        "boredom": 0,
+        "confusion": 0,
+        "engagement": 0,
+        "frustration": 0
+      },
+      "dominant_academic_state": "uncertain",
+      "secondary_academic_state": null,
+      "support_cue": "uncertain",
+      "reason_text": "While the previous explanation was being read, the reaction window was mixed (mixed learning-state evidence). Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+      "strategy_reason": "While the previous explanation was being read, the reaction window was mixed (mixed learning-state evidence). Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+      "academic_state_evidence_text": "mixed learning-state evidence",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "previous_explanation",
+      "support_cue_label": "mixed / low-confidence signal"
+    },
+    "strategy_candidates": [],
+    "selected_strategy_id": "",
+    "selected_strategy": null,
+    "trigger_context": null,
+    "source_turn_id": "",
+    "reaction_window_summary": null,
+    "support_cue": "",
+    "planner_mode": "",
+    "planner_input_summary": {},
+    "user_question": null,
+    "default_task": "baseline_explain_current_selection",
+    "turn_type": "baseline_explanation",
+    "allowed_strategy_families": [],
+    "turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f"
+  },
+  "session_id": "f988c132223245268fe3afae69869a6c",
+  "learning_state_snapshot": {
+    "session_id": "f988c132223245268fe3afae69869a6c",
+    "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+    "timestamp": "2026-05-21T07:36:25Z",
+    "source": "webcam_model",
+    "model_output_type": "raw_emotion",
+    "raw_facial_emotion_available": true,
+    "raw_facial_emotion": "neutral",
+    "academic_state": "engagement",
+    "confidence": 0.9317,
+    "distribution": {
+      "boredom": 0.0007,
+      "confusion": 0.0012,
+      "engagement": 0.9317,
+      "frustration": 0.0665
+    },
+    "trend": "falling",
+    "duration_sec": 24,
+    "intensity": 0.9317,
+    "stability": "stable",
+    "trigger_recommended": false,
+    "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+    "learning_signal_package": {
+      "active_source": "raw_8class_process_aware",
+      "raw_emotion_evidence": {
+        "source": "raw_8class_checkpoint",
+        "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+        "raw_emotion_label": "neutral",
+        "raw_emotion_confidence": 0.9305,
+        "raw_emotion_probabilities": {
+          "anger": 0,
+          "contempt": 0.0007,
+          "disgust": 0.0003,
+          "fear": 0,
+          "happy": 0.0012,
+          "neutral": 0.9305,
+          "sad": 0.0662,
+          "surprise": 0.0011
+        },
+        "raw_top_emotions": [
+          {
+            "label": "neutral",
+            "probability": 0.9305
+          },
+          {
+            "label": "sad",
+            "probability": 0.0662
+          },
+          {
+            "label": "happy",
+            "probability": 0.0012
+          }
+        ],
+        "frame_timestamp": "2026-05-21T07:36:25Z",
+        "crop_hash": null
+      },
+      "academic_state_mapping": {
+        "mapping_rule_version": "required_8class_probability_aggregation_v1",
+        "mapped_academic_state": "engagement",
+        "mapped_academic_scores": {
+          "boredom": 0.0007,
+          "confusion": 0.0012,
+          "engagement": 0.9317,
+          "frustration": 0.0665
+        },
+        "mapping_explanation": "happy + neutral -> engagement",
+        "confidence_notes": [
+          "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+        ]
+      },
+      "reaction_window_summary": {
+        "window_start": null,
+        "window_end": null,
+        "dominant_raw_emotions": [],
+        "dominant_mapped_states": [
+          {
+            "state": "engagement",
+            "probability": 0.9317
+          },
+          {
+            "state": "frustration",
+            "probability": 0.0665
+          },
+          {
+            "state": "confusion",
+            "probability": 0.0012
+          }
+        ],
+        "trend": "single_frame_only",
+        "evidence_count": 0,
+        "reliability_notes": [
+          "no reaction window; do not infer a strong learning process state from this frame alone"
+        ],
+        "avg_mapped_scores": {
+          "boredom": 0.0007,
+          "confusion": 0.0012,
+          "engagement": 0.9317,
+          "frustration": 0.0665
+        },
+        "support_cue": "neutral_or_uncertain",
+        "start_time": null,
+        "end_time": null,
+        "duration_sec": null,
+        "end_reason": null,
+        "read_progress_estimate": null,
+        "sample_count": 0,
+        "early_distribution": null,
+        "middle_distribution": null,
+        "late_distribution": null,
+        "early_dominant_state": null,
+        "middle_dominant_state": null,
+        "late_dominant_state": null,
+        "state_transition": "mixed_or_uncertain",
+        "transition_label": "mixed or uncertain",
+        "dominant_state": "engagement",
+        "secondary_state": null,
+        "stability": null,
+        "confidence_handling": null
+      },
+      "learning_process_context": {
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "highlight_id": null,
+        "turn_index": 0,
+        "followup_count_for_highlight": 0,
+        "same_highlight_repeated_questions": false,
+        "last_user_question": null,
+        "current_user_question": null,
+        "question_intent": "general_followup",
+        "previous_strategy": null,
+        "recent_strategies": [],
+        "last_response_was_baseline_or_adaptive": "unknown",
+        "time_since_last_assistant_answer": null
+      },
+      "academic_state_scores": {
+        "boredom": 0.0007,
+        "confusion": 0.0012,
+        "engagement": 0.9317,
+        "frustration": 0.0665
+      },
+      "dominant_academic_state": "engagement",
+      "secondary_academic_state": "frustration",
+      "support_cue": "uncertain",
+      "inferred_process_state": "baseline_ready",
+      "strategy_state": "uncertain",
+      "recommended_strategy": "baseline_explanation",
+      "strategy_reason": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+      "reason_text": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+      "academic_state_evidence_text": "engagement 93%, frustration 7% \u00b7 trend single_frame_only",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "previous_explanation",
+      "support_cue_label": "mixed / low-confidence signal",
+      "prompt_guidance": [
+        "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+      ],
+      "diagnostic_only_direct_4class": {
+        "used_for_strategy": false
+      },
+      "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+    },
+    "warnings": [],
+    "face_detection": {
+      "detector": "openface",
+      "requested_detector": "openface",
+      "configured_detector": "openface",
+      "actual_detector": "openface",
+      "face_found": true,
+      "confidence": 0.98,
+      "landmark_count": 68,
+      "crop_strategy": "openface_landmark_bbox",
+      "crop_mode": "square_face_context",
+      "crop_parameters": {
+        "scale": 1.35,
+        "y_bias": -0.04,
+        "top_extra": 0.22,
+        "bottom_extra": 0.12,
+        "make_square": true
+      },
+      "frame_size": [
+        640,
+        480
+      ],
+      "mirrored": false,
+      "fallback_used": false,
+      "warning": null,
+      "warnings": []
+    }
+  },
+  "strategy_candidates": [
+    {
+      "strategy_id": "concrete_example",
+      "strategy_family": "concrete_example",
+      "pedagogical_move": "Walk through the passage step by step",
+      "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "title": "Walk through the method passage step by step",
+      "short_description": "Turn the dense passage into a short sequence of moves.",
+      "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "prompt_instruction": "Explain the passage as numbered steps, keeping each step tied to paper evidence.",
+      "expected_answer_shape": [
+        "Main point",
+        "Step 1",
+        "Step 2",
+        "Step 3",
+        "Why it matters"
+      ],
+      "recommended": true,
+      "recommended_score": 0.88,
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+      "confidence_handling": "low_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "support_cue_label": "reduce cognitive load",
+      "normalized_pedagogical_move_key": "worked_example",
+      "normalized_title_key": "walk through method passage step by step",
+      "repeats_recent_strategy": false
+    },
+    {
+      "strategy_id": "example_based_explanation",
+      "strategy_family": "example_based_explanation",
+      "pedagogical_move": "Map the method as input, process, and output",
+      "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "title": "Map this method passage as input -> process -> output",
+      "short_description": "Break the selected method into what goes in, what happens, and what comes out.",
+      "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+      "prompt_instruction": "Explain the passage as Input, Process, Output, and one small example.",
+      "expected_answer_shape": [
+        "Core intuition",
+        "Input",
+        "Process",
+        "Output",
+        "Mini example"
+      ],
+      "recommended": false,
+      "recommended_score": 0.8,
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+      "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+      "confidence_handling": "low_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "support_cue_label": "reduce cognitive load",
+      "normalized_pedagogical_move_key": "worked_example",
+      "normalized_title_key": "map method passage as input process output",
+      "repeats_recent_strategy": false
+    },
+    {
+      "strategy_id": "analogy_or_reframe",
+      "strategy_family": "analogy_or_reframe",
+      "pedagogical_move": "Trace the mechanism from cause to outcome",
+      "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "title": "Trace the mechanism in this method passage",
+      "short_description": "Follow the causal or procedural chain shown by the selected passage or figure.",
+      "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+      "prompt_instruction": "Explain the mechanism from starting condition to outcome, naming uncertainties when context is missing.",
+      "expected_answer_shape": [
+        "Starting point",
+        "Mechanism",
+        "Outcome",
+        "Uncertainties"
+      ],
+      "recommended": false,
+      "recommended_score": 0.72,
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+      "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+      "confidence_handling": "low_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "support_cue_label": "reduce cognitive load",
+      "normalized_pedagogical_move_key": "analogy",
+      "normalized_title_key": "trace mechanism in method passage",
+      "repeats_recent_strategy": false
+    }
+  ],
+  "selected_strategy_id": "concrete_example",
+  "selected_strategy": {
+    "strategy_id": "concrete_example",
+    "strategy_family": "concrete_example",
+    "pedagogical_move": "Walk through the passage step by step",
+    "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+    "title": "Walk through the method passage step by step",
+    "short_description": "Turn the dense passage into a short sequence of moves.",
+    "why_recommended": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+    "prompt_instruction": "Explain the passage as numbered steps, keeping each step tied to paper evidence.",
+    "expected_answer_shape": [
+      "Main point",
+      "Step 1",
+      "Step 2",
+      "Step 3",
+      "Why it matters"
+    ],
+    "recommended": true,
+    "recommended_score": 0.88,
+    "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+    "academic_state_evidence_text": "frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+    "confidence_handling": "low_confidence",
+    "source_turn_type": "strategy_reexplanation",
+    "support_cue_label": "reduce cognitive load",
+    "normalized_pedagogical_move_key": "worked_example",
+    "normalized_title_key": "walk through method passage step by step",
+    "repeats_recent_strategy": false
+  },
+  "trigger_context": {
+    "triggered_by": "reaction_window",
+    "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+    "duration_sec": 5,
+    "trend": "rising",
+    "intensity": 0.249,
+    "refresh_requested": false,
+    "support_cue": "difficulty_support",
+    "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+    "source_turn_type": "strategy_reexplanation"
+  },
+  "reaction_window_summary": {
+    "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+    "source_turn_type": "strategy_reexplanation",
+    "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+    "start_time": "2026-05-21T07:35:58.643Z",
+    "end_time": "2026-05-21T07:36:03.648Z",
+    "window_start": "2026-05-21T07:35:58.643Z",
+    "window_end": "2026-05-21T07:36:03.648Z",
+    "end_reason": "short_answer_min_elapsed",
+    "read_progress_estimate": 1,
+    "duration_sec": 5,
+    "sample_count": 4,
+    "evidence_count": 4,
+    "early_distribution": {
+      "boredom": 0.003,
+      "confusion": 0,
+      "engagement": 0.496,
+      "frustration": 0.501
+    },
+    "middle_distribution": {
+      "boredom": 0,
+      "confusion": 0,
+      "engagement": 0.001,
+      "frustration": 0.999
+    },
+    "late_distribution": {
+      "boredom": 0.001,
+      "confusion": 0,
+      "engagement": 0.001,
+      "frustration": 0.998
+    },
+    "early_dominant_state": "frustration",
+    "middle_dominant_state": "frustration",
+    "late_dominant_state": "frustration",
+    "state_transition": "persistent_frustration",
+    "transition_label": "persistent frustration",
+    "dominant_state": "frustration",
+    "secondary_state": "engagement",
+    "avg_confidence": 0.249,
+    "max_confidence": 0.99,
+    "avg_distribution": {
+      "boredom": 0.002,
+      "confusion": 0,
+      "engagement": 0.249,
+      "frustration": 0.75
+    },
+    "trend": "rising",
+    "stability": "stable",
+    "support_cue": "difficulty_support",
+    "support_cue_label": "Reduce cognitive load cue",
+    "support_cue_display_label": "reduce cognitive load",
+    "academic_state_evidence_text": "persistent frustration \u00b7 frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+    "confidence_handling": "low_confidence",
+    "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+    "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+    "model_output_type": "raw_emotion",
+    "raw_detection_available": true,
+    "face_detection_summary": {
+      "mode": "openface",
+      "fallback_used": false,
+      "crop_strategy": "openface_landmark_bbox"
+    },
+    "baseline_explanation": "This passage highlights the established psychological mechanism of expressive journaling: self-disclosure. In human-computer interaction and psychology, journaling functions as a cognitive-emotional tool. By externalizing personal thoughts in a private, secure environment, individuals can structure their narratives, reduce cognitive load, and revisit past events to extract meaningful insights. \n\nUnderlying this traditional practice are two key assumptions:\n* **The \"Secure Environment\" Assumption:** Authentic self-disclosure requires a writing space that feels completely private, non-judgmental, and free from external influence or evaluation.\n* **The Agency Assumption:** The writer acts as the sole author and primary source of emotional truth, doing the active mental work of identifying, organizing, and translating their internal feelings into words.\n\nIn the context of this paper, introducing a generative Large Language Model (LLM) like DiaryMate fundamentally challenges these assumptions. When an AI agent provides next-sentence suggestions or keywords based on statistical patterns, it enters this highly private, reflective loop. While this can lower the cognitive barrier for users who struggle to find the right words, it also risks disrupting their authentic self-expression. The central tension the paper explores is how this collaborative AI intervention changes the reflective process\u2014potentially leading users to adopt AI-generated emotional narratives rather than doing the introspective work themselves.",
+    "reaction_window_status": "completed",
+    "start_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+    "min_duration_met": true,
+    "min_samples_met": true,
+    "top_seen": true,
+    "bottom_seen": false,
+    "user_scroll_progressed": false,
+    "suppressed_auto_scroll": true,
+    "strategy_request_sent": true,
+    "strategy_response_received": true
+  },
+  "turn_metadata": {
+    "turn_b4b2ef9e9c714bdb8da534dacc598d7f": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "source_turn_type": "baseline_explanation",
+        "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+        "start_time": "2026-05-21T07:34:48.932Z",
+        "end_time": "2026-05-21T07:34:54.327Z",
+        "window_start": "2026-05-21T07:34:48.932Z",
+        "window_end": "2026-05-21T07:34:54.327Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5.4,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0.042,
+          "confusion": 0.001,
+          "engagement": 0.578,
+          "frustration": 0.379
+        },
+        "middle_distribution": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.986,
+          "frustration": 0.012
+        },
+        "late_distribution": {
+          "boredom": 0.013,
+          "confusion": 0,
+          "engagement": 0.917,
+          "frustration": 0.069
+        },
+        "early_dominant_state": "engagement",
+        "middle_dominant_state": "engagement",
+        "late_dominant_state": "engagement",
+        "state_transition": "stable_engagement",
+        "transition_label": "stable engagement",
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.747,
+        "max_confidence": 0.986,
+        "avg_distribution": {
+          "boredom": 0.028,
+          "confusion": 0.001,
+          "engagement": 0.747,
+          "frustration": 0.224
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "support_cue_display_label": "deepening",
+        "academic_state_evidence_text": "stable engagement \u00b7 engagement 75%, frustration 22% \u00b7 trend rising",
+        "confidence_handling": "standard_confidence",
+        "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "trigger_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage outlines the core psychological and personal value of traditional journaling. It highlights that writing in a diary serves as a safe, private space for people to express their deepest emotions, practice self-expression, and ultimately gain meaningful insights by reflecting on their past experiences. \n\nIn the context of this paper, this point is crucial because it establishes that journaling is fundamentally different from other writing tasks (like drafting emails or technical reports). Its primary goal is not speed or efficiency, but rather intimate self-reflection and emotional processing. \n\nThe authors use this baseline to examine how introducing an AI assistant like *DiaryMate* alters this highly personal process. While they find that AI suggestions can help users articulate complex thoughts and view their experiences from new perspectives, they also warn of a potential downside: over-reliance. If users adopt AI-generated emotional expressions too easily, they might compromise their own genuine self-expression\u2014the very benefit that makes journaling so valuable in the first place.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": true
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "duration_sec": 5.4,
+        "trend": "rising",
+        "intensity": 0.747,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "source_turn_type": "baseline_explanation"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "deep_technical_explanation",
+          "strategy_family": "deep_technical_explanation",
+          "pedagogical_move": "Deepen the technical explanation",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Give a deeper technical read of this method passage",
+          "short_description": "Use the current passage and context for a more detailed technical explanation.",
+          "why_recommended": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Explain technical assumptions, mechanism, and implications without adding unsupported facts.",
+          "expected_answer_shape": [
+            "Technical reading",
+            "Assumptions",
+            "Implications"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88,
+          "reason_text": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "frustration 22%, engagement 75% \u00b7 trend rising",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "baseline_explanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "deepen",
+          "normalized_title_key": "give deeper technical read method passage",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "connect_to_related_work",
+          "strategy_family": "connect_to_related_work",
+          "pedagogical_move": "Connect the passage to related work",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Use a structured breakdown for this method passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8,
+          "reason_text": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "frustration 22%, engagement 75% \u00b7 trend rising",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "baseline_explanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "connect_to_paper_argument",
+          "normalized_title_key": "use structured breakdown method passage",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "limitations_and_implications",
+          "strategy_family": "limitations_and_implications",
+          "pedagogical_move": "Explore limitations and implications",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Look at limitations and implications",
+          "short_description": "Move from explanation into what the passage enables or leaves open.",
+          "why_recommended": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Explain the passage, then discuss supported limitations and implications.",
+          "expected_answer_shape": [
+            "Explanation",
+            "Limitations",
+            "Implications"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72,
+          "reason_text": "While the baseline explanation was being read, the reaction window was frustration-dominant (frustration 22%, secondary engagement 75%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "frustration 22%, engagement 75% \u00b7 trend rising",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "baseline_explanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "connect_to_paper_argument",
+          "normalized_title_key": "look at limitations and implications",
+          "repeats_recent_strategy": false
+        }
+      ],
+      "strategy_status": "applied",
+      "learning_signal_package": {
+        "active_source": "raw_8class_process_aware",
+        "raw_emotion_evidence": null,
+        "academic_state_mapping": {
+          "mapping_rule_version": "required_8class_probability_aggregation_v1",
+          "mapped_academic_state": "engagement",
+          "mapped_academic_scores": {
+            "boredom": 0.028,
+            "confusion": 0.001,
+            "engagement": 0.747,
+            "frustration": 0.224
+          },
+          "mapping_explanation": "mapped academic scores from reaction-window or current learning-state payload",
+          "confidence_notes": [
+            "process-aware package synthesized from existing pdf-chat signal fields"
+          ]
+        },
+        "reaction_window_summary": {
+          "window_start": "2026-05-21T07:34:48.932Z",
+          "window_end": "2026-05-21T07:34:54.327Z",
+          "dominant_raw_emotions": [],
+          "dominant_mapped_states": [
+            {
+              "state": "engagement",
+              "probability": 0.747
+            },
+            {
+              "state": "frustration",
+              "probability": 0.224
+            },
+            {
+              "state": "boredom",
+              "probability": 0.028
+            }
+          ],
+          "trend": "rising",
+          "evidence_count": 4,
+          "reliability_notes": [
+            "reaction window summary is used as learning-support evidence, not diagnosis"
+          ],
+          "avg_mapped_scores": {
+            "boredom": 0.028,
+            "confusion": 0.001,
+            "engagement": 0.747,
+            "frustration": 0.224
+          },
+          "support_cue": "deepening",
+          "start_time": "2026-05-21T07:34:48.932Z",
+          "end_time": "2026-05-21T07:34:54.327Z",
+          "duration_sec": 5.4,
+          "end_reason": "short_answer_min_elapsed",
+          "read_progress_estimate": 1,
+          "sample_count": 4,
+          "early_distribution": {
+            "boredom": 0.042,
+            "confusion": 0.001,
+            "engagement": 0.578,
+            "frustration": 0.379
+          },
+          "middle_distribution": {
+            "boredom": 0.002,
+            "confusion": 0,
+            "engagement": 0.986,
+            "frustration": 0.012
+          },
+          "late_distribution": {
+            "boredom": 0.013,
+            "confusion": 0,
+            "engagement": 0.917,
+            "frustration": 0.069
+          },
+          "early_dominant_state": "engagement",
+          "middle_dominant_state": "engagement",
+          "late_dominant_state": "engagement",
+          "state_transition": "stable_engagement",
+          "transition_label": "stable engagement",
+          "dominant_state": "engagement",
+          "secondary_state": "frustration",
+          "stability": "stable",
+          "confidence_handling": "standard_confidence"
+        },
+        "learning_process_context": {
+          "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+          "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+          "turn_index": 1,
+          "followup_count_for_highlight": 0,
+          "same_highlight_repeated_questions": false,
+          "last_user_question": null,
+          "current_user_question": null,
+          "question_intent": "general_followup",
+          "previous_strategy": null,
+          "recent_strategies": [],
+          "last_response_was_baseline_or_adaptive": "baseline",
+          "time_since_last_assistant_answer": null
+        },
+        "academic_state_scores": {
+          "boredom": 0.028,
+          "confusion": 0.001,
+          "engagement": 0.747,
+          "frustration": 0.224
+        },
+        "dominant_academic_state": "engagement",
+        "secondary_academic_state": "frustration",
+        "support_cue": "deepening",
+        "inferred_process_state": "engaged_deepening",
+        "strategy_state": "engagement",
+        "recommended_strategy": "deepen_or_extend",
+        "strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "academic_state_evidence_text": "stable engagement \u00b7 engagement 75%, frustration 22% \u00b7 trend rising",
+        "confidence_handling": "standard_confidence",
+        "source_turn_type": "baseline_explanation",
+        "support_cue_label": "deepening",
+        "prompt_guidance": [
+          "Offer a deeper explanation with connections to the paper.",
+          "Extend only where the provided paper context supports it."
+        ],
+        "diagnostic_only_direct_4class": {
+          "used_for_strategy": false
+        },
+        "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis.",
+        "process_strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy."
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 259,
+        "caption_length": 0,
+        "baseline_explanation_length": 1108,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 5.4,
+        "reaction_window_end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "state_transition": "stable_engagement",
+        "transition_label": "stable engagement",
+        "early_distribution": {
+          "boredom": 0.042,
+          "confusion": 0.001,
+          "engagement": 0.578,
+          "frustration": 0.379
+        },
+        "middle_distribution": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.986,
+          "frustration": 0.012
+        },
+        "late_distribution": {
+          "boredom": 0.013,
+          "confusion": 0,
+          "engagement": 0.917,
+          "frustration": 0.069
+        },
+        "support_cue": "deepening",
+        "allowed_strategy_families": [
+          "deep_technical_explanation",
+          "critique_assumptions",
+          "connect_to_related_work",
+          "limitations_and_implications",
+          "compare_methods"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      },
+      "strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "engagement 75%, frustration 22% \u00b7 trend rising",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "baseline_explanation",
+      "applied_strategy_id": "deep_technical_explanation",
+      "applied_strategy_family": "deep_technical_explanation",
+      "applied_pedagogical_move": "Deepen the technical explanation",
+      "normalized_pedagogical_move_key": "deepen",
+      "applied_context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "applied_title": "Give a deeper technical read of this method passage",
+      "applied_strategy_title": "Give a deeper technical read of this method passage",
+      "applied_strategy_short_description": "Use the current passage and context for a more detailed technical explanation.",
+      "source_reaction_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+      "source_reaction_window_id": ""
+    },
+    "turn_245ef4103bd146219bcc820f229dcf0f": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "source_turn_type": "strategy_reexplanation",
+        "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+        "start_time": "2026-05-21T07:35:58.643Z",
+        "end_time": "2026-05-21T07:36:03.648Z",
+        "window_start": "2026-05-21T07:35:58.643Z",
+        "window_end": "2026-05-21T07:36:03.648Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0.003,
+          "confusion": 0,
+          "engagement": 0.496,
+          "frustration": 0.501
+        },
+        "middle_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.999
+        },
+        "late_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.998
+        },
+        "early_dominant_state": "frustration",
+        "middle_dominant_state": "frustration",
+        "late_dominant_state": "frustration",
+        "state_transition": "persistent_frustration",
+        "transition_label": "persistent frustration",
+        "dominant_state": "frustration",
+        "secondary_state": "engagement",
+        "avg_confidence": 0.249,
+        "max_confidence": 0.99,
+        "avg_distribution": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.249,
+          "frustration": 0.75
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "difficulty_support",
+        "support_cue_label": "Reduce cognitive load cue",
+        "support_cue_display_label": "reduce cognitive load",
+        "academic_state_evidence_text": "persistent frustration \u00b7 frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+        "confidence_handling": "low_confidence",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights the established psychological mechanism of expressive journaling: self-disclosure. In human-computer interaction and psychology, journaling functions as a cognitive-emotional tool. By externalizing personal thoughts in a private, secure environment, individuals can structure their narratives, reduce cognitive load, and revisit past events to extract meaningful insights. \n\nUnderlying this traditional practice are two key assumptions:\n* **The \"Secure Environment\" Assumption:** Authentic self-disclosure requires a writing space that feels completely private, non-judgmental, and free from external influence or evaluation.\n* **The Agency Assumption:** The writer acts as the sole author and primary source of emotional truth, doing the active mental work of identifying, organizing, and translating their internal feelings into words.\n\nIn the context of this paper, introducing a generative Large Language Model (LLM) like DiaryMate fundamentally challenges these assumptions. When an AI agent provides next-sentence suggestions or keywords based on statistical patterns, it enters this highly private, reflective loop. While this can lower the cognitive barrier for users who struggle to find the right words, it also risks disrupting their authentic self-expression. The central tension the paper explores is how this collaborative AI intervention changes the reflective process\u2014potentially leading users to adopt AI-generated emotional narratives rather than doing the introspective work themselves.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": true
+      },
+      "support_cue": "difficulty_support",
+      "support_cue_label": "reduce cognitive load",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "duration_sec": 5,
+        "trend": "rising",
+        "intensity": 0.249,
+        "refresh_requested": false,
+        "support_cue": "difficulty_support",
+        "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "source_turn_type": "strategy_reexplanation"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "concrete_example",
+          "strategy_family": "concrete_example",
+          "pedagogical_move": "Walk through the passage step by step",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Walk through the method passage step by step",
+          "short_description": "Turn the dense passage into a short sequence of moves.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+          "prompt_instruction": "Explain the passage as numbered steps, keeping each step tied to paper evidence.",
+          "expected_answer_shape": [
+            "Main point",
+            "Step 1",
+            "Step 2",
+            "Step 3",
+            "Why it matters"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+          "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+          "confidence_handling": "low_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "reduce cognitive load",
+          "normalized_pedagogical_move_key": "worked_example",
+          "normalized_title_key": "walk through method passage step by step",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "example_based_explanation",
+          "strategy_family": "example_based_explanation",
+          "pedagogical_move": "Map the method as input, process, and output",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Map this method passage as input -> process -> output",
+          "short_description": "Break the selected method into what goes in, what happens, and what comes out.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+          "prompt_instruction": "Explain the passage as Input, Process, Output, and one small example.",
+          "expected_answer_shape": [
+            "Core intuition",
+            "Input",
+            "Process",
+            "Output",
+            "Mini example"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+          "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+          "confidence_handling": "low_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "reduce cognitive load",
+          "normalized_pedagogical_move_key": "worked_example",
+          "normalized_title_key": "map method passage as input process output",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "analogy_or_reframe",
+          "strategy_family": "analogy_or_reframe",
+          "pedagogical_move": "Trace the mechanism from cause to outcome",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Trace the mechanism in this method passage",
+          "short_description": "Follow the causal or procedural chain shown by the selected passage or figure.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+          "prompt_instruction": "Explain the mechanism from starting condition to outcome, naming uncertainties when context is missing.",
+          "expected_answer_shape": [
+            "Starting point",
+            "Mechanism",
+            "Outcome",
+            "Uncertainties"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 25%, secondary frustration 75%) with a rising trend, but the average confidence was low. The system therefore chose a conservative conservative support strategy to reduce cognitive load.",
+          "academic_state_evidence_text": "engagement 25%, frustration 75% \u00b7 low-confidence signal \u00b7 trend rising",
+          "confidence_handling": "low_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "reduce cognitive load",
+          "normalized_pedagogical_move_key": "analogy",
+          "normalized_title_key": "trace mechanism in method passage",
+          "repeats_recent_strategy": false
+        }
+      ],
+      "strategy_status": "applied",
+      "learning_signal_package": {
+        "active_source": "raw_8class_process_aware",
+        "raw_emotion_evidence": null,
+        "academic_state_mapping": {
+          "mapping_rule_version": "required_8class_probability_aggregation_v1",
+          "mapped_academic_state": "frustration",
+          "mapped_academic_scores": {
+            "boredom": 0.002,
+            "confusion": 0,
+            "engagement": 0.249,
+            "frustration": 0.75
+          },
+          "mapping_explanation": "mapped academic scores from reaction-window or current learning-state payload",
+          "confidence_notes": [
+            "process-aware package synthesized from existing pdf-chat signal fields"
+          ]
+        },
+        "reaction_window_summary": {
+          "window_start": "2026-05-21T07:35:58.643Z",
+          "window_end": "2026-05-21T07:36:03.648Z",
+          "dominant_raw_emotions": [],
+          "dominant_mapped_states": [
+            {
+              "state": "frustration",
+              "probability": 0.75
+            },
+            {
+              "state": "engagement",
+              "probability": 0.249
+            },
+            {
+              "state": "boredom",
+              "probability": 0.002
+            }
+          ],
+          "trend": "rising",
+          "evidence_count": 4,
+          "reliability_notes": [
+            "reaction window summary is used as learning-support evidence, not diagnosis"
+          ],
+          "avg_mapped_scores": {
+            "boredom": 0.002,
+            "confusion": 0,
+            "engagement": 0.249,
+            "frustration": 0.75
+          },
+          "support_cue": "difficulty_support",
+          "start_time": "2026-05-21T07:35:58.643Z",
+          "end_time": "2026-05-21T07:36:03.648Z",
+          "duration_sec": 5,
+          "end_reason": "short_answer_min_elapsed",
+          "read_progress_estimate": 1,
+          "sample_count": 4,
+          "early_distribution": {
+            "boredom": 0.003,
+            "confusion": 0,
+            "engagement": 0.496,
+            "frustration": 0.501
+          },
+          "middle_distribution": {
+            "boredom": 0,
+            "confusion": 0,
+            "engagement": 0.001,
+            "frustration": 0.999
+          },
+          "late_distribution": {
+            "boredom": 0.001,
+            "confusion": 0,
+            "engagement": 0.001,
+            "frustration": 0.998
+          },
+          "early_dominant_state": "frustration",
+          "middle_dominant_state": "frustration",
+          "late_dominant_state": "frustration",
+          "state_transition": "persistent_frustration",
+          "transition_label": "persistent frustration",
+          "dominant_state": "frustration",
+          "secondary_state": "engagement",
+          "stability": "stable",
+          "confidence_handling": "low_confidence"
+        },
+        "learning_process_context": {
+          "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+          "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+          "turn_index": 2,
+          "followup_count_for_highlight": 0,
+          "same_highlight_repeated_questions": false,
+          "last_user_question": null,
+          "current_user_question": null,
+          "question_intent": "general_followup",
+          "previous_strategy": "deep_technical_explanation",
+          "recent_strategies": [
+            "deep_technical_explanation"
+          ],
+          "last_response_was_baseline_or_adaptive": "adaptive",
+          "time_since_last_assistant_answer": null
+        },
+        "academic_state_scores": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.249,
+          "frustration": 0.75
+        },
+        "dominant_academic_state": "frustration",
+        "secondary_academic_state": "engagement",
+        "support_cue": "difficulty_support",
+        "inferred_process_state": "continued_difficulty",
+        "strategy_state": "frustration",
+        "recommended_strategy": "step_by_step_decomposition",
+        "strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "academic_state_evidence_text": "persistent frustration \u00b7 frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+        "confidence_handling": "low_confidence",
+        "source_turn_type": "strategy_reexplanation",
+        "support_cue_label": "reduce cognitive load",
+        "prompt_guidance": [
+          "Use calm, supportive, short steps.",
+          "Reduce jargon and cognitive load.",
+          "Do not imply the learner has a diagnosed emotion."
+        ],
+        "diagnostic_only_direct_4class": {
+          "used_for_strategy": false
+        },
+        "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis.",
+        "process_strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load."
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 259,
+        "caption_length": 0,
+        "baseline_explanation_length": 1526,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 5,
+        "reaction_window_end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "state_transition": "persistent_frustration",
+        "transition_label": "persistent frustration",
+        "early_distribution": {
+          "boredom": 0.003,
+          "confusion": 0,
+          "engagement": 0.496,
+          "frustration": 0.501
+        },
+        "middle_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.999
+        },
+        "late_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.998
+        },
+        "support_cue": "difficulty_support",
+        "allowed_strategy_families": [
+          "concrete_example",
+          "example_based_explanation",
+          "analogy_or_reframe",
+          "connect_to_paper_argument",
+          "simplest_version_first",
+          "one_small_next_step",
+          "reduce_information_density",
+          "key_takeaway_first"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      },
+      "strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "academic_state_evidence_text": "frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+      "confidence_handling": "low_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "applied_strategy_id": "concrete_example",
+      "applied_strategy_family": "concrete_example",
+      "applied_pedagogical_move": "Walk through the passage step by step",
+      "normalized_pedagogical_move_key": "worked_example",
+      "applied_context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "applied_title": "Walk through the method passage step by step",
+      "applied_strategy_title": "Walk through the method passage step by step",
+      "applied_strategy_short_description": "Turn the dense passage into a short sequence of moves.",
+      "source_reaction_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+      "source_reaction_window_id": ""
+    },
+    "turn_7d9e03aeec524bf2a8c575804ab09ea6": {
+      "reaction_window_summary": {
+        "source_turn_id": "turn_7d9e03aeec524bf2a8c575804ab09ea6",
+        "source_turn_type": "strategy_reexplanation",
+        "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+        "start_time": "2026-05-21T07:36:32.670Z",
+        "end_time": "2026-05-21T07:36:37.690Z",
+        "window_start": "2026-05-21T07:36:32.670Z",
+        "window_end": "2026-05-21T07:36:37.690Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.97,
+          "frustration": 0.03
+        },
+        "middle_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.029,
+          "frustration": 0.971
+        },
+        "late_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.508,
+          "frustration": 0.492
+        },
+        "early_dominant_state": "engagement",
+        "middle_dominant_state": "frustration",
+        "late_dominant_state": "engagement",
+        "state_transition": "mixed_or_uncertain",
+        "transition_label": "mixed or uncertain",
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.739,
+        "max_confidence": 0.987,
+        "avg_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.739,
+          "frustration": 0.261
+        },
+        "trend": "falling",
+        "stability": "transitioning",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "support_cue_display_label": "deepening",
+        "academic_state_evidence_text": "engagement 74%, frustration 26% \u00b7 trend falling",
+        "confidence_handling": "standard_confidence",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights the psychological value of traditional journaling, showing how the act of writing translates raw personal events into deeper self-awareness. Let\u2019s break down this process step-by-step to see how it works:\n\n*   **Main Point:** Journaling acts as a secure, private tool that helps people process their thoughts and extract personal meaning from their past.\n*   **Step 1 (Disclosure):** The process begins with disclosure. A person puts their daily experiences and private, inner emotions into words, moving them from internal thoughts to external text.\n*   **Step 2 (Safe Self-Expression):** Writing in a journal provides a secure environment. Because there is no external audience or threat of judgment, the writer can safely practice and improve their emotional self-expression. \n*   **Step 3 (Revisiting and Insight):** Finally, by looking back at these written records over time, the writer can revisit their past experiences from a distance, allowing them to discover new, meaningful insights about themselves.\n\n**Why it matters in this paper:**\nUnderstanding these core benefits of traditional journaling is crucial because the paper explores how AI tools like *DiaryMate* affect this delicate process. Since journaling is so deeply personal and therapeutic, the researchers need to evaluate whether introducing an LLM assistant helps users express themselves better, or if it accidentally interferes with their private reflection and emotional ownership.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_7d9e03aeec524bf2a8c575804ab09ea6",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": true
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "Deepening cue",
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "duration_sec": 5,
+        "trend": "falling",
+        "intensity": 0.739,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_7d9e03aeec524bf2a8c575804ab09ea6",
+        "source_turn_type": "strategy_reexplanation"
+      },
+      "strategy_candidates": [
+        {
+          "strategy_id": "deep_technical_explanation",
+          "strategy_family": "deep_technical_explanation",
+          "pedagogical_move": "Deepen the technical explanation",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Give a deeper technical read of this method passage",
+          "short_description": "Use the current passage and context for a more detailed technical explanation.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Explain technical assumptions, mechanism, and implications without adding unsupported facts.",
+          "expected_answer_shape": [
+            "Technical reading",
+            "Assumptions",
+            "Implications"
+          ],
+          "recommended": true,
+          "recommended_score": 0.88,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "engagement 74%, frustration 26% \u00b7 trend falling",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "deepen",
+          "normalized_title_key": "give deeper technical read method passage",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "connect_to_related_work",
+          "strategy_family": "connect_to_related_work",
+          "pedagogical_move": "Connect the passage to related work",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Use a structured breakdown for this method passage",
+          "short_description": "Organize the explanation without assuming a specific support need.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Break the passage into claim, evidence, and purpose.",
+          "expected_answer_shape": [
+            "Claim",
+            "Evidence",
+            "Purpose"
+          ],
+          "recommended": false,
+          "recommended_score": 0.8,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "engagement 74%, frustration 26% \u00b7 trend falling",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "connect_to_paper_argument",
+          "normalized_title_key": "use structured breakdown method passage",
+          "repeats_recent_strategy": false
+        },
+        {
+          "strategy_id": "limitations_and_implications",
+          "strategy_family": "limitations_and_implications",
+          "pedagogical_move": "Explore limitations and implications",
+          "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+          "title": "Look at limitations and implications",
+          "short_description": "Move from explanation into what the passage enables or leaves open.",
+          "why_recommended": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "prompt_instruction": "Explain the passage, then discuss supported limitations and implications.",
+          "expected_answer_shape": [
+            "Explanation",
+            "Limitations",
+            "Implications"
+          ],
+          "recommended": false,
+          "recommended_score": 0.72,
+          "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+          "academic_state_evidence_text": "engagement 74%, frustration 26% \u00b7 trend falling",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "strategy_reexplanation",
+          "support_cue_label": "deepening",
+          "normalized_pedagogical_move_key": "connect_to_paper_argument",
+          "normalized_title_key": "look at limitations and implications",
+          "repeats_recent_strategy": false
+        }
+      ],
+      "strategy_status": "suggested",
+      "learning_signal_package": {
+        "active_source": "raw_8class_process_aware",
+        "raw_emotion_evidence": null,
+        "academic_state_mapping": {
+          "mapping_rule_version": "required_8class_probability_aggregation_v1",
+          "mapped_academic_state": "engagement",
+          "mapped_academic_scores": {
+            "boredom": 0.001,
+            "confusion": 0,
+            "engagement": 0.739,
+            "frustration": 0.261
+          },
+          "mapping_explanation": "mapped academic scores from reaction-window or current learning-state payload",
+          "confidence_notes": [
+            "process-aware package synthesized from existing pdf-chat signal fields"
+          ]
+        },
+        "reaction_window_summary": {
+          "window_start": "2026-05-21T07:36:32.670Z",
+          "window_end": "2026-05-21T07:36:37.690Z",
+          "dominant_raw_emotions": [],
+          "dominant_mapped_states": [
+            {
+              "state": "engagement",
+              "probability": 0.739
+            },
+            {
+              "state": "frustration",
+              "probability": 0.261
+            },
+            {
+              "state": "boredom",
+              "probability": 0.001
+            }
+          ],
+          "trend": "falling",
+          "evidence_count": 4,
+          "reliability_notes": [
+            "reaction window summary is used as learning-support evidence, not diagnosis"
+          ],
+          "avg_mapped_scores": {
+            "boredom": 0.001,
+            "confusion": 0,
+            "engagement": 0.739,
+            "frustration": 0.261
+          },
+          "support_cue": "deepening",
+          "start_time": "2026-05-21T07:36:32.670Z",
+          "end_time": "2026-05-21T07:36:37.690Z",
+          "duration_sec": 5,
+          "end_reason": "short_answer_min_elapsed",
+          "read_progress_estimate": 1,
+          "sample_count": 4,
+          "early_distribution": {
+            "boredom": 0.001,
+            "confusion": 0,
+            "engagement": 0.97,
+            "frustration": 0.03
+          },
+          "middle_distribution": {
+            "boredom": 0,
+            "confusion": 0,
+            "engagement": 0.029,
+            "frustration": 0.971
+          },
+          "late_distribution": {
+            "boredom": 0,
+            "confusion": 0,
+            "engagement": 0.508,
+            "frustration": 0.492
+          },
+          "early_dominant_state": "engagement",
+          "middle_dominant_state": "frustration",
+          "late_dominant_state": "engagement",
+          "state_transition": "mixed_or_uncertain",
+          "transition_label": "mixed or uncertain",
+          "dominant_state": "engagement",
+          "secondary_state": "frustration",
+          "stability": "transitioning",
+          "confidence_handling": "standard_confidence"
+        },
+        "learning_process_context": {
+          "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+          "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+          "turn_index": 3,
+          "followup_count_for_highlight": 0,
+          "same_highlight_repeated_questions": false,
+          "last_user_question": null,
+          "current_user_question": null,
+          "question_intent": "general_followup",
+          "previous_strategy": "concrete_example",
+          "recent_strategies": [
+            "deep_technical_explanation",
+            "concrete_example"
+          ],
+          "last_response_was_baseline_or_adaptive": "adaptive",
+          "time_since_last_assistant_answer": null
+        },
+        "academic_state_scores": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.739,
+          "frustration": 0.261
+        },
+        "dominant_academic_state": "engagement",
+        "secondary_academic_state": "frustration",
+        "support_cue": "deepening",
+        "inferred_process_state": "engaged_deepening",
+        "strategy_state": "engagement",
+        "recommended_strategy": "deepen_or_extend",
+        "strategy_reason": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "academic_state_evidence_text": "engagement 74%, frustration 26% \u00b7 trend falling",
+        "confidence_handling": "standard_confidence",
+        "source_turn_type": "strategy_reexplanation",
+        "support_cue_label": "deepening",
+        "prompt_guidance": [
+          "Offer a deeper explanation with connections to the paper.",
+          "Extend only where the provided paper context supports it."
+        ],
+        "diagnostic_only_direct_4class": {
+          "used_for_strategy": false
+        },
+        "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis.",
+        "process_strategy_reason": "While the previous adaptive explanation was being read, the reaction window was engagement-dominant (engagement 74%, secondary frustration 26%) with a falling trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy."
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 259,
+        "caption_length": 0,
+        "baseline_explanation_length": 1472,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 5,
+        "reaction_window_end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "state_transition": "mixed_or_uncertain",
+        "transition_label": "mixed or uncertain",
+        "early_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.97,
+          "frustration": 0.03
+        },
+        "middle_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.029,
+          "frustration": 0.971
+        },
+        "late_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.508,
+          "frustration": 0.492
+        },
+        "support_cue": "deepening",
+        "allowed_strategy_families": [
+          "deep_technical_explanation",
+          "critique_assumptions",
+          "connect_to_related_work",
+          "limitations_and_implications",
+          "compare_methods"
+        ],
+        "recent_conversation_count": 3,
+        "previous_strategy_id": "deep_technical_explanation",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    }
+  },
+  "support_cue": "difficulty_support",
+  "support_cue_label": "Reduce cognitive load cue",
+  "planner_mode": "heuristic",
+  "planner_prompt_version": "reaction_strategy_planner_v2",
+  "planner_input_summary": {
+    "selection_type": "text",
+    "selected_text_length": 259,
+    "caption_length": 0,
+    "baseline_explanation_length": 1526,
+    "rag_chunk_count": 0,
+    "nearby_context_count": 3,
+    "reaction_window_duration_sec": 5,
+    "reaction_window_end_reason": "short_answer_min_elapsed",
+    "read_progress_estimate": 1,
+    "state_transition": "persistent_frustration",
+    "transition_label": "persistent frustration",
+    "support_cue": "difficulty_support",
+    "allowed_strategy_families": [
+      "concrete_example",
+      "example_based_explanation",
+      "analogy_or_reframe",
+      "connect_to_paper_argument",
+      "simplest_version_first",
+      "one_small_next_step",
+      "reduce_information_density",
+      "key_takeaway_first"
+    ],
+    "recent_conversation_count": 2,
+    "previous_strategy_id": "deep_technical_explanation",
+    "passage_type": "method",
+    "difficulty_hint": "multi_step_process"
+  },
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "This passage outlines the core psychological and personal value of traditional journaling. It highlights that writing in a diary serves as a safe, private space for people to express their deepest emotions, practice self-expression, and ultimately gain meaningful insights by reflecting on their past experiences. \n\nIn the context of this paper, this point is crucial because it establishes that journaling is fundamentally different from other writing tasks (like drafting emails or technical reports). Its primary goal is not speed or efficiency, but rather intimate self-reflection and emotional processing. \n\nThe authors use this baseline to examine how introducing an AI assistant like *DiaryMate* alters this highly personal process. While they find that AI suggestions can help users articulate complex thoughts and view their experiences from new perspectives, they also warn of a potential downside: over-reliance. If users adopt AI-generated emotional expressions too easily, they might compromise their own genuine self-expression\u2014the very benefit that makes journaling so valuable in the first place.",
+      "created_at": 1779348888.7474463,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "reading_order_index": 25
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing",
+            "reading_order_index": 26
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+            "page_number": 2,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 2\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nInternal learning-support signal:\nUse this as a lightweight learning-support signal, not as a psychological diagnosis.\nThe academic learning-state labels are internal support signals, not diagnoses.\nDistinguish academic learning state from the derived support cue.\nDo not mention camera, face analysis, raw emotion labels, or detected emotion unless the user explicitly asks.\nDo not tell the user that they are confused, frustrated, bored, engaged, sad, angry, or any other emotion.\n- active_source: raw_8class_process_aware\n- dominant_academic_state: uncertain\n- secondary_academic_state: [none]\n- support_cue: uncertain\n- inferred_process_state: uncertain_or_mixed\n- recommended_strategy: baseline_explanation\n- strategy_reason: While the previous explanation was being read, the reaction window was mixed (mixed learning-state evidence). Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.\n- question_intent: general_followup\n- followup_count_for_highlight: 0\n- academic_state_scores: {\"boredom\": 0.0, \"confusion\": 0.0, \"engagement\": 0.0, \"frustration\": 0.0}\nRaw expression evidence: [unavail"
+      },
+      "turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+      "prompt_snapshot_id": "snap_bc4b17124b75",
+      "turn_type": "baseline_explanation",
+      "source_turn_id": "",
+      "reaction_window_summary": {},
+      "support_cue": "",
+      "support_cue_label": "",
+      "strategy_id": "",
+      "strategy_family": "",
+      "pedagogical_move": "",
+      "context_focus": "",
+      "strategy_title": "",
+      "strategy_short_description": "",
+      "why_recommended": "",
+      "strategy_reason": "",
+      "reason_text": "",
+      "academic_state_evidence_text": "",
+      "confidence_handling": "",
+      "source_turn_type": "",
+      "learning_state_snapshot": {
+        "session_id": "f988c132223245268fe3afae69869a6c",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-21T07:34:39Z",
+        "source": "simulated_camera",
+        "model_output_type": "academic_state_model",
+        "raw_facial_emotion_available": false,
+        "raw_facial_emotion": null,
+        "academic_state": "confusion",
+        "confidence": 0.64,
+        "distribution": {
+          "boredom": 0.12,
+          "confusion": 0.64,
+          "engagement": 0.12,
+          "frustration": 0.12
+        },
+        "trend": "rising",
+        "duration_sec": 2.5,
+        "intensity": 0.64,
+        "stability": "transitioning",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold"
+      },
+      "learning_signal_package": {
+        "academic_state_scores": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0,
+          "frustration": 0
+        },
+        "dominant_academic_state": "uncertain",
+        "secondary_academic_state": null,
+        "support_cue": "uncertain",
+        "reason_text": "While the previous explanation was being read, the reaction window was mixed (mixed learning-state evidence). Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "strategy_reason": "While the previous explanation was being read, the reaction window was mixed (mixed learning-state evidence). Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "academic_state_evidence_text": "mixed learning-state evidence",
+        "confidence_handling": "standard_confidence",
+        "source_turn_type": "previous_explanation",
+        "support_cue_label": "mixed / low-confidence signal"
+      },
+      "trigger_context": {},
+      "planner_mode": "",
+      "planner_prompt_version": "",
+      "face_detection_summary": {},
+      "planner_input_summary": {}
+    },
+    {
+      "role": "assistant",
+      "content": "This passage highlights the established psychological mechanism of expressive journaling: self-disclosure. In human-computer interaction and psychology, journaling functions as a cognitive-emotional tool. By externalizing personal thoughts in a private, secure environment, individuals can structure their narratives, reduce cognitive load, and revisit past events to extract meaningful insights. \n\nUnderlying this traditional practice are two key assumptions:\n* **The \"Secure Environment\" Assumption:** Authentic self-disclosure requires a writing space that feels completely private, non-judgmental, and free from external influence or evaluation.\n* **The Agency Assumption:** The writer acts as the sole author and primary source of emotional truth, doing the active mental work of identifying, organizing, and translating their internal feelings into words.\n\nIn the context of this paper, introducing a generative Large Language Model (LLM) like DiaryMate fundamentally challenges these assumptions. When an AI agent provides next-sentence suggestions or keywords based on statistical patterns, it enters this highly private, reflective loop. While this can lower the cognitive barrier for users who struggle to find the right words, it also risks disrupting their authentic self-expression. The central tension the paper explores is how this collaborative AI intervention changes the reflective process\u2014potentially leading users to adopt AI-generated emotional narratives rather than doing the introspective work themselves.",
+      "created_at": 1779348958.4236429,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "reading_order_index": 25
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing",
+            "reading_order_index": 26
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+            "page_number": 2,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 2\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: deep_technical_explanation\n- Pedagogical move: Deepen the technical explanation\n- Context focus: By disclosing their own experiences and inner emotions through the journal, people can benefit b\n- Strategy title: Give a deeper technical read of this method passage\n- Why selected: While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.\n- Instruction for answer: Explain technical assumptions, mechanis"
+      },
+      "turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+      "prompt_snapshot_id": "snap_5dd06025758c",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "source_turn_type": "baseline_explanation",
+        "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+        "start_time": "2026-05-21T07:34:48.932Z",
+        "end_time": "2026-05-21T07:34:54.327Z",
+        "window_start": "2026-05-21T07:34:48.932Z",
+        "window_end": "2026-05-21T07:34:54.327Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5.4,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0.042,
+          "confusion": 0.001,
+          "engagement": 0.578,
+          "frustration": 0.379
+        },
+        "middle_distribution": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.986,
+          "frustration": 0.012
+        },
+        "late_distribution": {
+          "boredom": 0.013,
+          "confusion": 0,
+          "engagement": 0.917,
+          "frustration": 0.069
+        },
+        "early_dominant_state": "engagement",
+        "middle_dominant_state": "engagement",
+        "late_dominant_state": "engagement",
+        "state_transition": "stable_engagement",
+        "transition_label": "stable engagement",
+        "dominant_state": "engagement",
+        "secondary_state": "frustration",
+        "avg_confidence": 0.747,
+        "max_confidence": 0.986,
+        "avg_distribution": {
+          "boredom": 0.028,
+          "confusion": 0.001,
+          "engagement": 0.747,
+          "frustration": 0.224
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "deepening",
+        "support_cue_label": "Deepening cue",
+        "support_cue_display_label": "deepening",
+        "academic_state_evidence_text": "stable engagement \u00b7 engagement 75%, frustration 22% \u00b7 trend rising",
+        "confidence_handling": "standard_confidence",
+        "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "trigger_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage outlines the core psychological and personal value of traditional journaling. It highlights that writing in a diary serves as a safe, private space for people to express their deepest emotions, practice self-expression, and ultimately gain meaningful insights by reflecting on their past experiences. \n\nIn the context of this paper, this point is crucial because it establishes that journaling is fundamentally different from other writing tasks (like drafting emails or technical reports). Its primary goal is not speed or efficiency, but rather intimate self-reflection and emotional processing. \n\nThe authors use this baseline to examine how introducing an AI assistant like *DiaryMate* alters this highly personal process. While they find that AI suggestions can help users articulate complex thoughts and view their experiences from new perspectives, they also warn of a potential downside: over-reliance. If users adopt AI-generated emotional expressions too easily, they might compromise their own genuine self-expression\u2014the very benefit that makes journaling so valuable in the first place.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": true
+      },
+      "support_cue": "deepening",
+      "support_cue_label": "deepening",
+      "strategy_id": "deep_technical_explanation",
+      "strategy_family": "deep_technical_explanation",
+      "pedagogical_move": "Deepen the technical explanation",
+      "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "strategy_title": "Give a deeper technical read of this method passage",
+      "strategy_short_description": "Use the current passage and context for a more detailed technical explanation.",
+      "why_recommended": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "strategy_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "reason_text": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+      "academic_state_evidence_text": "engagement 75%, frustration 22% \u00b7 trend rising",
+      "confidence_handling": "standard_confidence",
+      "source_turn_type": "baseline_explanation",
+      "strategy_status": "applied",
+      "applied_strategy_id": "deep_technical_explanation",
+      "applied_strategy_family": "deep_technical_explanation",
+      "applied_pedagogical_move": "Deepen the technical explanation",
+      "normalized_pedagogical_move_key": "deepen",
+      "applied_context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "applied_title": "Give a deeper technical read of this method passage",
+      "applied_strategy_title": "Give a deeper technical read of this method passage",
+      "applied_strategy_short_description": "Use the current passage and context for a more detailed technical explanation.",
+      "source_reaction_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+      "source_reaction_window_id": "",
+      "learning_state_snapshot": {
+        "session_id": "f988c132223245268fe3afae69869a6c",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-21T07:35:39Z",
+        "source": "webcam_model",
+        "model_output_type": "raw_emotion",
+        "raw_facial_emotion_available": true,
+        "raw_facial_emotion": "sad",
+        "academic_state": "engagement",
+        "confidence": 0.225,
+        "distribution": {
+          "boredom": 0.0002,
+          "confusion": 0,
+          "engagement": 0.225,
+          "frustration": 0.7748
+        },
+        "trend": "rising",
+        "duration_sec": 8.4,
+        "intensity": 0.225,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "learning_signal_package": {
+          "active_source": "raw_8class_process_aware",
+          "raw_emotion_evidence": {
+            "source": "raw_8class_checkpoint",
+            "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+            "raw_emotion_label": "sad",
+            "raw_emotion_confidence": 0.7747,
+            "raw_emotion_probabilities": {
+              "anger": 0,
+              "contempt": 0.0002,
+              "disgust": 0.0001,
+              "fear": 0,
+              "happy": 0.0002,
+              "neutral": 0.2248,
+              "sad": 0.7747,
+              "surprise": 0
+            },
+            "raw_top_emotions": [
+              {
+                "label": "sad",
+                "probability": 0.7747
+              },
+              {
+                "label": "neutral",
+                "probability": 0.2248
+              },
+              {
+                "label": "contempt",
+                "probability": 0.0002
+              }
+            ],
+            "frame_timestamp": "2026-05-21T07:35:39Z",
+            "crop_hash": null
+          },
+          "academic_state_mapping": {
+            "mapping_rule_version": "required_8class_probability_aggregation_v1",
+            "mapped_academic_state": "engagement",
+            "mapped_academic_scores": {
+              "boredom": 0.0002,
+              "confusion": 0,
+              "engagement": 0.225,
+              "frustration": 0.7748
+            },
+            "mapping_explanation": "sad + anger + disgust -> frustration",
+            "confidence_notes": [
+              "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+            ]
+          },
+          "reaction_window_summary": {
+            "window_start": null,
+            "window_end": null,
+            "dominant_raw_emotions": [],
+            "dominant_mapped_states": [
+              {
+                "state": "frustration",
+                "probability": 0.7748
+              },
+              {
+                "state": "engagement",
+                "probability": 0.225
+              },
+              {
+                "state": "boredom",
+                "probability": 0.0002
+              }
+            ],
+            "trend": "single_frame_only",
+            "evidence_count": 0,
+            "reliability_notes": [
+              "no reaction window; do not infer a strong learning process state from this frame alone"
+            ],
+            "avg_mapped_scores": {
+              "boredom": 0.0002,
+              "confusion": 0,
+              "engagement": 0.225,
+              "frustration": 0.7748
+            },
+            "support_cue": "neutral_or_uncertain",
+            "start_time": null,
+            "end_time": null,
+            "duration_sec": null,
+            "end_reason": null,
+            "read_progress_estimate": null,
+            "sample_count": 0,
+            "early_distribution": null,
+            "middle_distribution": null,
+            "late_distribution": null,
+            "early_dominant_state": null,
+            "middle_dominant_state": null,
+            "late_dominant_state": null,
+            "state_transition": "mixed_or_uncertain",
+            "transition_label": "mixed or uncertain",
+            "dominant_state": "engagement",
+            "secondary_state": null,
+            "stability": null,
+            "confidence_handling": null
+          },
+          "learning_process_context": {
+            "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+            "highlight_id": null,
+            "turn_index": 0,
+            "followup_count_for_highlight": 0,
+            "same_highlight_repeated_questions": false,
+            "last_user_question": null,
+            "current_user_question": null,
+            "question_intent": "general_followup",
+            "previous_strategy": null,
+            "recent_strategies": [],
+            "last_response_was_baseline_or_adaptive": "unknown",
+            "time_since_last_assistant_answer": null
+          },
+          "academic_state_scores": {
+            "boredom": 0.0002,
+            "confusion": 0,
+            "engagement": 0.225,
+            "frustration": 0.7748
+          },
+          "dominant_academic_state": "frustration",
+          "secondary_academic_state": "engagement",
+          "support_cue": "uncertain",
+          "inferred_process_state": "baseline_ready",
+          "strategy_state": "uncertain",
+          "recommended_strategy": "baseline_explanation",
+          "strategy_reason": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 77%, secondary engagement 22%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+          "reason_text": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 77%, secondary engagement 22%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+          "academic_state_evidence_text": "frustration 77%, engagement 22% \u00b7 trend single_frame_only",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "previous_explanation",
+          "support_cue_label": "mixed / low-confidence signal",
+          "prompt_guidance": [
+            "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+          ],
+          "diagnostic_only_direct_4class": {
+            "used_for_strategy": false
+          },
+          "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+        },
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "learning_signal_package": {
+        "active_source": "raw_8class_process_aware",
+        "raw_emotion_evidence": {
+          "source": "raw_8class_checkpoint",
+          "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+          "raw_emotion_label": "sad",
+          "raw_emotion_confidence": 0.7747,
+          "raw_emotion_probabilities": {
+            "anger": 0,
+            "contempt": 0.0002,
+            "disgust": 0.0001,
+            "fear": 0,
+            "happy": 0.0002,
+            "neutral": 0.2248,
+            "sad": 0.7747,
+            "surprise": 0
+          },
+          "raw_top_emotions": [
+            {
+              "label": "sad",
+              "probability": 0.7747
+            },
+            {
+              "label": "neutral",
+              "probability": 0.2248
+            },
+            {
+              "label": "contempt",
+              "probability": 0.0002
+            }
+          ],
+          "frame_timestamp": "2026-05-21T07:35:39Z",
+          "crop_hash": null
+        },
+        "academic_state_mapping": {
+          "mapping_rule_version": "required_8class_probability_aggregation_v1",
+          "mapped_academic_state": "engagement",
+          "mapped_academic_scores": {
+            "boredom": 0.0002,
+            "confusion": 0,
+            "engagement": 0.225,
+            "frustration": 0.7748
+          },
+          "mapping_explanation": "sad + anger + disgust -> frustration",
+          "confidence_notes": [
+            "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+          ]
+        },
+        "reaction_window_summary": {
+          "window_start": null,
+          "window_end": null,
+          "dominant_raw_emotions": [],
+          "dominant_mapped_states": [
+            {
+              "state": "frustration",
+              "probability": 0.7748
+            },
+            {
+              "state": "engagement",
+              "probability": 0.225
+            },
+            {
+              "state": "boredom",
+              "probability": 0.0002
+            }
+          ],
+          "trend": "single_frame_only",
+          "evidence_count": 0,
+          "reliability_notes": [
+            "no reaction window; do not infer a strong learning process state from this frame alone"
+          ],
+          "avg_mapped_scores": {
+            "boredom": 0.0002,
+            "confusion": 0,
+            "engagement": 0.225,
+            "frustration": 0.7748
+          },
+          "support_cue": "neutral_or_uncertain",
+          "start_time": null,
+          "end_time": null,
+          "duration_sec": null,
+          "end_reason": null,
+          "read_progress_estimate": null,
+          "sample_count": 0,
+          "early_distribution": null,
+          "middle_distribution": null,
+          "late_distribution": null,
+          "early_dominant_state": null,
+          "middle_dominant_state": null,
+          "late_dominant_state": null,
+          "state_transition": "mixed_or_uncertain",
+          "transition_label": "mixed or uncertain",
+          "dominant_state": "engagement",
+          "secondary_state": null,
+          "stability": null,
+          "confidence_handling": null
+        },
+        "learning_process_context": {
+          "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+          "highlight_id": null,
+          "turn_index": 0,
+          "followup_count_for_highlight": 0,
+          "same_highlight_repeated_questions": false,
+          "last_user_question": null,
+          "current_user_question": null,
+          "question_intent": "general_followup",
+          "previous_strategy": null,
+          "recent_strategies": [],
+          "last_response_was_baseline_or_adaptive": "unknown",
+          "time_since_last_assistant_answer": null
+        },
+        "academic_state_scores": {
+          "boredom": 0.0002,
+          "confusion": 0,
+          "engagement": 0.225,
+          "frustration": 0.7748
+        },
+        "dominant_academic_state": "frustration",
+        "secondary_academic_state": "engagement",
+        "support_cue": "uncertain",
+        "inferred_process_state": "baseline_ready",
+        "strategy_state": "uncertain",
+        "recommended_strategy": "baseline_explanation",
+        "strategy_reason": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 77%, secondary engagement 22%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "reason_text": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 77%, secondary engagement 22%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "academic_state_evidence_text": "frustration 77%, engagement 22% \u00b7 trend single_frame_only",
+        "confidence_handling": "standard_confidence",
+        "source_turn_type": "previous_explanation",
+        "support_cue_label": "mixed / low-confidence signal",
+        "prompt_guidance": [
+          "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+        ],
+        "diagnostic_only_direct_4class": {
+          "used_for_strategy": false
+        },
+        "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "While the baseline explanation was being read, the reaction window was engagement-dominant (engagement 75%, secondary frustration 22%) with a rising trend. This suggested the answer could be extended, so the system selected a deeper explanation strategy.",
+        "duration_sec": 5.4,
+        "trend": "rising",
+        "intensity": 0.747,
+        "refresh_requested": false,
+        "support_cue": "deepening",
+        "source_turn_id": "turn_b4b2ef9e9c714bdb8da534dacc598d7f",
+        "source_turn_type": "baseline_explanation"
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 259,
+        "caption_length": 0,
+        "baseline_explanation_length": 1108,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 5.4,
+        "reaction_window_end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "state_transition": "stable_engagement",
+        "transition_label": "stable engagement",
+        "support_cue": "deepening",
+        "allowed_strategy_families": [
+          "deep_technical_explanation",
+          "critique_assumptions",
+          "connect_to_related_work",
+          "limitations_and_implications",
+          "compare_methods"
+        ],
+        "recent_conversation_count": 1,
+        "previous_strategy_id": "",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "This passage highlights the psychological value of traditional journaling, showing how the act of writing translates raw personal events into deeper self-awareness. Let\u2019s break down this process step-by-step to see how it works:\n\n*   **Main Point:** Journaling acts as a secure, private tool that helps people process their thoughts and extract personal meaning from their past.\n*   **Step 1 (Disclosure):** The process begins with disclosure. A person puts their daily experiences and private, inner emotions into words, moving them from internal thoughts to external text.\n*   **Step 2 (Safe Self-Expression):** Writing in a journal provides a secure environment. Because there is no external audience or threat of judgment, the writer can safely practice and improve their emotional self-expression. \n*   **Step 3 (Revisiting and Insight):** Finally, by looking back at these written records over time, the writer can revisit their past experiences from a distance, allowing them to discover new, meaningful insights about themselves.\n\n**Why it matters in this paper:**\nUnderstanding these core benefits of traditional journaling is crucial because the paper explores how AI tools like *DiaryMate* affect this delicate process. Since journaling is so deeply personal and therapeutic, the researchers need to evaluate whether introducing an LLM assistant helps users express themselves better, or if it accidentally interferes with their private reflection and emotional ownership.",
+      "created_at": 1779348992.4996388,
+      "provider": "gemini",
+      "model": "gemini-flash-latest",
+      "context_used": {
+        "provider": "gemini",
+        "model": "gemini-flash-latest",
+        "mode": "text_context",
+        "used_image": false,
+        "paper_profile_used": true,
+        "paper_profile_summary": "This study examines how users interact with an LLM-based journaling assistant to understand the balance between user intent and AI involvement in personal, introspective writing.",
+        "retrieved_block_count": 14,
+        "retrieval_method": "embedding",
+        "retrieved_blocks": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "global_rag_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p12-b282",
+            "page_number": 12,
+            "block_type": "text",
+            "markdown_content": "Overall, our findings suggest that interacting with the LLM can amplify the benefits of journaling. The LLM nudges participants to delve deeper into self-expression, uncover novel interpretations and significance from past incidents [45], and potentially influence their future mindset [1]. In our study, participants often viewed the LLM as a collaborative writing partner that could read and respond to their entries. This perception highlighted a unique dichotomy: while participants desired the privacy of their j...",
+            "score": 0.8176
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p4-b41",
+            "page_number": 4,
+            "block_type": "text",
+            "markdown_content": "and emotionally charged [38]. From the perspective of human writers, journaling involves the ability to delve into and reconstruct meaningful and reflective narratives from one\u2019s past and present thoughts and daily experiences. Therefore, the writer potentially requires or expects a different kind of assistance compared to the other writing domains. Our study aims to understand how people accept and perceive LLMs when writing in a reflective and personal context like journal writing.",
+            "score": 0.8171
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p3-b29",
+            "page_number": 3,
+            "block_type": "text",
+            "markdown_content": "motivated [44]. Furthermore, understanding and expressing one\u2019s inner self can be complex for some people, as individuals differ in their ability to identify, express, and organize their emotions and feelings [31, 39]. Therefore, processes like journaling, which involve reflecting on past experiences and finding meaning within them, are not necessarily easy or natural for everyone [28]. In the field of human-computer interaction (HCI), studies have been presented on the use of technology to support people\u2019s expr...",
+            "score": 0.8133
+          }
+        ],
+        "nearby_context": [
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b25",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "situation. This arises because LLMs base their suggestions on statistical projections from vast datasets [27, 35]. However, there remains a gap in understanding people\u2019s perceptions and experiences with LLMs in the context of personal writing. Therefore, we centered our work on understanding how people perceive and utilize the outputs of LLMs in personal and retrospective writing tasks. To this end, we developed DiaryMate, a personal journaling assistant that leverages an LLM to assist users in writing a persona...",
+            "reading_order_index": 25
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b26",
+            "page_idx": 1,
+            "page_number": 2,
+            "block_type": "text",
+            "markdown_content": "2 RELATED WORK 2.1 Personal Journal Writing",
+            "reading_order_index": 26
+          },
+          {
+            "block_id": "e0d8f3174cb540a285709afe8c02afcf-p2-b27",
+            "page_number": 2,
+            "block_type": "text",
+            "coordinate_overlap": 1,
+            "text_bonus": 0.05,
+            "match_score": 1,
+            "markdown_content": "Journal writing is a classic method for individuals to record not only their observations, travels, and findings, but also their overall daily experiences and thoughts [38]. By disclosing their own experiences and inner emotions through the journal, people can benefit by improving their self-expression in a secure environment, which ultimately enables them to explore meaningful insights by revisiting past experiences [44, 45]. Moreover, the process of journaling aids in pinpointing personal challenges and serves..."
+          }
+        ],
+        "prompt_preview": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Explain the current selection using the selected pedagogical strategy.\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 2\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nTask:\nExplain the selected paper passage using the selected pedagogical support strategy.\n\nGrounding:\nUse the selected text/crop, caption, matched block, nearby context, paper profile, and retrieved RAG chunks as factual grounding.\n\nRules:\n- Do not invent paper facts.\n- Do not diagnose the user's emotion.\n- Do not say the user is confused or frustrated.\n- The learning-state signal only guides support style.\n- If evidence is insufficient, say what is missing.\n\nSelected pedagogical support strategy:\n- Strategy family: concrete_example\n- Pedagogical move: Walk through the passage step by step\n- Context focus: By disclosing their own experiences and inner emotions through the journal, people can benefit b\n- Strategy title: Walk through the method passage step by step\n- Why selected: While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.\n- Instruction for answer: Explain the pa"
+      },
+      "turn_id": "turn_7d9e03aeec524bf2a8c575804ab09ea6",
+      "prompt_snapshot_id": "snap_5a45340676f3",
+      "turn_type": "strategy_reexplanation",
+      "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+      "reaction_window_summary": {
+        "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "source_turn_type": "strategy_reexplanation",
+        "highlight_id": "aadac7c1-3e69-4b81-817c-fbcab4254d0d",
+        "start_time": "2026-05-21T07:35:58.643Z",
+        "end_time": "2026-05-21T07:36:03.648Z",
+        "window_start": "2026-05-21T07:35:58.643Z",
+        "window_end": "2026-05-21T07:36:03.648Z",
+        "end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "duration_sec": 5,
+        "sample_count": 4,
+        "evidence_count": 4,
+        "early_distribution": {
+          "boredom": 0.003,
+          "confusion": 0,
+          "engagement": 0.496,
+          "frustration": 0.501
+        },
+        "middle_distribution": {
+          "boredom": 0,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.999
+        },
+        "late_distribution": {
+          "boredom": 0.001,
+          "confusion": 0,
+          "engagement": 0.001,
+          "frustration": 0.998
+        },
+        "early_dominant_state": "frustration",
+        "middle_dominant_state": "frustration",
+        "late_dominant_state": "frustration",
+        "state_transition": "persistent_frustration",
+        "transition_label": "persistent frustration",
+        "dominant_state": "frustration",
+        "secondary_state": "engagement",
+        "avg_confidence": 0.249,
+        "max_confidence": 0.99,
+        "avg_distribution": {
+          "boredom": 0.002,
+          "confusion": 0,
+          "engagement": 0.249,
+          "frustration": 0.75
+        },
+        "trend": "rising",
+        "stability": "stable",
+        "support_cue": "difficulty_support",
+        "support_cue_label": "Reduce cognitive load cue",
+        "support_cue_display_label": "reduce cognitive load",
+        "academic_state_evidence_text": "persistent frustration \u00b7 frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+        "confidence_handling": "low_confidence",
+        "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "model_output_type": "raw_emotion",
+        "raw_detection_available": true,
+        "face_detection_summary": {
+          "mode": "openface",
+          "fallback_used": false,
+          "crop_strategy": "openface_landmark_bbox"
+        },
+        "baseline_explanation": "This passage highlights the established psychological mechanism of expressive journaling: self-disclosure. In human-computer interaction and psychology, journaling functions as a cognitive-emotional tool. By externalizing personal thoughts in a private, secure environment, individuals can structure their narratives, reduce cognitive load, and revisit past events to extract meaningful insights. \n\nUnderlying this traditional practice are two key assumptions:\n* **The \"Secure Environment\" Assumption:** Authentic self-disclosure requires a writing space that feels completely private, non-judgmental, and free from external influence or evaluation.\n* **The Agency Assumption:** The writer acts as the sole author and primary source of emotional truth, doing the active mental work of identifying, organizing, and translating their internal feelings into words.\n\nIn the context of this paper, introducing a generative Large Language Model (LLM) like DiaryMate fundamentally challenges these assumptions. When an AI agent provides next-sentence suggestions or keywords based on statistical patterns, it enters this highly private, reflective loop. While this can lower the cognitive barrier for users who struggle to find the right words, it also risks disrupting their authentic self-expression. The central tension the paper explores is how this collaborative AI intervention changes the reflective process\u2014potentially leading users to adopt AI-generated emotional narratives rather than doing the introspective work themselves.",
+        "reaction_window_status": "completed",
+        "start_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "min_duration_met": true,
+        "min_samples_met": true,
+        "top_seen": true,
+        "bottom_seen": false,
+        "user_scroll_progressed": false,
+        "suppressed_auto_scroll": true,
+        "strategy_request_sent": true,
+        "strategy_response_received": true
+      },
+      "support_cue": "difficulty_support",
+      "support_cue_label": "reduce cognitive load",
+      "strategy_id": "concrete_example",
+      "strategy_family": "concrete_example",
+      "pedagogical_move": "Walk through the passage step by step",
+      "context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "strategy_title": "Walk through the method passage step by step",
+      "strategy_short_description": "Turn the dense passage into a short sequence of moves.",
+      "why_recommended": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "strategy_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "reason_text": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+      "academic_state_evidence_text": "frustration 75%, engagement 25% \u00b7 low-confidence signal \u00b7 trend rising",
+      "confidence_handling": "low_confidence",
+      "source_turn_type": "strategy_reexplanation",
+      "strategy_status": "applied",
+      "applied_strategy_id": "concrete_example",
+      "applied_strategy_family": "concrete_example",
+      "applied_pedagogical_move": "Walk through the passage step by step",
+      "normalized_pedagogical_move_key": "worked_example",
+      "applied_context_focus": "By disclosing their own experiences and inner emotions through the journal, people can benefit b",
+      "applied_title": "Walk through the method passage step by step",
+      "applied_strategy_title": "Walk through the method passage step by step",
+      "applied_strategy_short_description": "Turn the dense passage into a short sequence of moves.",
+      "source_reaction_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+      "source_reaction_window_id": "",
+      "learning_state_snapshot": {
+        "session_id": "f988c132223245268fe3afae69869a6c",
+        "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+        "timestamp": "2026-05-21T07:36:25Z",
+        "source": "webcam_model",
+        "model_output_type": "raw_emotion",
+        "raw_facial_emotion_available": true,
+        "raw_facial_emotion": "neutral",
+        "academic_state": "engagement",
+        "confidence": 0.9317,
+        "distribution": {
+          "boredom": 0.0007,
+          "confusion": 0.0012,
+          "engagement": 0.9317,
+          "frustration": 0.0665
+        },
+        "trend": "falling",
+        "duration_sec": 24,
+        "intensity": 0.9317,
+        "stability": "stable",
+        "trigger_recommended": false,
+        "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+        "learning_signal_package": {
+          "active_source": "raw_8class_process_aware",
+          "raw_emotion_evidence": {
+            "source": "raw_8class_checkpoint",
+            "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+            "raw_emotion_label": "neutral",
+            "raw_emotion_confidence": 0.9305,
+            "raw_emotion_probabilities": {
+              "anger": 0,
+              "contempt": 0.0007,
+              "disgust": 0.0003,
+              "fear": 0,
+              "happy": 0.0012,
+              "neutral": 0.9305,
+              "sad": 0.0662,
+              "surprise": 0.0011
+            },
+            "raw_top_emotions": [
+              {
+                "label": "neutral",
+                "probability": 0.9305
+              },
+              {
+                "label": "sad",
+                "probability": 0.0662
+              },
+              {
+                "label": "happy",
+                "probability": 0.0012
+              }
+            ],
+            "frame_timestamp": "2026-05-21T07:36:25Z",
+            "crop_hash": null
+          },
+          "academic_state_mapping": {
+            "mapping_rule_version": "required_8class_probability_aggregation_v1",
+            "mapped_academic_state": "engagement",
+            "mapped_academic_scores": {
+              "boredom": 0.0007,
+              "confusion": 0.0012,
+              "engagement": 0.9317,
+              "frustration": 0.0665
+            },
+            "mapping_explanation": "happy + neutral -> engagement",
+            "confidence_notes": [
+              "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+            ]
+          },
+          "reaction_window_summary": {
+            "window_start": null,
+            "window_end": null,
+            "dominant_raw_emotions": [],
+            "dominant_mapped_states": [
+              {
+                "state": "engagement",
+                "probability": 0.9317
+              },
+              {
+                "state": "frustration",
+                "probability": 0.0665
+              },
+              {
+                "state": "confusion",
+                "probability": 0.0012
+              }
+            ],
+            "trend": "single_frame_only",
+            "evidence_count": 0,
+            "reliability_notes": [
+              "no reaction window; do not infer a strong learning process state from this frame alone"
+            ],
+            "avg_mapped_scores": {
+              "boredom": 0.0007,
+              "confusion": 0.0012,
+              "engagement": 0.9317,
+              "frustration": 0.0665
+            },
+            "support_cue": "neutral_or_uncertain",
+            "start_time": null,
+            "end_time": null,
+            "duration_sec": null,
+            "end_reason": null,
+            "read_progress_estimate": null,
+            "sample_count": 0,
+            "early_distribution": null,
+            "middle_distribution": null,
+            "late_distribution": null,
+            "early_dominant_state": null,
+            "middle_dominant_state": null,
+            "late_dominant_state": null,
+            "state_transition": "mixed_or_uncertain",
+            "transition_label": "mixed or uncertain",
+            "dominant_state": "engagement",
+            "secondary_state": null,
+            "stability": null,
+            "confidence_handling": null
+          },
+          "learning_process_context": {
+            "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+            "highlight_id": null,
+            "turn_index": 0,
+            "followup_count_for_highlight": 0,
+            "same_highlight_repeated_questions": false,
+            "last_user_question": null,
+            "current_user_question": null,
+            "question_intent": "general_followup",
+            "previous_strategy": null,
+            "recent_strategies": [],
+            "last_response_was_baseline_or_adaptive": "unknown",
+            "time_since_last_assistant_answer": null
+          },
+          "academic_state_scores": {
+            "boredom": 0.0007,
+            "confusion": 0.0012,
+            "engagement": 0.9317,
+            "frustration": 0.0665
+          },
+          "dominant_academic_state": "engagement",
+          "secondary_academic_state": "frustration",
+          "support_cue": "uncertain",
+          "inferred_process_state": "baseline_ready",
+          "strategy_state": "uncertain",
+          "recommended_strategy": "baseline_explanation",
+          "strategy_reason": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+          "reason_text": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+          "academic_state_evidence_text": "engagement 93%, frustration 7% \u00b7 trend single_frame_only",
+          "confidence_handling": "standard_confidence",
+          "source_turn_type": "previous_explanation",
+          "support_cue_label": "mixed / low-confidence signal",
+          "prompt_guidance": [
+            "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+          ],
+          "diagnostic_only_direct_4class": {
+            "used_for_strategy": false
+          },
+          "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+        },
+        "warnings": [],
+        "face_detection": {
+          "detector": "openface",
+          "requested_detector": "openface",
+          "configured_detector": "openface",
+          "actual_detector": "openface",
+          "face_found": true,
+          "confidence": 0.98,
+          "landmark_count": 68,
+          "crop_strategy": "openface_landmark_bbox",
+          "crop_mode": "square_face_context",
+          "crop_parameters": {
+            "scale": 1.35,
+            "y_bias": -0.04,
+            "top_extra": 0.22,
+            "bottom_extra": 0.12,
+            "make_square": true
+          },
+          "frame_size": [
+            640,
+            480
+          ],
+          "mirrored": false,
+          "fallback_used": false,
+          "warning": null,
+          "warnings": []
+        }
+      },
+      "learning_signal_package": {
+        "active_source": "raw_8class_process_aware",
+        "raw_emotion_evidence": {
+          "source": "raw_8class_checkpoint",
+          "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+          "raw_emotion_label": "neutral",
+          "raw_emotion_confidence": 0.9305,
+          "raw_emotion_probabilities": {
+            "anger": 0,
+            "contempt": 0.0007,
+            "disgust": 0.0003,
+            "fear": 0,
+            "happy": 0.0012,
+            "neutral": 0.9305,
+            "sad": 0.0662,
+            "surprise": 0.0011
+          },
+          "raw_top_emotions": [
+            {
+              "label": "neutral",
+              "probability": 0.9305
+            },
+            {
+              "label": "sad",
+              "probability": 0.0662
+            },
+            {
+              "label": "happy",
+              "probability": 0.0012
+            }
+          ],
+          "frame_timestamp": "2026-05-21T07:36:25Z",
+          "crop_hash": null
+        },
+        "academic_state_mapping": {
+          "mapping_rule_version": "required_8class_probability_aggregation_v1",
+          "mapped_academic_state": "engagement",
+          "mapped_academic_scores": {
+            "boredom": 0.0007,
+            "confusion": 0.0012,
+            "engagement": 0.9317,
+            "frustration": 0.0665
+          },
+          "mapping_explanation": "happy + neutral -> engagement",
+          "confidence_notes": [
+            "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+          ]
+        },
+        "reaction_window_summary": {
+          "window_start": null,
+          "window_end": null,
+          "dominant_raw_emotions": [],
+          "dominant_mapped_states": [
+            {
+              "state": "engagement",
+              "probability": 0.9317
+            },
+            {
+              "state": "frustration",
+              "probability": 0.0665
+            },
+            {
+              "state": "confusion",
+              "probability": 0.0012
+            }
+          ],
+          "trend": "single_frame_only",
+          "evidence_count": 0,
+          "reliability_notes": [
+            "no reaction window; do not infer a strong learning process state from this frame alone"
+          ],
+          "avg_mapped_scores": {
+            "boredom": 0.0007,
+            "confusion": 0.0012,
+            "engagement": 0.9317,
+            "frustration": 0.0665
+          },
+          "support_cue": "neutral_or_uncertain",
+          "start_time": null,
+          "end_time": null,
+          "duration_sec": null,
+          "end_reason": null,
+          "read_progress_estimate": null,
+          "sample_count": 0,
+          "early_distribution": null,
+          "middle_distribution": null,
+          "late_distribution": null,
+          "early_dominant_state": null,
+          "middle_dominant_state": null,
+          "late_dominant_state": null,
+          "state_transition": "mixed_or_uncertain",
+          "transition_label": "mixed or uncertain",
+          "dominant_state": "engagement",
+          "secondary_state": null,
+          "stability": null,
+          "confidence_handling": null
+        },
+        "learning_process_context": {
+          "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+          "highlight_id": null,
+          "turn_index": 0,
+          "followup_count_for_highlight": 0,
+          "same_highlight_repeated_questions": false,
+          "last_user_question": null,
+          "current_user_question": null,
+          "question_intent": "general_followup",
+          "previous_strategy": null,
+          "recent_strategies": [],
+          "last_response_was_baseline_or_adaptive": "unknown",
+          "time_since_last_assistant_answer": null
+        },
+        "academic_state_scores": {
+          "boredom": 0.0007,
+          "confusion": 0.0012,
+          "engagement": 0.9317,
+          "frustration": 0.0665
+        },
+        "dominant_academic_state": "engagement",
+        "secondary_academic_state": "frustration",
+        "support_cue": "uncertain",
+        "inferred_process_state": "baseline_ready",
+        "strategy_state": "uncertain",
+        "recommended_strategy": "baseline_explanation",
+        "strategy_reason": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "reason_text": "While the previous explanation was being read, the reaction window was engagement-dominant (engagement 93%, secondary frustration 7%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+        "academic_state_evidence_text": "engagement 93%, frustration 7% \u00b7 trend single_frame_only",
+        "confidence_handling": "standard_confidence",
+        "source_turn_type": "previous_explanation",
+        "support_cue_label": "mixed / low-confidence signal",
+        "prompt_guidance": [
+          "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+        ],
+        "diagnostic_only_direct_4class": {
+          "used_for_strategy": false
+        },
+        "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+      },
+      "trigger_context": {
+        "triggered_by": "reaction_window",
+        "trigger_reason": "While the previous adaptive explanation was being read, the reaction window was frustration-dominant (frustration 75%, secondary engagement 25%) with a rising trend, but the average confidence was low. The system therefore chose a conservative step-by-step strategy to reduce cognitive load.",
+        "duration_sec": 5,
+        "trend": "rising",
+        "intensity": 0.249,
+        "refresh_requested": false,
+        "support_cue": "difficulty_support",
+        "source_turn_id": "turn_245ef4103bd146219bcc820f229dcf0f",
+        "source_turn_type": "strategy_reexplanation"
+      },
+      "planner_mode": "heuristic",
+      "planner_prompt_version": "reaction_strategy_planner_v2",
+      "face_detection_summary": {
+        "mode": "openface",
+        "fallback_used": false,
+        "crop_strategy": "openface_landmark_bbox"
+      },
+      "planner_input_summary": {
+        "selection_type": "text",
+        "selected_text_length": 259,
+        "caption_length": 0,
+        "baseline_explanation_length": 1526,
+        "rag_chunk_count": 0,
+        "nearby_context_count": 3,
+        "reaction_window_duration_sec": 5,
+        "reaction_window_end_reason": "short_answer_min_elapsed",
+        "read_progress_estimate": 1,
+        "state_transition": "persistent_frustration",
+        "transition_label": "persistent frustration",
+        "support_cue": "difficulty_support",
+        "allowed_strategy_families": [
+          "concrete_example",
+          "example_based_explanation",
+          "analogy_or_reframe",
+          "connect_to_paper_argument",
+          "simplest_version_first",
+          "one_small_next_step",
+          "reduce_information_density",
+          "key_takeaway_first"
+        ],
+        "recent_conversation_count": 2,
+        "previous_strategy_id": "deep_technical_explanation",
+        "passage_type": "method",
+        "difficulty_hint": "multi_step_process"
+      }
+    }
+  ]
+}

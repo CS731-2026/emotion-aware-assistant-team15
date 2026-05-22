@@ -1,0 +1,187 @@
+{
+  "session_id": "6f2bd0c17df34849b79cbdcb3dec063c",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "timestamp": "2026-05-22T13:14:42Z",
+  "source": "webcam_model",
+  "model_output_type": "raw_emotion",
+  "raw_facial_emotion_available": true,
+  "raw_facial_emotion": "sad",
+  "academic_state": "engagement",
+  "confidence": 0.0001,
+  "distribution": {
+    "boredom": 0.0,
+    "confusion": 0.0,
+    "engagement": 0.0001,
+    "frustration": 0.9999
+  },
+  "trend": "stable",
+  "duration_sec": 225.5,
+  "intensity": 0.0001,
+  "stability": "stable",
+  "trigger_recommended": false,
+  "trigger_reason": "learning-state signal has not crossed a strategy trigger threshold",
+  "learning_signal_package": {
+    "active_source": "raw_8class_process_aware",
+    "raw_emotion_evidence": {
+      "source": "raw_8class_checkpoint",
+      "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+      "raw_emotion_label": "sad",
+      "raw_emotion_confidence": 0.9998,
+      "raw_emotion_probabilities": {
+        "anger": 0.0,
+        "contempt": 0.0,
+        "disgust": 0.0,
+        "fear": 0.0,
+        "happy": 0.0,
+        "neutral": 0.0001,
+        "sad": 0.9998,
+        "surprise": 0.0
+      },
+      "raw_top_emotions": [
+        {
+          "label": "sad",
+          "probability": 0.9998
+        },
+        {
+          "label": "neutral",
+          "probability": 0.0001
+        },
+        {
+          "label": "anger",
+          "probability": 0.0
+        }
+      ],
+      "frame_timestamp": "2026-05-22T13:14:42Z",
+      "crop_hash": null
+    },
+    "academic_state_mapping": {
+      "mapping_rule_version": "required_8class_probability_aggregation_v1",
+      "mapped_academic_state": "engagement",
+      "mapped_academic_scores": {
+        "boredom": 0.0,
+        "confusion": 0.0,
+        "engagement": 0.0001,
+        "frustration": 0.9999
+      },
+      "mapping_explanation": "sad + anger + disgust -> frustration",
+      "confidence_notes": [
+        "single-frame mapped scores should be interpreted through reaction windows and dialogue context"
+      ]
+    },
+    "reaction_window_summary": {
+      "window_start": null,
+      "window_end": null,
+      "dominant_raw_emotions": [],
+      "dominant_mapped_states": [
+        {
+          "state": "frustration",
+          "probability": 0.9999
+        },
+        {
+          "state": "engagement",
+          "probability": 0.0001
+        },
+        {
+          "state": "boredom",
+          "probability": 0.0
+        }
+      ],
+      "trend": "single_frame_only",
+      "evidence_count": 0,
+      "reliability_notes": [
+        "no reaction window; do not infer a strong learning process state from this frame alone"
+      ],
+      "avg_mapped_scores": {
+        "boredom": 0.0,
+        "confusion": 0.0,
+        "engagement": 0.0001,
+        "frustration": 0.9999
+      },
+      "support_cue": "neutral_or_uncertain",
+      "start_time": null,
+      "end_time": null,
+      "duration_sec": null,
+      "end_reason": null,
+      "read_progress_estimate": null,
+      "sample_count": 0,
+      "early_distribution": null,
+      "middle_distribution": null,
+      "late_distribution": null,
+      "early_dominant_state": null,
+      "middle_dominant_state": null,
+      "late_dominant_state": null,
+      "state_transition": "mixed_or_uncertain",
+      "transition_label": "mixed or uncertain",
+      "dominant_state": "engagement",
+      "secondary_state": null,
+      "stability": null,
+      "confidence_handling": null
+    },
+    "learning_process_context": {
+      "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+      "highlight_id": null,
+      "turn_index": 0,
+      "followup_count_for_highlight": 0,
+      "same_highlight_repeated_questions": false,
+      "last_user_question": null,
+      "current_user_question": null,
+      "question_intent": "general_followup",
+      "previous_strategy": null,
+      "recent_strategies": [],
+      "last_response_was_baseline_or_adaptive": "unknown",
+      "time_since_last_assistant_answer": null
+    },
+    "academic_state_scores": {
+      "boredom": 0.0,
+      "confusion": 0.0,
+      "engagement": 0.0001,
+      "frustration": 0.9999
+    },
+    "dominant_academic_state": "frustration",
+    "secondary_academic_state": "engagement",
+    "support_cue": "uncertain",
+    "inferred_process_state": "baseline_ready",
+    "strategy_state": "uncertain",
+    "recommended_strategy": "baseline_explanation",
+    "strategy_reason": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 100%, secondary engagement 0%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+    "reason_text": "While the previous explanation was being read, the reaction window was frustration-dominant (frustration 100%, secondary engagement 0%) with a single_frame_only trend. Because the signal was mixed or uncertain, the system selected a conservative continuation strategy.",
+    "academic_state_evidence_text": "frustration 100%, engagement 0% \u00b7 trend single_frame_only",
+    "confidence_handling": "standard_confidence",
+    "source_turn_type": "previous_explanation",
+    "support_cue_label": "mixed / low-confidence signal",
+    "prompt_guidance": [
+      "Use a baseline paper-grounded explanation and avoid overfitting to weak signals."
+    ],
+    "diagnostic_only_direct_4class": {
+      "used_for_strategy": false
+    },
+    "non_diagnostic_disclaimer": "Use this as a lightweight learning-support signal, not as a psychological diagnosis."
+  },
+  "warnings": [],
+  "face_detection": {
+    "detector": "openface",
+    "requested_detector": "openface",
+    "configured_detector": "openface",
+    "actual_detector": "openface",
+    "face_found": true,
+    "confidence": 0.98,
+    "landmark_count": 68,
+    "crop_strategy": "openface_landmark_bbox",
+    "crop_mode": "square_face_context",
+    "crop_parameters": {
+      "scale": 1.35,
+      "y_bias": -0.04,
+      "top_extra": 0.22,
+      "bottom_extra": 0.12,
+      "make_square": true
+    },
+    "frame_size": [
+      640,
+      480
+    ],
+    "mirrored": false,
+    "fallback_used": false,
+    "warning": null,
+    "warnings": []
+  }
+}

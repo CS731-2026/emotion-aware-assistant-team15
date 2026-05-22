@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 import re
 import time
 import urllib.error
@@ -11,9 +10,11 @@ from pathlib import Path
 from typing import Any
 
 from emotion_aware_assistant.core.llm_config import (
+    DEFAULT_GEMINI_MODEL,
     DEFAULT_GEMINI_EMBEDDING_MODEL,
-    provider_api_key_from_env,
+    resolve_gemini_api_key,
     role_config_from_env,
+    settings_revision_info,
 )
 
 PROFILE_FIELDS = {
@@ -26,7 +27,6 @@ PROFILE_FIELDS = {
     "key_terms": [],
     "section_map": [],
 }
-DEFAULT_GEMINI_MODEL = "gemini-flash-latest"
 GEMINI_ENDPOINT_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 GEMINI_EMBEDDING_ENDPOINT_TEMPLATE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:embedContent"
 LIGATURES = {
@@ -258,7 +258,9 @@ def build_embedding_index(document_id: str, rag_dir: Path, blocks: list[dict[str
     role = role_config_from_env("embedding_model")
     provider = str(role.get("provider") or "gemini").strip().lower() or "gemini"
     model = str(role.get("model") or DEFAULT_GEMINI_EMBEDDING_MODEL).strip() or DEFAULT_GEMINI_EMBEDDING_MODEL
-    api_key = provider_api_key_from_env("gemini") if provider == "gemini" else ""
+    key_info = resolve_gemini_api_key(include_env_file=False) if provider == "gemini" else {"key": "", "key_source": "", "masked_suffix": ""}
+    revision = settings_revision_info()
+    api_key = str(key_info.get("key") or "")
     unavailable_message = (
         f"Embedding provider {provider} is not supported by the current embedding path; keyword retrieval will be used."
         if provider != "gemini"
@@ -270,6 +272,10 @@ def build_embedding_index(document_id: str, rag_dir: Path, blocks: list[dict[str
         "model": model,
         "status": "unavailable",
         "message": unavailable_message,
+        "key_source": str(key_info.get("key_source") or ""),
+        "masked_key_suffix": str(key_info.get("masked_suffix") or ""),
+        "settings_revision": revision.get("settings_revision"),
+        "settings_file_mtime": revision.get("settings_file_mtime"),
         "embeddings": [],
     }
     if provider != "gemini" or not api_key:
@@ -279,6 +285,10 @@ def build_embedding_index(document_id: str, rag_dir: Path, blocks: list[dict[str
             "embedding_model": model,
             "embedding_index_status": "unavailable",
             "embedding_message": base_payload["message"],
+            "embedding_key_source": str(key_info.get("key_source") or ""),
+            "embedding_key_masked_suffix": str(key_info.get("masked_suffix") or ""),
+            "settings_revision": revision.get("settings_revision"),
+            "settings_file_mtime": revision.get("settings_file_mtime"),
             "embeddings_path": str(embeddings_path),
         }
 
@@ -312,6 +322,10 @@ def build_embedding_index(document_id: str, rag_dir: Path, blocks: list[dict[str
         "model": model,
         "status": status,
         "message": message,
+        "key_source": str(key_info.get("key_source") or ""),
+        "masked_key_suffix": str(key_info.get("masked_suffix") or ""),
+        "settings_revision": revision.get("settings_revision"),
+        "settings_file_mtime": revision.get("settings_file_mtime"),
         "embeddings": embeddings,
     }
     embeddings_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
@@ -320,6 +334,10 @@ def build_embedding_index(document_id: str, rag_dir: Path, blocks: list[dict[str
         "embedding_model": model,
         "embedding_index_status": status,
         "embedding_message": message,
+        "embedding_key_source": str(key_info.get("key_source") or ""),
+        "embedding_key_masked_suffix": str(key_info.get("masked_suffix") or ""),
+        "settings_revision": revision.get("settings_revision"),
+        "settings_file_mtime": revision.get("settings_file_mtime"),
         "embeddings_path": str(embeddings_path),
     }
 
@@ -335,10 +353,11 @@ def retrieve_global_context(
     rag_dir = Path(document_dir) / "rag"
     embeddings_payload = _load_json(rag_dir / "embeddings.json", {})
     status = embeddings_payload.get("status") if isinstance(embeddings_payload, dict) else ""
-    if status == "completed" and os.environ.get("GEMINI_API_KEY", "").strip():
+    api_key = str(resolve_gemini_api_key(include_env_file=False).get("key") or "")
+    if status == "completed" and api_key:
         query_vector = _gemini_embedding(
             query,
-            api_key=os.environ.get("GEMINI_API_KEY", "").strip(),
+            api_key=api_key,
             model=str(embeddings_payload.get("model") or DEFAULT_GEMINI_EMBEDDING_MODEL),
             task_type="RETRIEVAL_QUERY",
         )
@@ -370,8 +389,12 @@ def retrieve_global_context(
 
 def generate_paper_profile(blocks: list[dict[str, Any]], section_map: list[dict[str, Any]]) -> tuple[dict[str, Any], str]:
     profile_input = _profile_input_text(blocks)
-    if os.environ.get("LLM_PROVIDER", "mock").strip().lower() == "gemini" and os.environ.get("GEMINI_API_KEY", "").strip():
-        generated = _gemini_profile(profile_input, section_map)
+    role = role_config_from_env("answer_model")
+    provider = str(role.get("provider") or "").strip().lower()
+    api_key = str(resolve_gemini_api_key(include_env_file=False).get("key") or "") if provider == "gemini" else ""
+    if provider == "gemini" and api_key:
+        model = str(role.get("model") or DEFAULT_GEMINI_MODEL).strip() or DEFAULT_GEMINI_MODEL
+        generated = _gemini_profile(profile_input, section_map, api_key=api_key, model=model)
         if generated:
             return _complete_profile(generated, section_map), "gemini"
     return _rule_based_profile(blocks, section_map), "rule_based"
@@ -405,11 +428,7 @@ def _rule_based_profile(blocks: list[dict[str, Any]], section_map: list[dict[str
     )
 
 
-def _gemini_profile(profile_input: str, section_map: list[dict[str, Any]]) -> dict[str, Any] | None:
-    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not api_key:
-        return None
-    model = os.environ.get("GEMINI_MODEL", DEFAULT_GEMINI_MODEL).strip() or DEFAULT_GEMINI_MODEL
+def _gemini_profile(profile_input: str, section_map: list[dict[str, Any]], *, api_key: str, model: str) -> dict[str, Any] | None:
     prompt = (
         "Create a concise academic paper profile as strict JSON with keys: "
         "title, one_sentence_summary, research_problem, method_summary, "

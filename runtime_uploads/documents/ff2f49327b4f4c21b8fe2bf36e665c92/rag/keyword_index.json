@@ -1,0 +1,26 @@
+{
+  "blocks": [
+    {
+      "block_id": "ff2f49327b4f4c21b8fe2bf36e665c92-p1-b0",
+      "page_number": 1,
+      "block_type": "title",
+      "terms": [
+        "reader",
+        "test"
+      ],
+      "text": "PDF Reader Test"
+    },
+    {
+      "block_id": "ff2f49327b4f4c21b8fe2bf36e665c92-p1-b1",
+      "page_number": 1,
+      "block_type": "title",
+      "terms": [
+        "comes",
+        "highlighted",
+        "page",
+        "passage"
+      ],
+      "text": "The highlighted passage comes from a PDF page."
+    }
+  ]
+}

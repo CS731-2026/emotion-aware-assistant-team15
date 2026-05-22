@@ -1,0 +1,46 @@
+{
+  "snapshot_id": "snap_e1f2c454ee94",
+  "document_id": "e0d8f3174cb540a285709afe8c02afcf",
+  "highlight_id": "860a534f-7885-4223-8758-1b52385d93a0",
+  "turn_id": "turn_7144297d1caa47b4999b456bdf68fe8e",
+  "thread_id": "thread-860a534f-7885-4223-8758-1b52385d93a0",
+  "created_at": "2026-05-19T06:20:47Z",
+  "stage": "rag_baseline",
+  "source": "pdf-chat",
+  "provider": "gemini",
+  "model": "gemini-flash-latest",
+  "messages": [
+    {
+      "role": "user",
+      "content": "You are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 6\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\n1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period.\n\nmatched_block:\nWe posted recruitment announcements in a university\u2019s online communities and bulletin boards. Participants were recruited from people who met the following criteria: (1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period. We conducted an introductory session with 26 participants; two dropped out during the field deployment study. 24 participants completed the experiment to the end. We ran follow-up interviews for all willing participants; 20 participated in the interview session. We provided compensation of 25 USD to all participants who participated in the field deployment study for ten days and added 10 USD compensation to the interview participants. The participants were 14 females and 10 males. Their ages ranged from 20 to 31 years (\ud835\udc40 = 23.25; \ud835\udc46\ud835\udc37 = 3.01). Fourteen were undergraduate students, seven were masters students, and three were\n\nuseful_nearby_context:\n- e0d8f3174cb540a285709afe8c02afcf-p6-b69: We posted recruitment announcements in a university\u2019s online communities and bulletin boards. Participants were recruited from people who met the following criteria: (1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period. We conducted an introductory session with 26 participants; two dropped out during the field deployment study. 24 participants completed the experiment to th...\n- e0d8f3174cb540a285709afe8c02afcf-p6-b70: Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong\n- e0d8f3174cb540a285709afe8c02afcf-p6-b71: doctoral students. All participants were majoring in fields related to Science and Technology and had basic knowledge of computing. More specifically, nine had completed AI courses above the undergraduate level, and seven had experience in AI-related projects. They had varying degrees of journal writing experiences. In the preliminary survey conducted before the experiment, six (25%) participants had never written a journal, nine (37.5%) participants occasionally (more th..."
+    }
+  ],
+  "prompt_text": "user:\nYou are an academic paper reading assistant. Explain only the selected PDF passage or selected visual area. Use the provided selected text, parsed Markdown, caption, nearby context, and image crop if available. Be accurate, concise, and helpful. If the selected area is a figure, table, or formula, explain what it shows and why it matters in the paper. If context is insufficient, clearly say what is uncertain.\nAnswer as a helpful academic reading assistant in a natural conversational style. Do not repeat or quote the selected passage unless necessary. Start directly with the explanation. Avoid headings like 'Selected Part', 'Paper Context', 'Connection to Method and Argument', or 'Useful Follow-up Question' unless the user explicitly asks for a structured breakdown. Keep the answer concise but useful, usually 2-4 short paragraphs. Explain what the selected part means, why it matters in the paper, and how it connects to the paper's argument. If evidence is insufficient, say so clearly. Do not include a forced follow-up question by default.\n\nuser_question: \"Can you explain this selected part of the paper?\"\nresponse_style: chat_conversational\nhighlight_type: text\npage_number: 6\nrecommended_llm_mode: text_context\ncrop_image_attached: false\n\nselected_text:\n1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period.\n\nmatched_block:\nWe posted recruitment announcements in a university\u2019s online communities and bulletin boards. Participants were recruited from people who met the following criteria: (1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period. We conducted an introductory session with 26 participants; two dropped out during the field deployment study. 24 participants completed the experiment to the end. We ran follow-up interviews for all willing participants; 20 participated in the interview session. We provided compensation of 25 USD to all participants who participated in the field deployment study for ten days and added 10 USD compensation to the interview participants. The participants were 14 females and 10 males. Their ages ranged from 20 to 31 years (\ud835\udc40 = 23.25; \ud835\udc46\ud835\udc37 = 3.01). Fourteen were undergraduate students, seven were masters students, and three were\n\nuseful_nearby_context:\n- e0d8f3174cb540a285709afe8c02afcf-p6-b69: We posted recruitment announcements in a university\u2019s online communities and bulletin boards. Participants were recruited from people who met the following criteria: (1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period. We conducted an introductory session with 26 participants; two dropped out during the field deployment study. 24 participants completed the experiment to th...\n- e0d8f3174cb540a285709afe8c02afcf-p6-b70: Taewan Kim, Donghoon Shin, Young-Ho Kim, and Hwajung Hong\n- e0d8f3174cb540a285709afe8c02afcf-p6-b71: doctoral students. All participants were majoring in fields related to Science and Technology and had basic knowledge of computing. More specifically, nine had completed AI courses above the undergraduate level, and seven had experience in AI-related projects. They had varying degrees of journal writing experiences. In the preliminary survey conducted before the experiment, six (25%) participants had never written a journal, nine (37.5%) participants occasionally (more th...",
+  "context_summary": {
+    "selection_type": "text",
+    "page_number": 6,
+    "selected_text_preview": "1) undergraduate/graduate students over 20 years of age (2) who are able to access DiaryMate in a desktop or laptop environment during the study period.",
+    "selected_text_length": 152,
+    "has_area_crop": false,
+    "has_caption": false,
+    "matched_block_present": true,
+    "nearby_context_present": true,
+    "rag_chunk_count": 0,
+    "paper_profile_present": false,
+    "has_baseline_explanation": false,
+    "baseline_explanation_length": 0,
+    "has_reaction_window_summary": false,
+    "support_cue": null,
+    "selected_strategy_id": null,
+    "strategy_family": null,
+    "pedagogical_move": null,
+    "context_focus": null,
+    "reaction_window_duration": null,
+    "reaction_window_avg_confidence": null
+  },
+  "redaction": {
+    "api_keys_removed": true,
+    "raw_frames_removed": true,
+    "large_images_removed": false
+  }
+}

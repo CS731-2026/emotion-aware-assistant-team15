@@ -71,6 +71,8 @@ class WebRoutes:
                 return self.state.record_reading_session_event(session_id, data)
         if method == "GET" and path == "/api/status":
             return self.state.status()
+        if method == "GET" and path == "/api/runtime/status":
+            return self.state.runtime_status()
         if method == "GET" and path == "/api/local-config/status":
             return self.state.local_config_status()
         if method == "GET" and path == "/api/local-config/llm/status":
@@ -85,6 +87,39 @@ class WebRoutes:
             return self.state.save_local_llm_comparison_models(data)
         if method == "POST" and path == "/api/local-config/llm/test":
             return self.state.test_local_llm_config(data)
+        if method == "GET" and path == "/api/settings/llm":
+            return self.state.llm_settings()
+        if method == "POST" and path == "/api/settings/llm":
+            return self.state.save_llm_settings(data)
+        if method == "POST" and path == "/api/settings/llm/test":
+            return self.state.test_llm_settings(data)
+        if method == "POST" and path == "/api/settings/openrouter":
+            return self.state.save_openrouter_settings(data)
+        if method == "POST" and path == "/api/settings/openrouter/test-key":
+            return self.state.test_openrouter_key(data)
+        if method == "POST" and path == "/api/settings/gemini":
+            return self.state.save_gemini_settings(data)
+        if method == "POST" and path == "/api/settings/gemini/test-chat":
+            return self.state.test_gemini_chat(data)
+        if method == "POST" and path == "/api/settings/gemini/test-embedding":
+            return self.state.test_gemini_embedding(data)
+        if method == "POST" and path == "/api/settings/gemini/test-key":
+            return self.state.test_gemini_chat(data)
+        if method == "POST" and path == "/api/settings/models":
+            return self.state.create_llm_model_profile(data)
+        if method == "POST" and path == "/api/settings/models/test-all":
+            return self.state.test_all_llm_model_profiles()
+        if path.startswith("/api/settings/models/"):
+            model_tail = unquote(path.removeprefix("/api/settings/models/").strip("/"))
+            if model_tail.endswith("/test") and method == "POST":
+                profile_id = model_tail.removesuffix("/test").strip("/")
+                return self.state.test_llm_model_profile(profile_id)
+            if method == "PUT":
+                return self.state.update_llm_model_profile(model_tail, data)
+            if method == "DELETE":
+                return self.state.delete_llm_model_profile(model_tail)
+        if method == "POST" and path == "/api/settings/roles":
+            return self.state.save_llm_profile_roles(data)
         if method == "POST" and path == "/api/local-config/gemini":
             return self.state.save_local_gemini_config(data)
         if method == "POST" and path == "/api/local-config/face-detector":
@@ -102,8 +137,27 @@ class WebRoutes:
         if method == "GET" and path.startswith("/api/llm-compare/prompt-snapshots/"):
             snapshot_id = unquote(path.removeprefix("/api/llm-compare/prompt-snapshots/").strip("/"))
             return self.state.get_llm_prompt_snapshot(snapshot_id)
+        if method == "GET" and path == "/api/llm-compare/prompts":
+            return self.state.list_llm_prompts(self._first_query_values(query))
+        if method == "POST" and path == "/api/llm-compare/prompts":
+            return self.state.create_llm_prompt(data)
+        if path.startswith("/api/llm-compare/prompts/"):
+            prompt_tail = unquote(path.removeprefix("/api/llm-compare/prompts/").strip("/"))
+            if prompt_tail.endswith("/duplicate") and method == "POST":
+                prompt_id = prompt_tail.removesuffix("/duplicate").strip("/")
+                return self.state.duplicate_llm_prompt(prompt_id)
+            if method == "PUT":
+                return self.state.update_llm_prompt(prompt_tail, data)
+            if method == "DELETE":
+                return self.state.delete_llm_prompt(prompt_tail)
+        if method == "GET" and path == "/api/llm-compare/evaluations":
+            return self.state.list_llm_evaluations()
+        if method == "POST" and path == "/api/llm-compare/evaluations":
+            return self.state.save_llm_evaluation(data)
         if method == "POST" and path == "/api/llm-compare/run":
             return self.state.run_llm_comparison(data)
+        if method == "POST" and path == "/api/llm-compare/quick-check":
+            return self.state.quick_check_llm_comparison(data)
         if method == "POST" and path == "/api/llm-compare/save":
             return self.state.save_llm_comparison(data)
         if method == "GET" and path == "/api/llm-compare/list":
@@ -163,7 +217,7 @@ class WebRoutes:
         if method == "POST" and path == "/api/chat":
             return self.state.chat(data)
         if method == "POST" and path == "/api/speech/transcribe":
-            return self.state.speech_transcribe()
+            return self.state.speech_transcribe(files)
         raise KeyError(f"No route for {method} {path}")
 
     @staticmethod

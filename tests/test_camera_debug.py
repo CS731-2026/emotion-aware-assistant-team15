@@ -26,7 +26,29 @@ class CameraDebugTests(unittest.TestCase):
         self.app.state.documents_dir = self.app.state.upload_dir / "documents"
 
     def test_camera_debug_status_reports_safe_academic_state_mode(self):
-        response = self.app.test_request("GET", "/api/camera-debug/status")
+        class FakeAdapter:
+            def status(self):
+                return {
+                    "model_loaded": True,
+                    "model_output_type": "academic_state",
+                    "architecture": "convnext_tiny.fb_in22k_ft_in1k",
+                    "classes": ["boredom", "confusion", "engagement", "frustration"],
+                    "checkpoint_path": "models/emotion_model/best_model.pt",
+                    "raw_emotion_available": False,
+                    "loading_error": None,
+                    "device": "cpu",
+                }
+
+            def load(self):
+                return self.status()
+
+        self.app.state._emotion_adapter = FakeAdapter()
+        missing_academic_checkpoint = Path(self.temp_dir.name) / "missing-academic.pt"
+        with patch.dict(
+            os.environ,
+            {"EMOTION_MODEL_MODE": "academic_state", "EMOTION_CHECKPOINT_PATH": str(missing_academic_checkpoint)},
+        ):
+            response = self.app.test_request("GET", "/api/camera-debug/status")
 
         self.assertEqual(response["status"], 200, response)
         payload = response["json"]
@@ -84,6 +106,53 @@ class CameraDebugTests(unittest.TestCase):
         self.assertEqual(state, "engagement")
         self.assertAlmostEqual(scores["engagement"], 0.75)
         self.assertEqual(mapper.mapping_rule_for_state("confusion"), "fear + surprise -> confusion")
+
+    def test_raw_emotion_pipeline_payload_exposes_raw_and_mapped_fields(self):
+        from emotion_aware_assistant.emotion.raw_emotion_pipeline import CombinedEmotionPipeline
+
+        class FakeInferencer:
+            def has_explicit_checkpoint(self):
+                return True
+
+            def checkpoint_selection(self):
+                return {"model_output_type": "raw_emotion"}
+
+            def status(self):
+                return {
+                    "model_loaded": True,
+                    "model_output_type": "raw_emotion",
+                    "raw_detection_available": True,
+                    "checkpoint_path": "models/emotion_model/raw_8class_best.pt",
+                    "architecture": "convnext_tiny.fb_in22k_ft_in1k",
+                    "classes": ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"],
+                }
+
+            def predict_probabilities(self, image):
+                return {
+                    **self.status(),
+                    "probabilities": {
+                        "angry": 0.18,
+                        "anger": 0.12,
+                        "contempt": 0.04,
+                        "disgust": 0.06,
+                        "fear": 0.08,
+                        "happy": 0.10,
+                        "neutral": 0.22,
+                        "sad": 0.05,
+                        "surprise": 0.15,
+                    },
+                }
+
+        pipeline = CombinedEmotionPipeline(inferencer=FakeInferencer())
+        payload = pipeline.predict(None)
+
+        self.assertEqual(payload["model_output_type"], "raw_emotion")
+        self.assertEqual(payload["raw_emotion"], "anger")
+        self.assertAlmostEqual(payload["raw_emotion_confidence"], 0.30)
+        self.assertEqual(set(payload["raw_emotion_probabilities"]), {"anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"})
+        self.assertAlmostEqual(payload["mapped_academic_state"]["scores"]["frustration"], 0.41)
+        self.assertEqual(payload["academic_state"]["state"], "frustration")
+        self.assertIn("raw_label", payload["raw_detection"])
 
     def test_teammate_emotion_buffer_returns_majority_stable_state(self):
         from emotion_aware_assistant.emotion.raw_emotion_pipeline import EmotionBuffer
@@ -195,11 +264,16 @@ class CameraDebugTests(unittest.TestCase):
                 }
 
         self.app.state._emotion_adapter = FakeAdapter()
-        response = self.app.test_request(
-            "POST",
-            "/api/camera-debug/analyze-frame",
-            {"image": "data:image/png;base64,QUJDRA=="},
-        )
+        missing_academic_checkpoint = Path(self.temp_dir.name) / "missing-academic.pt"
+        with patch.dict(
+            os.environ,
+            {"EMOTION_MODEL_MODE": "academic_state", "EMOTION_CHECKPOINT_PATH": str(missing_academic_checkpoint)},
+        ):
+            response = self.app.test_request(
+                "POST",
+                "/api/camera-debug/analyze-frame",
+                {"image": "data:image/png;base64,QUJDRA=="},
+            )
 
         self.assertEqual(response["status"], 200, response)
         payload = response["json"]
@@ -224,6 +298,12 @@ class CameraDebugTests(unittest.TestCase):
         self.assertFalse(payload["prediction"]["raw_emotion_available"])
         self.assertEqual(payload["prediction"]["academic_state"], "engagement")
         self.assertEqual(set(payload["prediction"]["state_distribution"]), {"boredom", "confusion", "engagement", "frustration"})
+        self.assertEqual(payload["active_chain"]["source"], "direct_4class_checkpoint")
+        self.assertEqual(payload["active_chain"]["num_classes"], 4)
+        self.assertEqual(payload["active_chain"]["state"], "engagement")
+        self.assertTrue(payload["active_chain"]["used_for_strategy"])
+        self.assertEqual(payload["direct_4class_diagnostic"]["source"], "direct_4class_checkpoint")
+        self.assertTrue(payload["direct_4class_diagnostic"]["used_for_strategy"])
         self.assertEqual(payload["model_input_size"], [224, 224])
         self.assertTrue(payload["crop_preview_data_url"].startswith("data:image/jpeg;base64,"))
         self.assertTrue(payload["model_input_preview_data_url"].startswith("data:image/jpeg;base64,"))
@@ -249,6 +329,9 @@ class CameraDebugTests(unittest.TestCase):
                     "checkpoint_path": "models/emotion_model/raw.pt",
                     "mapper_available": True,
                     "buffer_size": 10,
+                    "input_size": 224,
+                    "mean": [0.485, 0.456, 0.406],
+                    "std": [0.229, 0.224, 0.225],
                 }
 
             def predict(self, image, fallback_prediction=None, fallback_status=None):
@@ -258,6 +341,9 @@ class CameraDebugTests(unittest.TestCase):
                     "checkpoint_path": "models/emotion_model/raw.pt",
                     "architecture": "convnextv2_pico.fcmae_ft_in1k",
                     "classes": ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"],
+                    "raw_checkpoint_path": "models/emotion_model/raw.pt",
+                    "raw_checkpoint_classes": ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"],
+                    "raw_preprocessing_summary": {"input_size": 224, "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]},
                     "raw_detection_available": True,
                     "raw_detection": {
                         "label": "fear",
@@ -284,7 +370,26 @@ class CameraDebugTests(unittest.TestCase):
 
         class FakeAdapter:
             def status(self):
-                return {"model_loaded": False, "loading_error": "not needed"}
+                return {
+                    "model_loaded": True,
+                    "model_output_type": "academic_state",
+                    "checkpoint_path": "models/emotion_model/best_model.pt",
+                    "classes": ["boredom", "confusion", "engagement", "frustration"],
+                    "academic_label_order_source": "checkpoint_metadata",
+                    "loading_error": None,
+                    "input_size": 224,
+                    "mean": [0.485, 0.456, 0.406],
+                    "std": [0.229, 0.224, 0.225],
+                }
+
+            def predict(self, image):
+                return {
+                    "model_loaded": True,
+                    "model_output_type": "academic_state",
+                    "academic_state": "engagement",
+                    "confidence": 0.58,
+                    "state_distribution": {"boredom": 0.10, "confusion": 0.12, "engagement": 0.58, "frustration": 0.20},
+                }
 
         pipeline = FakePipeline()
         self.app.state._emotion_pipeline = pipeline
@@ -305,6 +410,46 @@ class CameraDebugTests(unittest.TestCase):
         self.assertEqual(payload["mapped_academic_state"]["state"], "confusion")
         self.assertEqual(payload["smoothed_state"]["state"], "confusion")
         self.assertIn("Clarify", payload["response_strategy"])
+        debug = response["json"]
+        self.assertRegex(debug["crop_hash"], r"^[0-9a-f]{64}$")
+        self.assertIn("T", debug["frame_timestamp"])
+        self.assertEqual(debug["raw_checkpoint_path"], "models/emotion_model/raw.pt")
+        self.assertEqual(debug["academic_checkpoint_path"], "models/emotion_model/best_model.pt")
+        self.assertEqual(debug["academic_checkpoint_classes"], ["boredom", "confusion", "engagement", "frustration"])
+        self.assertEqual(debug["academic_label_order_source"], "checkpoint_metadata")
+        self.assertEqual(debug["active_model_mode"], "raw_emotion")
+        self.assertEqual(debug["direct_4class_state"], "engagement")
+        self.assertEqual(debug["mapped_from_8class_state"], "confusion")
+        self.assertFalse(debug["direct_4class_used_for_strategy"])
+        self.assertTrue(debug["mapped_8class_used_for_strategy"])
+        self.assertEqual(debug["raw_preprocessing_summary"]["input_size"], 224)
+        self.assertEqual(debug["academic_preprocessing_summary"]["input_size"], 224)
+        self.assertEqual(debug["active_chain"]["source"], "raw_8class_checkpoint")
+        self.assertEqual(debug["active_chain"]["checkpoint_path"], "models/emotion_model/raw.pt")
+        self.assertEqual(debug["active_chain"]["num_classes"], 8)
+        self.assertEqual(debug["active_chain"]["classes"], ["anger", "contempt", "disgust", "fear", "happy", "neutral", "sad", "surprise"])
+        self.assertEqual(debug["active_chain"]["raw_label"], "fear")
+        self.assertAlmostEqual(debug["active_chain"]["raw_probabilities"]["fear"], 0.62)
+        self.assertEqual(debug["active_chain"]["mapped_state"], "confusion")
+        self.assertAlmostEqual(debug["active_chain"]["mapped_scores"]["confusion"], 0.75)
+        self.assertEqual(debug["active_chain"]["smoothed_state"], "confusion")
+        self.assertTrue(debug["active_chain"]["used_for_strategy"])
+        self.assertEqual(debug["direct_4class_diagnostic"]["source"], "direct_4class_checkpoint")
+        self.assertEqual(debug["direct_4class_diagnostic"]["checkpoint_path"], "models/emotion_model/best_model.pt")
+        self.assertEqual(debug["direct_4class_diagnostic"]["num_classes"], 4)
+        self.assertEqual(debug["direct_4class_diagnostic"]["classes"], ["boredom", "confusion", "engagement", "frustration"])
+        self.assertEqual(debug["direct_4class_diagnostic"]["class_order_source"], "checkpoint_metadata")
+        self.assertEqual(debug["direct_4class_diagnostic"]["state"], "engagement")
+        self.assertAlmostEqual(debug["direct_4class_diagnostic"]["confidence"], 0.58)
+        self.assertAlmostEqual(debug["direct_4class_diagnostic"]["probabilities"]["engagement"], 0.58)
+        self.assertFalse(debug["direct_4class_diagnostic"]["used_for_strategy"])
+        package = debug["learning_signal_package"]
+        self.assertEqual(package["active_source"], "raw_8class_process_aware")
+        self.assertEqual(package["raw_emotion_evidence"]["source"], "raw_8class_checkpoint")
+        self.assertEqual(package["raw_emotion_evidence"]["raw_emotion_label"], "fear")
+        self.assertEqual(package["academic_state_mapping"]["mapped_academic_state"], "confusion")
+        self.assertEqual(package["learning_process_context"]["question_intent"], "general_followup")
+        self.assertFalse(package["diagnostic_only_direct_4class"]["used_for_strategy"])
 
     def test_camera_debug_analyze_frame_reports_original_and_expanded_yolo_bboxes(self):
         class FakeDetector:
@@ -408,10 +553,27 @@ class CameraDebugTests(unittest.TestCase):
         self.assertIn("Live camera preview", source)
         self.assertIn("Last analyzed frame", source)
         self.assertIn("OpenFace raw info", source)
-        self.assertIn("Model prediction", source)
-        self.assertIn("Raw Detection and Mapped Academic State", source)
+        self.assertIn("Direct 4-Class Academic-State Diagnostic", source)
+        self.assertIn("Active Raw 8-Class Emotion Chain", source)
+        self.assertIn("Raw 8-Class Emotion Evidence", source)
+        self.assertIn("Academic Learning-State Scores", source)
+        self.assertIn("Process-Aware Support Cue", source)
+        self.assertIn("Strategy Recommendation", source)
+        self.assertIn("Learning Signal Package", source)
+        self.assertIn("learning-signal-package-json", source)
+        self.assertIn("Raw Facial Emotion Model (8-class)", source)
+        self.assertIn("Mapped Academic Reading State", source)
+        self.assertIn("not a psychological diagnosis", source)
         self.assertIn("Crop and model input", source)
-        self.assertIn("Current Mode B", source)
+        self.assertNotIn("Raw 8-class or 4-class academic-state checkpoint", source)
+        self.assertIn("active-chain-source", source)
+        self.assertIn("active-chain-num-classes", source)
+        self.assertIn("active-chain-used-for-strategy", source)
+        self.assertIn("direct-diagnostic-source", source)
+        self.assertIn("direct-diagnostic-num-classes", source)
+        self.assertIn("direct-diagnostic-probability-bars", source)
+        self.assertIn("activeRaw.raw_probabilities", source)
+        self.assertIn("direct.direct_academic_probabilities", source)
         self.assertIn("/api/camera-debug/analyze-frame", source)
         self.assertIn("Actual detector", source)
         self.assertIn("Landmark bbox", source)
@@ -458,10 +620,15 @@ class CameraDebugTests(unittest.TestCase):
         self.assertIn("happy + neutral -> engagement", source)
         self.assertIn("smoothed-state", source)
         self.assertIn("buffer-contents", source)
+        self.assertIn("crop-hash-readout", source)
+        self.assertIn("active_chain", source)
+        self.assertIn("direct_4class_diagnostic", source)
+        self.assertIn("learning_signal_package", source)
+        self.assertIn("academic_label_order_source", source)
         self.assertIn("emotion_pipeline", source)
         self.assertIn("emotion-checkpoint-path", source)
         self.assertIn("/api/local-config/emotion-checkpoint", source)
-        self.assertIn("Set RAW_EMOTION_CHECKPOINT_PATH or EMOTION_CHECKPOINT_PATH to an 8-class checkpoint.", source)
+        self.assertIn("Set RAW_EMOTION_CHECKPOINT_PATH to an 8-class checkpoint", source)
         self.assertNotIn("Reaction Window & Strategy Mapping", source)
         self.assertNotIn("YOLO setup", source)
         self.assertNotIn("YOLO loaded", source)
@@ -529,6 +696,33 @@ class CameraDebugTests(unittest.TestCase):
             self.assertIn(f"EMOTION_CHECKPOINT_PATH={checkpoint}", env_text)
             self.assertIn(".env.local", (root / ".gitignore").read_text(encoding="utf-8"))
             self.assertNotIn("data:image", serialized)
+
+    def test_local_config_emotion_checkpoint_endpoint_writes_raw_path_for_raw_mode(self):
+        from emotion_aware_assistant.web.server import create_web_app
+        import emotion_aware_assistant.web.state as state_module
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            checkpoint = root / "raw_emotion.pt"
+            checkpoint.write_bytes(b"not a real checkpoint")
+            with patch.object(state_module, "PROJECT_ROOT", root), patch.dict(os.environ, {}, clear=True):
+                app = create_web_app(force_dummy_llm=True, load_local_env=False)
+                response = app.test_request(
+                    "POST",
+                    "/api/local-config/emotion-checkpoint",
+                    {
+                        "emotion_checkpoint_path": str(checkpoint),
+                        "emotion_model_mode": "raw_emotion",
+                    },
+                )
+                raw_process_path = os.environ.get("RAW_EMOTION_CHECKPOINT_PATH")
+
+            env_text = (root / ".env.local").read_text(encoding="utf-8")
+
+        self.assertEqual(response["status"], 200, response)
+        self.assertEqual(raw_process_path, str(checkpoint))
+        self.assertIn(f"RAW_EMOTION_CHECKPOINT_PATH={checkpoint}", env_text)
+        self.assertIn("EMOTION_MODEL_MODE=raw_emotion", env_text)
 
     def test_camera_debug_source_draws_landmarks_on_analyzed_frame_not_live_video(self):
         source = Path("emotion_aware_assistant/web/static/camera_debug.html").read_text(encoding="utf-8")
