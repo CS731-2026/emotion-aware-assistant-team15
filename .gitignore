@@ -2,6 +2,7 @@
 .env.local
 .env.*.local
 .env.local.backup
+.DS_Store
 .venv/
 venv/
 __pycache__/
@@ -44,6 +45,7 @@ FeatureExtraction.exe
 *.exe
 *.csv
 !docs/evaluation_examples/*.csv
+!docs/model training/results/**/*.csv
 *.hog
 *.params
 *.dat

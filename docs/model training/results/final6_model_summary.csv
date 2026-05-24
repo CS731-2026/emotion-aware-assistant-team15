@@ -1,0 +1,7 @@
+﻿model,experiment,best_epoch,best_val_acc,final_epoch,final_val_acc,test_loss,test_acc,log_file
+ConvNeXt-Tiny,convnext_tiny_4state_25ep_b64_lr5e5,19,80.67,25,80.19,0.9219,79.94,logs/convnext_tiny_4state_25ep_b64_lr5e5/train.log
+RegNetY-800MF,regnety_008_4state_25ep_b64_lr1e4,24,79.0,25,78.04,0.8529,78.59,logs/regnety_008_4state_25ep_b64_lr1e4/train.log
+Swin-Tiny,swin_tiny_4state_25ep_b64_lr3e5,21,78.72,25,78.68,0.6795,78.43,logs/swin_tiny_4state_25ep_b64_lr3e5/train.log
+MobileNetV3-Large,mobilenetv3_large_4state_25ep_b64_lr3e4,22,78.68,25,77.64,1.1454,76.13,logs/mobilenetv3_large_4state_25ep_b64_lr3e4/train.log
+ResNet50,resnet50_a1_4state_25ep_b64_lr1e4,21,78.32,25,77.52,0.7722,76.49,logs/resnet50_a1_4state_25ep_b64_lr1e4/train.log
+EfficientNet-B4,efficientnet_b4_4state_25ep_b32_lr5e5,22,75.33,25,74.77,1.2631,74.62,logs/efficientnet_b4_4state_25ep_b32_lr5e5/train.log

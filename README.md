@@ -1,7 +1,7 @@
-# Emotion-Aware Academic Assistant for Paper Reading Support
+# 🔥 Emotion-Aware Academic Paper Reading Assistant
 
 > **COMPSYS 731 — Human-Robot Interaction Group Project**  
-> **Team 15 — Emotion-Aware Academic Paper Reading Assistant**  
+> **Team 15 — Emotion-Aware Academic Assistant for Paper Reading Support**  
 > University of Auckland · Semester 1, 2026
 
 [![Course](https://img.shields.io/badge/COMPSYS%20731-Human--Robot%20Interaction-blue)](https://www.auckland.ac.nz/)
@@ -15,119 +15,92 @@
   <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=60" width="820" alt="Banner" />
 </p>
 
-This repository contains the final runtime system for an **Emotion-Aware Academic Assistant**. The application helps users read academic papers by combining PDF-grounded explanation, local camera-based learning-signal estimation, pedagogical strategy planning, and LLM response generation.
+This repository contains the final runtime system for an **emotion-aware academic paper reading assistant**. The system combines PDF-grounded explanation, local camera-based learning-signal estimation, emotion / academic-state modelling, pedagogical strategy planning, and LLM-based adaptive response generation.
 
-The final user-facing workflow is implemented as a local web app. A user uploads or opens a PDF, highlights a passage or selects a visual area, receives an initial paper-grounded explanation, and then receives a recommended adaptive follow-up strategy based on a compact learning signal derived from the local emotion/academic-state pipeline.
-
----
-
-## Table of Contents
-
-1. [Project Goal](#1-project-goal)
-2. [Final System Summary](#2-final-system-summary)
-3. [Main User Routes](#3-main-user-routes)
-4. [Repository Structure](#4-repository-structure)
-5. [Core Architecture](#5-core-architecture)
-6. [PDF Reading and RAG Pipeline](#6-pdf-reading-and-rag-pipeline)
-7. [Camera and Emotion / Academic-State Pipeline](#7-camera-and-emotion--academic-state-pipeline)
-8. [Emotion-to-Academic-State Mapping](#8-emotion-to-academic-state-mapping)
-9. [Final Emotion Model and Training Results](#9-final-emotion-model-and-training-results)
-10. [LLM and Prompt Pipeline](#10-llm-and-prompt-pipeline)
-11. [Installation](#11-installation)
-12. [Configuration](#12-configuration)
-13. [Running the Application](#13-running-the-application)
-14. [Demo Workflow](#14-demo-workflow)
-15. [Testing and Diagnostics](#15-testing-and-diagnostics)
-16. [Local Runtime Data and Privacy](#16-local-runtime-data-and-privacy)
-17. [Known Limitations](#17-known-limitations)
-18. [Useful Handoff Notes](#18-useful-handoff-notes)
-19. [References](#19-references)
+The final demo is a local web application. A user uploads or opens a PDF, highlights a passage or selects an area in the paper, receives a paper-grounded baseline explanation, and can then receive an adaptive follow-up response based on the system's local learning-state signal.
 
 ---
 
-## 1. Project Goal
+## 1. Project Summary
 
-Academic paper reading is cognitively demanding. Users may become confused by complex methods, frustrated by dense writing, bored by long explanations, or engaged and ready for deeper discussion. A standard chatbot cannot observe these learning states unless the user explicitly reports them.
+Academic paper reading is difficult for many students because research papers often contain dense terminology, complex methodology, unfamiliar notation, and long technical explanations. During reading, students may become **confused**, **frustrated**, **bored**, or **engaged**. A standard chatbot can answer a text question, but it usually does not adapt its teaching style to the learner's affective or academic state.
 
-This project addresses that gap by creating a local assistant that:
+This project addresses that gap by building an assistant that:
 
-- reads and parses academic PDFs;
-- retrieves relevant paper context for selected text or selected visual areas;
-- detects a compact local learning signal from the camera/model pipeline;
-- maps the signal into learning-centered academic states;
-- plans a suitable pedagogical support strategy;
-- generates adaptive explanations using an LLM.
+1. parses academic PDFs and retrieves paper-grounded context;
+2. estimates a local learning signal from a webcam / emotion-recognition pipeline;
+3. converts that signal into a pedagogical response strategy;
+4. generates adaptive explanations through an LLM.
 
-The key design idea is:
+The high-level system idea is:
 
 ```text
-Paper context + user question + learning signal -> adaptive academic support
+PDF context + user question + learning signal
+        -> pedagogical strategy
+        -> adaptive academic support
 ```
 
-The assistant does **not** diagnose the user. It uses only a lightweight learning-support signal to choose a response style such as clarification, simplification, re-engagement, or deeper expansion.
+The system **does not diagnose the user**. The learning signal is used only to adapt explanation style, such as providing step-by-step clarification, supportive simplification, concise re-engagement, or deeper academic expansion.
 
 ---
 
-## 2. Final System Summary
+## 2. Final Design Decision
 
-The final codebase provides:
+The final presentation and current README use the following consistent design story:
 
-- **Web-based PDF reading assistant** at `/pdf-chat`.
-- **PDF upload and parsing** for text, blocks, layout, page-level context, and paper profile information.
-- **Highlight and area selection workflow** for text passages and visual regions.
-- **RAG-grounded baseline explanation** using selected evidence, nearby context, retrieved chunks, and paper profile data.
-- **Local camera/model transparency page** at `/camera-debug`.
-- **4-class academic-state model support** for `boredom`, `confusion`, `engagement`, and `frustration`.
-- **Schema-compatible 8-class raw-emotion support** for future checkpoints.
-- **Academic-state smoothing** through a short rolling buffer.
-- **Reaction-window summary** to help select pedagogical strategies.
-- **Strategy planner prompt stage** that proposes learning-support strategies.
-- **Strategy-conditioned answer generation** for adaptive explanations.
-- **LLM provider settings page** at `/settings`.
-- **Prompt snapshot comparison workflow** at `/llm-compare`.
-- **PDF/RAG debug workspace** at `/pdf-test`.
-- **Local JSONL logging** for interaction analysis.
+```text
+Final chatbot adaptation model:
+ConvNeXt-Tiny 4-class academic-state model
 
-Important implementation note:
-
-> The final runtime repository focuses on application integration and model inference. Model training was performed externally. The final trained emotion checkpoints are included through Git LFS under `models/emotion_model/` so teammates can run the demo after a fresh clone.
-
-### Teammate Quick Setup
-
-Install Git LFS before cloning or pulling the model/runtime artifacts:
-
-```bash
-git lfs install
-git clone https://github.com/CS731-2026/emotion-aware-assistant-team15.git
-cd emotion-aware-assistant-team15
-git submodule update --init --recursive
-pip install -r requirements.txt
-npm install
-npm run build:pdf-workspace
-python main.py
+Auxiliary transparency model:
+ConvNeXt-Tiny 8-class raw-emotion model
 ```
 
-Then open `/settings` in the local app and paste your own API keys. API keys, `.env.local`, local LLM settings, logs, uploads, and generated runtime caches must stay local and must not be committed.
+In other words, the final adaptive chatbot primarily uses the **4-state academic-state model** because it is more stable and directly aligned with learning support. The **8-class raw-emotion model** is retained as a supporting module for showing raw emotion detection before mapping.
+
+This avoids the logical issue of spending most of the evaluation on a 4-class model while claiming that the final deployed model is only 8-class. The intended interpretation is:
+
+| Component                        | Role                                     |                                       Result |
+| -------------------------------- | ---------------------------------------- | -------------------------------------------: |
+| **4-state academic-state model** | Final chatbot adaptation model           | Best Val Acc **80.67%**, Test Acc **79.94%** |
+| **8-class raw-emotion model**    | Auxiliary raw emotion transparency model | Best Val Acc **73.46%**, Test Acc **72.80%** |
+| **Mapping layer**                | Connects raw emotions to academic states |                                   Rule-based |
 
 ---
 
-## 3. Main User Routes
+## 3. Final System Features
 
-| Route           | Purpose                                                                                                                                  | Intended audience             |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| `/pdf-chat`     | Final paper reading assistant. Upload/open a paper, highlight/select content, ask questions, receive baseline and adaptive explanations. | Main demo / end user          |
-| `/settings`     | Configure LLM providers, API keys, role-specific models, comparison models, face detector, OpenFace, and emotion checkpoint.             | Developer / local operator    |
-| `/camera-debug` | Inspect webcam frame analysis, OpenFace/face detection output, crop preview, model input, raw/mapped state, and reaction summary.        | Developer / transparency demo |
-| `/llm-compare`  | Compare saved prompt snapshots across multiple LLMs and export comparison results.                                                       | Evaluation / analysis         |
-| `/pdf-test`     | Standalone PDF, RAG, parsing, matching, and highlight debug workspace.                                                                   | Developer debugging           |
+The final implementation includes:
 
-The final presentation should primarily show `/pdf-chat`, with `/camera-debug`, `/settings`, and `/llm-compare` as supporting transparency and evaluation pages.
+- a local web app for academic paper reading and chatbot interaction;
+- PDF upload, parsing, page/block indexing, highlighting, and area selection;
+- RAG-style retrieval from selected paper content and nearby context;
+- local camera / emotion model integration;
+- support for both 4-class academic-state and 8-class raw-emotion checkpoints;
+- learning-state smoothing through a rolling emotion buffer;
+- reaction-window monitoring and summary for strategy planning;
+- a three-stage LLM pipeline: baseline explanation, strategy planning, and strategy-conditioned answer generation;
+- local LLM provider configuration;
+- debugging pages for PDF/RAG, camera/emotion, and LLM comparison;
+- local runtime logs for analysis and evaluation.
 
 ---
 
-## 4. Repository Structure
+## 4. Main User Routes
 
-The final repository is organized around one Python package and several runtime/configuration folders.
+| Route           | Purpose                                                                                                                                   | Recommended Use          |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `/pdf-chat`     | Final paper reading assistant. Upload/open PDF, highlight text or select an area, ask questions, receive baseline and adaptive responses. | Main demo page           |
+| `/settings`     | Configure API keys, LLM providers, emotion checkpoint, face detector, and local runtime settings.                                         | Setup / developer        |
+| `/camera-debug` | Inspect camera frame, detected face crop, model input, raw/mapped state, confidence, and reaction window.                                 | Transparency / debugging |
+| `/llm-compare`  | Compare saved prompt snapshots across different LLM models.                                                                               | Evaluation / analysis    |
+| `/pdf-test`     | Debug PDF parsing, retrieval, matching, area selection, and highlight behaviour.                                                          | Developer debugging      |
+
+---
+
+## 5. Repository Structure
+
+The current final project is organised as follows:
 
 ```text
 emotion-aware-assistant-team15-master/
@@ -140,7 +113,6 @@ emotion-aware-assistant-team15-master/
 ├── docs/
 │   ├── demo_script.md
 │   └── archive/
-│       └── README_github_original.md
 ├── emotion_aware_assistant/
 │   ├── app.py
 │   ├── cli.py
@@ -172,7 +144,8 @@ emotion-aware-assistant-team15-master/
 │   │   ├── openrouter_client.py
 │   │   ├── prompt_builder.py
 │   │   ├── providers.py
-│   │   └── response_policy.py
+│   │   ├── response_policy.py
+│   │   └── teammate_llm_adapter.py
 │   ├── paper/
 │   │   ├── document.py
 │   │   ├── paper_rag.py
@@ -182,101 +155,68 @@ emotion-aware-assistant-team15-master/
 │   │   ├── retriever.py
 │   │   └── text_chunker.py
 │   ├── speech/
-│   │   ├── dummy_speech.py
-│   │   ├── faster_whisper_adapter.py
-│   │   └── speech_interface.py
 │   ├── ui/
-│   │   ├── gui_app.py
-│   │   ├── main_window.py
-│   │   ├── styles.qss
-│   │   └── workers.py
 │   └── web/
 │       ├── routes.py
 │       ├── schemas.py
 │       ├── server.py
 │       ├── state.py
 │       └── static/
-│           ├── index.html
-│           ├── pdf_chat.html
-│           ├── pdf_test.html
 │           ├── camera_debug.html
-│           ├── local_settings.html
 │           ├── llm_compare.html
-│           └── pdf-workspace/
+│           ├── local_settings.html
+│           ├── pdf_chat.html
+│           └── pdf_test.html
 ├── models/
 │   ├── emotion_model/
 │   │   └── README.md
 │   └── face_detector/
 │       └── README.md
 ├── sample_data/
-│   ├── README.md
-│   └── sample_paper.txt
 ├── scripts/
-│   ├── configure_api_key.py
-│   ├── configure_emotion_checkpoint.py
-│   ├── configure_openface.py
-│   ├── create_sample_data.py
-│   ├── diagnose_environment.py
-│   ├── diagnose_openface.py
-│   ├── find_face_detector_weights.py
-│   ├── inspect_emotion_checkpoint.py
-│   ├── install_emotion_checkpoint.py
-│   ├── smoke_check.py
-│   ├── test_emotion_adapter.py
-│   ├── test_openface_feature_extraction.py
-│   └── web_smoke_check.py
 └── tests/
-    ├── test_camera_debug.py
-    ├── test_core_flow.py
-    ├── test_emotion_checkpoint_scripts.py
-    ├── test_llm_compare.py
-    ├── test_pdf_chat_backend.py
-    ├── test_pdf_parse_pipeline.py
-    ├── test_pdf_rag.py
-    ├── test_teammate_emotion_adapter.py
-    └── test_web_api.py
 ```
 
-Runtime folders such as `runtime_uploads/`, `logs/`, and local model weights are intentionally ignored by Git.
+Runtime folders such as `runtime_uploads/`, local settings, generated logs, and large model weights are intentionally ignored by Git unless they are explicitly tracked through Git LFS.
 
 ---
 
-## 5. Core Architecture
+## 6. Core Architecture
 
-The implemented product uses the following end-to-end flow:
+The final system follows this end-to-end pipeline:
 
 ```text
 PDF Upload / Sample Paper
         |
         v
-PDF Parsing and RAG Preparation
+PDF Parsing + RAG Preparation
         |
         v
-User Highlight or Area Selection
+User Highlight / Area Selection
         |
         v
-Stage A: RAG Baseline Explanation
+Stage A: Paper-Grounded Baseline Explanation
         |
         v
-Local Camera / Emotion Model Signal
+Local Camera / Emotion or Academic-State Signal
         |
         v
-Reaction Window Summary
+Reaction Window + State Smoothing
         |
         v
 Stage B: Pedagogical Strategy Planner
         |
         v
-User Chooses Recommended Strategy
+User Selects or Applies Recommended Strategy
         |
         v
-Stage C: Strategy-Conditioned Adaptive Explanation
+Stage C: Strategy-Conditioned Adaptive Answer
         |
         v
-Saved Prompt Snapshots + Conversation Thread + Evaluation Logs
+Prompt Snapshots + Conversation Threads + Evaluation Logs
 ```
 
-The backend is a local Python web server built with `http.server.ThreadingHTTPServer`; it does not require FastAPI at runtime. Route dispatch is implemented in:
+The local backend uses `http.server.ThreadingHTTPServer`. The main route logic is implemented in:
 
 ```text
 emotion_aware_assistant/web/server.py
@@ -284,164 +224,116 @@ emotion_aware_assistant/web/routes.py
 emotion_aware_assistant/web/state.py
 ```
 
-The user-facing pages are static HTML/JS assets under:
-
-```text
-emotion_aware_assistant/web/static/
-```
-
 ---
 
-## 6. PDF Reading and RAG Pipeline
+## 7. PDF and RAG Pipeline
 
-### 6.1 Document storage
+The PDF pipeline is implemented mainly in:
 
-Uploaded and generated document artifacts are saved locally under:
+```text
+emotion_aware_assistant/paper/pdf_loader.py
+emotion_aware_assistant/paper/pdf_parse_pipeline.py
+emotion_aware_assistant/paper/paper_rag.py
+emotion_aware_assistant/paper/retriever.py
+emotion_aware_assistant/paper/passage_analyzer.py
+emotion_aware_assistant/paper/text_chunker.py
+```
+
+Uploaded or sample documents are stored locally under:
 
 ```text
 runtime_uploads/documents/<document_id>/
 ```
 
-A prepared document can contain:
+A prepared document may contain:
 
 ```text
 meta.json
 original.pdf
-parsed/
-rag/
+parsed/document.md
+parsed/content_list.json
+parsed/blocks_index.json
+rag/paper_profile.json
+rag/keyword_index.json
+rag/embeddings.json
 highlights/
 threads/
 prompt_snapshots/
 logs/
 ```
 
-### 6.2 Parsing outputs
-
-The PDF parsing pipeline is implemented mainly in:
-
-```text
-emotion_aware_assistant/paper/pdf_loader.py
-emotion_aware_assistant/paper/pdf_parse_pipeline.py
-emotion_aware_assistant/paper/paper_rag.py
-```
-
-Typical parsed artifacts include:
-
-```text
-parsed/document.md
-parsed/content_list.json
-parsed/blocks_index.json
-rag/paper_profile.json
-rag/keyword_index.json
-rag/embeddings.json          # only when embedding configuration is available
-```
-
-### 6.3 Retrieval behavior
-
-The explanation pipeline can use:
-
-- selected text;
-- page number;
-- matched parsed block;
-- nearby useful context;
-- candidate captions for area selections;
-- paper profile information;
-- keyword retrieval results;
-- optional Gemini embedding retrieval results.
-
-If embeddings are unavailable, the system still falls back to keyword retrieval.
-
-### 6.4 Highlights and conversations
-
-Highlights are saved under:
-
-```text
-runtime_uploads/documents/<document_id>/highlights/
-```
-
-Conversation threads are saved per highlight under:
-
-```text
-runtime_uploads/documents/<document_id>/threads/<highlight_id>.json
-```
-
-Prompt snapshots are stored separately from conversation messages under:
-
-```text
-runtime_uploads/documents/<document_id>/prompt_snapshots/
-```
-
-This makes `/llm-compare` possible because it can reuse the exact prompts generated during real interactions.
+The explanation pipeline can use selected text, page number, nearby context, matched parsed block, retrieved chunks, candidate captions, and paper profile data. If embedding retrieval is unavailable, the system falls back to keyword retrieval.
 
 ---
 
-## 7. Camera and Emotion / Academic-State Pipeline
+## 8. Emotion and Academic-State Pipeline
 
-The camera pipeline is local. Browser frames are sent to the local backend only; they are not sent to external LLM providers.
-
-### 7.1 Face analysis
-
-The implementation supports multiple face-analysis paths:
-
-| Path                       | File / config                                      | Notes                                                                                             |
-| -------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| OpenFace FeatureExtraction | `external/openface_runtime/FeatureExtraction`      | Preferred transparency path for demos. Provides landmarks, bbox, pose, and AUs when compatible.   |
-| YOLO face detector         | `models/face_detector/yolov8n-face.pt`             | Optional local weights. Not committed.                                                            |
-| OpenCV Haar fallback       | OpenCV built-in fallback                           | Used when optional model weights are absent and OpenCV is available.                              |
-
-`/camera-debug` displays the exact analyzed frame, landmarks, bounding box, face crop, and 224x224 model input preview.
-
-### 7.2 Current final checkpoint mode
-
-The current final checkpoint is a **4-class academic-state model**, not an 8-class raw facial emotion model.
-
-Current output classes:
+The emotion pipeline is implemented mainly in:
 
 ```text
-boredom
-confusion
-engagement
-frustration
+emotion_aware_assistant/emotion/raw_emotion_pipeline.py
+emotion_aware_assistant/emotion/labels.py
+emotion_aware_assistant/emotion/emotion_buffer.py
+emotion_aware_assistant/emotion/affective_trend_tracker.py
+emotion_aware_assistant/emotion/camera_worker.py
+emotion_aware_assistant/emotion/face_detector.py
+emotion_aware_assistant/emotion/teammate_emotion_adapter.py
+```
+
+Browser webcam frames are sent only to the local backend. They are not sent to external LLM providers. Raw frames are not persisted by default.
+
+When OpenFace is configured, face analysis uses the `FeatureExtraction` binary to produce facial landmarks. `/camera-debug` shows the analyzed frame, landmarks, face bounding box, crop preview, and final `224 x 224` model input. `/pdf-chat` uses the same pipeline internally but only shows a compact learning signal.
+
+### 8.1 Final academic-state checkpoint mode
+
+This is the final selected model mode for chatbot adaptation.
+
+```text
+Input image / crop -> ConvNeXt-Tiny -> boredom / confusion / engagement / frustration
 ```
 
 In this mode:
 
+- the checkpoint directly predicts the 4 academic states;
 - raw 8-class emotion is unavailable;
-- the model directly predicts academic states;
-- mapping is bypassed;
-- `/camera-debug` shows `raw_emotion_available = false`;
-- the output is still smoothed and used as the learning signal.
+- raw-to-state mapping is bypassed;
+- output is smoothed and passed to the response strategy layer.
 
-### 7.3 Future raw-emotion checkpoint mode
-
-The code is schema-compatible with future 8-class raw-emotion checkpoints using:
+Expected runtime checkpoint path:
 
 ```text
-anger / angry
-contempt
-disgust
-fear
-happy
-neutral
-sad
-surprise
+models/emotion_model/best_model.pt
 ```
 
-In raw-emotion mode, the system can show both:
+### 8.2 Auxiliary raw-emotion checkpoint mode
+
+The repository also supports an 8-class raw-emotion checkpoint.
 
 ```text
-Raw Detection -> Mapped Academic State -> Smoothed State -> Response Strategy
+Input image / crop -> ConvNeXt-Tiny -> 8 raw emotions -> 4 academic states
 ```
 
-### 7.4 Smoothing and trend tracking
+Expected auxiliary checkpoint path:
+
+```text
+models/emotion_model/raw_8class_best.pt
+```
+
+This mode is useful when the demo needs to explicitly show:
+
+```text
+Raw Detection -> Mapped Academic State -> Chatbot Strategy
+```
+
+### 8.3 Smoothing and trend tracking
 
 The implementation includes:
 
 - `EmotionBuffer` for majority-vote smoothing;
 - `AffectiveTrendTracker` for short-window trend and hysteresis;
-- confidence thresholds and high-confidence switching rules in default config.
+- confidence thresholds and high-confidence switching rules in the default configuration.
 
-Default configuration from `emotion_aware_assistant/core/config.py`:
+Default configuration values include:
 
 ```text
 buffer_size = 10
@@ -454,52 +346,48 @@ high_confidence_switch_threshold = 0.80
 
 ---
 
-## 8. Emotion-to-Academic-State Mapping
+## 9. Raw Emotion to Academic-State Mapping
 
-The final deployed checkpoint directly predicts four academic states. However, the repository still contains the raw-emotion mapping layer for compatibility with an 8-class checkpoint.
+The implemented mapping is defined in:
 
-The implemented raw-emotion probability aggregation in `raw_emotion_pipeline.py` is:
-
-| Raw emotion(s)              | Mapped academic state |
-| --------------------------- | --------------------- |
-| `sad` + `anger` + `disgust` | `frustration`         |
-| `fear` + `surprise`         | `confusion`           |
-| `contempt`                  | `boredom`             |
-| `happy` + `neutral`         | `engagement`          |
-
-Equivalent rule format:
-
-```python
-frustration = P(sad) + P(anger) + P(disgust)
-confusion   = P(fear) + P(surprise)
-boredom     = P(contempt)
-engagement  = P(happy) + P(neutral)
+```text
+emotion_aware_assistant/emotion/labels.py
+emotion_aware_assistant/emotion/raw_emotion_pipeline.py
 ```
+
+The probability-level mapping is:
+
+| Raw emotion probabilities        | Academic state |
+| -------------------------------- | -------------- |
+| `P(sad) + P(anger) + P(disgust)` | `frustration`  |
+| `P(fear) + P(surprise)`          | `confusion`    |
+| `P(contempt)`                    | `boredom`      |
+| `P(happy) + P(neutral)`          | `engagement`   |
 
 The single-label mapping is:
 
-```text
-sad      -> frustration
-anger    -> frustration
-disgust  -> frustration
-fear     -> confusion
-surprise -> confusion
-contempt -> boredom
-happy    -> engagement
-neutral  -> engagement
-```
+| Raw emotion       | Academic state |
+| ----------------- | -------------- |
+| `sad`             | `frustration`  |
+| `anger` / `angry` | `frustration`  |
+| `disgust`         | `frustration`  |
+| `fear`            | `confusion`    |
+| `surprise`        | `confusion`    |
+| `contempt`        | `boredom`      |
+| `happy`           | `engagement`   |
+| `neutral`         | `engagement`   |
 
-This mapping is used only when a raw 8-class checkpoint is installed. With the current 4-class checkpoint, the mapping rule is:
+Important note:
 
-```text
-bypassed: checkpoint directly predicts academic states
-```
+> The final 4-state checkpoint directly predicts academic states. The raw-emotion mapping layer is used only when the 8-class raw checkpoint is installed, and it is also used to explain the theoretical connection between raw emotions and academic states.
 
-### Response strategies
+---
 
-The mapped or directly predicted academic state is converted into a response strategy:
+## 10. Response Strategy Mapping
 
-| Academic state | Strategy                   |
+The academic state is converted into a response strategy:
+
+| Academic state | Chatbot response strategy  |
 | -------------- | -------------------------- |
 | `confusion`    | Step-by-step clarification |
 | `frustration`  | Supportive simplification  |
@@ -507,13 +395,17 @@ The mapped or directly predicted academic state is converted into a response str
 | `engagement`   | Deeper academic expansion  |
 | `uncertain`    | Neutral adaptive support   |
 
+This design ensures that the emotion-recognition output influences the chatbot's teaching style rather than merely being displayed as a label.
+
 ---
 
-## 9. Final Emotion Model and Training Results
+## 11. Model Training and Results
 
-### 9.1 Final selected model
+Training was conducted outside the runtime repository. The runtime repository is designed to load the selected checkpoints from `models/emotion_model/`.
 
-The final selected academic-state model is:
+### 11.1 Final 4-state academic-state model
+
+The final selected model is:
 
 ```text
 Model: ConvNeXt-Tiny
@@ -526,68 +418,155 @@ Batch size: 64
 Learning rate: 5e-5
 Best epoch: 19
 Best validation accuracy: 80.67%
-Test accuracy: 79.94%
+Final epoch validation accuracy: 80.19%
+Test accuracy using best checkpoint: 79.94%
 ```
 
-Runtime checkpoint targets included through Git LFS:
+The 4-state model was produced by first constructing a mapped dataset:
 
 ```text
-models/emotion_model/best_model.pt
-models/emotion_model/raw_8class_best.pt
+8-class raw emotion labels
+        -> mapping rules
+        -> data/processed_4state
+        -> ConvNeXt-Tiny 4-class training
 ```
 
-Use the installer only when replacing the bundled academic-state checkpoint:
+This means the 4-state model is not an 8-class model with mapping applied at prediction time. It is directly trained as a 4-class academic-state classifier.
+
+Training command used in the external training environment:
 
 ```bash
-python scripts/install_emotion_checkpoint.py --source /path/to/convnext_best_checkpoint_or_folder
+python emotion_recognition/train.py \
+  --arch convnext_tiny.fb_in22k_ft_in1k \
+  --data-root data/processed_4state \
+  --epochs 25 \
+  --batch-size 64 \
+  --lr 5e-5 \
+  --num-workers 4 \
+  --save-dir checkpoints/convnext_tiny_4state_25ep_b64_lr5e5
 ```
 
-or configure an existing checkpoint directly:
+### 11.2 Auxiliary 8-class raw-emotion model
+
+A second ConvNeXt-Tiny model was trained for raw emotion detection.
+
+```text
+Model: ConvNeXt-Tiny
+Architecture: convnext_tiny.fb_in22k_ft_in1k
+Output classes: anger, contempt, disgust, fear, happy, neutral, sad, surprise
+Epochs: 25
+Batch size: 64
+Learning rate: 5e-5
+Best validation accuracy: 73.46%
+Final epoch validation accuracy: 72.30%
+Test accuracy: 72.80%
+```
+
+This result is expected to be lower than the 4-state task because raw emotion detection is more fine-grained. For example, `anger`, `disgust`, and `contempt` can be visually similar, while the mapped academic-state task groups related emotional evidence into broader learning states.
+
+### 11.3 Six-model comparison for the 4-state task
+
+| Rank | Model             | Architecture                                    | Epochs | Batch |     LR | Best epoch | Highest val acc | Final val acc |   Test acc | Role                       |
+| ---: | ----------------- | ----------------------------------------------- | -----: | ----: | -----: | ---------: | --------------: | ------------: | ---------: | -------------------------- |
+|    1 | **ConvNeXt-Tiny** | `convnext_tiny.fb_in22k_ft_in1k`                |     25 |    64 | `5e-5` |         19 |      **80.67%** |        80.19% | **79.94%** | Final academic-state model |
+|    2 | RegNetY-800MF     | `regnety_008_tv.tv2_in1k`                       |     25 |    64 | `1e-4` |         24 |          79.00% |        78.04% |     78.59% | Efficient CNN candidate    |
+|    3 | Swin-Tiny         | `swin_tiny_patch4_window7_224.ms_in22k_ft_in1k` |     25 |    64 | `3e-5` |         21 |          78.72% |        78.68% |     78.43% | Transformer candidate      |
+|    4 | MobileNetV3-Large | `mobilenetv3_large_100.miil_in21k_ft_in1k`      |     25 |    64 | `3e-4` |         22 |          78.68% |        77.64% |     76.13% | Lightweight candidate      |
+|    5 | ResNet50          | `resnet50.a1_in1k`                              |     25 |    64 | `1e-4` |         21 |          78.32% |        77.52% |     76.49% | Baseline                   |
+|    6 | EfficientNet-B4   | `tf_efficientnet_b4.ns_jft_in1k`                |     25 |    32 | `5e-5` |         22 |          75.33% |        74.77% |     74.62% | Not selected               |
+
+### 11.4 Why ConvNeXt-Tiny was selected
+
+ConvNeXt-Tiny was selected because it achieved:
+
+- the highest 4-state validation accuracy: **80.67%**;
+- the highest 4-state test accuracy: **79.94%**;
+- stable performance across later epochs;
+- better performance than the ResNet50 baseline and all other candidates.
+
+### 11.5 Evaluation figures and training artifacts
+
+Recommended training artifacts, if included in the repository, should be placed under:
+
+```text
+docs/model_training/
+├── model_training_summary.md
+├── results/
+│   ├── final6_model_summary.csv
+│   ├── final6_per_epoch_metrics.csv
+│   └── convnext_tiny_4state_val/
+│       ├── confusion_matrix_val.csv
+│       ├── overall_metrics_val.json
+│       └── per_class_metrics_val.csv
+├── figures/
+│   ├── final6_validation_accuracy_curve_only.png
+│   ├── confusion_matrix_val_exemplar2_style.png
+│   ├── before_after_mapping_emotion_detection_comparison_simple.png
+│   ├── dataset_distribution_before_mapping_8emotion.png
+│   ├── dataset_distribution_after_mapping_4state.png
+│   ├── raw_emotion_to_academic_state_mapping_diagram.png
+│   └── chatbot_response_strategy_diagram.png
+└── logs/
+    ├── convnext_tiny_4state_train.log
+    └── convnext_tiny_8emotion_train.log
+```
+
+Full training datasets and intermediate epoch checkpoints should not be committed.
+
+---
+
+## 12. Model Checkpoint Installation
+
+The zip repository may contain only placeholder files or README files under `models/emotion_model/`. Real `.pt` checkpoints are large and are ignored by default in `.gitignore`.
+
+Expected runtime files:
+
+```text
+models/emotion_model/best_model.pt          # final 4-state academic-state checkpoint
+models/emotion_model/raw_8class_best.pt     # optional auxiliary raw-emotion checkpoint
+models/emotion_model/metadata.json          # model metadata and metrics
+```
+
+Install the final academic-state checkpoint:
+
+```bash
+python scripts/install_emotion_checkpoint.py --source /path/to/convnext_tiny_4state_best.pt
+```
+
+Inspect a checkpoint:
+
+```bash
+python scripts/inspect_emotion_checkpoint.py --checkpoint /path/to/best.pt
+```
+
+Configure a checkpoint path:
 
 ```bash
 python scripts/configure_emotion_checkpoint.py --checkpoint /path/to/best.pt --mode auto
 ```
 
-### 9.2 Six-model comparison
+Important environment keys:
 
-The final six model comparison used 25 training epochs and pretrained `timm` backbones. ResNet50 was retained as a strong CNN baseline, while the other models were treated as final candidate architectures.
-
-| Rank | Model             | `timm` architecture                             | Epochs | Batch |     LR | Best epoch | Highest val acc | Final epoch val acc |   Test acc | Role                    |
-| ---: | ----------------- | ----------------------------------------------- | -----: | ----: | -----: | ---------: | --------------: | ------------------: | ---------: | ----------------------- |
-|    1 | **ConvNeXt-Tiny** | `convnext_tiny.fb_in22k_ft_in1k`                |     25 |    64 | `5e-5` |         19 |      **80.67%** |              80.19% | **79.94%** | Final selected model    |
-|    2 | RegNetY-800MF     | `regnety_008_tv.tv2_in1k`                       |     25 |    64 | `1e-4` |         24 |          79.00% |              78.04% |     78.59% | Efficient CNN candidate |
-|    3 | Swin-Tiny         | `swin_tiny_patch4_window7_224.ms_in22k_ft_in1k` |     25 |    64 | `3e-5` |         21 |          78.72% |              78.68% |     78.43% | Transformer candidate   |
-|    4 | MobileNetV3-Large | `mobilenetv3_large_100.miil_in21k_ft_in1k`      |     25 |    64 | `3e-4` |         22 |          78.68% |              77.64% |     76.13% | Lightweight candidate   |
-|    5 | ResNet50          | `resnet50.a1_in1k`                              |     25 |    64 | `1e-4` |         21 |          78.32% |              77.52% |     76.49% | Baseline                |
-|    6 | EfficientNet-B4   | `tf_efficientnet_b4.ns_jft_in1k`                |     25 |    32 | `5e-5` |         22 |          75.33% |              74.77% |     74.62% | Not selected            |
-
-### 9.3 Best checkpoint paths used during training
-
-Training artifacts were kept outside Git. The best checkpoints were:
-
-```text
-emotion_recognition/checkpoints/convnext_tiny/best.pt
-emotion_recognition/checkpoints/regnety/best.pt
-emotion_recognition/checkpoints/swin_tiny/best.pt
-emotion_recognition/checkpoints/mobilenetv3_large/best.pt
-emotion_recognition/checkpoints/resnet50/best.pt
-emotion_recognition/checkpoints/efficientnet/best.pt
+```bash
+EMOTION_CHECKPOINT_PATH=/absolute/path/to/best_model.pt
+RAW_EMOTION_CHECKPOINT_PATH=/absolute/path/to/raw_8class_best.pt
+EMOTION_MODEL_MODE=auto        # auto | academic_state | raw_emotion
 ```
 
-For the final demo-ready application, the selected ConvNeXt-Tiny academic-state checkpoint is stored at `models/emotion_model/best_model.pt` and the raw-emotion checkpoint is stored at `models/emotion_model/raw_8class_best.pt`. Both are tracked through Git LFS.
+### Optional Git LFS policy
 
-### 9.4 Why ConvNeXt-Tiny was selected
+By default, `.pt`, `.pth`, and `.ckpt` files under `models/emotion_model/` are ignored. If the submission requires checkpoints to be stored in GitHub, use Git LFS and update the ignore policy accordingly:
 
-ConvNeXt-Tiny was selected because it achieved:
+```bash
+git lfs install
+git lfs track "models/emotion_model/*.pt"
+```
 
-- the highest validation accuracy: **80.67%**;
-- the highest test accuracy: **79.94%**;
-- stable performance across later epochs;
-- better performance than ResNet50 baseline and all other candidates.
+Then ensure checkpoint files are either force-added or the relevant ignore rules are adjusted before committing. For normal development, keep checkpoints outside Git and install them locally.
 
 ---
 
-## 10. LLM and Prompt Pipeline
+## 13. LLM and Prompt Pipeline
 
 The system uses three major prompt stages.
 
@@ -597,7 +576,7 @@ Purpose: generate the first paper-grounded explanation.
 
 Main inputs:
 
-- selected text or area metadata;
+- selected text or selected visual area metadata;
 - page number;
 - matched parsed block;
 - nearby context;
@@ -643,18 +622,6 @@ recommended
 recommended_score
 ```
 
-Support cue values include:
-
-```text
-sustained_clarification
-reduce_load
-re_engagement
-deepening
-clarify_and_reengage
-gentle_clarification
-neutral_or_uncertain
-```
-
 ### Stage C — Strategy-Conditioned Answer
 
 Purpose: generate an adaptive explanation using the selected strategy.
@@ -675,7 +642,9 @@ Output:
 Adaptive academic explanation conditioned on the selected pedagogical strategy.
 ```
 
-### LLM providers and roles
+---
+
+## 14. LLM Providers and Configuration
 
 Use `/settings` to configure local provider credentials and role-specific models.
 
@@ -683,7 +652,8 @@ Supported provider types:
 
 - Gemini;
 - OpenRouter;
-- OpenAI-compatible endpoints.
+- OpenAI-compatible endpoints;
+- dummy providers for offline testing.
 
 Main roles:
 
@@ -699,11 +669,38 @@ Secrets are stored in `.env.local`; non-secret comparison model profiles are sto
 runtime_uploads/config/llm_profiles.json
 ```
 
+Example `.env.local` keys:
+
+```bash
+LLM_PROVIDER=gemini
+LLM_MODEL=gemini-flash-latest
+STRATEGY_PLANNER_PROVIDER=gemini
+STRATEGY_PLANNER_MODEL=gemini-flash-latest
+EMBEDDING_PROVIDER=gemini
+EMBEDDING_MODEL=gemini-embedding-001
+GEMINI_API_KEY=your_key_here
+
+OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=openai/gpt-4o-mini
+OPENROUTER_SITE_URL=http://127.0.0.1:8000
+OPENROUTER_SITE_NAME=Emotion-Aware Academic Assistant
+
+OPENAI_API_KEY=your_key_here
+OPENAI_BASE_URL=http://localhost:11434/v1
+OPENAI_MODEL=your_model_here
+```
+
+Configure Gemini from terminal:
+
+```bash
+python scripts/configure_api_key.py
+```
+
 ---
 
-## 11. Installation
+## 15. Installation
 
-### 11.1 Recommended Python version
+### 15.1 Recommended Python version
 
 The package requires Python >= 3.10. Python 3.11 was used successfully during final integration.
 
@@ -727,7 +724,7 @@ For editable local development:
 pip install -e .
 ```
 
-### 11.2 GPU / PyTorch note
+### 15.2 GPU / PyTorch note
 
 If running on a modern Blackwell GPU, use a PyTorch build that supports the GPU compute capability. In our final training environment, PyTorch CUDA 12.8 was used successfully:
 
@@ -738,7 +735,7 @@ cuda: 12.8
 
 For general CPU or older GPU runtime, install a PyTorch build appropriate for the host machine.
 
-### 11.3 Frontend dependencies
+### 15.3 Frontend dependencies
 
 Install Node dependencies:
 
@@ -756,74 +753,7 @@ The build command is defined in `package.json` and uses Vite.
 
 ---
 
-## 12. Configuration
-
-### 12.1 Local environment file
-
-The app reads local secrets and runtime configuration from:
-
-```text
-.env.local
-```
-
-`.env.local` is ignored by Git.
-
-Common keys:
-
-```bash
-LLM_PROVIDER=gemini
-LLM_MODEL=gemini-flash-latest
-STRATEGY_PLANNER_PROVIDER=gemini
-STRATEGY_PLANNER_MODEL=gemini-flash-latest
-EMBEDDING_PROVIDER=gemini
-EMBEDDING_MODEL=gemini-embedding-001
-GEMINI_API_KEY=your_key_here
-
-OPENROUTER_API_KEY=your_key_here
-OPENROUTER_MODEL=openai/gpt-4o-mini
-OPENROUTER_SITE_URL=http://127.0.0.1:8000
-OPENROUTER_SITE_NAME=Emotion-Aware Academic Assistant
-
-OPENAI_API_KEY=your_key_here
-OPENAI_BASE_URL=http://localhost:11434/v1
-OPENAI_MODEL=your_model_here
-```
-
-### 12.2 Configure Gemini from terminal
-
-```bash
-python scripts/configure_api_key.py
-```
-
-### 12.3 Configure emotion checkpoint
-
-Install the teammate/final checkpoint:
-
-```bash
-python scripts/install_emotion_checkpoint.py --source /path/to/best.pt
-```
-
-Inspect a checkpoint:
-
-```bash
-python scripts/inspect_emotion_checkpoint.py --checkpoint /path/to/best.pt
-```
-
-Configure a checkpoint path:
-
-```bash
-python scripts/configure_emotion_checkpoint.py --checkpoint /path/to/best.pt --mode auto
-```
-
-Important environment keys:
-
-```bash
-EMOTION_CHECKPOINT_PATH=/absolute/path/to/best.pt
-RAW_EMOTION_CHECKPOINT_PATH=/absolute/path/to/raw_8class_best.pt
-EMOTION_MODEL_MODE=auto        # auto | academic_state | raw_emotion
-```
-
-### 12.4 Configure face detector / OpenFace
+## 16. Face Detector / OpenFace Setup
 
 Diagnose OpenFace:
 
@@ -851,9 +781,9 @@ models/face_detector/yolov8n-face.pt
 
 ---
 
-## 13. Running the Application
+## 17. Running the Application
 
-### 13.1 Start web mode
+### 17.1 Start web mode
 
 ```bash
 python -u main.py --mode web
@@ -873,13 +803,13 @@ Open:
 http://127.0.0.1:8000/pdf-chat
 ```
 
-### 13.2 Start with custom host/port
+### 17.2 Start with custom host/port
 
 ```bash
 python -u main.py --mode web --host 0.0.0.0 --port 8000
 ```
 
-### 13.3 Terminal mode
+### 17.3 Terminal mode
 
 A legacy terminal mode remains available:
 
@@ -887,7 +817,7 @@ A legacy terminal mode remains available:
 python main.py --mode terminal
 ```
 
-### 13.4 GUI mode
+### 17.4 GUI mode
 
 A PyQt GUI entry point exists, but the final demo should use the web app:
 
@@ -897,7 +827,7 @@ python main.py --mode gui
 
 ---
 
-## 14. Demo Workflow
+## 18. Demo Workflow
 
 A recommended final demonstration sequence is:
 
@@ -908,198 +838,175 @@ A recommended final demonstration sequence is:
 
 2. Open `/camera-debug`.
    - Capture one frame.
-   - Show detected face, landmarks, crop, and 224x224 model input.
-   - Show model mode: academic-state mode or raw-emotion mode.
-   - Show the current learning signal and smoothing output.
+   - Show the exact analyzed frame, landmarks, face crop, and model input.
+   - Show whether the active checkpoint is academic-state mode or raw-emotion mode.
+   - If raw-emotion mode is configured, show raw detection and mapped academic state.
 
 3. Open `/pdf-chat`.
-   - Upload or open a sample paper.
-   - Highlight a difficult passage or select an area.
-   - Click **Explain** to generate the Stage A baseline explanation.
+   - Upload or open a paper.
+   - Highlight a passage or select an area.
+   - Click **Explain**.
+   - Show the Stage A baseline explanation.
    - Wait for the reaction window.
-   - Show strategy candidates.
-   - Select a strategy and generate the Stage C adaptive answer.
+   - Show Stage B strategy candidates.
+   - Select a strategy and generate the Stage C adaptive explanation.
 
 4. Open `/llm-compare`.
    - Select a saved prompt snapshot.
-   - Compare the prompt across configured models.
-   - Export comparison output if needed.
+   - Compare outputs across configured models.
+   - Show JSON validity for strategy planner snapshots if available.
 
-5. Optionally open `/pdf-test`.
-   - Show parsing, retrieval, matching, and debug information.
+5. Open `/pdf-test` only if needed.
+   - Use it to inspect PDF parsing, selection, and retrieval behaviour.
 
-A detailed demonstration script is available at:
+---
+
+## 19. Testing
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+Current tests cover:
+
+- core workflow;
+- web routes and API contracts;
+- PDF parsing and RAG;
+- PDF chat backend and page behaviour;
+- camera-debug route;
+- emotion checkpoint scripts;
+- LLM comparison workflow;
+- local environment configuration;
+- OpenFace helper scripts;
+- product hardening checks.
+
+Representative test files include:
 
 ```text
-docs/demo_script.md
+tests/test_core_flow.py
+tests/test_web_api.py
+tests/test_pdf_chat_backend.py
+tests/test_pdf_chat_page.py
+tests/test_pdf_rag.py
+tests/test_camera_debug.py
+tests/test_llm_compare.py
+tests/test_emotion_checkpoint_scripts.py
+tests/test_openface_scripts.py
 ```
 
 ---
 
-## 15. Testing and Diagnostics
+## 20. Privacy and Responsible AI Notes
 
-### 15.1 Python tests
-
-```bash
-python -m unittest
-```
-
-### 15.2 Web smoke check
-
-```bash
-python scripts/web_smoke_check.py
-```
-
-### 15.3 Full smoke check
-
-```bash
-python scripts/smoke_check.py
-```
-
-### 15.4 Emotion adapter test
-
-```bash
-python scripts/test_emotion_adapter.py
-```
-
-### 15.5 Environment diagnosis
-
-```bash
-python scripts/diagnose_environment.py
-```
-
-### 15.6 OpenFace diagnosis
-
-```bash
-python scripts/diagnose_openface.py
-python scripts/test_openface_feature_extraction.py --image /path/to/image.jpg
-```
-
-### 15.7 Frontend build check
-
-```bash
-npm run build:pdf-workspace
-```
-
-### 15.8 Whitespace check before commit
-
-```bash
-git diff --check
-```
+- Browser camera frames are processed locally by the backend.
+- Raw camera frames are not persisted by default.
+- API keys are stored locally in `.env.local` and are not shown in plaintext in the browser UI.
+- The learning signal is used to adapt explanation style, not to diagnose the user.
+- Prompts should avoid saying that the user is definitively frustrated, confused, bored, or engaged.
+- Paper context controls factual content; the learning signal controls teaching style.
+- The system should not claim psychological certainty from facial cues.
 
 ---
 
-## 16. Local Runtime Data and Privacy
+## 21. Common Troubleshooting
 
-The system is designed as a local prototype.
+| Problem                                    | Check                                                                                             |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `/pdf-chat` does not load                  | Confirm server is running and the port is correct.                                                |
+| PDF parsing fails                          | Check `pymupdf` installation and file permissions.                                                |
+| Embedding preparation fails                | Check embedding provider, model name, and API key in `/settings`.                                 |
+| LLM response fails                         | Check provider credentials and selected model.                                                    |
+| Camera does not start                      | Check browser camera permission and use `/camera-debug`.                                          |
+| OpenFace unavailable                       | Run `python scripts/diagnose_openface.py`.                                                        |
+| Emotion checkpoint missing                 | Install or configure `models/emotion_model/best_model.pt`.                                        |
+| Raw emotion not shown                      | The active checkpoint is likely a 4-state academic-state model, where raw emotion is unavailable. |
+| Prompt snapshots missing in `/llm-compare` | Run a new explanation in `/pdf-chat` first.                                                       |
 
-### 16.1 Local-only data
+---
 
-These are stored locally and should not be committed:
+## 22. Files Not Intended for Git
+
+Do not commit:
 
 ```text
+.env
 .env.local
 runtime_uploads/
 logs/*.jsonl
-logs/uploads/
+logs/assistant.log
+models/emotion_model/*.pt
+models/emotion_model/*.pth
+models/emotion_model/*.ckpt
 models/face_detector/*.pt
-models/face_detector/*.onnx
-runtime_uploads/local_llm_settings.json
+models/face_detector/*.pth
+data/raw/
+data/processed/
+data/processed_4state/
+external/OpenFace/
+__pycache__/
+node_modules/
 ```
 
-### 16.2 Webcam privacy
-
-- Webcam frames are processed locally.
-- Raw frames are not persisted by default.
-- External LLM providers receive only text prompts and selected context, not raw webcam images.
-- `/camera-debug` is for local transparency and troubleshooting.
-
-### 16.3 API key privacy
-
-- API keys are stored in `.env.local`.
-- Keys are masked in the settings page.
-- Keys are not stored in browser localStorage or sessionStorage.
-- `.env.local` is ignored by Git.
-
-### 16.4 Uploaded papers
-
-Uploaded PDFs and derived artifacts are stored under `runtime_uploads/`. Do not publicly share this folder if it contains private papers or prompt snapshots.
+If checkpoint files must be submitted through GitHub, use Git LFS and adjust `.gitignore` intentionally.
 
 ---
 
-## 17. Known Limitations
+## 23. Final Presentation Alignment
 
-- The current default academic checkpoint is a **4-class academic-state model**. The repository also includes the 8-class raw-emotion checkpoint through Git LFS for diagnostics and raw-emotion display.
-- Emotion inference quality depends on lighting, camera angle, face visibility, and the configured detector.
-- The bundled OpenFace runtime is Linux-specific. If it is incompatible, rebuild OpenFace from the submodule or use the fallback detector.
-- If no LLM API key is configured, the app can fall back to a dummy LLM for testing but not for final-quality explanations.
-- If embedding configuration is unavailable, RAG falls back to keyword retrieval.
-- The system should be described as a learning-support assistant, not as a psychological diagnosis system.
-- Private runtime uploads, logs, and credentials are intentionally excluded from Git.
+The final presentation should describe the emotion-recognition component as follows:
+
+1. **Method**: build an 8-class raw emotion dataset and a mapped 4-state academic-state dataset.
+2. **Model comparison**: compare six pretrained models on the 4-state task.
+3. **Result**: ConvNeXt-Tiny performs best on the 4-state task.
+4. **Analysis**: 4-state academic labels are more stable and task-relevant than raw emotions.
+5. **Deployment decision**: final chatbot adaptation uses the 4-state academic-state model; the 8-class model is retained as an auxiliary transparency module.
+
+This wording keeps the README, final code, and presentation consistent.
 
 ---
 
-## 18. Useful Handoff Notes
+## 24. Suggested Citation / Reference Themes
 
-### 18.1 Files most relevant for emotion/model handoff
+The emotion-to-academic-state design is motivated by three related ideas:
 
-```text
-emotion_aware_assistant/emotion/labels.py
-emotion_aware_assistant/emotion/raw_emotion_pipeline.py
-emotion_aware_assistant/emotion/state_mapper.py
-emotion_aware_assistant/emotion/emotion_buffer.py
-emotion_aware_assistant/emotion/affective_trend_tracker.py
-emotion_aware_assistant/emotion/teammate_emotion_adapter.py
-models/emotion_model/README.md
-scripts/install_emotion_checkpoint.py
-scripts/inspect_emotion_checkpoint.py
-scripts/configure_emotion_checkpoint.py
-```
+- basic emotion recognition for facial emotion labels;
+- valence/arousal and affective dimensional theory for grouping emotions;
+- educational affect research showing that confusion, frustration, boredom, and engagement are meaningful learning-related states.
 
-### 18.2 Files most relevant for PDF/RAG handoff
+These references can be discussed in the report or presentation:
 
 ```text
-emotion_aware_assistant/paper/pdf_loader.py
-emotion_aware_assistant/paper/pdf_parse_pipeline.py
-emotion_aware_assistant/paper/paper_rag.py
-emotion_aware_assistant/paper/retriever.py
-emotion_aware_assistant/paper/passage_analyzer.py
-emotion_aware_assistant/web/static/pdf_chat.html
-emotion_aware_assistant/web/static/pdf-workspace/
-```
-
-### 18.3 Files most relevant for LLM handoff
-
-```text
-emotion_aware_assistant/llm/providers.py
-emotion_aware_assistant/llm/prompt_builder.py
-emotion_aware_assistant/llm/response_policy.py
-emotion_aware_assistant/core/llm_config.py
-emotion_aware_assistant/web/static/llm_compare.html
-```
-
-### 18.4 Final model configuration summary
-
-```text
-Checkpoint target: models/emotion_model/best_model.pt
-Metadata target:   models/emotion_model/metadata.json
-Architecture:      convnext_tiny
-Output type:       academic_state
-Classes:           boredom, confusion, engagement, frustration
-Best val acc:      80.67%
-Test acc:          79.94%
+Ekman, P. (1999). Basic Emotions.
+Russell, J. A. (1980). A Circumplex Model of Affect.
+Pekrun, R. (2006). The Control-Value Theory of Achievement Emotions.
+D'Mello, S. K., & Graesser, A. C. (2012). Dynamics of Affective States During Complex Learning.
+Baker, R. S. J. d., D'Mello, S. K., Rodrigo, M. M. T., & Graesser, A. C. (2010). Better to Be Frustrated than Bored.
 ```
 
 ---
 
-## 19. References
+## 25. Current Project Status
 
-The emotion-to-academic-state design is supported by research on basic emotions, affective dimensions, achievement emotions, and learning-centered affective states.
+The project currently includes:
 
-1. P. Ekman, “Basic Emotions,” in _Handbook of Cognition and Emotion_, 1999.
-2. J. A. Russell, “A Circumplex Model of Affect,” _Journal of Personality and Social Psychology_, vol. 39, no. 6, pp. 1161–1178, 1980.
-3. R. Pekrun, “The Control-Value Theory of Achievement Emotions: Assumptions, Corollaries, and Implications for Educational Research and Practice,” _Educational Psychology Review_, vol. 18, pp. 315–341, 2006.
-4. S. K. D’Mello and A. C. Graesser, “Dynamics of Affective States During Complex Learning,” _Learning and Instruction_, vol. 22, no. 2, pp. 145–157, 2012.
-5. R. S. J. d. Baker, S. K. D’Mello, M. M. T. Rodrigo, and A. C. Graesser, “Better to Be Frustrated than Bored: The Incidence, Persistence, and Impact of Learners’ Cognitive-Affective States During Interactions with Three Different Computer-Based Learning Environments,” _International Journal of Human-Computer Studies_, vol. 68, no. 4, pp. 223–241, 2010.
+- final local web application;
+- PDF reading and RAG explanation workflow;
+- camera-debug transparency workflow;
+- LLM comparison workflow;
+- academic-state and raw-emotion checkpoint compatibility;
+- final ConvNeXt-Tiny 4-state training results;
+- auxiliary ConvNeXt-Tiny 8-class raw emotion results;
+- tests for key backend and frontend workflows;
+- demo script and configuration scripts.
 
----
+The core final model decision is:
+
+```text
+Final selected model: ConvNeXt-Tiny 4-state academic-state model
+Best validation accuracy: 80.67%
+Test accuracy: 79.94%
+Auxiliary raw emotion model: ConvNeXt-Tiny 8-class model
+Raw emotion test accuracy: 72.80%
+```
