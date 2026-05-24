@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-based LLM Compare</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #182230;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 44px;
+    }
+
+    main {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+    }
+
+    header, section, .panel {
+      background: #ffffff;
+      border: 1px solid #d8e0ea;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    p, .muted {
+      color: #52616f;
+      line-height: 1.5;
+    }
+
+    .tabs, .actions, .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #25313d;
+    }
+
+    input, select, textarea {
+      border: 1px solid #c7d1dc;
+      border-radius: 6px;
+      padding: 8px 9px;
+      background: #fff;
+      color: #111827;
+      font: inherit;
+      min-width: 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 9px 12px;
+      background: #e7edf5;
+      color: #182230;
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    button.primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    button.danger {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .library-layout {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .prompt-list, .model-list, .result-list, .evaluation-list, .directory-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      padding: 10px;
+      background: #fbfcfe;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    .prompt-button, .model-row, .result-card, .score-card, .evaluation-row {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+    }
+
+    .prompt-button {
+      width: 100%;
+      display: grid;
+      gap: 5px;
+      text-align: left;
+      margin-top: 8px;
+    }
+
+    .prompt-button.active {
+      outline: 2px solid #2563eb;
+    }
+
+    .prompt-directory {
+      border: 1px solid #dfe7ef;
+      border-radius: 8px;
+      background: #fbfcfe;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .directory-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid #e7edf5;
+      padding-top: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: #344054;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .model-row {
+      display: grid;
+      grid-template-columns: auto 1fr 110px 1.4fr 130px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .result-card details {
+      margin-top: 8px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      background: #f1f5f9;
+      color: #182230;
+      padding: 12px;
+      border-radius: 6px;
+      max-height: 360px;
+      overflow: auto;
+      font-size: 12px;
+    }
+
+    .message {
+      min-height: 22px;
+      font-weight: 700;
+    }
+
+    .message[data-tone="error"] {
+      color: #b42318;
+    }
+
+    .message[data-tone="success"] {
+      color: #137333;
+    }
+
+    .note {
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #25476a;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .library-layout, .model-row, .settings-grid, .score-grid, .directory-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Manual LLM Evaluation Workspace</h1>
+      <p>Prompt-based LLM Compare sends one selected prompt to selected OpenRouter or Gemini model profiles, then stores manual scores for report tables.</p>
+    </header>
+
+    <div id="message" class="message" role="status"></div>
+
+    <section id="selected-prompt-panel" aria-labelledby="selected-title">
+      <h2 id="selected-title">Selected prompt</h2>
+      <div id="selected-prompt-summary" class="muted">Select a prompt from the Prompt Library.</div>
+      <div class="actions" style="margin-top: 10px;">
+        <button type="button" class="primary" id="run-selected-compare">Run compare with this prompt</button>
+        <button type="button" id="quick-model-check">Quick model check</button>
+        <button type="button" id="copy-selected-prompt">Copy prompt</button>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Compare workspace tabs">
+      <button type="button" class="tab-button" data-tab="library" aria-selected="true">Prompt Library</button>
+      <button type="button" class="tab-button" data-tab="run">Compare Run</button>
+      <button type="button" class="tab-button" data-tab="results">Results & Scoring</button>
+      <button type="button" class="tab-button" data-tab="saved">Saved Evaluations</button>
+    </nav>
+
+    <section class="tab-panel" data-panel="library" aria-labelledby="library-title">
+      <h2 id="library-title">Prompt Library</h2>
+      <div id="prompt-directory" class="prompt-directory">
+        <h3>Prompt Directory</h3>
+        <p class="muted">Total prompts: 0</p>
+        <div class="actions" style="margin-top: 8px;">
+          <button type="button" id="expand-all-categories">Expand all</button>
+          <button type="button" id="collapse-all-categories">Collapse all</button>
+        </div>
+      </div>
+      <div class="actions">
+        <label>
+          Search/filter
+          <input id="prompt-search" type="search" placeholder="Search prompts">
+        </label>
+        <button type="button" id="refresh-prompts">Refresh</button>
+        <button type="button" class="primary" id="create-prompt">Create prompt</button>
+        <button type="button" id="duplicate-prompt">Duplicate prompt</button>
+        <button type="button" id="edit-prompt">Edit prompt</button>
+        <button type="button" class="danger" id="delete-prompt">Delete prompt</button>
+      </div>
+      <div class="library-layout" style="margin-top: 12px;">
+        <div id="prompt-library" class="prompt-list"></div>
+        <form id="prompt-editor" class="panel" autocomplete="off">
+          <h3>Prompt editor</h3>
+          <div class="grid-2">
+            <label>Title<input id="prompt-title" type="text"></label>
+            <label>Category
+              <select id="prompt-category">
+                <option>Base Prompt</option>
+                <option>Planner Prompt</option>
+                <option>Strategy Response Prompt</option>
+                <option>Custom / Experimental</option>
+              </select>
+            </label>
+          </div>
+          <label>Subcategory<input id="prompt-subcategory" type="text" list="planner-subcategories" placeholder="Optional"></label>
+          <datalist id="planner-subcategories">
+            <option value="Confusion"></option>
+            <option value="Frustration"></option>
+            <option value="Boredom"></option>
+            <option value="Engagement"></option>
+            <option value="Mixed / uncertain"></option>
+          </datalist>
+          <label>Description<textarea id="prompt-description"></textarea></label>
+          <label>Full prompt text<textarea id="prompt-text"></textarea></label>
+          <label>Variables/placeholders<input id="prompt-variables" type="text" placeholder="selected_passage, paper_context"></label>
+          <div class="actions">
+            <button type="submit" class="primary">Save prompt</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="run" hidden aria-labelledby="run-title">
+      <h2 id="run-title">Compare Run</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Model selection</h3>
+          <p class="muted">Temporary deselection affects only this compare run. Direct OpenAI is not available here.</p>
+          <div id="model-list" class="model-list" style="margin-top: 10px;"></div>
+          <div class="actions" style="margin-top: 10px;">
+            <button type="button" id="reload-models">Reload compare profiles</button>
+          </div>
+        </div>
+        <div>
+          <h3>Generation settings</h3>
+          <p class="muted">temperature controls randomness; top_p controls nucleus sampling; top_k restricts sampling to the top k tokens.</p>
+          <div class="settings-grid" style="margin-top: 10px;">
+            <label>Temperature<input id="temperature" type="number" step="0.1" min="0" max="2" value="0.2"></label>
+            <label>top_p<input id="top-p" type="number" step="0.05" min="0" max="1" value="0.9"></label>
+            <label>top_k<input id="top-k" type="number" min="1" placeholder="optional"></label>
+            <label>max_tokens<input id="max-tokens" type="number" min="1" value="700"></label>
+            <label>timeout<input id="timeout" type="number" min="1" value="60"></label>
+          </div>
+          <p class="muted" style="margin-top: 10px;">If top_k is blank, it is not sent.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-panel" data-panel="results" hidden aria-labelledby="results-title">
+      <h2 id="results-title">Results & Scoring</h2>
+      <div class="actions">
+        <button type="button" id="export-current-json">Export current run as JSON</button>
+      </div>
+      <div id="results" class="result-list muted" style="margin-top: 12px;">Run a comparison to see model outputs.</div>
+    </section>
+
+    <section class="tab-panel" data-panel="saved" hidden aria-labelledby="saved-title">
+      <h2 id="saved-title">Saved Evaluations</h2>
+      <div class="actions">
+        <button type="button" id="refresh-evaluations">Refresh saved evaluations</button>
+        <button type="button" id="export-evaluations-csv">Export saved evaluations as CSV</button>
+      </div>
+      <div id="saved-evaluations" class="evaluation-list muted" style="margin-top: 12px;">No saved evaluations loaded.</div>
+    </section>
+  </main>
+
+  <script>
+    const EXPANDED_CATEGORIES_KEY = "llmCompareExpandedCategories";
+    const categories = [
+      "Base Prompt",
+      "Planner Prompt",
+      "Strategy Response Prompt",
+      "Custom / Experimental",
+    ];
+
+    const state = {
+      prompts: [],
+      selectedPrompt: null,
+      editingPromptId: "",
+      models: [],
+      comparison: null,
+      evaluations: [],
+      expandedCategories: loadExpandedCategories(),
+    };
+
+    const message = document.getElementById("message");
+    const promptDirectory = document.getElementById("prompt-directory");
+    const promptLibrary = document.getElementById("prompt-library");
+    const selectedSummary = document.getElementById("selected-prompt-summary");
+    const modelList = document.getElementById("model-list");
+    const resultsEl = document.getElementById("results");
+    const savedEvaluationsEl = document.getElementById("saved-evaluations");
+
+    function setMessage(text, tone = "") {
+      message.textContent = text || "";
+      message.dataset.tone = tone;
+    }
+
+    async function requestJson(url, options = {}) {
+      const response = await fetch(url, {
+        headers: { "Content-Type": "application/json" },
+        ...options,
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || "Request failed.");
+      return payload;
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll("[data-tab]").forEach((button) => {
+        button.setAttribute("aria-selected", button.dataset.tab === name ? "true" : "false");
+      });
+      document.querySelectorAll("[data-panel]").forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== name;
+      });
+    }
+
+    function loadExpandedCategories() {
+      try {
+        const raw = window.localStorage?.getItem(EXPANDED_CATEGORIES_KEY);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (Array.isArray(parsed)) return new Set(parsed);
+      } catch (_error) {
+        return new Set(categories.map(categoryId));
+      }
+      return new Set(categories.map(categoryId));
+    }
+
+    function saveExpandedCategories() {
+      try {
+        window.localStorage?.setItem(EXPANDED_CATEGORIES_KEY, JSON.stringify(Array.from(state.expandedCategories)));
+      } catch (_error) {
+        return;
+      }
+    }
+
+    function categoryId(category) {
+      return String(category || "custom")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "custom";
+    }
+
+    function isCategoryExpanded(categoryIdValue) {
+      return state.expandedCategories.has(categoryIdValue);
+    }
+
+    function setCategoryExpanded(categoryIdValue, expanded) {
+      if (expanded) state.expandedCategories.add(categoryIdValue);
+      else state.expandedCategories.delete(categoryIdValue);
+      saveExpandedCategories();
+    }
+
+    function fullPromptText(prompt) {
+      return prompt?.full_prompt_text || prompt?.prompt_text || "";
+    }
+
+    function promptPreview(prompt) {
+      const lines = fullPromptText(prompt).split(/\n+/).map((line) => line.trim()).filter(Boolean);
+      const preview = lines.slice(0, 2).join(" ");
+      return preview.length > 220 ? `${preview.slice(0, 220)}...` : preview;
+    }
+
+    async function loadPrompts() {
+      const search = document.getElementById("prompt-search").value.trim();
+      const payload = await requestJson(`/api/llm-compare/prompts${search ? `?search=${encodeURIComponent(search)}` : ""}`);
+      state.prompts = payload.prompts || [];
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+      if (!state.selectedPrompt && state.prompts[0]) selectPrompt(state.prompts[0].id);
+    }
+
+    function renderPromptLibrary(groups) {
+      if (!state.prompts.length) {
+        promptLibrary.innerHTML = `<p class="muted">No prompts found. Create prompt or run /pdf-chat to save prompt snapshots.</p>`;
+        return;
+      }
+      promptLibrary.innerHTML = groups.filter((group) => group.prompts.length).map((group) => `
+        <details id="prompt-category-${escapeAttr(group.id)}" data-category-id="${escapeAttr(group.id)}" ${isCategoryExpanded(group.id) ? "open" : ""}>
+          <summary>${escapeHtml(group.category)} (${group.prompts.length}) ${isCategoryExpanded(group.id) ? "" : "collapsed"}</summary>
+          ${group.prompts.map((prompt) => `
+            <button type="button" class="prompt-button ${state.selectedPrompt?.id === prompt.id ? "active" : ""}" data-prompt-id="${escapeAttr(prompt.id)}">
+              <strong>${escapeHtml(prompt.title)}</strong>
+              <span class="muted">${escapeHtml(prompt.subcategory || prompt.description || "")}</span>
+              <span>${escapeHtml(promptPreview(prompt))}</span>
+              <span class="muted">${escapeHtml(prompt.source || "custom")} · ${escapeHtml(prompt.updated_at || prompt.created_at || "")}</span>
+            </button>
+          `).join("")}
+        </details>
+      `).join("");
+    }
+
+    function renderPromptDirectory(groups) {
+      const total = state.prompts.length;
+      promptDirectory.innerHTML = `
+        <h3>Prompt Directory</h3>
+        <p class="muted">Total prompts: ${total}</p>
+        <div class="actions" style="margin-top: 8px;">
+          <button type="button" id="expand-all-categories">Expand all</button>
+          <button type="button" id="collapse-all-categories">Collapse all</button>
+        </div>
+        <div class="directory-grid" style="margin-top: 10px;">
+          ${groups.map((group) => directoryRow(group)).join("")}
+        </div>
+      `;
+    }
+
+    function directoryRow(group) {
+      const subcategories = subcategoryCounts(group.prompts);
+      return `
+        <div class="directory-row">
+          <div>
+            <strong>${escapeHtml(group.category)} (${group.prompts.length})</strong>
+            ${subcategories.length ? `<p class="muted">${subcategories.map((item) => `${escapeHtml(item.name)} ${item.count}`).join(" · ")}</p>` : ""}
+          </div>
+          <span class="badge">${isCategoryExpanded(group.id) ? "expanded" : "collapsed"}</span>
+          <button type="button" data-category-jump="${escapeAttr(group.id)}">Jump</button>
+        </div>
+      `;
+    }
+
+    function subcategoryCounts(prompts) {
+      const counts = new Map();
+      for (const prompt of prompts) {
+        const name = prompt.subcategory || "";
+        if (!name) continue;
+        counts.set(name, (counts.get(name) || 0) + 1);
+      }
+      return Array.from(counts.entries()).map(([name, count]) => ({ name, count }));
+    }
+
+    function selectPrompt(promptId) {
+      const prompt = state.prompts.find((item) => item.id === promptId);
+      if (!prompt) return;
+      state.selectedPrompt = prompt;
+      state.editingPromptId = prompt.id;
+      document.getElementById("prompt-title").value = prompt.title || "";
+      document.getElementById("prompt-category").value = prompt.category || "Custom / Experimental";
+      document.getElementById("prompt-subcategory").value = prompt.subcategory || "";
+      document.getElementById("prompt-description").value = prompt.description || "";
+      document.getElementById("prompt-text").value = fullPromptText(prompt);
+      document.getElementById("prompt-variables").value = (prompt.variables || []).join(", ");
+      renderSelectedPrompt();
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+    }
+
+    function groupPrompts(prompts) {
+      return categories.map((category) => ({
+        id: categoryId(category),
+        category,
+        prompts: prompts.filter((prompt) => (prompt.category || "Custom / Experimental") === category),
+      }));
+    }
+
+    function renderSelectedPrompt() {
+      const prompt = state.selectedPrompt;
+      if (!prompt) {
+        selectedSummary.textContent = "Select a prompt from the Prompt Library.";
+        return;
+      }
+      const text = fullPromptText(prompt);
+      const length = text.length;
+      selectedSummary.innerHTML = `
+        <div class="grid-2">
+          <div>
+            <h3>${escapeHtml(prompt.title)}</h3>
+            <p class="muted">${escapeHtml(prompt.category)}${prompt.subcategory ? ` · ${escapeHtml(prompt.subcategory)}` : ""} · ${length} chars · about ${Math.ceil(length / 4)} tokens</p>
+            <p class="muted">${escapeHtml(prompt.description || "")}</p>
+            ${(prompt.variables || []).length ? `<p class="muted">Variables/placeholders: ${escapeHtml(prompt.variables.join(", "))}</p>` : ""}
+          </div>
+          <details>
+            <summary>Full prompt</summary>
+            <pre>${escapeHtml(text)}</pre>
+          </details>
+        </div>
+      `;
+    }
+
+    async function loadModels() {
+      const payload = await requestJson("/api/settings/llm");
+      const slots = payload.compare_model_slots || payload.comparison_models || [];
+      state.models = slots.map((model) => ({
+        selected: Boolean(model.enabled),
+        profile_id: model.id || model.profile_id || "",
+        display_name: model.display_name || model.label || model.model || "",
+        provider: model.provider || "openrouter",
+        model_id: model.model_id || model.model || "",
+        enabled: Boolean(model.enabled),
+        last_test_status: model.last_test_status || "not tested",
+        notes: model.notes || "",
+      }));
+      renderModels();
+    }
+
+    function renderModels() {
+      if (!state.models.length) {
+        modelList.innerHTML = `<p class="muted">No compare model profiles are assigned in /settings.</p>`;
+        return;
+      }
+      modelList.innerHTML = state.models.map((model, index) => `
+        <div class="model-row" data-model-index="${index}">
+          <label><input type="checkbox" data-model-field="selected" ${model.selected && model.enabled ? "checked" : ""} ${model.enabled ? "" : "disabled"}> Use</label>
+          <div>
+            <strong>${escapeHtml(model.display_name)}</strong>
+            <p class="muted">${escapeHtml(model.notes || "")}</p>
+          </div>
+          <span>${escapeHtml(model.provider)}</span>
+          <code>${escapeHtml(model.model_id)}</code>
+          <span class="muted">${escapeHtml(model.enabled ? model.last_test_status : "disabled")}</span>
+        </div>
+      `).join("");
+    }
+
+    function selectedModels() {
+      return Array.from(modelList.querySelectorAll("[data-model-index]")).map((row) => {
+        const index = Number(row.dataset.modelIndex);
+        const model = state.models[index];
+        return {
+          ...model,
+          selected: row.querySelector('[data-model-field="selected"]').checked,
+        };
+      }).filter((model) => model.selected && model.enabled);
+    }
+
+    function generationParameters() {
+      const params = {
+        temperature: Number(document.getElementById("temperature").value || 0.2),
+        top_p: Number(document.getElementById("top-p").value || 0.9),
+        max_tokens: Number(document.getElementById("max-tokens").value || 700),
+        timeout: Number(document.getElementById("timeout").value || 60),
+      };
+      const topK = document.getElementById("top-k").value.trim();
+      if (topK) params.top_k = Number(topK);
+      return params;
+    }
+
+    function selectedModelPayloads() {
+      return selectedModels().map((model) => ({
+        enabled: true,
+        profile_id: model.profile_id,
+        label: model.display_name,
+        display_name: model.display_name,
+        provider: model.provider,
+        model: model.model_id,
+        model_id: model.model_id,
+      }));
+    }
+
+    async function runCompare() {
+      if (!state.selectedPrompt) throw new Error("Select one prompt first.");
+      const models = selectedModelPayloads();
+      if (!models.length) throw new Error("Select at least one enabled model.");
+      switchTab("results");
+      resultsEl.textContent = "Running compare...";
+      const payload = await requestJson("/api/llm-compare/run", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt_id: state.selectedPrompt.id,
+          generation_parameters: generationParameters(),
+          models,
+        }),
+      });
+      state.comparison = payload;
+      renderResults();
+    }
+
+    async function runQuickModelCheck() {
+      const models = selectedModelPayloads();
+      if (!models.length) throw new Error("Select at least one enabled model.");
+      switchTab("results");
+      resultsEl.textContent = "Running quick model check...";
+      const payload = await requestJson("/api/llm-compare/quick-check", {
+        method: "POST",
+        body: JSON.stringify({
+          generation_parameters: { ...generationParameters(), max_tokens: 16 },
+          models,
+        }),
+      });
+      state.comparison = payload;
+      renderResults();
+    }
+
+    function renderResults() {
+      const results = state.comparison?.results || [];
+      if (!results.length) {
+        resultsEl.textContent = "Run a comparison to see model outputs.";
+        return;
+      }
+      resultsEl.classList.remove("muted");
+      resultsEl.innerHTML = results.map((result, index) => `
+        <article class="result-card" data-result-index="${index}">
+          <details>
+            <summary>${escapeHtml(result.display_name || result.label || result.model_id)} · ${escapeHtml(result.provider)} · ${result.ok ? "success" : "failure"} · ${escapeHtml(result.latency_ms || 0)} ms</summary>
+            ${result.error ? `<p class="message" data-tone="error">${escapeHtml(result.error)}</p>` : ""}
+            ${renderResultDiagnostics(result)}
+            <pre>${escapeHtml(result.output || "")}</pre>
+          </details>
+          <form class="score-card" data-score-form="${index}">
+            <h3>Manual scoring</h3>
+            <div class="score-grid">
+              ${scoreInput("clarity", "Clarity", "Is the explanation easy to understand?")}
+              ${scoreInput("pedagogical_quality", "Pedagogical quality", "Does the response effectively teach the relevant concept?")}
+              ${scoreInput("emotional_alignment", "Emotional alignment", "Does the response appropriately match the learner's emotional/learning state?")}
+              ${scoreInput("structure", "Structure", "Is the response well organized and easy to follow?")}
+              ${scoreInput("cognitive_load", "Cognitive load", "Is the explanation appropriately simplified or detailed for the learner's state?")}
+            </div>
+            <label>Notes<textarea data-score-field="notes"></textarea></label>
+            <div class="grid-2">
+              <label>Overall preference<input type="checkbox" data-score-field="overall_preference"></label>
+              <label>Rank<input type="number" min="1" data-score-field="rank"></label>
+            </div>
+            <button type="submit" class="primary">Save score</button>
+          </form>
+        </article>
+      `).join("");
+    }
+
+    function renderResultDiagnostics(result) {
+      if (result.ok) return "";
+      const diagnostics = {
+        provider: result.provider || "",
+        model_display_name: result.display_name || result.label || "",
+        model_id: result.model_id || result.model || "",
+        key_source: result.key_source || "",
+        model_source: result.model_source || "",
+        status_code: result.status_code || null,
+        google_error_status: result.google_error_status || "",
+        google_error_message: result.google_error_message || "",
+        provider_error_message: result.provider_error_message || "",
+        generation_parameters_sent: result.generation_parameters_sent || result.generation_parameters || {},
+        prompt_chars: result.prompt_chars || 0,
+        estimated_prompt_tokens: result.estimated_prompt_tokens || 0,
+      };
+      return `<details class="diagnostics"><summary>Safe diagnostics</summary><pre>${escapeHtml(JSON.stringify(diagnostics, null, 2))}</pre></details>`;
+    }
+
+    function scoreInput(key, label, question) {
+      return `<label title="${escapeAttr(question)}">${label}<input type="number" min="1" max="5" data-score-field="${key}"></label>`;
+    }
+
+    async function saveScore(form) {
+      const index = Number(form.dataset.scoreForm);
+      const result = state.comparison.results[index];
+      const get = (field) => form.querySelector(`[data-score-field="${field}"]`);
+      const record = {
+        run_id: state.comparison.comparison_id,
+        selected_prompt_id: state.comparison.selected_prompt_id,
+        selected_prompt_title: state.comparison.selected_prompt_title,
+        prompt_text: state.comparison.full_prompt_text || state.comparison.prompt_text,
+        model_profile_id: result.model_profile_id,
+        model_display_name: result.display_name || result.label,
+        provider: result.provider,
+        model_id: result.model_id || result.model,
+        generation_parameters: state.comparison.generation_parameters,
+        response_text: result.output || "",
+        latency_ms: result.latency_ms || 0,
+        status: result.ok ? "success" : "failure",
+        manual_scores: {
+          clarity: get("clarity").value,
+          pedagogical_quality: get("pedagogical_quality").value,
+          emotional_alignment: get("emotional_alignment").value,
+          structure: get("structure").value,
+          cognitive_load: get("cognitive_load").value,
+        },
+        evaluator_notes: get("notes").value,
+        overall_preference: get("overall_preference").checked,
+        rank: get("rank").value,
+      };
+      await requestJson("/api/llm-compare/evaluations", { method: "POST", body: JSON.stringify(record) });
+      setMessage("Saved evaluation score.", "success");
+      await loadEvaluations();
+    }
+
+    async function loadEvaluations() {
+      const payload = await requestJson("/api/llm-compare/evaluations");
+      state.evaluations = payload.evaluations || [];
+      renderEvaluations();
+    }
+
+    function renderEvaluations() {
+      if (!state.evaluations.length) {
+        savedEvaluationsEl.textContent = "No saved evaluations yet.";
+        return;
+      }
+      savedEvaluationsEl.classList.remove("muted");
+      savedEvaluationsEl.innerHTML = state.evaluations.map((item) => `
+        <div class="evaluation-row">
+          <strong>${escapeHtml(item.model_display_name || item.model_id)}</strong>
+          <p class="muted">${escapeHtml(item.selected_prompt_title)} · ${escapeHtml(item.timestamp)} · rank ${escapeHtml(item.rank || "")}</p>
+          <pre>${escapeHtml(JSON.stringify(item.manual_scores || {}, null, 2))}</pre>
+        </div>
+      `).join("");
+    }
+
+    function exportCurrentRun() {
+      downloadFile("llm-compare-run.json", JSON.stringify(state.comparison || {}, null, 2), "application/json");
+    }
+
+    function exportEvaluationsCsv() {
+      const rows = [["run_id", "timestamp", "selected_prompt_id", "selected_prompt_title", "model_profile_id", "model_display_name", "provider", "model_id", "latency_ms", "status", "clarity", "pedagogical_quality", "emotional_alignment", "structure", "cognitive_load", "rank", "notes"]];
+      for (const item of state.evaluations) {
+        const scores = item.manual_scores || {};
+        rows.push([
+          item.run_id,
+          item.timestamp,
+          item.selected_prompt_id,
+          item.selected_prompt_title,
+          item.model_profile_id,
+          item.model_display_name,
+          item.provider,
+          item.model_id,
+          item.latency_ms,
+          item.status,
+          scores.clarity,
+          scores.pedagogical_quality,
+          scores.emotional_alignment,
+          scores.structure,
+          scores.cognitive_load,
+          item.rank,
+          item.evaluator_notes,
+        ]);
+      }
+      const csv = rows.map((row) => row.map((cell) => `"${String(cell ?? "").replaceAll('"', '""')}"`).join(",")).join("\n");
+      downloadFile("llm-evaluations.csv", csv, "text/csv");
+    }
+
+    function downloadFile(name, text, type) {
+      const blob = new Blob([text], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = name;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearEditor() {
+      state.editingPromptId = "";
+      document.getElementById("prompt-title").value = "";
+      document.getElementById("prompt-category").value = "Custom / Experimental";
+      document.getElementById("prompt-subcategory").value = "";
+      document.getElementById("prompt-description").value = "";
+      document.getElementById("prompt-text").value = "";
+      document.getElementById("prompt-variables").value = "";
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => switchTab(button.dataset.tab));
+    });
+
+    promptLibrary.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-prompt-id]");
+      if (button) selectPrompt(button.dataset.promptId);
+    });
+
+    promptLibrary.addEventListener("toggle", (event) => {
+      if (!event.target.matches("[data-category-id]")) return;
+      setCategoryExpanded(event.target.dataset.categoryId, event.target.open);
+      renderPromptDirectory(groupPrompts(state.prompts));
+    }, true);
+
+    function jumpToCategory(categoryIdValue) {
+      setCategoryExpanded(categoryIdValue, true);
+      const groups = groupPrompts(state.prompts);
+      renderPromptDirectory(groups);
+      renderPromptLibrary(groups);
+      document.getElementById(`prompt-category-${categoryIdValue}`)?.scrollIntoView({ block: "start", behavior: "smooth" });
+    }
+
+    promptDirectory.addEventListener("click", (event) => {
+      const jumpButton = event.target.closest("[data-category-jump]");
+      if (jumpButton) {
+        jumpToCategory(jumpButton.dataset.categoryJump);
+        return;
+      }
+      if (event.target.id === "expand-all-categories") {
+        categories.forEach((category) => setCategoryExpanded(categoryId(category), true));
+        const groups = groupPrompts(state.prompts);
+        renderPromptDirectory(groups);
+        renderPromptLibrary(groups);
+      }
+      if (event.target.id === "collapse-all-categories") {
+        categories.forEach((category) => setCategoryExpanded(categoryId(category), false));
+        const groups = groupPrompts(state.prompts);
+        renderPromptDirectory(groups);
+        renderPromptLibrary(groups);
+      }
+    });
+
+    document.getElementById("prompt-search").addEventListener("input", () => loadPrompts().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("refresh-prompts").addEventListener("click", () => loadPrompts().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("create-prompt").addEventListener("click", clearEditor);
+    document.getElementById("edit-prompt").addEventListener("click", () => state.selectedPrompt && selectPrompt(state.selectedPrompt.id));
+    document.getElementById("duplicate-prompt").addEventListener("click", async () => {
+      if (!state.selectedPrompt) return;
+      const payload = await requestJson(`/api/llm-compare/prompts/${encodeURIComponent(state.selectedPrompt.id)}/duplicate`, { method: "POST" });
+      await loadPrompts();
+      selectPrompt(payload.prompt.id);
+    });
+    document.getElementById("delete-prompt").addEventListener("click", async () => {
+      if (!state.selectedPrompt || !confirm("Delete prompt?")) return;
+      await requestJson(`/api/llm-compare/prompts/${encodeURIComponent(state.selectedPrompt.id)}`, { method: "DELETE" });
+      state.selectedPrompt = null;
+      await loadPrompts();
+      renderSelectedPrompt();
+    });
+
+    document.getElementById("prompt-editor").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const payload = {
+        title: document.getElementById("prompt-title").value.trim(),
+        category: document.getElementById("prompt-category").value,
+        subcategory: document.getElementById("prompt-subcategory").value.trim(),
+        description: document.getElementById("prompt-description").value.trim(),
+        prompt_text: document.getElementById("prompt-text").value,
+        full_prompt_text: document.getElementById("prompt-text").value,
+        variables: document.getElementById("prompt-variables").value.split(",").map((item) => item.trim()).filter(Boolean),
+      };
+      const url = state.editingPromptId ? `/api/llm-compare/prompts/${encodeURIComponent(state.editingPromptId)}` : "/api/llm-compare/prompts";
+      const method = state.editingPromptId ? "PUT" : "POST";
+      const saved = await requestJson(url, { method, body: JSON.stringify(payload) });
+      await loadPrompts();
+      selectPrompt(saved.prompt.id);
+      setMessage("Saved prompt.", "success");
+    });
+
+    document.getElementById("reload-models").addEventListener("click", () => loadModels().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("run-selected-compare").addEventListener("click", () => runCompare().then(() => setMessage("Compare run finished.", "success")).catch((error) => setMessage(error.message, "error")));
+    document.getElementById("quick-model-check").addEventListener("click", () => runQuickModelCheck().then(() => setMessage("Quick model check finished.", "success")).catch((error) => setMessage(error.message, "error")));
+    document.getElementById("copy-selected-prompt").addEventListener("click", () => navigator.clipboard?.writeText(fullPromptText(state.selectedPrompt)));
+    document.getElementById("export-current-json").addEventListener("click", exportCurrentRun);
+    document.getElementById("refresh-evaluations").addEventListener("click", () => loadEvaluations().catch((error) => setMessage(error.message, "error")));
+    document.getElementById("export-evaluations-csv").addEventListener("click", exportEvaluationsCsv);
+
+    resultsEl.addEventListener("submit", (event) => {
+      const form = event.target.closest("[data-score-form]");
+      if (!form) return;
+      event.preventDefault();
+      saveScore(form).catch((error) => setMessage(error.message, "error"));
+    });
+
+    loadPrompts().catch((error) => setMessage(error.message, "error"));
+    loadModels().catch((error) => setMessage(error.message, "error"));
+    loadEvaluations().catch(() => {});
+  </script>
+</body>
+</html>

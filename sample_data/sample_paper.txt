@@ -1,0 +1,16 @@
+Title: A Generic Study of Adaptive Reading Support
+
+Abstract
+This short sample paper describes an academic reading assistant that adapts explanations to a learner's current reading state. The system is intentionally generic and safe for classroom demos.
+
+Method
+The proposed method receives a selected passage, surrounding paper context, and a compact learning-state signal. First, the system chunks the document into page-aware segments. Then it retrieves the most relevant chunks for the user question. Finally, it builds a teaching prompt that separates factual context from response style.
+
+Formula-like objective
+The assistant can be described by the objective score = relevance(context, question) + clarity(policy, state) - overload(response). Here, relevance measures whether the answer is grounded in the paper, clarity measures whether the explanation matches the selected teaching policy, and overload penalizes responses that are too dense for the current state.
+
+Results
+In a demonstration setting, the same selected method paragraph produces different answers when the learning state changes. Confusion leads to a step-by-step explanation, frustration leads to a simpler supportive explanation, boredom leads to a concise challenge, and engagement leads to a deeper technical reading.
+
+Limitations and future work
+The affective signal is only a noisy proxy and should not be interpreted as a diagnosis. Future work should evaluate whether adaptive explanations improve comprehension, perceived support, and academic usefulness in controlled reading sessions.

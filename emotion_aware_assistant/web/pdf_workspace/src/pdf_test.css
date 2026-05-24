@@ -1,0 +1,267 @@
+html,
+body,
+#pdf-test-root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pdf-test-app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+}
+
+.pdf-test-toolbar {
+  flex: 0 0 auto;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+
+.pdf-test-highlight-button {
+  min-height: 30px;
+  border: 1px solid #b59400;
+  border-radius: 6px;
+  background: #ffe28f;
+  color: #2f2600;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  padding: 4px 10px;
+}
+
+.pdf-test-area-button {
+  min-height: 30px;
+  border: 1px solid #9aa7b7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2933;
+  cursor: pointer;
+  font: inherit;
+  padding: 4px 10px;
+}
+
+.pdf-test-upload-button {
+  align-items: center;
+  border: 1px solid #9aa7b7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2933;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  min-height: 30px;
+  padding: 4px 10px;
+}
+
+.pdf-test-area-button.active {
+  border-color: #2563eb;
+  background: #dbeafe;
+  color: #123c8c;
+}
+
+.pdf-test-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.pdf-test-viewer {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.pdf-test-debug-panel {
+  flex: 0 0 360px;
+  border-left: 1px solid #d6dce5;
+  background: #ffffff;
+  color: #1f2933;
+  overflow: auto;
+  padding: 12px;
+}
+
+.pdf-test-debug-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.pdf-test-debug-panel h2,
+.pdf-test-debug-panel h3,
+.pdf-test-debug-panel p {
+  margin: 0 0 8px;
+}
+
+.pdf-test-debug-panel h2 {
+  font-size: 15px;
+}
+
+.pdf-test-debug-panel h3 {
+  border-top: 1px solid #e4e9f0;
+  font-size: 13px;
+  margin-top: 12px;
+  padding-top: 10px;
+}
+
+.pdf-test-debug-panel pre {
+  background: #f6f8fb;
+  border: 1px solid #dbe2eb;
+  border-radius: 6px;
+  margin: 0 0 10px;
+  max-height: 180px;
+  overflow: auto;
+  padding: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.pdf-test-crop-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border: 1px solid #dbe2eb;
+  border-radius: 6px;
+  background: #f6f8fb;
+  margin-bottom: 10px;
+}
+
+.pdf-test-debug-grid {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px 10px;
+  margin: 0;
+}
+
+.pdf-test-debug-grid dt {
+  color: #5b6675;
+  font-weight: 650;
+}
+
+.pdf-test-debug-grid dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.pdf-test-match-block {
+  border: 1px solid #dbe2eb;
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.pdf-test-raw-debug {
+  border-top: 1px solid #e4e9f0;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.pdf-test-raw-debug summary {
+  color: #52606d;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.pdf-test-copy-button {
+  border: 1px solid #9aa7b7;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2933;
+  cursor: pointer;
+  font: inherit;
+  padding: 4px 8px;
+}
+
+.pdf-test-copy-button:disabled {
+  color: #8c98a8;
+  cursor: default;
+}
+
+.pdf-test-copy-status {
+  color: #3f6b2b;
+  font-size: 12px;
+}
+
+.pdf-test-explain-button {
+  border: 1px solid #2563eb;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  margin: 0 0 8px;
+  min-height: 30px;
+  padding: 4px 10px;
+}
+
+.pdf-test-explain-button:disabled {
+  background: #e5eaf2;
+  border-color: #c7d0df;
+  color: #788599;
+  cursor: default;
+}
+
+.pdf-test-explain-status {
+  color: #52606d;
+  font-size: 12px;
+}
+
+.pdf-test-explain-error {
+  color: #a12727;
+  font-weight: 650;
+}
+
+.pdf-test-explain-result {
+  border: 1px solid #dbe2eb;
+  border-radius: 6px;
+  margin: 2px 0 10px;
+  padding: 8px;
+}
+
+.pdf-test-explain-block {
+  border: 1px solid #e4e9f0;
+  border-radius: 6px;
+  margin: 6px 0;
+  padding: 6px;
+}
+
+.pdf-test-explain-block pre {
+  max-height: 120px;
+}
+
+.pdf-test-prompt-debug {
+  border-top: 1px solid #e4e9f0;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.pdf-test-prompt-debug summary {
+  color: #52606d;
+  cursor: pointer;
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .pdf-test-content {
+    flex-direction: column;
+  }
+
+  .pdf-test-debug-panel {
+    border-left: none;
+    border-top: 1px solid #d6dce5;
+    flex-basis: 260px;
+  }
+}
