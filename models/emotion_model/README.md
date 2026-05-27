@@ -4,20 +4,19 @@ Install local emotion checkpoints here. Do not commit weight files.
 
 ```text
 best_model.pt
-metadata.json
 raw_8class_best.pt
 ```
 
 The 4-class academic-state checkpoint path remains supported as a diagnostic/baseline/fallback model:
 
 ```bash
-python scripts/install_emotion_checkpoint.py --source /home/rli/下载/best
+python scripts/install_emotion_checkpoint.py --source /home/rli/downloads/best
 ```
 
 For the teammate raw 8-class facial emotion checkpoint:
 
 ```bash
-cp /home/rli/下载/convnext_tiny_8_emotion/convnext_tiny.fb_in22k_ft_in1k_best.pt models/emotion_model/raw_8class_best.pt
+cp /home/rli/downloads/convnext_tiny_8_emotion/convnext_tiny.fb_in22k_ft_in1k_best.pt models/emotion_model/raw_8class_best.pt
 python scripts/configure_emotion_checkpoint.py --checkpoint models/emotion_model/raw_8class_best.pt --mode raw_emotion
 ```
 
