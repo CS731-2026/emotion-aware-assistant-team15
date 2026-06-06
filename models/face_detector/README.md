@@ -1,5 +1,7 @@
 # Face Detector Placeholder
 
+The final demo used the OpenFace-supported detection/crop path. This folder is for optional fallback face-detector weights used during configuration and debugging.
+
 Optional YOLOv8 face weights can be placed here:
 
 ```text

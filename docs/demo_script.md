@@ -54,8 +54,8 @@ Before the demo:
 9. Show the raw/mapped panel and the learning-signal package debug JSON.
 10. Point out the two separate panels:
    - **Active Raw 8-Class Emotion Chain**
-   - **Direct 4-Class Academic-State Diagnostic**
-11. Explain that in raw-emotion mode the direct 4-class diagnostic has `used_for_strategy: false`.
+   - **Direct 4-Class Academic-State Comparison**
+11. Explain that in raw-emotion mode the direct 4-class comparison output has `used_for_strategy: false`.
 12. Explain that `/pdf-chat` uses only safe compact learning-support wording, while `/camera-debug` is for transparency and troubleshooting.
 
 ## Demo Part 3: PDF Chat

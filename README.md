@@ -44,27 +44,17 @@ The system **does not diagnose the user**. The learning signal is used only to a
 
 ---
 
-## 2. Final Design Decision
+## 2. Final Demo Configuration
 
-The final presentation and current README use the following consistent design story:
+The repository supports both a direct 4-state academic-state checkpoint and an 8-class raw facial-emotion checkpoint. The final demo was configured to use the **8-class raw-emotion mode**. In this mode, the checkpoint outputs raw emotion probabilities, which are mapped into academic-state evidence and interpreted through reaction-window logic before being used as a learning-support cue.
 
-```text
-Final chatbot adaptation model:
-ConvNeXt-Tiny 4-class academic-state model
+The 4-state academic-state checkpoint remains available as a baseline, fallback, or comparison model. It is useful for direct academic-state classification experiments, but it was not the active final demo runtime model.
 
-Auxiliary transparency model:
-ConvNeXt-Tiny 8-class raw-emotion model
-```
-
-In other words, the final adaptive chatbot primarily uses the **4-state academic-state model** because it is more stable and directly aligned with learning support. The **8-class raw-emotion model** is retained as a supporting module for showing raw emotion detection before mapping.
-
-This avoids the logical issue of spending most of the evaluation on a 4-class model while claiming that the final deployed model is only 8-class. The intended interpretation is:
-
-| Component                        | Role                                     |                                       Result |
-| -------------------------------- | ---------------------------------------- | -------------------------------------------: |
-| **4-state academic-state model** | Final chatbot adaptation model           | Best Val Acc **80.67%**, Test Acc **79.94%** |
-| **8-class raw-emotion model**    | Auxiliary raw emotion transparency model | Best Val Acc **73.46%**, Test Acc **72.80%** |
-| **Mapping layer**                | Connects raw emotions to academic states |                                   Rule-based |
+| Component | Role | Result |
+| --- | --- | ---: |
+| **8-class raw-emotion model** | Final demo runtime input model | Best Val Acc **73.46%**, Test Acc **72.80%** |
+| **4-state academic-state model** | Baseline / fallback / comparison model | Best Val Acc **80.67%**, Test Acc **79.94%** |
+| **Mapping + reaction-window layer** | Converts raw probabilities into process-aware academic-state support cues | Runtime adaptation layer |
 
 ---
 
@@ -282,48 +272,38 @@ emotion_aware_assistant/emotion/teammate_emotion_adapter.py
 
 Browser webcam frames are sent only to the local backend. They are not sent to external LLM providers. Raw frames are not persisted by default.
 
-When OpenFace is configured, face analysis uses the `FeatureExtraction` binary to produce facial landmarks. `/camera-debug` shows the analyzed frame, landmarks, face bounding box, crop preview, and final `224 x 224` model input. `/pdf-chat` uses the same pipeline internally but only shows a compact learning signal.
+The final demo used the OpenFace-supported detection/crop path. When OpenFace is configured, face analysis uses the `FeatureExtraction` binary to produce facial landmarks. `/camera-debug` shows the analyzed frame, landmarks, face bounding box, crop preview, and final `224 x 224` model input. `/pdf-chat` uses the same pipeline internally but only shows a compact learning signal.
 
-### 8.1 Final academic-state checkpoint mode
+### 8.1 Final raw-emotion runtime mode
 
-This is the final selected model mode for chatbot adaptation.
+This is the final demo runtime mode for chatbot adaptation.
 
 ```text
-Input image / crop -> ConvNeXt-Tiny -> boredom / confusion / engagement / frustration
+Input image / crop -> ConvNeXt-Tiny -> 8 raw emotion probabilities -> academic-state evidence -> reaction-window support cue
 ```
 
 In this mode:
 
-- the checkpoint directly predicts the 4 academic states;
-- raw 8-class emotion is unavailable;
-- raw-to-state mapping is bypassed;
-- output is smoothed and passed to the response strategy layer.
+- the checkpoint predicts raw facial-emotion probabilities;
+- raw probabilities are mapped into engagement, confusion, frustration, and boredom evidence;
+- reaction-window logic summarises the signal over time;
+- the resulting learning-support cue is passed to the strategy planner.
 
-Expected runtime checkpoint path:
-
-```text
-models/emotion_model/best_model.pt
-```
-
-### 8.2 Auxiliary raw-emotion checkpoint mode
-
-The repository also supports an 8-class raw-emotion checkpoint.
-
-```text
-Input image / crop -> ConvNeXt-Tiny -> 8 raw emotions -> 4 academic states
-```
-
-Expected auxiliary checkpoint path:
+Expected final demo checkpoint path:
 
 ```text
 models/emotion_model/raw_8class_best.pt
 ```
 
-This mode is useful when the demo needs to explicitly show:
+### 8.2 Supported 4-state academic-state mode
+
+The repository also supports a direct 4-state academic-state checkpoint.
 
 ```text
-Raw Detection -> Mapped Academic State -> Chatbot Strategy
+Input image / crop -> ConvNeXt-Tiny -> boredom / confusion / engagement / frustration
 ```
+
+This mode remains useful as a baseline, fallback, or comparison model.
 
 ### 8.3 Smoothing and trend tracking
 
@@ -379,7 +359,7 @@ The single-label mapping is:
 
 Important note:
 
-> The final 4-state checkpoint directly predicts academic states. The raw-emotion mapping layer is used only when the 8-class raw checkpoint is installed, and it is also used to explain the theoretical connection between raw emotions and academic states.
+> In the final demo configuration, the system uses the 8-class raw-emotion checkpoint as low-level facial evidence. Raw probabilities are mapped into academic-state evidence and interpreted through reaction-window logic before being used as a learning-support cue rather than a user diagnosis. The direct 4-state checkpoint remains supported as a baseline, fallback, or comparison model.
 
 ---
 
@@ -403,9 +383,9 @@ This design ensures that the emotion-recognition output influences the chatbot's
 
 Training was conducted outside the runtime repository. The runtime repository is designed to load the selected checkpoints from `models/emotion_model/`.
 
-### 11.1 Final 4-state academic-state model
+### 11.1 4-state academic-state comparison model
 
-The final selected model is:
+The 4-state academic-state model remains supported as a baseline, fallback, and comparison model:
 
 ```text
 Model: ConvNeXt-Tiny
@@ -446,9 +426,9 @@ python emotion_recognition/train.py \
   --save-dir checkpoints/convnext_tiny_4state_25ep_b64_lr5e5
 ```
 
-### 11.2 Auxiliary 8-class raw-emotion model
+### 11.2 Final 8-class raw-emotion runtime model
 
-A second ConvNeXt-Tiny model was trained for raw emotion detection.
+A second ConvNeXt-Tiny model was trained for raw emotion detection. This checkpoint was used as the final demo runtime input model.
 
 ```text
 Model: ConvNeXt-Tiny
@@ -468,16 +448,16 @@ This result is expected to be lower than the 4-state task because raw emotion de
 
 | Rank | Model             | Architecture                                    | Epochs | Batch |     LR | Best epoch | Highest val acc | Final val acc |   Test acc | Role                       |
 | ---: | ----------------- | ----------------------------------------------- | -----: | ----: | -----: | ---------: | --------------: | ------------: | ---------: | -------------------------- |
-|    1 | **ConvNeXt-Tiny** | `convnext_tiny.fb_in22k_ft_in1k`                |     25 |    64 | `5e-5` |         19 |      **80.67%** |        80.19% | **79.94%** | Final academic-state model |
+|    1 | **ConvNeXt-Tiny** | `convnext_tiny.fb_in22k_ft_in1k`                |     25 |    64 | `5e-5` |         19 |      **80.67%** |        80.19% | **79.94%** | Best 4-state comparison model |
 |    2 | RegNetY-800MF     | `regnety_008_tv.tv2_in1k`                       |     25 |    64 | `1e-4` |         24 |          79.00% |        78.04% |     78.59% | Efficient CNN candidate    |
 |    3 | Swin-Tiny         | `swin_tiny_patch4_window7_224.ms_in22k_ft_in1k` |     25 |    64 | `3e-5` |         21 |          78.72% |        78.68% |     78.43% | Transformer candidate      |
 |    4 | MobileNetV3-Large | `mobilenetv3_large_100.miil_in21k_ft_in1k`      |     25 |    64 | `3e-4` |         22 |          78.68% |        77.64% |     76.13% | Lightweight candidate      |
 |    5 | ResNet50          | `resnet50.a1_in1k`                              |     25 |    64 | `1e-4` |         21 |          78.32% |        77.52% |     76.49% | Baseline                   |
 |    6 | EfficientNet-B4   | `tf_efficientnet_b4.ns_jft_in1k`                |     25 |    32 | `5e-5` |         22 |          75.33% |        74.77% |     74.62% | Not selected               |
 
-### 11.4 Why ConvNeXt-Tiny was selected
+### 11.4 Why ConvNeXt-Tiny was used for the 4-state comparison
 
-ConvNeXt-Tiny was selected because it achieved:
+ConvNeXt-Tiny was used as the strongest 4-state comparison model because it achieved:
 
 - the highest 4-state validation accuracy: **80.67%**;
 - the highest 4-state test accuracy: **79.94%**;
@@ -522,15 +502,15 @@ The zip repository may contain only placeholder files or README files under `mod
 Expected runtime files:
 
 ```text
-models/emotion_model/best_model.pt          # final 4-state academic-state checkpoint
-models/emotion_model/raw_8class_best.pt     # optional auxiliary raw-emotion checkpoint
+models/emotion_model/raw_8class_best.pt     # final demo raw-emotion runtime checkpoint
+models/emotion_model/best_model.pt          # supported 4-state baseline / fallback / comparison checkpoint
 models/emotion_model/metadata.json          # model metadata and metrics
 ```
 
-Install the final academic-state checkpoint:
+Configure the final demo raw-emotion checkpoint:
 
 ```bash
-python scripts/install_emotion_checkpoint.py --source /path/to/convnext_tiny_4state_best.pt
+python scripts/configure_emotion_checkpoint.py --checkpoint models/emotion_model/raw_8class_best.pt --mode raw_emotion
 ```
 
 Inspect a checkpoint:
@@ -655,6 +635,8 @@ Supported provider types:
 - OpenAI-compatible endpoints;
 - dummy providers for offline testing.
 
+Based on the final LLM comparison, Claude was selected for the final demo because it achieved the best overall quality and latency balance. The final OpenRouter model ID used successfully was `anthropic/claude-opus-4.7-fast`.
+
 Main roles:
 
 | Role                     | Purpose                                                                        |
@@ -672,16 +654,16 @@ runtime_uploads/config/llm_profiles.json
 Example `.env.local` keys:
 
 ```bash
-LLM_PROVIDER=gemini
-LLM_MODEL=gemini-flash-latest
-STRATEGY_PLANNER_PROVIDER=gemini
-STRATEGY_PLANNER_MODEL=gemini-flash-latest
+LLM_PROVIDER=openrouter
+LLM_MODEL=anthropic/claude-opus-4.7-fast
+STRATEGY_PLANNER_PROVIDER=openrouter
+STRATEGY_PLANNER_MODEL=anthropic/claude-opus-4.7-fast
 EMBEDDING_PROVIDER=gemini
 EMBEDDING_MODEL=gemini-embedding-001
 GEMINI_API_KEY=your_key_here
 
 OPENROUTER_API_KEY=your_key_here
-OPENROUTER_MODEL=openai/gpt-4o-mini
+OPENROUTER_MODEL=anthropic/claude-opus-4.7-fast
 OPENROUTER_SITE_URL=http://127.0.0.1:8000
 OPENROUTER_SITE_NAME=Emotion-Aware Academic Assistant
 
@@ -689,6 +671,16 @@ OPENAI_API_KEY=your_key_here
 OPENAI_BASE_URL=http://localhost:11434/v1
 OPENAI_MODEL=your_model_here
 ```
+
+Final LLM comparison evidence is stored in:
+
+```text
+docs/evaluation/llm_comparison_final/2026-05-25-result.xlsx
+docs/evaluation/llm_comparison_final/test-result-final-02.zip
+docs/evaluation/llm_comparison_final/llm_comparison_summary.md
+```
+
+The final LLM comparison used an LLM-as-a-judge evaluation with human supervision. Responses were scored against fixed rubrics for answer quality, strategy quality, safety, and latency.
 
 Configure Gemini from terminal:
 
@@ -754,6 +746,8 @@ The build command is defined in `package.json` and uses Vite.
 ---
 
 ## 16. Face Detector / OpenFace Setup
+
+The final demo used the OpenFace-supported detection/crop path, while the implementation keeps fallback detector options for configuration and debugging.
 
 Diagnose OpenFace:
 
@@ -833,8 +827,8 @@ A recommended final demonstration sequence is:
 2. Open `/camera-debug`.
    - Capture one frame.
    - Show the exact analyzed frame, landmarks, face crop, and model input.
-   - Show whether the active checkpoint is academic-state mode or raw-emotion mode.
-   - If raw-emotion mode is configured, show raw detection and mapped academic state.
+   - Show that the active checkpoint is raw-emotion mode.
+   - Show raw detection, mapped academic-state evidence, and the reaction-window support cue.
 
 3. Open `/pdf-chat`.
    - Upload or open a paper.
@@ -914,8 +908,8 @@ tests/test_openface_scripts.py
 | LLM response fails                         | Check provider credentials and selected model.                                                    |
 | Camera does not start                      | Check browser camera permission and use `/camera-debug`.                                          |
 | OpenFace unavailable                       | Run `python scripts/diagnose_openface.py`.                                                        |
-| Emotion checkpoint missing                 | Install or configure `models/emotion_model/best_model.pt`.                                        |
-| Raw emotion not shown                      | The active checkpoint is likely a 4-state academic-state model, where raw emotion is unavailable. |
+| Emotion checkpoint missing                 | Install or configure `models/emotion_model/raw_8class_best.pt` for the final demo mode.           |
+| Raw emotion not shown                      | Check that `EMOTION_MODEL_MODE=raw_emotion` and `RAW_EMOTION_CHECKPOINT_PATH` are configured.     |
 | Prompt snapshots missing in `/llm-compare` | Run a new explanation in `/pdf-chat` first.                                                       |
 
 ---
@@ -953,9 +947,10 @@ The final presentation should describe the emotion-recognition component as foll
 
 1. **Method**: build an 8-class raw emotion dataset and a mapped 4-state academic-state dataset.
 2. **Model comparison**: compare six pretrained models on the 4-state task.
-3. **Result**: ConvNeXt-Tiny performs best on the 4-state task.
-4. **Analysis**: 4-state academic labels are more stable and task-relevant than raw emotions.
-5. **Deployment decision**: final chatbot adaptation uses the 4-state academic-state model; the 8-class model is retained as an auxiliary transparency module.
+3. **Result**: ConvNeXt-Tiny performs best on the 4-state comparison task.
+4. **Runtime decision**: the final demo uses the 8-class raw-emotion checkpoint as low-level evidence.
+5. **Adaptation chain**: raw probabilities are mapped into academic-state evidence, interpreted through reaction-window logic, and passed to the strategy planner as a learning-support cue.
+6. **Supported fallback**: the 4-state academic-state checkpoint remains available as a baseline, fallback, and comparison model.
 
 This wording keeps the README, final code, and presentation consistent.
 
@@ -990,17 +985,17 @@ The project currently includes:
 - camera-debug transparency workflow;
 - LLM comparison workflow;
 - academic-state and raw-emotion checkpoint compatibility;
-- final ConvNeXt-Tiny 4-state training results;
-- auxiliary ConvNeXt-Tiny 8-class raw emotion results;
+- final demo ConvNeXt-Tiny 8-class raw emotion runtime mode;
+- supported ConvNeXt-Tiny 4-state baseline / fallback / comparison results;
 - tests for key backend and frontend workflows;
 - demo script and configuration scripts.
 
 The core final model decision is:
 
 ```text
-Final selected model: ConvNeXt-Tiny 4-state academic-state model
-Best validation accuracy: 80.67%
-Test accuracy: 79.94%
-Auxiliary raw emotion model: ConvNeXt-Tiny 8-class model
+Final demo emotion runtime model: ConvNeXt-Tiny 8-class raw-emotion model
 Raw emotion test accuracy: 72.80%
+Supported comparison model: ConvNeXt-Tiny 4-state academic-state model
+4-state best validation accuracy: 80.67%
+4-state test accuracy: 79.94%
 ```
