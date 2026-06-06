@@ -7,6 +7,12 @@ best_model.pt
 raw_8class_best.pt
 ```
 
+The complete source code is available in the GitHub Classroom repository. Because the trained emotion checkpoints are large binary files and are not stored directly in the normal Git repository, the checkpoint files used by the final demo are provided separately through REANNZ FileSender:
+
+https://filesender.reannz.co.nz/?s=download&token=d1fcd0a7-d7e4-4c8b-87c5-7c1380827c74
+
+The archive contains the final 8-class raw-emotion runtime checkpoint, `raw_8class_best.pt`, and the supported 4-state academic-state checkpoint, `best_model.pt`. Extract the archive at the repository root or place the checkpoint files in this directory.
+
 The 4-class academic-state checkpoint path remains supported as a baseline/fallback/comparison model:
 
 ```bash

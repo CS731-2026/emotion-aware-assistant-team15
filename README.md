@@ -497,7 +497,7 @@ Full training datasets and intermediate epoch checkpoints should not be committe
 
 ## 12. Model Checkpoint Installation
 
-The zip repository may contain only placeholder files or README files under `models/emotion_model/`. Real `.pt` checkpoints are large and are ignored by default in `.gitignore`.
+The complete source code is available in this GitHub Classroom repository. Because the trained emotion checkpoints are large binary files and are not stored directly in the normal Git repository, the checkpoint files used by the final demo are provided separately through [REANNZ FileSender](https://filesender.reannz.co.nz/?s=download&token=d1fcd0a7-d7e4-4c8b-87c5-7c1380827c74). The archive contains the final 8-class raw-emotion runtime checkpoint, `raw_8class_best.pt`, and the supported 4-state academic-state checkpoint, `best_model.pt`. The expected model paths and installation steps are documented below, so the application can be reproduced by downloading the archive and placing the checkpoint files in the corresponding model directory.
 
 Expected runtime files:
 
