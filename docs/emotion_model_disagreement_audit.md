@@ -174,7 +174,7 @@ diagnostics/emotion_model_alignment_report.json
 diagnostics/emotion_model_alignment_examples.csv
 ```
 
-It reports direct 4-class accuracy against required mapped ground truth, raw-8+mapping accuracy, direct-vs-mapped agreement, confusion matrices, prediction distributions, likely label permutation, class bias, and direct accuracy against the archived legacy mapping as a diagnostic.
+It reports direct 4-class accuracy against required mapped ground truth, raw-8+mapping accuracy, direct-vs-mapped agreement, confusion matrices, prediction distributions, likely label permutation, class bias, and direct accuracy against the archived legacy mapping as a comparison check.
 
 For one suspicious crop:
 
@@ -198,7 +198,7 @@ python scripts/compare_emotion_models_on_crop.py \
 
 ## Recommendation
 
-Do not declare the mismatch solved yet. Keep the 4-class result visible in `/camera-debug` as a diagnostic comparison, but treat the raw 8-class plus required probability aggregation as the active teacher-facing chain when raw mode is configured.
+Do not declare the mismatch solved yet. Keep the 4-class result visible in `/camera-debug` as a comparison output, but treat the raw 8-class plus required probability aggregation as the active teacher-facing chain when raw mode is configured.
 
 The implemented final chain is process-aware rather than single-frame direct classification:
 
@@ -206,7 +206,7 @@ The implemented final chain is process-aware rather than single-frame direct cla
 Camera frame -> Raw 8-class facial emotion inference -> Academic-state probability mapping -> Rolling buffer / reaction-window summary -> Learning process context -> Learning signal package -> Strategy planner -> LLM prompt builder -> Adaptive explanation
 ```
 
-In `raw_emotion` mode, `direct_4class_diagnostic.used_for_strategy` must remain `false`. The direct 4-class checkpoint is retained for diagnostic/baseline/fallback comparison only.
+In `raw_emotion` mode, the direct 4-class comparison output must keep `used_for_strategy: false`. The direct 4-class checkpoint is retained for baseline/fallback/comparison only.
 
 The next evidence needed is one of:
 

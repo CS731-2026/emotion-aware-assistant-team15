@@ -7,7 +7,7 @@ best_model.pt
 raw_8class_best.pt
 ```
 
-The 4-class academic-state checkpoint path remains supported as a diagnostic/baseline/fallback model:
+The 4-class academic-state checkpoint path remains supported as a baseline/fallback/comparison model:
 
 ```bash
 python scripts/install_emotion_checkpoint.py --source /home/rli/downloads/best
@@ -20,4 +20,4 @@ cp /home/rli/downloads/convnext_tiny_8_emotion/convnext_tiny.fb_in22k_ft_in1k_be
 python scripts/configure_emotion_checkpoint.py --checkpoint models/emotion_model/raw_8class_best.pt --mode raw_emotion
 ```
 
-Raw 8-class labels are `anger, contempt, disgust, fear, happy, neutral, sad, surprise`. The final active chain uses this raw checkpoint as low-level evidence, maps probabilities into learning-centered academic scores, then combines reaction windows and dialogue/strategy history into a process-aware learning signal package. In `raw_emotion` mode the direct 4-class diagnostic must not influence strategy selection. `metadata.json` is safe to track; `*.pt`, `*.pth`, and `*.ckpt` are ignored recursively.
+Raw 8-class labels are `anger, contempt, disgust, fear, happy, neutral, sad, surprise`. The final active chain uses this raw checkpoint as low-level evidence, maps probabilities into learning-centered academic scores, then combines reaction windows and dialogue/strategy history into a process-aware learning signal package. In `raw_emotion` mode the direct 4-class comparison model must not influence strategy selection. `metadata.json` is safe to track; `*.pt`, `*.pth`, and `*.ckpt` are ignored recursively.
